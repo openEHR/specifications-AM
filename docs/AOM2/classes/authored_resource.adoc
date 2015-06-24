@@ -1,0 +1,75 @@
+==== AUTHORED_RESOURCE Class
+
+[cols="^1,2,3"]
+|===
+|*Class*
+{set:cellbgcolor:lightblue}
+2+^|*_AUTHORED_RESOURCE (abstract)_*
+
+|*Description*
+{set:cellbgcolor:lightblue}
+2+|Abstract idea of an online resource created by a human author. 
+{set:cellbgcolor!}
+
+|*Attributes*
+{set:cellbgcolor:lightblue}
+^|*Signature*
+^|*Meaning*
+
+|*1..1*
+{set:cellbgcolor:lightblue}
+|*original_language*: `TERMINOLOGY_CODE`
+{set:cellbgcolor!}
+|Language in which this resource was initially authored. Although there is no language primacy of resources overall, the language of original authoring is required to ensure natural language translations can preserve quality. Language is relevant in both the description and ontology sections. 
+
+|*0..1*
+{set:cellbgcolor:lightblue}
+|*is_controlled*: `Boolean`
+{set:cellbgcolor!}
+|True if this resource is under any kind of change control (even file copying), in which case revision history is created. 
+
+|*0..1*
+{set:cellbgcolor:lightblue}
+|*translations*: `List<TRANSLATION_DETAILS>`
+{set:cellbgcolor!}
+|List of details for each natural translation made of this resource, keyed by language. For each translation listed here, there must be corresponding sections in all language-dependent parts of the resource. The original_language does not appear in this list.
+
+|*0..1*
+{set:cellbgcolor:lightblue}
+|*description*: `RESOURCE_DESCRIPTION`
+{set:cellbgcolor!}
+|Description and lifecycle information of the resource.
+
+|*0..1*
+{set:cellbgcolor:lightblue}
+|*uid*: `UID`
+{set:cellbgcolor!}
+|Unique identifier of the family of archetypes having the same interface identifier (same major version).
+
+|*0..1*
+{set:cellbgcolor:lightblue}
+|*annotations*: `RESOURCE_ANNOTATIONS`
+{set:cellbgcolor!}
+|Annotations on individual items within the resource, keyed by path. The inner table takes the form of a Hash table of String values keyed by String tags.
+|*Functions*
+{set:cellbgcolor:lightblue}
+^|*Signature*
+^|*Meaning*
+
+|
+{set:cellbgcolor:lightblue}
+|*current_revision*: `String`
+{set:cellbgcolor!}
+|Most recent revision in revision_history if is_controlled else  (uncontrolled) . 
+
+|
+{set:cellbgcolor:lightblue}
+|*languages_available*: `List<String>`
+{set:cellbgcolor!}
+|Total list of languages available in this resource, derived from original_language and translations. 
+
+|*Invariant*
+{set:cellbgcolor:lightblue}
+2+|*_Invariant_original_language_valid_*: code_set (Code_set_id_languages).has_code (original_language)
+{set:cellbgcolor!}
+|===

@@ -1,0 +1,57 @@
+==== C_PRIMITIVE_OBJECT Class
+
+[cols="^1,2,3"]
+|===
+|*Class*
+{set:cellbgcolor:lightblue}
+2+^|*_C_PRIMITIVE_OBJECT (abstract)_*
+
+|*Description*
+{set:cellbgcolor:lightblue}
+2+|Parent of types representing constraints on primitive types.
+{set:cellbgcolor!}
+
+|*Inherit*
+{set:cellbgcolor:lightblue}
+2+|C_DEFINED_OBJECT
+{set:cellbgcolor!}
+
+|*Attributes*
+{set:cellbgcolor:lightblue}
+^|*Signature*
+^|*Meaning*
+
+|*0..1*
+{set:cellbgcolor:lightblue}
+|*assumed_value*: `Any`
+{set:cellbgcolor!}
+|Value to be assumed if none sent in data.
+
+|*0..1*
+{set:cellbgcolor:lightblue}
+|*is_enumerated_type_constraint*: `Boolean`
+{set:cellbgcolor!}
+|True if this object represents a constraint on an enumerated type from the reference model, where the latter is assumed to be based on a primitive type, generally Integer or String.
+
+|*1..1*
+{set:cellbgcolor:lightblue}
+|*constraint*: `Any`
+{set:cellbgcolor!}
+|Constraint represented by this object; redefine in descendants.
+|*Functions*
+{set:cellbgcolor:lightblue}
+^|*Signature*
+^|*Meaning*
+
+|
+{set:cellbgcolor:lightblue}
+|*has_assumed_value*: `Boolean`
+{set:cellbgcolor!}
+|True if there is an assumed value.
+
+|
+{set:cellbgcolor:lightblue}
+|*constrained_typename*: `String`
+{set:cellbgcolor!}
+|Generate name of native type that is constrained by this C_XXX type. For most types, it is the C_XXX typename without the 'C_', i.e. XXX. E.g. C_INTEGER -> Integer. For the date/time types the mapping is different.
+|===

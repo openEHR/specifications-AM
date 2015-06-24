@@ -1,0 +1,47 @@
+==== C_TIME Class
+
+[cols="^1,2,3"]
+|===
+|*Class*
+{set:cellbgcolor:lightblue}
+2+^|*C_TIME*
+
+|*Description*
+{set:cellbgcolor:lightblue}
+2+|ISO 8601-compatible constraint on instances of Time in the form either of a set of validity values, or else date ranges based on the C_ORDERED list constraint. There is no validity flag for ‘hour’, since it must always be by definition mandatory in order to have a sensible time at all. Syntax expressions of instances of this class include “HH:??:xx” (time with optional minutes and seconds not allowed).
+{set:cellbgcolor!}
+
+|*Functions*
+{set:cellbgcolor:lightblue}
+^|*Signature*
+^|*Meaning*
+
+|
+{set:cellbgcolor:lightblue}
+|*minute_validity*: `VALIDITY_KIND`
+{set:cellbgcolor!}
+|Validity of minute in constrained time.
+
+|
+{set:cellbgcolor:lightblue}
+|*second_validity*: `VALIDITY_KIND`
+{set:cellbgcolor!}
+|Validity of second in constrained time.
+
+|
+{set:cellbgcolor:lightblue}
+|*millisecond_validity*: `VALIDITY_KIND`
+{set:cellbgcolor!}
+|Validity of millisecond in constrained time.
+
+|
+{set:cellbgcolor:lightblue}
+|*timezone_validity*: `VALIDITY_KIND`
+{set:cellbgcolor!}
+|Validity of timezone in constrained date.
+
+|*Invariant*
+{set:cellbgcolor:lightblue}
+2+|*_Pattern_validity_*: pattern /= Void implies valid_iso8601_time_constraint_pattern (pattern)
+{set:cellbgcolor!}
+|===

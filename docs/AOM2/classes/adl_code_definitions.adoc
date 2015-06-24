@@ -1,0 +1,54 @@
+==== ADL_CODE_DEFINITIONS Class
+
+[cols="^1,2,3"]
+|===
+|*Class*
+{set:cellbgcolor:lightblue}
+2+^|*ADL_CODE_DEFINITIONS*
+
+|*Description*
+{set:cellbgcolor:lightblue}
+2+|Definitions relating to the internal code system of archetypes.
+{set:cellbgcolor!}
+
+|*Attributes*
+{set:cellbgcolor:lightblue}
+^|*Signature*
+^|*Meaning*
+
+|*1..1*
+{set:cellbgcolor:lightblue}
+|*Id_code_leader*: `String{nbsp}={nbsp}"id"`
+{set:cellbgcolor!}
+|String leader of ‘identifier’ codes, i.e. codes used to identify archteype nodes.
+
+|*1..1*
+{set:cellbgcolor:lightblue}
+|*Value_code_leader*: `String{nbsp}={nbsp}"at"`
+{set:cellbgcolor!}
+|String leader of ‘value’ codes, i.e. codes used to identify codes values, including value set members.
+
+|*1..1*
+{set:cellbgcolor:lightblue}
+|*Value_set_code_leader*: `String{nbsp}={nbsp}"ac"`
+{set:cellbgcolor!}
+|String leader of ‘value set’ codes, i.e. codes used to identify value sets.
+
+|*1..1*
+{set:cellbgcolor:lightblue}
+|*Specialisation_separator*: `char{nbsp}={nbsp}'.'`
+{set:cellbgcolor!}
+|Character used to separate numeric parts of codes belonging to different specialisation levels.
+
+|*1..1*
+{set:cellbgcolor:lightblue}
+|*Code_regex_pattern*: `String{nbsp}={nbsp}"(0&#124;[1-9][0-9]&#42;)(\.(0&#124;[1-9][0-9]&#42;))&#42;"`
+{set:cellbgcolor!}
+|Regex used to define the legal numeric part of any archetype code. Corresponds to the simple pattern of dotted numbers, as used in typical multi-level numbering schemes.
+
+|*1..1*
+{set:cellbgcolor:lightblue}
+|*Root_code_regex_pattern*: `String{nbsp}={nbsp}"^id1(\.1)&#42;$"`
+{set:cellbgcolor!}
+|Regex pattern of the root id code of any archetype. Corresponds to codes of the form id1, id1.1, id1.1.1 etc..
+|===

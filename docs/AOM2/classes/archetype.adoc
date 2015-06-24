@@ -1,0 +1,102 @@
+==== ARCHETYPE Class
+
+[cols="^1,2,3"]
+|===
+|*Class*
+{set:cellbgcolor:lightblue}
+2+^|*_ARCHETYPE (abstract)_*
+
+|*Description*
+{set:cellbgcolor:lightblue}
+2+|The ARCHETYPE class defines the core formal model of the root object of any archetype or template. It includes only basic identification information, and otherwise provides the structural connections from the Archetype to its constituent parts, i.e. definition (a C_COMPLEX_OBJECT), terminology (ARCHEYTPE_TERMINOLOGY) and so on.  +
+It is the parent class of all concrete types of archetype.
+{set:cellbgcolor!}
+
+|*Attributes*
+{set:cellbgcolor:lightblue}
+^|*Signature*
+^|*Meaning*
+
+|*0..1*
+{set:cellbgcolor:lightblue}
+|*parent_archetype_id*: `String`
+{set:cellbgcolor!}
+|Archetype reference of the specialisation par-ent of this archetype, if applicable. May take the form of an archetype interface identifier, i.e. the identifier up to the major version only, or can be deeper.
+
+|*1..1*
+{set:cellbgcolor:lightblue}
+|*archetype_id*: `ARCHETYPE_HRID`
+{set:cellbgcolor!}
+|Identifier of this archetype.
+
+|*1..1*
+{set:cellbgcolor:lightblue}
+|*is_differential*: `Boolean`
+{set:cellbgcolor!}
+|Flag indicating whether this archetype is differential or flat in its contents. Top-level source archetypes have this flag set to True.
+
+|*1..1*
+{set:cellbgcolor:lightblue}
+|*definition*: `C_COMPLEX_OBJECT`
+{set:cellbgcolor!}
+|Root node of the definition of this archetype.
+
+|*1..1*
+{set:cellbgcolor:lightblue}
+|*terminology*: `ARCHETYPE_TERMINOLOGY`
+{set:cellbgcolor!}
+|The terminology of the archetype.
+
+|*0..1*
+{set:cellbgcolor:lightblue}
+|*rules*: `List<RULE_STATEMENT>`
+{set:cellbgcolor!}
+|Rules relating to this archetype. Statements are expressed in first order predicate logic, and usually refer to at least two attributes.
+|*Functions*
+{set:cellbgcolor:lightblue}
+^|*Signature*
+^|*Meaning*
+
+|
+{set:cellbgcolor:lightblue}
+|*concept_code*: `String` +
+*_post-condition_*: Result.is_equal (definition.node_id)
+{set:cellbgcolor!}
+|The concept code of the root object of the archetype, also standing for the concept of the archetype as a whole.
+
+|
+{set:cellbgcolor:lightblue}
+|*physical_paths*: `List<String>`
+{set:cellbgcolor!}
+|Set of language-independent paths extracted from archetype. Paths obey Xpath-like syntax and are formed from alternations of C_OBJECT.node_id and C_ATTRIBUTE.rm_attribute_name values. 
+
+|
+{set:cellbgcolor:lightblue}
+|*logical_paths* (lang: `String`): `List<String>`
+{set:cellbgcolor!}
+|Set of language-dependent paths extracted from archetype. Paths obey the same syntax as physical_paths, but with node_ids replaced by their meanings from the ontology. 
+
+|
+{set:cellbgcolor:lightblue}
+|*specialisation_depth*: `Integer` +
+*_post-condition_*: Result = terminology.specialisation_depth
+{set:cellbgcolor!}
+|Specialisation depth of this archetype; larger than 0 if this archetype has a parent. Derived from terminology.specialisation_depth.
+
+|
+{set:cellbgcolor:lightblue}
+|*is_specialised*: `Boolean` +
+*_post-condition_*: Result implies parent_archetype_hrid /= Void
+{set:cellbgcolor!}
+|True if this archetype is a specialisation of another. 
+
+|*Invariant*
+{set:cellbgcolor:lightblue}
+2+|*_Invariant_concept_valid_*: terminology.has_term_code (concept_code)
+{set:cellbgcolor!}
+
+|
+{set:cellbgcolor:lightblue}
+2+|*_Invariant_specialisation_validity_*: is_specialised implies specialisation_depth > 0
+{set:cellbgcolor!}
+|===
