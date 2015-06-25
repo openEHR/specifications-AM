@@ -6,10 +6,18 @@
 USAGE='$0 [-p] : generate publishing outputs; HTML by default
   -p : generate PDF as well
 '
+# if launched from inside spec-publish-asciidoc git clone area, we don't need to cd out to get
+# the resources; if in any other repo, we do. This is complicated by the need to make the directories
+# work not just in a normal file system, but on Github, which doesn't appear to see the repo root
+# points as being inside a 'directory'
+resources_git_repo_name=spec-publish-asciidoc
+if [ "$(basename $(pwd))" != "$resources_git_repo_name" ]; then
+	resources_git_cd=../$resources_git_repo_name/
+fi
+resources_dir=../../${resources_git_cd}resources ## relative to doc dirs 2 level down
+
 year=`date +%G`
-#spec_asciidoc_git_dir=$(cd ../spec-publish-asciidoc; pwd)
-spec_asciidoc_git_dir=../../../spec-publish-asciidoc ## relative to doc dirs 2 level down
-stylesdir=${spec_asciidoc_git_dir}/css
+stylesdir=${resources_dir}/css
 stylesheet=openehr.css
 master_doc_name=master.adoc
 
@@ -19,13 +27,26 @@ master_doc_name=master.adoc
 
 run_asciidoctor () {
 	out_file=${1}.html
-	asciidoctor -a current_year=$year -a spec_asciidoc_git_dir=$spec_asciidoc_git_dir -a stylesdir=$stylesdir -a stylesheet=$stylesheet --out-file=$out_file $2
+	asciidoctor -a current_year=$year -a resources_dir=$resources_dir -a stylesdir=$stylesdir -a stylesheet=$stylesheet --out-file=$out_file $2
 	echo generated $(pwd)/$out_file
 }
 
 run_asciidoctor_pdf () {
 	out_file=${1}.pdf
-	asciidoctor -a current_year=$year -a spec_asciidoc_git_dir=$spec_asciidoc_git_dir -a stylesdir=$stylesdir -r asciidoctor-pdf -b pdf --out-file=$out_file $2
+
+	# work out the options
+	pdf_opts="-a current_year=$year \
+		-a stylesdir=$stylesdir \
+		-a resources_dir=$resources_dir \
+		-a pdf-style=openehr_pdf_theme.yml \
+		-a pdf-stylesdir=$resources_dir \
+		-r asciidoctor-pdf -b pdf"
+	# -a pdf-fontsdir=path/to/fonts 
+	if [ "$pdf_trace" = true ]; then
+		pdf_opts="${pdf_opts} --trace"
+	fi
+
+	asciidoctor ${pdf_opts} --out-file=$out_file $2
 	echo generated $(pwd)/$out_file
 }
 
@@ -36,16 +57,22 @@ do_cmd () {
 	eval $1 2>&1
 }
 
-usage() { echo "Usage: $0 [-p]" 1>&2; exit 1; }
+usage() { echo "Usage: $0 [-hpt]" 1>&2; exit 1; }
 #
 # ================== main =================
 #
-while getopts "hp" o; do
+while getopts "hpt" o; do
     case "${o}" in
         p)
             gen_pdf=true
             ;;
+        t)
+            pdf_trace=true
+            ;;
         h)
+            usage
+            ;;
+        *)
             usage
             ;;
     esac
