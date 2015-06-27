@@ -19,6 +19,7 @@ resources_dir=../../${resources_git_cd}resources ## relative to doc dirs 2 level
 year=`date +%G`
 stylesdir=${resources_dir}/css
 stylesheet=openehr.css
+pdf_theme=openehr_full_pdf-theme.yml
 master_doc_name=master.adoc
 
 #
@@ -27,7 +28,15 @@ master_doc_name=master.adoc
 
 run_asciidoctor () {
 	out_file=${1}.html
-	asciidoctor -a current_year=$year -a resources_dir=$resources_dir -a stylesdir=$stylesdir -a stylesheet=$stylesheet --out-file=$out_file $2
+
+	# work out the options
+	pdf_opts="-a current_year=$year \
+		-a resources_dir=$resources_dir \
+		-a stylesdir=$stylesdir \
+		-a stylesheet=$stylesheet 
+		--out-file=$out_file"
+
+	asciidoctor ${pdf_opts} $2
 	echo generated $(pwd)/$out_file
 }
 
@@ -38,15 +47,17 @@ run_asciidoctor_pdf () {
 	pdf_opts="-a current_year=$year \
 		-a stylesdir=$stylesdir \
 		-a resources_dir=$resources_dir \
-		-a pdf-style=openehr_pdf_theme.yml \
+		-a pdf-style=$pdf_theme \
 		-a pdf-stylesdir=$resources_dir \
-		-r asciidoctor-pdf -b pdf"
+		-r asciidoctor-pdf -b pdf \
+		--out-file=$out_file"
+
 	# -a pdf-fontsdir=path/to/fonts 
 	if [ "$pdf_trace" = true ]; then
 		pdf_opts="${pdf_opts} --trace"
 	fi
 
-	asciidoctor ${pdf_opts} --out-file=$out_file $2
+	asciidoctor ${pdf_opts} $2
 	echo generated $(pwd)/$out_file
 }
 
