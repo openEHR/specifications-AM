@@ -16,7 +16,7 @@
 // HTML-only attributes
 //
 :linkcss:
-:keywords: archetype, openehr, aom, aom2
+:keywords: archetype, openehr, aom, aom2, adl, 13606
 :description: openEHR Archetype Object Model (AOM2) specification
 
 //
@@ -35,10 +35,10 @@ image::{resources_dir}/images/openehr_logo_large.png["openEHR logo",align="cente
 |*Date*: <<latest_issue_date>>
 |*Status*: TRIAL
 
-3+^|*Keywords*: EHR, ADL, health records, archetypes, constraints
+3+^|*Keywords*: EHR, ADL, AOM, health records, archetypes, constraint language, 13606, CIMI
 |===
 
-image::diagrams/block_diagram.png["openEHR components",align="center",scaledwidth="60%"]
+image::diagrams/block_diagram.png["openEHR components",align="center",width="60%"]
  
 
 include::{resources_dir}/boilerplate/licence_block.adoc[]
@@ -53,11 +53,11 @@ include::{resources_dir}/boilerplate/licence_block.adoc[]
 |===
 |Issue|Details|Raiser|Completed
 
-|[[latest_issue,2.1.14]]2.1.14
+|[[latest_issue]]2.1.14
 |Refactor `ARCHETYPE` and `ARCHETYPE_TERMINOLOGY` models, in order to simplify: remove differential and flat forms of classes. +
  Split `ARCHETYPE` into two classes, with `AUTHORED_ARCHETYPE` as a new class that inherits from `AUTHORED_RESOURCE` .
 |T Beale
-|[[latest_issue_date,04 Jan 2015]]04 Jan 2015
+|[[latest_issue_date]]04 Jan 2015
 
 |2.1.13
 |Remove `VDSSR` , `VSUNC` ; add `VDSSID` , `VARXID` . Replace ‘+u’ (unstable) version modifier with semver.org standard ‘-alpha’. Remove overview material to new Archetypes: Technical Overview specification.
@@ -326,19 +326,11 @@ Initial Writing. Taken from ADL document https://github.com/openEHR/specificatio
 //
 // --------------------------------------------- Preface -----------------------------------------------
 //
-== Trademarks
-
-'openEHR' is a trademark of the openEHR Foundation
-
-'Microsoft' is a trademark of the Microsoft Corporation
-
 == Acknowledgements
+=== Primary Author
+* Thomas Beale, Ocean Informatics UK; openEHR Foundation Management Board
 
-The work reported in this document was funded by:
-
-* Ocean Informatics (Australia);
-* University College London (UCL), Centre for Health Informatics and Multi-professional Education (CHIME).
-
+=== Contributors
 This specification and its sibling Archetype Definition Language specification have benefited from wide formal and informal input from the openEHR and wider health informatics community. The openEHR Foundation would like to recognise the following people and institutions.
 
 * Koray Atalag, MD, PhD, Sen. Researcher, National Institute for Health Innovation (NIHI), New Zealand
@@ -362,6 +354,18 @@ This specification and its sibling Archetype Definition Language specification h
 * Erik Sundvall PhD, Linkoping University, Sweden
 * Alessandro Torrisi, Code24, The Netherlands.
 
+=== Supporters
+The work reported in this document was funded by:
+
+* Ocean Informatics;
+* University College London (UCL), Centre for Health Informatics and Multi-professional Education (CHIME).
+
+== Trademarks
+
+* 'openEHR' is a trademark of the openEHR Foundation
+* 'Java' is a registered trademark of Oracle Corporation
+* 'Microsoft' is a trademark of the Microsoft Corporation
+
 
 //
 // --------------------------------------------- TOC -----------------------------------------------
@@ -381,6 +385,14 @@ This document contains the normative description of openEHR Archetype and Templa
 It is recommended in any case that the ADL specification be read in conjunction with this document, since it contains a detailed explanation of the semantics of archetypes, and many of the examples are more obvious in ADL, regardless of whether ADL is actually used with the object model presented here or not.
 
 The release of AOM described in this specification corresponds to the 2.x version of the archetype formalism.
+
+The intended audience includes:
+
+* Standards bodies producing health informatics standards;
+* Academic groups using openEHR;
+* The open source healthcare community;
+* Solution vendors;
+* Medical informaticians and clinicians interested in health information.
 
 === Related Documents
 
@@ -402,15 +414,22 @@ We also use the word ‘archetype’ in a broad sense to designate what are comm
 
 === Status
 
-This specification is in the ‘development’ state, and is published for review purposes.
-
-The development version of this document can be found at _http://www.openehr.org/releases/trunk/architecture/am/aom2.pdf_ .
+This specification is in the Trial state. The development version of this document can be found at http://www.openehr.org/releases/trunk/architecture/am/AOM2.pdf.
 
 Blue text indicates sections under active development.
 
+=== Review
+
+Known omissions or questions are indicated in the text with a “to be determined” paragraph, as follows:
+[.tbd]
+_TBD_: (example To Be Determined paragraph)
+
+Users are encouraged to comment on and/or advise on these paragraphs as well as the main content.  Feedback should be provided either on the http://lists.openehr.org/mailman/listinfo/openehr-technical_lists.openehr.org[technical mailing list], or on the https://openehr.atlassian.net/browse/SPECPR/?selectedTab=com.atlassian.jira.jira-projects-plugin:issues-panel[specifications issue tracker].
+
 === Tools
 
-Various tools exist for creating and processing archetypes. The openEHR tools are available in source and binary form from the website ( _http://www.openEHR.org_ ).
+Various tools exist for creating and processing archetypes. The http://www.openehr.org/downloads/ADLworkbench/home[ADL Workbench] is a reference compiler, visualiser and editor. The openEHR tools can be http://www.openehr.org/downloads/modellingtools[downloaded from the website] .
+Source projects can be found at the https://github.com/openEHR[openEHR Github project].
 
 === Changes from Previous Versions
 
@@ -507,7 +526,7 @@ All archetype variants based on `ARCHETYPE` have a human-readable, structured id
 
 [.text-center]
 .Archetype HRID Structure
-image::diagrams/archetype_hrid_structure.png[id=archetype_hrid_structure, align="center",scaledwidth="80%"]
+image::diagrams/archetype_hrid_structure.png[id=archetype_hrid_structure, align="center",width="80%"]
 
 For specialised archetypes, the `_parent_archetype_id_` is also required. This is a string `_reference_` to an archetype, and is normally the ‘interface’ form of the id, i.e. down to the major version only. In some circumstances, it is useful to include the minor and patch version numbers as well.
 
@@ -553,7 +572,7 @@ Governance meta-data is visible primarily in the `RESOURCE_DESCRIPTION` class, i
 
 [.text-center]
 .Governance Meta-data
-image::images/metadata_governance.png[id=metadata_governance, align="center", scaledwidth="80%"]
+image::images/metadata_governance.png[id=metadata_governance, align="center", width="90%"]
 
 ===== Package
 
@@ -587,7 +606,7 @@ Authorship meta-data consists of items such as author name, contributors, and tr
 
 [.text-center]
 .Authoring Meta-data
-image::images/metadata_authoring.png[id=metadata_authoring, align="center", scaledwidth="80%"]
+image::images/metadata_authoring.png[id=metadata_authoring, align="center", width="90%"]
 
 ===== Original Author
 
@@ -617,7 +636,7 @@ Various descriptive meta-data may be provided for an archetype in multiple trans
 
 [.text-center]
 .Descriptive Meta-data
-image::images/metadata_details.png[id=metadata_descriptive, align="center", scaledwidth="80%"]
+image::images/metadata_details.png[id=metadata_descriptive, align="center", width="90%"]
 
 ===== Purpose
 
@@ -656,7 +675,7 @@ The model in Figure <<archetype_package>> defines the structures of a number of 
 
 [.text-center]
 .Source Archetype Structure
-image::uml_diagrams/AOM-source_archetype_structure.svg[id=source_archetype_structure, align="center", scaledwidth="80%"]
+image::uml_diagrams/AOM-source_archetype_structure.svg[id=source_archetype_structure, align="center", width="80%"]
 
 Source archetypes can be specialised, in which case their definition structure is a partial overlay on the flat parent, or ‘top-level’, in which case the definition structure is complete. `C_ARCHETYPE_ROOT` instances may only occur representing direct references to other archetypes - ‘external references’.
 
@@ -664,7 +683,7 @@ A flat archetype is generated from one or more source archetypes via the flatten
 
 [.text-center]
 .Source Template Structure
-image::uml_diagrams/AOM-source_template_structure.svg[id=source_template_structure, align="center", scaledwidth="80%"]
+image::uml_diagrams/AOM-source_template_structure.svg[id=source_template_structure, align="center", width="80%"]
 
 This form is used to represent the full ‘operational’ structure of a specialised archetype, and has two uses. The first is to generate backwards compatible ADL 1.4 legacy archetypes (always in flat form); the second is during the template flattening process, when the flat forms of all referenced archetypes and templates are ultimately combined into a single operational template.
 
@@ -676,7 +695,7 @@ Figure <<operational_template_structure>> illustrates the resulting operational 
 
 [.text-center]
 .Operational Template Structure
-image::uml_diagrams/AOM-operational_template_structure.svg[id=operational_template_structure, align="center", scaledwidth="80%"]
+image::uml_diagrams/AOM-operational_template_structure.svg[id=operational_template_structure, align="center", width="80%"]
 
 More details of template development, representation and semantics are described in the next section.
 
@@ -1001,43 +1020,43 @@ The following functions formally define the conformance of an attribute node in 
 [source,eiffel]
 ---------
 c_conforms_to (other: like Current): Boolean
-	require
-		other /= Void
-	do
-		Result := existence_conforms_to (other) and 
-			((is_single and other.is_single) or else
-			(is_multiple and cardinality_conforms_to (other)))
-	end
+    require
+        other /= Void
+    do
+        Result := existence_conforms_to (other) and 
+            ((is_single and other.is_single) or else
+            (is_multiple and cardinality_conforms_to (other)))
+    end
 
 c_congruent_to (other: like Current): Boolean
-	require
-		other /= Void
-	do
-		Result := existence = Void and ((is_single and other.is_single) or
-				(is_multiple and other.is_multiple and cardinality = Void))
-	end
+    require
+        other /= Void
+    do
+        Result := existence = Void and ((is_single and other.is_single) or
+                (is_multiple and other.is_multiple and cardinality = Void))
+    end
 
 existence_conforms_to (other: like Current): Boolean
-	require
-		other_exists: other /= Void
-	do
-		if existence /= Void and other.existence /= Void then
-			Result := other.existence.contains (existence)
-		else
-			Result := True
-		end
-	end
+    require
+        other_exists: other /= Void
+    do
+        if existence /= Void and other.existence /= Void then
+            Result := other.existence.contains (existence)
+        else
+            Result := True
+        end
+    end
 
 cardinality_conforms_to (other: like Current): Boolean
-	require
-		other_exists: other /= Void
-	do
-		if cardinality /= Void and other.cardinality /= Void then
-			Result := other.cardinality.contains (cardinality)
-		else
-			Result := True
-		end
-	end
+    require
+        other_exists: other /= Void
+    do
+        if cardinality /= Void and other.cardinality /= Void then
+            Result := other.cardinality.contains (cardinality)
+        else
+            Result := True
+        end
+    end
 ---------
 
 === Validity Rules
@@ -1104,15 +1123,15 @@ The notion of ‘occurrences’ does not exist in an object model that might be 
 [source,eiffel]
 ---------
 if not c_object.is_root and c_object.occurrences = Void then
-	if is_container_attribute_in_rm (c_object.parent) then
-		if rm_parent_attr.cardinality.upper_unbounded then
-			c_object.set_occurrences (|0..*|)
-		else
-			c_object.set_occurrences (|0..rm_parent_attr.cardinality.upper|)
-		end
-	else
-		c_object.set_occurrences (rm_parent_attr.existence)
-	end
+    if is_container_attribute_in_rm (c_object.parent) then
+        if rm_parent_attr.cardinality.upper_unbounded then
+            c_object.set_occurrences (|0..*|)
+        else
+            c_object.set_occurrences (|0..rm_parent_attr.cardinality.upper|)
+        end
+    else
+        c_object.set_occurrences (rm_parent_attr.existence)
+    end
 end
 ---------
 
@@ -1125,54 +1144,54 @@ The following functions formally define the conformance of an object node in a s
 [source,eiffel]
 ---------
 c_conforms_to (other: like Current): Boolean
-	require
-		other /= Void
-	do
-		Result := node_id_conforms_to (other) and
-			occurrences_conforms_to (other) and
-			(rm_type_name.is_equal (other.rm_type_name) or else
-			rm_types_conformant(rm_type_name, other.rm_type_name))
-	end
+    require
+        other /= Void
+    do
+        Result := node_id_conforms_to (other) and
+            occurrences_conforms_to (other) and
+            (rm_type_name.is_equal (other.rm_type_name) or else
+            rm_types_conformant(rm_type_name, other.rm_type_name))
+    end
 
 c_congruent_to (other: like Current): Boolean
-		-- True if this node makes no changes to ‘other’ (from a
-		-- specialisation parent archetype) apart from possible
-		-- change of node-id
-	require
-		other /= Void
-	do
-		Result := rm_type_name.is_case_insensitive_equal (other.rm_type_name) and
-			(occurrences = Void or else occurrences ~ other.occurrences) and
-			(sibling_order = Void or else sibling_order ~ other.sibling_order) and
-			node_reuse_congruent (other)
-	end
+        -- True if this node makes no changes to ‘other’ (from a
+        -- specialisation parent archetype) apart from possible
+        -- change of node-id
+    require
+        other /= Void
+    do
+        Result := rm_type_name.is_case_insensitive_equal (other.rm_type_name) and
+            (occurrences = Void or else occurrences ~ other.occurrences) and
+            (sibling_order = Void or else sibling_order ~ other.sibling_order) and
+            node_reuse_congruent (other)
+    end
 
 rm_type_conforms_to (other: like Current): Boolean
-	require
-		other /= Void
-	do
-		Result := rm_type_name.is_equal (other.rm_type_name) or
-		rm_checker.is_sub_type_of (rm_type_name, other.rm_type_name)
-	end
+    require
+        other /= Void
+    do
+        Result := rm_type_name.is_equal (other.rm_type_name) or
+        rm_checker.is_sub_type_of (rm_type_name, other.rm_type_name)
+    end
 
 occurrences_conforms_to (other: like Current): Boolean
-	require
-		other_exists: other /= Void
-		other_is_flat: other.occurrences /= Void
-	do
-		if occurrences /= Void and other.occurrences /= Void then
-			Result := other.occurrences.contains (occurrences)
-		else
-			Result := True
-		end
-	end
+    require
+        other_exists: other /= Void
+        other_is_flat: other.occurrences /= Void
+    do
+        if occurrences /= Void and other.occurrences /= Void then
+            Result := other.occurrences.contains (occurrences)
+        else
+            Result := True
+        end
+    end
 
 node_id_conforms_to (other: like Current): Boolean
-	require
-		other_exists: other /= Void
-	do
-		Result := codes_conformant (node_id, other.node_id)
-	end
+    require
+        other_exists: other /= Void
+    do
+        Result := codes_conformant (node_id, other.node_id)
+    end
 ---------
 
 === Validity Rules
@@ -1286,13 +1305,13 @@ The slot constraint validity rules are as follows:
 [source,eiffel]
 ---------
 if includes not empty and = 'any' then
-	not (excludes empty or /= 'any') ==> VDSEV Error
+    not (excludes empty or /= 'any') ==> VDSEV Error
 elseif includes not empty and /= 'any' then
-	not (excludes empty or = 'any') ==> VDSEV Error
+    not (excludes empty or = 'any') ==> VDSEV Error
 elseif excludes not empty and = 'any' then
-	not (includes empty or /= 'any') ==> VDSIV Error
+    not (includes empty or /= 'any') ==> VDSIV Error
 elseif excludes not empty and /= 'any' then
-	not (includes empty or = 'any') ==> VDSIV Error
+    not (includes empty or = 'any') ==> VDSIV Error
 end
 ---------
 
