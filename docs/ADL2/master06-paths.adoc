@@ -1,11 +1,14 @@
 = ADL Paths
+
 == Overview
 The notion of paths is integral to ADL, and a common path syntax is used to reference nodes in both ODIN and cADL sections of an archetype. The same path syntax works for both, because both ODIN and cADL have an alternating object/attribute structure. However, the interpretation of path expressions in ODIN and cADL differs slightly; the differences are explained in the ODIN and cADL sections of this document. This section describes only the common syntax and semantics.
 
 The general form of the path syntax is as follows (see syntax section below for full specification):
 
-path:: ['/'] path_segment { '/' path_segment }+
-path_segment:: attr_name [ '[' object_id ']' ]
+```
+    path:: ['/'] path_segment { '/' path_segment }+
+    path_segment:: attr_name [ '[' object_id ']' ]
+```
 
 Essentially, ADL paths consist of segments separated by slashes (`'/'`), where each segment is an attribute name with optional object identifier predicate, indicated by brackets ('[]').
 
@@ -24,7 +27,7 @@ Path patterns are absolute or relative with respect to the document in which the
 
 === Relationship with W3C Xpath
 
-The ADL path syntax is semantically a subset of the Xpath query language, with a few syntactic shortcuts to reduce the verbosity of the most common cases. Xpath differentiates between “children” and “attributes” sub-items of an object due to the difference in XML between Elements (true subobjects) and Attributes (tag-embedded primitive values). In ADL, as with any pure object formalism, there is no such distinction, and all subparts of any object are referenced in the manner of Xpath children; in particular, in the Xpath abbreviated syntax, the key child:: does not need to be used.
+The ADL path syntax is semantically a subset of the Xpath query language, with a few syntactic shortcuts to reduce the verbosity of the most common cases. Xpath differentiates between “children” and “attributes” sub-items of an object due to the difference in XML between Elements (true sub-objects) and Attributes (tag-embedded primitive values). In ADL, as with any pure object formalism, there is no such distinction, and all subparts of any object are referenced in the manner of Xpath children; in particular, in the Xpath abbreviated syntax, the key `child::` does not need to be used.
 
 ADL does not distinguish attributes from children, and also assumes the node_id attribute. Thus, the following expressions are legal for cADL structures:
 
@@ -39,7 +42,7 @@ The Xpath equivalents are:
 ----
     items[1]                           -- the first member of ‘items’
     items[meaning() = ‘systolic’]      -- the member of ‘items’ for which the meaning()
-    function evaluates to “systolic”
+                                       -- function evaluates to “systolic”
     items[@archetype_node_id = ‘id1’]  -- the member of ‘items’ with key ‘id1’
 ----
 

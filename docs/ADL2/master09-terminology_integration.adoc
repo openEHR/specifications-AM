@@ -13,7 +13,7 @@ This section describes how archetype constraints on terminological entities can 
 Terminology constraints are an alternative to enumeration of value sets within an archetype. Inline enumeration will work perfectly well in a technical sense, but has at least two limitations. Firstly, the intended set of values allowed for the attribute may change over time (e.g. as has happened with ‘types of hepatitis’ since 1980), and since the authoritative resource is elsewhere, the archetype has to be continually updated. With a large repository of archetypes, each containing inline coded term constraints, this approach is likely to be unsustainable and error-prone. Secondly, the best means of defining the value set is in general not likely to be via enumeration of the individual terms, but in the form of a semantic expression that can be evaluated against the external resource. This is because the value set is typically logically specified in terms of inclusions, exclusions, conjunctions and disjunctions of general categories.
 
 [.discussion]
-Consider for example the value set logically defined as “any bacterial infection of the lung”. The possible values would be codes from a target terminology, corresponding to numerous strains of pneumococcus, staphlycoccus and so on, but not including species that are never found in the lung. Rather than enumerate the list of codes corresponding to this value set (which is likely to be quite large), the archetype author is more likely to rely on semantic links within the external terminology to express the set; a query such as ‘is-a bacteria and has-site lung’ is definable against the SNOMED-CT terminology for example.
+Consider for example the value set logically defined as “any bacterial infection of the lung”. The possible values would be codes from a target terminology, corresponding to numerous strains of pneumococcus, staphlycoccus and so on, but not including species that are never found in the lung. Rather than enumerate the list of codes corresponding to this value set (which is likely to be quite large), the archetype author is more likely to rely on semantic links within the external terminology to express the set; a query such as `is-a bacteria and has-site lung` is definable against the SNOMED-CT <<IHTSDO>> terminology for example.
 
 [.discussion]
 In a similar way, other value sets, including for quantitative values, are likely to be specified by queries or formal expressions, and evaluated by an external knowledge service. Examples include "any unit of pressure" and "normal range values for serum sodium".
@@ -23,18 +23,3 @@ In such cases, expressing the terminology constraint could be done by including 
 
 [.discussion]
 These problems are not accidental: a query with respect to a terminological, ontological or other knowledge resource is most likely to be authored correctly by maintainers or experts of the knowledge resource, rather than archetype authors; it may well be altered over time due to improvements in the query formalism itself.
-
- 
-
-
-
-'''''
-
- 1. See http://www.openehr.org/releases//architecture/rm/ehr_im.pdf
-
- 2. http://www.who.int/classifications/icd/en/
-
- 3. The alternative would be that ADL and its tooling was agnostic, and that tools would implement multiple private models of terminology constraining.
-
- 4. http://www.ihtsdo.org/
-

@@ -19,7 +19,7 @@ The intended audience includes:
 Prerequisite documents for reading this document include:
 
 * The http://www.openehr.org/releases/trunk/architecture/overview.pdf[openEHR Architecture Overview]
-* The http://www.openehr.org/releases/trunk/architecture/am/archetype_technical_overview.pdf[openEHR Archetypes: Technical Overview specification]
+* The http://www.openehr.org/releases/trunk/architecture/am/archetype_technical_overview.pdf[openEHR Archetypes: Technical Overview]
 
 Related documents include:
 
@@ -34,17 +34,11 @@ We also use the word ‘archetype’ in a broad sense to designate what are comm
 
 == Status
 
-This specification is in the Trial state, and is published for review purposes.
+This specification is in the Trial state. The development version of this document can be found at http://www.openehr.org/releases/trunk/architecture/am/ADL2.pdf.
 
-The development version of this document can be found at http://www.openehr.org/releases/trunk/architecture/am/ADL2.pdf.
-
-Blue text indicates sections under active development.
-
-== Review
-
-Known omissions or questions are indicated in the text with a “to be determined” paragraph, as follows:
+Known omissions or questions are indicated in the text with a 'to be determined' paragraph, as follows:
 [.tbd]
-_TBD_: (example To Be Determined paragraph)
+*TBD*: (example To Be Determined paragraph)
 
 Users are encouraged to comment on and/or advise on these paragraphs as well as the main content.  Feedback should be provided either on the http://lists.openehr.org/mailman/listinfo/openehr-technical_lists.openehr.org[technical mailing list], or on the https://openehr.atlassian.net/browse/SPECPR/?selectedTab=com.atlassian.jira.jira-projects-plugin:issues-panel[specifications issue tracker].
 
@@ -56,44 +50,43 @@ Source projects can be found at the https://github.com/openEHR[openEHR Github pr
 == Changes from Previous Versions
 For existing users of ADL or archetype development tools, the following provides a guide to the changes in the syntax.
 
-=== 1.7.1 dADL / ODIN
+=== dADL (ODIN)
 The object syntax used to represent the description, terminology and annotations sections of an ADL archetype has been historically known as ‘dADL’ (i.e. ‘data ADL’). Since this syntax is completely generic and has no specific dependency on either ADL or openEHR, it has been separated out into its own specification known as Object Data Instance Notation (ODIN).
 
-=== 1.7.2 ADL 2.0
+=== ADL 2.0
 ==== Changes
-The changes in version 2.0 are designed to make archetypes more computable with respect to terminology.
-The changes with respect to 1.x versions include:
+The changes in version 2.0 are designed to make archetypes more computable with respect to terminology. The changes with respect to 1.x versions include:
 
 * the internal node identification system has been changed so that at-codes are no longer used to identify nodes; instead, ‘id-codes’ are used for that purpose;
 * all nodes now require an id-code;
 * rules for the construction of node identifier codes in specialised archetypes;
-* the ‘ontology’ section has been renamed ‘terminology’;
+* the `ontology` section has been renamed `terminology;
 * value sets are now declared in their own subsection of the terminology section rather than inline in the definition section;
 
 ==== Backward Compatibility
 In its current form, the changes to the internal coding system and value set representation in ADL 2.x and the AOM with respect to ADL/AOM 1.5 constitute syntactically breaking changes, and therefore require conversion of ADL 1.4 archetypes to ADL 2 form. The changes have been carefully designed to allow this conversion to be implementable, and are implemented in the ADL Workbench tool. ADL
 1.4 style paths are generatable from ADL 2 archetypes, so that AQL queries can be built for use with ADL 1.4 based data.
 
-=== 1.7.3 ADL 1.5
+=== ADL 1.5
 ==== Changes
 The changes in version 1.5 are made to better facilitate the representation of specialised archetypes.  The key semantic capability for specialised archetypes is to be able to support a differential representation, i.e. to express a specialised archetype only in terms of the changed or new elements in its defnition, rather than including a copy of unchanged elements. Doing the latter is clearly unsustainable in terms of change management. ADL 1.4 already supported differential representation, but somewhat inconveniently.
 
 The changes for ADL 1.5 include:
 
-* optional ‘generated’ marker in the archetype first line;
+* optional `generated` marker in the archetype first line;
 * the semantics of reference model subtype matching are now described;
 * a differential expression form allows specialised archetypes to be expressed efficiently and ensures they are maintainable;
 * new keywords for defining the order of specialised object nodes within container attributes;
-* an explanation of how to use the negated match operator (\~matches, or ) to define value set exclusions in specialised archetypes;
+* an explanation of how to use the negated match operator (`~matches`, or `∈`) to define value set exclusions in specialised archetypes;
 * a description of the semantics of ‘inheritance-flattened’ archetypes;
-* optional annotations section added to archetypes;
-* ‘declarations’ and ‘invariants’ sections merged into ‘rules’ section;
+* optional `annotations` section added to archetypes;
+* `declarations` and `invariants` sections merged into `rules` section;
 * In the ADL grammar, the language section is now mandatory;
-* .adls files are introduced as the standard file extension for differential ADL files (.adl files are retained for standalone, inheritance-flattened, or ‘flat’, archetype).
+* `.adls` files are introduced as the standard file extension for differential ADL files (`.adl` files are retained for standalone, inheritance-flattened, or ‘flat’, archetype).
 
 Nearly all the changes occur in the section on cADL - Constraint ADL on page 22 or the new section Specialisation on page 90.
 
-=== 1.7.4 ADL 1.4
+=== ADL 1.4
 A number of small changes were made in this version, along with significant tightening up of the explanatory text and examples.
 
 ==== ISO 8601 Date/Time Conformance
@@ -109,19 +102,19 @@ It is now possible to define an interval of any ordered amount (integer, real, d
 ```
 
 ==== Occurrences for ‘use_node’ References
-Occurrences can now be stated for use_node references, overriding the occurrences of the target node.  If no occurrences is stated, the target node occurrences value is used.
+Occurrences can now be stated for `use_node` references, overriding the occurrences of the target node.  If no occurrences is stated, the target node occurrences value is used.
 
 ==== Quoting Rules
 The old quoting rules based on XML/ISO mnemonic patterns (`&ohmgr;` etc) are replaced by specifying ADL to be UTF-8 based, and any exceptions to this requiring ASCII encoding should use the `\Uhhhh` style of quoting unicode used in various programming languuages.
 
-=== 1.7.5 ADL 1.3
+=== ADL 1.3
 The specific changes made in version 1.3 of ADL are as follows.
 
 ==== Query syntax replaced by URI data type
 In version 1.2 of ADL, it was possible to include an external query, using syntax of the form:
 
 ```
-    attr_name = <query(“some_service”, “some_query_string")>
+    attr_name = <query("some_service", "some_query_string")>
 ```
 
 This is now replaced by the use of URIs, which can express queries, for example:
@@ -136,7 +129,7 @@ No assumption is made about the URI; it need not be in the form of a query - it 
 
 In this version, invariants can only be defined in a top level block, in a way similar to object-oriented class definitions, rather than on every block in the definition section, as is the case in version 1.2 of ADL. This simplifies ADL and the Archetype Object Model, and makes an archetype more comprehensible as a `type` definition.
 
-=== 1.7.6 ADL 1.2
+=== ADL 1.2
 
 ==== ADL Version
 
@@ -206,5 +199,5 @@ These changes will affect the parsing of container structures and keys in the de
 Revision history is now recorded in a separate section of the archetype, both to logically separate it from the archetype descriptive details, and to facilitate automatic processing by version control systems in which archtypes may be stored. This section is included at the end of the archetype because it is in general a monotonically growing section.
 
 ==== Primary_language and Languages_available Sections
-An attribute previously called `_primary_language_` was required in the ontology section of an ADL 1.1 archetype. This is renamed to `_original_language_` and is now moved to a new top level section in the archetype called `_language_`. Its value is still expressed as a dADL String attribute. The `_languages_available_` attribute previously required in the ontology section of the archetype is renamed to `_translations_`, no longer includes the original languages, and is also moved to this new top level section.
+An attribute previously called `_primary_language_` was required in the ontology section of an ADL 1.1 archetype. This is renamed to `_original_language_` and is now moved to a new top level section in the archetype called `language`. Its value is still expressed as a dADL String attribute. The `_languages_available_` attribute previously required in the ontology section of the archetype is renamed to `_translations_`, no longer includes the original languages, and is also moved to this new top level section.
 
