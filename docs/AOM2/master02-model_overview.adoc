@@ -1,0 +1,34 @@
+= Model Overview
+
+The model described here is a pure object-oriented model that can be used with archetype parsers and software that manipulates archetypes and templates in memory. It is typically the output of a parser of any serialsed form of archetypes. It is dependent on the openEHR Base package classes.
+
+== Package Structure
+
+The openEHR Archetype Object Model is defined as the package `am.archetype` , as illustrated in Figure [[package_overview]]. It is shown in the context of the openEHR `am.archetype` packages.
+
+[.text-center]
+.Package Overview
+image::uml_diagrams/AOM-packages.png[id=package_overview, align="center"]
+
+== Definition and Utility Classes
+
+=== Overview
+
+Various definitional classes are used in the AOM. Some are defined in the `aom.definitions` package, while others come from the openEHR `definitions` package. These are illustrated below.
+
+[.text-center]
+.Definition Package
+image::uml_diagrams/AOM-definitions.svg[id=definition_package, align="center"]
+
+The enumeration type `VALIDITY_KIND` is provided in order to define standard values representing `mandatory`, `optional`, or `disallowed` in any model. It is used in this model in classes such as `C_DATE` , `C_TIME` and `C_DATE_TIME`. The `VERSION_STATUS` enumeration type serves a similar function within various AOM types.
+
+Other classes used from the `base` package include `AUTHORED_RESOURCE` (openEHR `resource` package) and its subordinate classes. These are shown in full within the packages that use them.
+
+=== Class Definitions
+
+include::./classes/version_status.adoc[]
+
+include::./classes/validity_kind.adoc[]
+
+include::./classes/adl_code_definitions.adoc[]
+
