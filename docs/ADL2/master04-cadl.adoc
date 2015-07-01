@@ -165,7 +165,7 @@ The `matches` or `is_in` operator deserves special mention, since it is the key 
 
 [source, cadl]
 --------
-    aaa `matches` {/\w*ion[\s\n\t ]/} -- the set of words ending in ‘ion’  
+    aaa matches {/\w*ion[\s\n\t ]/} -- the set of words ending in ‘ion’  
 --------
 
 The following example links the name of a type `XXX` with a hierarchical value space.
@@ -291,9 +291,9 @@ The `cardinality` keyword implies firstly that the property events must be of a 
 
 [source, cadl]
 --------
-        events cardinality ∈ {*; ordered} ∈ {                   -- logical list
-        events cardinality ∈ {*; unordered; unique} ∈ {         -- logical set
-        events cardinality ∈ {*; unordered} ∈ {                 -- logical bag
+    events cardinality ∈ {*; ordered} ∈ {                   -- logical list
+    events cardinality ∈ {*; unordered; unique} ∈ {         -- logical set
+    events cardinality ∈ {*; unordered} ∈ {                 -- logical bag
 --------
 
 If no numeric or ordering constraint on the cardinality of a container attribute is required, the keyword is used on its own, and simply indicates that the attribute is a container, as in the following example:
@@ -505,7 +505,8 @@ Two valid paths to the object under the _title_ attribute are possible:
 
 [source, cadl]
 --------
-    manager[id104]/title manager/title  
+    manager[id104]/title
+    manager/title
 --------    
 
 Where there are more than one sibling node, node identifiers must be used to ensure unique referencing:
@@ -524,6 +525,7 @@ Where there are more than one sibling node, node identifiers must be used to ens
 
 The paths to the respective _title_ attributes are now:
 
+[source, cadl]
 --------
     employees[id104]/title
     employees[id105]/title
@@ -545,6 +547,7 @@ The following gives another example:
 
 The following paths can be constructed:
 
+[source, cadl]
 --------
     /                      -- the HISTORY (root) object
     /periodic              -- the HISTORY.periodic attribute
@@ -632,7 +635,7 @@ Occurrences from the target are also assumed, or may be explicitly overridden:
 
 [source, cadl]
 --------
-    use_node TYPE[id4] occurrences ∈ {occ} archetype_path
+    use_node TYPE[id4] occurrences ∈ {0..1} archetype_path
 --------
 
 Proxy objects provide an internal reuse mechanism. Specialised archetypes may redefine structures on such nodes as if they had been defined inline. This is described in more detail in <<Internal Reference (Proxy Object) Redefinition>> in the <<Specialisation>> section.
@@ -723,7 +726,6 @@ An external reference defines a fixed compositional connection between two arche
 
 Direct references, or external references as they will be denoted here occur for two main reasons: re-use and templating. In the first case, an archetype has originally been built using inline constraints when it is discovered that another archetype contains the same or very similar inline constraints at a similar point. As would be normal in software design, a refactoring exercise is conducted that results in the common part being created as its own, new archetype, and both original archetypes ‘referring’ to it. They do this using an external reference, which has syntax of the form:
 
-[source, cadl]
 --------
     use_archetype TYPE[idN, archetype_id] [occurrences constraint]
 --------
@@ -753,7 +755,7 @@ This section is from an openEHR `ACTION` archetype defining medication administr
     ACTION[id1] ∈ {                          -- Medication action
         ism_transition ∈ {
             ISM_TRANSITION[id2] ∈ { ... }
-            ...
+            -- ...
         }
         description ∈ {
             use_archetype ITEM_TREE[id3, openEHR-EHR-ITEM_TREE.medication.v1]
@@ -782,6 +784,7 @@ The second use of external references is typically in templates, to specify an a
 
 Paths that terminate in external reference nodes in source-form archetypes will include only the id-codes, as in the following examples:
 
+[source, cadl]
 --------
     /activities[id2]/description[id3]
     /description[id2]
@@ -789,6 +792,7 @@ Paths that terminate in external reference nodes in source-form archetypes will 
 
 Howver, in flattened archetypes, the corresponding paths will include the archetype identifier(s) rather than the id-codes, and may continue down through the structure of the included archetypes, as in the following example.
 
+[source, cadl]
 --------
     /activities[id2]/description[openEHR-EHR-ITEM_TREE.medication.v1]/...
     /description[openEHR-EHR-ITEM_TREE.medication.v1]/...
@@ -913,8 +917,7 @@ The following example shows how the "Objective" `SECTION` in a problem/SOAP head
                 include
                     archetype_id/value ∈ {/.*/}
                 exclude
-                    archetype_id/value ∈                             
-                                {/openEHR-EHR-SECTION\.patient_details\..+/}
+                    archetype_id/value ∈ {/openEHR-EHR-SECTION\.patient_details\..+/}
             }
         }
     }
@@ -975,7 +978,7 @@ Other constraints are possible as well, including that the allowed archetype mus
 --------    
     allow_archetype EVALUATION[id2] occurrences ∈ {0..*} matches {
         include
-            archetype_id ∈ {openEHR-EHR-EVALUATION.family_history.v1}
+            archetype_id ∈ {/openEHR-EHR-EVALUATION.family_history.v1/}
                 ∧ ∃ /subject/relationship/defining_code ->
                 ∼ ( [openehr::0] ∈ /subject/relationship/defining_code) -- self
     }
@@ -1049,14 +1052,13 @@ In realistic data, it is not uncommon to need to constrain object properties in 
     }
 --------
 
-What we logically want to do is to state a single constraint on a ` DV_QUANTITY` that sets the magnitude range constraint dependent on the units constraint.
+What we logically want to do is to state a single constraint on a `DV_QUANTITY` that sets the magnitude range constraint dependent on the units constraint.
 
 The covarying requirement could be met using rules of the form:
 
-[source, cadl]
 --------
-    .../value/units = "deg F" ® magnitude ∈ {|32.0..212.0|}
-    .../value/units = "deg C" ® magnitude ∈ {|0.0..100.0|}
+    .../value/units = "deg F" -> magnitude ∈ {|32.0..212.0|}
+    .../value/units = "deg C" -> magnitude ∈ {|0.0..100.0|}
 --------
 
 However, this seems obscure for what is logically a very simple kind of constraint.
@@ -1116,7 +1118,7 @@ If we look at the `DV_ORDINAL` data type constraint in the same light. First, do
             value ∈ {0}
             symbol ∈ {
                 DV_CODED_TEXT[id4] ∈ {
-                    code ∈ {"at1"}              -- +
+                    code ∈ {"at1"}          -- +
                 }
             }
         }
@@ -1124,7 +1126,7 @@ If we look at the `DV_ORDINAL` data type constraint in the same light. First, do
             value ∈ {1}
             symbol ∈ {
                 DV_CODED_TEXT[id6] ∈ {
-                    code ∈ {"at2"}             -- ++
+                    code ∈ {"at2"}          -- ++
                         }
                     }
                 }
@@ -1134,7 +1136,7 @@ If we look at the `DV_ORDINAL` data type constraint in the same light. First, do
             value ∈ {2}
             symbol ∈ {
                 DV_CODED_TEXT[id8] ∈ {
-                    code ∈ {"at3"}            -- +++
+                    code ∈ {"at3"}         -- +++
                 }
             }
         }
@@ -1149,10 +1151,10 @@ By the use of tuple constraint, almost the same thing can be chieved much more e
 --------
     ordinal_attr ∈ {
         DV_ORDINAL[id3] ∈ {
-            [value ,symbol] ∈ {
-                [{0}, {[at1]}], -- +             
-                [{1}, {[at2]}], -- ++          
-                [{2}, {[at3]}] -- +++           
+            [value, symbol] ∈ {
+                [{0}, {[at1]}],           -- +             
+                [{1}, {[at2]}],           -- ++          
+                [{2}, {[at3]}]            -- +++           
             }
         }
     }
@@ -1223,9 +1225,9 @@ Group blocks can be nested, enabling sub-lists of sub-lists to be defined, as il
         ELEMENT[id2] occurrences ∈ {1} ∈ {...}                -- Investigation type
         ELEMENT[id3] occurrences ∈ {0..1} ∈ {...}             -- Investigation reason
         group cardinality ∈ {2} occurrences ∈ {*} ∈ {         -- pick any 2 & repeat
-            ELEMENT[id6] occurrences matches {0..1} ∈ {...}
-            ELEMENT[id7] occurrences matches {0..1} ∈ {...}
-            CLUSTER[id8] occurrences matches {0..1} ∈ {...}
+            ELEMENT[id6] occurrences ∈ {0..1} ∈ {...}
+            ELEMENT[id7] occurrences ∈ {0..1} ∈ {...}
+            CLUSTER[id8] occurrences ∈ {0..1} ∈ {...}
             group cardinality ∈ {1} occurrences ∈ {0..1} ∈ {  -- at least one
                 ELEMENT[id9] occurrences ∈ {0..1} ∈ {...}
                 CLUSTER[id10] occurrences ∈ {0..1} ∈ {...}
@@ -1319,17 +1321,14 @@ At the leaf nodes in a cADL text, constraints can be expressed on the following 
 While constraints on complex types follow the rules described so far, constraints on attributes of primitive types in cADL are expressed without type names, and omitting one level of braces, as follows:
 
 ```
-    some_attr matches {some_pattern}
+    some_attr matches {<some_pattern>}
 ```
 
 rather than:
 
-[source, cadl]
 --------
     some_attr matches {
-        PRIMITIVE_TYPE[id3] matches {
-            some_pattern
-        }
+        PRIMITIVE_TYPE[id3] matches {<some_pattern>}
     }
 --------
 
@@ -1362,15 +1361,14 @@ The first example constraints the runtime value of the `_species_` attribute of 
 
 ==== Regular Expression
 
-The second way of constraining strings is with regular expressions, a widely used syntax for expressing patterns for matching strings. The regular expression syntax used in cADL is a proper subset of that used in the Perl language (see <<Perl_regex>> for a full specification of the regular expression language of Perl). Two uses of it are accepted in cADL:
+The second way of constraining strings is with regular expressions, a widely used syntax for expressing patterns for matching strings. The regular expression syntax used in cADL is a proper subset of that used in the Perl language (see <<Perl_regex>> for a full specification of the regular expression language of Perl). It is specified as a constraint using either `//` or `^^` delimiters:
 
-[source, cadl]
---------
+```
     string_attr matches {/regular expression/} 
-    string_attr matches {!~ /regular expression/}
---------
+    string_attr matches {^regular expression^}
+```
 
-The first indicates that the attribute value must match the supplied regular expression. The last indicates that the value must not match the expression. If the delimiter character is required in the pattern, it must be quoted with the backslash (‘\’) character, or else alternative delimiters can be used, enabling more comprehensible patterns. A typical example is regular expressions including units. The following two patterns are equivalent:
+For example, the following two patterns are equivalent:
 
 [source, cadl]
 --------
@@ -1378,7 +1376,7 @@ The first indicates that the attribute value must match the supplied regular exp
     units ∈ {^km/h|mi/h^}
 --------
 
-The rules for including special characters within strings are described in link:file_encoding.htm#13178[See File Encoding and Character Quoting].
+The rules for including special characters within strings are described in section <<File Encoding and Character Quoting>>.
 
 The regular expression patterns supported in cADL are as follows.
 
@@ -1445,7 +1443,7 @@ Integer intervals are expressed using the interval syntax from ODIN (described i
     length matches {|950..1050|}                  -- allow 950 - 1050
     length matches {|0..1000|}                    -- allow 0 - 1000
     length matches {|0..<1000|}                   -- allow 0>= x <1000
-    length matches {|0>..<1000|}                  -- allow 0> x <1000
+    length matches {|>0..<1000|}                  -- allow 0> x <1000
     length matches {|100+/-5|}                    -- allow 100 +/- 5, i.e. 95 - 105
 --------
 
@@ -1500,25 +1498,25 @@ The following examples show how a character value may be constrained using a lis
 
 [source, cadl]
 --------
-    color_name matches {‘r’}
-    color_name matches {‘r’, ‘g’, ‘b’}
+    color_name matches {'r'}
+    color_name matches {'r', 'g', 'b'}
 --------
 
 ==== Regular Expression
 
-Character values can also be constrained using a single-character regular expression character class, also enclosed in single quotes, as per the following examples:
+Character values can also be constrained using a single-character regular expression character class, as per the following examples:
 
 [source, cadl]
 --------
-    color_name matches {‘[rgbcmyk]’}
-    color_name matches {‘[^\s\t\n]’}
+    color_name matches {/[rgbcmyk]/}
+    color_name matches {/[^\s\t\n]/}
 --------
 
 The only allowed elements of the regular expression syntax in character expressions are the following:
 
-* any item from the link:CDL.htm#88236[See Character Class] list above;
-* any item from the link:CDL.htm#75085[See Special Character Classes] list above;
-* an alternative expression whose parts are any item types, e.g. ` ‘a’|‘b’|[m-z]`
+* any item from the Character Classes list above;
+* any item from the Special Character Classes list above;
+* an alternative expression whose parts are any item types, e.g. `'a'|'b'|[m-z]`
 
 === Constraints on Dates, Times and Durations
 
@@ -1530,10 +1528,10 @@ Dates, times, date/times and durations may all be constrained in three ways: usi
 
 Dates, times, and date/times (i.e. timestamps), can be constrained using patterns based on the ISO 8601 date/time syntax, which indicate which parts of the date or time must be supplied. A constraint pattern is formed from the abstract pattern `yyyy-mm-ddThh:mm:ss` (itself formed by translating each field of an ISO 8601 date/time into a letter representing its type), with either `?` (meaning optional) or `X` (not allowed) characters substituted in appropriate places. The syntax of legal patterns is shown by the following regular expressions:
 
-date_pattern:: `yyyy-(mm|??|XX)-(dd|??|XX)`
-time_pattern:: `hh:(mm|??|XX):(ss|??|XX)`
-time_in_date_pattern:: `T(hh|??|XX):(mm|??|XX):(ss|??|XX)`
-date_time_pattern:: `date_constraint time_in_date_pattern`
+* date_pattern:: `yyyy-(mm|??|XX)-(dd|??|XX)`
+* time_pattern:: `hh:(mm|??|XX):(ss|??|XX)`
+* time_in_date_pattern:: `T(hh|??|XX):(mm|??|XX):(ss|??|XX)`
+* date_time_pattern:: `date_constraint time_in_date_pattern`
 
 All expressions generated by these patterns must also satisfy the validity rules:
 
@@ -1571,15 +1569,16 @@ The following table shows the valid patterns that can be used, and the types imp
 |Date/Time |yyyy-??-??T??:??:?? |minimum valid date/time constraint
 |==================================================================================================
 
+In the above patterns, the 'yyyy' etc match strings can be replaced by literal date/time numbers. For example, `yyyy-??-XX` could be transformed into `1995-??-XX` to mean any partial date in 1995.
+
 An assumed value can be used with any of the above as follows: `yyyy-??-??; 1970-01-01`.
 
 ===== Intervals
 
-Dates, times and date/times can also be constrained using intervals. Each date, time etc in an interval may be a literal date, time etc value, or a value based on a pattern. In the latter case, the limit values are specified using the patterns from the above table, but with numbers in the positions where `X` and `?` do not appear. For example, the pattern `yyyy-??-XX` could be transformed into `1995-??-XX` to mean any partial date in 1995. Examples of such constraints:
+Dates, times and date/times can also be constrained using intervals. Each date, time etc in an interval may be a literal date, time etc value. Examples of such constraints:
 
 [source, cadl]
 --------
-    |1995-??-XX|                                   -- any partial date in 1995
     |09:30:00|                                     -- exactly 9:30 am
     |< 09:30:00|                                   -- any time before 9:30 am
     |<= 09:30:00|                                  -- any time at or before 9:30 am
@@ -1700,7 +1699,6 @@ The expanded form of a terminology constraint is a form in which archetype-local
 
 The syntax for the expanded form is as follows:
 
-[source, cadl]
 --------
     [local::atN]                           -- single term
     [local::atN, atN, ... , atN]           -- value set
