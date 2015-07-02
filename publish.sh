@@ -1,11 +1,13 @@
-#!/usr/bin/bash
+#!/bin/bash
 
 #
 # ============== Definitions =============
 #
-USAGE='$0 [-p] : generate publishing outputs; HTML by default
-  -p : generate PDF as well
-'
+USAGE="${0} [-hpt] : generate publishing outputs; HTML by default 
+  -h : output this help										
+  -p : generate PDF as well								
+  -t : generate debug trace of asciidoctor-pdf back-end.
+"
 # if launched from inside spec-publish-asciidoc git clone area, we don't need to cd out to get
 # the resources; if in any other repo, we do. This is complicated by the need to make the directories
 # work not just in a normal file system, but on Github, which doesn't appear to see the repo root
@@ -68,7 +70,7 @@ do_cmd () {
 	eval $1 2>&1
 }
 
-usage() { echo "Usage: $0 [-hpt]" 1>&2; exit 1; }
+usage() { echo "$USAGE" 1>&2; exit 1; }
 #
 # ================== main =================
 #
