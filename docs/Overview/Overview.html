@@ -1,0 +1,842 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge"><![endif]-->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="generator" content="Asciidoctor 1.5.2">
+<meta name="description" content="openEHR Archetype Technology Overview">
+<meta name="keywords" content="archetype, openehr, aom, template">
+<title>Archetype Technology Overview</title>
+<link rel="stylesheet" href="../../../spec-publish-asciidoc/resources/css/openehr.css">
+<link rel="stylesheet" href="../../../spec-publish-asciidoc/resources/css/pygments-default.css">
+</head>
+<body class="book toc2 toc-left">
+<div id="header">
+<div id="toc" class="toc2">
+<div id="toctitle">Table of Contents</div>
+<ul class="sectlevel0">
+<li><a href="#_archetype_technology_overview">Archetype Technology Overview</a>
+<ul class="sectlevel1">
+<li><a href="#_amendment_record">Amendment Record</a></li>
+<li><a href="#_acknowledgements">Acknowledgements</a>
+<ul class="sectlevel2">
+<li><a href="#_primary_author">Primary Author</a></li>
+<li><a href="#_trademarks">Trademarks</a></li>
+</ul>
+</li>
+<li><a href="#_business_purpose_of_archetypes">1. Business Purpose of Archetypes</a>
+<ul class="sectlevel2">
+<li><a href="#_formalism_overview">1.1. Formalism Overview</a></li>
+<li><a href="#_the_specifications">1.2. The Specifications</a></li>
+</ul>
+</li>
+<li><a href="#_semantic_overview">2. Semantic Overview</a>
+<ul class="sectlevel2">
+<li><a href="#_identification_and_the_virtual_archetype_space">2.1. Identification and the Virtual Archetype Space</a></li>
+<li><a href="#_collections_of_archetypes">2.2. Collections of Archetypes</a></li>
+<li><a href="#_archetype_relationships">2.3. Archetype Relationships</a>
+<ul class="sectlevel3">
+<li><a href="#_archetype_specialisation">2.3.1. Archetype Specialisation</a></li>
+<li><a href="#_archetype_composition">2.3.2. Archetype Composition</a></li>
+</ul>
+</li>
+<li><a href="#_archetype_internals">2.4. Archetype Internals</a>
+<ul class="sectlevel3">
+<li><a href="#_archetype_definition_language_adl">2.4.1. Archetype Definition Language (ADL)</a></li>
+</ul>
+</li>
+<li><a href="#_templates">2.5. Templates</a></li>
+</ul>
+</li>
+<li><a href="#_artefacts">3. Artefacts</a>
+<ul class="sectlevel2">
+<li><a href="#_model_syntax_relationship">3.1. Model / Syntax Relationship</a></li>
+<li><a href="#_the_development_process">3.2. The Development Process</a></li>
+<li><a href="#_compilation">3.3. Compilation</a></li>
+<li><a href="#_optimisations">3.4. Optimisations</a></li>
+</ul>
+</li>
+<li><a href="#_references">References</a>
+<ul class="sectlevel2">
+<li><a href="#_publications">Publications</a></li>
+<li><a href="#_resources">Resources</a></li>
+<li><a href="#_openehr_resources">openEHR Resources</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div id="content">
+<div id="preamble">
+<div class="sectionbody">
+<div class="imageblock" style="text-align: center">
+<div class="content">
+<img src="../../../spec-publish-asciidoc/resources/images/openehr_logo_large.png" alt="openEHR logo">
+</div>
+</div>
+</div>
+</div>
+<h1 id="_archetype_technology_overview" class="sect0">Archetype Technology Overview</h1>
+<div class="openblock partintro">
+<div class="content">
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 33%;">
+<col style="width: 33%;">
+<col style="width: 33%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-center valign-top" colspan="3"><strong>Issuer</strong>: <a href="http://www.openehr.org/programs/specification/">openEHR Specification Program</a></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Revision</strong>: <a href="#latest_issue">[latest_issue]</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Date</strong>: <a href="#latest_issue_date">[latest_issue_date]</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Status</strong>: Development</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-top" colspan="3"><p class="tableblock"><strong>Keywords</strong>: archetype, identification, governance</p></td>
+</tr>
+</tbody>
+</table>
+<div class="imageblock" style="text-align: center">
+<div class="content">
+<img src="diagrams/openehr_block_diagram.png" alt="openEHR components" width="60%">
+</div>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre> </pre>
+</div>
+</div>
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 20%;">
+<col style="width: 80%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-center valign-top" colspan="2">&#169; 2014 - 2015 The openEHR Foundation</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-center valign-top" colspan="2"><p class="tableblock"><a href="http://www.openehr.org/">The openEHR Foundation</a> is an independent, non-profit community organisation, facilitating the sharing of health records by consumers and clinicians via open-source, standards-based implementations.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-top"><p class="tableblock"><strong>Affiliates</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Australia, Brazil, Japan, New Zealand, Slovenia, Norway</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-top"><p class="tableblock"><strong>Licence</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="image"><img src="../../../spec-publish-asciidoc/resources/images/cc-by-nd-88x31.png" alt="image"></span> Creative Commons Attribution-NoDerivs 3.0 Unported. <a href="https://creativecommons.org/licenses/by-nd/3.0/" class="bare">https://creativecommons.org/licenses/by-nd/3.0/</a></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-top"><p class="tableblock"><strong>Support</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Issues: <a href="https://openehr.atlassian.net/browse/SPECPR/" class="bare">https://openehr.atlassian.net/browse/SPECPR/</a><br>
+ Web: <a href="http://www.openehr.org/" class="bare">http://www.openehr.org/</a></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_amendment_record">Amendment Record</h2>
+<div class="sectionbody">
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 9%;">
+<col style="width: 54%;">
+<col style="width: 18%;">
+<col style="width: 18%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Issue</th>
+<th class="tableblock halign-left valign-top">Details</th>
+<th class="tableblock halign-left valign-top">Raiser</th>
+<th class="tableblock halign-left valign-top">Completed</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a id="latest_issue"></a>0.9.0</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Addition of sections on business purpose, identifiers and collections.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">T Beale</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a id="latest_issue_date"></a>10 Jun 2015</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">0.8.0</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Initial writing; taken from overview material of ADL, AOM and template specifications.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">T Beale</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">10 Oct 2014</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_acknowledgements">Acknowledgements</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_primary_author">Primary Author</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>Thomas Beale, Ocean Informatics UK; openEHR Foundation Management Board</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_trademarks">Trademarks</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>'Microsoft' and '.Net' are trademarks of the Microsoft Corporation</p>
+</li>
+<li>
+<p>'openEHR' is a registered trademark of The openEHR Foundation</p>
+</li>
+<li>
+<p>'SNOMED CT' is a registered trademark of IHTSDO</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_business_purpose_of_archetypes">1. Business Purpose of Archetypes</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Archetypes are a way of adding domain semantics to information models that define data, while avoiding endless growth and maintenance of the base information models.</p>
+</div>
+<div class="paragraph">
+<p>To make the distinction between domain semantics and information models concrete, information models in openEHR, ISO 13606-1 and more generally in e-health typically define things like 'clinical data types', such as Quantity (with units, accuracy etc); Coded text; Ordinal (an Integer/symbol conjunction); and various generic clinical structures, such as 'clinical statement' (denoted by the type Entry in openEHR and ISO 13606-1), clinical document, report, and so on. Such a class model may contain 50-100 classes, including 20+ classes for the clinical data types. This enables the construction of instance structures corresponding to the various parts and sections of e.g. a clinical encounter note or a hospital discharge summary. However, neither a class model of this size, nor the capabilities of standard UML can naturally accommodate the explosion of diversity of possible values of instances which can make up a clinical document created in any particular situation (e.g. a specific kind of patient visiting a specialist), for example the tens of thousands of clinical observations (e.g. 'systolic blood pressure', 'visual acuity', etc, many of them consisting of multiple data points in specific structures), or the O(1E5) laboratory analyte result types. Further, the size of terminology needed to annotate data items, both 'names' and 'values' in a name/value understanding of the data is in the O(1E5) - O(1E6) concepts range, as exemplified by the SNOMED CT and ICD11 terminologies.</p>
+</div>
+<div class="paragraph">
+<p>The above situation applies across most information-rich industries, with varying but generally very large numbers.</p>
+</div>
+<div class="paragraph">
+<p>Although technically these numerous possible values could just be understood as the specific values that 'happen to occur' in a situation of data creation, it is widely understood within IT in general that domain data value 'complexes' (co-occurring structures of data) correspond to meaningful patterns that constitute a relatively small fraction of the astronomical number of possible combinations of values within structures. Thus, while some tens to hundreds of thousands of 'clinical statement' patterns would adequately cover nearly all of general medical data recording (i.e. leaving the terminal real world values such as actual blood pressure open, within their respective sanity ranges), the information models in typical use would permit possible instance structures in the O(1E10) and much higher ranges. In other words, most possible data constructions are garbage.</p>
+</div>
+<div class="paragraph">
+<p>This is akin to the situation in natural language, where meaningful sentences constitute a tiny fraction of possible, grammatically correct sentences.</p>
+</div>
+<div class="paragraph">
+<p>It is also widely recognized that mechanisms are needed to enable some sort of domain level 'modeling' or 'templating', to enable the common patterns to be defined, and thus to allow the creation of software or other mechanisms (e.g. pre-built UI forms) to limit the possible instance structures to those that actually make sense. The general need was identified in Martin Fowler&#8217;s 1991 book Analysis Patterns, in which 'patterns' are illustrated in 'above the line' parts of UML diagrams, but has been known for some decades. It is generally understood that this kind of modeling cannot simply be an extension of the existing software or database schemata; if it is, it implies endless maintenance and updating of deployed software, and worse, frequent database migration. In systems operating 24x365, and routinely creating Terabytes of data per year per hospital, this is not an acceptable approach.</p>
+</div>
+<div class="paragraph">
+<p>Consequently, most large system software products in the health and other domains have some kind of configuration or template building tool(s) that enable modeling of typical domain content patterns, usually conceived of as screen forms.</p>
+</div>
+<div class="paragraph">
+<p>The problem in mainstream IT has been that no such capability is available independent of particular software products (specific vendors), concrete forms (UI forms, XML Schemas etc) or domains (e.g. process and control systems engineering have domain specific languages) - i.e. even tools that may be technically powerful enough are buried inside specific products, and are usually targeted to the database schemas of the product.</p>
+</div>
+<div class="paragraph">
+<p>An important economic factor is that the creation of good quality domain models is time-consuming and expensive, relying as it does on domain experts - typically experienced clinicians, engineers etc - rather than IT staff. If models are created inside a specific product (e.g. a particular hospital information system), and that product is replaced, there is often little appetite or availability of the staff to recreate the work done to create the models/templates created in the first product. Multiplied across products, sites, and whole industry verticals, the lack of standard ways of representing models of domain content has become a significant blockage to the production of high quality information systems. Instead, as each solution is replaced, its domain models usually die with it.</p>
+</div>
+<div class="paragraph">
+<p>The need for an efficient, formal, and product- and format-independent domain modeling capability is therefore clear. The sheer numbers of content patterns / models in health have led to the creation of an approach, centered around the Archetype formalism, used in conjunction with available terminologies (i.e. SNOMED CT, LOINC, ICDx and many others).</p>
+</div>
+<div class="paragraph">
+<p>Two categories of domain content models canbe distinguished. There is a universal need to be able to represent both use-independent definitions of 'data points', and use-case dependent definition of 'data sets'. Consider the case of recording patient vital signs. Assume that a content model can be defined for 'blood pressure', 'heart rate' and 'blood oxygen'. These definitions need to be independent of specific uses such as patient home measurement, GP encounter, and hospital bedside measurement, since in all these cases, the blood pressure etc. are recorded in exactly the same way. However in each case, these vital signs data points are recorded within a larger data set of items that correspond to the health system event occurring, such as a GP patient health checkup.</p>
+</div>
+<div class="paragraph">
+<p>Thus there are two related needs: to be able to model re-usable domain data items and structures, and secondly, to be able to model the larger use case specific structures in which they may occur. The alternative would be to create a domain model for every data set and within many of these models, to repeatedly define the same sub-model of recurring content, such as 'blood pressure'.</p>
+</div>
+<div class="sect2">
+<h3 id="_formalism_overview">1.1. Formalism Overview</h3>
+<div class="paragraph">
+<p>The openEHR Archetype formalism is designed to be independent of any specific information model (known as a 'reference model'), product, technical format, or industry vertical. It is designed so that instances of the formalism, known as Archetypes, can be computationally processed into desired output forms corresponding to specific technology environments. This is routinely performed in openEHR (and also Intermountain) tooling environments.</p>
+</div>
+<div class="paragraph">
+<p>The formalism primarily addresses the expression of models of possible data instance structures, rather than higher level concepts such as workflows, clinical guidelines (which are decision graphs) and so on, although its general approach can be applied to any of these, i.e. the use of a model of 'what can be said' and a formalism or mechanism for constraining possibilities to the meaningful subset.</p>
+</div>
+<div class="paragraph">
+<p>Given the two categories of model described above, the archetype formalism, coupled with orthodox information models (typically object-oriented), results in a way to model information from any domain in three logical layers as follows:</p>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Information model</dt>
+<dd>
+<p>known as the ‘Reference Model’ (RM) here, which defines the semantics of data;</p>
+</dd>
+<dt class="hdlist1">Archetypes</dt>
+<dd>
+<p>models defining <em>possible</em> arrangements of data that correspond to logical data points and groups for a <em>domain topic</em>; a collection of archetypes constitutes a library of re-usable domain content definition elements;</p>
+</dd>
+<dt class="hdlist1">Templates</dt>
+<dd>
+<p>models of content corresponding to <em>use-case specific data sets</em>, constituted from archetype elements.</p>
+</dd>
+</dl>
+</div>
+<div class="paragraph">
+<p>In this approach, the Reference Model level is limited to defining data elements and structures, such as Quantity, Coded text and various generic containment structures. This enables stable data processing sofware to be built and deployed independently of the definition of specific domain information entities.</p>
+</div>
+<div class="paragraph">
+<p>Although in the abstract, Archetypes are easily understood, Templates imply some nuances. A Template is an artefact that enables the content defined in published archetypes to be used for a particular use case or business event. In health this is often a ‘health service event’ such as a particular kind of encounter between a patient and a provider. Archetypes define content on the basis of topic or theme e.g. blood pressure, physical exam, report, independently of particular business events. Templates provide the way of using a particular set of archetypes, choosing a particular (often quite limited) set of nodes from each and then limiting values and/or terminology in a way specific to a particular kind of event, such as ‘diabetic patient admission’, ‘ED discharge’ and so on. Such events in an ICT environment often have a corresponding screen ‘form’ (which may have one or more ‘pages’ or subforms and some workflow logic) associated with them; as a result, an openEHR template is often a direct precursor to a form in the presentation layer of application software. Templates are the technical means of using archetypes in runtime systems.</p>
+</div>
+<div class="paragraph">
+<p>One other semantic ingredient is crucial: that of <strong>terminology</strong>, with the implication of underlying ontology/ies. The RM/Archetypes/Templates ‘model stack’ defines information as it is created and used - an <em>epistemological view</em>, but does not try to describe the <em>ontological</em> semantics of each information element. The latter is the business of ontologies, such as can be found in the Open Biomedical Ontology (<a href="#OBO">[OBO]</a>) Foundry, and terminologies, such as SNOMED CT, which define naming over an ontological framework for use in particular contexts.</p>
+</div>
+<div id="openehr_architecture" class="imageblock text-center" style="text-align: center">
+<div class="content">
+<img src="diagrams/openehr_architecture.png" alt="openehr architecture" width="70%">
+</div>
+<div class="title">Figure 1. openEHR Semantic Architecture</div>
+</div>
+<div class="paragraph">
+<p>The connection of the information model stack to terminology is made in archetypes and templates, via <em>terminology bindings</em>. Through these, it is possible to state within archetypes and templates the relationship between the ‘names’ of elements (ontologically: what the element ‘is-about’) with terminology and ontology entities, as well as the relationship between element values, and value domains on the terminology side.</p>
+</div>
+<div class="paragraph">
+<p>A final ingredient is required in the semantic mix: <strong>querying</strong>. Under the archetype methodology, information queries are defined solely in terms of archetype elements (via paths), terminology concepts and logical reference model types, without regard to data schemas used in the persistence layer. Archetype-based queries are therefore <em>portable queries</em>, and only need to be written once for a given logical information structure.</p>
+</div>
+<div class="paragraph">
+<p>Together, reference model, archetypes, and templates (with bound terminology) constitute a sophisticated <em>semantic model space</em>. However, any model needs to be deployed to be useful. Because templates are defined as abstract artefacts, they enable single-source generation of concrete artefacts such as XML schemas, screen forms and so on. This approach means that a single definition of the data set for ‘diabetic patient encounter’ can be used to generate a message definition XSD and a screen form.</p>
+</div>
+<div class="paragraph">
+<p>It is the template ‘operational’ form that provides the basis for tool-generation of usable downstream concrete artefacts, which embody all of the semantics of the implicated Templates in a form usable by ‘normal’ developers with typical expertise and skills.</p>
+</div>
+<div class="paragraph">
+<p>Downstream artefacts when finally deployed in operational systems are what enable data to be created and queried. Artefacts created by archetype-based ecosystems enable informations systems of significantly higher quality, semantic power and maintainability to be built, because both the data and querying are model-based, and the models are underpinned by terminology and ontology.</p>
+</div>
+<div class="paragraph">
+<p>Underlying all of this are of course formalisms and tooling - the language and tools of archetypes. This overview describes the archetype specifications and how they fit together and support tool-building as well as downstream model-based software development.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_the_specifications">1.2. The Specifications</h3>
+<div class="paragraph">
+<p>The semantics described above are defined in the following set of specifications:</p>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1"><strong>Archetype Identification</strong></dt>
+<dd>
+<p>a normative specification of archetype and template model identification, versioning, referencing and lifecycle;</p>
+</dd>
+<dt class="hdlist1"><strong>The Archetype Definition Language (ADL)</strong></dt>
+<dd>
+<p>a normative abstract syntax for archetypes, templates and terminology binding;</p>
+</dd>
+<dt class="hdlist1"><strong>The Archetype Object Model (AOM)</strong></dt>
+<dd>
+<p>the normative structural model of archetypes and templates;</p>
+</dd>
+<dt class="hdlist1"><strong>The Archetype Querying Language (AQL)</strong></dt>
+<dd>
+<p>the normative querying language based on archetypes and terminology.</p>
+</dd>
+<dt class="hdlist1"><strong>The Template Guide</strong></dt>
+<dd>
+<p>an informative specification of how the templating semantics of ADL/AOM are used to create templates;</p>
+</dd>
+</dl>
+</div>
+<div class="paragraph">
+<p>The first specification above describes the semantics of Archetype identifiers, which is equivalent to describing the structure of the Archetype-based model space. It also describes aspects of lifecycle management and versioning of Archetypes.</p>
+</div>
+<div class="paragraph">
+<p>The Archetype Definition Language (ADL) is a formal abstract syntax for archetypes, and can be used to provide a default serial expression of archetypes. It is the <strong>primary document for human understanding of the semantics of archetypes</strong>.</p>
+</div>
+<div class="paragraph">
+<p>The AOM is the definitive formal expression of archetype semantics, and is independent of any particular syntax. The <strong>main purpose of the AOM specification is to specify to developers how to build archetype tools</strong> and also EHR components that use archetypes.</p>
+</div>
+<div class="paragraph">
+<p>The semantics defined in the AOM are used to express the object structures of source archetypes and flattened archetypes. Since in ADL 2 a template is just a kind of archetype, the AOM also describes the semantics of templates as well. The two source forms are authored by users via tools, while the two flat forms are generated by tools. The rules for how to use the AOM for each of these forms is described in details in this specification.</p>
+</div>
+<div class="paragraph">
+<p>The Archetype Query Language (AQL) specification defines a query language that assumes a Reference Model and Archetypes as its semantic base.</p>
+</div>
+<div class="paragraph">
+<p>Lastly, he Template Guide provides technical description of how openEHR Templates are used to represent definition of data sets. This is primarily useful to tool-builders.</p>
+</div>
+<div class="paragraph">
+<p>The remainder of this document provides further high level description of the Archetype-based model environment, essential for understanding the formal specifications.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_semantic_overview">2. Semantic Overview</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Archetypes are topic- or theme-based models of domain content, expressed in terms of constraints on a reference information model. Since each archetype constitutes an encapsulation of a set of data points pertaining to a topic, it is of a manageable, limited size, and has a clear boundary. For example an ‘Apgar result’ archetype of the openEHR reference model class ` OBSERVATION` contains the data points relevant to Apgar score of a newborn, while a ‘blood pressure measurement’ archetype contains data points relevant to the result and measurement of blood pressure. Archetypes are assembled by templates to form structures used in computational systems, such as document definitions, message definitions and so on.</p>
+</div>
+<div class="paragraph">
+<p>In the following, unless otherwise qualified, the general term ‘archetype’ includes templates, which are technically just a special kind of archetype.</p>
+</div>
+<div class="sect2">
+<h3 id="_identification_and_the_virtual_archetype_space">2.1. Identification and the Virtual Archetype Space</h3>
+<div class="paragraph">
+<p>Archetypes can be identified in two ways: with GUIDs, and with Human Readable IDs (HRIDs). The Archetype HRID structure corresponds to the structure of the model space created by the combination of Reference Model and Archetypes, and is shown in the following example.</p>
+</div>
+<div id="archetype_id" class="imageblock text-center" style="text-align: center">
+<div class="content">
+<img src="diagrams/archetype_id.png" alt="archetype id" width="70%">
+</div>
+<div class="title">Figure 2. Typical Archetype HRID</div>
+</div>
+<div class="paragraph">
+<p>The blue segment <code>openEHR-EHR-COMPOSITION</code> indicates the entity in a reference model space, here, the class <code>COMPOSITION</code> in the package EHR from the openEHR Reference Model. The green part ‘medication_order’ indicates the domain level entity being modelled - a (record of a) medication order (i.e. part of a typical doctor’s prescription). The combination of the RM class space and semantic subspaces defines the logical model space created by the archetype formalism.</p>
+</div>
+<div class="paragraph">
+<p>We can understand this model space equivalently as an ontological space, where the models act as ontological descriptions of real data. Philosophically speaking this is somewhat of a sleight-of-hand, since the data are of course technically created from the very models themselves. However, if the models (Reference Model and Archetypes) were defined as representing information from the real world, such as paper or narrative notes and data entry by healthcare professionals (prescriptions, progress notes, lab results etc) then they can be understood as an ontological description of those original informational entities. The sleight-of-hand comes in when we follow the normal course in IT, and use a formally defined model to create data. Data created in this way can be thought of as a higher precision version of original data used to inform the original modelling effort.</p>
+</div>
+<div class="paragraph">
+<p>Returning to the Archetype HRID, the leading namespace indicates the Custodian Organisation, here the UK NHS. The implication of the namespace within the HRID is that multiple agencies may publish competing ideas of a ‘medication_order’ archetype based on the openEHR <code>COMPOSITION</code> class, and there will not be any clash. Although the namespace is prepended to the archetype identifier in the usual way, in fact it should be understood as a discriminator on the domain entity. In other words, the identifiers <code>uk.gov.nhs::openEHR-EHR-COMPOSITION.medication_order.v1</code> and <code>no.regjeringen::openEHR-EHR-COMPOSITION.medication_order.v1</code> should be understood as UK NHS and Norwegian Health Department ideas of ‘medication_order’, based on the same openEHR Reference Model <code>COMPOSITION</code> class.</p>
+</div>
+<div class="paragraph">
+<p>This is useful as a practical measure, to avoid immediate chaos. In the longer term, it is intended that archetype semantic identifiers for a given domain are located in a common international ontology of information artefact types. For the clinical domain, it could look as shown in the figure <a href="#information_ontology">Example archetype artefact ontology</a>, where it is assumed that the Basic Formal Ontology 2nd Edition (<a href="#BFO">[BFO]</a>) and the Information Artefact Ontology (<a href="#IAO">[IAO]</a>) upper level ontologies would provide the foundation of clinically specific models.</p>
+</div>
+<div id="information_ontology" class="imageblock text-center" style="text-align: center">
+<div class="content">
+<img src="diagrams/information_ontology.png" alt="information ontology" width="90%">
+</div>
+<div class="title">Figure 3. Example archetype artefact ontology</div>
+</div>
+<div class="paragraph">
+<p>The situation with ‘medication_order’ is shown under the document/COMPOSITION node: both the NHS and Norwegian variants of ‘medication_order’ as well as a universally accepted form are shown.</p>
+</div>
+<div class="paragraph">
+<p>Namespacing of archetypes has an important practical consequence: differently namespaced archetypes can co-exist within the same Library workspace (see below for definition). This situation can come about due to archetypes being transferred or forked from an original custodian to another.</p>
+</div>
+<div class="paragraph">
+<p>An Archetype HRID may legally have no namespace. This means it is uncontrolled and not managed by any organisation.</p>
+</div>
+<div class="paragraph">
+<p>The last part of the archetype identifier is the version. Logical archetype identifiers include the major version i.e. first number of a 3-part version (e.g. 1.5.0), on the basis that a change in major version number is generally understood in IT to be a breaking change to the artefact. Accordingly, different major versions are considered different artefacts from a computational point of view. The full version can also be used to construct an identifier useful for physical resources, e.g. files or version system references.</p>
+</div>
+<div class="paragraph">
+<p>Making progress on a universal ontology for a whole domain such as clinical informatics is likely to be complex and slow, due to the fact that two types of ‘custodian’ or ‘publisher’ are involved, namely Reference Model custodians - typically standards bodies - and Archetype custodians - typically domain-related organisations within major jurisdictions, e.g. MoH Information Authorities. If we also assume the involvement of an organisation such as the Open Biological and Biomedical Ontologies <a href="#OBO">[OBO]</a>, a multi-year process is clearly implied.</p>
+</div>
+<div class="paragraph">
+<p>A practical view is to treat a given Reference Model (or, a small number of strongly related RMs) as fixed, and to try to develop an ontology of archetypes under that. This would require agreements across Archetype custodians, and a successful outcome would result in a single definitional space - everyone would agree for example that a ‘systemic arterial blood pressure measurement’ was called just that, and had a short name of (say) ‘bp_measurement’. It would not obviate the need for custodians however, since it is clear that for most domains, there remain real distinctions across geographies and sub-specialties. For example, an internationally agreed ‘pregnancy record’ entity might have real specialisations such as ‘European standard pregnancy record’, ‘Swedish pregnancy record’ and so on, where the some European body, and the Swedish Ministry of Health were both custodians.</p>
+</div>
+<div class="paragraph">
+<p>Some of this kind of harmonisation is occurring within openEHR, due to cooperation of national-level archetype governance organisations with the openEHR Foundation, acting as the governance body for international archetypes, hosted at the openEHR Clinical Knowledge Manager <a href="#openehr_CKM">[openehr_CKM]</a> . Even this level of harmonisation is slow and cannot therefore be taken as given for the purpose of the Archetype formalism.</p>
+</div>
+<div class="paragraph">
+<p>Accordingly, the formalism and tooling is designed on the basis of the simplest realistic assumption: that the hierarchy of Reference Model types along with optionally namespaced Archetypes form a self-standing information ontology, in the same manner as shown in <a href="#information_ontology">Example archetype artefact ontology</a>, i.e. an IS-A hierarchy formed of RM types followed by Archetypes. The practical value of this is twofold:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>real data can be computationally classified under various points in the ontology - i.e. we can computationally determine if certain data are a ‘bp_measurement’, a ‘UK NHS bp_measurement’ or even just an <code>OBSERVATION</code> ;</p>
+</li>
+<li>
+<p>we can use the subsumption operator on the IS-A hierarchy to define useful subsets of the overall space, e.g. <code>{any-descendant of ‘medical_device’}, {any-descendant-or-self of OBSERVATION}</code> and so on.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>The IS-A hierarchy is available in archetype tools such as the <a href="#openEHR_ADL_workbench">[openEHR_ADL_workbench]</a>, as shown in the figure <a href="#archetypes_is_a_hierarchy">Is-A hierarchy of the openEHR international archetypes</a>.</p>
+</div>
+<div id="archetypes_is_a_hierarchy" class="imageblock text-center" style="text-align: center">
+<div class="content">
+<img src="diagrams/archetypes_is_a_hierarchy.png" alt="archetypes is a hierarchy" width="70%">
+</div>
+<div class="title">Figure 4. Is-A hierarchy of the openEHR international archetypes</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_collections_of_archetypes">2.2. Collections of Archetypes</h3>
+<div class="paragraph">
+<p>Within the virtual archetype space described above, we can identify different groups or collections of archetypes, which relate to how tools work, particularly with respect to how identifiers are resolved. For the forseeable future, all of the following types of collections can be assumed to occur under specific custodian namespaces, i.e. managers and publishers of archetypes.</p>
+</div>
+<div class="paragraph">
+<p>An Archetype Library corresponds to a coherent collection of archetypes actually available within a single workspace or repository. All archetypes and templates in the Library would typically be based on the same Reference Model, but this need not be so, e.g. in the case of test archetypes. Apart from the latter case, an Archetype Library consists of archetypes that are normally designed to be used together in validating and creating information. These can include non-namespaced (unmanaged) and differently namespaced archetypes, where mixing occurs due to promotion and/or forking. In the latter case, it is up to the Library maintainers to ensure compatibility of all archetypes in the Library.</p>
+</div>
+<div class="paragraph">
+<p>One or more Archeype Libraries exist within an Archetype Repository, which is understood as a physical repository in which archetypes are managed, typically with version control, download capability etc. An Archetype Repository does not connote any semantics, rather it provides a unit of access, committal and versioning for tools to work with.</p>
+</div>
+<div class="paragraph">
+<p>Archetype Libraries, within Archetype Repositories are published by Custodian Organisations, corresponding to the namespace part of a fully-qualified archetype identifier.</p>
+</div>
+<div class="paragraph">
+<p>At the outermost level, the Universe of Archetypes for a Reference Model corresponds to all existing archetypes for that RM, and is therefore a virtual collection of all Archetype Libraries based on that RM. It will therefore encompass archetypes created by different Custodian Organisations, different RM classes, various semantic entities (what the archetype is-about, e.g. ‘blood pressure measurement’), and finally multiple versions and revisions of all of these.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_archetype_relationships">2.3. Archetype Relationships</h3>
+<div class="paragraph">
+<p>Within an Archetype Library, two kinds of relationship can exist between archetypes: specialisation and composition.</p>
+</div>
+<div class="sect3">
+<h4 id="_archetype_specialisation">2.3.1. Archetype Specialisation</h4>
+<div class="paragraph">
+<p>An archetype can be specialised in a descendant archetype in a similar way to a sub-class in an object-oriented programming language. Specialised archetypes are, like classes, expressed in a differential form with respect to the flat parent archetype, i.e. the effective archetype resulting from a flattening operation down the specialisation hierarchy. This is a necessary pre-requisite to sustainable management of specialised archetypes. An archetype is a specialisation of another archetype if it mentions that archetype as its parent, and only makes changes to its definition such that its constraints are ‘narrower’ than those of the flat parent. Note that this can include a specialised archetype defining constraints on a part of the reference model not constrained at all by parent archetypes - since this is still ‘narrowing’ or constraining. The chain of archetypes from a specialised archetype back through all its parents to the ultimate parent is known as an archetype lineage. For a non-specialised (i.e. top-level) archetype, the lineage is just itself.</p>
+</div>
+<div class="paragraph">
+<p>In order for specialised archetypes to be used, the differential form used for authoring has to be flattened through the archetype lineage to create flat-form archetypes, i.e. the standalone equivalent of a given archetype, as if it had been constructed on its own. A flattened archetype is expressed in the same serial and object form as a differential form archetype, although there are some slight differences in the semantics, other than the use of differential paths.</p>
+</div>
+<div class="paragraph">
+<p>Any data created via the use of an archetype conforms to the flat form of the archetype, and to the flat form of every archetype up the lineage.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_archetype_composition">2.3.2. Archetype Composition</h4>
+<div class="paragraph">
+<p>In the interests of re-use, archetypes can be composed to form larger structures semantically equivalent to a single large archetype. Composition allows two things to occur: for archetypes to be defined according to natural ‘levels’ or encapsulations of information, and for the re-use of smaller archetypes by higher-level archetypes. There are two mechanisms for expressing composition: direct reference, and archetype slots which are defined in terms of constraints. The latter enables any subset of Archetypes, e.g. defined via subsumption relations, to be stated as the allowed set for use at a certain point in a compositional parent archetype.</p>
+</div>
+<div class="paragraph">
+<p>These semantics are described in detail in their syntax form in the ADL specification, and in structural form in the AOM specification.</p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_archetype_internals">2.4. Archetype Internals</h3>
+<div class="paragraph">
+<p>An archetype is represented computationally as instances of the Archetype Object Model. For persistence purposes it needs to be serialised. The Archetype Definition Language (ADL) is used as a normative authoring and persistence language, in the same way as a programming language syntax is used to represent programming constructs (which are, it should be remembered not syntax, but the structured outputs of language compilers). In particular, it is designed to be terse and intuitively human readable. Any number of other serialisations are available, usually for technical reasons. These include ‘object dump’ ODIN, XML and JSON serialisations, and may include other representations in the future, such as OWL and OMG XMI, according to the technical needs of emerging development technologies. For the purposes of describing and d ocumenting the Archetype formalism, ADL is generally used.</p>
+</div>
+<div class="paragraph">
+<p>XML-schema based XML is used for many common computing purposes relating to archetypes, and may become the dominant syntax in terms of numbers of users. Nevertheless, XML is not used as the normative syntax for archetypes for a number of reasons.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>There is no single XML schema that is likely to endure. Initially published schemas are replaced by more efficient ones, and may also be replaced by alternative XML syntaxes, e.g. the XML-schema based versions may be replaced or augmented by Schematron.</p>
+</li>
+<li>
+<p>XML has little value as an explanatory syntax for use in standards, as its own underlying syntax obscures the semantics of archetypes or any other specific purpose for which it is used. Changes in acceptable XML expressions of archetypes described above may also render examples in documents such as this obsolete.</p>
+</li>
+<li>
+<p>XML usage is starting to be replaced by JSON in many programming environments.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>An XML schema for archetypes is available on the openEHR website.</p>
+</div>
+<div class="sect3">
+<h4 id="_archetype_definition_language_adl">2.4.1. Archetype Definition Language (ADL)</h4>
+<div class="paragraph">
+<p>ADL uses three sub-syntaxes: cADL (constraint form of ADL), ODIN (Object Data Instance Notation), and a version of first-order predicate logic (FOPL). The cADL and FOPL parts express constraints on data which are instances of an underlying information model, which may be expressed in UML, relational form, or in a programming language. ADL itself is a very simple ‘glue’ syntax, which connects blocks of the subordinate syntaxes to form an overall artefact. The cADL syntax is used to express the archetype <code>definition</code> , while the ODIN syntax is used to express data which appears in the  language` , <code>description</code> , <code>terminology</code> , and <code>revision_history</code> sections of an ADL archetype. The top-level structure of an ADL archetype is shown in the figure below.</p>
+</div>
+<div id="archetype_structure" class="imageblock text-center" style="text-align: center">
+<div class="content">
+<img src="diagrams/archetype_structure.png" alt="archetype structure" width="50%">
+</div>
+<div class="title">Figure 5. ADL Archetype Structure</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_templates">2.5. Templates</h3>
+<div class="paragraph">
+<p>In practical systems, archetypes are assembled into larger usable structures by the use of templates. A template is expressed in the same source form as a specialised archetype, typically making use of the slot-filling mechanism. It is processed against an archetype library to product an operational template. The latter is like a large flat-form archetype, and is the form used for runtime validation, and also for the generation of all downstream aretefacts derived from templates. Semantically, templates perform three functions: aggregating multiple archetypes, removing elements not needed for the use case of the template, and narrowing some existing constraints, in the same way as specialised archetypes. The effect is to re-use needed elements from the archetype library, arranged in a way that corresponds directly to the use case at hand.</p>
+</div>
+<div class="paragraph">
+<p>This job of a template is as follows:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>composition</strong>: compose archetypes into larger structures by indicating which archetypes should fill the slots of higher-level archetypes;</p>
+</li>
+<li>
+<p><strong>element choice</strong>: choose which parts of the chosen archetypes should remain in the final structure, by doing one or more of the following:</p>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>removal</strong>: remove archetype nodes (‘data points’) not needed for the purpose of the template;</p>
+</li>
+<li>
+<p><strong>mandation</strong>: mark archetype nodes (‘data points’) mandatory for the runtime use of the template;</p>
+</li>
+<li>
+<p>nodes may also be left optional, meaning that the corresponding data item is considered optional at runtime;</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>narrow constraints</strong>: narrow remaining constraints on archetype elements or on the reference model (i.e. on parts of the RM not yet constrained by the archetypes referenced in the template);</p>
+</li>
+<li>
+<p><strong>set detaults</strong>: set default values if required.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>A template may compose any number of archetypes, but choose very few data points from each, thus having the effect of creating a small data set from a very large number of data points defined in the original archetypes.</p>
+</div>
+<div class="paragraph">
+<p>The archetype semantics used in templates are described in detail in the ADL specification; a detailed description of their use is given in the Template Guide specification.</p>
+</div>
+<div class="paragraph">
+<p>The AOM describes in structural form all the semantics of templates. Note that the AOM does not distinguish between archetypes, specialised archetypes or templates other than by use of an artefact type classifier. All other differences in how archetypes and templates work are implemented in tools that may prevent or allow certain operations depending on whether the artefact being worked on is an archetype or template.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_artefacts">3. Artefacts</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_model_syntax_relationship">3.1. Model / Syntax Relationship</h3>
+<div class="paragraph">
+<p>The Archetype Object Model can be considered as the model of an in-memory archetype or a template, or equivalently, a standard syntax tree for any serialised format - not just ADL. The normative abstract syntax form of an archetype is ADL, but an archetype may just as easily be parsed from and serialised to XML, JSON or any other format. The in-memory archetype representation may also be created by calls to a suitable AOM construction API, from an archetype or template editing tool. These relationships, and the relation between each form and its specification are shown below.</p>
+</div>
+<div id="serialised_forms" class="imageblock text-center" style="text-align: center">
+<div class="content">
+<img src="diagrams/serialised_forms.png" alt="serialised forms" width="80%">
+</div>
+<div class="title">Figure 6. Relationship of in-memory and syntax forms</div>
+</div>
+<div class="paragraph">
+<p>The existence of source and flat form archetypes and templates, potentially in multiple serialised formats may initially appear confusing, although any given environment tends to use a single serialised form. The figure below illustrates all possible archetype and template artefact types, including file types.</p>
+</div>
+<div id="artefact_types" class="imageblock text-center" style="text-align: center">
+<div class="content">
+<img src="diagrams/artefact_types.png" alt="artefact types" width="80%">
+</div>
+<div class="title">Figure 7. ADL Archetype Types</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_the_development_process">3.2. The Development Process</h3>
+<div class="paragraph">
+<p>Archetypes are authored and transformed according to a number of steps very similar to class definitions within an object-oriented programming environment. The activities in the process are as follows:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>authoring</strong>: creates source-form archetypes, expressed in AOM objects;</p>
+</li>
+<li>
+<p><strong>validation</strong>: determine if archetype satisfies semantic validity rules; requires flat form of parent of current archetype if specialised;</p>
+</li>
+<li>
+<p><strong>flattening</strong>: creates flattened archetypes#</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Templates are authored the same way, although typically using only mandations, prohibitions and refinements. The final step is the generation of an operational template, which is the fully flattened and substituted form of the source definitions implicated by the template.</p>
+</div>
+<div class="paragraph">
+<p>The tool chain for the process is illustrated below. From a software development point of view, template authoring is the starting point. A template references one or more archetypes, so its compilation (parsing, validation, flattening) involves both the template source and the validated, flattened forms of the referenced archetypes. With these as input, a template flattener can generate the final output, an operational template.</p>
+</div>
+<div id="toolchain" class="imageblock text-center" style="text-align: center">
+<div class="content">
+<img src="diagrams/toolchain.png" alt="toolchain" width="80%">
+</div>
+<div class="title">Figure 8. Archetype toolchain</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_compilation">3.3. Compilation</h3>
+<div class="paragraph">
+<p>A tool that parses, validates, flattens and generates new outputs from a library of artefacts is called a compiler. Due to the existence of specialisation, archetype specialisation lineages rather than just single archetypes are processed - i.e. specialised archetypes can only be compiled in conjunction with their specialisation parents up to the top level. Each such archetype also potentially has a list of supplier archetypes, i.e. archetypes it references via the ADL use_reference statement. For an archetype to compile, all of its suppliers and specialisation parents must already compile.</p>
+</div>
+<div class="paragraph">
+<p>This is exactly how object-oriented programming environments work. For any given lineage, compilation proceeds from the top-level archetype downward. Each archetype is validated, and if it passes, flattened with the parent in the chain. This continues until the archetype originally being compiled is reached. In the case of archetypes with no specialisations, compilation involves the one archetype only and its suppliers.</p>
+</div>
+<div class="paragraph">
+<p>The figure below illustrates the object structures for an archetype lineage as created by a compilation process, with the elements corresponding to the top-level archetype bolded. Differential input file(s) are converted by the parser into differential object parse trees, shown on the left of the ‘flattener’ processes. The same structures would be created by an editor application.</p>
+</div>
+<div id="archetype_compilation" class="imageblock text-center" style="text-align: center">
+<div class="content">
+<img src="diagrams/archetype_compilation.png" alt="archetype compilation" width="80%">
+</div>
+<div class="title">Figure 9. Archetype compilation</div>
+</div>
+<div class="paragraph">
+<p>The differential in-memory representation is validated by the semantic checker, which verifies numerous things, such as that term codes referenced in the definition section are defined in the terminology section. It can also validate the classes and attributes mentioned in the archetype against a specification for the relevant reference model.</p>
+</div>
+<div class="paragraph">
+<p>The results of the compilation process can be seen in the archetype visualisations in the openEHR ADL Workbenchlink (<a href="#ADL_workbench">[ADL_workbench]</a>).</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_optimisations">3.4. Optimisations</h3>
+<div class="paragraph">
+<p>In an authoring (i.e. ‘design time’) environment, artefacts should always be considered ‘suspect’ until proven otherwise by reliable validation. This is true regardless of the original syntax - ADL, XML or something else. Once validated however, the flat form can be reserialised both in a format suitable for editor tools to use (ADL, XML, &#8230;&#8203;), and also in a format that can be regarded as a reliable pure object serialisation of the in-memory structure. The latter form is often XML-based, but can be any object representation form, such as JSON, the openEHR ODIN (aka dADL) syntax, YAML, a binary form, or a database structure. It will not be an abstract syntax form such as ADL, since there is an unavoidable semantic transformation required between the abstract syntax and object form.</p>
+</div>
+<div class="paragraph">
+<p>The utility of this pure object serialisation is that it can be used as persistence of the validated artefact, to be converted to in-memory form using only a non-validating stream parser, rather than a multi-pass validating compiler. This allows such validated artefacts to be used in both design environments and more importantly, runtime systems with no danger of compilation errors. It is the same principle used in creating .jar files from Java source code, and .Net assemblies from C# source code.</p>
+</div>
+<div class="paragraph">
+<p>Within openEHR environments, managing the authoring and persisted forms of archetypes is achieved using various mechanisms including digital signing, which are described in the openEHR</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_references">References</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_publications">Publications</h3>
+<div class="olist bibliography">
+<ol class="bibliography">
+<li>
+<p><a id="Beale_2000"></a>[Beale_2000] Beale T. <strong>Archetypes: Constraint-based Domain Models for Future-proof Information Systems.</strong> 2000.  Available at <a href="http://www.openehr.org/files/resources/publications/archetypes/archetypes_beale_web_2000.pdf" class="bare">http://www.openehr.org/files/resources/publications/archetypes/archetypes_beale_web_2000.pdf</a> .</p>
+</li>
+<li>
+<p><a id="Beale_2002"></a>[Beale_2002] Beale T. <strong>Archetypes: Constraint-based Domain Models for Future-proof Information Systems.</strong> Eleventh OOPSLA Workshop on Behavioral Semantics: Serving the Customer (Seattle, Washington, USA, November 4, 2002). Edited by Kenneth Baclawski and Haim Kilov. Northeastern University, Boston, 2002, pp. 16-32. Available at <a href="http://www.openehr.org/files/resources/publications/archetypes/archetypes_beale_oopsla_2002.pdf" class="bare">http://www.openehr.org/files/resources/publications/archetypes/archetypes_beale_oopsla_2002.pdf</a> .</p>
+</li>
+<li>
+<p><a id="Beale_Heard_2007"></a>[Beale_Heard_2007] <strong>An Ontology-based Model of Clinical Information</strong>. pp 760-764 Proceedings MedInfo 2007, K. Kuhn et al. (Eds), IOS Publishing 2007. Available at <a href="http://www.openehr.org/files/resources/publications/health_ict/MedInfo2007-BealeHeard.pdf" class="bare">http://www.openehr.org/files/resources/publications/health_ict/MedInfo2007-BealeHeard.pdf</a> .</p>
+</li>
+<li>
+<p><a id="Eiffel"></a>[Eiffel] Meyer B. <strong>Eiffel the Language (2nd Ed).</strong> Prentice Hall, 1992.</p>
+</li>
+<li>
+<p><a id="Hein"></a>[Hein] Hein J L. Discrete Structures, Logic and Computability (2nd Ed). Jones and Bartlett 2002.</p>
+</li>
+<li>
+<p><a id="Kilov_Ross"></a>[Kilov_Ross] Kilov H, Ross J. <strong>Information Modelling: an Object-Oriented Approach.</strong> Prentice Hall 1994.
+Guarino N, Poli R. Kluwer Academic Publishers. 1993 (Aug revision).</p>
+</li>
+<li>
+<p><a id="Martin"></a>[Martin] Martin P. <strong>Translations between UML, OWL, KIF and the WebKB-2 languages (For-Taxonomy, Frame-CG, Formalized English)</strong>. May/June 2003. Available at <a href="http://www.webkb.org/doc/model/comparisons.html" class="bare">http://www.webkb.org/doc/model/comparisons.html</a> as at Aug 2004.</p>
+</li>
+<li>
+<p><a id="Rector"></a>[Rector] Rector A L. <strong>Clinical terminology: why is it so hard?</strong> Methods Inf Med. 1999 Dec;38(4-5):239-52. Available at <a href="http://www.cs.man.ac.uk/~rector/papers/Why-is-terminology-hard-single-r2.pdf" class="bare">http://www.cs.man.ac.uk/~rector/papers/Why-is-terminology-hard-single-r2.pdf</a> .</p>
+</li>
+<li>
+<p><a id="Object_Z"></a>[Object_Z] Smith G. <strong>The Object Z Specification Language</strong>. Kluwer Academic Publishers 2000. See <a href="http://www.itee.uq.edu.au/~smith/objectz.html" class="bare">http://www.itee.uq.edu.au/~smith/objectz.html</a> .</p>
+</li>
+<li>
+<p><a id="Sowa"></a>[Sowa] Sowa J F. <strong>Knowledge Representation: Logical, philosophical and Computational Foundations</strong>. 2000, Brooks/Cole, California.</p>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_resources">Resources</h3>
+<div class="olist bibliography">
+<ol class="bibliography">
+<li>
+<p><a id="bfo"></a>[bfo] Institute for Formal Ontology and Medical Information Science (IFOMIS). <strong>Basic Formal Ontology (BFO).</strong> <a href="http://ifomis.uni-saarland.de/bfo/" class="bare">http://ifomis.uni-saarland.de/bfo/</a> .</p>
+</li>
+<li>
+<p><a id="cov_contra"></a>[cov_contra] Wikipedia. <strong>Covariance and contravariance.</strong> See <a href="https://en.wikipedia.org/wiki/Covariance_and_contravariance_(computer_science" class="bare">https://en.wikipedia.org/wiki/Covariance_and_contravariance_(computer_science</a>) .</p>
+</li>
+<li>
+<p><a id="FMA"></a>[FMA] <a href="http://sig.biostr.washington.edu/projects/fm/" class="bare">http://sig.biostr.washington.edu/projects/fm/</a> .</p>
+</li>
+<li>
+<p><a id="GeHR_AUS"></a>[GeHR_AUS] Heard S, Beale T. <strong>The Good Electronic Health Record (GeHR) (Australia).</strong> See <a href="http://www.openehr.org/resources/related_projects#gehraus" class="bare">http://www.openehr.org/resources/related_projects#gehraus</a> .</p>
+</li>
+<li>
+<p><a id="hl7_v3_rim"></a>[hl7_v3_rim] HL7. <strong>HL7 v3 RIM</strong>. See <a href="http://www.hl7.org" class="bare">http://www.hl7.org</a> .</p>
+</li>
+<li>
+<p><a id="Horrocks_owl"></a>[Horrocks_owl] Patel-Schneider P, Horrocks I, Hayes P. <strong>OWL Web Ontology Language Semantics and Abstract Syntax.</strong> See <a href="http://w3c.org/TR/owl-semantics/" class="bare">http://w3c.org/TR/owl-semantics/</a> .</p>
+</li>
+<li>
+<p><a id="IAO"></a>[IAO] <strong>Information Artefact Ontology</strong>.  <a href="https://code.google.com/p/information-artifact-ontology/" class="bare">https://code.google.com/p/information-artifact-ontology/</a> .</p>
+</li>
+<li>
+<p><a id="IHTSDO"></a>[IHTSDO] International Health Terminology Standards Development Organisation, <a href="http://www.ihtsdo.org" class="bare">http://www.ihtsdo.org</a>.</p>
+</li>
+<li>
+<p><a id="Martin"></a>[Martin] Martin P. <strong>Translations between UML, OWL, KIF and the WebKB-2 languages (For-Taxonomy, Frame-CG, Formalized English)</strong>. May/June 2003. Available at <a href="http://www.webkb.org/doc/model/comparisons.html" class="bare">http://www.webkb.org/doc/model/comparisons.html</a> as at Aug 2004.</p>
+</li>
+<li>
+<p><a id="OBO"></a>[OBO] <strong>The Open Biological and Biomedical Ontologies</strong>. See <a href="http://www.obofoundry.org/" class="bare">http://www.obofoundry.org/</a> .</p>
+</li>
+<li>
+<p><a id="OCL"></a>[OCL] <strong>The Object Constraint Language 2.0.</strong> Object Management Group (OMG). Available at <a href="http://www.omg.org/cgi-bin/doc?ptc/2003-10-14" class="bare">http://www.omg.org/cgi-bin/doc?ptc/2003-10-14</a> .</p>
+</li>
+<li>
+<p><a id="OGMS"></a>[OGMS] <strong>Ontology for General Medical Science (OGMS)</strong>. <a href="https://code.google.com/p/ogms/" class="bare">https://code.google.com/p/ogms/</a> .</p>
+</li>
+<li>
+<p><a id="Perl_regex"></a>[Perl_regex] Perl.org. <strong>Perl Regular Expressions</strong>. Available at <a href="http://perldoc.perl.org/perlre.html" class="bare">http://perldoc.perl.org/perlre.html</a> .</p>
+</li>
+<li>
+<p><a id="Protege"></a>[Protege] Stanford University. See <a href="http://protege.stanford.edu/" class="bare">http://protege.stanford.edu/</a> .</p>
+</li>
+<li>
+<p><a id="rfc2781"></a>[rfc2781] IETF. <strong>RFC 2781.</strong> See <a href="http://tools.ietf.org/html/rfc2781" class="bare">http://tools.ietf.org/html/rfc2781</a>.</p>
+</li>
+<li>
+<p><a id="rfc5646"></a>[rfc5646] IETF. <strong>RFC 5646.</strong> Available at <a href="http://tools.ietf.org/html/rfc5646" class="bare">http://tools.ietf.org/html/rfc5646</a>.</p>
+</li>
+<li>
+<p><a id="synex"></a>[synex] University College London. <strong>SynEx project</strong>. <a href="http://www.chime.ucl.ac.uk/HealthI/SynEx/" class="bare">http://www.chime.ucl.ac.uk/HealthI/SynEx/</a> .</p>
+</li>
+<li>
+<p><a id="sem_ver"></a>[sem_ver] <strong>Semantic Versioning</strong>. <a href="http://semver.org" class="bare">http://semver.org</a> .</p>
+</li>
+<li>
+<p><a id="uri_syntax"></a>[uri_syntax] <strong>Uniform Resource Identifier (URI): Generic Syntax, Internet proposed standard</strong>. January 2005. see <a href="http://www.ietf.org/rfc/rfc3986.txt" class="bare">http://www.ietf.org/rfc/rfc3986.txt</a> .</p>
+</li>
+<li>
+<p><a id="w3c_owl"></a>[w3c_owl] W3C. <strong>OWL - the Web Ontology Language</strong>. See <a href="http://www.w3.org/TR/2003/CR-owl-ref-20030818/" class="bare">http://www.w3.org/TR/2003/CR-owl-ref-20030818/</a> .</p>
+</li>
+<li>
+<p><a id="w3c_xpath"></a>[w3c_xpath] W3C. <strong>XML Path Language</strong>. See <a href="http://w3c.org/TR/xpath" class="bare">http://w3c.org/TR/xpath</a> .</p>
+</li>
+<li>
+<p><a id="WHO_ICD"></a>[WHO_ICD] World Health Organisation (WHO). <strong>International Classification of Diseases (ICD).</strong> See: <a href="http://www.who.int/classifications/icd/en/" class="bare">http://www.who.int/classifications/icd/en/</a> .</p>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_openehr_resources">openEHR Resources</h3>
+<div class="olist bibliography">
+<ol class="bibliography">
+<li>
+<p><a id="openEHR_ADL_workbench"></a>[openEHR_ADL_workbench] <strong>The openEHR ADL Workbench</strong>. <a href="http://www.openehr.org/downloads/ADLworkbench/home" class="bare">http://www.openehr.org/downloads/ADLworkbench/home</a> .</p>
+</li>
+<li>
+<p><a id="openehr_CKM"></a>[openehr_CKM] <strong>The openEHR Clinical Knowledge Manager (CKM)</strong>. See <a href="http://www.openEHR.org/ckm" class="bare">http://www.openEHR.org/ckm</a></p>
+</li>
+<li>
+<p><a id="openehr_overview"></a>[openehr_overview] The openEHR Architecture Overview. See <a href="http://www.openehr.org/releases/trunk/architecture/overview.pdf" class="bare">http://www.openehr.org/releases/trunk/architecture/overview.pdf</a> .</p>
+</li>
+<li>
+<p><a id="openehr_am_overview"></a>[openehr_am_overview] The openEHR Archetypes Technical Overview. See <a href="http://www.openehr.org/releases/trunk/architecture/am/archetype_technical_overview.pdf" class="bare">http://www.openehr.org/releases/trunk/architecture/am/archetype_technical_overview.pdf</a>.</p>
+</li>
+<li>
+<p><a id="openehr_am_principles"></a>[openehr_am_principles]. Archetype Definitions and Principles. See <a href="http://www.openehr.org/repositories/spec-dev/latest/publishing/architecture/archetypes/principles/REV_HIST.html" class="bare">http://www.openehr.org/repositories/spec-dev/latest/publishing/architecture/archetypes/principles/REV_HIST.html</a>.</p>
+</li>
+<li>
+<p><a id="openehr_am_adl"></a>[openehr_am_adl] The openEHR Foundation. <strong>Archetype Definition Language (ADL2).</strong> Available at <a href="http://www.openehr.org/releases/trunk/architecture/am/adl2.pdf" class="bare">http://www.openehr.org/releases/trunk/architecture/am/adl2.pdf</a> .</p>
+</li>
+<li>
+<p><a id="openehr_am_aom"></a>[openehr_am_aom] The openEHR Foundation. <strong>Archetype Object Model (AOM2).</strong> Available at <a href="http://www.openehr.org/releases/trunk/architecture/am/aom2.pdf" class="bare">http://www.openehr.org/releases/trunk/architecture/am/aom2.pdf</a> .</p>
+</li>
+<li>
+<p><a id="openehr_am_system"></a>[openehr_am_system] The openEHR Archetype System. See <a href="http://www.openehr.org/repositories/spec-dev/latest/publishing/architecture/archetypes/system/REV_HIST.html" class="bare">http://www.openehr.org/repositories/spec-dev/latest/publishing/architecture/archetypes/system/REV_HIST.html</a> .</p>
+</li>
+<li>
+<p><a id="openehr_am_templates"></a>[openehr_am_templates] The openEHR Foundation. <strong>Template Guide</strong> Available at <a href="http://www.openehr.org/releases/trunk/architecture/am/template_guide.pdf" class="bare">http://www.openehr.org/releases/trunk/architecture/am/template_guide.pdf</a> .</p>
+</li>
+<li>
+<p><a id="openehr_am_identification"></a>[openehr_am_identification] The openEHR Foundation. <strong>Archetype Identification specification.</strong> Available at <a href="http://www.openehr.org/releases/trunk/architecture/am/knowledge_id_system.pdf" class="bare">http://www.openehr.org/releases/trunk/architecture/am/knowledge_id_system.pdf</a> .</p>
+</li>
+<li>
+<p><a id="openehr_query_aql"></a>[openehr_query_aql] The openEHR Archetype Query language (AQL). See <a href="https://openehr.atlassian.net/wiki/display/spec/Archetype+Query+Language+Description" class="bare">https://openehr.atlassian.net/wiki/display/spec/Archetype+Query+Language+Description</a> .</p>
+</li>
+<li>
+<p><a id="openehr_rm_data_types"></a>[openehr_rm_data_types] openEHR. <strong>Data Types Information Model.</strong> See <a href="http://www.openehr.org/releases/trunk/architecture/rm/data_types_im.pdf" class="bare">http://www.openehr.org/releases/trunk/architecture/rm/data_types_im.pdf</a>.</p>
+</li>
+<li>
+<p><a id="openehr_rm_ehr"></a>[openehr_rm_ehr] The openEHR Foundation. <strong>The EHR Information Model</strong>. <a href="http://www.openehr.org/releases/trunk/architecture/rm/ehr_im.pdf" class="bare">http://www.openehr.org/releases/trunk/architecture/rm/ehr_im.pdf</a> .</p>
+</li>
+</ol>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div id="footer">
+<div id="footer-text">
+Last updated 2015-07-03 19:32:11 BST
+</div>
+</div>
+</body>
+</html>
