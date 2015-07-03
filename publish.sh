@@ -3,8 +3,9 @@
 #
 # ============== Definitions =============
 #
-USAGE="${0} [-hpt] : generate publishing outputs; HTML by default 
+USAGE="${0} [-hlpt] : generate publishing outputs; HTML by default 
   -h : output this help										
+  -l : use local CSS, etc resources directory
   -p : generate PDF as well								
   -t : generate debug trace of asciidoctor-pdf back-end.
 "
@@ -12,17 +13,12 @@ USAGE="${0} [-hpt] : generate publishing outputs; HTML by default
 # the resources; if in any other repo, we do. This is complicated by the need to make the directories
 # work not just in a normal file system, but on Github, which doesn't appear to see the repo root
 # points as being inside a 'directory'
-resources_git_repo_name=spec-publish-asciidoc
-if [ "$(basename $(pwd))" != "$resources_git_repo_name" ]; then
-	resources_git_cd=../$resources_git_repo_name/
-fi
-resources_dir=../../${resources_git_cd}resources ## relative to doc dirs 2 level down
-
-year=`date +%G`
-stylesdir=${resources_dir}/css
 stylesheet=openehr.css
 pdf_theme=openehr_full_pdf-theme.yml
 master_doc_name=master.adoc
+resources_git_repo_name=spec-publish-asciidoc
+use_local_resources=false
+year=`date +%G`
 
 #
 # ============== functions =============
@@ -74,8 +70,11 @@ usage() { echo "$USAGE" 1>&2; exit 1; }
 #
 # ================== main =================
 #
-while getopts "hpt" o; do
+while getopts "hlpt" o; do
     case "${o}" in
+        l)
+            use_local_resources=true
+            ;;
         p)
             gen_pdf=true
             ;;
@@ -92,7 +91,15 @@ while getopts "hpt" o; do
 done
 shift $((OPTIND-1))
 
+# determine whether to use local resources files (this Git repo) or the ones in
+# spec-asciidoc-publish
+if [[ "$(basename $(pwd))" != "$resources_git_repo_name" && "$use_local_resources" != true ]]; then
+	resources_git_cd=../$resources_git_repo_name/
+fi
+resources_dir=../../${resources_git_cd}resources ## relative to doc dirs 2 level down
+stylesdir=${resources_dir}/css
 
+# ---------- do the publishing ----------
 topdir=${PWD}
 find docs -name $master_doc_name | \
 while read docpath
@@ -103,7 +110,7 @@ do
 	olddir=$(pwd)
 	cd $docdir
 	run_asciidoctor ${docname} $master_doc_name
-	if [ "$gen_pdf" = true ]; then
+	if [[ "$gen_pdf" = true ]]; then
 		run_asciidoctor_pdf ${docname} $master_doc_name
 	fi
 	cd $olddir
