@@ -16,22 +16,22 @@ The lifecycle defined here is shown below.
 .Development Lifecycle
 image::diagrams/development_lifecycle.png[id=development_lifecycle, align="center", width=80%]
 
-A multi-level model is used, where some states have ‘micro-states’, and top-level states are known as ‘macro-states’. The intention is to provide standard names for all macro-states, while suggesting and allowing micro-states where they make sense. Macro-state names are the basis for software version identification - ‘development’ corresponds to the ‘-unstable’ variant, release_candidate to the ‘-rc’ variant. Micro-states are useful to indicate because they define names for finer-grain states typically supported in artefact repositories.
+A multi-level model is used, where some states have ‘micro-states’, and top-level states are known as ‘macro-states’. The intention is to provide standard names for all macro-states, while suggesting and allowing micro-states where they make sense. Macro-state names are the basis for software version identification - ‘development’ corresponds to the `-unstable` variant, release_candidate to the `-rc` variant. Micro-states are useful to indicate because they define names for finer-grain states typically supported in artefact repositories.
 
 This lifecycle assumes that artefacts start life either in an ‘unmanaged’ environment or directly in a managed one. In the latter case, it is assumed that there is some distinction between the developers’ view and the ‘release’ view.
 
 The key states are defined with names (dark blue) and transitions (light blue) that correspond to typical software and document development terms. Typical traversals through the lifecycle are:
 
-* (unmanaged => ) development => published
-* development ... development => release_candidate => ... release_candidate => published
-* published => deprecated
-* development => rejected
+* [ `unmanaged` -> ] `development` -> `published`
+* `development` ... `development` -> `release_candidate` -> ... `release_candidate` => `published`
+* `published` -> `deprecated`
+* `development` -> `rejected`
 
 A few linguistic conventions used here are worth noting:
 
-* ‘start_review’ is the name of all actions entering the ‘development’ macro-state;
-* ‘release’ as an action (i.e. state transition) is taken to mean making any version of an artefact available to the public user base, including pre-releases, final releases and post-releases (‘builds’ in _http://semver.org[semver.org]_ parlance);
-* ‘publish’ as an action means to make a definitive release.
+* `start_review` is the name of all actions entering the `development` macro-state;
+* `release` as an action (i.e. state transition) is taken to mean making any version of an artefact available to the public user base, including pre-releases, final releases and post-releases (‘builds’ in <<semver.org>> parlance);
+* `publish` as an action means to make a definitive release.
 
 == Lifecycle-based Versioning
 
@@ -43,18 +43,18 @@ image::diagrams/development_lifecycle_with_versioning.png[id=development_lifecyc
 
 The version identifier evolves according to the general rules described above, and specific rules related to the lifecycle states, as follows.
 
-* An artefact normally starts life at ‘0.0.1’, although it is acceptable practice to start at some other v0 version e.g. ‘0.5.0’ to indicate approximately how mature the artefact is. It remains as a v0 version for a period of unstable early development leading to an initial releasable ‘1.x’ version.
+* An artefact normally starts life at `0.0.1`, although it is acceptable practice to start at some other v0 version e.g. `0.5.0` to indicate approximately how mature the artefact is. It remains as a `v0` version for a period of unstable early development leading to an initial releasable `1.x` version.
 * At some point, the artefact will be uploaded to a managed repository, at which point its identifier will be prepended with the management organisation namespace (and may change in other ways).
-* During active development, an artefact is considered to be unstable, i.e. any kind of changes may be made, reversed, redone and so on; due to this, the version id is formed from next version number that corresponds to the magnitude of the changes currently in the artefact, and appended with ‘-unstable’;
-* An artefact may be rejected, in which case its minor version is incremented (following the _http://semver.org[semver.org]_ rules), and the artefact lifecycle state is set to ‘rejected’.
+* During active development, an artefact is considered to be unstable, i.e. any kind of changes may be made, reversed, redone and so on; due to this, the version id is formed from next version number that corresponds to the magnitude of the changes currently in the artefact, and appended with `-unstable`;
+* An artefact may be rejected, in which case its minor version is incremented (following the <<semver.org>> rules), and the artefact lifecycle state is set to `rejected`.
 * At some point, the authoring team of an artefact will decide the artefact is ready for release. Its release version id is then calculated as a function of the difference between the current form and the base version on which it is based.
 * It is then either:
-** published into a pre-release cycle, at which point the numerical part of the version is computed according to the difference between the current form of the artefact and the release version on which it is based. The form of the identifer becomes M.N.P-rc.B, which indicates a community testing phase. From the _release_candidate_ state, three paths are possible:
-*** publish definitively with a stable version id of the form M.N.P;
+** published into a pre-release cycle, at which point the numerical part of the version is computed according to the difference between the current form of the artefact and the release version on which it is based. The form of the identifer becomes `M.N.P-rc.B`, which indicates a community testing phase. From the `release_candidate` state, three paths are possible:
+*** publish definitively with a stable version id of the form `M.N.P`;
 *** release a newer release candidate, containing only changes that do not break the interface, i.e. patch-level changes or less; update the instance UID in any case;
-*** if larger changes are needed, go back into the ‘development’ state and perform larger changes as needed;
-** released directly to a stable version of the form M.N.P.
-* An artefact may eventually be deprecated, in which case its minor version is incremented (following the _http://semver.org[semver.org]_ rules), and the artefact lifecycle state is set to ‘deprecated’. It may be classified inside the repository registry as ‘obsolete’, ‘suspended’ or in some other way.
+*** if larger changes are needed, go back into the `development` state and perform larger changes as needed;
+** released directly to a stable version of the form `M.N.P`.
+* An artefact may eventually be deprecated, in which case its minor version is incremented (following the <<semver.org>> rules), and the artefact lifecycle state is set to 'deprecated'. It may be classified inside the repository registry as `obsolete`, `suspended` or in some other way.
 
 According to the basic version rules and the lifecycle model above, the ‘precedence’ of version identifiers follows is exemplified by the following:
 
@@ -66,10 +66,6 @@ According to the basic version rules and the lifecycle model above, the ‘prece
 
 === Change to Definition
 
- 
-
 === Change to Terminology Definition
-
- 
 
 === Addition of Terminology Translation

@@ -2,57 +2,55 @@
 
 == Overview
 
-The basis for identifying source (i.e. authored) artefacts is to define a number of separate logically identifying properties, as well as a machine identifier. One or more human-readable identifier(s) can be generated from the non-uid identifying properties. For archetypes and templates, the relevant properties are defined on the _ARCHETYPE_HRID_ class from the openEHR Archetype Object Model. Related properties are inherited from the _AUTHORED_RESOURCE_ classe into _ARCHETYPE_ are shown, including the _lifecycle_state_ property, as well as all other descriptive meta-data.
+The basis for identifying source (i.e. authored) artefacts is to define a number of separate logically identifying properties, as well as a machine identifier. One or more human-readable identifier(s) can be generated from the non-uid identifying properties. For archetypes and templates, the relevant properties are defined on the `ARCHETYPE_HRID` class from the openEHR Archetype Object Model. Related properties are inherited from the `AUTHORED_RESOURCE` classe into `ARCHETYPE` are shown, including the `lifecycle_state` property, as well as all other descriptive meta-data.
 
 For other types of artefacts the detailed model will differ, but the principles are the same.
 
-Three distinct groups of properties shown in the _ARCHETYPE_HRID_ class that underpin the identification scheme described here, as follows:
+Three distinct groups of properties shown in the `ARCHETYPE_HRID` class that underpin the identification scheme described here, as follows:
 
-* _namespace_ provides a way of distinguishing logical identifiers created by different organisations that would otherwise compete in a single semantic identifier space;
-* _rm_publisher_ , _rm_closure_ , _rm_class_ , _concept_id_ form the basis of the main part of a human-readable identifier, e.g. _openEHR-EHR-OBSERVATION.bp_measurement_ ;
+* `namespace` provides a way of distinguishing logical identifiers created by different organisations that would otherwise compete in a single semantic identifier space;
+* `rm_publisher`, `rm_closure`, `rm_class`, `concept_id` form the basis of the main part of a human-readable identifier, e.g. `openEHR-EHR-OBSERVATION.bp_measurement`;
 * properties supporting versioning:
-* _release_version_ , expressing a 3-part version identifier, e.g. ‘1.3.0’;
-* _build_count_ , incremented at every commit, supporting non-release version ids, such as ‘1.3.0-rc.28’ and ‘1.3.0-unstable’, where the build count is 28;
-* _description.lifecycle_state_ , expressing the development state of the artefact, and used to derive the ‘rc’ (release candidate) and ‘unstable’ (development) parts of non-release version ids.
+* `release_version`, expressing a 3-part version identifier, e.g. '1.3.0';
+* `build_count` , incremented at every commit, supporting non-release version ids, such as '1.3.0-rc.28' and ‘1.3.0-unstable’, where the build count is 28;
+* `description`.`lifecycle_state`, expressing the development state of the artefact, and used to derive the ‘rc’ (release candidate) and ‘unstable’ (development) parts of non-release version ids.
 
-Functions such as _interface_id, physical_id_ and _version_id_ are defined to return respectively the ‘interface’ and ‘physical’ archetype HRIDs (described below) as strings, and the full version string (computed from _release_version_ , _build_count_ and _description.lifecycle_state_ ). The functions _major_version_ , _minor_version_ and _patch_version_ extract the various parts of the 3-part _release_version_ property.
+Functions such as `interface_id`, `physical_id` and `version_id` are defined to return respectively the ‘interface’ and ‘physical’ archetype HRIDs (described below) as strings, and the full version string (computed from `release_version` , `build_count` and `description.lifecycle_state` ). The functions `major_version` , `minor_version` and `patch_version` extract the various parts of the 3-part `release_version` property.
 
-The _uid_ property provides the machine identifier, and is assumed to be a Guid.
+The `uid` property provides the machine identifier, and is assumed to be a Guid.
 
-Both the _uid_ and _namespace_ properties are optional for legacy reasons, since most existing archetypes have neither. The interpretation of an artefact without these identifiers in this specification is that it is _unmanaged_ , i.e. it has no recognised owner organisation. During a period of changeover to the identifiers specified here, there will clearly be artefacts that are in fact managed, and which need to have the _uid_ and _namespace_ properties assigned. This will obviously take some time, as it requires support from the tooling ecosystem.
+Both the `uid` and `namespace` properties are optional for legacy reasons, since most existing archetypes have neither. The interpretation of an artefact without these identifiers in this specification is that it is _unmanaged_ , i.e. it has no recognised owner organisation. During a period of changeover to the identifiers specified here, there will clearly be artefacts that are in fact managed, and which need to have the `uid` and `namespace` properties assigned. This will obviously take some time, as it requires support from the tooling ecosystem.
 
 Different types of human-readable identifiers are used for archetypes, templates and terminology subsets. The following sections describe the formal details of this identification scheme, and how it supports referencing between artefacts.
 
 == Formal Model
 
-This section defines a formal grammar for human-readable indentifiers of knowledge artefacts. As described above, more than one human-readable identifier can be constructed from the identifying properties of the _ARCHETYPE_HRID_ class. The grammar is shown in green below.
+This section defines a formal grammar for human-readable indentifiers of knowledge artefacts. As described above, more than one human-readable identifier can be constructed from the identifying properties of the `ARCHETYPE_HRID` class. The grammar is shown in green below.
 
 The highest level distinction is between managed and unmanaged artefacts, with managed status being indicated by the prepending of a namespace to what can be termed a ‘local’ HRID (i.e. local to a given namespace context).
 
 --------
     artefact_hrid:          namespaced_hrid | local_hrid
     namespaced_hrid:        namespace '::' local_hrid
-    local_hrid:             hrid_root ‘.v’ version_id
+    local_hrid:             hrid_root '.v' version_id
     namespace:              V_REVERSE_DOMAIN_NAME
     V_REVERSE_DOMAIN_NAME:  # See IETF RFCs 1035, 123, and 2181.                        
 --------
 
-The _namespace_ is the publisher organisation reverse domain name. Reverse domain names are used in order to aid lexical sorting of identifiers and also tools that build directory structures based on reverse domain name segments. All managed artefacts, including archetypes and templates should include a namespace. Any archetype or template carriying an identifier without a namespace is assumed to be an unmanaged artefact.
+The `namespace` above is the publisher organisation reverse domain name. Reverse domain names are used in order to aid lexical sorting of identifiers and also tools that build directory structures based on reverse domain name segments. All managed artefacts, including archetypes and templates should include a namespace. Any archetype or template carriying an identifier without a namespace is assumed to be an unmanaged artefact.
 
 Examples:
 
---------
-    org.openehr     EHR archetypes library at openEHR.org
-    uk.nhs      UK National Health Service
-    edu.nci     US National Cancer Institute
---------
+* `org.openehr`: EHR archetypes library at openEHR.org
+* `uk.nhs`:      UK National Health Service
+* `edu.nci`:     US National Cancer Institute
 
 === Human-readable Identifier (HRID)
 
-The following sections describe the _hrid_root_ component, i.e. the _hrid_ minus the version identifier.
+The following sections describe the `hrid_root` component, i.e. the `hrid` minus the version identifier.
 
 --------
-    hrid_root:      archetype_hrid_root 
+    hrid_root: archetype_hrid_root 
             | template_hrid_root
             | subset_hrid_root
             | query_hrid_root                            
@@ -62,41 +60,41 @@ The following sections describe the _hrid_root_ component, i.e. the _hrid_ minus
 
 The archetype human-readable identifier consists of two logical parts: an identifier of the reference model (i.e. logical information model) class on which it is based, and an ontological identifier.
 
-The identifier is defined by the following grammar rules, which are a slightly simplified version of the grammar for the openEHR / ISO 13606 _ARCHETYPE_ID_ type:
+The identifier is defined by the following grammar rules, which are a slightly simplified version of the grammar for the openEHR / ISO 13606 `ARCHETYPE_ID` type:
 
 --------
-    archetype_hrid_root:                qualified_rm_class_name ‘.’ concept_id
-    qualified_rm_class_name: rm_publisher ‘-’ rm_closure ‘-’ rm_class
-    rm_publisher:               V_ALPHANUMERIC_NAME
-    rm_closure:                 V_ALPHANUMERIC_NAME
-    rm_class:               V_ALPHANUMERIC_NAME
-    concept_id:                 V_SEGMENTED_ALPHANUMERIC_NAME
+    archetype_hrid_root:            qualified_rm_class_name '.' concept_id
+    qualified_rm_class_name:        rm_publisher '-' rm_closure '-' rm_class
+    rm_publisher:                   V_ALPHANUMERIC_NAME
+    rm_closure:                     V_ALPHANUMERIC_NAME
+    rm_class:                       V_ALPHANUMERIC_NAME
+    concept_id:                     V_SEGMENTED_ALPHANUMERIC_NAME
 
-    V_ALPHANUMERIC_NAME:                [a-zA-Z][a-zA-Z0-9_]+
-    V_SEGMENTED_ALPHANUMERIC_NAME: [a-zA-Z][a-zA-Z0-9_-]+ -- allows hyphens
+    V_ALPHANUMERIC_NAME:            [a-zA-Z][a-zA-Z0-9_]+
+    V_SEGMENTED_ALPHANUMERIC_NAME:  [a-zA-Z][a-zA-Z0-9_-]+ -- allows hyphens
 --------
 
 The field meanings are as follows:
 
-* rm_publisher: id of organisation originating the reference model on which this archetype is based;
-* rm_closure: identifier of the reference model top-level package closure on which the archetype is based;
-* rm_class: name of class or equivalent entity in the reference model on which the artefact is based;
-* concept_id: an identifier from an ontology of information artefacts (see below);
+* `rm_publisher`: id of organisation originating the reference model on which this archetype is based;
+* `rm_closure`: identifier of the reference model top-level package closure on which the archetype is based;
+* `rm_class`: name of class or equivalent entity in the reference model on which the artefact is based;
+* `concept_id`: an identifier from an ontology of information artefacts (see below);
 
 The first part takes the form of a 3-part identifier, such as:
 
 * `openEHR-EHR-EVALUATION`
 * `ISO-ISO13606-ENTRY`
 
-This historically has been used in openEHR and CEN/ISO 13606-2 to identify the reference model class on which an archetype is based. It includes the publisher of the reference model (e.g. “ISO”, “openEHR”), which top level ‘closure’ is being referred to, and finally which class.
+This historically has been used in openEHR and CEN/ISO 13606-2 to identify the reference model class on which an archetype is based. It includes the publisher of the reference model (e.g. "ISO", "openEHR"), which top level ‘closure’ is being referred to, and finally which class.
 
-The notion of ‘closure’ is a top level package from which the focal class can be reached. In general, a given class can be reached from more than one top level package, but an archetype of that class will only be suitable for one of those packages. For example, the openEHR class _CLUSTER_ is used by classes in both the _ehr_ and _demographic_ top level packages. However, an archetype of _CLUSTER_ will usually be designed for use with only one of those packages. The Cluster archetype _physical_examination_ for example will only make sense in data defined by the _ehr_ package. Consequently, it will have an archetype identifier of the form _openEHR-EHR-CLUSTER_ . _physical_examination_ .
+The notion of ‘closure’ is a top level package from which the focal class can be reached. In general, a given class can be reached from more than one top level package, but an archetype of that class will only be suitable for one of those packages. For example, the openEHR class `CLUSTER` is used by classes in both the `ehr` and `demographic` top level packages. However, an archetype of `CLUSTER` will usually be designed for use with only one of those packages. The Cluster archetype `physical_examination` for example will only make sense in data defined by the `ehr` package. Consequently, it will have an archetype identifier of the form `openEHR-EHR-CLUSTER` . `physical_examination` .
 
-The closure part of the identifier could be used by tools to ensure for example that an ‘EHR’ _CLUSTER_ archetype was never attached to a ‘demographic’ information item.
+The closure part of the identifier could be used by tools to ensure for example that an ‘EHR’ `CLUSTER` archetype was never attached to a ‘demographic’ information item.
 
 ==== Concept Identifier
 
-The second part of the human-readable identifier is a ‘short’ ontological identifier (known in ADL 1.4 as the ‘concept’ or ‘domain concept’). Such identifiers have historically been natural language words or phrases, typically in a short mnemonic form, e.g. ‘bp_measurement’ in the archetype identifier _ISO-ISO13606-ENTRY.bp_measurement.v1_ .
+The second part of the human-readable identifier is a ‘short’ ontological identifier (known in ADL 1.4 as the ‘concept’ or ‘domain concept’). Such identifiers have historically been natural language words or phrases, typically in a short mnemonic form, e.g. ‘bp_measurement’ in the archetype identifier `ISO-ISO13606-ENTRY.bp_measurement.v1` .
 
 ==== Legacy ADL 1.4 Semantics
 
@@ -118,19 +116,19 @@ It is not the business of this specification to define the ontology, but we can 
 .Information Artefact Ontology
 image::diagrams/information_artefact_ontology.png[id=info_artefact_ontology, align="center", width=70%]
 
-This (putative) ontology consists of high-level health information recording entities (black), a set of record entry types derived from the Clinical Investigator Record ontology (Beale and Heard, MedInfo 2007)link:#pgfId-1211620[4], and domain-specific entities in blue. It is assumed that the top node(s) of the ontology could be related to nodes in a published ontology such as the Information Artefact Ontology (IAO)link:#pgfId-1211613[5], but this is not a pre-requisite for establishing this ontology. More ideally, its categories would be related to categories in the Basic Formal Ontology (BFO 2)link:#pgfId-1214279[6].
+This (putative) ontology consists of high-level health information recording entities (black), a set of record entry types derived from the Clinical Investigator Record ontology (<<Beale_Heard_2007>>), and domain-specific entities in blue. It is assumed that the top node(s) of the ontology could be related to nodes in a published ontology such as the Information Artefact Ontology (<<IAO>>), but this is not a pre-requisite for establishing this ontology. More ideally, its categories would be related to categories in the Basic Formal Ontology (<<BFO>>).
 
-The blue node measurement_of_systemic_arterial_blood_pressure (bottom left) describes an entity corresponding to a ‘record of systemic arterial blood pressure measurement’. Long names such as this are standard in the ontology community, and are designed to ensure that the name of a category is sufficient to unamiguously define its meaning. Such names are typically too long and unwieldy for the purposes of managable lexical identifiers such as for archetypes.
+The blue node `measurement_of_systemic_arterial_blood_pressure` (bottom left) describes an entity corresponding to a ‘record of systemic arterial blood pressure measurement’. Long names such as this are standard in the ontology community, and are designed to ensure that the name of a category is sufficient to unamiguously define its meaning. Such names are typically too long and unwieldy for the purposes of managable lexical identifiers such as for archetypes.
 
-We therefore assume that a system of ‘short identifiers’ is possible within the ontology, where a ‘short id’ is a synonym for a full node identifier. If we further assume that the ontology is constructed with tools (e.g. Protegelink:#pgfId-1211646[7]) and that ontology identifiers are checked to ensure uniqueness.
+We therefore assume that a system of ‘short identifiers’ is possible within the ontology, where a ‘short id’ is a synonym for a full node identifier. If we further assume that the ontology is constructed with tools (e.g. Protege <<Protege>>) and that ontology identifiers are checked to ensure uniqueness.
 
-Facilities to manage such ontologies should be available either centrally (e.g. openEHR.org, OBOlink:#pgfId-1211651[8]), so that every added archetype, template or subset is assigned a short ontological identifier from the ontology.
+Facilities to manage such ontologies should be available either centrally (e.g. openEHR.org or at The Open Biological and Biomedical Ontologies <<OBO>>), so that every added archetype, template or subset is assigned a short ontological identifier from the ontology.
 
 Existing archetypes can be accommodated within such ontologies in two possible ways. If they have been in use, and data exist containing these identifiers, then their current ontological identifiers can be proposed as the short id for an ontology class defined for the archetype. If there is a clash, a new archetype concept short identifier will be needed, and the archetype will need to be republished under a different identifier.
 
 ==== Need for RM Class Name in Identifier
 
-Theoretically, the Reference Model class identifier part (qualified_rm_class_name above) should not be needed in a well constructed identifier, on the basis that there should never be a clash of concept identifiers, regardless of the RM class, even though they can easily be similar. For example, a reasonable concept_id for an ENTRY (ISO 13606) or OBSERVATION (openEHR) structure archetyped to represent a generic lab result result might be ‘lab_result’. For the COMPOSITION-level archetype designed to contain any ‘lab result’ ENTRY / OBSERVATION, a reasonable name would typically be ‘lab_report’ (or the equivalent in another language).
+Theoretically, the Reference Model class identifier part (qualified_rm_class_name above) should not be needed in a well constructed identifier, on the basis that there should never be a clash of concept identifiers, regardless of the RM class, even though they can easily be similar. For example, a reasonable `concept_id` for an `ENTRY` (ISO 13606) or `OBSERVATION` (openEHR) structure archetyped to represent a generic lab result result might be ‘lab_result’. For the COMPOSITION-level archetype designed to contain any ‘lab result’ `ENTRY` or `OBSERVATION`, a reasonable name would typically be ‘lab_report’ (or the equivalent in another language).
 
 Unfortunately, for some informational concepts, the appropriate name for the actual core data level can appear to be perfectly reasonable also as a name for a higher level container of the same data. Without an efficient and essentially global ontology construction service or authority available, the inclusion of the qualified RM class name acts as a reasonable guard against such clashes.
 
@@ -145,7 +143,7 @@ If in the future a capability becomes widely available for efficiently defining 
 Within a given publishing space, template human-readable identifiers are defined the same way as archetype identifiers, i.e.:
 
 -------- 
-    template_hrid_root: qualified_rm_class_name ‘.’ domain_concept
+    template_hrid_root: qualified_rm_class_name '.' domain_concept
 --------
 
 === Terminology Subset Identifier
@@ -156,7 +154,7 @@ A possible proposal for a subset identifier is to use the ontology approach abov
 
 --------
     subset_hrid_root:               qualified_terminology_id '.' concept_id
-    qualified_terminology_id:       terminology_originator ‘-’ terminology_name
+    qualified_terminology_id:       terminology_originator '-' terminology_name
     terminology_originator:         V_DOMAIN_NAME
     terminology_name:               V_ALPHANUMERIC_NAME
 --------
@@ -164,8 +162,8 @@ A possible proposal for a subset identifier is to use the ontology approach abov
 This would lead to identifiers like the following:
 
 --------
-    org.ihtsdo-snomed_ct.blood_phenotype.v2 -- Snomed Blood type subset
-    int.who-icd10.bacterial_infections.v13 -- ICD10 bacterial infections subset
+    org.ihtsdo-snomed_ct.blood_phenotype.v2     -- Snomed Blood type subset
+    int.who-icd10.bacterial_infections.v13      -- ICD10 bacterial infections subset
 --------
 
 In the above, the concept_id is a short form of an ontological identifier for the ref-set or value set.
@@ -176,51 +174,52 @@ There has been little experience with identification of query sets as a design a
 
 Archetype-based queries, written in AQL or a similar formalism are portable across systems, and therefore do not need to be re-designed for each environment. Their identification is therefore likely to be of far greater importance than that of non-portable queries.
 
-1.  human-readable id for queries
+[.tbd]
+_TBD_:  human-readable id for queries
 
 == Versioning
 
 === General Model
 
-Unlike software artefacts in most modern versioning systems, knowledge artefacts are individually version-controlled. This is because an archetype, template or terminology subset is, in and of itself, a potentially complex structure of data points / groups and / or terminology codes and relationships. It can in general be used on its own or with a small number of related artefacts (e.g. specialisation parents). Therefore, the version identification system applies to each source artefact, rather than an entire repository in the manner of typical software versioning.
+Unlike software artefacts in most modern versioning systems, knowledge artefacts are _individually_ version-controlled. This is because an archetype, template or terminology subset is, in and of itself, a potentially complex structure of data points / groups and / or terminology codes and relationships. It can in general be used on its own or with a small number of related artefacts (e.g. specialisation parents). Therefore, the version identification system applies to _each source artefact_, rather than an entire repository in the manner of typical software versioning.
 
-This has a very visible effect: it means that every ‘committed’ change to an artefact is like a release, whereas with software, numerous changes to source files typically occur between releases. Additionally, each artefact revision is distinguished by its version identifier for the purpose of change tracking in a repository environment, whereas with software source artefacts, the logical ‘name’ of each entity (e.g. a class called ‘LinkedList’) within the source repository doesn’t change, even though its contents do. To summarise:
+This has a very visible effect: it means that every ‘committed’ change to an artefact is like a release, whereas with software, numerous changes to source files typically occur between releases. Additionally, each artefact revision is _distinguished by its version identifier_ for the purpose of change tracking in a repository environment, whereas with software source artefacts, the logical ‘name’ of each entity (e.g. a class called ‘LinkedList’) within the source repository doesn’t change, even though its contents do. To summarise:
 
 * software versioning is performed by successive snapshots of a repository, and releasing is performed by assigning a version identifier to some of the snapshots;
-* for knowledge artefacts being described here, versioning occurs independently for each artefact, and ‘releasing’ is simply an act of publishing the artefact;
+* for knowledge artefacts being described here, versioning occurs _independently_ for each artefact, and ‘releasing’ is simply an act of publishing the artefact;
 * for knowledge artefacts, the versioned human-readable identifier is or can be used computationally, e.g. in queries and artefact references, whereas a software release identifier is not generally computed on by the software itself.
 
 === Version Numbering
 
-Despite the above differences, the numbering of versions of knowledge artefacts follows the rules for identifying software releases described by _http://semver.org[semver.org]_ .
+Despite the above differences, the numbering of versions of knowledge artefacts follows the rules for identifying software releases described by <<semver.org>>.
 
 Accordingly, version identifiers are based on three levels of ‘versioning’, identified by dot-separated numeric parts, with an optional extension related to the artefact lifecycle, described below. The numeric parts are:
 
-* major version - must be incremented with a breaking change to the artefact formal definition; may be incremented with a lesser change;
-* minor version - must be incremented with a non-breaking change to the artefact formal definition; may be incremented with a lesser change;
-* patch version - must be incremented with a change to the informal parts of the artefact;
-* build number - a number that is incremented every time an artefact is committed, and is reset to 1 whenever the version id is changed.
+* *major version* - must be incremented with a breaking change to the artefact formal definition; may be incremented with a lesser change;
+* *minor version* - must be incremented with a non-breaking change to the artefact formal definition; may be incremented with a lesser change;
+* *patch version* - must be incremented with a change to the informal parts of the artefact;
+* *build number* - a number that is incremented every time an artefact is committed, and is reset to 1 whenever the version id is changed.
 
 In the above, the ‘formal definition’ refers to the following parts of an archetype or template only:
 
 * the identifier section;
-* the _specialize_ clause;
-* the _definition_ section;
-* within the _terminology_ section:
-* the _text_ short names of the terms in the _term_definitions_ section (i.e. not the description long text or other meta-data);
-* the _term_bindings_ section;
-* the _value_set_ section.
+* the `specialize` clause;
+* the `definition` section;
+* within the `terminology` section:
+* the `text` short names of the terms in the `term_definitions` section (i.e. not the description long text or other meta-data);
+* the `term_bindings` section;
+* the `value_set` section.
 
 Lexically, the version identifier is defined as follows:
 
 --------
     version_id:             release_version [extension]
-    release_version:        major_version ‘.’ minor_version ‘.’ patch_version
+    release_version:        major_version '.' minor_version '.' patch_version
     major_version:          {V_NUMBER}+
     minor_version:          {V_NUMBER}+
     patch_version:          {V_NUMBER}+
     extension:              version_modifier instance_uid_slice
-    version_modifier:       ‘-rc’ | ‘-unstable’
+    version_modifier:       '-rc' | '-unstable'
     instance_uid_slice:     {V_UID_DIGIT}(5,) -- 5 or more digits from instance_uid
     V_NUMBER:               [0-9]+
     V_UID_DIGIT:            [0-9A-Fa-f]
@@ -236,20 +235,20 @@ This leads to identifiers such as:
 
 The following general rules are required for using version identifiers.
 
-* First version rule: the first version (i.e. version on creation) of an artefact is a ‘v0’ version, i.e. 0.N.P. Usually it is 0.0.1, but may be a higher v0 version to indicate maturity. The discussion of lifecycle and distributed semantics below provide more details on the initial version semantics.
-* Incrementing rule: when generating a release version (i.e. not a candidate or unstable version), when the major version is incremented, the minor and patch version numbers are reset to 0; when the minor version is incremented, the path number is reset to 0.
+* *First version rule*: the first version (i.e. version on creation) of an artefact is a `v0` version, i.e. `0.N.P`. Usually it is `0.0.1`, but may be a higher `v0` version to indicate maturity. The discussion of lifecycle and distributed semantics below provide more details on the initial version semantics.
+* *Incrementing rule*: when generating a release version (i.e. not a candidate or unstable version), when the major version is incremented, the minor and patch version numbers are reset to 0; when the minor version is incremented, the path number is reset to 0.
 
 More specific rules relating to specific lifecycle states are described below.
 
-Two ‘variant’ versions are defined in the above syntax: ‘release candidate’ and ‘unstable’. The first is a standard software classification, syntactically indicated with the tag ‘rc’. Version numbers including ‘rc’ are always of the form ‘M.N.P-rc.B’, e.g. ‘1.3.5-rc.1’, where the minus sign (‘-’) is understood as indicating a version that is ‘less than’ the target version ‘1.3.5’, i.e. ‘1.3.5-rc.1’ is an interim version leading to the stable version 1.3.5.
+Two ‘variant’ versions are defined in the above syntax: ‘release candidate’ and ‘unstable’. The first is a standard software classification, syntactically indicated with the tag `rc`. Version numbers including `rc` are always of the form `M.N.P-rc.B`, e.g. `1.3.5-rc.1`, where the minus sign (`-`) is understood as indicating a version that is ‘less than’ the target version `1.3.5`, i.e. `1.3.5-rc.1` is an interim version leading to the stable version 1.3.5.
 
-The other variant is indicated with the modifier ‘-unstable’, where ‘-’ indicates a version ‘before’ the version identified by the preceding numeric identifier, and ‘unstable’ indicates an ‘unstable’ development version. The magnitude of the differences a ‘-unstable’ version are indicated by the difference between the 3-part version identifiers of the current artefact and the previously published one on which it is based.
+The other variant is indicated with the modifier `-unstable`, where `-` indicates a version ‘before’ the version identified by the preceding numeric identifier, and `unstable` indicates an ‘unstable’ development version. The magnitude of the differences a `-unstable` version are indicated by the difference between the 3-part version identifiers of the current artefact and the previously published one on which it is based.
 
 Note that only the major version forms part of the source artefact human-readable identifier. The intention of that is that a breaking change causes a new artefact from the point of view of deployment. This is analagous to breaking changes in software interfaces, web service defintions etc, being seen as a distinct entity, typically deployed alongside the old version.
 
 === Change Semantics
 
-The _http://semver.org[semver.org]_ model is designed for software, and is based on the concept of the software interface, or ‘public API’. For the the artefact types within the scope of this specification, the concept of ‘interface’ is interpreted as being the .
+The <<semver.org>> model is designed for software, and is based on the concept of the software interface, or ‘public API’. For the the artefact types within the scope of this specification, the concept of ‘interface’ is interpreted as being the .
 
 A ‘breaking change’ for knowledge artefacts in the scope of this specification is defined as follows:
 
@@ -266,6 +265,6 @@ Any such change necessarily requires a new major version. The logical consequenc
 * constraints redefined to be ‘wider’ (i.e. old constraint subsumed by new constraint);
 * additional model nodes (i.e. extensions).
 
-This has the important side-effect that minor versions of a given major version may have additional semantics comared to the original major version (i.e, minor version 0) and any other intervening minor version. In other words, specifying a major version in general may not be sufficient to designate all of the ‘interface’ available in the latest minor version. Therefore, for purposes of referencing an artefact with the expectation that the reference will designate specific elements, at least a minor version may be needed. This is discussed further in the <<Referencing>> section.
+This has the important side-effect that minor versions of a given major version may have additional semantics comared to the original major version (i.e, minor version 0) and any other intervening minor version. In other words, *specifying a major version in general may not be sufficient to designate all of the ‘interface’ available* in the latest minor version. Therefore, for purposes of referencing an artefact with the expectation that the reference will designate specific elements, at least a minor version may be needed. This is discussed further in the <<Referencing>> section.
 
 Note that there is no assumption that a change of a given technical level (i.e. as evaluated by a diff tool) will be seen equivalently by domain experts. For example a minor change that only requires the patch version to be incremented might have major implications for clinical semantics. For this reason, the version identifier may be incremented beyond the minimum level required by a mechanical comparison.

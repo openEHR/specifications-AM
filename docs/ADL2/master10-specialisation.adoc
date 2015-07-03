@@ -486,18 +486,18 @@ Within container attributes, the order of objects may be significant from the po
 [source, cadl]
 --------
     items cardinality ∈ {0..*; ordered} ∈ {
-        ELEMENT[id2] occurrences ∈ {1} ∈ {..}                         -- Problem
-        ELEMENT[id3] occurrences ∈ {0..1} ∈ {..}                      -- Date of initial onset
-        ELEMENT[id4] occurrences ∈ {0..1} ∈ {..}                      -- Age at initial onset
-        ELEMENT[id5] occurrences ∈ {0..1} ∈ {..}                      -- Severity
-        ELEMENT[id9] occurrences ∈ {0..1} ∈ {..}                      -- Clinical description
-        ELEMENT[id10] occurrences ∈ {0..1} ∈ {..}                     -- Date clinically received
-        CLUSTER[id11] occurrences ∈ {0..*} ∈ {..}                     -- Location
-        CLUSTER[id14] occurrences ∈ {0..1} ∈ {..}                     -- Aetiology
-        CLUSTER[id18] occurrences ∈ {0..1} ∈ {..}                     -- Occurrences or exacerb’ns
-        CLUSTER[id26] occurrences ∈ {0..1} ∈ {..}                     -- Related problems
-        ELEMENT[id30] occurrences ∈ {0..1} ∈ {..}                     -- Date of resolution
-        ELEMENT[id31] occurrences ∈ {0..1} ∈ {..}                     -- Age at resolution
+        ELEMENT[id2] occurrences ∈ {1} ∈ {...}                         -- Problem
+        ELEMENT[id3] occurrences ∈ {0..1} ∈ {...}                      -- Date of initial onset
+        ELEMENT[id4] occurrences ∈ {0..1} ∈ {...}                      -- Age at initial onset
+        ELEMENT[id5] occurrences ∈ {0..1} ∈ {...}                      -- Severity
+        ELEMENT[id9] occurrences ∈ {0..1} ∈ {...}                      -- Clinical description
+        ELEMENT[id10] occurrences ∈ {0..1} ∈ {...}                     -- Date clinically received
+        CLUSTER[id11] occurrences ∈ {0..*} ∈ {...}                     -- Location
+        CLUSTER[id14] occurrences ∈ {0..1} ∈ {...}                     -- Aetiology
+        CLUSTER[id18] occurrences ∈ {0..1} ∈ {...}                     -- Occurrences or exacerb’ns
+        CLUSTER[id26] occurrences ∈ {0..1} ∈ {...}                     -- Related problems
+        ELEMENT[id30] occurrences ∈ {0..1} ∈ {...}                     -- Date of resolution
+        ELEMENT[id31] occurrences ∈ {0..1} ∈ {...}                     -- Age at resolution
     }
 --------
 
@@ -507,11 +507,11 @@ To indicate significant ordering in the specialised problem-diagnosis archetype,
 --------
     /data[id3]/items ∈ {
         before [id3] 
-        ELEMENT[id2.1] ∈ {..}                         -- Diagnosis
-        ELEMENT[id0.32] occurrences ∈ {0..1} ∈ {..}  -- Status
+        ELEMENT[id2.1] ∈ {...}                         -- Diagnosis
+        ELEMENT[id0.32] occurrences ∈ {0..1} ∈ {...}  -- Status
         after [id26]
-        CLUSTER[id0.35] occurrences ∈ {0..1} ∈ {..}  -- Diagnostic criteria
-        CLUSTER[id0.37] occurrences ∈ {0..1} ∈ {..}  -- Clinical Staging
+        CLUSTER[id0.35] occurrences ∈ {0..1} ∈ {...}  -- Diagnostic criteria
+        CLUSTER[id0.37] occurrences ∈ {0..1} ∈ {...}  -- Clinical Staging
     }
 --------
 
@@ -519,7 +519,7 @@ These keywords are followed by a node identifier reference, and act to modify th
 
 [source, cadl]
 --------
-    after [id26] CLUSTER[id0.35] occurrences ∈ {0..1} ∈ {..} -- etc
+    after [id26] CLUSTER[id0.35] occurrences ∈ {0..1} ∈ {...} -- etc
 --------
 
 The rules for specifying ordering are as follows.
@@ -730,7 +730,7 @@ If the whole attribute is to be removed, this can be done by redefining existenc
 
 === Reference Model Type Refinement
 
-The type of an object may be redefined to one of its subtypes as defined by the reference model. A typical example of where this occurs in archetypes based on the openEHR reference model is when `ELEMENT`.`_value_` is constrained to `*` in a parent archetype, meaning ‘no further constraint on its RM type of `DATA_VALUE`’, but is then constrained in a specialised archetype to subtypes of `DATA_VALUE`, e.g. `DV_QUANTITY` or `DV_PROPORTION` (see <<openehr_data_types>>). The following figure containts a simplified extract of the data values part of the openEHR reference model, and is the basis for the examples below.
+The type of an object may be redefined to one of its subtypes as defined by the reference model. A typical example of where this occurs in archetypes based on the openEHR reference model is when `ELEMENT`.`_value_` is constrained to `*` in a parent archetype, meaning ‘no further constraint on its RM type of `DATA_VALUE`’, but is then constrained in a specialised archetype to subtypes of `DATA_VALUE`, e.g. `DV_QUANTITY` or `DV_PROPORTION` (see <<openehr_rm_data_types>>). The following figure containts a simplified extract of the data values part of the openEHR reference model, and is the basis for the examples below.
 
 [.text-center]
 .Specialisation with Cloning
@@ -860,7 +860,7 @@ terminology
                 ["ac1"] = <http://terminology.org?query_id=12345>
             >
         >
-    >     
+    >
 --------
 
 In a specialisation of the archetype, the placeholder constraint can be redefined in two different ways. The first is by redefinition of the placeholder constraint to a narrower one. This is a achieved by redefining the constraint code, and adding a new definition in the ontology of the specialised archetype, as follows.

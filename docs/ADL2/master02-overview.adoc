@@ -25,14 +25,14 @@ language
 
 definition
 	INSTRUMENT[id1] matches {
-		size matches {|60..120|} -- size in cm
-		date_of_manufacture matches {yyyy-mm-??} -- year & month ok
+		size matches {|60..120|}                    -- size in cm
+		date_of_manufacture matches {yyyy-mm-??}    -- year & month ok
 		parts cardinality matches {0..*} matches {
-			PART[id2] matches { -- neck
-				material matches {[ac1]} -- timber or nickel alloy
+			PART[id2] matches {                     -- neck
+				material matches {[ac1]}            -- timber or nickel alloy
 			}
-			PART[id3] matches { -- body
-				material matches {[at3]} -- timber
+			PART[id3] matches {                     -- body
+				material matches {[at3]}            -- timber
 			}
 		}
 	}

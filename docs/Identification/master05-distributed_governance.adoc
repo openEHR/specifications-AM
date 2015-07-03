@@ -2,7 +2,7 @@
 
 == Overview
 
-This section deals with how knowledge artefact identifiers are managed in the distributed environment illustrated in link:main.htm#50585625_74039[See Distributed Development Environment]. Rules are needed to define how identifiers are managed in the event of an artefact coming under management, as well as transfers and forking of managed artefacts.
+This section deals with how knowledge artefact identifiers are managed in the distributed environment illustrated in the <<distributed_development_environment>> figure. Rules are needed to define how identifiers are managed in the event of an artefact coming under management, as well as transfers and forking of managed artefacts.
 
 == Management
 
@@ -10,14 +10,14 @@ Many knowledge artefacts start life in an ad hoc way, created by a research proj
 
 The first step to making an artefact widely visible, and usable to the outside world is to bring it under management of an organisation that follows rules of governance and quality assurance on which the outside world can rely. This specification does not describe all these rules, just the rules for identification and meta-data of artefacts coming under management.
 
-When an artefact is first created, its lifecycle state is ‘unmanaged’ and its version identifier is v0.N.P, i.e. a ‘pre- v1’ version, generally recognised (e.g. by the Github Semantic Versioning guidelines (<<sem_ver>>) as being an unstable form of the artefact that makes no promises with respect to the normal major/minor/patch versioning rules. The artefact may be given a Guid by tooling, although this will be ignored by a management organisation due to the fact that Guids assigned by ad hoc tools or direct human authoring are often copies of existing Guids (due to cut and paste) or are unreliable in some other way (improper Guid algorithm implementation).
+When an artefact is first created, its lifecycle state is ‘unmanaged’ and its version identifier is `v0.N.P`, i.e. a ‘pre- v1’ version, generally recognised (e.g. by the Github Semantic Versioning guidelines (<<sem_ver>>) as being an unstable form of the artefact that makes no promises with respect to the normal major/minor/patch versioning rules. The artefact may be given a Guid by tooling, although this will be ignored by a management organisation due to the fact that Guids assigned by ad hoc tools or direct human authoring are often copies of existing Guids (due to cut and paste) or are unreliable in some other way (improper Guid algorithm implementation).
 
 When an artefact is accepted by a Custodian Organisation, the following things happen:
 
-* its lifecycle state progresses to ‘initial’;
+* its lifecycle state progresses to `initial`;
 * its human-readable identifier is changed to the namespaced form;
 * it is assigned a newly generated Guid as its uid;
-* if its major version number is higher than 0 it is reset to 0.0.1, otherwise it is left unchanged;
+* if its major version number is higher than 0 it is reset to `0.0.1`, otherwise it is left unchanged;
 * various meta-data items are set, including copyright, license.
 
 In addition, a SHA-1 hash may be generated for the artefact, which is stored within the repository.
@@ -35,7 +35,7 @@ A Custodian Organisation may decide to cease its own maintenance of an artefact,
 
 At the moment of acquisition by the new CO, the artefact’s HRID would potentially be re-assigned.
 
-At some point the new custodian will perform maintenance work on the artefact, for example releasing a new minor or patch-level version. If such new releases are considered national standards, the original CO will most likely adopt them for use. The question is: how are the new releases of the artefact identified?
+At some point the new custodian will perform maintenance work on the artefact, for example releasing a new minor or patch-level version. If such new releases are considered national standards, the _original_ CO will most likely adopt them for use. The question is: how are the new releases of the artefact identified?
 
 With respect to the human-readable identifier, two strategies are available: retain the original human-readable identifier, or change it to reflect the new CO. An argument against changing it is that identifier continuity would be preserved, ensuring that archetype references in extant queries and in data, as well as in other archetypes and templates remain valid. If it is assumed that all such references are limited to the original management domain, the size of this problem is known and most likely containable.
 
@@ -55,9 +55,9 @@ The approach of this specification is therefore that rules must be provided that
 
 Rules for migration are required for both the human-readable identifier and the machine identifier. With respect to the human-readable identifier, any of the following are assumed to be mutable:
 
-* namespace: at a minimum this will always change;
-* concept_id: the ontological identifier may or may not change, depending on whether the new manager wishes to locate the artefact in a different ontology;
-* version identifier: the version identifier will in general change, possibly as a function of whether the concept part of the identifier changes.
+* `namespace`: at a minimum this will always change;
+* `concept_id`: the ontological identifier may or may not change, depending on whether the new manager wishes to locate the artefact in a different ontology;
+* _version identifier_: the version identifier will in general change, possibly as a function of whether the concept part of the identifier changes.
 
 The general case is that the transfer of an artefact to another management organisation may result in an identifier that changes in all aspects apart from the reference model related parts of the identifier, which cannot change for formal reasons.
 

@@ -5,9 +5,9 @@
 <!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge"><![endif]-->
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="generator" content="Asciidoctor 1.5.2">
-<meta name="description" content="openEHR Knowledge Artefact Identification specification">
+<meta name="description" content="openEHR Archetype Identification specification">
 <meta name="keywords" content="archetype, openehr, aom, aom2">
-<title>Knowledge Artefact Identification specification</title>
+<title>Archetype Identification specification</title>
 <link rel="stylesheet" href="../../../spec-publish-asciidoc/resources/css/openehr.css">
 <link rel="stylesheet" href="../../../spec-publish-asciidoc/resources/css/pygments-default.css">
 </head>
@@ -16,7 +16,7 @@
 <div id="toc" class="toc2">
 <div id="toctitle">Table of Contents</div>
 <ul class="sectlevel0">
-<li><a href="#_knowledge_artefact_identification_specification">Knowledge Artefact Identification specification</a>
+<li><a href="#_archetype_identification_specification">Archetype Identification specification</a>
 <ul class="sectlevel1">
 <li><a href="#_amendment_record">Amendment Record</a></li>
 <li><a href="#_acknowledgements">Acknowledgements</a>
@@ -103,7 +103,7 @@
 <li><a href="#_source_artefact_relationship_constraints">6.2. Source Artefact Relationship Constraints</a>
 <ul class="sectlevel3">
 <li><a href="#_adl_1_4_archetype_slots">6.2.1. ADL 1.4 Archetype Slots</a></li>
-<li><a href="#_adl_1_5_archetype_slots">6.2.2. ADL 1.5 Archetype Slots</a></li>
+<li><a href="#_adl_2_archetype_slots">6.2.2. ADL 2 Archetype Slots</a></li>
 </ul>
 </li>
 <li><a href="#_aql_query_sets">6.3. AQL Query Sets</a></li>
@@ -141,7 +141,13 @@
 <li><a href="#_artefact_transfer_fork">9.4. Artefact Transfer / Fork</a></li>
 </ul>
 </li>
-<li><a href="#_references">References</a></li>
+<li><a href="#_references">References</a>
+<ul class="sectlevel2">
+<li><a href="#_publications">Publications</a></li>
+<li><a href="#_resources">Resources</a></li>
+<li><a href="#_openehr_resources">openEHR Resources</a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -157,7 +163,7 @@
 </div>
 </div>
 </div>
-<h1 id="_knowledge_artefact_identification_specification" class="sect0">Knowledge Artefact Identification specification</h1>
+<h1 id="_archetype_identification_specification" class="sect0">Archetype Identification specification</h1>
 <div class="openblock partintro">
 <div class="content">
 <table class="tableblock frame-all grid-all spread">
@@ -175,10 +181,10 @@
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Revision</strong>: <a href="#latest_issue">[latest_issue]</a></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Date</strong>: <a href="#latest_issue_date">[latest_issue_date]</a></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Status</strong>: TRIAL</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Status</strong>: Development</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-center valign-top" colspan="3"><p class="tableblock"><strong>Keywords</strong>: EHR, ADL, AOM, health records, archetypes, identification, 13606, CIMI</p></td>
+<td class="tableblock halign-center valign-top" colspan="3"><p class="tableblock"><strong>Keywords</strong>: archetype, identification, governance</p></td>
 </tr>
 </tbody>
 </table>
@@ -243,23 +249,29 @@
 </thead>
 <tbody>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a id="latest_issue"></a>0.7.4</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a id="latest_issue"></a>0.7.5</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Replace ‘-unstable’ with '-alpha' to be compatible with typical tools.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">I McNicoll</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a id="latest_issue_date"></a>01 Feb 2015</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">0.7.4</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Replace ‘+uNNN’ with ‘-unstable’; simplify the number after ‘rc’ to an integer build count.</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">S Garde,<br>
  I McNicoll,<br>
  H Leslie</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a id="latest_issue_date"></a>29 Sep 2014</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">29 Sep 2014</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">0.7.3</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Remove build_count, replace with <em>instance_uid</em> .</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Remove <code><em>build_count</em></code>, replace with <code><em>instance_uid</em></code>.</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">I McNicoll<br>
  T Beale</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">28 May 2014</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">0.7.2</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Change <em>ARCHEYTPE_HRID</em> .commit_number to build_count. Build_count reset to 1 on each version change. Adjust diagrams and explanations.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Change <code>ARCHEYTPE_HRID</code>.<code><em>commit_number</em></code> to <code><em>build_count</em></code>. Build_count reset to 1 on each version change. Adjust diagrams and explanations.</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">S Garde<br>
  I McNicoll<br>
  T Beale</p></td>
@@ -425,10 +437,10 @@
 <div class="ulist">
 <ul>
 <li>
-<p>The <a href="http://www.openehr.org/releases/trunk/architecture/overview.pdf">openEHR Architecture Overview</a></p>
+<p>The openEHR Architecture Overview (<a href="#openehr_overview">[openehr_overview]</a>).</p>
 </li>
 <li>
-<p>The <a href="http://www.openehr.org/releases/trunk/architecture/am/archetype_technical_overview.pdf">openEHR Archetypes Technical Overview</a></p>
+<p>The openEHR Archetypes Technical Overview (<a href="#openehr_am_overview">[openehr_am_overview]</a>).</p>
 </li>
 </ul>
 </div>
@@ -438,10 +450,10 @@
 <div class="ulist">
 <ul>
 <li>
-<p>The <a href="http://www.openehr.org/releases/trunk/architecture/am/aom2.pdf">Archetype Object Model (AOM2)</a></p>
+<p>The Archetype Object Model (AOM2) (<a href="#openehr_am_aom">[openehr_am_aom]</a>).</p>
 </li>
 <li>
-<p>The <a href="http://www.openehr.org/releases/trunk/architecture/am/adl2.pdf">Archetype Description Language (ADL2)</a></p>
+<p>The Archetype Description Language (ADL2) (<a href="#openehr_am_adl">[openehr_am_adl]</a>).</p>
 </li>
 </ul>
 </div>
@@ -449,7 +461,7 @@
 <div class="sect2">
 <h3 id="_status">1.3. Status</h3>
 <div class="paragraph">
-<p>This specification is in the Trial state. The development version of this document can be found at <a href="http://www.openehr.org/releases/trunk/architecture/am/knowledge_id_system.pdf" class="bare">http://www.openehr.org/releases/trunk/architecture/am/knowledge_id_system.pdf</a>.</p>
+<p>This specification is in the Development state. The development version of this document can be found at <a href="http://www.openehr.org/releases/trunk/architecture/am/knowledge_id_system.pdf" class="bare">http://www.openehr.org/releases/trunk/architecture/am/knowledge_id_system.pdf</a>.</p>
 </div>
 <div class="paragraph">
 <p>Known omissions or questions are indicated in the text with a 'to be determined' paragraph, as follows:</p>
@@ -487,10 +499,10 @@
 <p>Artefacts are assumed to be produced by tools, either in an unmanaged way, or in a situation in which users are connected to an artefact Custodian Organisation (CO). Such an organisation is assumed to have a Repository (which stores and manages artefacts), and potentially a Registry (in which meta-data about artefacts is stored) and Classification (a semantic index on Artefacts, typically achieved via the use of one or more ontologies). A Custodian Organisation could be international, country level, or be owned by a company or other organisation.</p>
 </div>
 <div class="paragraph">
-<p>Most MOs will tend to develop artefacts based on those published by ‘higher-level’ (i.e. national, international) MOs. To enable this, a logical ability to re-use specified releases of artefacts from ‘upstream’ MOs by ‘downstream’ MOs is assumed. This usually implies some kind of virtual inclusion (e.g. from one web-visible repository to another), or it may be implemented by copying and marking as read-only the received artefacts. Regardless of the particular implementation, the ‘logical contents’ of a repository is the totality of localy managed artefacts, plus all virtually referenced artefact libraries. This is necessary to enable most compiler-like tools to function normally.</p>
+<p>Most COs will tend to develop artefacts based on those published by ‘higher-level’ (i.e. national, international) COs. To enable this, a logical ability to re-use specified releases of artefacts from ‘upstream’ COs by ‘downstream’ COs is assumed. This usually implies some kind of virtual inclusion (e.g. from one web-visible repository to another), or it may be implemented by copying and marking as read-only the received artefacts. Regardless of the particular implementation, the ‘logical contents’ of a repository is the totality of localy managed artefacts, plus all virtually referenced artefact libraries. This is necessary to enable most compiler-like tools to function normally.</p>
 </div>
 <div class="paragraph">
-<p>It is assumed that Artefacts can also move between MOs for purposes of transfer, or due to ‘forking’ (i.e. splitting of a line of development, as with software). Artefacts are published in some form and consumer by User Enterprises which deploy the artefacts in some technical infrastructure.</p>
+<p>It is assumed that Artefacts can also move between COs for purposes of transfer, or due to ‘forking’ (i.e. splitting of a line of development, as with software). Artefacts are published in some form and consumer by User Enterprises which deploy the artefacts in some technical infrastructure.</p>
 </div>
 <div class="paragraph">
 <p>Artefacts are ultimately consumed by User Enterprises, normally in a validated and compiled form.</p>
@@ -499,7 +511,7 @@
 <div class="sect2">
 <h3 id="_the_problem">2.2. The Problem</h3>
 <div class="paragraph">
-<p>The problem specifically addressed by this specification is that of identification and referencing of knowledge artefacts. The notion of ‘identification’ for such artefacts incorporates a number of key requirements. The kinds of models in scope include archetypes (<a href="#openehr_aom2">[openehr_aom2]</a>, <a href="#openehr_adl2">[openehr_adl2]</a>), templates (<a href="#openehr_templates">[openehr_templates]</a>), terminology subsets (See e.g. <a href="#IHTSDO">[IHTSDO]</a>), clinical guidelines, query sets and other non-atomic domain level definitions of content, rules, workflows and other semantics. The common aspects of artefacts within this scope is that they are ‘outside the software’, and that they are independent of specific implementation technologies. Examples include:</p>
+<p>The problem specifically addressed by this specification is that of identification and referencing of knowledge artefacts. The notion of ‘identification’ for such artefacts incorporates a number of key requirements. The kinds of models in scope include archetypes (<a href="#openehr_am_aom">[openehr_am_aom]</a>, <a href="#openehr_am_adl">[openehr_am_adl]</a>), templates (<a href="#openehr_am_templates">[openehr_am_templates]</a>), terminology subsets (See e.g. <a href="#IHTSDO">[IHTSDO]</a>), clinical guidelines, query sets and other non-atomic domain level definitions of content, rules, workflows and other semantics. The common aspects of artefacts within this scope is that they are ‘outside the software’, and that they are independent of specific implementation technologies. Examples include:</p>
 </div>
 <div class="ulist">
 <ul>
@@ -515,7 +527,7 @@
 </ul>
 </div>
 <div class="paragraph">
-<p>Out of scope are the atomic ‘concepts’ and ‘categories’ commonly found in terminologies (e.g.: ICD10, SNOMED CT, LOINC) and ontologies (e.g. the BFO ontologies such as OGMS, FMA, IAO etc).</p>
+<p>Out of scope are the atomic ‘concepts’ and ‘categories’ commonly found in terminologies (e.g.: ICD10, SNOMED CT, LOINC) and ontologies (e.g. the BFO ontologies such as OGMS, FMA, IAO etc <a href="#BFO">[BFO]</a>, <a href="#OGMS">[OGMS]</a>, <a href="#FMA">[FMA]</a>, <a href="#IAO">[IAO]</a>).</p>
 </div>
 <div class="paragraph">
 <p>Extensive experience with such artefacts in the health domain has shown that while there are many similarities to software artefact identification, there are sufficient differences to warrant an explicit scheme. The health domain is the primary domain of experience assumed here, but the principles are applicable to any domain.</p>
@@ -526,10 +538,10 @@
 <div class="ulist">
 <ul>
 <li>
-<p>identify and distinguish versions, variants and releases of ‘source’ artefacts within and from authoring environments;</p>
+<p>identify and distinguish versions, variants and releases of ‘source’ artefacts within and from <em>authoring</em> environments;</p>
 </li>
 <li>
-<p>define rules for expressing and resolving references between source artefacts, including version variants;</p>
+<p>define rules for expressing and resolving <em>references</em> between source artefacts, including version variants;</p>
 </li>
 <li>
 <p>define rules for identification of compiled / operational artefacts;</p>
@@ -549,10 +561,10 @@
 <p>There are two general approaches to identification. The first is the one used in software and ontology development: human-readable identifiers, denoted in this specification as HRIDs. Under this approach, identifiers name an artefact (e.g. a class in object-oriented software, category in an ontology) and can be used as references to connect similar artefacts in a hierarchy (e.g. according to the inheritance relationship). The second is the use of meaningless machine identifiers (more properly denoted ‘machine-readable’ or ‘machine-resolvable’ identifiers) such as GUIDs and ISO OIDs with accompanying de-referencing mechanisms. The two approaches are not mutually exclusive, nor are they equivalent.</p>
 </div>
 <div class="paragraph">
-<p>A human-readable identification scheme supports the notion of a specialsiation / subsumption hierarchy of artefacts (‘inheritance’ in object programming), multi-dimensional concept spaces, flexible versioning, and formally reflects the artefact authors' and users' understanding of the concept space being modelled. Human-readable identification supports many types of computational processing. A typical software HRID is the class name <em>FastSortedList</em> . Within the software world, HRIDs are used for both source artefacts and built components such as libraries and executables, although the details of the respective types of identifier may differ.</p>
+<p>A human-readable identification scheme supports the notion of a specialsiation / subsumption hierarchy of artefacts (‘inheritance’ in object programming), multi-dimensional concept spaces, flexible versioning, and formally reflects the artefact authors' and users' understanding of the concept space being modelled. Human-readable identification supports many types of computational processing. A typical software HRID is the class name <code>FastSortedList</code> . Within the software world, HRIDs are used for both source artefacts and built components such as libraries and executables, although the details of the respective types of identifier may differ.</p>
 </div>
 <div class="paragraph">
-<p>One crucial feature of most human-readable identifiers is that they may change after initial assignment, for reasons of change of purpose, improved understanding of need, or external requirements change. These kinds of changes are normally limited to the early development (typically pre v1.0 phase) period in order to enable stability later on.</p>
+<p>One crucial feature of most human-readable identifiers is that they <em>may change after initial assignment</em>, for reasons of change of purpose, improved understanding of need, or external requirements change. These kinds of changes are normally limited to the early development (typically pre v1.0 phase) period in order to enable stability later on.</p>
 </div>
 <div class="paragraph">
 <p>Machine identifiers on the other hand are not human-readable, typically do not directly support versioning (unless specifically designed to do so, usually via the use of tuples of atomic identifiers), but do enable various useful kinds of computation. They require mapping to convert to human-readable identifiers. Unlike human-readable identifiers, machine identifiers do not normally change once assigned.</p>
@@ -606,44 +618,44 @@
 <div class="sect2">
 <h3 id="_overview_2">3.1. Overview</h3>
 <div class="paragraph">
-<p>The basis for identifying source (i.e. authored) artefacts is to define a number of separate logically identifying properties, as well as a machine identifier. One or more human-readable identifier(s) can be generated from the non-uid identifying properties. For archetypes and templates, the relevant properties are defined on the <em>ARCHETYPE_HRID</em> class from the openEHR Archetype Object Model. Related properties are inherited from the <em>AUTHORED_RESOURCE</em> classe into <em>ARCHETYPE</em> are shown, including the <em>lifecycle_state</em> property, as well as all other descriptive meta-data.</p>
+<p>The basis for identifying source (i.e. authored) artefacts is to define a number of separate logically identifying properties, as well as a machine identifier. One or more human-readable identifier(s) can be generated from the non-uid identifying properties. For archetypes and templates, the relevant properties are defined on the <code>ARCHETYPE_HRID</code> class from the openEHR Archetype Object Model. Related properties are inherited from the <code>AUTHORED_RESOURCE</code> classe into <code>ARCHETYPE</code> are shown, including the <code>lifecycle_state</code> property, as well as all other descriptive meta-data.</p>
 </div>
 <div class="paragraph">
 <p>For other types of artefacts the detailed model will differ, but the principles are the same.</p>
 </div>
 <div class="paragraph">
-<p>Three distinct groups of properties shown in the <em>ARCHETYPE_HRID</em> class that underpin the identification scheme described here, as follows:</p>
+<p>Three distinct groups of properties shown in the <code>ARCHETYPE_HRID</code> class that underpin the identification scheme described here, as follows:</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p><em>namespace</em> provides a way of distinguishing logical identifiers created by different organisations that would otherwise compete in a single semantic identifier space;</p>
+<p><code>namespace</code> provides a way of distinguishing logical identifiers created by different organisations that would otherwise compete in a single semantic identifier space;</p>
 </li>
 <li>
-<p><em>rm_publisher</em> , <em>rm_closure</em> , <em>rm_class</em> , <em>concept_id</em> form the basis of the main part of a human-readable identifier, e.g. <em>openEHR-EHR-OBSERVATION.bp_measurement</em> ;</p>
+<p><code>rm_publisher</code>, <code>rm_closure</code>, <code>rm_class</code>, <code>concept_id</code> form the basis of the main part of a human-readable identifier, e.g. <code>openEHR-EHR-OBSERVATION.bp_measurement</code>;</p>
 </li>
 <li>
 <p>properties supporting versioning:</p>
 </li>
 <li>
-<p><em>release_version</em> , expressing a 3-part version identifier, e.g. ‘1.3.0’;</p>
+<p><code>release_version</code>, expressing a 3-part version identifier, e.g. '1.3.0';</p>
 </li>
 <li>
-<p><em>build_count</em> , incremented at every commit, supporting non-release version ids, such as ‘1.3.0-rc.28’ and ‘1.3.0-unstable’, where the build count is 28;</p>
+<p><code>build_count</code> , incremented at every commit, supporting non-release version ids, such as '1.3.0-rc.28' and ‘1.3.0-unstable’, where the build count is 28;</p>
 </li>
 <li>
-<p><em>description.lifecycle_state</em> , expressing the development state of the artefact, and used to derive the ‘rc’ (release candidate) and ‘unstable’ (development) parts of non-release version ids.</p>
+<p><code>description</code>.<code>lifecycle_state</code>, expressing the development state of the artefact, and used to derive the ‘rc’ (release candidate) and ‘unstable’ (development) parts of non-release version ids.</p>
 </li>
 </ul>
 </div>
 <div class="paragraph">
-<p>Functions such as <em>interface_id, physical_id</em> and <em>version_id</em> are defined to return respectively the ‘interface’ and ‘physical’ archetype HRIDs (described below) as strings, and the full version string (computed from <em>release_version</em> , <em>build_count</em> and <em>description.lifecycle_state</em> ). The functions <em>major_version</em> , <em>minor_version</em> and <em>patch_version</em> extract the various parts of the 3-part <em>release_version</em> property.</p>
+<p>Functions such as <code>interface_id</code>, <code>physical_id</code> and <code>version_id</code> are defined to return respectively the ‘interface’ and ‘physical’ archetype HRIDs (described below) as strings, and the full version string (computed from <code>release_version</code> , <code>build_count</code> and <code>description.lifecycle_state</code> ). The functions <code>major_version</code> , <code>minor_version</code> and <code>patch_version</code> extract the various parts of the 3-part <code>release_version</code> property.</p>
 </div>
 <div class="paragraph">
-<p>The <em>uid</em> property provides the machine identifier, and is assumed to be a Guid.</p>
+<p>The <code>uid</code> property provides the machine identifier, and is assumed to be a Guid.</p>
 </div>
 <div class="paragraph">
-<p>Both the <em>uid</em> and <em>namespace</em> properties are optional for legacy reasons, since most existing archetypes have neither. The interpretation of an artefact without these identifiers in this specification is that it is <em>unmanaged</em> , i.e. it has no recognised owner organisation. During a period of changeover to the identifiers specified here, there will clearly be artefacts that are in fact managed, and which need to have the <em>uid</em> and <em>namespace</em> properties assigned. This will obviously take some time, as it requires support from the tooling ecosystem.</p>
+<p>Both the <code>uid</code> and <code>namespace</code> properties are optional for legacy reasons, since most existing archetypes have neither. The interpretation of an artefact without these identifiers in this specification is that it is <em>unmanaged</em> , i.e. it has no recognised owner organisation. During a period of changeover to the identifiers specified here, there will clearly be artefacts that are in fact managed, and which need to have the <code>uid</code> and <code>namespace</code> properties assigned. This will obviously take some time, as it requires support from the tooling ecosystem.</p>
 </div>
 <div class="paragraph">
 <p>Different types of human-readable identifiers are used for archetypes, templates and terminology subsets. The following sections describe the formal details of this identification scheme, and how it supports referencing between artefacts.</p>
@@ -652,7 +664,7 @@
 <div class="sect2">
 <h3 id="_formal_model">3.2. Formal Model</h3>
 <div class="paragraph">
-<p>This section defines a formal grammar for human-readable indentifiers of knowledge artefacts. As described above, more than one human-readable identifier can be constructed from the identifying properties of the <em>ARCHETYPE_HRID</em> class. The grammar is shown in green below.</p>
+<p>This section defines a formal grammar for human-readable indentifiers of knowledge artefacts. As described above, more than one human-readable identifier can be constructed from the identifying properties of the <code>ARCHETYPE_HRID</code> class. The grammar is shown in green below.</p>
 </div>
 <div class="paragraph">
 <p>The highest level distinction is between managed and unmanaged artefacts, with managed status being indicated by the prepending of a namespace to what can be termed a ‘local’ HRID (i.e. local to a given namespace context).</p>
@@ -661,32 +673,38 @@
 <div class="content">
 <pre>    artefact_hrid:          namespaced_hrid | local_hrid
     namespaced_hrid:        namespace '::' local_hrid
-    local_hrid:             hrid_root ‘.v’ version_id
+    local_hrid:             hrid_root '.v' version_id
     namespace:              V_REVERSE_DOMAIN_NAME
     V_REVERSE_DOMAIN_NAME:  # See IETF RFCs 1035, 123, and 2181.</pre>
 </div>
 </div>
 <div class="paragraph">
-<p>The <em>namespace</em> is the publisher organisation reverse domain name. Reverse domain names are used in order to aid lexical sorting of identifiers and also tools that build directory structures based on reverse domain name segments. All managed artefacts, including archetypes and templates should include a namespace. Any archetype or template carriying an identifier without a namespace is assumed to be an unmanaged artefact.</p>
+<p>The <code>namespace</code> above is the publisher organisation reverse domain name. Reverse domain names are used in order to aid lexical sorting of identifiers and also tools that build directory structures based on reverse domain name segments. All managed artefacts, including archetypes and templates should include a namespace. Any archetype or template carriying an identifier without a namespace is assumed to be an unmanaged artefact.</p>
 </div>
 <div class="paragraph">
 <p>Examples:</p>
 </div>
-<div class="listingblock">
-<div class="content">
-<pre>    org.openehr     EHR archetypes library at openEHR.org
-    uk.nhs      UK National Health Service
-    edu.nci     US National Cancer Institute</pre>
-</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>org.openehr</code>: EHR archetypes library at openEHR.org</p>
+</li>
+<li>
+<p><code>uk.nhs</code>:      UK National Health Service</p>
+</li>
+<li>
+<p><code>edu.nci</code>:     US National Cancer Institute</p>
+</li>
+</ul>
 </div>
 <div class="sect3">
 <h4 id="_human_readable_identifier_hrid">3.2.1. Human-readable Identifier (HRID)</h4>
 <div class="paragraph">
-<p>The following sections describe the <em>hrid_root</em> component, i.e. the <em>hrid</em> minus the version identifier.</p>
+<p>The following sections describe the <code>hrid_root</code> component, i.e. the <code>hrid</code> minus the version identifier.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre>    hrid_root:      archetype_hrid_root
+<pre>    hrid_root: archetype_hrid_root
             | template_hrid_root
             | subset_hrid_root
             | query_hrid_root</pre>
@@ -699,19 +717,19 @@
 <p>The archetype human-readable identifier consists of two logical parts: an identifier of the reference model (i.e. logical information model) class on which it is based, and an ontological identifier.</p>
 </div>
 <div class="paragraph">
-<p>The identifier is defined by the following grammar rules, which are a slightly simplified version of the grammar for the openEHR / ISO 13606 <em>ARCHETYPE_ID</em> type:</p>
+<p>The identifier is defined by the following grammar rules, which are a slightly simplified version of the grammar for the openEHR / ISO 13606 <code>ARCHETYPE_ID</code> type:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre>    archetype_hrid_root:                qualified_rm_class_name ‘.’ concept_id
-    qualified_rm_class_name: rm_publisher ‘-’ rm_closure ‘-’ rm_class
-    rm_publisher:               V_ALPHANUMERIC_NAME
-    rm_closure:                 V_ALPHANUMERIC_NAME
-    rm_class:               V_ALPHANUMERIC_NAME
-    concept_id:                 V_SEGMENTED_ALPHANUMERIC_NAME
+<pre>    archetype_hrid_root:            qualified_rm_class_name '.' concept_id
+    qualified_rm_class_name:        rm_publisher '-' rm_closure '-' rm_class
+    rm_publisher:                   V_ALPHANUMERIC_NAME
+    rm_closure:                     V_ALPHANUMERIC_NAME
+    rm_class:                       V_ALPHANUMERIC_NAME
+    concept_id:                     V_SEGMENTED_ALPHANUMERIC_NAME
 
-    V_ALPHANUMERIC_NAME:                [a-zA-Z][a-zA-Z0-9_]+
-    V_SEGMENTED_ALPHANUMERIC_NAME: [a-zA-Z][a-zA-Z0-9_-]+ -- allows hyphens</pre>
+    V_ALPHANUMERIC_NAME:            [a-zA-Z][a-zA-Z0-9_]+
+    V_SEGMENTED_ALPHANUMERIC_NAME:  [a-zA-Z][a-zA-Z0-9_-]+ -- allows hyphens</pre>
 </div>
 </div>
 <div class="paragraph">
@@ -720,16 +738,16 @@
 <div class="ulist">
 <ul>
 <li>
-<p>rm_publisher: id of organisation originating the reference model on which this archetype is based;</p>
+<p><code>rm_publisher</code>: id of organisation originating the reference model on which this archetype is based;</p>
 </li>
 <li>
-<p>rm_closure: identifier of the reference model top-level package closure on which the archetype is based;</p>
+<p><code>rm_closure</code>: identifier of the reference model top-level package closure on which the archetype is based;</p>
 </li>
 <li>
-<p>rm_class: name of class or equivalent entity in the reference model on which the artefact is based;</p>
+<p><code>rm_class</code>: name of class or equivalent entity in the reference model on which the artefact is based;</p>
 </li>
 <li>
-<p>concept_id: an identifier from an ontology of information artefacts (see below);</p>
+<p><code>concept_id</code>: an identifier from an ontology of information artefacts (see below);</p>
 </li>
 </ul>
 </div>
@@ -747,18 +765,18 @@
 </ul>
 </div>
 <div class="paragraph">
-<p>This historically has been used in openEHR and CEN/ISO 13606-2 to identify the reference model class on which an archetype is based. It includes the publisher of the reference model (e.g. “ISO”, “openEHR”), which top level ‘closure’ is being referred to, and finally which class.</p>
+<p>This historically has been used in openEHR and CEN/ISO 13606-2 to identify the reference model class on which an archetype is based. It includes the publisher of the reference model (e.g. "ISO", "openEHR"), which top level ‘closure’ is being referred to, and finally which class.</p>
 </div>
 <div class="paragraph">
-<p>The notion of ‘closure’ is a top level package from which the focal class can be reached. In general, a given class can be reached from more than one top level package, but an archetype of that class will only be suitable for one of those packages. For example, the openEHR class <em>CLUSTER</em> is used by classes in both the <em>ehr</em> and <em>demographic</em> top level packages. However, an archetype of <em>CLUSTER</em> will usually be designed for use with only one of those packages. The Cluster archetype <em>physical_examination</em> for example will only make sense in data defined by the <em>ehr</em> package. Consequently, it will have an archetype identifier of the form <em>openEHR-EHR-CLUSTER</em> . <em>physical_examination</em> .</p>
+<p>The notion of ‘closure’ is a top level package from which the focal class can be reached. In general, a given class can be reached from more than one top level package, but an archetype of that class will only be suitable for one of those packages. For example, the openEHR class <code>CLUSTER</code> is used by classes in both the <code>ehr</code> and <code>demographic</code> top level packages. However, an archetype of <code>CLUSTER</code> will usually be designed for use with only one of those packages. The Cluster archetype <code>physical_examination</code> for example will only make sense in data defined by the <code>ehr</code> package. Consequently, it will have an archetype identifier of the form <code>openEHR-EHR-CLUSTER</code> . <code>physical_examination</code> .</p>
 </div>
 <div class="paragraph">
-<p>The closure part of the identifier could be used by tools to ensure for example that an ‘EHR’ <em>CLUSTER</em> archetype was never attached to a ‘demographic’ information item.</p>
+<p>The closure part of the identifier could be used by tools to ensure for example that an ‘EHR’ <code>CLUSTER</code> archetype was never attached to a ‘demographic’ information item.</p>
 </div>
 <div class="sect4">
 <h5 id="_concept_identifier">Concept Identifier</h5>
 <div class="paragraph">
-<p>The second part of the human-readable identifier is a ‘short’ ontological identifier (known in ADL 1.4 as the ‘concept’ or ‘domain concept’). Such identifiers have historically been natural language words or phrases, typically in a short mnemonic form, e.g. ‘bp_measurement’ in the archetype identifier <em>ISO-ISO13606-ENTRY.bp_measurement.v1</em> .</p>
+<p>The second part of the human-readable identifier is a ‘short’ ontological identifier (known in ADL 1.4 as the ‘concept’ or ‘domain concept’). Such identifiers have historically been natural language words or phrases, typically in a short mnemonic form, e.g. ‘bp_measurement’ in the archetype identifier <code>ISO-ISO13606-ENTRY.bp_measurement.v1</code> .</p>
 </div>
 </div>
 <div class="sect4">
@@ -791,16 +809,16 @@
 <div class="title">Figure 2. Information Artefact Ontology</div>
 </div>
 <div class="paragraph">
-<p>This (putative) ontology consists of high-level health information recording entities (black), a set of record entry types derived from the Clinical Investigator Record ontology (Beale and Heard, MedInfo 2007)<a href="#pgfId-1211620">4</a>, and domain-specific entities in blue. It is assumed that the top node(s) of the ontology could be related to nodes in a published ontology such as the Information Artefact Ontology (IAO)<a href="#pgfId-1211613">5</a>, but this is not a pre-requisite for establishing this ontology. More ideally, its categories would be related to categories in the Basic Formal Ontology (BFO 2)<a href="#pgfId-1214279">6</a>.</p>
+<p>This (putative) ontology consists of high-level health information recording entities (black), a set of record entry types derived from the Clinical Investigator Record ontology (<a href="#Beale_Heard_2007">[Beale_Heard_2007]</a>), and domain-specific entities in blue. It is assumed that the top node(s) of the ontology could be related to nodes in a published ontology such as the Information Artefact Ontology (<a href="#IAO">[IAO]</a>), but this is not a pre-requisite for establishing this ontology. More ideally, its categories would be related to categories in the Basic Formal Ontology (<a href="#BFO">[BFO]</a>).</p>
 </div>
 <div class="paragraph">
-<p>The blue node measurement_of_systemic_arterial_blood_pressure (bottom left) describes an entity corresponding to a ‘record of systemic arterial blood pressure measurement’. Long names such as this are standard in the ontology community, and are designed to ensure that the name of a category is sufficient to unamiguously define its meaning. Such names are typically too long and unwieldy for the purposes of managable lexical identifiers such as for archetypes.</p>
+<p>The blue node <code>measurement_of_systemic_arterial_blood_pressure</code> (bottom left) describes an entity corresponding to a ‘record of systemic arterial blood pressure measurement’. Long names such as this are standard in the ontology community, and are designed to ensure that the name of a category is sufficient to unamiguously define its meaning. Such names are typically too long and unwieldy for the purposes of managable lexical identifiers such as for archetypes.</p>
 </div>
 <div class="paragraph">
-<p>We therefore assume that a system of ‘short identifiers’ is possible within the ontology, where a ‘short id’ is a synonym for a full node identifier. If we further assume that the ontology is constructed with tools (e.g. Protege<a href="#pgfId-1211646">7</a>) and that ontology identifiers are checked to ensure uniqueness.</p>
+<p>We therefore assume that a system of ‘short identifiers’ is possible within the ontology, where a ‘short id’ is a synonym for a full node identifier. If we further assume that the ontology is constructed with tools (e.g. Protege <a href="#Protege">[Protege]</a>) and that ontology identifiers are checked to ensure uniqueness.</p>
 </div>
 <div class="paragraph">
-<p>Facilities to manage such ontologies should be available either centrally (e.g. openEHR.org, OBO<a href="#pgfId-1211651">8</a>), so that every added archetype, template or subset is assigned a short ontological identifier from the ontology.</p>
+<p>Facilities to manage such ontologies should be available either centrally (e.g. openEHR.org or at The Open Biological and Biomedical Ontologies <a href="#OBO">[OBO]</a>), so that every added archetype, template or subset is assigned a short ontological identifier from the ontology.</p>
 </div>
 <div class="paragraph">
 <p>Existing archetypes can be accommodated within such ontologies in two possible ways. If they have been in use, and data exist containing these identifiers, then their current ontological identifiers can be proposed as the short id for an ontology class defined for the archetype. If there is a clash, a new archetype concept short identifier will be needed, and the archetype will need to be republished under a different identifier.</p>
@@ -809,7 +827,7 @@
 <div class="sect4">
 <h5 id="_need_for_rm_class_name_in_identifier">Need for RM Class Name in Identifier</h5>
 <div class="paragraph">
-<p>Theoretically, the Reference Model class identifier part (qualified_rm_class_name above) should not be needed in a well constructed identifier, on the basis that there should never be a clash of concept identifiers, regardless of the RM class, even though they can easily be similar. For example, a reasonable concept_id for an ENTRY (ISO 13606) or OBSERVATION (openEHR) structure archetyped to represent a generic lab result result might be ‘lab_result’. For the COMPOSITION-level archetype designed to contain any ‘lab result’ ENTRY / OBSERVATION, a reasonable name would typically be ‘lab_report’ (or the equivalent in another language).</p>
+<p>Theoretically, the Reference Model class identifier part (qualified_rm_class_name above) should not be needed in a well constructed identifier, on the basis that there should never be a clash of concept identifiers, regardless of the RM class, even though they can easily be similar. For example, a reasonable <code>concept_id</code> for an <code>ENTRY</code> (ISO 13606) or <code>OBSERVATION</code> (openEHR) structure archetyped to represent a generic lab result result might be ‘lab_result’. For the COMPOSITION-level archetype designed to contain any ‘lab result’ <code>ENTRY</code> or <code>OBSERVATION</code>, a reasonable name would typically be ‘lab_report’ (or the equivalent in another language).</p>
 </div>
 <div class="paragraph">
 <p>Unfortunately, for some informational concepts, the appropriate name for the actual core data level can appear to be perfectly reasonable also as a name for a higher level container of the same data. Without an efficient and essentially global ontology construction service or authority available, the inclusion of the qualified RM class name acts as a reasonable guard against such clashes.</p>
@@ -856,8 +874,8 @@
 </div>
 <div class="listingblock">
 <div class="content">
-<pre>    org.ihtsdo-snomed_ct.blood_phenotype.v2 -- Snomed Blood type subset
-    int.who-icd10.bacterial_infections.v13 -- ICD10 bacterial infections subset</pre>
+<pre>    org.ihtsdo-snomed_ct.blood_phenotype.v2     -- Snomed Blood type subset
+    int.who-icd10.bacterial_infections.v13      -- ICD10 bacterial infections subset</pre>
 </div>
 </div>
 <div class="paragraph">
@@ -872,12 +890,8 @@
 <div class="paragraph">
 <p>Archetype-based queries, written in AQL or a similar formalism are portable across systems, and therefore do not need to be re-designed for each environment. Their identification is therefore likely to be of far greater importance than that of non-portable queries.</p>
 </div>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p>human-readable id for queries</p>
-</li>
-</ol>
+<div class="paragraph tbd">
+<p><em>TBD</em>:  human-readable id for queries</p>
 </div>
 </div>
 </div>
@@ -886,10 +900,10 @@
 <div class="sect3">
 <h4 id="_general_model">3.3.1. General Model</h4>
 <div class="paragraph">
-<p>Unlike software artefacts in most modern versioning systems, knowledge artefacts are individually version-controlled. This is because an archetype, template or terminology subset is, in and of itself, a potentially complex structure of data points / groups and / or terminology codes and relationships. It can in general be used on its own or with a small number of related artefacts (e.g. specialisation parents). Therefore, the version identification system applies to each source artefact, rather than an entire repository in the manner of typical software versioning.</p>
+<p>Unlike software artefacts in most modern versioning systems, knowledge artefacts are <em>individually</em> version-controlled. This is because an archetype, template or terminology subset is, in and of itself, a potentially complex structure of data points / groups and / or terminology codes and relationships. It can in general be used on its own or with a small number of related artefacts (e.g. specialisation parents). Therefore, the version identification system applies to <em>each source artefact</em>, rather than an entire repository in the manner of typical software versioning.</p>
 </div>
 <div class="paragraph">
-<p>This has a very visible effect: it means that every ‘committed’ change to an artefact is like a release, whereas with software, numerous changes to source files typically occur between releases. Additionally, each artefact revision is distinguished by its version identifier for the purpose of change tracking in a repository environment, whereas with software source artefacts, the logical ‘name’ of each entity (e.g. a class called ‘LinkedList’) within the source repository doesn’t change, even though its contents do. To summarise:</p>
+<p>This has a very visible effect: it means that every ‘committed’ change to an artefact is like a release, whereas with software, numerous changes to source files typically occur between releases. Additionally, each artefact revision is <em>distinguished by its version identifier</em> for the purpose of change tracking in a repository environment, whereas with software source artefacts, the logical ‘name’ of each entity (e.g. a class called ‘LinkedList’) within the source repository doesn’t change, even though its contents do. To summarise:</p>
 </div>
 <div class="ulist">
 <ul>
@@ -897,7 +911,7 @@
 <p>software versioning is performed by successive snapshots of a repository, and releasing is performed by assigning a version identifier to some of the snapshots;</p>
 </li>
 <li>
-<p>for knowledge artefacts being described here, versioning occurs independently for each artefact, and ‘releasing’ is simply an act of publishing the artefact;</p>
+<p>for knowledge artefacts being described here, versioning occurs <em>independently</em> for each artefact, and ‘releasing’ is simply an act of publishing the artefact;</p>
 </li>
 <li>
 <p>for knowledge artefacts, the versioned human-readable identifier is or can be used computationally, e.g. in queries and artefact references, whereas a software release identifier is not generally computed on by the software itself.</p>
@@ -908,7 +922,7 @@
 <div class="sect3">
 <h4 id="_version_numbering">3.3.2. Version Numbering</h4>
 <div class="paragraph">
-<p>Despite the above differences, the numbering of versions of knowledge artefacts follows the rules for identifying software releases described by <em><a href="http://semver.org">semver.org</a></em> .</p>
+<p>Despite the above differences, the numbering of versions of knowledge artefacts follows the rules for identifying software releases described by <a href="#semver.org">[semver.org]</a>.</p>
 </div>
 <div class="paragraph">
 <p>Accordingly, version identifiers are based on three levels of ‘versioning’, identified by dot-separated numeric parts, with an optional extension related to the artefact lifecycle, described below. The numeric parts are:</p>
@@ -916,16 +930,16 @@
 <div class="ulist">
 <ul>
 <li>
-<p>major version - must be incremented with a breaking change to the artefact formal definition; may be incremented with a lesser change;</p>
+<p><strong>major version</strong> - must be incremented with a breaking change to the artefact formal definition; may be incremented with a lesser change;</p>
 </li>
 <li>
-<p>minor version - must be incremented with a non-breaking change to the artefact formal definition; may be incremented with a lesser change;</p>
+<p><strong>minor version</strong> - must be incremented with a non-breaking change to the artefact formal definition; may be incremented with a lesser change;</p>
 </li>
 <li>
-<p>patch version - must be incremented with a change to the informal parts of the artefact;</p>
+<p><strong>patch version</strong> - must be incremented with a change to the informal parts of the artefact;</p>
 </li>
 <li>
-<p>build number - a number that is incremented every time an artefact is committed, and is reset to 1 whenever the version id is changed.</p>
+<p><strong>build number</strong> - a number that is incremented every time an artefact is committed, and is reset to 1 whenever the version id is changed.</p>
 </li>
 </ul>
 </div>
@@ -938,22 +952,22 @@
 <p>the identifier section;</p>
 </li>
 <li>
-<p>the <em>specialize</em> clause;</p>
+<p>the <code>specialize</code> clause;</p>
 </li>
 <li>
-<p>the <em>definition</em> section;</p>
+<p>the <code>definition</code> section;</p>
 </li>
 <li>
-<p>within the <em>terminology</em> section:</p>
+<p>within the <code>terminology</code> section:</p>
 </li>
 <li>
-<p>the <em>text</em> short names of the terms in the <em>term_definitions</em> section (i.e. not the description long text or other meta-data);</p>
+<p>the <code>text</code> short names of the terms in the <code>term_definitions</code> section (i.e. not the description long text or other meta-data);</p>
 </li>
 <li>
-<p>the <em>term_bindings</em> section;</p>
+<p>the <code>term_bindings</code> section;</p>
 </li>
 <li>
-<p>the <em>value_set</em> section.</p>
+<p>the <code>value_set</code> section.</p>
 </li>
 </ul>
 </div>
@@ -963,12 +977,12 @@
 <div class="listingblock">
 <div class="content">
 <pre>    version_id:             release_version [extension]
-    release_version:        major_version ‘.’ minor_version ‘.’ patch_version
+    release_version:        major_version '.' minor_version '.' patch_version
     major_version:          {V_NUMBER}+
     minor_version:          {V_NUMBER}+
     patch_version:          {V_NUMBER}+
     extension:              version_modifier instance_uid_slice
-    version_modifier:       ‘-rc’ | ‘-unstable’
+    version_modifier:       '-rc' | '-unstable'
     instance_uid_slice:     {V_UID_DIGIT}(5,) -- 5 or more digits from instance_uid
     V_NUMBER:               [0-9]+
     V_UID_DIGIT:            [0-9A-Fa-f]</pre>
@@ -990,10 +1004,10 @@
 <div class="ulist">
 <ul>
 <li>
-<p>First version rule: the first version (i.e. version on creation) of an artefact is a ‘v0’ version, i.e. 0.N.P. Usually it is 0.0.1, but may be a higher v0 version to indicate maturity. The discussion of lifecycle and distributed semantics below provide more details on the initial version semantics.</p>
+<p><strong>First version rule</strong>: the first version (i.e. version on creation) of an artefact is a <code>v0</code> version, i.e. <code>0.N.P</code>. Usually it is <code>0.0.1</code>, but may be a higher <code>v0</code> version to indicate maturity. The discussion of lifecycle and distributed semantics below provide more details on the initial version semantics.</p>
 </li>
 <li>
-<p>Incrementing rule: when generating a release version (i.e. not a candidate or unstable version), when the major version is incremented, the minor and patch version numbers are reset to 0; when the minor version is incremented, the path number is reset to 0.</p>
+<p><strong>Incrementing rule</strong>: when generating a release version (i.e. not a candidate or unstable version), when the major version is incremented, the minor and patch version numbers are reset to 0; when the minor version is incremented, the path number is reset to 0.</p>
 </li>
 </ul>
 </div>
@@ -1001,10 +1015,10 @@
 <p>More specific rules relating to specific lifecycle states are described below.</p>
 </div>
 <div class="paragraph">
-<p>Two ‘variant’ versions are defined in the above syntax: ‘release candidate’ and ‘unstable’. The first is a standard software classification, syntactically indicated with the tag ‘rc’. Version numbers including ‘rc’ are always of the form ‘M.N.P-rc.B’, e.g. ‘1.3.5-rc.1’, where the minus sign (‘-’) is understood as indicating a version that is ‘less than’ the target version ‘1.3.5’, i.e. ‘1.3.5-rc.1’ is an interim version leading to the stable version 1.3.5.</p>
+<p>Two ‘variant’ versions are defined in the above syntax: ‘release candidate’ and ‘unstable’. The first is a standard software classification, syntactically indicated with the tag <code>rc</code>. Version numbers including <code>rc</code> are always of the form <code>M.N.P-rc.B</code>, e.g. <code>1.3.5-rc.1</code>, where the minus sign (<code>-</code>) is understood as indicating a version that is ‘less than’ the target version <code>1.3.5</code>, i.e. <code>1.3.5-rc.1</code> is an interim version leading to the stable version 1.3.5.</p>
 </div>
 <div class="paragraph">
-<p>The other variant is indicated with the modifier ‘-unstable’, where ‘-’ indicates a version ‘before’ the version identified by the preceding numeric identifier, and ‘unstable’ indicates an ‘unstable’ development version. The magnitude of the differences a ‘-unstable’ version are indicated by the difference between the 3-part version identifiers of the current artefact and the previously published one on which it is based.</p>
+<p>The other variant is indicated with the modifier <code>-unstable</code>, where <code>-</code> indicates a version ‘before’ the version identified by the preceding numeric identifier, and <code>unstable</code> indicates an ‘unstable’ development version. The magnitude of the differences a <code>-unstable</code> version are indicated by the difference between the 3-part version identifiers of the current artefact and the previously published one on which it is based.</p>
 </div>
 <div class="paragraph">
 <p>Note that only the major version forms part of the source artefact human-readable identifier. The intention of that is that a breaking change causes a new artefact from the point of view of deployment. This is analagous to breaking changes in software interfaces, web service defintions etc, being seen as a distinct entity, typically deployed alongside the old version.</p>
@@ -1013,7 +1027,7 @@
 <div class="sect3">
 <h4 id="_change_semantics">3.3.3. Change Semantics</h4>
 <div class="paragraph">
-<p>The <em><a href="http://semver.org">semver.org</a></em> model is designed for software, and is based on the concept of the software interface, or ‘public API’. For the the artefact types within the scope of this specification, the concept of ‘interface’ is interpreted as being the .</p>
+<p>The <a href="#semver.org">[semver.org]</a> model is designed for software, and is based on the concept of the software interface, or ‘public API’. For the the artefact types within the scope of this specification, the concept of ‘interface’ is interpreted as being the .</p>
 </div>
 <div class="paragraph">
 <p>A ‘breaking change’ for knowledge artefacts in the scope of this specification is defined as follows:</p>
@@ -1055,7 +1069,7 @@
 </ul>
 </div>
 <div class="paragraph">
-<p>This has the important side-effect that minor versions of a given major version may have additional semantics comared to the original major version (i.e, minor version 0) and any other intervening minor version. In other words, specifying a major version in general may not be sufficient to designate all of the ‘interface’ available in the latest minor version. Therefore, for purposes of referencing an artefact with the expectation that the reference will designate specific elements, at least a minor version may be needed. This is discussed further in the <a href="#_referencing">Referencing</a> section.</p>
+<p>This has the important side-effect that minor versions of a given major version may have additional semantics comared to the original major version (i.e, minor version 0) and any other intervening minor version. In other words, <strong>specifying a major version in general may not be sufficient to designate all of the ‘interface’ available</strong> in the latest minor version. Therefore, for purposes of referencing an artefact with the expectation that the reference will designate specific elements, at least a minor version may be needed. This is discussed further in the <a href="#_referencing">Referencing</a> section.</p>
 </div>
 <div class="paragraph">
 <p>Note that there is no assumption that a change of a given technical level (i.e. as evaluated by a diff tool) will be seen equivalently by domain experts. For example a minor change that only requires the patch version to be incremented might have major implications for clinical semantics. For this reason, the version identifier may be incremented beyond the minimum level required by a mechanical comparison.</p>
@@ -1098,7 +1112,7 @@
 <div class="title">Figure 3. Development Lifecycle</div>
 </div>
 <div class="paragraph">
-<p>A multi-level model is used, where some states have ‘micro-states’, and top-level states are known as ‘macro-states’. The intention is to provide standard names for all macro-states, while suggesting and allowing micro-states where they make sense. Macro-state names are the basis for software version identification - ‘development’ corresponds to the ‘-unstable’ variant, release_candidate to the ‘-rc’ variant. Micro-states are useful to indicate because they define names for finer-grain states typically supported in artefact repositories.</p>
+<p>A multi-level model is used, where some states have ‘micro-states’, and top-level states are known as ‘macro-states’. The intention is to provide standard names for all macro-states, while suggesting and allowing micro-states where they make sense. Macro-state names are the basis for software version identification - ‘development’ corresponds to the <code>-unstable</code> variant, release_candidate to the <code>-rc</code> variant. Micro-states are useful to indicate because they define names for finer-grain states typically supported in artefact repositories.</p>
 </div>
 <div class="paragraph">
 <p>This lifecycle assumes that artefacts start life either in an ‘unmanaged’ environment or directly in a managed one. In the latter case, it is assumed that there is some distinction between the developers’ view and the ‘release’ view.</p>
@@ -1109,16 +1123,16 @@
 <div class="ulist">
 <ul>
 <li>
-<p>(unmanaged &#8658; ) development &#8658; published</p>
+<p>[ <code>unmanaged</code> &#8594; ] <code>development</code> &#8594; <code>published</code></p>
 </li>
 <li>
-<p>development &#8230;&#8203; development &#8658; release_candidate &#8658; &#8230;&#8203; release_candidate &#8658; published</p>
+<p><code>development</code> &#8230;&#8203; <code>development</code> &#8594; <code>release_candidate</code> &#8594; &#8230;&#8203; <code>release_candidate</code> &#8658; <code>published</code></p>
 </li>
 <li>
-<p>published &#8658; deprecated</p>
+<p><code>published</code> &#8594; <code>deprecated</code></p>
 </li>
 <li>
-<p>development &#8658; rejected</p>
+<p><code>development</code> &#8594; <code>rejected</code></p>
 </li>
 </ul>
 </div>
@@ -1128,13 +1142,13 @@
 <div class="ulist">
 <ul>
 <li>
-<p>‘start_review’ is the name of all actions entering the ‘development’ macro-state;</p>
+<p><code>start_review</code> is the name of all actions entering the <code>development</code> macro-state;</p>
 </li>
 <li>
-<p>‘release’ as an action (i.e. state transition) is taken to mean making any version of an artefact available to the public user base, including pre-releases, final releases and post-releases (‘builds’ in <em><a href="http://semver.org">semver.org</a></em> parlance);</p>
+<p><code>release</code> as an action (i.e. state transition) is taken to mean making any version of an artefact available to the public user base, including pre-releases, final releases and post-releases (‘builds’ in <a href="#semver.org">[semver.org]</a> parlance);</p>
 </li>
 <li>
-<p>‘publish’ as an action means to make a definitive release.</p>
+<p><code>publish</code> as an action means to make a definitive release.</p>
 </li>
 </ul>
 </div>
@@ -1156,16 +1170,16 @@
 <div class="ulist">
 <ul>
 <li>
-<p>An artefact normally starts life at ‘0.0.1’, although it is acceptable practice to start at some other v0 version e.g. ‘0.5.0’ to indicate approximately how mature the artefact is. It remains as a v0 version for a period of unstable early development leading to an initial releasable ‘1.x’ version.</p>
+<p>An artefact normally starts life at <code>0.0.1</code>, although it is acceptable practice to start at some other v0 version e.g. <code>0.5.0</code> to indicate approximately how mature the artefact is. It remains as a <code>v0</code> version for a period of unstable early development leading to an initial releasable <code>1.x</code> version.</p>
 </li>
 <li>
 <p>At some point, the artefact will be uploaded to a managed repository, at which point its identifier will be prepended with the management organisation namespace (and may change in other ways).</p>
 </li>
 <li>
-<p>During active development, an artefact is considered to be unstable, i.e. any kind of changes may be made, reversed, redone and so on; due to this, the version id is formed from next version number that corresponds to the magnitude of the changes currently in the artefact, and appended with ‘-unstable’;</p>
+<p>During active development, an artefact is considered to be unstable, i.e. any kind of changes may be made, reversed, redone and so on; due to this, the version id is formed from next version number that corresponds to the magnitude of the changes currently in the artefact, and appended with <code>-unstable</code>;</p>
 </li>
 <li>
-<p>An artefact may be rejected, in which case its minor version is incremented (following the <em><a href="http://semver.org">semver.org</a></em> rules), and the artefact lifecycle state is set to ‘rejected’.</p>
+<p>An artefact may be rejected, in which case its minor version is incremented (following the <a href="#semver.org">[semver.org]</a> rules), and the artefact lifecycle state is set to <code>rejected</code>.</p>
 </li>
 <li>
 <p>At some point, the authoring team of an artefact will decide the artefact is ready for release. Its release version id is then calculated as a function of the difference between the current form and the base version on which it is based.</p>
@@ -1175,29 +1189,29 @@
 <div class="ulist">
 <ul>
 <li>
-<p>published into a pre-release cycle, at which point the numerical part of the version is computed according to the difference between the current form of the artefact and the release version on which it is based. The form of the identifer becomes M.N.P-rc.B, which indicates a community testing phase. From the <em>release_candidate</em> state, three paths are possible:</p>
+<p>published into a pre-release cycle, at which point the numerical part of the version is computed according to the difference between the current form of the artefact and the release version on which it is based. The form of the identifer becomes <code>M.N.P-rc.B</code>, which indicates a community testing phase. From the <code>release_candidate</code> state, three paths are possible:</p>
 <div class="ulist">
 <ul>
 <li>
-<p>publish definitively with a stable version id of the form M.N.P;</p>
+<p>publish definitively with a stable version id of the form <code>M.N.P</code>;</p>
 </li>
 <li>
 <p>release a newer release candidate, containing only changes that do not break the interface, i.e. patch-level changes or less; update the instance UID in any case;</p>
 </li>
 <li>
-<p>if larger changes are needed, go back into the ‘development’ state and perform larger changes as needed;</p>
+<p>if larger changes are needed, go back into the <code>development</code> state and perform larger changes as needed;</p>
 </li>
 </ul>
 </div>
 </li>
 <li>
-<p>released directly to a stable version of the form M.N.P.</p>
+<p>released directly to a stable version of the form <code>M.N.P</code>.</p>
 </li>
 </ul>
 </div>
 </li>
 <li>
-<p>An artefact may eventually be deprecated, in which case its minor version is incremented (following the <em><a href="http://semver.org">semver.org</a></em> rules), and the artefact lifecycle state is set to ‘deprecated’. It may be classified inside the repository registry as ‘obsolete’, ‘suspended’ or in some other way.</p>
+<p>An artefact may eventually be deprecated, in which case its minor version is incremented (following the <a href="#semver.org">[semver.org]</a> rules), and the artefact lifecycle state is set to 'deprecated'. It may be classified inside the repository registry as <code>obsolete</code>, <code>suspended</code> or in some other way.</p>
 </li>
 </ul>
 </div>
@@ -1214,19 +1228,11 @@
 <h3 id="_change_scenarios">4.3. Change Scenarios</h3>
 <div class="sect3">
 <h4 id="_change_to_definition">4.3.1. Change to Definition</h4>
-<div class="literalblock">
-<div class="content">
-<pre> </pre>
-</div>
-</div>
+
 </div>
 <div class="sect3">
 <h4 id="_change_to_terminology_definition">4.3.2. Change to Terminology Definition</h4>
-<div class="literalblock">
-<div class="content">
-<pre> </pre>
-</div>
-</div>
+
 </div>
 <div class="sect3">
 <h4 id="_addition_of_terminology_translation">4.3.3. Addition of Terminology Translation</h4>
@@ -1241,7 +1247,7 @@
 <div class="sect2">
 <h3 id="_overview_3">5.1. Overview</h3>
 <div class="paragraph">
-<p>This section deals with how knowledge artefact identifiers are managed in the distributed environment illustrated in <a href="main.htm#50585625_74039">See Distributed Development Environment</a>. Rules are needed to define how identifiers are managed in the event of an artefact coming under management, as well as transfers and forking of managed artefacts.</p>
+<p>This section deals with how knowledge artefact identifiers are managed in the distributed environment illustrated in the <a href="#distributed_development_environment">Distributed Development Environment</a> figure. Rules are needed to define how identifiers are managed in the event of an artefact coming under management, as well as transfers and forking of managed artefacts.</p>
 </div>
 </div>
 <div class="sect2">
@@ -1253,7 +1259,7 @@
 <p>The first step to making an artefact widely visible, and usable to the outside world is to bring it under management of an organisation that follows rules of governance and quality assurance on which the outside world can rely. This specification does not describe all these rules, just the rules for identification and meta-data of artefacts coming under management.</p>
 </div>
 <div class="paragraph">
-<p>When an artefact is first created, its lifecycle state is ‘unmanaged’ and its version identifier is v0.N.P, i.e. a ‘pre- v1’ version, generally recognised (e.g. by the Github Semantic Versioning guidelines (<a href="#sem_ver">[sem_ver]</a>) as being an unstable form of the artefact that makes no promises with respect to the normal major/minor/patch versioning rules. The artefact may be given a Guid by tooling, although this will be ignored by a management organisation due to the fact that Guids assigned by ad hoc tools or direct human authoring are often copies of existing Guids (due to cut and paste) or are unreliable in some other way (improper Guid algorithm implementation).</p>
+<p>When an artefact is first created, its lifecycle state is ‘unmanaged’ and its version identifier is <code>v0.N.P</code>, i.e. a ‘pre- v1’ version, generally recognised (e.g. by the Github Semantic Versioning guidelines (<a href="#sem_ver">[sem_ver]</a>) as being an unstable form of the artefact that makes no promises with respect to the normal major/minor/patch versioning rules. The artefact may be given a Guid by tooling, although this will be ignored by a management organisation due to the fact that Guids assigned by ad hoc tools or direct human authoring are often copies of existing Guids (due to cut and paste) or are unreliable in some other way (improper Guid algorithm implementation).</p>
 </div>
 <div class="paragraph">
 <p>When an artefact is accepted by a Custodian Organisation, the following things happen:</p>
@@ -1261,7 +1267,7 @@
 <div class="ulist">
 <ul>
 <li>
-<p>its lifecycle state progresses to ‘initial’;</p>
+<p>its lifecycle state progresses to <code>initial</code>;</p>
 </li>
 <li>
 <p>its human-readable identifier is changed to the namespaced form;</p>
@@ -1270,7 +1276,7 @@
 <p>it is assigned a newly generated Guid as its uid;</p>
 </li>
 <li>
-<p>if its major version number is higher than 0 it is reset to 0.0.1, otherwise it is left unchanged;</p>
+<p>if its major version number is higher than 0 it is reset to <code>0.0.1</code>, otherwise it is left unchanged;</p>
 </li>
 <li>
 <p>various meta-data items are set, including copyright, license.</p>
@@ -1306,7 +1312,7 @@
 <p>At the moment of acquisition by the new CO, the artefact’s HRID would potentially be re-assigned.</p>
 </div>
 <div class="paragraph">
-<p>At some point the new custodian will perform maintenance work on the artefact, for example releasing a new minor or patch-level version. If such new releases are considered national standards, the original CO will most likely adopt them for use. The question is: how are the new releases of the artefact identified?</p>
+<p>At some point the new custodian will perform maintenance work on the artefact, for example releasing a new minor or patch-level version. If such new releases are considered national standards, the <em>original</em> CO will most likely adopt them for use. The question is: how are the new releases of the artefact identified?</p>
 </div>
 <div class="paragraph">
 <p>With respect to the human-readable identifier, two strategies are available: retain the original human-readable identifier, or change it to reflect the new CO. An argument against changing it is that identifier continuity would be preserved, ensuring that archetype references in extant queries and in data, as well as in other archetypes and templates remain valid. If it is assumed that all such references are limited to the original management domain, the size of this problem is known and most likely containable.</p>
@@ -1348,13 +1354,13 @@
 <div class="ulist">
 <ul>
 <li>
-<p>namespace: at a minimum this will always change;</p>
+<p><code>namespace</code>: at a minimum this will always change;</p>
 </li>
 <li>
-<p>concept_id: the ontological identifier may or may not change, depending on whether the new manager wishes to locate the artefact in a different ontology;</p>
+<p><code>concept_id</code>: the ontological identifier may or may not change, depending on whether the new manager wishes to locate the artefact in a different ontology;</p>
 </li>
 <li>
-<p>version identifier: the version identifier will in general change, possibly as a function of whether the concept part of the identifier changes.</p>
+<p><em>version identifier</em>: the version identifier will in general change, possibly as a function of whether the concept part of the identifier changes.</p>
 </li>
 </ul>
 </div>
@@ -1414,13 +1420,13 @@
 <div class="ulist">
 <ul>
 <li>
-<p>the interface HRID reference (ihrid_ref), which is the same for all artefact instances sharing the same core interface, in other words, the form of the identifier including only the major version; this will match the latest relase available of that major version;</p>
+<p>the interface HRID reference (<code>ihrid_ref</code>), which is the same for all artefact instances sharing the same core interface, in other words, the form of the identifier including only the major version; this will match the latest relase available of that major version;</p>
 </li>
 <li>
-<p>the specific interface HRID reference (sihrid_ref), which is the form of the identifier including the major and minor versions, which will match a specific release of the interface;</p>
+<p>the specific interface HRID reference (<code>sihrid_ref</code>), which is the form of the identifier including the major and minor versions, which will match a specific release of the interface;</p>
 </li>
 <li>
-<p>the physical HRID reference (phrid_ref), which identifies artefact instances which are identical; this is the form of identifier with the full version identifier included.</p>
+<p>the physical HRID reference (<code>phrid_ref</code>), which identifies artefact instances which are identical; this is the form of identifier with the full version identifier included.</p>
 </li>
 </ul>
 </div>
@@ -1440,20 +1446,16 @@
 <div class="paragraph">
 <p>By way of example, the following two archetype iHRID references denote different logical archetypes, from a data processing point of view, since their major versions are different, indicating a breaking change between the two:</p>
 </div>
-<div class="listingblock">
-<div class="content">
-<pre>    org.openehr::openEHR-EHR-EVALUATION.diagnosis.v1
-    org.openehr::openEHR-EHR-EVALUATION.diagnosis.v2</pre>
-</div>
+<div class="paragraph">
+<p><code>org.openehr::openEHR-EHR-EVALUATION.diagnosis.<strong>v1</strong></code><br>
+<code>org.openehr::openEHR-EHR-EVALUATION.diagnosis.<strong>v2</strong></code></p>
 </div>
 <div class="paragraph">
 <p>Conversely, the following references denote physically distinct archetypes that are regarded as logically substitutable:</p>
 </div>
-<div class="listingblock">
-<div class="content">
-<pre>    org.openehr::openEHR-EHR-EVALUATION.diagnosis.v1.1.5
-    org.openehr::openEHR-EHR-EVALUATION.diagnosis.v1.1.7</pre>
-</div>
+<div class="paragraph">
+<p><code>org.openehr::openEHR-EHR-EVALUATION.diagnosis.<strong>v1.1.5</strong></code><br>
+<code>org.openehr::openEHR-EHR-EVALUATION.diagnosis.<strong>v1.1.7</strong></code></p>
 </div>
 <div class="sect2">
 <h3 id="_source_artefact_references">6.1. Source Artefact References</h3>
@@ -1463,7 +1465,7 @@
 <div class="sect3">
 <h4 id="_archetype_external_references_adl_aom_2">6.1.1. Archetype External References (ADL/AOM 2)</h4>
 <div class="paragraph">
-<p>In ADL 1.5, a direct archetype-archetype reference, known as an ‘external reference’ can be defined, which uses the archetype miniHRID, as shown in the following example.</p>
+<p>In ADL 2, a direct archetype-archetype reference, known as an ‘external reference’ can be defined, which uses the archetype miniHRID, as shown in the following example.</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -1483,24 +1485,24 @@
 <div class="ulist">
 <ul>
 <li>
-<p>the most recent released version variant of openEHR-EHR-ITEM_TREE.medication.v1, i.e. the latest minor or patch version such as v1.0.4, v1.2.49 etc OR</p>
+<p>the most recent released version variant of <code>openEHR-EHR-ITEM_TREE.medication.v1</code>, i.e. the latest minor or patch version such as <code>v1.0.4</code>, <code>v1.2.49</code> etc OR</p>
 </li>
 <li>
-<p>the latest release candidate version of openEHR-EHR-ITEM_TREE.medication.v1, e.g. v1.2.3-rc44, because ‘rc’ versions are guaranteed to be semantically compatible with their target version</p>
+<p>the latest release candidate version of <code>openEHR-EHR-ITEM_TREE.medication.v1</code>, e.g. <code>v1.2.3-rc44</code>, because ‘rc’ versions are guaranteed to be semantically compatible with their target version</p>
 </li>
 </ul>
 </div>
 <div class="paragraph">
-<p>Because minor versions can include structural additions, it may be that in some cases, archetype external references need to be include a minor version as well - allowing an exact structual form of the archetype (interface) to be identified. Similarly For testing or other research purposes, it should probably be assumed that patch and <code>-rc</code> and <code>+u</code> versions of an archetype need to be referenced.</p>
+<p>Because minor versions can include structural additions, it may be that in some cases, archetype external references need to be include a minor version as well - allowing an exact structual form of the archetype (interface) to be identified. Similarly For testing or other research purposes, it should probably be assumed that patch and <code>-rc</code> and <code>-alpha</code> versions of an archetype need to be referenced.</p>
 </div>
 <div class="paragraph">
-<p>The general case is therefore assumed to be that an artefact reference is a <em>hrid_ref</em> , but most commonly an <em>ihrid_ref</em> .</p>
+<p>The general case is therefore assumed to be that an artefact reference is a <code>hrid_ref</code> , but most commonly an <code>ihrid_ref</code>.</p>
 </div>
 </div>
 <div class="sect3">
 <h4 id="_template_references_to_archetypes_and_templates">6.1.2. Template References to Archetypes and Templates</h4>
 <div class="paragraph">
-<p>Templates are normally designed as pre-cursors to software artefacts, such as forms, message definitions and document schemas. Consequently, their exact contents and structure are usually carefully controlled by their developers, in the interests of stability. To achieve this, references from templates to other templates or archetypes need to be able to refer to any level of version of the target artefact. During a development phase, it may be that the template references are limited to major versions of the human-readable identifier, i.e. the <em>ihrid_ref</em> . At some point it may be the case that the minor version must be included as well. As noted above, this is because minor versions of archetypes can include structural additions, and therefore affect the structure of the final document / data-set etc. It may even be the case that patch level versions need to be identified, so as to ensure no changes whatever can occur in the template, even if upgraded versions of the source artefacts become available.</p>
+<p>Templates are normally designed as pre-cursors to software artefacts, such as forms, message definitions and document schemas. Consequently, their exact contents and structure are usually carefully controlled by their developers, in the interests of stability. To achieve this, references from templates to other templates or archetypes need to be able to refer to any level of version of the target artefact. During a development phase, it may be that the template references are limited to major versions of the human-readable identifier, i.e. the <code>ihrid_ref</code> . At some point it may be the case that the minor version must be included as well. As noted above, this is because minor versions of archetypes can include structural additions, and therefore affect the structure of the final document / data-set etc. It may even be the case that patch level versions need to be identified, so as to ensure no changes whatever can occur in the template, even if upgraded versions of the source artefacts become available.</p>
 </div>
 <div class="paragraph">
 <p>Such tight control is not however a universal requirement. A conscious design decision may have been taken that says that the resulting software artefact contents are whatever results from the template definition at the time of publishing, assuming references to major versions only.</p>
@@ -1522,7 +1524,7 @@
 </ul>
 </div>
 <div class="paragraph">
-<p>In development and research environments, it is reasonable to allow <code>-rc</code> and <code>+u</code> variants as well.</p>
+<p>In development and research environments, it is reasonable to allow <code>-rc</code> and <code>-alpha</code> variants as well.</p>
 </div>
 <div class="paragraph">
 <p>The general case is therefore as for archetype external references: a template reference is a <code>hrid_ref</code> .</p>
@@ -1546,9 +1548,9 @@
 <div class="paragraph">
 <p>The following figure shows a number of archetypes related by specialisation.</p>
 </div>
-<div id="specialisation" class="imageblock text-center" style="text-align: center">
+<div id="specialisation_relationships" class="imageblock text-center" style="text-align: center">
 <div class="content">
-<img src="diagrams/specialisation.png" alt="specialisation" width="80%">
+<img src="diagrams/specialisation_relationships.png" alt="specialisation relationships" width="80%">
 </div>
 <div class="title">Figure 5. Specialisation Relationships</div>
 </div>
@@ -1593,7 +1595,7 @@
 </div>
 </div>
 <div class="paragraph">
-<p>This slot allows any archetype named openEHR-EHR-CLUSTER.device.v1 or openEHR-EHR-CLUSTER.device-xxx.v1, which used the ADL 1.4 method of signifying specialised archetypes.</p>
+<p>This slot allows any archetype named <code>openEHR-EHR-CLUSTER.device.v1</code> or <code>openEHR-EHR-CLUSTER.device-xxx.v1</code>, which used the ADL 1.4 method of signifying specialised archetypes.</p>
 </div>
 <div class="paragraph">
 <p>The rule for namespace inclusion is as for external references:</p>
@@ -1613,9 +1615,9 @@
 </div>
 </div>
 <div class="sect3">
-<h4 id="_adl_1_5_archetype_slots">6.2.2. ADL 1.5 Archetype Slots</h4>
+<h4 id="_adl_2_archetype_slots">6.2.2. ADL 2 Archetype Slots</h4>
 <div class="paragraph">
-<p>In ADL/AOM 1.5 a semantic slot type will be introduced in which matching archetypes are defined in the form of a constraint on the archetype concept (and optionally namespace), reminiscent of the SNOMED CT post-coordination constraint syntax. This is shown in the following example.</p>
+<p>In ADL 2 a slot can be defined using a semantic (rather than lexical) expression in which matching archetypes are defined in the form of a constraint on the archetype concept (and optionally namespace), reminiscent of the SNOMED CT post-coordination constraint syntax. This is shown in the following example.</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -1633,7 +1635,7 @@
 </div>
 </div>
 <div class="paragraph">
-<p>The above kind of referencing relies on an ontological underpinning for the <em>concept_id</em> part of the human-readable identifier.</p>
+<p>The above kind of referencing relies on an ontological underpinning for the <code>concept_id</code> part of the human-readable identifier.</p>
 </div>
 </div>
 </div>
@@ -1670,7 +1672,7 @@
 </div>
 </div>
 <div class="paragraph">
-<p>For this to be valid, the path <em>/data/events[at0006]/data/ items[at0004]/value/value</em> must exist within the earliest v1.x release of the archetype openEHR-EHR-OBSERVATION.pulse.v1, i.e. v1.0.0. If this path happened to have been added in a more recent minor release, the archetype reference would need to include the first minor version containing that path.</p>
+<p>For this to be valid, the path <code>/data/events[at0006]/data/items[at0004]/value/value</code> must exist within the earliest v1.x release of the archetype openEHR-EHR-OBSERVATION.pulse.v1, i.e. v1.0.0. If this path happened to have been added in a more recent minor release, the archetype reference would need to include the first minor version containing that path.</p>
 </div>
 <div class="paragraph">
 <p>Once an AQL query processor can work with a valid path, it will match the following data:</p>
@@ -1707,18 +1709,18 @@
 </div>
 <div class="listingblock">
 <div class="content">
-<pre>    configuration: archetype_config     template_config     subset_config       rm_release
-    archetype_config: { config_item }+
-    template_config: { config_item }*
-    subset_config: { config_item }*
-    rm_release: rm_name release_id
+<pre>    configuration:      archetype_config     template_config     subset_config       rm_release
+    archetype_config:   { config_item }+
+    template_config:    { config_item }*
+    subset_config:      { config_item }*
+    rm_release:         rm_name release_id
 
-    config_item: identifier [ revision_id [ commit_id ] ] [ signature ]
+    config_item:        identifier [ revision_id [ commit_id ] ] [ signature ]
 
-    signature: CHARACTER_SEQUENCE
-    revision_id: V_INTEGER
-    commit_id: V_INTEGER
-    release_id: V_STRING</pre>
+    signature:          CHARACTER_SEQUENCE
+    revision_id:        V_INTEGER
+    commit_id:          V_INTEGER
+    release_id:         V_STRING</pre>
 </div>
 </div>
 <div class="paragraph">
@@ -1771,13 +1773,13 @@
 <div class="ulist">
 <ul>
 <li>
-<p>Reconstitutability: firstly, it must be possible to re-connect data with the archetypes, templates and subsets, used to create them. This implies that the major and minor versions at least are recorded in data, since a minor version may have an effect on structure.</p>
+<p><em>Reconstitutability</em>: firstly, it must be possible to re-connect data with the archetypes, templates and subsets, used to create them. This implies that the major and minor versions at least are recorded in data, since a minor version may have an effect on structure.</p>
 </li>
 <li>
-<p>Querying: secondly, it must be possible to know what archetypes (including major version), and therefore what path-sets can be used for querying data - given that this may well include parents of specialised archteypes, not just the archetypes used to directly create the data.</p>
+<p><em>Querying</em>: secondly, it must be possible to know what archetypes (including major version), and therefore what path-sets can be used for querying data - given that this may well include parents of specialised archteypes, not just the archetypes used to directly create the data.</p>
 </li>
 <li>
-<p>Optimisation: we can also assume that in a typical production system handling millions of health records, that the size of artefect identifiers embedded in data (especially if repeated) may be an issue, and that some kind of space optimisation may be required.</p>
+<p><em>Optimisation</em>: we can also assume that in a typical production system handling millions of health records, that the size of artefect identifiers embedded in data (especially if repeated) may be an issue, and that some kind of space optimisation may be required.</p>
 </li>
 </ul>
 </div>
@@ -1787,13 +1789,13 @@
 <div class="ulist">
 <ul>
 <li>
-<p>Reconstitutability: it must be possible for the receiving system to be able to determine the relationship of each data element with the artefacts(s) used to create it, so that it can be correctly reconstituted in the receiver system environment.</p>
+<p><em>Reconstitutability</em>: it must be possible for the receiving system to be able to determine the relationship of each data element with the artefacts(s) used to create it, so that it can be correctly reconstituted in the receiver system environment.</p>
 </li>
 <li>
-<p>Querying: for ensuring the correct functioning of querying, the extract or message should potentially carry sufficient archetype lineage information the archetypes used in the data to allow querying at the receiver, particularly if the latter wants to be able to query using more general parents (e.g. a ‘problem’ archetype rather than some specific diagnosis specialisation).</p>
+<p><em>Querying</em>: for ensuring the correct functioning of querying, the extract or message should potentially carry sufficient archetype lineage information the archetypes used in the data to allow querying at the receiver, particularly if the latter wants to be able to query using more general parents (e.g. a ‘problem’ archetype rather than some specific diagnosis specialisation).</p>
 </li>
 <li>
-<p>Optimisation: a reasonable trade-off between space optimisation and clarity of representation must be used, given that messages, extracts etc flow between heterogeneous systems.</p>
+<p><em>Optimisation</em>: a reasonable trade-off between space optimisation and clarity of representation must be used, given that messages, extracts etc flow between heterogeneous systems.</p>
 </li>
 </ul>
 </div>
@@ -1801,20 +1803,16 @@
 <div class="sect3">
 <h4 id="_reconstitutability">6.6.2. Reconstitutability</h4>
 <div class="paragraph">
-<p>The reconstitutability requirement means recording archetype and template identifiers on the relevant nodes in the data. A basic form of this has always been used in openEHR, such that at archetype root nodes, the archetype identifier and if relevant the template identifier is recorded, and at interior nodes, the at-codes are recorded (formally, the archetype identifier and at-codes are recorded in the <em>LOCATABLE</em> .archetype_node_id attribute of each data node). For example, in data created based on openEHR Releases 1.0.2 or earlier, the archetype identifier references are of the form:</p>
+<p>The reconstitutability requirement means recording archetype and template identifiers on the relevant nodes in the data. A basic form of this has always been used in openEHR, such that at archetype root nodes, the archetype identifier and if relevant the template identifier is recorded, and at interior nodes, the at-codes are recorded (formally, the archetype identifier and at-codes are recorded in the <code>LOCATABLE</code> .archetype_node_id attribute of each data node). For example, in data created based on openEHR Releases 1.0.2 or earlier, the archetype identifier references are of the form:</p>
 </div>
-<div class="listingblock">
-<div class="content">
-<pre>    openEHR-EHR-EVALUATION.diagnosis.v1</pre>
-</div>
+<div class="paragraph">
+<p><code>openEHR-EHR-EVALUATION.diagnosis.v1</code></p>
 </div>
 <div class="paragraph">
 <p>With the more sophisticated identification system described here, these archetype references need to include namespace, and full version identifier, i.e.:</p>
 </div>
-<div class="listingblock">
-<div class="content">
-<pre>    org.openehr::openEHR-EHR-EVALUATION.diagnosis.v1.29.0</pre>
-</div>
+<div class="paragraph">
+<p><code>org.openehr::openEHR-EHR-EVALUATION.diagnosis.<strong>v1.29.0</strong></code></p>
 </div>
 <div class="paragraph">
 <p>References with no namespace will remain legal, since there should be no computational impediment to using uncontrolled archetypes and templates, e.g. in an experimental situation. The lack of minor and patch level version numbers should also be legal for non-namespaced identifiers, and be interpreted as meaning <code>0</code> in both cases, i.e. <code>.v1</code> means <code>.v1.0.0</code>.</p>
@@ -1823,7 +1821,7 @@
 <div class="sect3">
 <h4 id="_supporting_archetype_based_querying">6.6.3. Supporting Archetype-based Querying</h4>
 <div class="paragraph">
-<p>Querying of data in openEHR systems is assumed to be based on archetype ‘path-sets’, i.e. the set of paths extracted from an operational (flat-form) archetype. The paths are a slight simplification of standard X-paths. Two querying methods have been described to date, AQL and a-path, both making this assumption (see <em><a href="http://www.openehr.org/wiki/display/spec/openEHR+Query+Specifications">openEHR wiki</a></em> ).</p>
+<p>Querying of data in openEHR systems is assumed to be based on archetype ‘path-sets’, i.e. the set of paths extracted from an operational (flat-form) archetype. The paths are a slight simplification of standard X-paths. Two querying methods have been described to date, AQL and a-path, both making this assumption (see <a href="#openehr_query_aql">[openehr_query_aql]</a> ).</p>
 </div>
 <div class="paragraph">
 <p>Based on this assumption, given an archetype X used to create data, the following archetypes could be used for querying:</p>
@@ -1890,7 +1888,7 @@
 <div class="sect3">
 <h4 id="_optimisations">6.6.5. Optimisations</h4>
 <div class="paragraph">
-<p>In normal archetype-based data, both basic references and additional lineage information might be repeated throughout a given component, such as an openEHR or ISO 13606 <em>COMPOSITION</em> . Consider a <em>COMPOSITION</em> documenting problems &amp; diagnoses of the patient, where each problem is recorded using the archetype</p>
+<p>In normal archetype-based data, both basic references and additional lineage information might be repeated throughout a given component, such as an openEHR or ISO 13606 <code>COMPOSITION</code> . Consider a <code>COMPOSITION</code> documenting problems &amp; diagnoses of the patient, where each problem is recorded using the archetype</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -1907,7 +1905,7 @@
 </div>
 </div>
 <div class="paragraph">
-<p>In this example, the archetype reference lengths are 66, 57 and 54 characters respectively, i.e. a total of 177 characters. Repeated say 5 times would give 885 characters of identifier meta-data for the <em>COMPOSITION</em> , whose main clinical data could easily be similar. Even in an XML-based storage system, various kinds of compression are used, the identifier reference overhead might be considered as an unacceptable fraction of the overall data storage requirement.</p>
+<p>In this example, the archetype reference lengths are 66, 57 and 54 characters respectively, i.e. a total of 177 characters. Repeated say 5 times would give 885 characters of identifier meta-data for the <code>COMPOSITION</code> , whose main clinical data could easily be similar. Even in an XML-based storage system, various kinds of compression are used, the identifier reference overhead might be considered as an unacceptable fraction of the overall data storage requirement.</p>
 </div>
 <div class="paragraph">
 <p>It is therefore worth considering various simple optimisations, while retaining clarity and comprehensibility in the data. The following ideas are currently intended to be limited to serialised forms of data. They would therefore only require changes to openEHR XML-schemas rather than the abstract reference model.</p>
@@ -1928,7 +1926,7 @@
 </div>
 </div>
 <div class="paragraph">
-<p>The identifiers <code>id01</code>, <code>id02</code> etc would then be used in the data, reducing the identifier overhead by perhaps 50% in some cases. This possibility would be enabled by adding an attribute to contain the variable definitions at the top of the <em>EHR_EXTRACT</em> type in the openEHR Reference Model, and in equivalent classes in other models.</p>
+<p>The identifiers <code>id01</code>, <code>id02</code> etc would then be used in the data, reducing the identifier overhead by perhaps 50% in some cases. This possibility would be enabled by adding an attribute to contain the variable definitions at the top of the <code>EHR_EXTRACT</code> type in the openEHR Reference Model, and in equivalent classes in other models.</p>
 </div>
 <div class="paragraph">
 <p>The use of such variables will slightly complicate querying and other data processing, since a query that returns part of a Composition would return data containing meaningless local variable names rather than proper archetype meta-data.</p>
@@ -1947,7 +1945,7 @@
 </ul>
 </div>
 <div class="paragraph">
-<p>Similarly, in the case of the class, the data may easily be based on a descendant (e.g. the <em>POINT_EVENT</em> class in openEHR) of the class mentioned in the archetype (e.g. <em>EVENT</em> ).</p>
+<p>Similarly, in the case of the class, the data may easily be based on a descendant (e.g. the <code>POINT_EVENT</code> class in openEHR) of the class mentioned in the archetype (e.g. <code>EVENT</code> ).</p>
 </div>
 <div class="paragraph">
 <p>We therefore assume that although some of the above assumptions might be available in very particular environments, they cannot be safely made in general, particularly since it can never be predicted where data may be shared.</p>
@@ -1968,7 +1966,7 @@
 </div>
 </div>
 <div class="paragraph">
-<p>The above syntax uses the '~' character in each identifier in the list to mean 'the missing parts are taken from the corresponding element(s) of the previous identifier in the list' (the inspiration is the use of the <code>~</code> in dictionaries to stand for the keyword). In this syntax, the concrete archetype used to create the data is guaranteed to appear first and in its entirety in the list.</p>
+<p>The above syntax uses the <code>~</code> character in each identifier in the list to mean 'the missing parts are taken from the corresponding element(s) of the previous identifier in the list' (the inspiration is the use of the <code>~</code> in dictionaries to stand for the keyword). In this syntax, the concrete archetype used to create the data is guaranteed to appear first and in its entirety in the list.</p>
 </div>
 <div class="paragraph">
 <p>Clearly in a particular system in which archetypes were only ever used from the same reference model as the system itself is built on, an even further reduced form of these references could be created. However, if the data were ever to be shared, such references would be in danger of being non-interoperable.</p>
@@ -2008,7 +2006,7 @@
 </div>
 <div id="integrity_check" class="imageblock text-center" style="text-align: center">
 <div class="content">
-<img src="diagrams/integrity_check.png" alt="integrity check" width="80%">
+<img src="diagrams/integrity_check.png" alt="integrity check" width="60%">
 </div>
 <div class="title">Figure 6. Integrity Check Scheme</div>
 </div>
@@ -2091,6 +2089,8 @@
 <div class="sect1">
 <h2 id="_references">References</h2>
 <div class="sectionbody">
+<div class="sect2">
+<h3 id="_publications">Publications</h3>
 <div class="olist bibliography">
 <ol class="bibliography">
 <li>
@@ -2100,10 +2100,78 @@
 <p><a id="Beale_2002"></a>[Beale_2002] Beale T. <strong>Archetypes: Constraint-based Domain Models for Future-proof Information Systems.</strong> Eleventh OOPSLA Workshop on Behavioral Semantics: Serving the Customer (Seattle, Washington, USA, November 4, 2002). Edited by Kenneth Baclawski and Haim Kilov. Northeastern University, Boston, 2002, pp. 16-32. Available at <a href="http://www.openehr.org/files/resources/publications/archetypes/archetypes_beale_oopsla_2002.pdf" class="bare">http://www.openehr.org/files/resources/publications/archetypes/archetypes_beale_oopsla_2002.pdf</a> .</p>
 </li>
 <li>
+<p><a id="Beale_Heard_2007"></a>[Beale_Heard_2007] <strong>An Ontology-based Model of Clinical Information</strong>. pp 760-764 Proceedings MedInfo 2007, K. Kuhn et al. (Eds), IOS Publishing 2007. Available at <a href="http://www.openehr.org/files/resources/publications/health_ict/MedInfo2007-BealeHeard.pdf" class="bare">http://www.openehr.org/files/resources/publications/health_ict/MedInfo2007-BealeHeard.pdf</a> .</p>
+</li>
+<li>
+<p><a id="Eiffel"></a>[Eiffel] Meyer B. <strong>Eiffel the Language (2nd Ed).</strong> Prentice Hall, 1992.</p>
+</li>
+<li>
+<p><a id="Hein"></a>[Hein] Hein J L. Discrete Structures, Logic and Computability (2nd Ed). Jones and Bartlett 2002.</p>
+</li>
+<li>
+<p><a id="Kilov_Ross"></a>[Kilov_Ross] Kilov H, Ross J. <strong>Information Modelling: an Object-Oriented Approach.</strong> Prentice Hall 1994.
+Guarino N, Poli R. Kluwer Academic Publishers. 1993 (Aug revision).</p>
+</li>
+<li>
+<p><a id="Martin"></a>[Martin] Martin P. <strong>Translations between UML, OWL, KIF and the WebKB-2 languages (For-Taxonomy, Frame-CG, Formalized English)</strong>. May/June 2003. Available at <a href="http://www.webkb.org/doc/model/comparisons.html" class="bare">http://www.webkb.org/doc/model/comparisons.html</a> as at Aug 2004.</p>
+</li>
+<li>
+<p><a id="Rector"></a>[Rector] Rector A L. <strong>Clinical terminology: why is it so hard?</strong> Methods Inf Med. 1999 Dec;38(4-5):239-52. Available at <a href="http://www.cs.man.ac.uk/~rector/papers/Why-is-terminology-hard-single-r2.pdf" class="bare">http://www.cs.man.ac.uk/~rector/papers/Why-is-terminology-hard-single-r2.pdf</a> .</p>
+</li>
+<li>
+<p><a id="Object_Z"></a>[Object_Z] Smith G. The Object Z Specification Language. Kluwer Academic Publishers 2000. See <a href="http://www.itee.uq.edu.au/~smith/objectz.html" class="bare">http://www.itee.uq.edu.au/~smith/objectz.html</a> .</p>
+</li>
+<li>
+<p><a id="Sowa"></a>[Sowa] Sowa J F. <strong>Knowledge Representation: Logical, philosophical and Computational Foundations</strong>. 2000, Brooks/Cole, California.</p>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_resources">Resources</h3>
+<div class="olist bibliography">
+<ol class="bibliography">
+<li>
+<p><a id="bfo"></a>[bfo] Institute for Formal Ontology and Medical Information Science (IFOMIS). <strong>Basic Formal Ontology (BFO).</strong> <a href="http://ifomis.uni-saarland.de/bfo/" class="bare">http://ifomis.uni-saarland.de/bfo/</a> .</p>
+</li>
+<li>
 <p><a id="cov_contra"></a>[cov_contra] Wikipedia. <strong>Covariance and contravariance.</strong> See <a href="https://en.wikipedia.org/wiki/Covariance_and_contravariance_(computer_science" class="bare">https://en.wikipedia.org/wiki/Covariance_and_contravariance_(computer_science</a>) .</p>
 </li>
 <li>
-<p><a id="uri_syntax"></a>[uri_syntax] Uniform Resource Identifier (URI): Generic Syntax, Internet proposed standard, January 2005; see <a href="http://www.ietf.org/rfc/rfc3986.txt" class="bare">http://www.ietf.org/rfc/rfc3986.txt</a> .</p>
+<p><a id="FMA"></a>[FMA] <a href="http://sig.biostr.washington.edu/projects/fm/" class="bare">http://sig.biostr.washington.edu/projects/fm/</a> .</p>
+</li>
+<li>
+<p><a id="GeHR_AUS"></a>[GeHR_AUS] Heard S, Beale T. <strong>The Good Electronic Health Record (GeHR) (Australia).</strong> See <a href="http://www.openehr.org/resources/related_projects#gehraus" class="bare">http://www.openehr.org/resources/related_projects#gehraus</a> .</p>
+</li>
+<li>
+<p><a id="hl7_v3_rim"></a>[hl7_v3_rim] HL7. HL7 v3 RIM. See <a href="http://www.hl7.org" class="bare">http://www.hl7.org</a> .</p>
+</li>
+<li>
+<p><a id="Horrocks_owl"></a>[Horrocks_owl] Patel-Schneider P, Horrocks I, Hayes P. <strong>OWL Web Ontology Language Semantics and Abstract Syntax.</strong> See <a href="http://w3c.org/TR/owl-semantics/" class="bare">http://w3c.org/TR/owl-semantics/</a> .</p>
+</li>
+<li>
+<p><a id="IAO"></a>[IAO] <strong>Information Artefact Ontology</strong>.  <a href="https://code.google.com/p/information-artifact-ontology/" class="bare">https://code.google.com/p/information-artifact-ontology/</a> .</p>
+</li>
+<li>
+<p><a id="IHTSDO"></a>[IHTSDO] International Health Terminology Standards Development Organisation, <a href="http://www.ihtsdo.org" class="bare">http://www.ihtsdo.org</a>.</p>
+</li>
+<li>
+<p><a id="Martin"></a>[Martin] Martin P. <strong>Translations between UML, OWL, KIF and the WebKB-2 languages (For-Taxonomy, Frame-CG, Formalized English)</strong>. May/June 2003. Available at <a href="http://www.webkb.org/doc/model/comparisons.html" class="bare">http://www.webkb.org/doc/model/comparisons.html</a> as at Aug 2004.</p>
+</li>
+<li>
+<p><a id="OBO"></a>[OBO] <strong>The Open Biological and Biomedical Ontologies</strong>. See <a href="http://www.obofoundry.org/" class="bare">http://www.obofoundry.org/</a> .</p>
+</li>
+<li>
+<p><a id="OCL"></a>[OCL] <strong>The Object Constraint Language 2.0.</strong> Object Management Group (OMG). Available at <a href="http://www.omg.org/cgi-bin/doc?ptc/2003-10-14" class="bare">http://www.omg.org/cgi-bin/doc?ptc/2003-10-14</a> .</p>
+</li>
+<li>
+<p><a id="OGMS"></a>[OGMS] <strong>Ontology for General Medical Science (OGMS)</strong>. <a href="https://code.google.com/p/ogms/" class="bare">https://code.google.com/p/ogms/</a> .</p>
+</li>
+<li>
+<p><a id="Perl_regex"></a>[Perl_regex] Perl.org. Perl Regular Expressions. Available at <a href="http://perldoc.perl.org/perlre.html" class="bare">http://perldoc.perl.org/perlre.html</a> .</p>
+</li>
+<li>
+<p><a id="Protege"></a>[Protege] Stanford University. See <a href="http://protege.stanford.edu/" class="bare">http://protege.stanford.edu/</a> .</p>
 </li>
 <li>
 <p><a id="rfc2781"></a>[rfc2781] IETF. <strong>RFC 2781.</strong> See <a href="http://tools.ietf.org/html/rfc2781" class="bare">http://tools.ietf.org/html/rfc2781</a>.</p>
@@ -2112,88 +2180,13 @@
 <p><a id="rfc5646"></a>[rfc5646] IETF. <strong>RFC 5646.</strong> Available at <a href="http://tools.ietf.org/html/rfc5646" class="bare">http://tools.ietf.org/html/rfc5646</a>.</p>
 </li>
 <li>
-<p><a id="openehr_aom"></a>[openehr_aom] The openEHR Foundation. <strong>The openEHR Archetype Object Model.</strong> See <a href="http://www.openehr.org/releases/trunk/architecture/am/aom2.pdf" class="bare">http://www.openehr.org/releases/trunk/architecture/am/aom2.pdf</a> .</p>
-</li>
-<li>
-<p><a id="beale_ocl"></a>[beale_ocl] Beale T. A Short Review of OCL. See <a href="http://www.deepthought.com.au/it/ocl_review.html" class="bare">http://www.deepthought.com.au/it/ocl_review.html</a>.</p>
-</li>
-<li>
-<p><a id="EHR_IM"></a>[EHR_IM] The openEHR Foundation. <strong>The EHR Information Model</strong>. <a href="http://www.openehr.org/releases/trunk/architecture/rm/ehr_im.pdf" class="bare">http://www.openehr.org/releases/trunk/architecture/rm/ehr_im.pdf</a> .</p>
-</li>
-<li>
-<p>Dolin R, Elkin P, Mead C et al. HL7 Templates Proposal. 2002. Available at <a href="http://www.hl7.org" class="bare">http://www.hl7.org</a> .</p>
-</li>
-<li>
-<p>Heard S, Beale T. Archetype Definitions and Principles. See <a href="http://www.openehr.org/repositories/spec-dev/latest/publishing/architecture/archetypes/principles/REV_HIST.html" class="bare">http://www.openehr.org/repositories/spec-dev/latest/publishing/architecture/archetypes/principles/REV_HIST.html</a> .</p>
-</li>
-<li>
-<p>Heard S, Beale T. The openEHR Archetype System. See <a href="http://www.openehr.org/repositories/spec-dev/latest/publishing/architecture/archetypes/system/REV_HIST.html" class="bare">http://www.openehr.org/repositories/spec-dev/latest/publishing/architecture/archetypes/system/REV_HIST.html</a> .</p>
-</li>
-<li>
-<p><a id="Hein"></a>[Hein] Hein J L. Discrete Structures, Logic and Computability (2nd Ed). Jones and Bartlett 2002.</p>
-</li>
-<li>
-<p><a id="Kilov_Ross"></a>[Kilov_Ross] Kilov H, Ross J. <strong>Information Modelling: an Object-Oriented Approach.</strong> Prentice Hall 1994.</p>
-</li>
-<li>
-<p><a id="GeHR_AUS"></a>[GeHR_AUS] Heard S, Beale T. <strong>The Good Electronic Health Record (GeHR) (Australia).</strong> See <a href="http://www.openehr.org/resources/related_projects#gehraus" class="bare">http://www.openehr.org/resources/related_projects#gehraus</a> .</p>
-</li>
-<li>
-<p><a id="Gruber"></a>[Gruber] Gruber T R. <strong>Toward Principles for the Design of Ontologies Used for Knowledge Sharing.</strong> in Formal Ontology in Conceptual Analysis and Knowledge Representation. Eds Guarino N, Poli R. Kluwer Academic Publishers. 1993 (Aug revision).</p>
-</li>
-<li>
-<p><a id="Martin"></a>[Martin] Martin P. <strong>Translations between UML, OWL, KIF and the WebKB-2 languages (For-Taxonomy, Frame-CG, Formalized English)</strong>. May/June 2003. Available at <a href="http://www.webkb.org/doc/model/comparisons.html" class="bare">http://www.webkb.org/doc/model/comparisons.html</a> as at Aug 2004.</p>
-</li>
-<li>
-<p><a id="Eiffel"></a>[Eiffel] Meyer B. <strong>Eiffel the Language (2nd Ed).</strong> Prentice Hall, 1992.</p>
-</li>
-<li>
-<p><a id="Horrocks_owl"></a>[Horrocks_owl] Patel-Schneider P, Horrocks I, Hayes P. <strong>OWL Web Ontology Language Semantics and Abstract Syntax.</strong> See <a href="http://w3c.org/TR/owl-semantics/" class="bare">http://w3c.org/TR/owl-semantics/</a> .</p>
-</li>
-<li>
-<p><a id="Object_Z"></a>[Object_Z] Smith G. The Object Z Specification Language. Kluwer Academic Publishers 2000. See <a href="http://www.itee.uq.edu.au/~smith/objectz.html" class="bare">http://www.itee.uq.edu.au/~smith/objectz.html</a> .</p>
-</li>
-<li>
-<p><a id="Perl_regex"></a>[Perl_regex] Perl.org. Perl Regular Expressions. Available at <a href="http://perldoc.perl.org/perlre.html" class="bare">http://perldoc.perl.org/perlre.html</a> .</p>
-</li>
-<li>
-<p><a id="IHTSDO"></a>[IHTSDO] International Health Terminology Standards Development Organisation, <a href="http://www.ihtsdo.org" class="bare">http://www.ihtsdo.org</a>.</p>
-</li>
-<li>
-<p><a id="Sowa"></a>[Sowa] Sowa J F. <strong>Knowledge Representation: Logical, philosophical and Computational Foundations</strong>. 2000, Brooks/Cole, California.</p>
-</li>
-<li>
-<p>HL7 v3 RIM. See <a href="http://www.hl7.org" class="bare">http://www.hl7.org</a> .</p>
-</li>
-<li>
-<p>HL7 Templates Proposal. See <a href="http://www.hl7.org" class="bare">http://www.hl7.org</a> .</p>
-</li>
-<li>
-<p><a id="openehr_ehr"></a>[openehr_ehr] openEHR. <strong>EHR Information Model.</strong> See <a href="http://www.openehr.org/releases/trunk/architecture/rm/ehr_im.pdf" class="bare">http://www.openehr.org/releases/trunk/architecture/rm/ehr_im.pdf</a>.</p>
-</li>
-<li>
-<p><a id="openehr_data_types"></a>[openehr_data_types] openEHR. <strong>Data Types Information Model.</strong> See <a href="http://www.openehr.org/releases/trunk/architecture/rm/data_types_im.pdf" class="bare">http://www.openehr.org/releases/trunk/architecture/rm/data_types_im.pdf</a>.</p>
-</li>
-<li>
-<p><a id="openehr_adl2"></a>[openehr_adl2] The openEHR Foundation. <strong>Archetype Definition Language (ADL2).</strong> Available at <a href="http://www.openehr.org/releases/trunk/architecture/am/adl2.pdf" class="bare">http://www.openehr.org/releases/trunk/architecture/am/adl2.pdf</a> .</p>
-</li>
-<li>
-<p><a id="openehr_aom2"></a>[openehr_aom2] The openEHR Foundation. <strong>Archetype Object Model (AOM2).</strong> Available at <a href="http://www.openehr.org/releases/trunk/architecture/am/aom2.pdf" class="bare">http://www.openehr.org/releases/trunk/architecture/am/aom2.pdf</a> .</p>
-</li>
-<li>
-<p><a id="openehr_templates"></a>[openehr_templates] The openEHR Foundation. <strong>Template Guide</strong> Available at <a href="http://www.openehr.org/releases/trunk/architecture/am/template_guide.pdf" class="bare">http://www.openehr.org/releases/trunk/architecture/am/template_guide.pdf</a> .</p>
-</li>
-<li>
-<p><a id="knowledge_artefact_identification"></a>[knowledge_artefact_identification] The openEHR Foundation. <strong>Knowledge Artefact Identification specification.</strong> Available at <a href="http://www.openehr.org/releases/trunk/architecture/am/knowledge_id_system.pdf" class="bare">http://www.openehr.org/releases/trunk/architecture/am/knowledge_id_system.pdf</a> .</p>
-</li>
-<li>
-<p><a id="perl_regex"></a>[perl_regex] Perl Regular Expressions. See <a href="http://www.perldoc.com/perl5.6/pod/perlre.html" class="bare">http://www.perldoc.com/perl5.6/pod/perlre.html</a> .</p>
-</li>
-<li>
-<p>SynEx project, UCL. <a href="http://www.chime.ucl.ac.uk/HealthI/SynEx/" class="bare">http://www.chime.ucl.ac.uk/HealthI/SynEx/</a> .</p>
+<p><a id="synex"></a>[synex] SynEx project, UCL. <a href="http://www.chime.ucl.ac.uk/HealthI/SynEx/" class="bare">http://www.chime.ucl.ac.uk/HealthI/SynEx/</a> .</p>
 </li>
 <li>
 <p><a id="sem_ver"></a>[sem_ver] Semantic Versioning. <a href="http://semver.org" class="bare">http://semver.org</a> .</p>
+</li>
+<li>
+<p><a id="uri_syntax"></a>[uri_syntax] Uniform Resource Identifier (URI): Generic Syntax, Internet proposed standard, January 2005; see <a href="http://www.ietf.org/rfc/rfc3986.txt" class="bare">http://www.ietf.org/rfc/rfc3986.txt</a> .</p>
 </li>
 <li>
 <p><a id="w3c_owl"></a>[w3c_owl] W3C. <strong>OWL - the Web Ontology Language</strong>. See <a href="http://www.w3.org/TR/2003/CR-owl-ref-20030818/" class="bare">http://www.w3.org/TR/2003/CR-owl-ref-20030818/</a> .</p>
@@ -2207,11 +2200,52 @@
 </ol>
 </div>
 </div>
+<div class="sect2">
+<h3 id="_openehr_resources">openEHR Resources</h3>
+<div class="olist bibliography">
+<ol class="bibliography">
+<li>
+<p><a id="openehr_overview"></a>[openehr_overview] The openEHR Architecture Overview. See <a href="http://www.openehr.org/releases/trunk/architecture/overview.pdf" class="bare">http://www.openehr.org/releases/trunk/architecture/overview.pdf</a> .</p>
+</li>
+<li>
+<p><a id="openehr_am_overview"></a>[openehr_am_overview] The openEHR Archetypes Technical Overview. See <a href="http://www.openehr.org/releases/trunk/architecture/am/archetype_technical_overview.pdf" class="bare">http://www.openehr.org/releases/trunk/architecture/am/archetype_technical_overview.pdf</a>.</p>
+</li>
+<li>
+<p><a id="openehr_am_principles"></a>[openehr_am_principles]. Archetype Definitions and Principles. See <a href="http://www.openehr.org/repositories/spec-dev/latest/publishing/architecture/archetypes/principles/REV_HIST.html" class="bare">http://www.openehr.org/repositories/spec-dev/latest/publishing/architecture/archetypes/principles/REV_HIST.html</a>.</p>
+</li>
+<li>
+<p><a id="openehr_am_adl"></a>[openehr_am_adl] The openEHR Foundation. <strong>Archetype Definition Language (ADL2).</strong> Available at <a href="http://www.openehr.org/releases/trunk/architecture/am/adl2.pdf" class="bare">http://www.openehr.org/releases/trunk/architecture/am/adl2.pdf</a> .</p>
+</li>
+<li>
+<p><a id="openehr_am_aom"></a>[openehr_am_aom] The openEHR Foundation. <strong>Archetype Object Model (AOM2).</strong> Available at <a href="http://www.openehr.org/releases/trunk/architecture/am/aom2.pdf" class="bare">http://www.openehr.org/releases/trunk/architecture/am/aom2.pdf</a> .</p>
+</li>
+<li>
+<p><a id="openehr_am_system"></a>[openehr_am_system] The openEHR Archetype System. See <a href="http://www.openehr.org/repositories/spec-dev/latest/publishing/architecture/archetypes/system/REV_HIST.html" class="bare">http://www.openehr.org/repositories/spec-dev/latest/publishing/architecture/archetypes/system/REV_HIST.html</a> .</p>
+</li>
+<li>
+<p><a id="openehr_am_templates"></a>[openehr_am_templates] The openEHR Foundation. <strong>Template Guide</strong> Available at <a href="http://www.openehr.org/releases/trunk/architecture/am/template_guide.pdf" class="bare">http://www.openehr.org/releases/trunk/architecture/am/template_guide.pdf</a> .</p>
+</li>
+<li>
+<p><a id="openehr_am_identification"></a>[openehr_am_identification] The openEHR Foundation. <strong>Archetype Identification specification.</strong> Available at <a href="http://www.openehr.org/releases/trunk/architecture/am/knowledge_id_system.pdf" class="bare">http://www.openehr.org/releases/trunk/architecture/am/knowledge_id_system.pdf</a> .</p>
+</li>
+<li>
+<p><a id="openehr_query_aql"></a>[openehr_query_aql] The openEHR Archetype Query language (AQL). See <a href="https://openehr.atlassian.net/wiki/display/spec/Archetype+Query+Language+Description" class="bare">https://openehr.atlassian.net/wiki/display/spec/Archetype+Query+Language+Description</a> .</p>
+</li>
+<li>
+<p><a id="openehr_rm_data_types"></a>[openehr_rm_data_types] openEHR. <strong>Data Types Information Model.</strong> See <a href="http://www.openehr.org/releases/trunk/architecture/rm/data_types_im.pdf" class="bare">http://www.openehr.org/releases/trunk/architecture/rm/data_types_im.pdf</a>.</p>
+</li>
+<li>
+<p><a id="openehr_rm_ehr"></a>[openehr_rm_ehr] The openEHR Foundation. <strong>The EHR Information Model</strong>. <a href="http://www.openehr.org/releases/trunk/architecture/rm/ehr_im.pdf" class="bare">http://www.openehr.org/releases/trunk/architecture/rm/ehr_im.pdf</a> .</p>
+</li>
+</ol>
+</div>
+</div>
+</div>
 </div>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2015-07-02 19:46:50 BST
+Last updated 2015-07-03 17:04:37 BST
 </div>
 </div>
 </body>
