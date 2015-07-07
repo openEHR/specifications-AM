@@ -28,13 +28,13 @@ run_asciidoctor () {
 	out_file=${1}.html
 
 	# work out the options
-	pdf_opts="-a current_year=$year \
+	opts="-a current_year=$year \
 		-a resources_dir=$resources_dir \
 		-a stylesdir=$stylesdir \
 		-a stylesheet=$stylesheet 
 		--out-file=$out_file"
 
-	asciidoctor ${pdf_opts} $2
+	asciidoctor ${opts} $2
 	echo generated $(pwd)/$out_file
 }
 
@@ -42,7 +42,7 @@ run_asciidoctor_pdf () {
 	out_file=${1}.pdf
 
 	# work out the options
-	pdf_opts="-a current_year=$year \
+	opts="-a current_year=$year \
 		-a stylesdir=$stylesdir \
 		-a resources_dir=$resources_dir \
 		-a pdf-style=$pdf_theme \
@@ -52,10 +52,10 @@ run_asciidoctor_pdf () {
 
 	# -a pdf-fontsdir=path/to/fonts 
 	if [ "$pdf_trace" = true ]; then
-		pdf_opts="${pdf_opts} --trace"
+		opts="${opts} --trace"
 	fi
 
-	asciidoctor ${pdf_opts} $2
+	asciidoctor ${opts} $2
 	echo generated $(pwd)/$out_file
 }
 
