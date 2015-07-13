@@ -6,7 +6,7 @@ Figure [[constraint_model_top]] and Figure [[constraint_model_bottom]] illustrat
 
 [.text-center]
 .constraint_model Package
-image::uml_diagrams/AOM-constraint_model-top.svg[id=constraint_model_top, align="center"]
+image::{uml_export_dir}/diagrams/AOM-constraint_model-top.svg[id=constraint_model_top, align="center"]
 
 The definition part of an archetype is an instance of a `C_COMPLEX_OBJECT` and consists of alternate layers of object and attribute constrainer nodes, each containing the next level of nodes. At the leaves are primitive object constrainer nodes constraining primitive types such as `String` , `Integer` etc. There are also nodes that represent internal references to other nodes, constraint reference nodes that refer to a text constraint in the constraint binding part of the archetype terminology, and archetype constraint nodes, which represent constraints on other archetypes allowed to appear at a given point. The full list of concrete node types is as follows:
 
@@ -21,7 +21,7 @@ The constraints define which configurations of reference model class instances a
 
 [.text-center]
 .constraint_model.primitive Package
-image::uml_diagrams/AOM-constraint_model-bottom.svg[id=constraint_model_bottom, align="center"]
+image::{uml_export_dir}/diagrams/AOM-constraint_model-bottom.svg[id=constraint_model_bottom, align="center"]
 
 The type-name nomenclature `C_XXX` used here is intended to be read as “constraint on objects of type `XXXX` ”, i.e. a `C_COMPLEX_OBJECT` is a “constraint on a complex object (defined by a complex reference model type)”. These type names are used below in the formal model.
 
@@ -170,7 +170,7 @@ Since `C_PRIMITIVEs` don’t have type names in ADL, the type name is inferred b
 
 [.text-center]
 .Enumerated Constraint
-image::diagrams/enumerated_type_constraint.png[id=enumerated_constraint, align="center"]
+image::diagrams/enumerated_type_constraint.png[id=enumerated_constraint, align="center", width="70%"]
 
 A parser that deserialises from an object dump format such as ODIN, JSON or XML will not need to do this.
 
@@ -190,7 +190,7 @@ Tuple constraints are designed to account for the very common need to constrain 
 
 [.text-center]
 .Tuple Constraint Model
-image::uml_diagrams/AOM-constraint_model-tuple.svg[id=tuple_constraint_model, align="center"]
+image::{uml_export_dir}/diagrams/AOM-constraint_model-tuple.svg[id=tuple_constraint_model, align="center"]
 
 In this model, the type `C_ATTRIBUTE_TUPLE` groups the co-constrained `C_ATTRIBUTE`s under a `C_COMPLEX_OBJECT`. Currently the concrete type is limited to being `C_PRIMITIVE_OBJECT`, to reduce complexity, and since this caters for the known examples of tuple constraints. In principle, any `C_DEFINED_OBJECT` would be allowed, and this may change in the future.
 
@@ -200,7 +200,7 @@ These additions allow standard constraint structures (i.e. `C_ATTRIBUTE` / `C_CO
 
 [.text-center]
 .Tuple Constraint Example AOM Instances
-image::uml_diagrams/AOM-ordinal_tuple_example.svg[id=ordinal_tuple_example, align="center"]
+image::{uml_export_dir}/diagrams/AOM-ordinal_tuple_example.svg[id=ordinal_tuple_example, align="center"]
 
 [.text-center]
 .Tuple Constraint Example Data
@@ -234,9 +234,9 @@ The ‘terminal `C_COMPLEX_OBJECT` ’ can be understood as a placeholder node p
 
 == Class Definitions
 
-include::./classes/archetype_constraint.adoc[]
+include::{uml_export_dir}/classes/archetype_constraint.adoc[]
 
-include::./classes/c_attribute.adoc[]
+include::{uml_export_dir}/classes/c_attribute.adoc[]
 
 === Conformance Semantics
 
@@ -337,9 +337,9 @@ The following validity rule applies to cardinality redefinition in a specialised
 [.rule]
 *VSANCC*: specialised archetype attribute node cardinality conformance: the cardinality of a redefined (multiply-valued) attribute node in a specialised archetype, if stated, must conform to the cardinality of the corresponding node in the flat parent archetype by either being identical, or being wholly contained by the latter.
 
-include::./classes/cardinality.adoc[]
+include::{uml_export_dir}/classes/cardinality.adoc[]
 
-include::./classes/c_object.adoc[]
+include::{uml_export_dir}/classes/c_object.adoc[]
 
 == Occurrences inferencing rules
 
@@ -473,9 +473,9 @@ _Deprecated_: *VSONI* specialised archetype redefined object node identifier val
 [.rule]
 *VSSM* specialised archetype sibling order validity: the sibling order node id code used in a sibling marker in a specialised archetype must refer to a node found within the same container in the flat parent archetype.
 
-include::./classes/sibling_order.adoc[]
-include::./classes/c_defined_object.adoc[]
-include::./classes/c_complex_object.adoc[]
+include::{uml_export_dir}/classes/sibling_order.adoc[]
+include::{uml_export_dir}/classes/c_defined_object.adoc[]
+include::{uml_export_dir}/classes/c_complex_object.adoc[]
 
 == Validity Rules
 
@@ -484,7 +484,7 @@ The validity rules for `C_COMPLEX_OBJECTs` are as follows:
 [.rule]
 *VCATU* attribute uniqueness: sibling attributes occurring within an object node must be uniquely named with respect to each other, in the same way as for class definitions in an object reference model.
 
-include::./classes/c_archetype_root.adoc[]
+include::{uml_export_dir}/classes/c_archetype_root.adoc[]
 
 ==== Validity Rules
 
@@ -510,7 +510,7 @@ The following validity rules apply to a `C_ARCHETYPE_ROOT` that specialises a `A
 [.rule]
 *VARXID* external reference slot filling id validity: an external reference node defined as a filler for a slot in the parent archetype must have a node id that is a specialisation of that of the slot.
 
-include::./classes/archetype_slot.adoc[]
+include::{uml_export_dir}/classes/archetype_slot.adoc[]
 
 ==== Validity Rules
 
@@ -554,7 +554,7 @@ The following validity rules apply to `ARCHETYPE_SLOTs` defined as the specialis
 [.rule]
 *VDSSC* specialised archetype slot definition closed validity. In the specialisation of an archetype slot, either the slot can be specified to be closed (is_closed = True) or the slot can be narrowed, but not both.
 
-include::./classes/c_complex_object_proxy.adoc[]
+include::{uml_export_dir}/classes/c_complex_object_proxy.adoc[]
 
 ==== Validity Rules
 
@@ -571,7 +571,7 @@ The following validity rule applies to the redefinition of an internal reference
 [.rule]
 *VSUNT* use_node specialisation parent validity: a `C_COMPLEX_OBJECT_PROXY` node may be redefined in a specialised archetype by another `C_COMPLEX_OBJECT_PROXY` (e.g. in order to redefine occurrences), or by a `C_COMPLEX_OBJECT` structure that legally redefines the target `C_COMPLEX_OBJECT` node referred to by the reference.
 
-include::./classes/c_primitive_object.adoc[]
+include::{uml_export_dir}/classes/c_primitive_object.adoc[]
 
 ==== Validity Rules
 
@@ -580,18 +580,18 @@ The validity rules for `C_PRIMITIVE_OBJECTs` are as follows:
 [.rule]
 *VOBAV* object node assumed value validity: the value of an assumed value must fall within the value space defined by the constraint to which it is attached.
 
-include::./classes/c_boolean.adoc[]
-include::./classes/c_string.adoc[]
-include::./classes/c_ordered.adoc[]
-include::./classes/c_integer.adoc[]
-include::./classes/c_real.adoc[]
-include::./classes/c_temporal.adoc[]
-include::./classes/c_date.adoc[]
-include::./classes/c_time.adoc[]
-include::./classes/c_date_time.adoc[]
-include::./classes/c_duration.adoc[]
-include::./classes/c_terminology_code.adoc[]
-include::./classes/terminology_code.adoc[]
-include::./classes/c_second_order.adoc[]
-include::./classes/c_attribute_tuple.adoc[]
+include::{uml_export_dir}/classes/c_boolean.adoc[]
+include::{uml_export_dir}/classes/c_string.adoc[]
+include::{uml_export_dir}/classes/c_ordered.adoc[]
+include::{uml_export_dir}/classes/c_integer.adoc[]
+include::{uml_export_dir}/classes/c_real.adoc[]
+include::{uml_export_dir}/classes/c_temporal.adoc[]
+include::{uml_export_dir}/classes/c_date.adoc[]
+include::{uml_export_dir}/classes/c_time.adoc[]
+include::{uml_export_dir}/classes/c_date_time.adoc[]
+include::{uml_export_dir}/classes/c_duration.adoc[]
+include::{uml_export_dir}/classes/c_terminology_code.adoc[]
+include::{uml_export_dir}/classes/terminology_code.adoc[]
+include::{uml_export_dir}/classes/c_second_order.adoc[]
+include::{uml_export_dir}/classes/c_attribute_tuple.adoc[]
 

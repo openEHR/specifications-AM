@@ -1,0 +1,52 @@
+=== OBJECT_VERSION_ID Class
+
+[cols="^1,2,3"]
+|===
+|*Class*
+{set:cellbgcolor:lightblue}
+2+^|*OBJECT_VERSION_ID*
+
+|*Description*
+{set:cellbgcolor:lightblue}
+2+|Globally unique identifier for one version of a versioned object; lexical form:  +
+object_id  ::' creating_system_id  ::' version_tree_id 
+{set:cellbgcolor!}
+
+|*Inherit*
+{set:cellbgcolor:lightblue}
+2+|UID_BASED_ID
+{set:cellbgcolor!}
+
+|*Functions*
+{set:cellbgcolor:lightblue}
+^|*Signature*
+^|*Meaning*
+
+|
+{set:cellbgcolor:lightblue}
+|*object_id*: `UID`
+{set:cellbgcolor!}
+|Unique identifier for logical object of which this identifier identifies one version;  +
+normally the object_id will be the unique identifier of the version container  +
+containing the version referred to by this OBJECT_VERSION_ID instance. 
+
+|
+{set:cellbgcolor:lightblue}
+|*version_tree_id*: `VERSION_TREE_ID`
+{set:cellbgcolor!}
+|Tree identifier of this version with respect to other versions in the same version tree,  +
+as either 1 or 3 part dot-separated numbers, e.g.  1 ,  2.1.4 . 
+
+|
+{set:cellbgcolor:lightblue}
+|*creating_system_id*: `UID`
+{set:cellbgcolor!}
+|Identifier of the system that created the Version corresponding to this  +
+Object version id.
+
+|
+{set:cellbgcolor:lightblue}
+|*is_branch*: `boolean`
+{set:cellbgcolor!}
+|True if this version identifier represents a branch.
+|===

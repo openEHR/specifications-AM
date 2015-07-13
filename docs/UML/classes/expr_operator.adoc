@@ -1,0 +1,35 @@
+=== EXPR_OPERATOR Class
+
+[cols="^1,2,3"]
+|===
+|*Class*
+{set:cellbgcolor:lightblue}
+2+^|*_EXPR_OPERATOR (abstract)_*
+
+|*Description*
+{set:cellbgcolor:lightblue}
+2+|Abstract parent of operator types.
+{set:cellbgcolor!}
+
+|*Inherit*
+{set:cellbgcolor:lightblue}
+2+|EXPR_ITEM
+{set:cellbgcolor!}
+
+|*Attributes*
+{set:cellbgcolor:lightblue}
+^|*Signature*
+^|*Meaning*
+
+|*0..1*
+{set:cellbgcolor:lightblue}
+|*precedence_overridden*: `Boolean`
+{set:cellbgcolor!}
+|True if the natural precedence of operators is overridden in the expression represented by this node of the expression tree. If True, parentheses should be introduced around the totality of the syntax expression corresponding to this operator node and its operands.
+
+|*1..1*
+{set:cellbgcolor:lightblue}
+|*operator*: `OPERATOR_KIND`
+{set:cellbgcolor!}
+|Type of operator as an Integer value from the OPERATOR_KIND enumeration.
+|===

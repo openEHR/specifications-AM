@@ -1,0 +1,54 @@
+=== P_ARCHETYPE_TERMINOLOGY Class
+
+[cols="^1,2,3"]
+|===
+|*Class*
+{set:cellbgcolor:lightblue}
+2+^|*P_ARCHETYPE_TERMINOLOGY*
+
+|*Description*
+{set:cellbgcolor:lightblue}
+2+|Local ontology of an archetype.
+{set:cellbgcolor!}
+
+|*Attributes*
+{set:cellbgcolor:lightblue}
+^|*Signature*
+^|*Meaning*
+
+|*1..1*
+{set:cellbgcolor:lightblue}
+|*is_differential*: `Boolean`
+{set:cellbgcolor!}
+|
+
+|*1..1*
+{set:cellbgcolor:lightblue}
+|*original_language*: `String`
+{set:cellbgcolor!}
+|
+
+|*1..1*
+{set:cellbgcolor:lightblue}
+|*term_definitions*: `Hash<Hash<ARCHETYPE_TERM, String>, String>`
+{set:cellbgcolor!}
+|Directory of term definitions as a two-level  +
+table. The outer hash keys are term codes,  +
+e.g. "at0004", and the inner hash key are term  +
+attribute names, e.g. "text", "description" etc.
+
+|*0..1*
+{set:cellbgcolor:lightblue}
+|*term_bindings*: `Hash <Hash<Uri, String>, String>`
+{set:cellbgcolor!}
+|Directory of term bindings as a two-level  +
+table. The outer hash keys are local term codes,  +
+e.g. "at0004", and the inner hash keys are terminology  +
+code phrases, e.g. "SNOMED(2003)::163034007" etc.
+
+|*0..1*
+{set:cellbgcolor:lightblue}
+|*value_sets*: `Hash<VALUE_SET, String>`
+{set:cellbgcolor!}
+|
+|===

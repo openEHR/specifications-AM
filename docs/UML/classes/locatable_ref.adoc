@@ -1,0 +1,49 @@
+=== LOCATABLE_REF Class
+
+[cols="^1,2,3"]
+|===
+|*Class*
+{set:cellbgcolor:lightblue}
+2+^|*LOCATABLE_REF*
+
+|*Description*
+{set:cellbgcolor:lightblue}
+2+|Purpose Reference to a LOCATABLE instance inside the top-level content structure inside a VERSION<T>; the path attribute is applied to the object that VERSION.data points to. 
+{set:cellbgcolor!}
+
+|*Inherit*
+{set:cellbgcolor:lightblue}
+2+|OBJECT_REF
+{set:cellbgcolor!}
+
+|*Attributes*
+{set:cellbgcolor:lightblue}
+^|*Signature*
+^|*Meaning*
+
+|*0..1*
+{set:cellbgcolor:lightblue}
+|*path*: 
+{set:cellbgcolor!}
+|The path to an instance in question, as an absolute path with respect to  +
+the object found at VERSION.data. An empty path means that  +
+the object referred to by id being specified. 
+
+|*1..1 +
+(redefined)*
+{set:cellbgcolor:lightblue}
+|*id*: `UID_BASED_ID`
+{set:cellbgcolor!}
+|Globally unique id of an object, regardless of where it is stored.
+|*Functions*
+{set:cellbgcolor:lightblue}
+^|*Signature*
+^|*Meaning*
+
+|
+{set:cellbgcolor:lightblue}
+|*as_uri*: 
+{set:cellbgcolor!}
+|A URI form of the reference, created by concatenating the following:  +
+ ehr://  + id.value +  /  + path 
+|===

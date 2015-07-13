@@ -1,0 +1,44 @@
+=== QUERY_VARIABLE Class
+
+[cols="^1,2,3"]
+|===
+|*Class*
+{set:cellbgcolor:lightblue}
+2+^|*QUERY_VARIABLE*
+
+|*Description*
+{set:cellbgcolor:lightblue}
+2+|Definition of a variable whose value is derived from a query run on a data con-text in the operational environment. Typical uses of this kind of variable are to obtain values like the patient date of birth, sex, weight, and so on. It could also be used to obtain items from a knowledge context, such as a drug database.
+{set:cellbgcolor!}
+
+|*Inherit*
+{set:cellbgcolor:lightblue}
+2+|VARIABLE_DECLARATION
+{set:cellbgcolor!}
+
+|*Attributes*
+{set:cellbgcolor:lightblue}
+^|*Signature*
+^|*Meaning*
+
+|*1..1*
+{set:cellbgcolor:lightblue}
+|*context*: `String`
+{set:cellbgcolor!}
+|Optional name of context. This allows a basic separation of query types to be done in more sophisticated environments. Possible values might be “patient”, “medications” and so on. +
+Not yet standardised.
+
+|*1..1*
+{set:cellbgcolor:lightblue}
+|*query_id*: `String`
+{set:cellbgcolor!}
+|Identifier of query in the external context, e.g. “date_of_birth”. +
+Not yet standardised.
+
+|*0..1*
+{set:cellbgcolor:lightblue}
+|*query_args*: `List<String>`
+{set:cellbgcolor!}
+|Optional arguments to query. +
+Not yet standardised.
+|===

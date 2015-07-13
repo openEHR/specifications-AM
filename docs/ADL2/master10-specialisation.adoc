@@ -48,13 +48,13 @@ The example shown below is from an older version of the openEHR ‘Problem’ ar
                             DV_TEXT[id4]                                 -- *** NODE A
                         }
                     }
-                    ELEMENT[id5] occurrences ∈ {0..1} ∈ {..}-- Date of initial onset
-                    ELEMENT[id6] occurrences ∈ {0..1} ∈ {..}-- Age at initial onset
-                    ELEMENT[id7] occurrences ∈ {0..1} ∈ {..}-- Severity
-                    ELEMENT[id8] occurrences ∈ {0..1} ∈ {..}-- Clinical description
-                    ELEMENT[id10] occurrences ∈ {0..1} ∈ {..}-- Date clinically received
-                    CLUSTER[id11] occurrences ∈ {0..1} ∈ {..}-- Location
-                    CLUSTER[id14] occurrences ∈ {0..1} ∈ {..}-- Aetiology
+                    ELEMENT[id5] occurrences ∈ {0..1} ∈ {...}       -- Date of initial onset
+                    ELEMENT[id6] occurrences ∈ {0..1} ∈ {...}       -- Age at initial onset
+                    ELEMENT[id7] occurrences ∈ {0..1} ∈ {...}       -- Severity
+                    ELEMENT[id8] occurrences ∈ {0..1} ∈ {...}       -- Clinical description
+                    ELEMENT[id10] occurrences ∈ {0..1} ∈ {...}      -- Date clinically received
+                    CLUSTER[id11] occurrences ∈ {0..1} ∈ {...}      -- Location
+                    CLUSTER[id14] occurrences ∈ {0..1} ∈ {...}      -- Aetiology
                     -- etc
                 }
             }
@@ -62,7 +62,7 @@ The example shown below is from an older version of the openEHR ‘Problem’ ar
     }
 --------
 
-The second text below is from the ‘problem-diagnosis’ archetype, i.e. a ‘diagnosis’ specialisation of the general notion of ‘problem’. In this situation, the node ` [id2]` , with occurrences of 1, i.e. mandatory non-multiple, has its meaning narrowed to ` [id2.1]` ‘diagnosis’ (diagnosed problems are seen as a subset of all problems in medicine), while new sibling nodes are added to the items attribute to define details particular to recording a diagnosis. The extension nodes are identified by the codes ` [at0.32]` , ` [at0.35]` and ` [at0.37]` , with the latter two shown in elided form.
+The second text below is from the ‘problem-diagnosis’ archetype, i.e. a ‘diagnosis’ specialisation of the general notion of ‘problem’. In this situation, the node `[id2]`, with occurrences of 1, i.e. mandatory non-multiple, has its meaning narrowed to `[id2.1]` ‘diagnosis’ (diagnosed problems are seen as a subset of all problems in medicine), while new sibling nodes are added to the items attribute to define details particular to recording a diagnosis. The extension nodes are identified by the codes `[at0.32]` , `[at0.35]` and `[at0.37]`, with the latter two shown in elided form.
 
 [source, cadl]
 --------
@@ -86,15 +86,15 @@ The second text below is from the ‘problem-diagnosis’ archetype, i.e. a ‘d
                 }
             }
             after [id31]
-            CLUSTER[id0.35] occurrences ∈ {0..1} ∈ {..} -- Diag. criteria     -- ++ This node added
-            CLUSTER[id0.37] occurrences ∈ {0..1} ∈ {..} -- Clin. staging      -- ++ This node added
+            CLUSTER[id0.35] occurrences ∈ {0..1} ∈ {...}                    -- Diag. criteria     -- ++ This node added
+            CLUSTER[id0.37] occurrences ∈ {0..1} ∈ {...}                    -- Clin. staging      -- ++ This node added
         }
     }
 --------
 
 === Redefinition for Specialisation
 
-The example shown below illustrates redefinition in a specialised archetype. The first text is taken from the definition section of the ‘laboratory result’ `OBSERVATION` archetype (available on http://www.openehr.org/ckm/#showArchetype_1013.1.350[openEHR.org]), and contains an `ELEMENT` node whose identifier is `[id79]` , defined as ‘panel item’ in the archetype terminology (sibling nodes are not shown here). The intention is that the `id79` node be specialised into particular ‘panel items’ or analytes according to particular types of test result. Accordingly, the `id79` node has occurrences of ` 0..*` and its value is not constrained with respect to the reference model, meaning that the type of the `_value_` attirbute can be any descendant of `DATA_VALUE` .
+The example shown below illustrates redefinition in a specialised archetype. The first text is taken from the definition section of the ‘laboratory result’ `OBSERVATION` archetype (available at openEHR.org CKM <<>>), and contains an `ELEMENT` node whose identifier is `[id79]` , defined as ‘panel item’ in the archetype terminology (sibling nodes are not shown here). The intention is that the `id79` node be specialised into particular ‘panel items’ or analytes according to particular types of test result. Accordingly, the `id79` node has occurrences of `0..*` and its value is not constrained with respect to the reference model, meaning that the type of the `_value_` attirbute can be any descendant of `DATA_VALUE` .
 
 [source, cadl]
 [[redefinition-and-extension]]
@@ -108,8 +108,8 @@ The example shown below illustrates redefinition in a specialised archetype. The
                         data ∈ {
                             ITEM_TREE[id4] ∈ {
                                 items cardinality ∈ {0..*; unordered} ∈ {
-                                    CLUSTER[id5] occurrences ∈ {1} ∈ {..}      -- Specimen
-                                    ELEMENT[id8] occurrences ∈ {0..1} ∈ {..}   -- Diagnostic services
+                                    CLUSTER[id5] occurrences ∈ {1} ∈ {...}      -- Specimen
+                                    ELEMENT[id8] occurrences ∈ {0..1} ∈ {...}   -- Diagnostic services
                                     CLUSTER[id11] occurrences ∈ {0..*} ∈ {...} -- level 1
                                     ELEMENT[id79] occurrences ∈ {0..*}          -- panel item
                                     ELEMENT[id17] occurrences ∈ {0..1} ∈ {...} -- Overall Comment
@@ -141,13 +141,13 @@ The second text, below, is a specialised version of the laboratory result archet
                     }
                 }
             }
-            ELEMENT[id79.7] occurrences ∈ {0..1} ∈ {..} -- Free Triiodothyronine (Free T3)
-            ELEMENT[id79.8] occurrences ∈ {0..1} ∈ {..} -- Total Triiodothyronine (Total T3)
-            ELEMENT[id79.3] occurrences ∈ {0..1} ∈ {..} -- Free thyroxine (Free T4)
-            ELEMENT[id79.4] occurrences ∈ {0..1} ∈ {..} -- Total Thyroxine (Total T4)
-            ELEMENT[id79.5] occurrences ∈ {0..1} ∈ {..} -- T4 loaded uptake
-            ELEMENT[id79.9] occurrences ∈ {0..1} ∈ {..} -- Free Triiodothyronine index (Free T3 index)
-            ELEMENT[id79.6] occurrences ∈ {0..1} ∈ {..} -- Free thyroxine index (FTI)
+            ELEMENT[id79.7] occurrences ∈ {0..1} ∈ {...} -- Free Triiodothyronine (Free T3)
+            ELEMENT[id79.8] occurrences ∈ {0..1} ∈ {...} -- Total Triiodothyronine (Total T3)
+            ELEMENT[id79.3] occurrences ∈ {0..1} ∈ {...} -- Free thyroxine (Free T4)
+            ELEMENT[id79.4] occurrences ∈ {0..1} ∈ {...} -- Total Thyroxine (Total T4)
+            ELEMENT[id79.5] occurrences ∈ {0..1} ∈ {...} -- T4 loaded uptake
+            ELEMENT[id79.9] occurrences ∈ {0..1} ∈ {...} -- Free Triiodothyronine index (Free T3 index)
+            ELEMENT[id79.6] occurrences ∈ {0..1} ∈ {...} -- Free thyroxine index (FTI)
         }
     }
 --------
@@ -295,7 +295,7 @@ Because ADL is a block-structured language, the redefinition of nodes deep in th
                         DV_QUANTITY[id0.7] ∈ { ... }
                     }
                 }
-                ELEMENT[id79.7] occurrences ∈ {0..1} ∈ {..} -- Free T3
+                ELEMENT[id79.7] occurrences ∈ {0..1} ∈ {...} -- Free T3
                 ...
             }
         }
@@ -456,9 +456,9 @@ Parent archetype:
 
 [source, cadl]
 --------
-    ITEM_LIST[id3] ∈ {                                  -- general check list
-        items cardinality ∈ {0..*} ∈ {                  -- any number of items
-            ELEMENT[id12] occurrences ∈ {0..*} ∈ {}     -- generic checklist item
+    ITEM_LIST[id3] ∈ {                                       -- general check list
+        items cardinality ∈ {0..*} ∈ {                      -- any number of items
+            ELEMENT[id12] occurrences ∈ {0..*} ∈ {...}      -- generic checklist item
         }
     }
 --------
@@ -467,14 +467,14 @@ Child archetype:
 
 [source, cadl]
 --------
-    ITEM_LIST[id3] ∈ {                                    -- pre-operative check list
-        /items cardinality ∈ {3..10} ∈ {                 -- at least 3 mandatory items
-            ELEMENT[id12.1] occurrences ∈ {1} ∈ {}       -- item #1
-            ELEMENT[id12.2] occurrences ∈ {1} ∈ {}       -- item #2
-            ELEMENT[id12.3] occurrences ∈ {1} ∈ {}       -- item #3
-            ELEMENT[id12.4] occurrences ∈ {0..1} ∈ {}    -- item #4
+    ITEM_LIST[id3] ∈ {                                       -- pre-operative check list
+        /items cardinality ∈ {3..10} ∈ {                    -- at least 3 mandatory items
+            ELEMENT[id12.1] occurrences ∈ {1} ∈ {...}       -- item #1
+            ELEMENT[id12.2] occurrences ∈ {1} ∈ {...}       -- item #2
+            ELEMENT[id12.3] occurrences ∈ {1} ∈ {...}       -- item #3
+            ELEMENT[id12.4] occurrences ∈ {0..1} ∈ {...}    -- item #4
             ...
-            ELEMENT[id12.10] occurrences ∈ {0..1} ∈ {}   -- item #10
+            ELEMENT[id12.10] occurrences ∈ {0..1} ∈ {...}   -- item #10
         }
     }
 --------
@@ -564,7 +564,7 @@ Parent archetype:
                 items ∈ {
                     ELEMENT[id5] occurrences ∈ {0..1} ∈ {   -- Description
                         value ∈ {
-                            DV_TEXT[id7] ∈ {*}
+                            DV_TEXT[id7]
                         }
                     }
                 }
@@ -672,8 +672,8 @@ Parent (`openEHR-EHR-EVALUATION.problem.v1.0.3`):
         data ∈ {
             ITEM_TREE[id2] ∈ {
                 items cardinality ∈ {0..*; ordered} ∈ {
-                    ELEMENT[id3] occurrences ∈ {1} ∈ {..}       -- Problem
-                    ELEMENT[id4] occurrences ∈ {0..1} ∈ {..}    -- Date of initial onset
+                    ELEMENT[id3] occurrences ∈ {1} ∈ {...}       -- Problem
+                    ELEMENT[id4] occurrences ∈ {0..1} ∈ {...}    -- Date of initial onset
                     -- etc
                 }
             }
@@ -696,10 +696,10 @@ In the above we can see that if the only change in the redefinition is to occurr
 --------
     ELEMENT[id3] ∈ {
         value ∈ {
-            DV_QUANTITY[id4] ∈ {*}
-            DV_INTERVAL<DV_QUANTITY>[id5] ∈ {*}
-            DV_COUNT[id6] ∈ {*}
-            DV_INTERVAL<DV_COUNT>[id7] ∈ {*}
+            DV_QUANTITY[id4] ∈ {...}
+            DV_INTERVAL<DV_QUANTITY>[id5] ∈ {...}
+            DV_COUNT[id6] ∈ {...}
+            DV_INTERVAL<DV_COUNT>[id7] ∈ {...}
         }
     }
 --------
@@ -750,7 +750,7 @@ Specialised archetype:
 [source, cadl]
 --------
     .../value ∈ {
-        DV_QUANTITY[id8] ∈ {*} -- now limit to the DV_QUANTITY subtype
+        DV_QUANTITY[id8] -- now limit to the DV_QUANTITY subtype
     }
 --------
 

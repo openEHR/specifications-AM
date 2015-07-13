@@ -1,0 +1,55 @@
+=== P_ARCHETYPE Class
+
+[cols="^1,2,3"]
+|===
+|*Class*
+{set:cellbgcolor:lightblue}
+2+^|*_P_ARCHETYPE (abstract)_*
+
+|*Description*
+{set:cellbgcolor:lightblue}
+2+|Archetype equivalent to ARCHETYPED class in Common reference model. Defines semantics of identfication, lifecycle, versioning, composition and specialisation. +
+An archetype is a modelled as a particular kind of AUTHORED_RESOURCE, and as such, includes descriptive meta-data, language information and revision history. The ARCHETYPE class adds identifying information, a definition - expressed in terms of constraints on instances of an object model, and an ontology.
+{set:cellbgcolor!}
+
+|*Attributes*
+{set:cellbgcolor:lightblue}
+^|*Signature*
+^|*Meaning*
+
+|*0..1*
+{set:cellbgcolor:lightblue}
+|*parent_archetype_id*: `String`
+{set:cellbgcolor!}
+|Identifier of the specialisation parent of this archetype.
+
+|*1..1*
+{set:cellbgcolor:lightblue}
+|*archetype_id*: `P_ARCHETYPE_HRID`
+{set:cellbgcolor!}
+|Identifier of this archetype.
+
+|*1..1*
+{set:cellbgcolor:lightblue}
+|*is_differential*: `Boolean`
+{set:cellbgcolor!}
+|Flag indicating whether this archetype is differential or flat in its contents. Top-level source archetypes have this flag set to True.
+
+|*1..1*
+{set:cellbgcolor:lightblue}
+|*definition*: `P_C_COMPLEX_OBJECT`
+{set:cellbgcolor!}
+|Root node of the definition of this archetype.
+
+|*1..1*
+{set:cellbgcolor:lightblue}
+|*terminology*: `P_ARCHETYPE_TERMINOLOGY`
+{set:cellbgcolor!}
+|The terminology of the archetype.
+
+|*0..1*
+{set:cellbgcolor:lightblue}
+|*rules*: `List<RULE_STATEMENT>`
+{set:cellbgcolor!}
+|Rules relating to this archetype. Statements are expressed in first order predicate logic, and usually refer to at least two attributes.
+|===

@@ -1,0 +1,48 @@
+=== UID_BASED_ID Class
+
+[cols="^1,2,3"]
+|===
+|*Class*
+{set:cellbgcolor:lightblue}
+2+^|*_UID_BASED_ID (abstract)_*
+
+|*Description*
+{set:cellbgcolor:lightblue}
+2+|Abstract model of UID-based identifiers consisting of a root part and an optional  +
+extension; lexical form:  +
+root  ::' extension 
+{set:cellbgcolor!}
+
+|*Inherit*
+{set:cellbgcolor:lightblue}
+2+|OBJECT_ID
+{set:cellbgcolor!}
+
+|*Functions*
+{set:cellbgcolor:lightblue}
+^|*Signature*
+^|*Meaning*
+
+|
+{set:cellbgcolor:lightblue}
+|*root*: `UID`
+{set:cellbgcolor!}
+|The identifier of the conceptual namespace in which the object exists, within the  +
+identification scheme.  +
+Returns the part to the left of the first  ::' separator, if any, or else the whole string. 
+
+|
+{set:cellbgcolor:lightblue}
+|*extension*: 
+{set:cellbgcolor!}
+|Optional local identifier of the object within  +
+the context of the root identifier.  +
+Returns the part to the right of the first  ::'  +
+separator if any, or else any empty String.
+
+|
+{set:cellbgcolor:lightblue}
+|*has_extension*: `boolean`
+{set:cellbgcolor!}
+|True if extension /= Void 
+|===

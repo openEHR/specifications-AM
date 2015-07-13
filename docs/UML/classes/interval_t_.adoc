@@ -1,0 +1,69 @@
+=== Interval<T> Class
+
+[cols="^1,2,3"]
+|===
+|*Class*
+{set:cellbgcolor:lightblue}
+2+^|*Interval<T>*
+
+|*Description*
+{set:cellbgcolor:lightblue}
+2+|Interval of ordered items.
+{set:cellbgcolor!}
+
+|*Attributes*
+{set:cellbgcolor:lightblue}
+^|*Signature*
+^|*Meaning*
+
+|*0..1*
+{set:cellbgcolor:lightblue}
+|*lower*: `T`
+{set:cellbgcolor!}
+|lower bound.
+
+|*0..1*
+{set:cellbgcolor:lightblue}
+|*upper*: `T`
+{set:cellbgcolor!}
+|Upper bound.
+
+|*1..1*
+{set:cellbgcolor:lightblue}
+|*lower_unbounded*: `boolean`
+{set:cellbgcolor!}
+|lower boundary open (i.e. = -infinity)
+
+|*1..1*
+{set:cellbgcolor:lightblue}
+|*upper_unbounded*: `boolean`
+{set:cellbgcolor!}
+|upper boundary open (i.e. = +infinity)
+
+|*1..1*
+{set:cellbgcolor:lightblue}
+|*lower_included*: `boolean`
+{set:cellbgcolor!}
+|lower boundary value included in range if not lower_unbounded.
+
+|*1..1*
+{set:cellbgcolor:lightblue}
+|*upper_included*: `boolean`
+{set:cellbgcolor!}
+|upper boundary value included in range if not upper_unbounded.
+|*Functions*
+{set:cellbgcolor:lightblue}
+^|*Signature*
+^|*Meaning*
+
+|
+{set:cellbgcolor:lightblue}
+|*has* (e): `boolean`
+{set:cellbgcolor!}
+|True if (lower_unbounded or  +
+((lower_included and v >= lower) or  +
+v > lower)) and  +
+(upper_unbounded or  +
+((upper_included and v <= upper or v  +
+< upper)))
+|===

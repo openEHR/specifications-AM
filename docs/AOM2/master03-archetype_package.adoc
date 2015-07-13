@@ -8,7 +8,7 @@ The `AUTHORED_ARCHETYPE` class adds identifying attributes, flags and descriptiv
 
 [.text-center]
 .Archetype Package
-image::uml_diagrams/AOM-archetype.svg[id=archetype_package, align="center"]
+image::{uml_export_dir}/diagrams/AOM-archetype.svg[id=archetype_package, align="center"]
 
 The `OPERATIONAL_TEMPLATE` class represents the fully flattened form of a template, i.e. with all fillers and references substituted and overlays processed, to form what is in practical terms, a single custom-made ‘operational’ artefact, ready for transformation to downstream artefacts. Because an operational template includes one or more other archetype structures inline, it also includes their terminologies, enabling it to be treated as a self-standing artefact.
 
@@ -169,7 +169,7 @@ The model in Figure <<archetype_package>> defines the structures of a number of 
 
 [.text-center]
 .Source Archetype Structure
-image::uml_diagrams/AOM-source_archetype_structure.svg[id=source_archetype_structure, align="center", width="60%"]
+image::{uml_export_dir}/diagrams/AOM-source_archetype_structure.svg[id=source_archetype_structure, align="center", width="60%"]
 
 Source archetypes can be specialised, in which case their definition structure is a partial overlay on the flat parent, or ‘top-level’, in which case the definition structure is complete. `C_ARCHETYPE_ROOT` instances may only occur representing direct references to other archetypes - ‘external references’.
 
@@ -177,7 +177,7 @@ A flat archetype is generated from one or more source archetypes via the flatten
 
 [.text-center]
 .Source Template Structure
-image::uml_diagrams/AOM-source_template_structure.svg[id=source_template_structure, align="center", width="80%"]
+image::{uml_export_dir}/diagrams/AOM-source_template_structure.svg[id=source_template_structure, align="center", width="80%"]
 
 This form is used to represent the full ‘operational’ structure of a specialised archetype, and has two uses. The first is to generate backwards compatible ADL 1.4 legacy archetypes (always in flat form); the second is during the template flattening process, when the flat forms of all referenced archetypes and templates are ultimately combined into a single operational template.
 
@@ -189,18 +189,18 @@ Figure <<operational_template_structure>> illustrates the resulting operational 
 
 [.text-center]
 .Operational Template Structure
-image::uml_diagrams/AOM-operational_template_structure.svg[id=operational_template_structure, align="center", width="80%"]
+image::{uml_export_dir}/diagrams/AOM-operational_template_structure.svg[id=operational_template_structure, align="center", width="80%"]
 
 More details of template development, representation and semantics are described in the next section.
 
 == Class Descriptions
 
-include::./classes/archetype.adoc[]
-include::./classes/authored_archetype.adoc[]
-include::./classes/archetype_hrid.adoc[]
-include::./classes/template.adoc[]
-include::./classes/template_overlay.adoc[]
-include::./classes/operational_template.adoc[]
+include::{uml_export_dir}/classes/archetype.adoc[]
+include::{uml_export_dir}/classes/authored_archetype.adoc[]
+include::{uml_export_dir}/classes/archetype_hrid.adoc[]
+include::{uml_export_dir}/classes/template.adoc[]
+include::{uml_export_dir}/classes/template_overlay.adoc[]
+include::{uml_export_dir}/classes/operational_template.adoc[]
 
 == Validity Rules
 

@@ -1,0 +1,83 @@
+=== TERMINOLOGY_SERVICE Class
+
+[cols="^1,2,3"]
+|===
+|*Class*
+{set:cellbgcolor:lightblue}
+2+^|*TERMINOLOGY_SERVICE*
+
+|*Description*
+{set:cellbgcolor:lightblue}
+2+|Defines an object providing proxy access to a terminology service. 
+{set:cellbgcolor!}
+
+|*Inherit*
+{set:cellbgcolor:lightblue}
+2+|OPENEHR_TERMINOLOGY_GROUP_IDENTIFIERS
+{set:cellbgcolor!}
+
+|*Functions*
+{set:cellbgcolor:lightblue}
+^|*Signature*
+^|*Meaning*
+
+|
+{set:cellbgcolor:lightblue}
+|*terminology* (name): `TERMINOLOGY_ACCESS`
+{set:cellbgcolor!}
+|Return an interface to the terminology named name. Allowable names include:- +
+     openehr   +
+     centc251   +
+    any name from are taken from the US NLM UMLS meta-data list at  +
+     http://www.nlm.nih.gov/research/umls/metaa1.html 
+
+|
+{set:cellbgcolor:lightblue}
+|*code_set* (name): `CODE_SET_ACCESS`
+{set:cellbgcolor!}
+|Return an interface to the code_set identified by the external identifier name  +
+(e.g.  ISO_639-1 ). 
+
+|
+{set:cellbgcolor:lightblue}
+|*code_set_for_id* (id): `CODE_SET_ACCESS`
+{set:cellbgcolor!}
+|Return an interface to the code_set identified internally in openEHR by id. 
+
+|
+{set:cellbgcolor:lightblue}
+|*has_terminology* (name): `boolean`
+{set:cellbgcolor!}
+|True if terminology named name known by this service. Allowable names include:- +
+   *  openehr   +
+   * centc251   +
+   * any name from are taken from the US NLM UMLS meta-data list at  +
+      http://www.nlm.nih.gov/research/umls/metaa1.html
+
+|
+{set:cellbgcolor:lightblue}
+|*has_code_set* (name): `boolean`
+{set:cellbgcolor!}
+|True if code_set linked to internal name (e.g.  languages ) is available. 
+
+|
+{set:cellbgcolor:lightblue}
+|*terminology_identifiers*: 
+{set:cellbgcolor!}
+|Set of all terminology identifiers known in the terminology service. Values from  +
+the US NLM UMLS meta-data list at:- +
+http://www.nlm.nih.gov/research/umls/metaa1.html 
+
+|
+{set:cellbgcolor:lightblue}
+|*openehr_code_sets*: `map<QString, QString>`
+{set:cellbgcolor!}
+|Set of all code set identifiers known in the terminology service. 
+
+|
+{set:cellbgcolor:lightblue}
+|*code_set_identifiers*: 
+{set:cellbgcolor!}
+|Set of all code sets identifiers for which there is an internal openEHR name;  +
+returned as a Map of ids keyed by internal name. 
+|===

@@ -18,6 +18,7 @@ pdf_theme=openehr_full_pdf-theme.yml
 master_doc_name=master.adoc
 resources_git_repo_name=spec-publish-asciidoc
 use_local_resources=false
+uml_export_dir=../UML
 year=`date +%G`
 
 #
@@ -31,7 +32,8 @@ run_asciidoctor () {
 	opts="-a current_year=$year \
 		-a resources_dir=$resources_dir \
 		-a stylesdir=$stylesdir \
-		-a stylesheet=$stylesheet 
+		-a stylesheet=$stylesheet \
+		-a uml_export_dir=$uml_export_dir \
 		--out-file=$out_file"
 
 	asciidoctor ${opts} $2
@@ -45,6 +47,7 @@ run_asciidoctor_pdf () {
 	opts="-a current_year=$year \
 		-a stylesdir=$stylesdir \
 		-a resources_dir=$resources_dir \
+		-a uml_export_dir=$uml_export_dir \
 		-a pdf-style=$pdf_theme \
 		-a pdf-stylesdir=$resources_dir \
 		-r asciidoctor-pdf -b pdf \

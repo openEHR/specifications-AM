@@ -1,0 +1,43 @@
+=== TERMINOLOGY_ID Class
+
+[cols="^1,2,3"]
+|===
+|*Class*
+{set:cellbgcolor:lightblue}
+2+^|*TERMINOLOGY_ID*
+
+|*Description*
+{set:cellbgcolor:lightblue}
+2+|Identifier for terminologies such as accessed via a terminology query service. In this  +
+class, the value attribute identifies the Terminology in the terminology service,  +
+e.g.  SNOMED-CT . A terminology is assumed to be in a particular language,  +
+which must be explicitly specified.  +
+The value if the id attribute is the precise terminology id identifier, including  +
+actual release (i.e. actual  version ), local modifications etc; e.g.  ICPC2 .  +
+Lexical form:    name [  (' version  )' ] 
+{set:cellbgcolor!}
+
+|*Inherit*
+{set:cellbgcolor:lightblue}
+2+|OBJECT_ID
+{set:cellbgcolor!}
+
+|*Functions*
+{set:cellbgcolor:lightblue}
+^|*Signature*
+^|*Meaning*
+
+|
+{set:cellbgcolor:lightblue}
+|*name*: 
+{set:cellbgcolor!}
+|Return the terminology id (which includes the  version  in some cases).  +
+Distinct names correspond to distinct (i.e. non-compatible) terminologies.  +
+Thus the names  ICD10AM  and  ICD10  refer to distinct terminologies. 
+
+|
+{set:cellbgcolor:lightblue}
+|*version_id*: 
+{set:cellbgcolor!}
+|Version of this terminology, if versioning supported, else the empty string. 
+|===
