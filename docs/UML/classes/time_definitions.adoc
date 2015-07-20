@@ -1,0 +1,149 @@
+=== TIME_DEFINITIONS Class
+
+[cols="^1,2,3"]
+|===
+|*Class*
+{set:cellbgcolor:lightblue}
+2+^|*TIME_DEFINITIONS*
+
+|*Description*
+{set:cellbgcolor:lightblue}
+2+|Definitions for date/time classes. Note that the timezone limits are set by where the international dateline is. Thus, time in New Zealand is quoted using +12:00, not -12:00.
+{set:cellbgcolor!}
+
+|*Attributes*
+{set:cellbgcolor:lightblue}
+^|*Signature*
+^|*Meaning*
+
+|*1..1*
+{set:cellbgcolor:lightblue}
+|*Seconds_in_minute*: `Integer`
+{set:cellbgcolor!}
+|
+
+|*1..1*
+{set:cellbgcolor:lightblue}
+|*Minutes_in_hour*: `Integer`
+{set:cellbgcolor!}
+|
+
+|*1..1*
+{set:cellbgcolor:lightblue}
+|*Hours_in_day*: `Integer`
+{set:cellbgcolor!}
+|
+
+|*1..1*
+{set:cellbgcolor:lightblue}
+|*Nominal_days_in_month*: `Real`
+{set:cellbgcolor!}
+|Used for conversions of durations containing months to days and / or seconds.
+
+|*1..1*
+{set:cellbgcolor:lightblue}
+|*Max_days_in_month*: `Integer`
+{set:cellbgcolor!}
+|
+
+|*1..1*
+{set:cellbgcolor:lightblue}
+|*Days_in_year*: `Integer`
+{set:cellbgcolor!}
+|
+
+|*1..1*
+{set:cellbgcolor:lightblue}
+|*Days_in_leap_year*: `Integer`
+{set:cellbgcolor!}
+|
+
+|*1..1*
+{set:cellbgcolor:lightblue}
+|*Max_days_in_year*: `Integer`
+{set:cellbgcolor!}
+|
+
+|*1..1*
+{set:cellbgcolor:lightblue}
+|*Nominal_days_in_year*: `Real`
+{set:cellbgcolor!}
+|Used for conversions of durations containing years to days and / or seconds.
+
+|*1..1*
+{set:cellbgcolor:lightblue}
+|*Days_in_week*: `Integer`
+{set:cellbgcolor!}
+|
+
+|*1..1*
+{set:cellbgcolor:lightblue}
+|*Months_in_year*: `Integer`
+{set:cellbgcolor!}
+|
+
+|*1..1*
+{set:cellbgcolor:lightblue}
+|*Min_timezone_hour*: `Integer`
+{set:cellbgcolor!}
+|Minimum hour value of a timezone (note that the -ve sign is supplied in the ISO8601_TIMEZONE class).
+
+|*1..1*
+{set:cellbgcolor:lightblue}
+|*Max_timezone_hour*: `Integer`
+{set:cellbgcolor!}
+|
+|*Functions*
+{set:cellbgcolor:lightblue}
+^|*Signature*
+^|*Meaning*
+
+|
+{set:cellbgcolor:lightblue}
+|*valid_year* (y: `Integer`): `Boolean` +
+*_Post_*: Result = y >= 0
+{set:cellbgcolor!}
+|
+
+|
+{set:cellbgcolor:lightblue}
+|*valid_month* (m: `Integer`): `Boolean` +
+*_Post_*: Result = m >= 1 and m <= Months_in_year
+{set:cellbgcolor!}
+|
+
+|
+{set:cellbgcolor:lightblue}
+|*valid_day* (y: `Integer`, m: `Integer`, d: `Integer`): `Boolean` +
+*_Post_*: Result = d >= 1 and d <= days_in_month (m, y)
+{set:cellbgcolor!}
+|True if d >= 1 and d <= days_in_month (m, y)
+
+|
+{set:cellbgcolor:lightblue}
+|*valid_hour* (h, m, s: `Integer`): `Boolean` +
+*_Post_*: Result = (h >= 0 and h < Hours_in_day) or (h = Hours_in_day and m = 0 and s = 0)
+{set:cellbgcolor!}
+|True if (h >= 0 and h < Hours_in_day) or (h = Hours_in_day and m = 0 and s = 0)
+
+|
+{set:cellbgcolor:lightblue}
+|*valid_minute* (m: `Integer`): `Boolean` +
+*_Post_*: Result = m >= 0 and m < Minutes_in_hour
+{set:cellbgcolor!}
+|True if m >= 0 and m < Minutes_in_hour.
+
+|
+{set:cellbgcolor:lightblue}
+|*valid_second* (s: `Integer`): `Boolean` +
+*_Post_*: Result = s >= 0 and s < Seconds_in_minute
+{set:cellbgcolor!}
+|True if s >= 0 and s < Seconds_in_minute .
+
+|
+{set:cellbgcolor:lightblue}
+|*valid_fractional_second* (fs: `Double`): `Boolean` +
+*_Post_*: Result = fs >= 0.0 and fs < 1.0 .
+{set:cellbgcolor!}
+|True if fs >= 0.0 and fs < 1.0 .
+|===

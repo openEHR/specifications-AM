@@ -1,0 +1,84 @@
+=== ISO8601_TIMEZONE Class
+
+[cols="^1,2,3"]
+|===
+|*Class*
+{set:cellbgcolor:lightblue}
+2+^|*ISO8601_TIMEZONE*
+
+|*Description*
+{set:cellbgcolor:lightblue}
+2+|Represents a timezone as used in ISO 8601.
+{set:cellbgcolor!}
+
+|*Inherit*
+{set:cellbgcolor:lightblue}
+2+|TIME_DEFINITIONS
+{set:cellbgcolor!}
+
+|*Functions*
+{set:cellbgcolor:lightblue}
+^|*Signature*
+^|*Meaning*
+
+|
+{set:cellbgcolor:lightblue}
+|*hour*: `Integer`
+{set:cellbgcolor!}
+|Hour part of timezone - in the range 00 - 13.
+
+|
+{set:cellbgcolor:lightblue}
+|*minute*: `Integer`
+{set:cellbgcolor!}
+|Minute part of timezone. Generally 00 or 30.
+
+|
+{set:cellbgcolor:lightblue}
+|*is_gmt*: `Boolean`
+{set:cellbgcolor!}
+|True if timezone is UTC, i.e. +0000.
+
+|
+{set:cellbgcolor:lightblue}
+|*sign*: `Integer`
+{set:cellbgcolor!}
+|Direction of timezone expresssed as +1 or -1.
+
+|
+{set:cellbgcolor:lightblue}
+|*minute_unknown*: `Integer`
+{set:cellbgcolor!}
+|Indicates whether minute part known.
+
+|
+{set:cellbgcolor:lightblue}
+|*as_string*: `String`
+{set:cellbgcolor!}
+|ISO8601 timezone string, in format: +
+* Z | hh[mm] +
+where: +
+* hh is “00” - “23” (0-filled to two digits) +
+* mm is “00” - “59” (0-filled to two digits) +
+* Z is a literal meaning UTC (modern replacement for GMT), i.e. timezone +0000
+
+|*Invariant*
+{set:cellbgcolor:lightblue}
+2+|*_Min_hour_valid_*: sign = -1 implies hour > 0 and hour <= Min_timezone_hour
+{set:cellbgcolor!}
+
+|
+{set:cellbgcolor:lightblue}
+2+|*_Max_hour_valid_*: sign = 1 implies hour > 0 and hour <= Max_timezone_hour
+{set:cellbgcolor!}
+
+|
+{set:cellbgcolor:lightblue}
+2+|*_Minute_valid_*: not minute_unknown implies valid_minute (minute)
+{set:cellbgcolor!}
+
+|
+{set:cellbgcolor:lightblue}
+2+|*_Sign_valid_*: sign = 1 or sign = -1
+{set:cellbgcolor!}
+|===

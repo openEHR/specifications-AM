@@ -1,46 +1,53 @@
 = Overview
 
-== The Environment
+== Scope
 
-This specification is designed to address the need for reliable identification and referencing of complex knowledge artefacts within a distributed authoring and consumption environment. The figure below establishes the key concepts and nomenclature assumed by this specification. The focus of interest is ‘artefacts’, including archetypes, templates (of the archetype variety), terminology subsets/ref-sets, query sets, and potentially things such as computable guidelines.
+This specification is designed to address the need for reliable identification and referencing of complex knowledge artefacts within a distributed authoring and consumption environment.  The focus is archetypes and templates and their derived forms, including the 'operational template'. The word 'artefact' is used to refer to any of these in general.
+
+Related artefacts that need an identification and lifecycle management scheme include terminology subsets/ref-sets, 'query sets', and potentially things such as computable guidelines. This specification mentions these latter kinds of artefacts where relevant but does not propose anything formal for them.
+
+Out of scope are the atomic 'concepts' and 'categories' commonly found in terminologies (e.g.: ICD10, SNOMED CT, LOINC) and ontologies (e.g. the BFO ontologies such as OGMS, FMA, IAO etc <<BFO>>, <<OGMS>>, <<FMA>>, <<IAO>>).
+
+NOTE: the word 'archetype' as used in this specification means: any formal artefact written in the Archetype Definition Language (ADL; <<openehr_am_adl>>), or any other serialised form of the Archetype Object Model (AOM; <<openehr_am_aom>>). This includes 'template' archetypes (but not other kinds of 'templates').
+
+== Environment
+
+Archetypes are assumed to be produced by tools, either in an unmanaged way, or in a situation in which users are connected to an Custodian Organisation (CO). Such an organisation is assumed to have a Repository (which stores and manages archetypes), and potentially a Registry (in which meta-data about archetypes is stored) and Classification (a semantic index on Artefacts, typically achieved via the use of one or more ontologies). A Custodian Organisation could be international, country level, or be owned by a company or other organisation. The figure below illustrates the key concepts and nomenclature assumed by this specification.
 
 [.text-center]
 .Distributed Development Environment
 image::diagrams/distributed_development_environment.png[id=distributed_development_environment, align="center", width=70%]
 
-Artefacts are assumed to be produced by tools, either in an unmanaged way, or in a situation in which users are connected to an artefact Custodian Organisation (CO). Such an organisation is assumed to have a Repository (which stores and manages artefacts), and potentially a Registry (in which meta-data about artefacts is stored) and Classification (a semantic index on Artefacts, typically achieved via the use of one or more ontologies). A Custodian Organisation could be international, country level, or be owned by a company or other organisation.
+Most COs will tend to develop archetypes based on those published by 'higher-level' (i.e. national, international) COs. To enable this, a logical ability to re-use specified releases of archetypes from 'upstream' COs by 'downstream' COs is assumed. This usually implies some kind of virtual inclusion (e.g. from one web-visible repository to another), or it may be implemented by copying and marking as read-only the received archetypes. Regardless of the particular implementation, the 'logical contents' of a repository is the totality of localy managed archetypes, plus all virtually referenced archetype libraries. This is necessary to enable most compiler-like tools to function normally.
 
-Most COs will tend to develop artefacts based on those published by ‘higher-level’ (i.e. national, international) COs. To enable this, a logical ability to re-use specified releases of artefacts from ‘upstream’ COs by ‘downstream’ COs is assumed. This usually implies some kind of virtual inclusion (e.g. from one web-visible repository to another), or it may be implemented by copying and marking as read-only the received artefacts. Regardless of the particular implementation, the ‘logical contents’ of a repository is the totality of localy managed artefacts, plus all virtually referenced artefact libraries. This is necessary to enable most compiler-like tools to function normally.
-
-It is assumed that Artefacts can also move between COs for purposes of transfer, or due to ‘forking’ (i.e. splitting of a line of development, as with software). Artefacts are published in some form and consumer by User Enterprises which deploy the artefacts in some technical infrastructure.
+It is assumed that archetypes can also move between COs for purposes of transfer, or due to 'forking' (i.e. splitting of a line of development, as with software). Artefacts are published in some form and consumer by User Enterprises which deploy the archetypes in some technical infrastructure.
 
 Artefacts are ultimately consumed by User Enterprises, normally in a validated and compiled form.
 
 == The Problem
 
-The problem specifically addressed by this specification is that of identification and referencing of knowledge artefacts. The notion of ‘identification’ for such artefacts incorporates a number of key requirements. The kinds of models in scope include archetypes (<<openehr_am_aom>>, <<openehr_am_adl>>), templates (<<openehr_am_templates>>), terminology subsets (See e.g. <<IHTSDO>>), clinical guidelines, query sets and other non-atomic domain level definitions of content, rules, workflows and other semantics. The common aspects of artefacts within this scope is that they are ‘outside the software’, and that they are independent of specific implementation technologies. Examples include:
+The problem specifically addressed by this specification is that of identification and referencing of archetypes. The key characteristics of archetypes, in common with other kinds of knowledge artefacts like terminology subsets is that they are 'outside the software', and that they are independent of specific implementation technologies. The consequence is that they can be created, developed, disseminated and used independently from software artefact development.
 
-* an archetype for ‘blood gases’;
-* a template for ‘discharge summary’;
-* a SNOMED CT subset for ‘parasitic infection’.
+Examples of archetypes include:
 
-Out of scope are the atomic ‘concepts’ and ‘categories’ commonly found in terminologies (e.g.: ICD10, SNOMED CT, LOINC) and ontologies (e.g. the BFO ontologies such as OGMS, FMA, IAO etc <<BFO>>, <<OGMS>>, <<FMA>>, <<IAO>>).
+* an archetype for 'blood gases';
+* a template for 'discharge summary'.
 
 Extensive experience with such artefacts in the health domain has shown that while there are many similarities to software artefact identification, there are sufficient differences to warrant an explicit scheme. The health domain is the primary domain of experience assumed here, but the principles are applicable to any domain.
 
 The key requirements addressed here are as follows:
 
-* identify and distinguish versions, variants and releases of ‘source’ artefacts within and from _authoring_ environments;
+* identify and distinguish versions, variants and releases of 'source' archetypes within and from _authoring_ environments;
 * define rules for expressing and resolving _references_ between source artefacts, including version variants;
-* define rules for identification of compiled / operational artefacts;
-* define rules for evolving identifiers (including version) of artefacts over time, based on a ‘standard’ lifecycle for artefacts;
-* define rules for identification when artefacts are retired, moved or ‘forked’.
+* define rules for identification of compiled / operational artefacts derived from source artefacts;
+* define rules for evolving identifiers (including version) of artefacts over time, based on a 'standard' lifecycle for artefacts;
+* define rules for identification when artefacts are retired, moved or 'forked'.
 
 == Human-readable and Machine Identifiers
 
-There are two general approaches to identification. The first is the one used in software and ontology development: human-readable identifiers, denoted in this specification as HRIDs. Under this approach, identifiers name an artefact (e.g. a class in object-oriented software, category in an ontology) and can be used as references to connect similar artefacts in a hierarchy (e.g. according to the inheritance relationship). The second is the use of meaningless machine identifiers (more properly denoted ‘machine-readable’ or ‘machine-resolvable’ identifiers) such as GUIDs and ISO OIDs with accompanying de-referencing mechanisms. The two approaches are not mutually exclusive, nor are they equivalent.
+There are two general approaches to identification. The first is the one used in software and ontology development: _human-readable identifiers_, denoted in this specification as 'HRIDs'. Under this approach, identifiers name an artefact (e.g. a class in object-oriented software, category in an ontology) and can be used as references to connect similar artefacts in a hierarchy (e.g. according to the inheritance relationship). The second is the use of meaningless machine identifiers (more properly denoted 'machine-readable' or 'machine-resolvable' identifiers) such as GUIDs and ISO OIDs with accompanying de-referencing mechanisms. The two approaches are not mutually exclusive, nor are they equivalent.
 
-A human-readable identification scheme supports the notion of a specialsiation / subsumption hierarchy of artefacts (‘inheritance’ in object programming), multi-dimensional concept spaces, flexible versioning, and formally reflects the artefact authors' and users' understanding of the concept space being modelled. Human-readable identification supports many types of computational processing. A typical software HRID is the class name `FastSortedList` . Within the software world, HRIDs are used for both source artefacts and built components such as libraries and executables, although the details of the respective types of identifier may differ.
+A human-readable identification scheme can support the notion of a specialsiation / subsumption hierarchy of artefacts ('inheritance' in object programming), multi-dimensional concept spaces, flexible versioning, and formally reflects the artefact authors' and users' understanding of the concept space being modelled. Human-readable identification supports many types of computational processing. A typical software HRID is the class name `FastSortedList`. Within the software world, HRIDs are used for both source artefacts and built components such as libraries and executables, although the details of the respective types of identifier may differ.
 
 One crucial feature of most human-readable identifiers is that they _may change after initial assignment_, for reasons of change of purpose, improved understanding of need, or external requirements change. These kinds of changes are normally limited to the early development (typically pre v1.0 phase) period in order to enable stability later on.
 
@@ -52,16 +59,17 @@ It is possible to define an identification scheme in which either or both human-
 
 The approach assumed here is to use both types of identifier in the following way:
 
-* a Guid is assigned to a knowledge artefact when it is created. It does not change, no matter what changes are made to the definition of the artefact. This enables authoring and model repository tools to track artefacts as they are modified over time.
+* a GUID is assigned to an artefact when it is created. It does not change, no matter what changes are made to the definition of the artefact. This enables authoring and model repository tools to track artefacts as they are modified over time.
+* other GUIDs can be used to identify finer level snapshots of changed artefacts;
 * one or more namespaced HRIDs for an artefact can be computed from various properties of the artefact. Which properties will depend on the type of artefact.
-* the last committed ‘build’ of an artefact (i.e. most recent version containing a change, no matter how small) can be identified in two ways:
-* using a ‘build’ number that is part of the version identification of the artefact;
+* the last committed 'build' of an artefact (i.e. most recent version containing a change, no matter how small) can be identified in two ways:
+* using a 'build' number that is part of the version identification of the artefact;
 * via a hash on a canonical serialisation of the artefact.
 
 This is a departure from the common situation where no machine identifier is assigned, and the artefact HRID is a static string, rather like a source file filename.
 
 == Meta-data
 
-A solution for identification that includes human readable (formal) identifiers unavoidably implicates the ‘meta-data’ of the identified artefacts, since such identifiers are normally created from smaller items such as ‘reference model class’, ‘version’, ‘namespace’ and so on. However, some items of meta-data are not appropriate for inclusion in an artefact, and would be created in the Registry instead. A general rule is that this applies to any item of information that may change without affecting the semantics of the artefact, and whose change should not require revision of the artefact itself. Examples of such information: ontological classification(s); ‘ownership’ status.
+A solution for identification that includes human readable (formal) identifiers unavoidably implicates the 'meta-data' of the identified artefacts, since such identifiers are normally created from smaller items such as 'reference model class', 'version', 'namespace' and so on. However, some items of meta-data are not appropriate for inclusion in an artefact, and would be created in the Registry instead. A general rule is that this applies to any item of information that may change without affecting the semantics of the artefact, and whose change should not require revision of the artefact itself. Examples of such information: ontological classification(s); 'ownership' status.
 
 This specification assumes that an artefact management environment includes such a registry, and that some items of meta-data can be stored outside the artefacts themselves.

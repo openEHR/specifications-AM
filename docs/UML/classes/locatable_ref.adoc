@@ -25,9 +25,7 @@
 {set:cellbgcolor:lightblue}
 |*path*: 
 {set:cellbgcolor!}
-|The path to an instance in question, as an absolute path with respect to  +
-the object found at VERSION.data. An empty path means that  +
-the object referred to by id being specified. 
+|The path to an instance in question, as an absolute path with respect to  the object found at VERSION.data. An empty path means that  the object referred to by id being specified. 
 
 |*1..1 +
 (redefined)*
@@ -46,4 +44,9 @@ the object referred to by id being specified.
 {set:cellbgcolor!}
 |A URI form of the reference, created by concatenating the following:  +
  ehr://  + id.value +  /  + path 
+
+|*Invariant*
+{set:cellbgcolor:lightblue}
+2+|*_Path_valid_*: path /= Void implies not path.is_empty
+{set:cellbgcolor!}
 |===

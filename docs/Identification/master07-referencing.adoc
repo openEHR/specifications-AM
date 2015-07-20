@@ -12,13 +12,14 @@ Various forms of the references based on the HRID are used, depending on the nee
 
 The grammar for this is as follows.
 
+[source, ebnf]
 --------
-    hrid_ref:               namespaced_hrid_ref | local_hrid_ref
-    namespaced_hrid_ref:    namespace '::' local_hrid_ref
-    local_hrid_ref:         ihrid_ref | sihrid_ref | phrid_ref
-    ihrid_ref:              hrid_root '.v' major_version
-    sihrid_ref:             hrid_root '.v' major_version '.' minor_version 
-    phrid_ref:              local_hrid
+    hrid_ref                =   namespaced_hrid_ref | local_hrid_ref ;
+    namespaced_hrid_ref     =   namespace '::' local_hrid_ref ;
+    local_hrid_ref          =   ihrid_ref | sihrid_ref | phrid_ref ;
+    ihrid_ref               =   hrid_root '.v' major_version ;
+    sihrid_ref              =   hrid_root '.v' major_version '.' minor_version ;
+    phrid_ref               =   local_hrid ;
 --------
 
 By way of example, the following two archetype iHRID references denote different logical archetypes, from a data processing point of view, since their major versions are different, indicating a breaking change between the two:
@@ -140,8 +141,7 @@ In ADL 2 a slot can be defined using a semantic (rather than lexical) expression
             archetype_id ∈ {
                 ARCHETYPE_ID ∈ {
                     namespace ∈ {...}
-                    concept ∈ {<< investigation_methodology OR 
-                                    << investigation_protocol}
+                    concept ∈ {<< investigation_methodology OR << investigation_protocol}
                     ...
                 }
             }
@@ -158,6 +158,7 @@ AQL queries are in general authored in a ‘set’ in order to achieve a design 
 
 Archetype-based queries contain archetype references and paths, and can also contain template identifiers and paths. Typical examples are the paths (in green) in the following query:
 
+[source, sql]
 --------
     SELECT pulse 
     FROM EHR[ehr_id/value=$ehruid] 
@@ -199,19 +200,20 @@ When an operational artefact is generated from controlled source artefacts (i.e.
 
 The structure of a Configuration is as follows:
 
+[source, ebnf]
 --------
-    configuration:      archetype_config     template_config     subset_config       rm_release
-    archetype_config:   { config_item }+
-    template_config:    { config_item }*
-    subset_config:      { config_item }*
-    rm_release:         rm_name release_id
+    configuration       =   archetype_config template_config subset_config rm_release ;
+    archetype_config    =   config_item { config_item } ;
+    template_config     =   { config_item } ;
+    subset_config       =   { config_item } ;
+    rm_release          =   rm_name release_id ;
 
-    config_item:        identifier [ revision_id [ commit_id ] ] [ signature ]
+    config_item         =   identifier [ revision_id [ commit_id ] ] [ signature ] ;
 
-    signature:          CHARACTER_SEQUENCE
-    revision_id:        V_INTEGER
-    commit_id:          V_INTEGER
-    release_id:         V_STRING
+    signature           =   CHARACTER_SEQUENCE ;
+    revision_id         =   V_INTEGER ;
+    commit_id           =   V_INTEGER ;
+    release_id          =   V_STRING ;
 --------
 
 An example of the configuration of an operational template in a controlled environment (ODIN format) is as follows:
@@ -311,10 +313,11 @@ The simplest form of this would be as a list of operational identifiers, e.g.
 
 A formal definition of reference catering to the above requirements is as follows:
 
+[source, ebnf]
 --------
-    archetype_data_ref: archetype_ver_ref { ',' archteype_ver_ref }*
-    archteype_ver_ref: hrid_root '.' version_id_ref
-    version_id_ref: 'v' version_id
+    archetype_data_ref  =   archetype_ver_ref { ',' archteype_ver_ref } ;
+    archteype_ver_ref   =   hrid_root '.' version_id_ref ;
+    version_id_ref      =   'v' version_id ;
 --------
 
 === Optimisations

@@ -1,19 +1,94 @@
-==== Interval CLASS
+=== Interval Class
 
 [cols="^1,2,3"]
 |===
-|*CLASS*
+|*Class*
 {set:cellbgcolor:lightblue}
 2+^|*Interval*
 
 |*Description*
 {set:cellbgcolor:lightblue}
-2+|
+2+|Interval of ordered items.
 {set:cellbgcolor!}
 
 |*Inherit*
 {set:cellbgcolor:lightblue}
-2+|ValueSpecification
+2+|Any
 {set:cellbgcolor!}
 
+|*Attributes*
+{set:cellbgcolor:lightblue}
+^|*Signature*
+^|*Meaning*
+
+|*0..1*
+{set:cellbgcolor:lightblue}
+|*lower*: `T`
+{set:cellbgcolor!}
+|lower bound.
+
+|*0..1*
+{set:cellbgcolor:lightblue}
+|*upper*: `T`
+{set:cellbgcolor!}
+|Upper bound.
+
+|*1..1*
+{set:cellbgcolor:lightblue}
+|*lower_unbounded*: `boolean`
+{set:cellbgcolor!}
+|lower boundary open (i.e. = -infinity)
+
+|*1..1*
+{set:cellbgcolor:lightblue}
+|*upper_unbounded*: `boolean`
+{set:cellbgcolor!}
+|upper boundary open (i.e. = +infinity)
+
+|*1..1*
+{set:cellbgcolor:lightblue}
+|*lower_included*: `boolean`
+{set:cellbgcolor!}
+|lower boundary value included in range if not lower_unbounded.
+
+|*1..1*
+{set:cellbgcolor:lightblue}
+|*upper_included*: `boolean`
+{set:cellbgcolor!}
+|upper boundary value included in range if not upper_unbounded.
+|*Functions*
+{set:cellbgcolor:lightblue}
+^|*Signature*
+^|*Meaning*
+
+|
+{set:cellbgcolor:lightblue}
+|*has* (e): `boolean`
+{set:cellbgcolor!}
+|True if (lower_unbounded or  +
+((lower_included and v >= lower) or  +
+v > lower)) and  +
+(upper_unbounded or  +
+((upper_included and v <= upper or v  +
+< upper)))
+
+|*Invariant*
+{set:cellbgcolor:lightblue}
+2+|*_Lower_included_valid_*: lower_unbounded implies not lower_included
+{set:cellbgcolor!}
+
+|
+{set:cellbgcolor:lightblue}
+2+|*_Upper_included_valid_*: upper_unbounded implies not upper_included
+{set:cellbgcolor!}
+
+|
+{set:cellbgcolor:lightblue}
+2+|*_Limits_consistent_*: (not upper_unbounded and not lower_unbounded) implies lower <= upper
+{set:cellbgcolor!}
+
+|
+{set:cellbgcolor:lightblue}
+2+|*_Limits_comparable_*: (not upper_unbounded and not lower_unbounded) implies lower.strictly_comparable_to (upper)
+{set:cellbgcolor!}
 |===

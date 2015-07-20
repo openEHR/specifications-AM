@@ -1,0 +1,109 @@
+=== ISO8601_DATE Class
+
+[cols="^1,2,3"]
+|===
+|*Class*
+{set:cellbgcolor:lightblue}
+2+^|*ISO8601_DATE*
+
+|*Description*
+{set:cellbgcolor:lightblue}
+2+|Represents an absolute point in time, as measured on the Gregorian calendar, and specified only to the day.
+{set:cellbgcolor!}
+
+|*Inherit*
+{set:cellbgcolor:lightblue}
+2+|ISO8601_TYPE
+{set:cellbgcolor!}
+
+|*Functions*
+{set:cellbgcolor:lightblue}
+^|*Signature*
+^|*Meaning*
+
+|
+{set:cellbgcolor:lightblue}
+|*year*: `Integer`
+{set:cellbgcolor!}
+|Year.
+
+|
+{set:cellbgcolor:lightblue}
+|*month*: `Integer` +
+*_Pre_*: not month_unknown
+{set:cellbgcolor!}
+|Month in year.
+
+|
+{set:cellbgcolor:lightblue}
+|*day*: `Integer`
+{set:cellbgcolor!}
+|Day in month.
+
+|
+{set:cellbgcolor:lightblue}
+|*month_unknown*: `Boolean`
+{set:cellbgcolor!}
+|Indicates whether month in year is unknown. If so, the date is of the form “YYYY”.
+
+|
+{set:cellbgcolor:lightblue}
+|*day_unknown*: `Boolean`
+{set:cellbgcolor!}
+|Indicates whether day in month is unknown. If so, and month is known, the date is of the form “YYYY-MM” or “YYYYMM”.
+
+|
+{set:cellbgcolor:lightblue}
+|*as_string*: `String`
+{set:cellbgcolor!}
+|ISO8601 string for date, in format YYYYMMDD or YYYY-MM-DD, or a partial invariant. See valid_iso8601_date for validity.
+
+|
+{set:cellbgcolor:lightblue}
+|*is_expanded*: `Boolean`
+{set:cellbgcolor!}
+|True if this date uses ‘-’ separators.
+
+|
+{set:cellbgcolor:lightblue}
+|*valid_iso8601_date*: `Boolean`
+{set:cellbgcolor!}
+|String is a valid ISO 8601 date, i.e. takes the complete form: +
+* YYYYMMDD or the extended form: +
+* YYYY-MM-DD or one of the partial forms: +
+* YYYYMM +
+* YYYY +
+or the equivalent extended form: +
+* YYYY-MM +
+Where: +
+* YYYY is the string form of any positive number in the range “0000” - “9999” (zero-filled to four digits) +
+* MM is “01” - “12” (zero-filled to two digits) +
+* DD is “01” - “31” (zero-filled to two digits) +
+The combinations of YYYY, MM, DD numbers must be correct with respect to the Gregorian calendar.
+
+|(effected)
+{set:cellbgcolor:lightblue}
+|*is_partial*: `Boolean`
+{set:cellbgcolor!}
+|True if this date is partial, i.e. if day or more is missing.
+
+|*Invariant*
+{set:cellbgcolor:lightblue}
+2+|*_Year_valid_*: valid_year (year)
+{set:cellbgcolor!}
+
+|
+{set:cellbgcolor:lightblue}
+2+|*_Month_valid_*: not month_unknown implies valid_month (month)
+{set:cellbgcolor!}
+
+|
+{set:cellbgcolor:lightblue}
+2+|*_Day_valid_*: not day_unknown implies valid_day (year, month, day)
+{set:cellbgcolor!}
+
+|
+{set:cellbgcolor:lightblue}
+2+|*_Partial_validity_*: month_unknown implies day_unknown
+{set:cellbgcolor!}
+|===

@@ -23,24 +23,25 @@
 
 |
 {set:cellbgcolor:lightblue}
-|*terminology* (name): `TERMINOLOGY_ACCESS`
+|*terminology* (name): `TERMINOLOGY_ACCESS` +
+*_Pre_*: has_terminology (name)
 {set:cellbgcolor!}
 |Return an interface to the terminology named name. Allowable names include:- +
-     openehr   +
-     centc251   +
-    any name from are taken from the US NLM UMLS meta-data list at  +
-     http://www.nlm.nih.gov/research/umls/metaa1.html 
+* openehr   +
+* centc251   +
+* any name from are taken from the US NLM UMLS meta-data list at http://www.nlm.nih.gov/research/umls/metaa1.html 
 
 |
 {set:cellbgcolor:lightblue}
-|*code_set* (name): `CODE_SET_ACCESS`
+|*code_set* (name): `CODE_SET_ACCESS` +
+*_Pre_*: has_code_set (name)
 {set:cellbgcolor!}
-|Return an interface to the code_set identified by the external identifier name  +
-(e.g.  ISO_639-1 ). 
+|Return an interface to the code_set identified by the external identifier name (e.g.  ISO_639-1 ). 
 
 |
 {set:cellbgcolor:lightblue}
-|*code_set_for_id* (id): `CODE_SET_ACCESS`
+|*code_set_for_id* (id): `CODE_SET_ACCESS` +
+*_Pre_*: valid_code_set_id (id)
 {set:cellbgcolor!}
 |Return an interface to the code_set identified internally in openEHR by id. 
 
@@ -49,10 +50,9 @@
 |*has_terminology* (name): `boolean`
 {set:cellbgcolor!}
 |True if terminology named name known by this service. Allowable names include:- +
-   *  openehr   +
-   * centc251   +
-   * any name from are taken from the US NLM UMLS meta-data list at  +
-      http://www.nlm.nih.gov/research/umls/metaa1.html
+* openehr   +
+* centc251   +
+* any name from are taken from the US NLM UMLS meta-data list at http://www.nlm.nih.gov/research/umls/metaa1.html
 
 |
 {set:cellbgcolor:lightblue}
@@ -70,7 +70,7 @@ http://www.nlm.nih.gov/research/umls/metaa1.html
 
 |
 {set:cellbgcolor:lightblue}
-|*openehr_code_sets*: `map<QString, QString>`
+|*openehr_code_sets*: `Hash<String, String>`
 {set:cellbgcolor!}
 |Set of all code set identifiers known in the terminology service. 
 
@@ -78,6 +78,5 @@ http://www.nlm.nih.gov/research/umls/metaa1.html
 {set:cellbgcolor:lightblue}
 |*code_set_identifiers*: 
 {set:cellbgcolor!}
-|Set of all code sets identifiers for which there is an internal openEHR name;  +
-returned as a Map of ids keyed by internal name. 
+|Set of all code sets identifiers for which there is an internal openEHR name; returned as a Map of ids keyed by internal name. 
 |===
