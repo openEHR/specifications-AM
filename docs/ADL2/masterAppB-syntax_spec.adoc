@@ -1,0 +1,57 @@
+[appendix]
+= Syntax Specification
+
+There are various syntax specifications in existence. The http://www.openehr.org/downloads/ADLworkbench/home[ADL Workbench] currently implements the reference version of the ADL2 language and syntax. It uses a relatively traditional yacc/lex for the Eiffel language. The `.y` and `.l` files are found in the following locations:
+
+* https://github.com/openEHR/adl-tools/tree/master/components/adl_compiler/src/syntax/adl/parser[ADL outer syntax]
+* https://github.com/openEHR/adl-tools/tree/master/components/adl_compiler/src/syntax/cadl/parser[cADL and rules syntax]
+* https://github.com/wolandscat/EOMF/tree/master/library/odin/parser[ODIN]
+
+An https://github.com/openEHR/adl2-core/tree/master/adl-parser/src/main/resources/antlr3/org/openehr/adl/antlr[Antlr3 grammar specification] also exists and is used in the current Java implementation of AOM2/ADL2.
+
+The most recent specification is derived from the ADL Workbench reference parser, and is expressed in Antlr4. It is shown below. It is currently untested.
+
+== ADL Outer Syntax
+
+The following grammar expresses the outer syntax of ADL, i.e. the top-level structure of section keywords and initial identification lines in an ADL text.
+
+[source, antlr-java]
+--------
+include::adl.g4[]
+--------
+
+== cADL Syntax
+
+The following grammar expresses the syntax of cADL, i.e. language of the `definition` section of an archetype.
+
+[source, antlr-java]
+--------
+include::cadl.g4[]
+--------
+
+== Rules Syntax
+
+The following grammar defines the syntax that may appear in the `rules' section of an archetype.
+
+[source, antlr-java]
+--------
+include::adl_rules.g4[]
+--------
+
+== ODIN value types
+
+The following grammar defines the syntax for the terminal types in ADL, which are derivde from ODIN.
+
+[source, antlr-java]
+--------
+include::{base_dir}/docs/odin/odin_values.g4[]
+--------
+
+== Base Patterns
+
+The following grammar defines syntax of generic base patterns.
+
+[source, antlr-java]
+--------
+include::base_patterns.g4[]
+--------
