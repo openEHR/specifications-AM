@@ -34,9 +34,9 @@ Some of the textual keywords in this example can be more efficiently rendered us
     }
 --------
 
-The full set of equivalences appears below. Raw cADL is persisted in the text-based form, to remove any difficulties when authoring cADL text in normal text editors, and to aid reading in English. However, the symbolic form might be more widely used for display purposes and in more sophisticated tools, as it is more succinct and less language-dependent. The use of symbols or text is completely a matter of taste, and no meaning whatsoever is lost by completely ignoring one or other format according to one’s personal preference. This document uses both conventions.
+The full set of equivalences appears below. Raw cADL is persisted in the text-based form, to remove any difficulties when authoring cADL text in normal text editors, and to aid reading in English. However, the symbolic form might be more widely used for display purposes and in more sophisticated tools, as it is more succinct and less language-dependent. The use of symbols or text is completely a matter of taste, and no meaning whatsoever is lost by completely ignoring one or other format according to one's personal preference. This document uses both conventions.
 
-In the standard cADL documented in this section, literal leaf values (such as the regular expression `/.+/` in the above example) are always constraints on a set of ‘standard’ widely-accepted primitive types, as described in the openEHR ODIN syntax specification.
+In the standard cADL documented in this section, literal leaf values (such as the regular expression `/.+/` in the above example) are always constraints on a set of 'standard' widely-accepted primitive types, as described in the openEHR ODIN syntax specification.
 
 == Basics
 
@@ -60,7 +60,7 @@ Symbol equivalents for some of the above are given in the following table.
  Rendering |Meaning
 |matches |∈ |Set membership, "p is in P"
 |not, ~ |∼ |Negation, "not p"
-|* |∗ |Infinity, ‘any number of...’
+|* |∗ |Infinity, 'any number of...'
 |=========================================
 
 === Block / Node Structure
@@ -90,7 +90,7 @@ cADL constraints are written in a block-structured style, similar to block-struc
     }
 --------
 
-In the above, an identifier (shown in green in this document) followed by the ∈ operator (equivalent text keyword: `matches` or `is_in` ) followed by an open brace, is the start of a ‘block’, which continues until the closing matching brace (normally visually indented to match the line at the beginning of the block).
+In the above, an identifier (shown in green in this document) followed by the ∈ operator (equivalent text keyword: `matches` or `is_in` ) followed by an open brace, is the start of a 'block', which continues until the closing matching brace (normally visually indented to match the line at the beginning of the block).
 
 Two kinds of identifiers from the underlying information model are used, in alternation: type names (shown in upper case in this document) and attribute names (shown in lower case).
 
@@ -153,11 +153,11 @@ Identifiers from the underlying information model are used to introduce all cADL
 [.principle]
 A *type name* is any identifier with an initial upper case letter, followed by any combination of letters, digits and underscores. A *generic type name* (including nested forms) additionally may include commas and angle brackets, but no spaces, and must be syntactically correct as per the OMG UML 2.x specification or higher. An *attribute name* is any identifier with an initial lower case letter, followed by any combination of letters, digits and underscores. Any convention that obeys this rule is allowed.
 
-Type identifiers are shown in this document in all uppercase, e.g. `PERSON` , while attribute identifiers are shown in all lowercase, e.g. `home_address` . In both cases, underscores are used to represent word breaks. This convention is used to improve the readability of this document, and other conventions may be used, such as the common programmer’s mixed-case convention exemplified by `Person` and `homeAddress`. The convention chosen for any particular cADL document should be based on that used in the underlying information model.
+Type identifiers are shown in this document in all uppercase, e.g. `PERSON` , while attribute identifiers are shown in all lowercase, e.g. `home_address` . In both cases, underscores are used to represent word breaks. This convention is used to improve the readability of this document, and other conventions may be used, such as the common programmer's mixed-case convention exemplified by `Person` and `homeAddress`. The convention chosen for any particular cADL document should be based on that used in the underlying information model.
 
 === Node Identifiers
 
-Node identifier codes appear after all type identifiers in a cADL text. They take the form of an ‘id-code’ in brackets, e.g. `[id3]`. The id-code of a root object in a structure is always `id1`, or for specialised archetypes, `id1.1`, `id1.1.1` etc. The rules and use of node identifiers is described in more detail below.
+Node identifier codes appear after all type identifiers in a cADL text. They take the form of an 'id-code' in brackets, e.g. `[id3]`. The id-code of a root object in a structure is always `id1`, or for specialised archetypes, `id1.1`, `id1.1.1` etc. The rules and use of node identifiers is described in more detail below.
 
 === The matches Operator
 
@@ -165,7 +165,7 @@ The `matches` or `is_in` operator deserves special mention, since it is the key 
 
 [source, cadl]
 --------
-    aaa matches {/\w*ion[\s\n\t ]/} -- the set of words ending in ‘ion’  
+    aaa matches {/\w*ion[\s\n\t ]/} -- the set of words ending in 'ion'  
 --------
 
 The following example links the name of a type `XXX` with a hierarchical value space.
@@ -300,7 +300,7 @@ If no numeric or ordering constraint on the cardinality of a container attribute
 
 [source, cadl]
 --------
-    events cardinality ∈ { -- indicates ‘events’ is a container
+    events cardinality ∈ { -- indicates 'events' is a container
 --------    
 
 Although this is not strictly ncessary for the purpose of expressing valid archetypes if the Reference Model can usually be referred to, it enables early stage parsing to generate the correct type of attributes without referring to a Reference Model schema, which in any case may not always be available. This in turn enables more faithful visualisation at an earlier point in the archetype compilation process.
@@ -308,7 +308,7 @@ Although this is not strictly ncessary for the purpose of expressing valid arche
 In theory, no cardinality constraint can be stronger than the semantics of the corresponding container in the relevant part of the reference model. However, in practice, developers often use lists to facilitate data integration, when the actual semantics are intended to be of a set; in such cases, they typically ensure set-like semantics in their own code rather than by using an `Set<T>` type. How such constraints are evaluated in practice may depend somewhat on knowledge of the software system.
 
 [.principle]
-A cardinality constraint must be used after any Reference Model container attribute name (or after its existence constraint, if there is one) in order to designate it as a container attribute. Additionally, it may constrain the number of member items it may have in the data, and whether it has "list", "set", or "bag" semantics, via the use of the keywords ‘ordered’, ‘unordered’, ‘unique’ and ‘non-unique’.
+A cardinality constraint must be used after any Reference Model container attribute name (or after its existence constraint, if there is one) in order to designate it as a container attribute. Additionally, it may constrain the number of member items it may have in the data, and whether it has "list", "set", or "bag" semantics, via the use of the keywords 'ordered', 'unordered', 'unique' and 'non-unique'.
 
 The numeric part of the cardinality contraint can take the values `{0}`, `{0..0}`, `{0..n}`, `{m..n}`, `{0..*}`, or `{*}`, or a syntactic equivalent. The first two of these constraints are unlikely to be useful, but there is no reason to prevent them. There is no default cardinality, since if none is shown, the relevant attribute is assumed to be single-valued (in the interests of uniformity in archetypes, this holds even for smarter parsers that can access the reference model and determine that the attribute is in fact a container.
 
@@ -337,13 +337,13 @@ All object nodes require a node identifier, guaranteeing the ability to generate
 [.principle]
 A Node identifier is required for every object node in an archetype.
 
-The node identifier can also perform a semantic function, that of giving a design-time meaning to the node, by equating the node identifier to some description. The use of node identifiers in archetypes is the main source of their expressive power. Each node identifier acts as a ‘semantic marker’ or ‘override’ on the node. Thus, in the example shown in <<The Underlying Information Model>>, the `ELEMENT` node is identified by the code `[id10]` , which can be designated elsewhere in an archetype as meaning "diastolic blood pressure". In this way rich meaning is given to data constructed from a limited number of object types.
+The node identifier can also perform a semantic function, that of giving a design-time meaning to the node, by equating the node identifier to some description. The use of node identifiers in archetypes is the main source of their expressive power. Each node identifier acts as a 'semantic marker' or 'override' on the node. Thus, in the example shown in <<The Underlying Information Model>>, the `ELEMENT` node is identified by the code `[id10]` , which can be designated elsewhere in an archetype as meaning "diastolic blood pressure". In this way rich meaning is given to data constructed from a limited number of object types.
 
-Not every node identifier needs to be defined in the archetype terminology: it is only mandatory for nodes defined under container attributes. Nodes defined under single-valued attributes may have terminology definitions, but don’t typically need them, since the meaning is obvious from the attribute.
+Not every node identifier needs to be defined in the archetype terminology: it is only mandatory for nodes defined under container attributes. Nodes defined under single-valued attributes may have terminology definitions, but don't typically need them, since the meaning is obvious from the attribute.
 
 ==== Occurrences
 
-A constraint on occurrences is used only with cADL object nodes, to indicate how many times in data an instance conforming to the constraint can occur. It is usually only defined on objects that are children of a container attribute, since by definition, the occurrences of an object that is the value of a single-valued attribute can only be `0..1` or `1..1`, and this is already defined by the attribute’s `existence`. However, it may be used in specialised archetypes to exclude a possibility defined in a parent archetype (see <<Attribute Redefinition>>).
+A constraint on occurrences is used only with cADL object nodes, to indicate how many times in data an instance conforming to the constraint can occur. It is usually only defined on objects that are children of a container attribute, since by definition, the occurrences of an object that is the value of a single-valued attribute can only be `0..1` or `1..1`, and this is already defined by the attribute's `existence`. However, it may be used in specialised archetypes to exclude a possibility defined in a parent archetype (see <<Attribute Redefinition>>).
 
 In the example below, three `EVENT` constraints are shown; the first one ("1 minute sample") is shown as mandatory, while the other two are optional.
 
@@ -385,11 +385,11 @@ Where cardinality constraints are used (remembering that occurrences is always t
 * where a cardinality constraint is stated with a finite upper bound:
 ** any child object with either stated occurrences with an open upper bound (typically `0..\*` or `1..\*`) or else inferred occurrences (`0..*`) is legal, since the occurrences open upper bound is interpreted to mean the maximum value allowed by the cardinality upper bound.
 ** the sum of all child object occurrences lower bounds must be less than the cardinality upper bound;
-* no ‘orphans’: at least instance of one optional child object (occurrences lower bound = 0), and one instance of every mandatory child object (occurrences lower bound > 0) must be includable within the cardinality range.
+* no 'orphans': at least instance of one optional child object (occurrences lower bound = 0), and one instance of every mandatory child object (occurrences lower bound > 0) must be includable within the cardinality range.
 
 === "Any" Constraints
 
-There are two cases where it is useful to state a completely open, or ‘any’, constraint. The first is when it is desired to override the existence or cardinality of a property, such as in the following:
+There are two cases where it is useful to state a completely open, or 'any', constraint. The first is when it is desired to override the existence or cardinality of a property, such as in the following:
 
 [source, cadl]
 --------
@@ -407,14 +407,14 @@ The second use of "any" as a constraint value is for types, such as in the follo
 --------
     ELEMENT[id4] ∈ {          -- speed limit
         value ∈ {
-            DV_QUANTITY[id5]  -- type was ‘DATA_VALUE’ in RM
+            DV_QUANTITY[id5]  -- type was 'DATA_VALUE' in RM
         }
     }
 --------
 
 The meaning of this constraint is that in the data at runtime, the _value_ property of `ELEMENT` must be of type `DV_QUANTITY` , but can have any value internally. This is most useful for constraining objects to be of a certain type, without further constraining value, and is especially useful where the information model contains subtyping, and there is a need to restrict data to be of certain subtypes in certain contexts.
 
-* In ADL 1.4, ‘any’ constraints were represented with an additional `matches {*}` at the end of the statement. This is deprecated. It is recommended that parsers silently accept this form, but output the modern ADL 1.5 form.
+* In ADL 1.4, 'any' constraints were represented with an additional `matches {*}` at the end of the statement. This is deprecated. It is recommended that parsers silently accept this form, but output the modern ADL 1.5 form.
 
 === Reference Model Type Matching
 
@@ -488,7 +488,7 @@ In some cases it is required to remove some subtypes altogether. This is achieve
 The use of identified object nodes allows the formation of archetype paths, which can be used to unambiguously reference object nodes within the same archetype or within a specialised child. The syntax of archetype paths is designed to be close to the W3C Xpath syntax, and can be directly converted to it for use in XML.
 
 [.principle]
-Archetype paths are paths extracted from the definition section of an archetype, and refer to object nodes within the definition. A path is constructed as a concatenation of ‘/’ characters and attribute names, with the latter including node identifiers as predicates where required for disambiguation.
+Archetype paths are paths extracted from the definition section of an archetype, and refer to object nodes within the definition. A path is constructed as a concatenation of '/' characters and attribute names, with the latter including node identifiers as predicates where required for disambiguation.
 
 In the following example, the `PERSON` constraint node is the sole object constraint under the single-valued attribute manager:
 
@@ -616,7 +616,7 @@ For instance data created according to this archetype, the following runtime pat
     items[id4]/value               -- since there is only one DV_QUANTITY in the data
 --------
 
-A query using this path will match the data regardless of which type of `DV_QUANTITY` object is there. However, in some circumstances, queries may need to be specific, in which case they will use the full archetype path, i.e. `items[id4]/value[id22]` or `items[id4]/value[id23]` to select only ‘miles’ or ‘kilometres’ data. This will only work if the node ids (id-codes) are in fact stored in all types of the reference model data. If for example this was not the case with the `DV_QUANTITY` type, another facet of the `DV_QUANTITY` objects from the archetype such as ‘units = "km/h"’ would need to be used in the query to correctly locate only metric `DV_QUANTITY` objects.
+A query using this path will match the data regardless of which type of `DV_QUANTITY` object is there. However, in some circumstances, queries may need to be specific, in which case they will use the full archetype path, i.e. `items[id4]/value[id22]` or `items[id4]/value[id23]` to select only 'miles' or 'kilometres' data. This will only work if the node ids (id-codes) are in fact stored in all types of the reference model data. If for example this was not the case with the `DV_QUANTITY` type, another facet of the `DV_QUANTITY` objects from the archetype such as 'units = "km/h"' would need to be used in the query to correctly locate only metric `DV_QUANTITY` objects.
 
 === Internal References (Proxy Constraint Objects)
 
@@ -629,7 +629,7 @@ It is possible to define a constraint structure at a certain point to be the sam
 
 This statement defines a node of type `TYPE`, whose definition is the same as the one found at path `archetype_path`. The type mentioned in the `use_node` reference must always be the same type as the referenced type.
 
-The path must not be in the parent path of the proxy object itself, but may be a sibling of the proxy object. The sibling case is a special case, and the meaning of the proxy constraint is that the target object’s children should be re-used, but not the target itself (since that would illegally create two siblings with the same identifier). The general case is that the proxy object and target object locations are different, and the meaning is that the proxy object is logically replaced by a deep copy of the target object. (In theory the sibling case could be banned, and proxies defined one level further down with targets of the children of the originally intended target, but this creates inconvenience for the archetype author, and can easily be dealt with in tools).
+The path must not be in the parent path of the proxy object itself, but may be a sibling of the proxy object. The sibling case is a special case, and the meaning of the proxy constraint is that the target object's children should be re-used, but not the target itself (since that would illegally create two siblings with the same identifier). The general case is that the proxy object and target object locations are different, and the meaning is that the proxy object is logically replaced by a deep copy of the target object. (In theory the sibling case could be banned, and proxies defined one level further down with targets of the children of the originally intended target, but this creates inconvenience for the archetype author, and can easily be dealt with in tools).
 
 Occurrences from the target are also assumed, or may be explicitly overridden:
 
@@ -689,7 +689,7 @@ The following example shows the definitions of the `ADDRESS` nodes for phone, fa
     }
 --------
 
-The following example shows the occurrences being overridden in the referring node, to enable the specification for ‘phone’ to be re-used, but with a different occurrences constraint.
+The following example shows the occurrences being overridden in the referring node, to enable the specification for 'phone' to be re-used, but with a different occurrences constraint.
 
 [source, cadl]
 --------
@@ -719,12 +719,12 @@ In forming paths through the proxy and to nodes below the target, two cases can 
 
 === External References
 
-Another kind of reference in an archetype is to another archetype. There are two ways this can be done: using a direct reference, and using an archetype ‘slot’. The first is used when the need is to refer to one specific archetype (or to a template from another template), while the second is a constraint that allows for various archetypes matching specified criteria to be used. The slot concept is described in the next section.
+Another kind of reference in an archetype is to another archetype. There are two ways this can be done: using a direct reference, and using an archetype 'slot'. The first is used when the need is to refer to one specific archetype (or to a template from another template), while the second is a constraint that allows for various archetypes matching specified criteria to be used. The slot concept is described in the next section.
 
 [.principle]
 An external reference defines a fixed compositional connection between two archetypes.
 
-Direct references, or external references as they will be denoted here occur for two main reasons: re-use and templating. In the first case, an archetype has originally been built using inline constraints when it is discovered that another archetype contains the same or very similar inline constraints at a similar point. As would be normal in software design, a refactoring exercise is conducted that results in the common part being created as its own, new archetype, and both original archetypes ‘referring’ to it. They do this using an external reference, which has syntax of the form:
+Direct references, or external references as they will be denoted here occur for two main reasons: re-use and templating. In the first case, an archetype has originally been built using inline constraints when it is discovered that another archetype contains the same or very similar inline constraints at a similar point. As would be normal in software design, a refactoring exercise is conducted that results in the common part being created as its own, new archetype, and both original archetypes 'referring' to it. They do this using an external reference, which has syntax of the form:
 
 --------
     use_archetype TYPE[idN, archetype_id] [occurrences constraint]
@@ -774,7 +774,7 @@ Following the standard object-oriented semantics of type substitutability, and a
     }
 --------
 
-where the ‘vaccine’ archetype is a specialisation of the ‘medication’ archetype. Redefinitions of this kind are described in more detail in the section <<External Reference Redefinition>>.
+where the 'vaccine' archetype is a specialisation of the 'medication' archetype. Redefinitions of this kind are described in more detail in the section <<External Reference Redefinition>>.
 
 External references can of course also be defined under container attributes.
 
@@ -800,7 +800,7 @@ Howver, in flattened archetypes, the corresponding paths will include the archet
 
 === Archetype Slots
 
-At any point in a cADL definition, a constraint can be defined that allows other archetypes to be used, rather than defining the desired constraints inline. This is known as an archetype ‘slot’, i.e. a connection point whose allowable ‘fillers’ are constrained by a set of statements, written in the ADL assertion language (defined in the <<Assertions>> section.
+At any point in a cADL definition, a constraint can be defined that allows other archetypes to be used, rather than defining the desired constraints inline. This is known as an archetype 'slot', i.e. a connection point whose allowable 'fillers' are constrained by a set of statements, written in the ADL assertion language (defined in the <<Assertions>> section.
 
 [.principle]
 An archetype slot defines a constrained compositional chaining point in an archetype at which other archetypes can be inserted, if they are in the set defined by the slot constraint.
@@ -821,16 +821,16 @@ A slot constraint evaluates to a set of archetype identifiers from whatever is c
 
 The simplest possible slot has no includes or excludes, and effectively imposes no constraint. However, it is allowed in order to enable authoring tools to create a slot whose actual constraint definition will be defined at a later point in time.
 
-A slot is designed to be ‘filled’, i.e. to have one of the allowed archetypes chosen for use. This is done in a child archetype, almost always a template. A slot can also be ‘closed’, meaning no further fillers can be added.
+A slot is designed to be 'filled', i.e. to have one of the allowed archetypes chosen for use. This is done in a child archetype, almost always a template. A slot can also be 'closed', meaning no further fillers can be added.
 
-The actual specification of slot fillers, and also the ‘closing’ of slots is done in specialised archetypes, and is described in the section <<Slot Filling and Redefinition>>, in the chapter on specialisation.
+The actual specification of slot fillers, and also the 'closing' of slots is done in specialised archetypes, and is described in the section <<Slot Filling and Redefinition>>, in the chapter on specialisation.
 
 ==== Formal Semantics of include and exclude Constraints
 
 The semantics of the `include` and `exclude` lists are somewhat subtle. They are as follows:
 
-* The meaning of the ‘set of all archetypes’ in any given environment is evaluable (and evaluated) to a finite set consisting of all archetypes available within the current archetype Library, not some notional virtual / global set of archetypes, or theoretical possible set.
-* Either the `include` or `exclude` constraint, but not both, may be ‘substantive’, i.e. define a particular set of archetypes that would be matched within a given slot, or ‘open’, i.e. matching all possible archetypes.
+* The meaning of the 'set of all archetypes' in any given environment is evaluable (and evaluated) to a finite set consisting of all archetypes available within the current archetype Library, not some notional virtual / global set of archetypes, or theoretical possible set.
+* Either the `include` or `exclude` constraint, but not both, may be 'substantive', i.e. define a particular set of archetypes that would be matched within a given slot, or 'open', i.e. matching all possible archetypes.
 * A slot constraint may consist of a single `include` or `exclude` constraint, or of an `include` / `exclude` pair.
 * If an `include` or `exclude` constraint is present on its own, it is understood as a recommendation, i.e. it does not constitute a formal constraint for matching or exclusion, but tools and applications may use the recommended match set in an intelligent way. The result set for such an `include` or `exclude` is the whole current archetype set.
 * If a substantive `include` or `exclude` constraint is present with a corresponding open `exclude` or `include` , respectively, the substantive constraint is considered formally binding.
@@ -850,7 +850,7 @@ where subsumption_expression is one of:
 * an archetype ontology entity
 * `'<'` | `'<<'` an archetype ontology entity
 
-and the unary operators ‘<‘ and ‘<<‘ have the following meanings:
+and the unary operators '<' and '<<' have the following meanings:
 
 * `<` : descendant-of
 * `<<` : descendant-of-or-self
@@ -867,7 +867,7 @@ A simple slot definition of this form is as follows:
     }
 --------
 
-This constrains the archetype that can be used in the slot to being any based on the openEHR ` OBSERVATION` class.
+This constrains the archetype that can be used in the slot to being any based on the openEHR `OBSERVATION` class.
 
 The following example shows a more typical slot definition:
 
@@ -930,7 +930,7 @@ There are two ways in which _archetype_id_ regular expressions patterns can be u
 * as a pattern against which to test a particular archetype identifier being proposed for that slot;
 * as a pattern to use against a population of archetypes (e.g. all archetypes in a particular repository) in order to generate a list of all possible archetypes for filling the slot.
 
-Due to the second use, it is required that the regular expression pattern always cover a full archetype identifier rather than only sub-parts. As a consequence, a ‘meta-pattern’ can be defined to check _archetype_id_ regular expressions for validity:
+Due to the second use, it is required that the regular expression pattern always cover a full archetype identifier rather than only sub-parts. As a consequence, a 'meta-pattern' can be defined to check _archetype_id_ regular expressions for validity:
 
 ```
     ^.+-.+-.+\..*\..+$
@@ -946,7 +946,7 @@ Because identifier matching is an inherently lexical operation, subtypes of ment
     }
 --------
 
-The intention is to allow any kind of `ENTRY` , but the above constraint won’t have the desired effect, because the pattern `openEHR-EHR-ENTRY` is unlikely to match any actual archetypes. Instead the following kind of constraint should be used:
+The intention is to allow any kind of `ENTRY` , but the above constraint won't have the desired effect, because the pattern `openEHR-EHR-ENTRY` is unlikely to match any actual archetypes. Instead the following kind of constraint should be used:
 
 [source, cadl]
 --------
@@ -984,11 +984,11 @@ Other constraints are possible as well, including that the allowed archetype mus
     }
 --------
 
-This says that the slot allows archetypes on the `EVALUATION` class, which either have as their concept ‘family_history’ or, if there is a constraint on the subject relationship, then it may not include the code `[openehr::0]` (the openEHR term for "self") - i.e. it must be an archetype designed for family members rather than the subject of care his/herself.
+This says that the slot allows archetypes on the `EVALUATION` class, which either have as their concept 'family_history' or, if there is a constraint on the subject relationship, then it may not include the code `[openehr::0]` (the openEHR term for "self") - i.e. it must be an archetype designed for family members rather than the subject of care his/herself.
 
 ==== Slot-filling
 
-Slots are ‘filled’ in specialised archetypes or templates by the use of use_archetype statements, i.e. the same construct as for an external reference described above. The typical form of a filled slot is as follows:
+Slots are 'filled' in specialised archetypes or templates by the use of use_archetype statements, i.e. the same construct as for an external reference described above. The typical form of a filled slot is as follows:
 
 [source, cadl]
 --------
@@ -1028,7 +1028,7 @@ At any given node, any combination of these types can co-exist, as in the follow
     }
 --------
 
-Here we have a constraint on an attribute called `_items_` (of cardinality 0..*), expressed as a series of possible constraints on objects of type `ENTRY`. The 1st, 4th and 7th are described ‘in place’; the 3rd, 5th and 6th are expressed in terms of internal references to other nodes earlier in the archetype, while the 2nd is an archetype slot, whose constraints are expressed in other archetypes matching the include/exclude constraints appearing between the braces of this node. Note also that the `ordered` keyword has been used to indicate that the list order is intended to be significant.
+Here we have a constraint on an attribute called `_items_` (of cardinality 0..*), expressed as a series of possible constraints on objects of type `ENTRY`. The 1st, 4th and 7th are described 'in place'; the 3rd, 5th and 6th are expressed in terms of internal references to other nodes earlier in the archetype, while the 2nd is an archetype slot, whose constraints are expressed in other archetypes matching the include/exclude constraints appearing between the braces of this node. Note also that the `ordered` keyword has been used to indicate that the list order is intended to be significant.
 
 == Second-order Constraints
 
@@ -1063,7 +1063,7 @@ The covarying requirement could be met using rules of the form:
 
 However, this seems obscure for what is logically a very simple kind of constraint.
 
-A generic solution involves treating covarying properties formally as tuples, and providing syntax to express ‘constraints on tuples’. The following syntax achieves this:
+A generic solution involves treating covarying properties formally as tuples, and providing syntax to express 'constraints on tuples'. The following syntax achieves this:
 
 [source, cadl]
 -------- 
@@ -1336,11 +1336,11 @@ This is made possible because the syntax patterns of all primitive type constrai
 
 === Assumed Values
 
-In an archetype containing optional data elements, an ability to define ‘assumed’ values is useful. For example, an archetype for ‘blood pressure measurement’ might include an optional data element describing the patient position, with choices ‘lying’, ‘sitting’ and ‘standing’. Since this element is optional, data could be created according to the archetype that does not contain it. However, a blood pressure cannot be taken without the patient in some position, so clearly there is an implied value.
+In an archetype containing optional data elements, an ability to define 'assumed' values is useful. For example, an archetype for 'blood pressure measurement' might include an optional data element describing the patient position, with choices 'lying', 'sitting' and 'standing'. Since this element is optional, data could be created according to the archetype that does not contain it. However, a blood pressure cannot be taken without the patient in some position, so clearly there is an implied value.
 
 The archetype allows this to be explicitly stated so that all users/systems know what value to assume when optional items are not included in the data. Assumed values are definable on any primitive type, and are expressed after the constraint expression, by a semi-colon (';') followed by a value of the same type as that implied by the preceding part of the constraint. Example constraints containing assumed values are shown in the sections below.
 
-If no assumed value is stated, no reliable assumption can be made by the receiver of the archetyped data about what the values of removed optional parts might be, from inspecting the archetype. However, this usually corresponds to a situation where the assumed value does not even need to be stated - the same value will be assumed by all users of this data, if its value is not transmitted. In most cases, if an element specified as optional in the archetype, data users only care about the value if it is actually present. The ‘assumed value’ concept is therefore not likely to be needed in most cases.
+If no assumed value is stated, no reliable assumption can be made by the receiver of the archetyped data about what the values of removed optional parts might be, from inspecting the archetype. However, this usually corresponds to a situation where the assumed value does not even need to be stated - the same value will be assumed by all users of this data, if its value is not transmitted. In most cases, if an element specified as optional in the archetype, data users only care about the value if it is actually present. The 'assumed value' concept is therefore not likely to be needed in most cases.
 
 === Constraints on String
 
@@ -1384,8 +1384,8 @@ The regular expression patterns supported in cADL are as follows.
 
 * `.` match any single character. E.g. `...` matches any 3 characters;
 * `[xyz]` match any of the characters in the set `xyz` (case sensitive). E.g. `[0-9]` matches any string containing a single decimal digit;
-* `[a-m]` match any of the characters in the set of characters formed by the continuous range from `a` to ` m` (case sensitive). E.g. `[0-9]` matches any single character string containing a single decimal digit, `[S-Z]` matches any single character in the range `S` - `Z` ;
-* `[^a-m]` match any character except those in the set of characters formed by the continuous range from ` a` to `m` . E.g. `[^0-9]` matches any single character string as long as it does not contain a single decimal digit;
+* `[a-m]` match any of the characters in the set of characters formed by the continuous range from `a` to `m` (case sensitive). E.g. `[0-9]` matches any single character string containing a single decimal digit, `[S-Z]` matches any single character in the range `S` - `Z` ;
+* `[^a-m]` match any character except those in the set of characters formed by the continuous range from `a` to `m` . E.g. `[^0-9]` matches any single character string as long as it does not contain a single decimal digit;
 
 ===== Grouping
 
@@ -1394,7 +1394,7 @@ The regular expression patterns supported in cADL are as follows.
 ===== Occurrences
 
 * `\*` match 0 or more of the preceding atomic item. E.g. `.*` matches any string; `[a-z][a-z0-9]*` matches any alphanumeric string starting with a letter;
-* `+` match 1 or more occurrences of the preceding atomic item. E.g. `a[^\s]+` matches any string starting with ‘a’, followed by at least one further non-whitespace character;
+* `+` match 1 or more occurrences of the preceding atomic item. E.g. `a[^\s]+` matches any string starting with 'a', followed by at least one further non-whitespace character;
 * `?` match 0 or 1 occurrences of the preceding atomic item. E.g. `ab?` matches the strings `"a"` and `"ab"` ;
 * `{m,n}` match m to n occurrences of the preceding atomic item. E.g. `ab{1,3}` matches the strings `"ab"` and `"abb"` and `"abbb"` ; `[a-z]{1,3}` matches all lower-case alphabetic strings of one to three characters in length;
 * `{m,}` match at least m occurrences of the preceding atomic item;
@@ -1542,31 +1542,31 @@ The following table shows the valid patterns that can be used, and the types imp
 
 [cols="1,2,3",options="header"]
 |==================================================================================================
-|Implied Type |Pattern |Explanation
-|Date |yyyy-mm-dd |full date must be specified
-|Date |yyyy-mm-?? |optional day; +
+|Implied Type   |Pattern                |Explanation
+|Date           |yyyy-mm-dd             |full date must be specified
+|Date           |yyyy-mm-??             |optional day; +
  e.g. day in month forgotten
-|Date |yyyy-??-?? |optional month, optional day; +
+|Date           |yyyy-??-??             |optional month, optional day; +
  i.e. any date allowed; e.g. mental health questionnaires which include well known historical dates
-|Date |yyyy-mm-XX |mandatory month, no day
-|Date |yyyy-??-XX |optional month, no day
-|  | | 
-|Time |hh:mm:ss |full time must be specified
-|Time |hh:mm:XX |no seconds; +
+|Date           |yyyy-mm-XX             |mandatory month, no day
+|Date           |yyyy-??-XX             |optional month, no day
+|               |                       | 
+|Time           |hh:mm:ss               |full time must be specified
+|Time           |hh:mm:XX               |no seconds; +
  e.g. appointment time
-|Time |hh:??:XX |optional minutes, no seconds; +
+|Time           |hh:??:XX               |optional minutes, no seconds; +
  e.g. normal clock times
-|Time |hh:??:?? |optional minutes, seconds; +
+|Time           |hh:??:??               |optional minutes, seconds; +
  i.e. any time allowed
-|  |  | 
-|Date/Time |yyyy-mm-ddThh:mm:ss |full date/time must be specified
-|Date/Time |yyyy-mm-ddThh:mm:?? |optional seconds; +
+|               |                       | 
+|Date/Time      |yyyy-mm-ddThh:mm:ss    |full date/time must be specified
+|Date/Time      |yyyy-mm-ddThh:mm:??    |optional seconds; +
  e.g. appointment date/time
-|Date/Time |yyyy-mm-ddThh:mm:XX |no seconds; +
+|Date/Time      |yyyy-mm-ddThh:mm:XX    |no seconds; +
  e.g. appointment date/time
-|Date/Time |yyyy-mm-ddThh:??:XX |no seconds, minutes optional; +
+|Date/Time      |yyyy-mm-ddThh:??:XX    |no seconds, minutes optional; +
  e.g. in patient-recollected date/times
-|Date/Time |yyyy-??-??T??:??:?? |minimum valid date/time constraint
+|Date/Time      |yyyy-??-??T??:??:??    |minimum valid date/time constraint
 |==================================================================================================
 
 In the above patterns, the 'yyyy' etc match strings can be replaced by literal date/time numbers. For example, `yyyy-??-XX` could be transformed into `1995-??-XX` to mean any partial date in 1995.
@@ -1597,7 +1597,7 @@ Patterns based on ISO 8601 can be used to constraint durations in the same way a
 
     P[Y|y][M|m][W|w][D|d][T[H|h][M|m][S|s]]
 
-* Note that allowing the ‘W’ designator to be used with the other designators corresponds to a deviation from the published ISO 8601 standard used in openEHR, namely:
+* Note that allowing the 'W' designator to be used with the other designators corresponds to a deviation from the published ISO 8601 standard used in openEHR, namely:
 * durations are supposed to take the form of PnnW or PnnYnnMnnDTnnHnnMnnS, but in openEHR, the W (week) designator can be used with the other designators, since it is very common to state durations of pregnancy as some combination of weeks and days.
 
 The use of this pattern indicates which "slots" in an ISO duration string may be filled. Where multiple letters are supplied in a given pattern, the meaning is 'or', i.e. any one or more of the slots may be supplied in the data. This syntax allows specifications like the following to be made:
@@ -1630,43 +1630,61 @@ In some cases there is a need to be able to limit the allowed units as well as s
     PWD/|P0W..P50W|   -- 0-50 weeks, expressed only using weeks and days
 --------
 
-The general form is a pattern followed by a slash (‘/’) followed by an interval, as follows:
+The general form is a pattern followed by a slash ('/') followed by an interval, as follows:
 
-duration_pattern ‘/’ duration_interval
+duration_pattern '/' duration_interval
 
 === Terminology Constraints
 
 ==== Overview
 
-Terminology constraints deal with a special category of data values typically known as ‘coded terms’ or ‘terminology’. Coded data values are both textual (e.g. "diastolic blood pressure") and semantic (may have relationships to each other). The idea is that instead of using text, the possible values are represented in structured vocabularies, terminologies or ontologies that define both the possible text (including translations) and also the relationships, if any, between the terms (sometimes known as ‘concepts’). In health, typical examples include ‘terminology’ resources such as WHO ICDx (<<WHO_ICD>> and SNOMED (<<IHTSDO>>) terminologies and drug databases.
+Terminology constraints deal with a special category of data values typically known as 'coded terms' or 'terminology'. Coded data values are both textual (e.g. "diastolic blood pressure") and semantic (may have relationships to each other). The idea is that instead of using text, the possible values are represented in structured vocabularies, terminologies or ontologies that define both the possible text (including translations) and also the relationships, if any, between the terms (sometimes known as 'concepts'). In health, typical examples include 'terminology' resources such as WHO ICDx (<<WHO_ICD>> and SNOMED (<<IHTSDO>>) terminologies and drug databases.
 
-Coded terms are treated as a primitive type in ADL in order to enable the formalism and tools to work with terminology constraintslink:#pgfId-1169358[3]. Unlike other primitive constraints, terminology constraints may be complex, because they refer to external resources, either directly or via ‘bindings’ defined elsewhere in the archeype. This section describes the syntactical representations and relationships between these. The full semantics, including binding and resolution are described in the section <<Terminology Integration>>.
+Coded terms are treated as a primitive type in ADL in order to enable the formalism and tools to work with terminology constraints. Unlike other primitive constraints, terminology constraints may be complex, because they can refer to external resources, either directly or via 'bindings' defined elsewhere in the archeype. This section describes just the syntax representations and relationships between these. The full semantics, including binding and resolution are described in the section <<Terminology Integration>>.
 
-==== Requirement
+Syntactically, there are two types of terminology constraint expressible in ADL. The first is expressed with an ac-code which refers to a value set which is either defined in the archetype terminology or externally. The second, for convenience, uses a single at-code, in order to address the case of a single term value without requiring a value-set. For the first case, an assumed value in the form of an at-code is allowed, having the same sense as the assumed values of other primitive types already described.
 
-There are two general categories of terminology constraint:
-
-* ‘inline’ terminology value or value set;
-* external terminology value set.
-
-In the first, it is the constraint locally in the archetype that establishes the term or set of possible terms to be used for a given purpose, e.g. ‘position of patient when measuring blood pressure’. This is true even if each term in the value set is mapped individually to a term in an external terminology.
-
-In the second, the value set is defined and maintained by an external party, and the archetype references it via a reliable URI.
-
-The general form of a terminology constraint in cADL is shown below:
+The possibilities are illustrated below.
 
 [source, cadl]
 --------
-    ENTRY[id1] ∈ {                         -- blood pressure measurement
-        name ∈ {                           -- any synonym of BP
-            DV_CODED_TEXT[id2] ∈ {
-                defining_code ∈ {[ac1]}    -- terminology constraint
+    -- fragment of an archetype about allergic reaction
+    
+    items ∈ {
+        ELEMENT[id11] occurrences ∈ {0..1} ∈ {	-- Reaction agent
+            name ∈ {
+                DV_CODED_TEXT[id2] ∈ {
+                    defining_code ∈ {[at4]} -- single code case: at4|Reaction Agent|
+                }
+            }
+            value ∈ {
+                DV_CODED_TEXT[id3] ∈ {
+                    defining_code ∈ {[ac1]} -- value-set case: ac1|Type of Agent|
+                }
+            }
+        }
+        ELEMENT[id22] occurrences ∈ {0..1} ∈ {	-- Status
+            value ∈ {
+                DV_CODED_TEXT[id58] ∈ {
+                    defining_code ∈ {[ac2; at2]}    -- value set with assumed value case
+                                                     -- ac2|Dx status value|; at2|working|
+                }
             }
         }
     }
 --------
 
-In the above, the constraint on ` DV_CODED_TEXT` . _defining_code_ is defined as a terminology constraint containing an ‘ac’ code ` [acN]` , which acts as an internal identifier of a value set. The various types of terminology constraint are described below.
+In the above, the constraint at the path `items[id11]/name[id2]` is on a `DV_CODED_TEXT`.`_defining_code_` representing the `_name_` of the `ELEMENT`. It is constrained to a single at-code value representing 'Reaction agent' (we assumed this is some preferred name of the institution that created this archetype). The at-code is defined in the terminology part of the archetype, and may have bindings defined there as well. These are described in later sections.
+
+The second variant uses the code `ac1`, which refers to a value set. This is by definition: all ac-codes in ADL refer only to value sets. This is the most common form of terminology constraint - defining possible codes for a codeable value in the model. The code and any bindings are also defined in the terminology section. The last variant just adds an assumed code, where `at2` must be in the value set referred to by `ac1`.
+
+
+
+
+is defined as a the code `[ac1]`, which acts as an internal identifier of a value set. The value set can be defined locally in the archetype terminology, or externally, or both.
+
+
+The various types of terminology constraint are described below.
 
 ==== Design Basis
 
@@ -1674,9 +1692,9 @@ A fully qualified coded term primitive data item is assumed by ADL to consist of
 
 * a terminology identifier
 * optionally, a terminology version identifier
-* a code or ‘code string’ (an expression made from codes, permitted in some terminologies).
+* a code or 'code string' (an expression made from codes, permitted in some terminologies).
 
-The special terminology identifier "local" is understood as meaning ‘this archetype’. The qualified form of the term ‘at4’ from within the same archetype is "local::at4". An archetype term referenced from an external context where the archetype identifier is not otherwise known uses the archetype identifier as the terminology identifier. Thus the term ` at4` can be referenced externally as: `org.openehr::openEHR-EHR-OBSERVATION.bp_measurement.v1::at4`
+The special terminology identifier "local" is understood as meaning 'this archetype'. The qualified form of the term 'at4' from within the same archetype is "local::at4". An archetype term referenced from an external context where the archetype identifier is not otherwise known uses the archetype identifier as the terminology identifier. Thus the term `at4` can be referenced externally as: `org.openehr::openEHR-EHR-OBSERVATION.bp_measurement.v1::at4`
 
 Terminology constraints in an archetype can be in three `forms`: `source`, `expanded`, `substituted` and `resolved`.
 
@@ -1684,7 +1702,7 @@ Currently an archetype may contain terminology constraints in more than one form
 
 ==== Source Form
 
-A ‘source form’ terminology constraint is the form used to define value sets in source archetypes, i.e. it is the authored form of constraint, prior to any further tool processing. The lexical form is a single ac-code, optionally with an at-code denoting an assumed value, i.e.:
+A 'source form' terminology constraint is the form used to define value sets in source archetypes, i.e. it is the authored form of constraint, prior to any further tool processing. The lexical form is a single ac-code, optionally with an at-code denoting an assumed value, i.e.:
 
 * `[acN]`
 * `[acN; atN]` -- with assumed value
@@ -1695,7 +1713,7 @@ This type of constraint is used when there is a proproper value set, i.e. a set 
 
 ==== Expanded Form
 
-The expanded form of a terminology constraint is a form in which archetype-local terms or sets of terms forming the constraint are inlined in the constraint definition. In this form, all source form ac-coded constraints are replaced by the archetype-local value set they define. This can be thought of as converting a source form value set constraint to an ‘inline’ value set constraint. Single-value constraints are also represented this way, and in fact don’t have a source form (since it would serve no useful purpose to define an ac-code and value set containing a single at-code).
+The expanded form of a terminology constraint is a form in which archetype-local terms or sets of terms forming the constraint are inlined in the constraint definition. In this form, all source form ac-coded constraints are replaced by the archetype-local value set they define. This can be thought of as converting a source form value set constraint to an 'inline' value set constraint. Single-value constraints are also represented this way, and in fact don't have a source form (since it would serve no useful purpose to define an ac-code and value set containing a single at-code).
 
 The syntax for the expanded form is as follows:
 
@@ -1705,7 +1723,7 @@ The syntax for the expanded form is as follows:
     [local::atN, atN, ... , atN; atN]      -- with assumed value
 --------
 
-The first variant is the single value case. This type is used when the constraint is intended to fix single coded value only, e.g. the code for a physical property like ‘mass’ in a constraint that defines possible mass values.
+The first variant is the single value case. This type is used when the constraint is intended to fix single coded value only, e.g. the code for a physical property like 'mass' in a constraint that defines possible mass values.
 
 The second variant represents an expanded value set, and the third is the same with an assumed value. For purely practical purposes, a multi-line form with interpolated comments is often used (e.g. by ADL serialisers, documentation), to make the constraint more comprehensible:
 
@@ -1738,11 +1756,11 @@ An archetype whose terminology constraints are all in expanded form will contain
 
 ==== Substituted Form
 
-The next form is ‘substituted’ form, which is used to represent terminology constraints in the final concrete form intended at point of use. The substituted form is create by replacing each terminology constraint in its expanded form with the appropriate one of:
+The next form is 'substituted' form, which is used to represent terminology constraints in the final concrete form intended at point of use. The substituted form is create by replacing each terminology constraint in its expanded form with the appropriate one of:
 
-* the single external term bound to an internal at-code, e.g. an ISO term for the property ‘mass’;
+* the single external term bound to an internal at-code, e.g. an ISO term for the property 'mass';
 * the set of terms from the intended external resource (e.g. a terminology like SNOMED CT or LOINC) - typically for small value sets;
-* an external reference to which the value set ac-code is bound in the archetype terminology - typically for large and changing value sets. This includes the logical constraint ‘any term in terminology X’.
+* an external reference to which the value set ac-code is bound in the archetype terminology - typically for large and changing value sets. This includes the logical constraint 'any term in terminology X'.
 
 The concrete form for all substituted form terms is one or more URIs. The URI syntax is normally an http reference to a real resource. The lexical form for the single code case is as follows:
 
@@ -1755,7 +1773,7 @@ For the inline value set case, it will be a comma-separated list of these within
 
 --------
     [uri, uri, ... , uri]
-    [uri, uri, ... , uri]; uri
+    [uri, uri, ... , uri; uri]
 --------
 
 In the external value set reference case, a single URI will be used that denotes the external value set, rather than individual terminology codes, i.e.:
@@ -1768,9 +1786,9 @@ The exact form of the URIs will value across industries, and will eventually be 
 
 ==== Resolved Form
 
-A final ‘resolved’ form of a terminology constraint specified by a binding reference to an externally defined value set, can be generated by attempting to resolve the reference against the target terminology and returning the actual terms in the value set according to the terminology. This form would be used in flattened archetypes, operational templates and documentation for local use.
+A final 'resolved' form of a terminology constraint specified by a binding reference to an externally defined value set, can be generated by attempting to resolve the reference against the target terminology and returning the actual terms in the value set according to the terminology. This form would be used in flattened archetypes, operational templates and documentation for local use.
 
-Since an archetype might not contain external terminology bindings for all (or even any) of its terminological constraints, a ‘resolved’ archetype might still contain at-codes in its cADL definition. These at-codes would be treated as real coded terms in any implementation that was creating data, and as a consequence, archetype at-codes could occur in real data.
+Since an archetype might not contain external terminology bindings for all (or even any) of its terminological constraints, a 'resolved' archetype might still contain at-codes in its cADL definition. These at-codes would be treated as real coded terms in any implementation that was creating data, and as a consequence, archetype at-codes could occur in real data.
 
 === Constraints on Lists of Primitive types
 
@@ -1792,7 +1810,7 @@ constrains each value in the list corresponding to the value of the attribute `s
 
 === Constraints on Enumerated Types
 
-Enumeration types in the reference model are assumed to have the semantics defined in UML and mainstream programming languages, i.e. to be a distinct type based on a primitive type, normally Integer or String. Each such type consists of a set of values from the domain of its underlying type, thus, a set of Integer, String or other primitive values. Each of these values is assumed to be named in the manner of a symbolic constant. Although stricly speaking UML doesn’t require an enumerated type to be based on an underlying primitive type, programming languages do, hence the assumption here that values from the domain of such a type are involved.
+Enumeration types in the reference model are assumed to have the semantics defined in UML and mainstream programming languages, i.e. to be a distinct type based on a primitive type, normally Integer or String. Each such type consists of a set of values from the domain of its underlying type, thus, a set of Integer, String or other primitive values. Each of these values is assumed to be named in the manner of a symbolic constant. Although stricly speaking UML doesn't require an enumerated type to be based on an underlying primitive type, programming languages do, hence the assumption here that values from the domain of such a type are involved.
 
 In ADL, constraints on enumerated types are represented by constraints on the underlying primitive values. The following example shows 2 constraints on an attribute of the type `PROPORTION_KIND` from the openEHR Reference Model.
 
