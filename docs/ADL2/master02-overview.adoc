@@ -18,56 +18,56 @@ The following is an example of a very simple archetype, giving a feel for the sy
 [source, adl]
 --------
 archetype (adl_version=2.0.5)
-	adl-test-instrument.guitar.v1.0.4
+    adl-test-instrument.guitar.v1.0.4
 
 language
-	original_language = <[iso_639-1::en]>
+    original_language = <[iso_639-1::en]>
 
 definition
-	INSTRUMENT[id1] matches {
-		size matches {|60..120|}                    -- size in cm
-		date_of_manufacture matches {yyyy-mm-??}    -- year & month ok
-		parts cardinality matches {0..*} matches {
-			PART[id2] matches {                     -- neck
-				material matches {[ac1]}            -- timber or nickel alloy
-			}
-			PART[id3] matches {                     -- body
-				material matches {[at3]}            -- timber
-			}
-		}
-	}
+    INSTRUMENT[id1] matches {
+        size matches {|60..120|}                    -- size in cm
+        date_of_manufacture matches {yyyy-mm-??}    -- year & month ok
+        parts cardinality matches {0..*} matches {
+            PART[id2] matches {                     -- neck
+                material matches {[ac1]}            -- timber or nickel alloy
+            }
+            PART[id3] matches {                     -- body
+                material matches {[at3]}            -- timber
+            }
+        }
+    }
 
 terminology
-	term_definitions = <
-		["en"] = <
-			["id1"] = <
-				text = <"guitar">;
-				description = <"stringed instrument">
-			>
-			["id2"] = <
-				text = <"neck">;
-				description = <"neck of guitar">
-			>
-			["id3"] = <
-				text = <"body">;
-				description = <"body of guitar">
-			>
-			["at3"] = <
-				text = <"timber">;
-				description = <"straight, seasoned timber">
-			>
-			["at4"] = <
-				text = <"nickel alloy">;
-				description = <"frets">
-			>
-		>
-	>
+    term_definitions = <
+        ["en"] = <
+            ["id1"] = <
+                text = <"guitar">;
+                description = <"stringed instrument">
+            >
+            ["id2"] = <
+                text = <"neck">;
+                description = <"neck of guitar">
+            >
+            ["id3"] = <
+                text = <"body">;
+                description = <"body of guitar">
+            >
+            ["at3"] = <
+                text = <"timber">;
+                description = <"straight, seasoned timber">
+            >
+            ["at4"] = <
+                text = <"nickel alloy">;
+                description = <"frets">
+            >
+        >
+    >
 
-	value_sets = <
-		["ac1"] = <
-			id = <"ac1">
-				members = <"at3", "at4">
-			>
-		>
-	>
+    value_sets = <
+        ["ac1"] = <
+            id = <"ac1">
+                members = <"at3", "at4">
+            >
+        >
+    >
 --------

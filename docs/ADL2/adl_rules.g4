@@ -1,9 +1,9 @@
 //
-//	description: Antlr4 grammar for Rules sub-syntax of Archetype Definition Language (ADL2)
-//	author:      Thomas Beale <thomas.beale@openehr.org>
-//	support:     openEHR Specifications PR tracker <https://openehr.atlassian.net/projects/SPECPR/issues>
-//	copyright:   Copyright (c) 2015 openEHR Foundation
-//	license:     Apache 2.0 License <http://www.apache.org/licenses/LICENSE-2.0.html>
+//  description: Antlr4 grammar for Rules sub-syntax of Archetype Definition Language (ADL2)
+//  author:      Thomas Beale <thomas.beale@openehr.org>
+//  support:     openEHR Specifications PR tracker <https://openehr.atlassian.net/projects/SPECPR/issues>
+//  copyright:   Copyright (c) 2015 openEHR Foundation
+//  license:     Apache 2.0 License <http://www.apache.org/licenses/LICENSE-2.0.html>
 //
 
 grammar adl_rules;
@@ -102,12 +102,12 @@ arithmetic_binop_symbol:
 //  ============== Lexical rules ==============
 //
 
-SYM_THEN	: [Tt][Hh][Ee][Nn] ;
-SYM_ELSE	: [Ee][Ll][Ss][Ee] ;
-SYM_AND		: [Aa][Nn][Dd] ;
-SYM_OR		: [Oo][Rr] ;
-SYM_XOR		: [Xx][Oo][Rr] ;
-SYM_NOT		: [Nn][Oo][Tt] ;
-SYM_IMPLIES	: [Ii][Mm][Pp][Ll][Ii][Ee][Ss] ;
-SYM_FORALL	: [Ff][Oo][Rr][_][Aa][Ll][Ll] ;
-SYM_EXISTS	: [Ee][Xx][Ii][Ss][Tt][Ss] ;
+SYM_THEN    : [Tt][Hh][Ee][Nn] ;
+SYM_ELSE    : [Ee][Ll][Ss][Ee] ;
+SYM_AND        : [Aa][Nn][Dd] ;
+SYM_OR        : [Oo][Rr] ;
+SYM_XOR        : [Xx][Oo][Rr] ;
+SYM_NOT        : [Nn][Oo][Tt] ;
+SYM_IMPLIES    : [Ii][Mm][Pp][Ll][Ii][Ee][Ss] ;
+SYM_FORALL    : [Ff][Oo][Rr][_][Aa][Ll][Ll] ;
+SYM_EXISTS    : [Ee][Xx][Ii][Ss][Tt][Ss] ;

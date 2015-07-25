@@ -1034,10 +1034,13 @@ Here we have a constraint on an attribute called `_items_` (of cardinality 0..*)
 
 === Tuple Constraints
 
-In realistic data, it is not uncommon to need to constrain object properties in a covarying way. A simple example is the need to state range constraints on a temperature, represented as a `DV_QUANTITY` type, for both Centigrade and Fahrenheit scales. The default way to do this in ADL is (assuming a simple `DV_QUANTITY` class consisting of `_property_`, `_units_` and `_magnitude_` properties):
+In realistic data, it is not uncommon to need to need to constrain multiple object properties that covary in a specific way. A simple example is the need to state range constraints on a temperature, represented as an openEHR `DV_QUANTITY` type, for both Centigrade and Fahrenheit scales. The default way to do this in ADL is as follows (the `DV_QUANTITY` class has `_property_`, `_units_` and `_magnitude_` attributes):
 
 [source, cadl]
 --------
+    --
+    -- basic form of constraint on a Quantity type, allowing unintended combinations
+    --
     value ∈ {
         DV_QUANTITY [id14] ∈ {
             property ∈ {[openehr::151|temperature|]}
@@ -1052,9 +1055,9 @@ In realistic data, it is not uncommon to need to constrain object properties in 
     }
 --------
 
-What we logically want to do is to state a single constraint on a `DV_QUANTITY` that sets the magnitude range constraint dependent on the units constraint.
+What we logically want to do is to state a single constraint on a `DV_QUANTITY` that sets the `_magnitude_` range constraint dependent on the `_units_` constraint.
 
-The covarying requirement could be met using rules of the form:
+The covarying requirement could be met using assertions like the following in the `rules` section:
 
 --------
     .../value/units = "deg F" -> magnitude ∈ {|32.0..212.0|}
@@ -1063,13 +1066,16 @@ The covarying requirement could be met using rules of the form:
 
 However, this seems obscure for what is logically a very simple kind of constraint.
 
-A generic solution involves treating covarying properties formally as tuples, and providing syntax to express 'constraints on tuples'. The following syntax achieves this:
+A generic solution that can be used in the main `definition` section involves treating covarying properties formally as tuples, and providing syntax to express 'constraints on tuples'. The following syntax achieves this:
 
 [source, cadl]
--------- 
+--------
+    --
+    -- Tuple form of constraint on a Quantity type
+    --
     value ∈ {
         DV_QUANTITY[id4] ∈ {
-            property ∈ {[openehr::151]}                       -- temperature
+            property ∈ {[openehr::151]}       -- temperature
             [units, magnitude] ∈ { 
                 [{"deg F"}, {|32.0..212.0|}] ,
                 [{"deg C"}, {|0.0..100.0|}] 
@@ -1078,41 +1084,40 @@ A generic solution involves treating covarying properties formally as tuples, an
     }
 --------
 
-The `{}` surrounding each leaf level constraint are needed because although such constraints are typically atomic, as above, they may also take other standard ADL forms such as a list of strings, list of integers etc. In the latter case, the ',' characters from such lists will be conflated with the ',' separator of the distinct constraints in the tuple. Use of {} is also logically justified: each such entity is indeed a 'constraint' in the ADL sense, and all constraints are delimited by {}.
+The above defines constraints on `_units_` and `_magnitude_` together, as tuples such as `[{"deg F"}, {|32.0..212.0|}]` .
 
-The above is actually short-hand for the following structure, with the added constraint that only corresponding units and magnitude leaf level constraints can occur together, while other combinations like `"deg F"` and `|0.0..100.0|` would be illegal:
+The brackets surrounding each leaf level constraint are needed because although such constraints are typically atomic, as above, they may also take other standard ADL forms such as a list of strings, list of integers etc. In the latter case, the ',' characters from such lists will be conflated with the ',' separator of the distinct constraints in the tuple. Use of `{}` is also logically justified: each such entity is indeed a 'constraint' in the ADL sense, and all ADL constraints are delimited by `{}`.
+
+The tuple form has the advantage of expressing the additional constraint that only _corresponding_ `_units_` and `_magnitude_` leaf level constraints can occur together, while other combinations like `"deg F"` and `|0.0..100.0|` would be illegal.
+
+Another way to attempt to represent the effect of covarying constraints might be as follows, using lists of primitive values as shown below. However, there is nothing in these constraints that forces the correct associations between the `_units_` and `_magnitude_` constraints, preventing wrong combinations.
 
 [source, cadl]
 --------
+    --
+    -- List form of constraint on a Quantity type, also allowing unintended combinations
+    --
     value ∈ {
         DV_QUANTITY[id4] ∈ {
-                property ∈ {[openehr::151]} -- temperature
-                units ∈ { 
-                    String ∈ {"deg F"}
-                    String ∈ {"deg C"} 
-                }
-                magnitude ∈ {
-                    Integer ∈ {|32.0..212.0|}
-                    Integer ∈ {|0.0..100.0|} 
-                }
-            }
+            property ∈ {[openehr::151]} -- temperature
+            units ∈ {"deg F", "deg C"}
+            magnitude ∈ {|32.0..212.0|, |0.0..100.0|} 
         }
+    }
 --------
 
-[.tbd]
-*TBD*: need to check path semantics to leaf nodes in tuples.
-
-The above defines constraints on units and magnitude together, as tuples like `[{"deg F"}, {|32.0..212.0|}]` .
-
 [.deprecated]
-*Deprecated*: In the openEHR ADL 1.4 Archetype Profile, a custom constrainer type `C_DV_QUANTITY` was used to to provide the above constraint. However, this is specific to the Reference Model type, and does not solve similar constraints occurring in other types. This type and also the `C_DV_ORDINAL` type have been removed from ADL 1.5 altogether.
+*Deprecated*: In the openEHR ADL 1.4 Archetype Profile, a custom constrainer type `C_DV_QUANTITY` was used to to provide the above constraint. However, this is specific to the Reference Model type, and does not solve similar constraints occurring in other types. This type and also the `C_DV_ORDINAL` type have been removed from ADL 2 altogether.
 
-This same syntax will work for tuples of 3 or more co-varying properties, and is mathematically clean. It does involve some extra work for compiler implementers, but this only needs to be performed once to support any use of tuple constraints, regardless of Reference Model type.
+This same syntax will work for tuples of 3 or more co-varying properties. It does involve some extra work for compiler implementers, but this only needs to be performed once to support any use of tuple constraints, regardless of Reference Model type.
 
-If we look at the `DV_ORDINAL` data type constraint in the same light. First, doing a typical ordinal constraint (a scale of `+`, `++`, `+++`) with just standard ADL:
+A constraint on the openEHR `DV_ORDINAL` type provides another example of the utility of ADL tuples. First, a typical ordinal constraint (a scale of pass:[+, ++, +++]) with just standard ADL:
 
 [source, cadl]
 --------
+    --
+    -- Basic form of constraint on an Ordinal type, allowing unintended combinations
+    --
     ordinal_attr ∈ {
         DV_ORDINAL[id3] ∈ {
             value ∈ {0}
@@ -1143,12 +1148,13 @@ If we look at the `DV_ORDINAL` data type constraint in the same light. First, do
     }
 --------
 
-This hides the `DV_ORDINAL` type altogether, but as for the `C_DV_QUANTITY` example above, it was a custom solution.
-
-By the use of tuple constraint, almost the same thing can be chieved much more efficiently. We can now write:
+By the use of tuple constraint, almost the same thing can be chieved much more efficiently. We can write:
 
 [source, cadl]
 --------
+    --
+    -- Tuple form of constraint on an Ordinal type
+    --
     ordinal_attr ∈ {
         DV_ORDINAL[id3] ∈ {
             [value, symbol] ∈ {
@@ -1164,11 +1170,33 @@ By the use of tuple constraint, almost the same thing can be chieved much more e
 Deprecated: in the openEHR profiled version of ADL 1.4, a custom syntax was used, below, which is now replaced by the above generic form:
 
 --------
+    --
+    -- ADL 1.4
+    --
     ordinal_attr ∈ {
-        0|[local::at1],                   -- +
-        1|[local::at2],                   -- ++
-        2|[local::at3]                    -- +++
+        0|[local::at1],       -- +
+        1|[local::at2],       -- ++
+        2|[local::at3]        -- +++
     }
+--------
+
+[.deprecated]
+This hides the `DV_ORDINAL` type altogether, but as for the `C_DV_QUANTITY` example above, it was a custom solution.
+
+==== Paths in Tuple structures
+
+Unlike the basic form primitive constraint, tuple constraints introduce multiplicity, and as a consequence, paths to ther terminal objects are no longer unique. Thus, the paths `value[id4]/magnitude` (the Quantity example) and `ordinal_attr[id3]/value` (the ordinal example) could each refer to more than one primitive object.
+
+This solved by allowing Xpath-style child numbering predicates in paths starting at 1, as shown below.
+
+[source, cadl]
+--------
+value[id4]/magnitude[1]     -- refer to the constraint {|32.0..212.0|}
+value[id4]/magnitude[2]     -- refer to the constraint {|0.0..100.0|}
+
+ordinal_attr[id3]/value[1]  -- refer to the constraint {0}
+ordinal_attr[id3]/value[2]  -- refer to the constraint {1}
+ordinal_attr[id3]/value[3]  -- refer to the constraint {2}
 --------
 
 === Group Constraints
@@ -1201,20 +1229,16 @@ The use of group cardinality and occurrences constraints, coupled with the occur
 
 [cols="2,2,1,1",options="header"]
 |==========================================================
-|Logical constraint 
-|Group +
- cardinality 
-|Group +
- occurrences 
-a|Item +
- occurrences
-
-|1 of N choice |1..1 |upper = 1 |0..1
-|1 of N choice, repeating |1..1 |upper > 1 |0..1
-|N of M choice |N..N |upper = 1 |0..1
-|N of M choice, repeating |N..N |upper > 1 |0..1
-|sequence, repeating |upper > 1, ordered |upper > 1 |any
-|sub-group, repeating |upper > 1, unordered |upper > 1 |any
+|Logical constraint         |Group +
+                             cardinality            |Group +
+                                                     occurrences    |Item +
+                                                                     occurrences
+|1 of N choice              |1..1                   |upper = 1      |0..1
+|1 of N choice, repeating   |1..1                   |upper > 1      |0..1
+|N of M choice              |N..N                   |upper = 1      |0..1
+|N of M choice, repeating   |N..N                   |upper > 1      |0..1
+|sequence, repeating        |upper > 1, ordered     |upper > 1      |any
+|sub-group, repeating       |upper > 1, unordered   |upper > 1      |any
 |==========================================================
 
 Group blocks can be nested, enabling sub-lists of sub-lists to be defined, as illustrated below.
@@ -1634,161 +1658,76 @@ The general form is a pattern followed by a slash ('/') followed by an interval,
 
 duration_pattern '/' duration_interval
 
+[[cADL_Terminology_Constraints]]
 === Terminology Constraints
 
-==== Overview
+Terminology constraints deal with a special category of data values known as 'coded terms' or 'terminology'. Coded data values are both textual (e.g. "diastolic blood pressure") and semantic (may have relationships to each other). The idea is that instead of using text, the possible values are represented in structured vocabularies, terminologies or ontologies that define both the possible text (including translations) and also the relationships, if any, between the terms (sometimes known as 'concepts'). In health, typical examples include 'terminology' resources such as WHO ICDx (<<WHO_ICD>> and SNOMED (<<IHTSDO>>) terminologies and drug databases.
 
-Terminology constraints deal with a special category of data values typically known as 'coded terms' or 'terminology'. Coded data values are both textual (e.g. "diastolic blood pressure") and semantic (may have relationships to each other). The idea is that instead of using text, the possible values are represented in structured vocabularies, terminologies or ontologies that define both the possible text (including translations) and also the relationships, if any, between the terms (sometimes known as 'concepts'). In health, typical examples include 'terminology' resources such as WHO ICDx (<<WHO_ICD>> and SNOMED (<<IHTSDO>>) terminologies and drug databases.
+Coded terms are treated as a primitive type in ADL in order to enable the formalism and tools to work with terminology constraints. Unlike other primitive constraints, terminology constraints may be complex, because they can refer to external resources, either directly or via 'bindings' defined elsewhere in the archeype. This section describes just the syntax representations and relationships between these. 
 
-Coded terms are treated as a primitive type in ADL in order to enable the formalism and tools to work with terminology constraints. Unlike other primitive constraints, terminology constraints may be complex, because they can refer to external resources, either directly or via 'bindings' defined elsewhere in the archeype. This section describes just the syntax representations and relationships between these. The full semantics, including binding and resolution are described in the section <<Terminology Integration>>.
+The full description, including binding and resolution is provided in the section <<Terminology Integration>>. This section describes only the syntax for term constraint in the `definition` section of an archetype.
 
-Syntactically, there are two types of terminology constraint expressible in ADL. The first is expressed with an ac-code which refers to a value set which is either defined in the archetype terminology or externally. The second, for convenience, uses a single at-code, in order to address the case of a single term value without requiring a value-set. For the first case, an assumed value in the form of an at-code is allowed, having the same sense as the assumed values of other primitive types already described.
+Syntactically, there are two types of terminology constraint expressible in 'source form' ADL, i.e. authored archetypes and templates. The first is expressed with an ac-code which refers to a value set which is either defined in the archetype terminology or externally. The second, for convenience, uses a single at-code, in order to express a single term value without requiring a value-set. For the first case, an assumed value in the form of an at-code can also be stated, and has the same sense as the assumed values of other primitive types already described.
 
 The possibilities are illustrated below.
 
 [source, cadl]
 --------
-    -- fragment of an archetype about allergic reaction
+    --
+    -- fragment of openehr-ehr-EVALUATION.term_constraint_variations.v0.0.1
+    --
     
-    items ∈ {
-        ELEMENT[id11] occurrences ∈ {0..1} ∈ {	-- Reaction agent
-            name ∈ {
-                DV_CODED_TEXT[id2] ∈ {
-                    defining_code ∈ {[at4]} -- single code case: at4|Reaction Agent|
+    items matches {
+        ELEMENT[id11] occurrences matches {0..1} matches {
+            name matches {
+                DV_CODED_TEXT[id8] matches {
+                    defining_code matches {[at5]}		-- set name to 'Substance'
                 }
             }
-            value ∈ {
-                DV_CODED_TEXT[id3] ∈ {
-                    defining_code ∈ {[ac1]} -- value-set case: ac1|Type of Agent|
-                }
-            }
-        }
-        ELEMENT[id22] occurrences ∈ {0..1} ∈ {	-- Status
-            value ∈ {
-                DV_CODED_TEXT[id58] ∈ {
-                    defining_code ∈ {[ac2; at2]}    -- value set with assumed value case
-                                                     -- ac2|Dx status value|; at2|working|
+            value matches {
+                DV_CODED_TEXT[id55] matches {
+                    defining_code matches {[ac1]}		-- Type of Substance/Agent
                 }
             }
         }
+        ELEMENT[id22] occurrences matches {0..1} matches {	-- Certainty
+            value matches {
+                DV_CODED_TEXT[id58] matches {
+                    defining_code matches {[ac2; at23]}	
+                }
+            }
+        }
+        ...
     }
 --------
 
-In the above, the constraint at the path `items[id11]/name[id2]` is on a `DV_CODED_TEXT`.`_defining_code_` representing the `_name_` of the `ELEMENT`. It is constrained to a single at-code value representing 'Reaction agent' (we assumed this is some preferred name of the institution that created this archetype). The at-code is defined in the terminology part of the archetype, and may have bindings defined there as well. These are described in later sections.
+In the above, the constraint at the path `items[id11]/name[id8]` is on a `DV_CODED_TEXT`.`_defining_code_` representing the `_name_` of the `ELEMENT`. It is constrained to a single at-code value representing 'Substance' (assume this is the preferred name of the institution that created this archetype). The at-code is defined in the terminology part of the archetype, and may have bindings defined there as well. These are described in later sections.
 
-The second variant uses the code `ac1`, which refers to a value set. This is by definition: all ac-codes in ADL refer only to value sets. This is the most common form of terminology constraint - defining possible codes for a codeable value in the model. The code and any bindings are also defined in the terminology section. The last variant just adds an assumed code, where `at2` must be in the value set referred to by `ac1`.
+The second variant uses the code `ac1`, which refers to a value set. This is by definition: all ac-codes in ADL refer only to value sets. This is the most common form of terminology constraint - defining possible codes for a codeable value in the model. The code and any bindings are also defined in the `terminology` section. 
 
+The last variant shows a second value set, this time with an assumed code, where `at23` must be in the value set referred to by `ac2`.
 
+A further syntax possibility exists, for use at the point of operational template generation. As described in the Section [[terminology_integration_concrete_codes]], the choice may be made that a specific operational template should use external codes from the archetype bindings (such as from SNOMED CT, ICD10, etc) as the values of some or all coded nodes, rather than using the internal at-codes. 
 
+To express this choice, the operational template's `definition` section contains a modified version of the usual syntax `[at1]` or `[ac1]` in those nodes where an external term from the bindings is to be used. This takes the form `[acN@ttttt]` or `[atN@ttttt]` where `ttttt` is the namespace identifier of a binding in the `terminology` section of the archetype.
 
-is defined as a the code `[ac1]`, which acts as an internal identifier of a value set. The value set can be defined locally in the archetype terminology, or externally, or both.
+Specifying which codable nodes (including 'all' and 'none' options) should have their values substituted by the external codes is assumed to be part of the operational template generator tool. Different terminology bindings may be specified on different nodes of the same archetype, or none at all, allowing for a mixture of external term substitional depending on node.
 
-
-The various types of terminology constraint are described below.
-
-==== Design Basis
-
-A fully qualified coded term primitive data item is assumed by ADL to consist of:
-
-* a terminology identifier
-* optionally, a terminology version identifier
-* a code or 'code string' (an expression made from codes, permitted in some terminologies).
-
-The special terminology identifier "local" is understood as meaning 'this archetype'. The qualified form of the term 'at4' from within the same archetype is "local::at4". An archetype term referenced from an external context where the archetype identifier is not otherwise known uses the archetype identifier as the terminology identifier. Thus the term `at4` can be referenced externally as: `org.openehr::openEHR-EHR-OBSERVATION.bp_measurement.v1::at4`
-
-Terminology constraints in an archetype can be in three `forms`: `source`, `expanded`, `substituted` and `resolved`.
-
-Currently an archetype may contain terminology constraints in more than one form.
-
-==== Source Form
-
-A 'source form' terminology constraint is the form used to define value sets in source archetypes, i.e. it is the authored form of constraint, prior to any further tool processing. The lexical form is a single ac-code, optionally with an at-code denoting an assumed value, i.e.:
-
-* `[acN]`
-* `[acN; atN]` -- with assumed value
-
-The ac-code is defined in the archetype terminology. Associated with the ac-code must be a local value set, and/or a binding to an external value set. If both a local value set and a binding exist, tooling and configuration parameters are used to decide how to generate the resolved form (below).
-
-This type of constraint is used when there is a proproper value set, i.e. a set of coded values with more than one member. For the degenerate case of a constraint consisting of a single term, the first expanded form below is used, i.e. there is no ac-coded source form.
-
-==== Expanded Form
-
-The expanded form of a terminology constraint is a form in which archetype-local terms or sets of terms forming the constraint are inlined in the constraint definition. In this form, all source form ac-coded constraints are replaced by the archetype-local value set they define. This can be thought of as converting a source form value set constraint to an 'inline' value set constraint. Single-value constraints are also represented this way, and in fact don't have a source form (since it would serve no useful purpose to define an ac-code and value set containing a single at-code).
-
-The syntax for the expanded form is as follows:
-
---------
-    [local::atN]                           -- single term
-    [local::atN, atN, ... , atN]           -- value set
-    [local::atN, atN, ... , atN; atN]      -- with assumed value
---------
-
-The first variant is the single value case. This type is used when the constraint is intended to fix single coded value only, e.g. the code for a physical property like 'mass' in a constraint that defines possible mass values.
-
-The second variant represents an expanded value set, and the third is the same with an assumed value. For purely practical purposes, a multi-line form with interpolated comments is often used (e.g. by ADL serialisers, documentation), to make the constraint more comprehensible:
+The following example shows the result in an operational template fragment.
 
 [source, cadl]
 --------
-    defining_code matches {
-        [local::
-            at31,     -- Naked
-            at32,     -- Reduced clothing/bedding
-            at33,     -- Appropriate clothing/bedding
-            at34]     -- Increased clothing/bedding
+    --
+    -- extract of an operational template based on openehr-ehr-EVALUATION.term_constraint_variations.v0.0.1
+    --
+    value matches {
+        DV_CODED_TEXT[id55] matches {
+            defining_code matches {[ac1@snomed_ct]}        -- use snomed_ct binding for value from ac1 at runtime
+        }
     }
 --------
 
-or with assumed value:
-
-[source, cadl]
---------
-    defining_code matches {
-        [local::
-            at31,     -- Naked
-            at32,     -- Reduced clothing/bedding
-            at33,     -- Appropriate clothing/bedding
-            at34;     -- Increased clothing/bedding
-            at33]     -- assumed value
-    }
---------
-
-An archetype whose terminology constraints are all in expanded form will contain only at-codes in those constraints.
-
-==== Substituted Form
-
-The next form is 'substituted' form, which is used to represent terminology constraints in the final concrete form intended at point of use. The substituted form is create by replacing each terminology constraint in its expanded form with the appropriate one of:
-
-* the single external term bound to an internal at-code, e.g. an ISO term for the property 'mass';
-* the set of terms from the intended external resource (e.g. a terminology like SNOMED CT or LOINC) - typically for small value sets;
-* an external reference to which the value set ac-code is bound in the archetype terminology - typically for large and changing value sets. This includes the logical constraint 'any term in terminology X'.
-
-The concrete form for all substituted form terms is one or more URIs. The URI syntax is normally an http reference to a real resource. The lexical form for the single code case is as follows:
-
---------
-    [http://terminology_publisher_domain/terminology_specifier/code_string]
-    [http://terminology_publisher_domain/terminology_specifier/teminology_version_specifier/code_string]
---------
-
-For the inline value set case, it will be a comma-separated list of these within [], optionally with a final URI representing an assumed value, i.e.:
-
---------
-    [uri, uri, ... , uri]
-    [uri, uri, ... , uri; uri]
---------
-
-In the external value set reference case, a single URI will be used that denotes the external value set, rather than individual terminology codes, i.e.:
-
---------
-    [uri]
---------
-
-The exact form of the URIs will value across industries, and will eventually be standardised by appropriate standards organisations or industry groups. In the health domain, this is done by the <<IHTSDO>> organisation.
-
-==== Resolved Form
-
-A final 'resolved' form of a terminology constraint specified by a binding reference to an externally defined value set, can be generated by attempting to resolve the reference against the target terminology and returning the actual terms in the value set according to the terminology. This form would be used in flattened archetypes, operational templates and documentation for local use.
-
-Since an archetype might not contain external terminology bindings for all (or even any) of its terminological constraints, a 'resolved' archetype might still contain at-codes in its cADL definition. These at-codes would be treated as real coded terms in any implementation that was creating data, and as a consequence, archetype at-codes could occur in real data.
+See the <<Terminology Integration>> section for fuller picture of how this works.
 
 === Constraints on Lists of Primitive types
 
