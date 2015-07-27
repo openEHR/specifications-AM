@@ -4,7 +4,7 @@
 
 In ADL 2, it is possible to specify a default value for any object node. This almost always limited to use in templates, since default values are usually specific to local contexts or use cases. However they may validly be used in any archetype.
 
-Within a template, a default value can be defined to support the situation where only one value is possible for a data item due to the specific nature of the template. For example, a blood pressure archetype may allow a number of possible values for ‘patient position’, such as ‘lying’, and ‘sitting’, ‘standing’. When used in a hospital, the patient will usually be lying so a default value for this can be set, as shown in the following example:
+Within a template, a default value can be defined to support the situation where only one value is possible for a data item due to the specific nature of the template. For example, a blood pressure archetype may allow a number of possible values for 'patient position', such as 'lying', and 'sitting', 'standing'. When used in a hospital, the patient will usually be lying so a default value for this can be set, as shown in the following example:
 
 [source, cadl]
 -----------------------------------------------------------------------
@@ -19,7 +19,7 @@ Within a template, a default value can be defined to support the situation where
     }
 -----------------------------------------------------------------------
 
-Default values are expressed in ODIN syntax, since they are instances of objects, rather than being constraints. They are introduced using a pseudo-attribute ‘default’, which is detected by the compiler as being a meta-attribute. The example above only sets the default value, but it could have also modified the constraint on the value object as well, as in the following version (where the standing blood pressure possibility from the archetype has been removed):
+Default values are expressed in ODIN syntax, since they are instances of objects, rather than being constraints. They are introduced using a pseudo-attribute 'default', which is detected by the compiler as being a meta-attribute. The example above only sets the default value, but it could have also modified the constraint on the value object as well, as in the following version (where the standing blood pressure possibility from the archetype has been removed):
 
 [source, cadl]
 ---------------------------------------------------------------------

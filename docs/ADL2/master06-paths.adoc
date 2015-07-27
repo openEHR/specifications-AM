@@ -18,12 +18,12 @@ ADL Paths are formed from an alternation of segments made up of an attribute nam
 Similarly to paths used in file systems, ADL paths are either absolute or relative, with the former being indicated by a leading slash.
 
 [.principle]
-Paths are absolute or relative with respect to the document in which they are mentioned. Absolute paths commence with an initial slash (‘/’) character.
+Paths are absolute or relative with respect to the document in which they are mentioned. Absolute paths commence with an initial slash ('/') character.
 
 The ADL path syntax also supports the concept of "movable" path patterns, i.e. paths that can be used to find a section anywhere in a hierarchy that matches the path pattern. Path patterns are indicated with a leading double slash ('//') as in Xpath.
 
 [.principle]
-Path patterns are absolute or relative with respect to the document in which they are mentioned. Absolute paths commence with an initial slash (‘/’) character.
+Path patterns are absolute or relative with respect to the document in which they are mentioned. Absolute paths commence with an initial slash ('/') character.
 
 === Relationship with W3C Xpath
 
@@ -32,21 +32,21 @@ The ADL path syntax is semantically a subset of the Xpath query language, with a
 ADL does not distinguish attributes from children, and also assumes the node_id attribute. Thus, the following expressions are legal for cADL structures:
 
 ----
-    items[1]                            -- the first member of ‘items’
-    items[systolic]                     -- the member of ‘items’ with meaning ‘systolic’
-    items[id1]                          -- the member of ‘items’ with node id ‘id1’
+    items[1]                            -- the first member of 'items'
+    items[systolic]                     -- the member of 'items' with meaning 'systolic'
+    items[id1]                          -- the member of 'items' with node id 'id1'
 ----
 
 The Xpath equivalents are:
 
 ----
-    items[1]                           -- the first member of ‘items’
-    items[meaning() = ‘systolic’]      -- the member of ‘items’ for which the meaning()
+    items[1]                           -- the first member of 'items'
+    items[meaning() = 'systolic']      -- the member of 'items' for which the meaning()
                                        -- function evaluates to "systolic"
-    items[@archetype_node_id = ‘id1’]  -- the member of ‘items’ with key ‘id1’
+    items[@archetype_node_id = 'id1']  -- the member of 'items' with key 'id1'
 ----
 
-In the above, `meaning()` is a notional function is defined for Xpath in openEHR, which returns the rubric for the node_id of the current node. Such paths are only for display purposes, and paths used for computing always use the ‘at’ codes, e.g. items[id1], for which the Xpath equivalent is `items[@node_id = ‘id1’]`.
+In the above, `meaning()` is a notional function is defined for Xpath in openEHR, which returns the rubric for the node_id of the current node. Such paths are only for display purposes, and paths used for computing always use the 'at' codes, e.g. items[id1], for which the Xpath equivalent is `items[@node_id = 'id1']`.
 
-The ADL movable path pattern is a direct analogue of the Xpath syntax abbreviation for the ‘descendant’ axis.
+The ADL movable path pattern is a direct analogue of the Xpath syntax abbreviation for the 'descendant' axis.
 

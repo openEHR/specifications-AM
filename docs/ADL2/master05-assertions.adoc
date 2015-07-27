@@ -30,20 +30,20 @@ In the above, the statement following the `include` keyword expresses a conditio
 The main requirement for assertions in archetypes is for expressing rules that cannot be expressed uding the standard cADL syntax. Types of rules include:
 
 * constraints involving more than one node in an archetype, such as a rule stating that the sum of the five 0-2 value scores in an Apgar test (heartrate, breathing, muscle tone, reflex, colour) correspond to the Apgar total, recorded in a sixth node;
-* rules involving predefined variables such as ‘current_date’;
-* rules involving query results from a data or knowledge context, allowing values such as ‘patient date of birth’ to be referenced.
+* rules involving predefined variables such as 'current_date';
+* rules involving query results from a data or knowledge context, allowing values such as 'patient date of birth' to be referenced.
 
 The semantic requirements are for expressions including arithmetic, boolean, and relational operators, some functions, quantifier operators, a notion of operator precedence, parentheses, constant values, and certain kinds of variables. However, there is no requirement for procedural semantics, type declarations or many of the other complexities of full-blown programming languages.
 
 === Design Basis
 
-The archetype assertion language is a small language of its own. Formally it is a reduced first-order predicate logic language with various operators. It has similarities with OMG’s OCL (Object Constraint Language) syntax, and is also similar to the assertion syntax which has been used in the Object-Z <<Object_Z>> and Eiffel <<Eiffel>> languages and tools for over a decade (see <<Sowa>>, <<Hein>>, <<Kilov_Ross>> for an explanation of predicate logic in information modelling). None of these languages has been used directly, for reasons including:
+The archetype assertion language is a small language of its own. Formally it is a reduced first-order predicate logic language with various operators. It has similarities with OMG's OCL (Object Constraint Language) syntax, and is also similar to the assertion syntax which has been used in the Object-Z <<Object_Z>> and Eiffel <<Eiffel>> languages and tools for over a decade (see <<Sowa>>, <<Hein>>, <<Kilov_Ross>> for an explanation of predicate logic in information modelling). None of these languages has been used directly, for reasons including:
 
 * OCL has a complex type system, and includes some undecidable procedural semantics;
 * none have adequate variable referencing mechanisms, such as to paths and external queries;
 * they are too powerful, and would introduce unnecessary complexity into archetypes and templates.
 
-There are also similarities with other languages developed in the health arena for expressing ‘medical logic’ (Arden), guidelines (GLIF and many others) and decision support (GELLO and many others). These languages were not directly used either, for reasons including:
+There are also similarities with other languages developed in the health arena for expressing 'medical logic' (Arden), guidelines (GLIF and many others) and decision support (GELLO and many others). These languages were not directly used either, for reasons including:
 
 * none have a path referencing mechanism;
 * some are too procedural (Arden, GLIF);
@@ -158,7 +158,7 @@ Operands in an assertion expression are typed and are of four kinds, as describe
 
 Constant values are of any primitive type defined in the openEHR Support IM Assumed Types, and expressed according in the ODIN syntax (see the ODIN specification), i.e.:
 
-* `Character`, e.g. `‘x’` ;
+* `Character`, e.g. `'x'` ;
 * `String`, e.g. `"this is a string"` ;
 * `Boolean`, e.g. `True` , ` False` ;
 * `Integer`, e.g. `5` ;
@@ -174,7 +174,7 @@ Constant values are of any primitive type defined in the openEHR Support IM Assu
 
 === Object References
 
-A reference to an object in data, including a leaf value, is expressed using an archetype path. All such paths are absolute (i.e. contain a leading ‘/’) and are understood to be with respect to the root of the current archetype. References to archetype nodes have the type defined at the relevant point in the underlying reference model. Examples include:
+A reference to an object in data, including a leaf value, is expressed using an archetype path. All such paths are absolute (i.e. contain a leading '/') and are understood to be with respect to the root of the current archetype. References to archetype nodes have the type defined at the relevant point in the underlying reference model. Examples include:
 
 ---------------------------------------------------------------------------------------
     /data[id2]/items[id3]/value[id35]/value -- Date of initial onset; type ISO8601_DATE
@@ -182,7 +182,7 @@ A reference to an object in data, including a leaf value, is expressed using an 
 
 === Built-in Variables
 
-A small number of built-in variables are available for use in assertions, and are referred to using a ‘$’ symbol, for example ` $current_date` . Built-in variables defined include:
+A small number of built-in variables are available for use in assertions, and are referred to using a '$' symbol, for example ` $current_date` . Built-in variables defined include:
 
 -----------------------------------------
     $current_date: ISO8601_DATE

@@ -9,7 +9,7 @@ There are three places in ADL files where non-ASCII characters can occur:
 * in regular expression patterns, demarcated by either `//` or `^^`;
 * in character values, demarcated by single quotes, e.g. 'x'.
 
-URIs (a data type in ODIN) are assumed to be ‘percent-encoded’ according to RFC 39861 <<uri_syntax>>, which applies to all characters outside the ‘unreserved set’. The unreserved set is:
+URIs (a data type in ODIN) are assumed to be 'percent-encoded' according to RFC 39861 <<uri_syntax>>, which applies to all characters outside the 'unreserved set'. The unreserved set is:
 
 ```
 unreserved = ALPHA / DIGIT / "-" / "." / "_" / "~"
@@ -21,10 +21,10 @@ In actual fact, ADL files encoded in latin 1 (ISO-8859-1) or another variant of 
 * some layer of the operating system is smart enough to do an on-the-fly conversion of characters above 127 into UTF-8, even if the archetype tool being used is designed for pure UTF-8 only;
 * the archetype tool (or the string-processing libraries it uses) might support UTF-8 and ISO- 8859 variants.
 
-For situations where binary UTF-8 (and presumably other UTF-* encodings) cannot be supported, ASCII encoding of unicode characters above code-point 127 should only be done using the system supported by many programming languages today, namely \u escaped UTF-16. In this system, unicode codepoints are mapped to either:
+For situations where binary UTF-8 (and presumably other UTF-* encodings) cannot be supported, ASCII encoding of unicode characters above code-point 127 should only be done using the system supported by many programming languages today, namely `\u` escaped UTF-16. In this system, unicode codepoints are mapped to either:
 
-* `\uHHHH` - 4 hex digits which will be the same (possibly 0-filled on the left) as the unicode code-point number expressed in hexadecimal; this applies to unicode codepoints in the range U+0000 - U+FFFF (the ‘base multi-lingual plane’, BMP);
-* `\uHHHHHHHH` - 8 hex digits to encode unicode code-points in the range U+10000 through U+10FFFF (non-BMP planes); the algorithm is described in IETF RFC 27812 <<rfc2781>>.
+* `\uHHHH` - 4 hex digits which will be the same (possibly 0-filled on the left) as the unicode code-point number expressed in hexadecimal; this applies to unicode codepoints in the range U+0000 - U+FFFF (the 'base multi-lingual plane', BMP);
+* `\uHHHHHHHH` - 8 hex digits to encode unicode code-points in the range U+10000 through `U+10FFFF` (non-BMP planes); the algorithm is described in IETF RFC 27812 <<rfc2781>>.
 
 It is not expected that the above approach will be commonly needed, and it may not be needed at all; it is preferable to find ways to ensure that native UTF-8 can be supported, since this reduces the burden for ADL parser and tool implementers. The above guidance is therefore provided only to ensure a standard approach is used for ASCII-encoded unicode, if it becomes unavoidable.
 
