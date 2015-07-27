@@ -795,7 +795,7 @@
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Added explanatory material; added domain type support; rewrote of most dADL sections. Added section on assumed values, “controlled” flag, nested container structures. Change language handling.<br>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Added explanatory material; added domain type support; rewrote of most dADL sections. Added section on assumed values, "controlled" flag, nested container structures. Change language handling.<br>
  Rewrote OWL section based on input from: University of Manchester, UK; University Seville, Spain.</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">A Rector<br>
  R Qamar<br>
@@ -817,7 +817,7 @@
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Remove UML models to “Archetype Object Model” document.</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Remove UML models to "Archetype Object Model" document.</strong></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">T Beale</p></td>
 <td class="tableblock halign-left valign-top"></td>
 </tr>
@@ -882,7 +882,7 @@
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">0.9.7</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Added simple value list continuation (“,&#8230;&#8203;"). Changed path syntax so that trailing ‘/’ required for object paths.<br>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Added simple value list continuation (",&#8230;&#8203;"). Changed path syntax so that trailing ‘/’ required for object paths.<br>
  Remove ranges with excluded limits.<br>
  Added terms and term lists to dADL leaf types.</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">T Beale</p></td>
@@ -1282,7 +1282,7 @@ Source projects can be found at the <a href="https://github.com/openEHR">openEHR
 <div class="sect4">
 <h5 id="_quoting_rules">Quoting Rules</h5>
 <div class="paragraph">
-<p>The old quoting rules based on XML/ISO mnemonic patterns (<code>&ohmgr;</code> etc) are replaced by specifying ADL to be UTF-8 based, and any exceptions to this requiring ASCII encoding should use the <code>\Uhhhh</code> style of quoting unicode used in various programming languuages.</p>
+<p>The old quoting rules based on XML/ISO mnemonic patterns (<code>&ohmgr;</code> etc) are replaced by specifying ADL to be UTF-8 based, and any exceptions to this requiring ASCII encoding should use the <code>\Uhhhh</code> style of quoting unicode used in various programming languages.</p>
 </div>
 </div>
 </div>
@@ -1367,7 +1367,7 @@ Source projects can be found at the <a href="https://github.com/openEHR">openEHR
 		subjects = &lt;
 			["philosophy:plato"] = &lt;...&gt;
 			["philosophy:kant"] = &lt;...&gt;
-			["art”] = &lt;...&gt;
+			["art"] = &lt;...&gt;
 		&gt;
 	&gt;</code></pre>
 </div>
@@ -4623,7 +4623,7 @@ the structure, as shown in the following example:</p>
 <p>Paths are absolute or relative with respect to the document in which they are mentioned. Absolute paths commence with an initial slash (‘/’) character.</p>
 </div>
 <div class="paragraph">
-<p>The ADL path syntax also supports the concept of “movable” path patterns, i.e. paths that can be used to find a section anywhere in a hierarchy that matches the path pattern. Path patterns are indicated with a leading double slash ('//') as in Xpath.</p>
+<p>The ADL path syntax also supports the concept of "movable" path patterns, i.e. paths that can be used to find a section anywhere in a hierarchy that matches the path pattern. Path patterns are indicated with a leading double slash ('//') as in Xpath.</p>
 </div>
 <div class="paragraph principle">
 <p>Path patterns are absolute or relative with respect to the document in which they are mentioned. Absolute paths commence with an initial slash (‘/’) character.</p>
@@ -4631,7 +4631,7 @@ the structure, as shown in the following example:</p>
 <div class="sect3">
 <h4 id="_relationship_with_w3c_xpath">6.1.1. Relationship with W3C Xpath</h4>
 <div class="paragraph">
-<p>The ADL path syntax is semantically a subset of the Xpath query language, with a few syntactic shortcuts to reduce the verbosity of the most common cases. Xpath differentiates between “children” and “attributes” sub-items of an object due to the difference in XML between Elements (true sub-objects) and Attributes (tag-embedded primitive values). In ADL, as with any pure object formalism, there is no such distinction, and all subparts of any object are referenced in the manner of Xpath children; in particular, in the Xpath abbreviated syntax, the key <code>child::</code> does not need to be used.</p>
+<p>The ADL path syntax is semantically a subset of the Xpath query language, with a few syntactic shortcuts to reduce the verbosity of the most common cases. Xpath differentiates between "children" and "attributes" sub-items of an object due to the difference in XML between Elements (true sub-objects) and Attributes (tag-embedded primitive values). In ADL, as with any pure object formalism, there is no such distinction, and all subparts of any object are referenced in the manner of Xpath children; in particular, in the Xpath abbreviated syntax, the key <code>child::</code> does not need to be used.</p>
 </div>
 <div class="paragraph">
 <p>ADL does not distinguish attributes from children, and also assumes the node_id attribute. Thus, the following expressions are legal for cADL structures:</p>
@@ -4650,7 +4650,7 @@ the structure, as shown in the following example:</p>
 <div class="content">
 <pre>    items[1]                           -- the first member of ‘items’
     items[meaning() = ‘systolic’]      -- the member of ‘items’ for which the meaning()
-                                       -- function evaluates to “systolic”
+                                       -- function evaluates to "systolic"
     items[@archetype_node_id = ‘id1’]  -- the member of ‘items’ with key ‘id1’</pre>
 </div>
 </div>
@@ -6088,7 +6088,7 @@ it is quite common that only <em>some</em> of the local at-codes have equivalent
 <p>In the above, the value set binding target is a URI to a value set definition in the target terminology, in this case SNOMED CT. No assumption is made within the archetype about how this is done - it could be a static list, or a so-called 'intensional reference set', meaning a value set whose contents are described by a query that when executed against the terminology, will generate the correct value set.</p>
 </div>
 <div class="paragraph discussion">
-<p>As an example of an intensional ref-set, consider the value set logically defined as “any bacterial infection of the lung”. The possible values would be codes from a target terminology, corresponding to numerous strains of pneumococcus, staphlycoccus and so on, but not including species that are never found in the lung. The value set may be defined as a ref-set query such as <code>is-a bacteria and has-site lung</code>. All of the syntax and machinery to achieve this is assumed to be outside the archetype. The attraction of binding to an intensional ref-set is that its contents can change over time (e.g. as 'type of hepatitis' has changed over the last 15 years), with no dependence on the archetype. Another is that intensional ref-sets can be used to tailor the value set to a desired level of detail and to remove known errors.</p>
+<p>As an example of an intensional ref-set, consider the value set logically defined as "any bacterial infection of the lung". The possible values would be codes from a target terminology, corresponding to numerous strains of pneumococcus, staphlycoccus and so on, but not including species that are never found in the lung. The value set may be defined as a ref-set query such as <code>is-a bacteria and has-site lung</code>. All of the syntax and machinery to achieve this is assumed to be outside the archetype. The attraction of binding to an intensional ref-set is that its contents can change over time (e.g. as 'type of hepatitis' has changed over the last 15 years), with no dependence on the archetype. Another is that intensional ref-sets can be used to tailor the value set to a desired level of detail and to remove known errors.</p>
 </div>
 <div class="paragraph">
 <p>The final variation is to assume that the local value set definition is removed, either because it is unreliable or difficult to maintain, or because universal access to the terminology is now available. In this case, the bindings to the individual at-codes are no longer needed. A new archetype designed on this basis would not even need the at-code definitions (a new revision of a legacy archetype would however). The result would look as follows.</p>
@@ -7993,7 +7993,7 @@ Note that in the above, the ‘/’ is used to denote ‘/protocol’ as a diffe
 <div class="sect3">
 <h4 id="_owl_web_ontology_language">A.3.1. OWL (Web Ontology Language)</h4>
 <div class="paragraph">
-<p>The Web Ontology Language (OWL) <a href="#w3c_xpath">[w3c_xpath]</a> is a W3C initiative for defining Web-enabled ontologies which aim to allow the building of the “Semantic Web”. OWL has an abstract syntax <a href="#w3c_owl">[w3c_owl]</a>, developed at the University of Manchester, UK, and an exchange syntax, which is an extension of the XML-based syntax known as RDF (Resource Description Framework). We discuss OWL only in terms of its abstract syntax, since this is a semantic representation of the language unencumbered by XML or RDF details (there are tools which convert between abstract OWL and various exchange syntaxes).</p>
+<p>The Web Ontology Language (OWL) <a href="#w3c_xpath">[w3c_xpath]</a> is a W3C initiative for defining Web-enabled ontologies which aim to allow the building of the "Semantic Web". OWL has an abstract syntax <a href="#w3c_owl">[w3c_owl]</a>, developed at the University of Manchester, UK, and an exchange syntax, which is an extension of the XML-based syntax known as RDF (Resource Description Framework). We discuss OWL only in terms of its abstract syntax, since this is a semantic representation of the language unencumbered by XML or RDF details (there are tools which convert between abstract OWL and various exchange syntaxes).</p>
 </div>
 <div class="paragraph">
 <p>OWL is a general purpose description logic (DL), and is primarily used to describe 'classes' of things in such a way as to support subsumptive inferencing within the ontology, and by extension, on data which are instances of ontology classes. There is no general assumption that the data itself were built based on any particular class model - they might be audio-visual objects in an archive, technical documentation for an aircraft or the Web pages of a company. OWL’s class definitions are therefore usually constraint statements on an <em>implied</em> model on which data <em>appear</em> to be based. However, the semantics of an information model can themselves be represented in OWL. Restrictions are the primary way of defining subclasses.</p>
