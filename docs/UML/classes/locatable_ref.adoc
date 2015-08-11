@@ -2,51 +2,37 @@
 
 [cols="^1,2,3"]
 |===
-|*Class*
-{set:cellbgcolor:lightblue}
-2+^|*LOCATABLE_REF*
+h|*Class*
+2+^h|*LOCATABLE_REF*
 
-|*Description*
-{set:cellbgcolor:lightblue}
-2+|Purpose Reference to a LOCATABLE instance inside the top-level content structure inside a VERSION<T>; the path attribute is applied to the object that VERSION.data points to. 
-{set:cellbgcolor!}
+h|*Description*
+2+a|Purpose Reference to a LOCATABLE instance inside the top-level content structure inside a VERSION<T>; the path attribute is applied to the object that VERSION.data points to. 
 
-|*Inherit*
-{set:cellbgcolor:lightblue}
+
+h|*Inherit*
 2+|OBJECT_REF
-{set:cellbgcolor!}
 
-|*Attributes*
-{set:cellbgcolor:lightblue}
-^|*Signature*
-^|*Meaning*
+h|*Attributes*
+^h|*Signature*
+^h|*Meaning*
 
-|*0..1*
-{set:cellbgcolor:lightblue}
+h|*0..1*
 |*path*: 
-{set:cellbgcolor!}
-|The path to an instance in question, as an absolute path with respect to  the object found at VERSION.data. An empty path means that  the object referred to by id being specified. 
+a|The path to an instance in question, as an absolute path with respect to  the object found at VERSION.data. An empty path means that  the object referred to by id being specified. 
 
-|*1..1 +
+h|*1..1 +
 (redefined)*
-{set:cellbgcolor:lightblue}
 |*id*: `UID_BASED_ID`
-{set:cellbgcolor!}
-|Globally unique id of an object, regardless of where it is stored.
-|*Functions*
-{set:cellbgcolor:lightblue}
-^|*Signature*
-^|*Meaning*
+a|Globally unique id of an object, regardless of where it is stored.
+h|*Functions*
+^h|*Signature*
+^h|*Meaning*
 
-|
-{set:cellbgcolor:lightblue}
+h|
 |*as_uri*: 
-{set:cellbgcolor!}
-|A URI form of the reference, created by concatenating the following:  +
+a|A URI form of the reference, created by concatenating the following: 
  ehr://  + id.value +  /  + path 
 
-|*Invariant*
-{set:cellbgcolor:lightblue}
-2+|*_Path_valid_*: path /= Void implies not path.is_empty
-{set:cellbgcolor!}
+h|*Invariant*
+2+a|*_Path_valid_*: path /= Void implies not path.is_empty
 |===

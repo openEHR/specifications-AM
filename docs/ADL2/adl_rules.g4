@@ -14,8 +14,8 @@ import adl_symbols, odin_values, base_patterns;
 //
 
 assertion:
-      ( V_IDENTIFIER ':' )? boolean_node
-    | arch_outer_constraint_expr
+      ( IDENTIFIER ':' )? boolean_node
+    | cadl_constraint_expr
     ;
 
 boolean_node:
@@ -32,18 +32,18 @@ boolean_leaf:
       boolean_literal
     | boolean_constraint
     | '(' boolean_node ')'
+    | boolean_unop_expr
     | arithmetic_relop_expr
     ;
 
-arch_outer_constraint_expr: V_REL_PATH SYM_MATCHES '{' c_primitive_object '}' ;
+cadl_constraint_expr: REL_PATH SYM_MATCHES '{' c_primitive_object '}' ;
 
 boolean_constraint:
-      V_ABS_PATH SYM_MATCHES '{' c_primitive_object '}'
-    | V_ABS_PATH SYM_MATCHES '{' c_terminology_code '}'
+      ABS_PATH SYM_MATCHES '{' c_primitive_object '}'
     ;
 
 boolean_unop_expr:
-      ( SYM_EXISTS | SYM_NOT ) V_ABS_PATH
+      ( SYM_EXISTS | SYM_NOT ) ABS_PATH
     | SYM_NOT ( boolean_node )
     ;
 
@@ -78,7 +78,7 @@ arithmetic_arith_binop_expr: arithmetic_node arithmetic_binop_symbol arithmetic_
 arithmetic_value:
       integer_value
     | real_value
-    | V_ABS_PATH
+    | ABS_PATH
     ;
 
 relational_binop_symbol:
@@ -109,5 +109,5 @@ SYM_OR        : [Oo][Rr] ;
 SYM_XOR        : [Xx][Oo][Rr] ;
 SYM_NOT        : [Nn][Oo][Tt] ;
 SYM_IMPLIES    : [Ii][Mm][Pp][Ll][Ii][Ee][Ss] ;
-SYM_FORALL    : [Ff][Oo][Rr][_][Aa][Ll][Ll] ;
+SYM_FOR_ALL    : [Ff][Oo][Rr][_][Aa][Ll][Ll] ;
 SYM_EXISTS    : [Ee][Xx][Ii][Ss][Tt][Ss] ;

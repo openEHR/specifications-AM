@@ -2,83 +2,60 @@
 
 [cols="^1,2,3"]
 |===
-|*Class*
-{set:cellbgcolor:lightblue}
-2+^|*ISO8601_TIMEZONE*
+h|*Class*
+2+^h|*ISO8601_TIMEZONE*
 
-|*Description*
-{set:cellbgcolor:lightblue}
-2+|Represents a timezone as used in ISO 8601.
-{set:cellbgcolor!}
+h|*Description*
+2+a|Represents a timezone as used in ISO 8601.
 
-|*Inherit*
-{set:cellbgcolor:lightblue}
+h|*Inherit*
 2+|TIME_DEFINITIONS
-{set:cellbgcolor!}
 
-|*Functions*
-{set:cellbgcolor:lightblue}
-^|*Signature*
-^|*Meaning*
+h|*Functions*
+^h|*Signature*
+^h|*Meaning*
 
-|
-{set:cellbgcolor:lightblue}
+h|
 |*hour*: `Integer`
-{set:cellbgcolor!}
-|Hour part of timezone - in the range 00 - 13.
+a|Hour part of timezone - in the range 00 - 13.
 
-|
-{set:cellbgcolor:lightblue}
+h|
 |*minute*: `Integer`
-{set:cellbgcolor!}
-|Minute part of timezone. Generally 00 or 30.
+a|Minute part of timezone. Generally 00 or 30.
 
-|
-{set:cellbgcolor:lightblue}
+h|
 |*is_gmt*: `Boolean`
-{set:cellbgcolor!}
-|True if timezone is UTC, i.e. +0000.
+a|True if timezone is UTC, i.e. +0000.
 
-|
-{set:cellbgcolor:lightblue}
+h|
 |*sign*: `Integer`
-{set:cellbgcolor!}
-|Direction of timezone expresssed as +1 or -1.
+a|Direction of timezone expresssed as +1 or -1.
 
-|
-{set:cellbgcolor:lightblue}
+h|
 |*minute_unknown*: `Integer`
-{set:cellbgcolor!}
-|Indicates whether minute part known.
+a|Indicates whether minute part known.
 
-|
-{set:cellbgcolor:lightblue}
+h|
 |*as_string*: `String`
-{set:cellbgcolor!}
-|ISO8601 timezone string, in format: +
-* Z | hh[mm] +
-where: +
-* hh is “00” - “23” (0-filled to two digits) +
-* mm is “00” - “59” (0-filled to two digits) +
+a|ISO8601 timezone string, in format:
+
+* Z &#124; hh[mm]
+
+where:
+
+* hh is “00” - “23” (0-filled to two digits)
+* mm is “00” - “59” (0-filled to two digits)
 * Z is a literal meaning UTC (modern replacement for GMT), i.e. timezone +0000
 
-|*Invariant*
-{set:cellbgcolor:lightblue}
-2+|*_Min_hour_valid_*: sign = -1 implies hour > 0 and hour <= Min_timezone_hour
-{set:cellbgcolor!}
+h|*Invariant*
+2+a|*_Min_hour_valid_*: sign = -1 implies hour > 0 and hour <= Min_timezone_hour
 
-|
-{set:cellbgcolor:lightblue}
-2+|*_Max_hour_valid_*: sign = 1 implies hour > 0 and hour <= Max_timezone_hour
-{set:cellbgcolor!}
+h|
+2+a|*_Max_hour_valid_*: sign = 1 implies hour > 0 and hour <= Max_timezone_hour
 
-|
-{set:cellbgcolor:lightblue}
-2+|*_Minute_valid_*: not minute_unknown implies valid_minute (minute)
-{set:cellbgcolor!}
+h|
+2+a|*_Minute_valid_*: not minute_unknown implies valid_minute (minute)
 
-|
-{set:cellbgcolor:lightblue}
-2+|*_Sign_valid_*: sign = 1 or sign = -1
-{set:cellbgcolor!}
+h|
+2+a|*_Sign_valid_*: sign = 1 or sign = -1
 |===

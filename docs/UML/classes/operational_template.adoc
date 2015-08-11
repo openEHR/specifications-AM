@@ -2,50 +2,36 @@
 
 [cols="^1,2,3"]
 |===
-|*Class*
-{set:cellbgcolor:lightblue}
-2+^|*OPERATIONAL_TEMPLATE*
+h|*Class*
+2+^h|*OPERATIONAL_TEMPLATE*
 
-|*Description*
-{set:cellbgcolor:lightblue}
-2+|Root object of an operational template. An operational template is derived from a TEMPLATE definition and the ARCHETYPEs and/or TEMPLATE_OVERLAYs mentioned by that template by a process of flattening, and potentially removal of unneeded languages and terminologies. +
+h|*Description*
+2+a|Root object of an operational template. An operational template is derived from a TEMPLATE definition and the ARCHETYPEs and/or TEMPLATE_OVERLAYs mentioned by that template by a process of flattening, and potentially removal of unneeded languages and terminologies.
+
 An operational template is used for generating and validating canonical openEHR data, and also as a source artefact for generating other downstream technical artefacts, including XML schemas, APIs and UI form definitions.
-{set:cellbgcolor!}
 
-|*Inherit*
-{set:cellbgcolor:lightblue}
+h|*Inherit*
 2+|AUTHORED_ARCHETYPE
-{set:cellbgcolor!}
 
-|*Attributes*
-{set:cellbgcolor:lightblue}
-^|*Signature*
-^|*Meaning*
+h|*Attributes*
+^h|*Signature*
+^h|*Meaning*
 
-|*0..1*
-{set:cellbgcolor:lightblue}
+h|*0..1*
 |*component_terminologies*: `Hash<ARCHETYPE_TERMINOLOGY, String>`
-{set:cellbgcolor!}
-|Compendium of flattened terminologies of archetypes externally referenced from this archetype, keyed by archetype identifier. This will almost always be present in a template.
+a|Compendium of flattened terminologies of archetypes externally referenced from this archetype, keyed by archetype identifier. This will almost always be present in a template.
 
-|*0..1*
-{set:cellbgcolor:lightblue}
+h|*0..1*
 |*terminology_extracts*: `Hash<ARCHETYPE_TERMINOLOGY, String>`
-{set:cellbgcolor!}
-|Directory of term definitions as a two-level  table. The outer hash keys are term codes,  e.g. "at4", and the inner hash key are term  attribute names, e.g. "text", "description" etc.
-|*Functions*
-{set:cellbgcolor:lightblue}
-^|*Signature*
-^|*Meaning*
+a|Directory of term definitions as a two-level  table. The outer hash keys are term codes,  e.g. "at4", and the inner hash key are term  attribute names, e.g. "text", "description" etc.
+h|*Functions*
+^h|*Signature*
+^h|*Meaning*
 
-|
-{set:cellbgcolor:lightblue}
+h|
 |*component_terminology* (an_id: `String`): `ARCHETYPE_TERMINOLOGY`
-{set:cellbgcolor!}
-|
+a|
 
-|*Invariant*
-{set:cellbgcolor:lightblue}
-2+|*_Specialisation_validity_*: is_specialised
-{set:cellbgcolor!}
+h|*Invariant*
+2+a|*_Specialisation_validity_*: is_specialised
 |===

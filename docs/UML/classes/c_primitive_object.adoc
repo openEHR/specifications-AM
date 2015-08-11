@@ -2,56 +2,39 @@
 
 [cols="^1,2,3"]
 |===
-|*Class*
-{set:cellbgcolor:lightblue}
-2+^|*_C_PRIMITIVE_OBJECT (abstract)_*
+h|*Class*
+2+^h|*_C_PRIMITIVE_OBJECT (abstract)_*
 
-|*Description*
-{set:cellbgcolor:lightblue}
-2+|Parent of types representing constraints on primitive types.
-{set:cellbgcolor!}
+h|*Description*
+2+a|Parent of types representing constraints on primitive types.
 
-|*Inherit*
-{set:cellbgcolor:lightblue}
+h|*Inherit*
 2+|C_DEFINED_OBJECT
-{set:cellbgcolor!}
 
-|*Attributes*
-{set:cellbgcolor:lightblue}
-^|*Signature*
-^|*Meaning*
+h|*Attributes*
+^h|*Signature*
+^h|*Meaning*
 
-|*0..1*
-{set:cellbgcolor:lightblue}
+h|*0..1*
 |*assumed_value*: `Any`
-{set:cellbgcolor!}
-|Value to be assumed if none sent in data.
+a|Value to be assumed if none sent in data.
 
-|*0..1*
-{set:cellbgcolor:lightblue}
+h|*0..1*
 |*is_enumerated_type_constraint*: `Boolean`
-{set:cellbgcolor!}
-|True if this object represents a constraint on an enumerated type from the reference model, where the latter is assumed to be based on a primitive type, generally Integer or String.
+a|True if this object represents a constraint on an enumerated type from the reference model, where the latter is assumed to be based on a primitive type, generally Integer or String.
 
-|*1..1*
-{set:cellbgcolor:lightblue}
+h|*1..1*
 |*constraint*: `Any`
-{set:cellbgcolor!}
-|Constraint represented by this object; redefine in descendants.
-|*Functions*
-{set:cellbgcolor:lightblue}
-^|*Signature*
-^|*Meaning*
+a|Constraint represented by this object; redefine in descendants.
+h|*Functions*
+^h|*Signature*
+^h|*Meaning*
 
-|
-{set:cellbgcolor:lightblue}
+h|
 |*has_assumed_value*: `Boolean`
-{set:cellbgcolor!}
-|True if there is an assumed value.
+a|True if there is an assumed value.
 
-|
-{set:cellbgcolor:lightblue}
+h|
 |*constrained_typename*: `String`
-{set:cellbgcolor!}
-|Generate name of native type that is constrained by this C_XXX type. For most types, it is the C_XXX typename without the 'C_', i.e. XXX. E.g. C_INTEGER -> Integer. For the date/time types the mapping is different.
+a|Generate name of native type that is constrained by this C_XXX type. For most types, it is the C_XXX typename without the 'C_', i.e. XXX. E.g. C_INTEGER -> Integer. For the date/time types the mapping is different.
 |===

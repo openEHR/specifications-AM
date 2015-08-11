@@ -2,93 +2,64 @@
 
 [cols="^1,2,3"]
 |===
-|*Class*
-{set:cellbgcolor:lightblue}
-2+^|*Interval*
+h|*Class*
+2+^h|*Interval*
 
-|*Description*
-{set:cellbgcolor:lightblue}
-2+|Interval of ordered items.
-{set:cellbgcolor!}
+h|*Description*
+2+a|Interval of ordered items.
 
-|*Inherit*
-{set:cellbgcolor:lightblue}
+h|*Inherit*
 2+|Any
-{set:cellbgcolor!}
 
-|*Attributes*
-{set:cellbgcolor:lightblue}
-^|*Signature*
-^|*Meaning*
+h|*Attributes*
+^h|*Signature*
+^h|*Meaning*
 
-|*0..1*
-{set:cellbgcolor:lightblue}
+h|*0..1*
 |*lower*: `T`
-{set:cellbgcolor!}
-|lower bound.
+a|lower bound.
 
-|*0..1*
-{set:cellbgcolor:lightblue}
+h|*0..1*
 |*upper*: `T`
-{set:cellbgcolor!}
-|Upper bound.
+a|Upper bound.
 
-|*1..1*
-{set:cellbgcolor:lightblue}
+h|*1..1*
 |*lower_unbounded*: `boolean`
-{set:cellbgcolor!}
-|lower boundary open (i.e. = -infinity)
+a|lower boundary open (i.e. = -infinity)
 
-|*1..1*
-{set:cellbgcolor:lightblue}
+h|*1..1*
 |*upper_unbounded*: `boolean`
-{set:cellbgcolor!}
-|upper boundary open (i.e. = +infinity)
+a|upper boundary open (i.e. = +infinity)
 
-|*1..1*
-{set:cellbgcolor:lightblue}
+h|*1..1*
 |*lower_included*: `boolean`
-{set:cellbgcolor!}
-|lower boundary value included in range if not lower_unbounded.
+a|lower boundary value included in range if not lower_unbounded.
 
-|*1..1*
-{set:cellbgcolor:lightblue}
+h|*1..1*
 |*upper_included*: `boolean`
-{set:cellbgcolor!}
-|upper boundary value included in range if not upper_unbounded.
-|*Functions*
-{set:cellbgcolor:lightblue}
-^|*Signature*
-^|*Meaning*
+a|upper boundary value included in range if not upper_unbounded.
+h|*Functions*
+^h|*Signature*
+^h|*Meaning*
 
-|
-{set:cellbgcolor:lightblue}
+h|
 |*has* (e): `boolean`
-{set:cellbgcolor!}
-|True if (lower_unbounded or  +
-((lower_included and v >= lower) or  +
-v > lower)) and  +
-(upper_unbounded or  +
-((upper_included and v <= upper or v  +
+a|True if (lower_unbounded or 
+((lower_included and v >= lower) or 
+v > lower)) and 
+(upper_unbounded or 
+((upper_included and v <= upper or v 
 < upper)))
 
-|*Invariant*
-{set:cellbgcolor:lightblue}
-2+|*_Lower_included_valid_*: lower_unbounded implies not lower_included
-{set:cellbgcolor!}
+h|*Invariant*
+2+a|*_Lower_included_valid_*: lower_unbounded implies not lower_included
 
-|
-{set:cellbgcolor:lightblue}
-2+|*_Upper_included_valid_*: upper_unbounded implies not upper_included
-{set:cellbgcolor!}
+h|
+2+a|*_Upper_included_valid_*: upper_unbounded implies not upper_included
 
-|
-{set:cellbgcolor:lightblue}
-2+|*_Limits_consistent_*: (not upper_unbounded and not lower_unbounded) implies lower <= upper
-{set:cellbgcolor!}
+h|
+2+a|*_Limits_consistent_*: (not upper_unbounded and not lower_unbounded) implies lower <= upper
 
-|
-{set:cellbgcolor:lightblue}
-2+|*_Limits_comparable_*: (not upper_unbounded and not lower_unbounded) implies lower.strictly_comparable_to (upper)
-{set:cellbgcolor!}
+h|
+2+a|*_Limits_comparable_*: (not upper_unbounded and not lower_unbounded) implies lower.strictly_comparable_to (upper)
 |===

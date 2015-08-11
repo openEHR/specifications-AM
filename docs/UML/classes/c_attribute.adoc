@@ -2,102 +2,71 @@
 
 [cols="^1,2,3"]
 |===
-|*Class*
-{set:cellbgcolor:lightblue}
-2+^|*C_ATTRIBUTE*
+h|*Class*
+2+^h|*C_ATTRIBUTE*
 
-|*Description*
-{set:cellbgcolor:lightblue}
-2+|Abstract model of constraint on any kind of attribute in a class model.
-{set:cellbgcolor!}
+h|*Description*
+2+a|Abstract model of constraint on any kind of attribute in a class model.
 
-|*Inherit*
-{set:cellbgcolor:lightblue}
+h|*Inherit*
 2+|ARCHETYPE_CONSTRAINT
-{set:cellbgcolor!}
 
-|*Attributes*
-{set:cellbgcolor:lightblue}
-^|*Signature*
-^|*Meaning*
+h|*Attributes*
+^h|*Signature*
+^h|*Meaning*
 
-|*1..1*
-{set:cellbgcolor:lightblue}
+h|*1..1*
 |*rm_attribute_name*: `String`
-{set:cellbgcolor!}
-|Reference model attribute within the enclosing type represented by a C_OBJECT.
+a|Reference model attribute within the enclosing type represented by a C_OBJECT.
 
-|*0..1*
-{set:cellbgcolor:lightblue}
+h|*0..1*
 |*existence*: `MULTIPLICITY_INTERVAL`
-{set:cellbgcolor!}
-|Constraint settable on every attribute, regardless of whether it is singular or of a container type, which indicates whether its target object exists or not (i.e. is mandatory or not). Only set if it overrides the underlying reference model or parent archetype in the case of specialised archetypes.
+a|Constraint settable on every attribute, regardless of whether it is singular or of a container type, which indicates whether its target object exists or not (i.e. is mandatory or not). Only set if it overrides the underlying reference model or parent archetype in the case of specialised archetypes.
 
-|*0..1*
-{set:cellbgcolor:lightblue}
+h|*0..1*
 |*children*: `List<C_OBJECT>`
-{set:cellbgcolor!}
-|Child C_OBJECT nodes. Each such node represents a constraint on the type of this attribute in its reference model. Multiples occur both for multiple items in the case of container attributes, and alternatives in the case of singular attributes. 
+a|Child C_OBJECT nodes. Each such node represents a constraint on the type of this attribute in its reference model. Multiples occur both for multiple items in the case of container attributes, and alternatives in the case of singular attributes. 
 
-|*0..1*
-{set:cellbgcolor:lightblue}
+h|*0..1*
 |*differential_path*: `String`
-{set:cellbgcolor!}
-|Path to the parent object of this attribute (i.e. doesn’t include the name of this attribute). Used only for attributes in differential form, specialised archetypes. Enables only the re-defined parts of a specialised archetype to be expressed, at the path where they occur.
+a|Path to the parent object of this attribute (i.e. doesn’t include the name of this attribute). Used only for attributes in differential form, specialised archetypes. Enables only the re-defined parts of a specialised archetype to be expressed, at the path where they occur.
 
-|*0..1*
-{set:cellbgcolor:lightblue}
+h|*0..1*
 |*cardinality*: `CARDINALITY`
-{set:cellbgcolor!}
-|Cardinality constraint of attribute, if a container attribute.
+a|Cardinality constraint of attribute, if a container attribute.
 
-|*1..1*
-{set:cellbgcolor:lightblue}
+h|*1..1*
 |*is_multiple*: `Boolean`
-{set:cellbgcolor!}
-|Flag indicating whether this attribute constraint is on a container (i.e. multiply-valued) attribute.
-|*Functions*
-{set:cellbgcolor:lightblue}
-^|*Signature*
-^|*Meaning*
+a|Flag indicating whether this attribute constraint is on a container (i.e. multiply-valued) attribute.
+h|*Functions*
+^h|*Signature*
+^h|*Meaning*
 
-|
-{set:cellbgcolor:lightblue}
+h|
 |*any_allowed*: `Boolean`
-{set:cellbgcolor!}
-|
+a|
 
-|
-{set:cellbgcolor:lightblue}
+h|
 |*is_mandatory*: `Boolean`
-{set:cellbgcolor!}
-|
+a|
 
-|
-{set:cellbgcolor:lightblue}
+h|
 |*rm_attribute_path*: `String`
-{set:cellbgcolor!}
-|Path of this attribute with respect to owning C_OBJECT, including differential path where applicable.
+a|Path of this attribute with respect to owning C_OBJECT, including differential path where applicable.
 
-|
-{set:cellbgcolor:lightblue}
+h|
 |*is_single*: `Boolean`
-{set:cellbgcolor!}
-|True if this node logically represents a single-valued attribute. Evaluated as not is_multiple.
+a|True if this node logically represents a single-valued attribute. Evaluated as not is_multiple.
 
-|(effected)
-{set:cellbgcolor:lightblue}
+h|(effected)
 |*c_congruent_to* (other: `ARCHETYPE_CONSTRAINT`): `Boolean` +
 *_Post_*: Result = existence = Void and ((is_single and other.is_single) or (is_multiple and other.is_multiple and cardinality = Void))
-{set:cellbgcolor!}
-|True if constraints represented by this node contain no further redefinitions with respect to the node other, with the exception of node_id redefnition in C_OBJECT nodes.  +
+a|True if constraints represented by this node contain no further redefinitions with respect to the node other, with the exception of node_id redefnition in C_OBJECT nodes. 
 Typically used to test if an inherited node locally contains any constraints.
 
-|(effected)
-{set:cellbgcolor:lightblue}
+h|(effected)
 |*c_conforms_to* (other: `ARCHETYPE_CONSTRAINT`): `Boolean` +
 *_Post_*: Result = existence_conforms_to (other) and ((is_single and other.is_single) or else (is_multiple and cardinality_conforms_to (other)))
-{set:cellbgcolor!}
-|True if constraints represented by this node, ignoring any sub-parts, are narrower or the same as other.  +
+a|True if constraints represented by this node, ignoring any sub-parts, are narrower or the same as other. 
 Typically used during validation of special-ised archetype nodes.
 |===

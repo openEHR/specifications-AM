@@ -2,82 +2,58 @@
 
 [cols="^1,2,3"]
 |===
-|*Class*
-{set:cellbgcolor:lightblue}
-2+^|*Boolean*
+h|*Class*
+2+^h|*Boolean*
 
-|*Description*
-{set:cellbgcolor:lightblue}
-2+|
-{set:cellbgcolor!}
+h|*Description*
+2+a|
 
-|*Inherit*
-{set:cellbgcolor:lightblue}
+h|*Inherit*
 2+|Any
-{set:cellbgcolor!}
 
-|*Functions*
-{set:cellbgcolor:lightblue}
-^|*Signature*
-^|*Meaning*
+h|*Functions*
+^h|*Signature*
+^h|*Meaning*
 
-|
-{set:cellbgcolor:lightblue}
+h|
 |*infix and* (other: `Boolean`): `Boolean` +
 *_Post_de_Morgan_*: Result = not (not self or not other) +
 *_Post_commutative_*: Result = (other and self)
-{set:cellbgcolor!}
-|Logical conjunction
+a|Logical conjunction
 
-|
-{set:cellbgcolor:lightblue}
+h|
 |*infix and_then* (other: `Boolean`): `Boolean` +
 *_Post_de_Morgan_*: Result = not (not self or else not other)
-{set:cellbgcolor!}
-|Boolean semi-strict conjunction with other
+a|Boolean semi-strict conjunction with other
 
-|
-{set:cellbgcolor:lightblue}
+h|
 |*infix or* (other: `Boolean`): `Boolean` +
 *_Post_de_Morgan_*: Result = not (not self and not other) +
 *_Post_commutative_*: Result = (other or Current) +
 *_Post_consistent_with_semi_strict_*: Result implies (self or else other)
-{set:cellbgcolor!}
-|Boolean disjunction with other.
+a|Boolean disjunction with other.
 
-|
-{set:cellbgcolor:lightblue}
+h|
 |*infix or_else* (other: `Boolean`): `Boolean` +
 *_Post_de_Morgan_*: Result = not (not self and then not other)
-{set:cellbgcolor!}
-|Boolean semi-strict disjunction with `other'.
+a|Boolean semi-strict disjunction with `other'.
 
-|
-{set:cellbgcolor:lightblue}
+h|
 |*infix xor* (other: `Boolean`): `Boolean` +
 *_Post_definition_*: Result = ((self or other) and not (self and other))
-{set:cellbgcolor!}
-|Boolean exclusive or with `other'.
+a|Boolean exclusive or with `other'.
 
-|
-{set:cellbgcolor:lightblue}
+h|
 |*infix implies* (other: `Boolean`): `Boolean` +
 *_Post_definition_*: Result = (not self or else other)
-{set:cellbgcolor!}
-|Boolean implication of `other' (semi-strict)
+a|Boolean implication of `other' (semi-strict)
 
-|*Invariant*
-{set:cellbgcolor:lightblue}
-2+|*_Involutive_negation_*: is_equal (not (not self))
-{set:cellbgcolor!}
+h|*Invariant*
+2+a|*_Involutive_negation_*: is_equal (not (not self))
 
-|
-{set:cellbgcolor:lightblue}
-2+|*_Non_contradiction_*: not (self and (not self))
-{set:cellbgcolor!}
+h|
+2+a|*_Non_contradiction_*: not (self and (not self))
 
-|
-{set:cellbgcolor:lightblue}
-2+|*_Completeness_*: self or else (not self)
-{set:cellbgcolor!}
+h|
+2+a|*_Completeness_*: self or else (not self)
 |===

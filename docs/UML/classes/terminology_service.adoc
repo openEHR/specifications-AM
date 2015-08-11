@@ -2,81 +2,62 @@
 
 [cols="^1,2,3"]
 |===
-|*Class*
-{set:cellbgcolor:lightblue}
-2+^|*TERMINOLOGY_SERVICE*
+h|*Class*
+2+^h|*TERMINOLOGY_SERVICE*
 
-|*Description*
-{set:cellbgcolor:lightblue}
-2+|Defines an object providing proxy access to a terminology service. 
-{set:cellbgcolor!}
+h|*Description*
+2+a|Defines an object providing proxy access to a terminology service. 
 
-|*Inherit*
-{set:cellbgcolor:lightblue}
-2+|OPENEHR_TERMINOLOGY_GROUP_IDENTIFIERS
-{set:cellbgcolor!}
+h|*Inherit*
+2+|OPENEHR_TERMINOLOGY_GROUP_IDENTIFIERS, OPENEHR_CODE_SET_IDENTIFIERS
 
-|*Functions*
-{set:cellbgcolor:lightblue}
-^|*Signature*
-^|*Meaning*
+h|*Functions*
+^h|*Signature*
+^h|*Meaning*
 
-|
-{set:cellbgcolor:lightblue}
+h|
 |*terminology* (name): `TERMINOLOGY_ACCESS` +
 *_Pre_*: has_terminology (name)
-{set:cellbgcolor!}
-|Return an interface to the terminology named name. Allowable names include:- +
-* openehr   +
-* centc251   +
+a|Return an interface to the terminology named name. Allowable names include:-
+
+* openehr  
+* centc251  
 * any name from are taken from the US NLM UMLS meta-data list at http://www.nlm.nih.gov/research/umls/metaa1.html 
 
-|
-{set:cellbgcolor:lightblue}
+h|
 |*code_set* (name): `CODE_SET_ACCESS` +
 *_Pre_*: has_code_set (name)
-{set:cellbgcolor!}
-|Return an interface to the code_set identified by the external identifier name (e.g.  ISO_639-1 ). 
+a|Return an interface to the code_set identified by the external identifier name (e.g.  ISO_639-1 ). 
 
-|
-{set:cellbgcolor:lightblue}
+h|
 |*code_set_for_id* (id): `CODE_SET_ACCESS` +
 *_Pre_*: valid_code_set_id (id)
-{set:cellbgcolor!}
-|Return an interface to the code_set identified internally in openEHR by id. 
+a|Return an interface to the code_set identified internally in openEHR by id. 
 
-|
-{set:cellbgcolor:lightblue}
+h|
 |*has_terminology* (name): `boolean`
-{set:cellbgcolor!}
-|True if terminology named name known by this service. Allowable names include:- +
-* openehr   +
-* centc251   +
+a|True if terminology named name known by this service. Allowable names include:-
+
+* openehr  
+* centc251  
 * any name from are taken from the US NLM UMLS meta-data list at http://www.nlm.nih.gov/research/umls/metaa1.html
 
-|
-{set:cellbgcolor:lightblue}
+h|
 |*has_code_set* (name): `boolean`
-{set:cellbgcolor!}
-|True if code_set linked to internal name (e.g.  languages ) is available. 
+a|True if code_set linked to internal name (e.g.  languages ) is available. 
 
-|
-{set:cellbgcolor:lightblue}
+h|
 |*terminology_identifiers*: 
-{set:cellbgcolor!}
-|Set of all terminology identifiers known in the terminology service. Values from  +
-the US NLM UMLS meta-data list at:- +
+a|Set of all terminology identifiers known in the terminology service. Values from 
+the US NLM UMLS meta-data list at:-
+
 http://www.nlm.nih.gov/research/umls/metaa1.html 
 
-|
-{set:cellbgcolor:lightblue}
+h|
 |*openehr_code_sets*: `Hash<String, String>`
-{set:cellbgcolor!}
-|Set of all code set identifiers known in the terminology service. 
+a|Set of all code set identifiers known in the terminology service. 
 
-|
-{set:cellbgcolor:lightblue}
+h|
 |*code_set_identifiers*: 
-{set:cellbgcolor!}
-|Set of all code sets identifiers for which there is an internal openEHR name; returned as a Map of ids keyed by internal name. 
+a|Set of all code sets identifiers for which there is an internal openEHR name; returned as a Map of ids keyed by internal name. 
 |===

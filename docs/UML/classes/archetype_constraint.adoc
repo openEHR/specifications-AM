@@ -2,83 +2,58 @@
 
 [cols="^1,2,3"]
 |===
-|*Class*
-{set:cellbgcolor:lightblue}
-2+^|*_ARCHETYPE_CONSTRAINT (abstract)_*
+h|*Class*
+2+^h|*_ARCHETYPE_CONSTRAINT (abstract)_*
 
-|*Description*
-{set:cellbgcolor:lightblue}
-2+|Archetype equivalent to LOCATABLE class in openEHR Common reference model. Defines common constraints for any inheritor of LOCATABLE in any reference model. 
-{set:cellbgcolor!}
+h|*Description*
+2+a|Archetype equivalent to LOCATABLE class in openEHR Common reference model. Defines common constraints for any inheritor of LOCATABLE in any reference model. 
 
-|*Attributes*
-{set:cellbgcolor:lightblue}
-^|*Signature*
-^|*Meaning*
+h|*Attributes*
+^h|*Signature*
+^h|*Meaning*
 
-|*0..1*
-{set:cellbgcolor:lightblue}
+h|*0..1*
 |*parent*: 
-{set:cellbgcolor!}
-|
+a|
 
-|*0..1*
-{set:cellbgcolor:lightblue}
+h|*0..1*
 |*soc_parent*: `C_SECOND_ORDER`
-{set:cellbgcolor!}
-|
-|*Functions*
-{set:cellbgcolor:lightblue}
-^|*Signature*
-^|*Meaning*
+a|
+h|*Functions*
+^h|*Signature*
+^h|*Meaning*
 
-|
-{set:cellbgcolor:lightblue}
+h|
 |*is_prohibited*: `Boolean`
-{set:cellbgcolor!}
-|True if this node (and all its sub-nodes) is a valid archetype node for its type. This function should be implemented by each subtype to perform semantic validation of itself, and then call the is_valid function in any subparts, and generate the result appropriately.
+a|True if this node (and all its sub-nodes) is a valid archetype node for its type. This function should be implemented by each subtype to perform semantic validation of itself, and then call the is_valid function in any subparts, and generate the result appropriately.
 
-|
-{set:cellbgcolor:lightblue}
+h|
 |*has_path* (a_path: `String`): `boolean`
-{set:cellbgcolor!}
-|True if the relative path a_path exists at this node.
+a|True if the relative path a_path exists at this node.
 
-|
-{set:cellbgcolor:lightblue}
+h|
 |*path*: `String`
-{set:cellbgcolor!}
-|Path of this node relative to root of archetype.
+a|Path of this node relative to root of archetype.
 
-|
-{set:cellbgcolor:lightblue}
+h|
 |*c_conforms_to* (other: `ARCHETYPE_CONSTRAINT`): `Boolean`
-{set:cellbgcolor!}
-|True if constraints represented by this node, ignoring any sub-parts, are narrower or the same as other.  +
+a|True if constraints represented by this node, ignoring any sub-parts, are narrower or the same as other. 
 Typically used during validation of special-ised archetype nodes.
 
-|
-{set:cellbgcolor:lightblue}
+h|
 |*c_congruent_to* (other: `ARCHETYPE_CONSTRAINT`): `Boolean`
-{set:cellbgcolor!}
-|True if constraints represented by this node contain no further redefinitions with respect to the node other, with the exception of node_id redefnition in C_OBJECT nodes.  +
+a|True if constraints represented by this node contain no further redefinitions with respect to the node other, with the exception of node_id redefnition in C_OBJECT nodes. 
 Typically used to test if an inherited node locally contains any constraints.
 
-|
-{set:cellbgcolor:lightblue}
+h|
 |*is_second_order_constrained*: `Boolean`
-{set:cellbgcolor!}
-|
+a|
 
-|
-{set:cellbgcolor:lightblue}
+h|
 |*is_root*: `Boolean`
-{set:cellbgcolor!}
-|
+a|
 
-|
-{set:cellbgcolor:lightblue}
+h|
 |*is_leaf*: `Boolean`
-{set:cellbgcolor!}
-|
+a|
 |===

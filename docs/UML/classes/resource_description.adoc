@@ -2,122 +2,87 @@
 
 [cols="^1,2,3"]
 |===
-|*Class*
-{set:cellbgcolor:lightblue}
-2+^|*RESOURCE_DESCRIPTION*
+h|*Class*
+2+^h|*RESOURCE_DESCRIPTION*
 
-|*Description*
-{set:cellbgcolor:lightblue}
-2+|Defines the descriptive meta-data of a resource.
-{set:cellbgcolor!}
+h|*Description*
+2+a|Defines the descriptive meta-data of a resource.
 
-|*Attributes*
-{set:cellbgcolor:lightblue}
-^|*Signature*
-^|*Meaning*
+h|*Attributes*
+^h|*Signature*
+^h|*Meaning*
 
-|*1..1*
-{set:cellbgcolor:lightblue}
+h|*1..1*
 |*original_author*: `Hash<String, String>`
-{set:cellbgcolor!}
-|Original author of this resource, with all relevant details, including organisation.
+a|Original author of this resource, with all relevant details, including organisation.
 
-|*0..1*
-{set:cellbgcolor:lightblue}
+h|*0..1*
 |*original_namespace*: `String`
-{set:cellbgcolor!}
-|Namespace of original author's organisation, in reverse internet form, if applicable.
+a|Namespace of original author's organisation, in reverse internet form, if applicable.
 
-|*0..1*
-{set:cellbgcolor:lightblue}
+h|*0..1*
 |*original_publisher*: `String`
-{set:cellbgcolor!}
-|Plain text name of organisation that originally published this artefact, if any.
+a|Plain text name of organisation that originally published this artefact, if any.
 
-|*0..1*
-{set:cellbgcolor:lightblue}
+h|*0..1*
 |*other_contributors*: `List<String>`
-{set:cellbgcolor!}
-|Other contributors to the resource, each listed in "name <email>"  form. 
+a|Other contributors to the resource, each listed in "name <email>"  form. 
 
-|*1..1*
-{set:cellbgcolor:lightblue}
+h|*1..1*
 |*lifecycle_state*: `TERMINOLOGY_CODE`
-{set:cellbgcolor!}
-|Lifecycle state of the resource, typically including states such as: initial, in_development, in_review, published, superseded, obsolete. 
+a|Lifecycle state of the resource, typically including states such as: initial, in_development, in_review, published, superseded, obsolete. 
 
-|*1..1*
-{set:cellbgcolor:lightblue}
+h|*1..1*
 |*parent_resource*: `AUTHORED_RESOURCE{nbsp}={nbsp}`
-{set:cellbgcolor!}
-|Reference to owning resource. 
+a|Reference to owning resource. 
 
-|*0..1*
-{set:cellbgcolor:lightblue}
+h|*0..1*
 |*details*: `List<RESOURCE_DESCRIPTION_ITEM>`
-{set:cellbgcolor!}
-|Details of all parts of resource description that are natural language-dependent, keyed by language code. 
+a|Details of all parts of resource description that are natural language-dependent, keyed by language code. 
 
-|*0..1*
-{set:cellbgcolor:lightblue}
+h|*0..1*
 |*custodian_namespace*: `String`
-{set:cellbgcolor!}
-|Namespace in reverse internet id form, of current custodian organisation.
+a|Namespace in reverse internet id form, of current custodian organisation.
 
-|*0..1*
-{set:cellbgcolor:lightblue}
+h|*0..1*
 |*custodian_organisation*: `String`
-{set:cellbgcolor!}
-|Plain text name of current custodian organisation.
+a|Plain text name of current custodian organisation.
 
-|*0..1*
-{set:cellbgcolor:lightblue}
+h|*0..1*
 |*copyright*: `String`
-{set:cellbgcolor!}
-|Optional copyright statement for the resource as a knowledge resource. 
+a|Optional copyright statement for the resource as a knowledge resource. 
 
-|*0..1*
-{set:cellbgcolor:lightblue}
+h|*0..1*
 |*licence*: `String`
-{set:cellbgcolor!}
-|Licence of current artefact, in format "short licence name <URL of licence>", e.g. "Apache 2.0 License <http://www.apache.org/licenses/LICENSE-2.0.html>"
+a|Licence of current artefact, in format "short licence name <URL of licence>", e.g. "Apache 2.0 License <http://www.apache.org/licenses/LICENSE-2.0.html>"
 
-|*0..1*
-{set:cellbgcolor:lightblue}
+h|*0..1*
 |*ip_acknowledgements*: `Hash<String, String>`
-{set:cellbgcolor!}
-|List of acknowledgements of other IP directly referenced in this archetype, typically terminology codes, ontology ids etc. Recommended keys are the widely known name or namespace for the IP source, as shown in the following example: +
-ip_acknowledgements = < +
-    ["loinc"] = <"This content from LOINC® is copyright © 1995 Regenstrief Institute, Inc. and the LOINC Committee, and available at no cost under the license at http://loinc.org/terms-of-use"> +
-    ["snomedct"] = <"Content from SNOMED CT® is copyright © 2007 IHTSDO <ihtsdo.org>"> +
+a|List of acknowledgements of other IP directly referenced in this archetype, typically terminology codes, ontology ids etc. Recommended keys are the widely known name or namespace for the IP source, as shown in the following example:
+
+ip_acknowledgements = <
+    ["loinc"] = <"This content from LOINC® is copyright © 1995 Regenstrief Institute, Inc. and the LOINC Committee, and available at no cost under the license at http://loinc.org/terms-of-use">
+    ["snomedct"] = <"Content from SNOMED CT® is copyright © 2007 IHTSDO <ihtsdo.org>">
 >
 
-|*0..1*
-{set:cellbgcolor:lightblue}
+h|*0..1*
 |*references*: `Hash<String, String>`
-{set:cellbgcolor!}
-|List of references of material on which this artefact is based, as a keyed list of strings. The keys should be in a standard citation format.
+a|List of references of material on which this artefact is based, as a keyed list of strings. The keys should be in a standard citation format.
 
-|*0..1*
-{set:cellbgcolor:lightblue}
+h|*0..1*
 |*resource_package_uri*: `String`
-{set:cellbgcolor!}
-|URI of package to which this resource belongs.
+a|URI of package to which this resource belongs.
 
-|*0..1*
-{set:cellbgcolor:lightblue}
+h|*0..1*
 |*conversion_details*: `Hash<String, String>`
-{set:cellbgcolor!}
-|Details related to conversion process that generated this model from an original, if relevant, as a list of name/value pairs. Typical example with recommended tags: +
-        conversion_details = < +
-                ["source_model"] = <"CEM model xyz <http://location.in.clinicalelementmodels.com>"> +
-                ["tool"] = <"cem2adl v6.3.0"> +
-                ["time"] = <"2014-11-03T09:05:00"> +
+a|Details related to conversion process that generated this model from an original, if relevant, as a list of name/value pairs. Typical example with recommended tags:
+        conversion_details = <
+                ["source_model"] = <"CEM model xyz <http://location.in.clinicalelementmodels.com>">
+                ["tool"] = <"cem2adl v6.3.0">
+                ["time"] = <"2014-11-03T09:05:00">
         >
 
-|*0..1*
-{set:cellbgcolor:lightblue}
+h|*0..1*
 |*other_details*: `Hash<String, String>`
-{set:cellbgcolor!}
-|Additional non language-senstive resource meta-data, as a list of name/value pairs.
+a|Additional non language-senstive resource meta-data, as a list of name/value pairs.
 |===

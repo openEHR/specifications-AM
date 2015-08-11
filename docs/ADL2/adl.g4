@@ -13,7 +13,7 @@ import odin_values, base_patterns;
 //  ============== Parser rules ==============
 //
 
-input:
+adl:
       archetype
     | template
     | template_overlay
@@ -21,53 +21,53 @@ input:
     ;
 
 archetype: 
-    SYM_ARCHETYPE arch_meta_data? 
+    SYM_ARCHETYPE meta_data? 
     V_ARCHETYPE_ID 
-    arch_specialisation?
-    arch_language 
-    arch_description 
-    arch_definition 
-    arch_rules? 
-    arch_terminology 
-    arch_annotations? 
+    specialisation?
+    language 
+    description 
+    definition 
+    rules? 
+    terminology 
+    annotations? 
     ;
 
 template: 
-    SYM_TEMPLATE arch_meta_data? 
+    SYM_TEMPLATE meta_data? 
     V_ARCHETYPE_ID 
-    arch_specialisation 
-    arch_language 
-    arch_description 
-    arch_definition 
-    arch_rules? 
-    arch_terminology 
-    arch_annotations? 
+    specialisation 
+    language 
+    description 
+    definition 
+    rules? 
+    terminology 
+    annotations? 
     (HLINE template_overlay)*
     ;
 
 template_overlay: 
     SYM_TEMPLATE_OVERLAY 
     V_ARCHETYPE_ID 
-    arch_specialisation 
-    arch_definition 
-    arch_terminology 
+    specialisation 
+    definition 
+    terminology 
     ;
 
 operational_template: 
-    SYM_OPERATIONAL_TEMPLATE arch_meta_data? 
+    SYM_OPERATIONAL_TEMPLATE meta_data? 
     V_ARCHETYPE_ID 
-    arch_language 
-    arch_description 
-    arch_definition 
-    arch_rules? 
-    arch_terminology 
-    arch_annotations? 
-    arch_component_terminologies?
+    language 
+    description 
+    definition 
+    rules? 
+    terminology 
+    annotations? 
+    component_terminologies?
     ;
 
-arch_meta_data: '(' arch_meta_data_item  (';' arch_meta_data_item )* ')' ;
+meta_data: '(' meta_data_item  (';' meta_data_item )* ')' ;
 
-arch_meta_data_item:
+meta_data_item:
       SYM_ADL_VERSION '=' V_DOTTED_NUMERIC
     | SYM_UID '=' ( V_DOTTED_NUMERIC | V_VALUE )
     | SYM_BUILD_UID '=' V_VALUE
@@ -78,14 +78,14 @@ arch_meta_data_item:
     | V_VALUE
     ;
 
-arch_specialisation : SPECIALIZE_SECTION V_ARCHETYPE_ID ;
-arch_language        : LANGUAGE_SECTION V_ODIN_LINE+ ;
-arch_description    : DESCRIPTION_SECTION V_ODIN_LINE+ ;
-arch_definition        : DEFINITION_SECTION V_CADL_LINE+ ;
-arch_rules            : RULES_SECTION V_RULES_LINE+ ;
-arch_terminology    : TERMINOLOGY_SECTION V_ODIN_LINE+ ;
-arch_annotations    : ANNOTATIONS_SECTION V_ODIN_LINE+ ;
-arch_component_terminologies: COMPONENT_TERMINOLOGIES_SECTION V_ODIN_LINE+ ;
+specialisation : SPECIALIZE_SECTION V_ARCHETYPE_ID ;
+language        : LANGUAGE_SECTION V_ODIN_LINE+ ;
+description    : DESCRIPTION_SECTION V_ODIN_LINE+ ;
+definition        : DEFINITION_SECTION V_CADL_LINE+ ;
+rules            : RULES_SECTION V_RULES_LINE+ ;
+terminology    : TERMINOLOGY_SECTION V_ODIN_LINE+ ;
+annotations    : ANNOTATIONS_SECTION V_ODIN_LINE+ ;
+component_terminologies: COMPONENT_TERMINOLOGIES_SECTION V_ODIN_LINE+ ;
 
 //
 //  ============== Lexical rules ==============

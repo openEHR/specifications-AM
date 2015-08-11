@@ -8,7 +8,7 @@ grammar base_patterns;
 //  ============== Parse rules ==============
 //
 
-type_id : V_TYPE_NAME ( '<' v_type_id ( ',' v_type_id )* '>' )? ;
+type_id : TYPE_NAME ( '<' type_id ( ',' type_id )* '>' )? ;
 
 //
 //  ============== Lexical rules ==============
@@ -25,9 +25,9 @@ WS :
 
 // ---------- ISO8601 Date/Time values ----------
 
-V_ISO8601_DATE      :     YEAR '-' MONTH ( '-' DAY )? ;
-V_ISO8601_TIME      :     HOUR ':' MINUTE ( ':' SECOND ( ',' INTEGER )?)? ( TIMEZONE )? ; 
-V_ISO8601_DATE_TIME :     YEAR '-' MONTH '-' DAY 'T' HOUR (':' MINUTE (':' SECOND ( ',' [0-9]+ )?)?)? ( TIMEZONE )? ;
+ISO8601_DATE      :     YEAR '-' MONTH ( '-' DAY )? ;
+ISO8601_TIME      :     HOUR ':' MINUTE ( ':' SECOND ( ',' INTEGER )?)? ( TIMEZONE )? ; 
+ISO8601_DATE_TIME :     YEAR '-' MONTH '-' DAY 'T' HOUR (':' MINUTE (':' SECOND ( ',' [0-9]+ )?)?)? ( TIMEZONE )? ;
 
 fragment TIMEZONE   :     'Z' | ('+'|'-') HOUR_MIN ;   // hour offset, e.g. `+0930`, or else literal `Z` indicating +0000.
 fragment MONTH      :     ( [0][0-9] | [1][0-2] ) ;    // month in year
@@ -39,37 +39,37 @@ fragment SECOND     :     [0-5][0-9] ;                 // seconds
 // ISO8601 DURATION PnYnMnWnDTnnHnnMnn.nnnS 
 // here we allow a deviation from the standard to allow weeks to be
 // mixed in with the rest since this commonly occurs in medicine
-V_ISO8601_DURATION : 'P'([0-9]+[yY])?([0-9]+[mM])?([0-9]+[wW])?([0-9]+[dD])?('T'([0-9]+[hH])?([0-9]+[mM])?([0-9]+('.'[0-9]+)?[sS])?)? ;
+ISO8601_DURATION : 'P'(DIGIT+[yY])?(DIGIT+[mM])?(DIGIT+[wW])?(DIGIT+[dD])?('T'(DIGIT+[hH])?(DIGIT+[mM])?(DIGIT+('.'DIGIT+)?[sS])?)? ;
 
 // -------- other values --------
 
-V_ARCHETYPE_ID  : (V_DOMAIN_NAME '::')? V_IDENTIFIER '-' V_IDENTIFIER '-' V_IDENTIFIER '.' V_NAME '.v' V_VERSION_ID ;
+ARCHETYPE_ID  : (DOMAIN_NAME '::')? IDENTIFIER '-' IDENTIFIER '-' IDENTIFIER '.' NAME '.v' VERSION_ID ;
 
-V_DOMAIN_NAME   : V_NAME ('.' V_NAME)+ ;
-V_IDENTIFIER    : ALPHA_CHAR ID_CHAR* ;
-V_TYPE_NAME     : ALPHA_UPPER ID_CHAR* ;
-V_ATTRIBUTE_ID  : [_a-z][a-zA-Z0-9_]* ;
-V_NAME          : ALPHA_CHAR NAME_CHAR+ ;
-V_VALUE         : ( NAME_CHAR | ^[ \r\n\t] )* ;
+DOMAIN_NAME   : NAME ('.' NAME)+ ;
+IDENTIFIER    : ALPHA_CHAR ID_CHAR* ;
+TYPE_NAME     : ALPHA_UPPER ID_CHAR* ;
+ATTRIBUTE_ID  : '_'? ALPHA_LOWER ID_CHAR* ;
+NAME          : ALPHA_CHAR NAME_CHAR+ ;
+VALUE         : ( NAME_CHAR | ^[ \r\n\t] )* ;
 
-V_DOTTED_NUMERIC: DIGIT+ DOT_SEGMENT+ ;
-V_VERSION_ID    : DIGIT+ ( DOT_SEGMENT ( DOT_SEGMENT ( ('-rc'|'-alpha') DOT_SEGMENT? )? )? )? ;
+DOTTED_NUMERIC: DIGIT+ DOT_SEGMENT+ ;
+VERSION_ID    : DIGIT+ ( DOT_SEGMENT ( DOT_SEGMENT ( ('-rc'|'-alpha') DOT_SEGMENT? )? )? )? ;
 fragment DOT_SEGMENT : '.' DIGIT+ ;
 
 // -------- primitive types --------
 
-V_URI : [a-z]+ ':' ( '//' | '/' | ~[/ ]+ )? ~[ \t\n]+? ; // just a simple recogniser, the full thing isn't required
-V_QUALIFIED_TERM_CODE_REF : '[' NAMECHAR_PAREN+ '::' NAME_CHAR+ ']' ;  // e.g. [ICD10AM(1998)::F23]
+URI : [a-z]+ ':' ( '//' | '/' | ~[/ ]+ )? ~[ \t\n]+? ; // just a simple recogniser, the full thing isn't required
+QUALIFIED_TERM_CODE_REF : '[' NAMECHAR_PAREN+ '::' NAME_CHAR+ ']' ;  // e.g. [ICD10AM(1998)::F23]
 
-V_INTEGER :   [0-9]+ E_SUFFIX? ;
-V_REAL :      [0-9]+'.'[0-9]+ E_SUFFIX? ;
-fragment E_SUFFIX : [eE][+-]?[0-9]+ ;
+INTEGER :   DIGIT+ E_SUFFIX? ;
+REAL :      DIGIT+'.'DIGIT+ E_SUFFIX? ;
+fragment E_SUFFIX : [eE][+-]?DIGIT+ ;
 
-V_STRING : '"' V_STRING_CHAR*? '"' ;
-fragment V_STRING_CHAR : UTF8CHAR | '\\'['nrt\"] | ~["] ;
+STRING : '"' STRING_CHAR*? '"' ;
+fragment STRING_CHAR : UTF8CHAR | '\\'['nrt\"] | ~["] ;
 
-V_CHARACTER : '\'' V_CHAR '\'' ;
-fragment V_CHAR : UTF8CHAR | '\\['nrt\]' | ~[\n'] ;
+CHARACTER : '\'' CHAR '\'' ;
+fragment CHAR : UTF8CHAR | '\\['nrt\]' | ~[\n'] ;
 
 SYM_TRUE : [Tt][Rr][Uu][Ee] ;
 SYM_FALSE : [Ff][Aa][Ll][Ss][Ee] ;
@@ -78,6 +78,7 @@ SYM_FALSE : [Ff][Aa][Ll][Ss][Ee] ;
 
 fragment ALPHA_CHAR    : [a-zA-Z] ;
 fragment ALPHA_UPPER   : [A-Z] ;
+fragment ALPHA_LOWER   : [a-z] ;
 fragment DIGIT         : [0-9] ;
 fragment ALPHANUM_CHAR : ALPHA_CHAR | DIGIT ;
 fragment ID_CHAR       : ALPHANUM_CHAR | '_' ;

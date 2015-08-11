@@ -2,208 +2,152 @@
 
 [cols="^1,2,3"]
 |===
-|*Class*
-{set:cellbgcolor:lightblue}
-2+^|*ISO8601_DATE_TIME*
+h|*Class*
+2+^h|*ISO8601_DATE_TIME*
 
-|*Description*
-{set:cellbgcolor:lightblue}
-2+|Represents an absolute point in time, specified to the second. +
-Note that this class includes 2 deviations from ISO 8601:2004: +
-* for partial date/times, any part of the date/time up to the month may be missing, not just seconds and minutes as in the standard; +
+h|*Description*
+2+a|Represents an absolute point in time, specified to the second.
+
+Note that this class includes 2 deviations from ISO 8601:2004:
+
+* for partial date/times, any part of the date/time up to the month may be missing, not just seconds and minutes as in the standard;
 * the time 24:00:00 is not allowed, since it would mean the date was really on the next day.
-{set:cellbgcolor!}
 
-|*Inherit*
-{set:cellbgcolor:lightblue}
+h|*Inherit*
 2+|ISO8601_TYPE
-{set:cellbgcolor!}
 
-|*Functions*
-{set:cellbgcolor:lightblue}
-^|*Signature*
-^|*Meaning*
+h|*Functions*
+^h|*Signature*
+^h|*Meaning*
 
-|
-{set:cellbgcolor:lightblue}
+h|
 |*year*: `Integer`
-{set:cellbgcolor!}
-|Year.
+a|Year.
 
-|
-{set:cellbgcolor:lightblue}
+h|
 |*month*: `Integer` +
 *_Pre_*: not month_unknown
-{set:cellbgcolor!}
-|Month in year.
+a|Month in year.
 
-|
-{set:cellbgcolor:lightblue}
+h|
 |*day*: `Integer` +
 *_Pre_*: not day_unknown
-{set:cellbgcolor!}
-|Day in month.
+a|Day in month.
 
-|
-{set:cellbgcolor:lightblue}
+h|
 |*month_unknown*: `Boolean`
-{set:cellbgcolor!}
-|Indicates whether month in year is unknown.
+a|Indicates whether month in year is unknown.
 
-|
-{set:cellbgcolor:lightblue}
+h|
 |*day_unknown*: `Boolean`
-{set:cellbgcolor!}
-|Indicates whether day in month is unknown.
+a|Indicates whether day in month is unknown.
 
-|
-{set:cellbgcolor:lightblue}
+h|
 |*hour*: `Integer` +
 *_Pre_*: not hour_unknown
-{set:cellbgcolor!}
-|Hour in day.
+a|Hour in day.
 
-|
-{set:cellbgcolor:lightblue}
+h|
 |*minute*: `Integer` +
 *_Pre_*: not minute_unknown
-{set:cellbgcolor!}
-|Minute in hour.
+a|Minute in hour.
 
-|
-{set:cellbgcolor:lightblue}
+h|
 |*second*: `Integer` +
 *_Pre_*: not second_unknown
-{set:cellbgcolor!}
-|Second in minute.
+a|Second in minute.
 
-|
-{set:cellbgcolor:lightblue}
+h|
 |*fractional_second*: `Real`
-{set:cellbgcolor!}
-|Fractional seconds.
+a|Fractional seconds.
 
-|
-{set:cellbgcolor:lightblue}
+h|
 |*has_fractional_second*: `Boolean`
-{set:cellbgcolor!}
-|True if the fractional_second part is signficant (i.e. even if = 0.0).
+a|True if the fractional_second part is signficant (i.e. even if = 0.0).
 
-|
-{set:cellbgcolor:lightblue}
+h|
 |*minute_unknown*: `Boolean`
-{set:cellbgcolor!}
-|Indicates whether minute in hour is known.
+a|Indicates whether minute in hour is known.
 
-|
-{set:cellbgcolor:lightblue}
+h|
 |*second_unknown*: `Boolean`
-{set:cellbgcolor!}
-|Indicates whether minute in hour is known.
+a|Indicates whether minute in hour is known.
 
-|
-{set:cellbgcolor:lightblue}
+h|
 |*is_decimal_sign_comma*: `Boolean`
-{set:cellbgcolor!}
-|True if this time has a decimal part indicated by ‘,’ (comma) rather than ‘.’ (period).
+a|True if this time has a decimal part indicated by ‘,’ (comma) rather than ‘.’ (period).
 
-|
-{set:cellbgcolor:lightblue}
+h|
 |*timezone*: `ISO8601_TIMEZONE`
-{set:cellbgcolor!}
-|Timezone; may be Void.
+a|Timezone; may be Void.
 
-|
-{set:cellbgcolor:lightblue}
+h|
 |*as_string*: `String`
-{set:cellbgcolor!}
-|ISO8601 string for date/time, in format `YYYYMMDDThhmmss[,sss][Z | ±hh[mm]]` or in extended format `YYYY-MM-DDThh:mm:ss[,sss][Z | ±hh[mm]]` or a partial variant; see valid_iso8601_date_time() below.
+a|ISO8601 string for date/time, in format `YYYYMMDDThhmmss[,sss][Z &#124; ±hh[mm]]` or in extended format `YYYY-MM-DDThh:mm:ss[,sss][Z &#124; ±hh[mm]]` or a partial variant; see valid_iso8601_date_time() below.
 
-|
-{set:cellbgcolor:lightblue}
+h|
 |*valid_iso8601_date_time* (s: `String`): `Boolean`
-{set:cellbgcolor!}
-|String is a valid ISO 8601 date-time, i.e. takes the form: +
-* YYYYMMDDThhmmss[,sss][Z | hh[mm]] +
-or the extended form: +
-* YYYY-MM-DDThh:mm:ss[,sss][Z | hh[mm]] +
-or one of the partial forms: +
-* YYYYMMDDThhmm +
-* YYYYMMDDThh +
-or the equivalent extended forms: +
-* YYYY-MM-DDThh:mm +
-* YYYY-MM-DDThh +
+a|String is a valid ISO 8601 date-time, i.e. takes the form:
+
+* YYYYMMDDThhmmss[,sss][Z &#124; hh[mm]]
+
+or the extended form:
+
+* YYYY-MM-DDThh:mm:ss[,sss][Z &#124; hh[mm]]
+
+or one of the partial forms:
+
+* YYYYMMDDThhmm
+* YYYYMMDDThh
+
+or the equivalent extended forms:
+
+* YYYY-MM-DDThh:mm
+* YYYY-MM-DDThh
+
 (meanings as in DV_DATE, DV_TIME) and the values in each field are valid.
 
-|(effected)
-{set:cellbgcolor:lightblue}
+h|(effected)
 |*is_extended*: `Boolean`
-{set:cellbgcolor!}
-|True if this date/time uses ‘-’, ‘:’ separators.
+a|True if this date/time uses ‘-’, ‘:’ separators.
 
-|(effected)
-{set:cellbgcolor:lightblue}
+h|(effected)
 |*is_partial*: `Boolean`
-{set:cellbgcolor!}
-|True if this date time is partial, i.e. if seconds or more is missing.
+a|True if this date time is partial, i.e. if seconds or more is missing.
 
-|*Invariant*
-{set:cellbgcolor:lightblue}
-2+|*_Year_valid_*: valid_year (year)
-{set:cellbgcolor!}
+h|*Invariant*
+2+a|*_Year_valid_*: valid_year (year)
 
-|
-{set:cellbgcolor:lightblue}
-2+|*_Month_valid_*: valid_month (month)
-{set:cellbgcolor!}
+h|
+2+a|*_Month_valid_*: valid_month (month)
 
-|
-{set:cellbgcolor:lightblue}
-2+|*_Day_valid_*: valid_day(year, month, day)
-{set:cellbgcolor!}
+h|
+2+a|*_Day_valid_*: valid_day(year, month, day)
 
-|
-{set:cellbgcolor:lightblue}
-2+|*_Hour_valid_*: valid_hour (hour, minute, second)
-{set:cellbgcolor!}
+h|
+2+a|*_Hour_valid_*: valid_hour (hour, minute, second)
 
-|
-{set:cellbgcolor:lightblue}
-2+|*_Minute_valid_*: not minute_unknown implies valid_minute(minute)
-{set:cellbgcolor!}
+h|
+2+a|*_Minute_valid_*: not minute_unknown implies valid_minute(minute)
 
-|
-{set:cellbgcolor:lightblue}
-2+|*_Second_valid_*: not second_unknown implies valid_second (second)
-{set:cellbgcolor!}
+h|
+2+a|*_Second_valid_*: not second_unknown implies valid_second (second)
 
-|
-{set:cellbgcolor:lightblue}
-2+|*_Fractional_second_valid_*: has_fractional_second implies (not second_unknown and valid_fractional_second (fractional_second))
-{set:cellbgcolor!}
+h|
+2+a|*_Fractional_second_valid_*: has_fractional_second implies (not second_unknown and valid_fractional_second (fractional_second))
 
-|
-{set:cellbgcolor:lightblue}
-2+|*_Partial_validity_year_*: not month_unknown
-{set:cellbgcolor!}
+h|
+2+a|*_Partial_validity_year_*: not month_unknown
 
-|
-{set:cellbgcolor:lightblue}
-2+|*_Partial_validity_month_*: not month_unknown
-{set:cellbgcolor!}
+h|
+2+a|*_Partial_validity_month_*: not month_unknown
 
-|
-{set:cellbgcolor:lightblue}
-2+|*_Partial_validity_day_*: not day_unknown
-{set:cellbgcolor!}
+h|
+2+a|*_Partial_validity_day_*: not day_unknown
 
-|
-{set:cellbgcolor:lightblue}
-2+|*_Partial_validity_hour_*: not hour_unknown
-{set:cellbgcolor!}
+h|
+2+a|*_Partial_validity_hour_*: not hour_unknown
 
-|
-{set:cellbgcolor:lightblue}
-2+|*_Partial_validity_minute_*: minute_unknown implies second_unknown
-{set:cellbgcolor!}
+h|
+2+a|*_Partial_validity_minute_*: minute_unknown implies second_unknown
 |===

@@ -2,87 +2,59 @@
 
 [cols="^1,2,3"]
 |===
-|*Class*
-{set:cellbgcolor:lightblue}
-2+^|*VERSION_TREE_ID*
+h|*Class*
+2+^h|*VERSION_TREE_ID*
 
-|*Description*
-{set:cellbgcolor:lightblue}
-2+|Version tree identifier for one version. Lexical form:  +
+h|*Description*
+2+a|Version tree identifier for one version. Lexical form: 
+
 trunk_version [  '.' branch_number  '.' branch_version ] 
-{set:cellbgcolor!}
 
-|*Attributes*
-{set:cellbgcolor:lightblue}
-^|*Signature*
-^|*Meaning*
+h|*Attributes*
+^h|*Signature*
+^h|*Meaning*
 
-|*1..1*
-{set:cellbgcolor:lightblue}
+h|*1..1*
 |*value*: 
-{set:cellbgcolor!}
-|String form of this identifier.
-|*Functions*
-{set:cellbgcolor:lightblue}
-^|*Signature*
-^|*Meaning*
+a|String form of this identifier.
+h|*Functions*
+^h|*Signature*
+^h|*Meaning*
 
-|
-{set:cellbgcolor:lightblue}
+h|
 |*trunk_version*: 
-{set:cellbgcolor!}
-|Trunk version number; numbering starts at 1. 
+a|Trunk version number; numbering starts at 1. 
 
-|
-{set:cellbgcolor:lightblue}
+h|
 |*is_branch*: `boolean`
-{set:cellbgcolor!}
-|True if this version identifier represents a branch, i.e. has branch_number and branch_version parts.
+a|True if this version identifier represents a branch, i.e. has branch_number and branch_version parts.
 
-|
-{set:cellbgcolor:lightblue}
+h|
 |*branch_number*: 
-{set:cellbgcolor!}
-|Number of branch from the trunk point; numbering starts at 1. 
+a|Number of branch from the trunk point; numbering starts at 1. 
 
-|
-{set:cellbgcolor:lightblue}
+h|
 |*branch_version*: 
-{set:cellbgcolor!}
-|Version of the branch; numbering starts at 1. 
+a|Version of the branch; numbering starts at 1. 
 
-|*Invariant*
-{set:cellbgcolor:lightblue}
-2+|*_Value_valid_*: not value.is_empty
-{set:cellbgcolor!}
+h|*Invariant*
+2+a|*_Value_valid_*: not value.is_empty
 
-|
-{set:cellbgcolor:lightblue}
-2+|*_Trunk_version_valid_*: trunk_version /= Void and then trunk_version.is_integer and then trunk_version.as_integer >= 1
-{set:cellbgcolor!}
+h|
+2+a|*_Trunk_version_valid_*: trunk_version /= Void and then trunk_version.is_integer and then trunk_version.as_integer >= 1
 
-|
-{set:cellbgcolor:lightblue}
-2+|*_Branch_number_valid_*: branch_number /= Void implies branch_number.is_integer and then branch_number.as_integer >= 1
-{set:cellbgcolor!}
+h|
+2+a|*_Branch_number_valid_*: branch_number /= Void implies branch_number.is_integer and then branch_number.as_integer >= 1
 
-|
-{set:cellbgcolor:lightblue}
-2+|*_Branch_version_valid_*: branch_version /= Void implies branch_version.is_integer and then branch_version.as_integer >= 1
-{set:cellbgcolor!}
+h|
+2+a|*_Branch_version_valid_*: branch_version /= Void implies branch_version.is_integer and then branch_version.as_integer >= 1
 
-|
-{set:cellbgcolor:lightblue}
-2+|*_Branch_validity_*: (branch_number = Void and branch_version = Void ) xor (branch_number /= Void and branch_version /= Void )
-{set:cellbgcolor!}
+h|
+2+a|*_Branch_validity_*: (branch_number = Void and branch_version = Void ) xor (branch_number /= Void and branch_version /= Void )
 
-|
-{set:cellbgcolor:lightblue}
-2+|*_Is_branch_validity_*: is_branch xor branch_number = Void
-{set:cellbgcolor!}
+h|
+2+a|*_Is_branch_validity_*: is_branch xor branch_number = Void
 
-|
-{set:cellbgcolor:lightblue}
-2+|*_Is_first_validity_*: not is_first xor trunk_version.is_equal(“1”)
-{set:cellbgcolor!}
+h|
+2+a|*_Is_first_validity_*: not is_first xor trunk_version.is_equal(“1”)
 |===
