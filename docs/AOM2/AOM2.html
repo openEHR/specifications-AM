@@ -5907,10 +5907,29 @@ Hash of keys ("text", "description" etc) and corresponding values.</p>
 <h2 id="_serialisation_model"><a class="anchor" href="#_serialisation_model"></a>8. Serialisation Model</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>This section describes an adjusted version of the AOM that is used for serialising archetypes to formats other than ADL. The classes in this model are nearly 1:1 with AOM classes, but with names prefixed with 'P_', for 'persistent'.</p>
+<p>This section describes an adjusted version of the AOM that is used for serialising archetypes to formats other than ADL. The classes in this model are nearly 1:1 with AOM classes, but with names prefixed with <code>P_</code>, for 'persistent'. Without using this model, an archetype can be serialised to an 'object dump' format such as ODIN, JSON, YAML, XML etc, but the output will be voluminous. The effect of this model is to reduce the size of the output, potentially by a factor of two or more. Human readability is also greatly improved, which is of increasing importance with the direct use of XML and JSON by programmers.</p>
 </div>
 <div class="paragraph">
-<p>The model is shown below.</p>
+<p>Size reduction and readability is achieved mainly by mapping repetitive structural items to shorter string forms that are more readable, but still machine-processible.</p>
+</div>
+<div class="paragraph">
+<p>The &#8216;P_&#8217; model is shown below in two parts.</p>
+</div>
+<div class="paragraph">
+<p>The translations from the AOM effected by the <code>P_</code> classes are as follows:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>all multiplicities, including existence, cardinality, and occurrences are converted to the standard UML string form such as '0..1', '0..*' etc, rather than the 8 or so lines of output that would occur in direct machine serialisation;</p>
+</li>
+<li>
+<p>codes are converted from structured form (<code>TERMINOOGY_CODE</code> class) to string form;</p>
+</li>
+<li>
+<p>UID identifiers are converted from structured form to string form.</p>
+</li>
+</ul>
 </div>
 <div id="P_AOM_upper" class="imageblock text-center" style="text-align: center">
 <div class="content">
