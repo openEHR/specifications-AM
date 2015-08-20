@@ -12,7 +12,68 @@ ADL provides one other special feature specific to templates: the ability to def
 
 == Example
 
-By way of illustrating ADL's template-related ADL features, an example is useful. The following is an openEHR template of the class `COMPOSITION`, representing a patient's clinical information discharge summary. The 
+By way of illustrating ADL's template-related ADL features, an example is useful. The following is an openEHR `COMPOSITION` archetype for the generic concept 'disharge summary' followed by a template, representing a patient's clinical information discharge summary. 
+
+[source, adl]
+--------
+archetype (adl_version=2.0.5; rm_release=1.0.2)
+	openEHR-EHR-COMPOSITION.discharge.v1.0.0
+
+language
+	original_language = <[ISO_639-1::en]>
+
+description
+	lifecycle_state = <"unmanaged">
+	original_author = <
+		["name"] = <"Heather Leslie">
+		["organisation"] = <"Ocean Informatics">
+		["email"] = <"heather.leslie@oceaninformatics.com">
+		["date"] = <"14/11/2007">
+	>
+	details = <
+		["en"] = <
+			language = <[ISO_639-1::en]>
+			purpose = <"For communication at the time of discharge from an episode of care or an institution.">
+		>
+	>
+
+definition
+	COMPOSITION[id1] matches {	-- Discharge
+		category matches {
+			DV_CODED_TEXT[id29] matches {
+				defining_code matches {[at10]}
+			}
+		}
+        content matches {
+			allow_archetype CONTENT_ITEM[id2] matches {< openEHR-EHR-SECTION or < openEHR-EHR-EVALUATION}
+        }
+		context matches {
+			EVENT_CONTEXT[id30] matches {
+				other_context matches {
+					...
+				}
+			}
+		}
+	}
+
+terminology
+	term_definitions = <
+		["en"] = <
+			["id1"] = <
+				text = <"Discharge">
+				description = <"A summarising communication about at the time of discharge from an institution or an episode of care">
+			>
+			["id2"] = <
+				text = <"Cinical discharge notes">
+				description = <"*">
+			>
+		>
+	>
+--------
+
+Below is the template. The root artefact is a self-standing template `openEHR-EHR-COMPOSITION.t_clinical_info_ds_sf.v1.0.0` that specialises the archetype `openEHR-EHR-COMPOSITION.discharge.v1`. The declaration of being a 'template' is primarily to signal to tools the intended use of the artefact - it doesn't have any formal implications.
+
+The `definition` section contains a number of `use_archetype` statements that specify archetypes to be used as fillers for the `id2` slot.
 
 [source, adl]
 --------
@@ -42,17 +103,15 @@ description
 	>
 
 definition
-	COMPOSITION[id1.1] matches {	-- Clinical detail
-		context existence matches {0} 
-		content matches {
-			use_archetype SECTION[id0.1, openEHR-EHR-SECTION.t_patient_event_info_ds_sf.v1] occurrences matches {1} 
-			use_archetype EVALUATION[id0.2, openEHR-EHR-EVALUATION.t_clinical_info_ds_sf-1.v1] occurrences matches {0..1} 
+	COMPOSITION[id1.1] ∈ {	-- Clinical detail
+		context existence ∈ {0} 
+		content ∈ {
+			use_archetype SECTION[id0.1, openEHR-EHR-SECTION.t_patient_event_info_ds_sf.v1] occurrences ∈ {1} 
+			use_archetype EVALUATION[id0.2, openEHR-EHR-EVALUATION.t_clinical_info_ds_sf-1.v1] occurrences ∈ {0..1} 
 			use_archetype EVALUATION[id0.3, openEHR-EHR-EVALUATION.t_clinical_info_ds_sf-2.v1] 
-			use_archetype EVALUATION[id0.4, openEHR-EHR-EVALUATION.t_clinical_info_ds_sf-3.v1] 
-			use_archetype EVALUATION[id0.5, openEHR-EHR-EVALUATION.t_clinical_info_ds_sf-4.v1] occurrences matches {1..*} 
-			use_archetype EVALUATION[id0.6, openEHR-EHR-EVALUATION.t_clinical_info_ds_sf-5.v1] occurrences matches {0..1} 
-			use_archetype EVALUATION[id0.7, openEHR-EHR-EVALUATION.t_clinical_info_ds_sf-6.v1] occurrences matches {0..1} 
-			use_archetype EVALUATION[id0.8, openEHR-EHR-EVALUATION.t_clinical_info_ds_sf-7.v1] occurrences matches {0..*} 
+			use_archetype EVALUATION[id0.5, openEHR-EHR-EVALUATION.t_clinical_info_ds_sf-4.v1] occurrences ∈ {1..*} 
+			use_archetype EVALUATION[id0.6, openEHR-EHR-EVALUATION.t_clinical_info_ds_sf-5.v1] occurrences ∈ {0..1} 
+			use_archetype EVALUATION[id0.8, openEHR-EHR-EVALUATION.t_clinical_info_ds_sf-7.v1] occurrences ∈ {0..*} 
 			use_archetype EVALUATION[id0.9, openEHR-EHR-EVALUATION.t_clinical_info_ds_sf-8.v1] 
 		}
 	}
@@ -110,15 +169,15 @@ specialize
 	openEHR-EHR-EVALUATION.adverse.v1
 
 definition
-	EVALUATION[id1.1] matches {	-- Adverse reaction details for episode of care
-		/data[id3]/items matches {
-			ELEMENT[id11] occurrences matches {0} 
+	EVALUATION[id1.1] ∈ {	-- Adverse reaction details for episode of care
+		/data[id3]/items ∈ {
+			ELEMENT[id11] occurrences ∈ {0} 
 		}
-		/data[id3]/items[id20]/items matches {
-			ELEMENT[id33] occurrences matches {0} 
-			ELEMENT[id16] occurrences matches {0} 
-			ELEMENT[id5] occurrences matches {0} 
-			ELEMENT[id21] occurrences matches {0} 
+		/data[id3]/items[id20]/items ∈ {
+			ELEMENT[id33] occurrences ∈ {0} 
+			ELEMENT[id16] occurrences ∈ {0} 
+			ELEMENT[id5] occurrences ∈ {0} 
+			ELEMENT[id21] occurrences ∈ {0} 
 		}
 	}
 
@@ -139,12 +198,12 @@ specialize
 	openEHR-EHR-EVALUATION.alert.v1
 
 definition
-	EVALUATION[id1.1] matches {	-- Alerts
-		/data[id2]/items matches {
-			ELEMENT[id3] occurrences matches {0} 
-			ELEMENT[id6] occurrences matches {0} 
-			ELEMENT[id10] occurrences matches {0} 
-			ELEMENT[id15] occurrences matches {0} 
+	EVALUATION[id1.1] ∈ {	-- Alerts
+		/data[id2]/items ∈ {
+			ELEMENT[id3] occurrences ∈ {0} 
+			ELEMENT[id6] occurrences ∈ {0} 
+			ELEMENT[id10] occurrences ∈ {0} 
+			ELEMENT[id15] occurrences ∈ {0} 
 		}
 	}
 
@@ -159,125 +218,29 @@ terminology
 	>
 -------------------------------------------------------------
 template_overlay
-	openEHR-EHR-EVALUATION.t_clinical_info_ds_sf-3.v1.0.0
-
-specialize
-	openEHR-EHR-EVALUATION.clinical_synopsis.v1
-
-definition
-	EVALUATION[id1.1] matches {	-- Clinical synopsis
-		/data[id2]/items matches {
-			ELEMENT[id3.1] occurrences matches {1} matches {	-- Description
-				name matches {
-					DV_TEXT[id0.1] 
-					DV_CODED_TEXT[id0.2] matches {
-						defining_code matches {[ac0.1]}		-- Description (synthesised)
-					}
-				}
-			}
-		}
-	}
-
-terminology
-	term_definitions = <
-		["en"] = <
-			["id1.1"] = <
-				text = <"Clinical synopsis">
-				description = <"Clinical synopsis">
-			>
-			["id3.1"] = <
-				text = <"Description">
-				description = <"Clinical synopsis description">
-			>
-			["at0.1"] = <
-				text = <"Admission">
-				description = <"Admission">
-			>
-			["at0.2"] = <
-				text = <"Clinical note">
-				description = <"Clinical note">
-			>
-			["at0.3"] = <
-				text = <"Post discharge care">
-				description = <"Post discharge care">
-			>
-			["at0.4"] = <
-				text = <"Inpatient episode">
-				description = <"Inpatient episode">
-			>
-			["at0.5"] = <
-				text = <"Main complaints">
-				description = <"Main complaints">
-			>
-			["at0.6"] = <
-				text = <"Past medical summary">
-				description = <"Past medical summary">
-			>
-			["at0.7"] = <
-				text = <"Clinical progress">
-				description = <"Clinical progress">
-			>
-			["at0.8"] = <
-				text = <"Suggested treatments">
-				description = <"Suggested treatments">
-			>
-			["at0.9"] = <
-				text = <"Social history">
-				description = <"Social history">
-			>
-			["at0.10"] = <
-				text = <"Past medical history">
-				description = <"Past medical history">
-			>
-			["at0.11"] = <
-				text = <"Presenting complaints/physical findings">
-				description = <"Presenting complaints/physical findings">
-			>
-			["at0.12"] = <
-				text = <"Progress summary">
-				description = <"Progress summary">
-			>
-			["at0.13"] = <
-				text = <"Significant physical findings">
-				description = <"Significant physical findings">
-			>
-			["ac0.1"] = <
-				text = <"Description (synthesised)">
-				description = <"Clinical synopsis description (synthesised)">
-			>
-		>
-	>
-	value_sets = <
-		["ac0.1"] = <
-			id = <"ac0.1">
-			members = <"at0.1", "at0.2", "at0.3", "at0.4", "at0.5", "at0.6", "at0.7", "at0.8", "at0.9", "at0.10", "at0.11", "at0.12", "at0.13">
-		>
-	>
--------------------------------------------------------------
-template_overlay
 	openEHR-EHR-EVALUATION.t_clinical_info_ds_sf-4.v1.0.0
 
 specialize
 	openEHR-EHR-EVALUATION.problem-diagnosis-simple.v1
 
 definition
-	EVALUATION[id1.1.1.1] matches {	-- Simple problem / diagnosis summary
-		/data[id2]/items matches {
-			ELEMENT[id3.1.0.1] occurrences matches {1} 	-- Diagnosis
-			ELEMENT[id0.32] occurrences matches {0} 
-			ELEMENT[id4] occurrences matches {0} 
-			ELEMENT[id5] occurrences matches {0} 
-			ELEMENT[id6] occurrences matches {0} 
+	EVALUATION[id1.1.1.1] ∈ {	-- Simple problem / diagnosis summary
+		/data[id2]/items ∈ {
+			ELEMENT[id3.1.0.1] occurrences ∈ {1} 	-- Diagnosis
+			ELEMENT[id0.32] occurrences ∈ {0} 
+			ELEMENT[id4] occurrences ∈ {0} 
+			ELEMENT[id5] occurrences ∈ {0} 
+			ELEMENT[id6] occurrences ∈ {0} 
 			ELEMENT[id10.0.0.1] 	-- Additional remarks
-			ELEMENT[id39] occurrences matches {0} 
-			ELEMENT[id11] occurrences matches {0} 
-			ELEMENT[id38] occurrences matches {0} 
-			CLUSTER[id12] occurrences matches {0} 
-			ELEMENT[id32] occurrences matches {0} 
-			CLUSTER[id0.35] occurrences matches {0} 
-			ELEMENT[id0.0.55.1] occurrences matches {1} 	-- Diagnosis type
+			ELEMENT[id39] occurrences ∈ {0} 
+			ELEMENT[id11] occurrences ∈ {0} 
+			ELEMENT[id38] occurrences ∈ {0} 
+			CLUSTER[id12] occurrences ∈ {0} 
+			ELEMENT[id32] occurrences ∈ {0} 
+			CLUSTER[id0.35] occurrences ∈ {0} 
+			ELEMENT[id0.0.55.1] occurrences ∈ {1} 	-- Diagnosis type
 		}
-		/protocol existence matches {0} 
+		/protocol existence ∈ {0} 
 	}
 
 terminology
@@ -309,8 +272,8 @@ specialize
 	openEHR-EHR-EVALUATION.clinical_synopsis.v1
 
 definition
-	EVALUATION[id1.1] matches {	-- Investigations summary
-		/data[id2]/items matches {
+	EVALUATION[id1.1] ∈ {	-- Investigations summary
+		/data[id2]/items ∈ {
 			ELEMENT[id3.1] 	-- Description
 		}
 	}
@@ -330,41 +293,14 @@ terminology
 	>
 -------------------------------------------------------------
 template_overlay
-	openEHR-EHR-EVALUATION.t_clinical_info_ds_sf-6.v1.0.0
-
-specialize
-	openEHR-EHR-EVALUATION.clinical_synopsis.v1
-
-definition
-	EVALUATION[id1.1] matches {	-- Medication orders summary
-		/data[id2]/items matches {
-			ELEMENT[id3.1] 	-- Description
-		}
-	}
-
-terminology
-	term_definitions = <
-		["en"] = <
-			["id1.1"] = <
-				text = <"Medication orders summary">
-				description = <"Summary of medication orders">
-			>
-			["id3.1"] = <
-				text = <"Description">
-				description = <"Summary of medications description">
-			>
-		>
-	>
--------------------------------------------------------------
-template_overlay
 	openEHR-EHR-EVALUATION.t_clinical_info_ds_sf-7.v1.0.0
 
 specialize
 	openEHR-EHR-EVALUATION.clinical_synopsis.v1
 
 definition
-	EVALUATION[id1.1] matches {	-- Procedures summary
-		/data[id2]/items matches {
+	EVALUATION[id1.1] ∈ {	-- Procedures summary
+		/data[id2]/items ∈ {
 			ELEMENT[id3.1] 	-- Description
 		}
 	}
@@ -391,11 +327,11 @@ specialize
 
 
 definition
-	EVALUATION[id1.1] matches {	-- Simple Discharge Summary Medical Certificate
-		/data[id2]/items matches {
-			ELEMENT[id3] occurrences matches {0} 
-			ELEMENT[id4] occurrences matches {0} 
-			ELEMENT[id5] occurrences matches {0} 
+	EVALUATION[id1.1] ∈ {	-- Simple Discharge Summary Medical Certificate
+		/data[id2]/items ∈ {
+			ELEMENT[id3] occurrences ∈ {0} 
+			ELEMENT[id4] occurrences ∈ {0} 
+			ELEMENT[id5] occurrences ∈ {0} 
 		}
 	}
 
