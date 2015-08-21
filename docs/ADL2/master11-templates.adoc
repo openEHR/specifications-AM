@@ -12,7 +12,7 @@ ADL provides one other special feature specific to templates: the ability to def
 
 == Example
 
-By way of illustrating ADL's template-related ADL features, an example is useful. The following is an openEHR `COMPOSITION` archetype for the generic concept 'disharge summary' followed by a template, representing a patient's clinical information discharge summary. 
+By way of illustrating ADL's template-related ADL features, an example is useful. The following is the openEHR archetype `openEHR-EHR-COMPOSITION.discharge.v1` for the generic concept 'disharge summary' followed by a template, representing a patient's clinical information discharge summary. 
 
 [source, adl]
 --------
@@ -71,9 +71,15 @@ terminology
 	>
 --------
 
-Below is the template. The root artefact is a self-standing template `openEHR-EHR-COMPOSITION.t_clinical_info_ds_sf.v1.0.0` that specialises the archetype `openEHR-EHR-COMPOSITION.discharge.v1`. The declaration of being a 'template' is primarily to signal to tools the intended use of the artefact - it doesn't have any formal implications.
+Below is the template. The root artefact is a self-standing template `openEHR-EHR-COMPOSITION.t_clinical_info_ds_sf.v1.0.0` that specialises the archetype . The declaration of being a 'template' is primarily to signal to tools the intended use of the artefact - it doesn't have any formal implications. The job of the template is to define the specific clinical information required in a discharge summary (note that not all the usual items are included, in order to reduce the size of the template as shown here - clinical synopsis and medications list are left out). 
 
-The `definition` section contains a number of `use_archetype` statements that specify archetypes to be used as fillers for the `id2` slot.
+In the root template, the `definition` section contains a number of `use_archetype` statements that specify archetypes to be used as fillers for the `id2` slot of the parent archetype. Each of the slot-fillers is a template_overlay, rather than being an independent archetype or template. As a result, each overlay includes no descriptive meta-data of its own, and appears within the template artefact, separated by a long comment line. This simple mechanism enables the overlays, which are in all other respects formal archetypes, to be treated as local additions to the template, not visible externally. The template, if saved as a file, contains all its overlays in one file.
+
+Each of the filler archetypes can have its occurrences individually constrained in the normal way.
+
+Each overlay can be seen to be a specialisation of an archetype (it could also have been a template). The overlays also do not include any `languages` or `description` sections, since as parts of the parent template, they inherit these sections from the root template.
+
+Additionally, some overlays contain element removal constraints (`occurrences matches {0}`), used to reduce the data set to the intended final result for the purpose of this template. Clearly other templates could make quite different selections of data items from the same archetypes.
 
 [source, adl]
 --------
@@ -135,10 +141,6 @@ terminology
 				text = <"Alerts">
 				description = <"Alerts">
 			>
-			["id0.4"] = <
-				text = <"Clinical synopsis">
-				description = <"Clinical synopsis">
-			>
 			["id0.5"] = <
 				text = <"Diagnosis">
 				description = <"Diagnosis">
@@ -146,10 +148,6 @@ terminology
 			["id0.6"] = <
 				text = <"Investigations">
 				description = <"Investigations">
-			>
-			["id0.7"] = <
-				text = <"Medications">
-				description = <"Medications">
 			>
 			["id0.8"] = <
 				text = <"Procedures">
