@@ -455,7 +455,7 @@
 <div class="sect2">
 <h3 id="_status"><a class="anchor" href="#_status"></a>1.3. Status</h3>
 <div class="paragraph">
-<p>This specification is in the Development state. The development version of this document can be found at <a href="http://www.openehr.org/releases/AM/dev/Identification.html" class="bare">http://www.openehr.org/releases/AM/dev/Identification.html</a>.</p>
+<p>This specification is in the Development state. The development version of this document can be found at <a href="http://www.openehr.org/releases/AM/latest/Identification.html" class="bare">http://www.openehr.org/releases/AM/latest/Identification.html</a>.</p>
 </div>
 <div class="paragraph">
 <p>Known omissions or questions are indicated in the text with a 'to be determined' paragraph, as follows:</p>
@@ -656,15 +656,15 @@ the word 'archetype' as used in this specification means: any formal artefact wr
 <p><code>release_version</code>, expressing a 3-part version identifier, e.g. '1.3.0';</p>
 </li>
 <li>
-<p><code>build_count</code> , incremented at every commit, supporting non-release version ids, such as '1.3.0-rc.28' and ‘1.3.0-alpha’, where the build count is 28;</p>
+<p><code>build_count</code> , incremented at every commit, supporting non-release version ids, such as '1.3.0-rc.28' and '1.3.0-alpha', where the build count is 28;</p>
 </li>
 <li>
-<p><code>description</code>.<code>lifecycle_state</code>, expressing the development state of the artefact, and used to derive the ‘rc’ (release candidate) and ‘unstable’ (development) parts of non-release version ids.</p>
+<p><code>description</code>.<code>lifecycle_state</code>, expressing the development state of the artefact, and used to derive the 'rc' (release candidate) and 'unstable' (development) parts of non-release version ids.</p>
 </li>
 </ul>
 </div>
 <div class="paragraph">
-<p>Functions such as <code>interface_id</code>, <code>physical_id</code> and <code>version_id</code> are defined to return respectively the ‘interface’ and ‘physical’ archetype HRIDs (described below) as strings, and the full version string (computed from <code>release_version</code> , <code>build_count</code> and <code>description.lifecycle_state</code> ). The functions <code>major_version</code> , <code>minor_version</code> and <code>patch_version</code> extract the various parts of the 3-part <code>release_version</code> property.</p>
+<p>Functions such as <code>interface_id</code>, <code>physical_id</code> and <code>version_id</code> are defined to return respectively the 'interface' and 'physical' archetype HRIDs (described below) as strings, and the full version string (computed from <code>release_version</code> , <code>build_count</code> and <code>description.lifecycle_state</code> ). The functions <code>major_version</code> , <code>minor_version</code> and <code>patch_version</code> extract the various parts of the 3-part <code>release_version</code> property.</p>
 </div>
 <div class="paragraph">
 <p>The <code>uid</code> property provides the machine identifier, and is assumed to be a Guid.</p>
@@ -682,7 +682,7 @@ the word 'archetype' as used in this specification means: any formal artefact wr
 <p>This section defines a formal grammar for human-readable indentifiers of knowledge artefacts. As described above, more than one human-readable identifier can be constructed from the identifying properties of the <code>ARCHETYPE_HRID</code> class. The grammar is shown in green below.</p>
 </div>
 <div class="paragraph">
-<p>The highest level distinction is between managed and unmanaged artefacts, with managed status being indicated by the prepending of a namespace to what can be termed a ‘local’ HRID (i.e. local to a given namespace context).</p>
+<p>The highest level distinction is between managed and unmanaged artefacts, with managed status being indicated by the prepending of a namespace to what can be termed a 'local' HRID (i.e. local to a given namespace context).</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -766,24 +766,24 @@ the word 'archetype' as used in this specification means: any formal artefact wr
 </ul>
 </div>
 <div class="paragraph">
-<p>This historically has been used in openEHR and CEN/ISO 13606-2 to identify the reference model class on which an archetype is based. It includes the publisher of the reference model (e.g. "ISO", "openEHR"), which top level ‘closure’ is being referred to, and finally which class.</p>
+<p>This historically has been used in openEHR and CEN/ISO 13606-2 to identify the reference model class on which an archetype is based. It includes the publisher of the reference model (e.g. "ISO", "openEHR"), which top level 'closure' is being referred to, and finally which class.</p>
 </div>
 <div class="paragraph">
-<p>The notion of ‘closure’ is a top level package from which the focal class can be reached. In general, a given class can be reached from more than one top level package, but an archetype of that class will only be suitable for one of those packages. For example, the openEHR class <code>CLUSTER</code> is used by classes in both the <code>ehr</code> and <code>demographic</code> top level packages. However, an archetype of <code>CLUSTER</code> will usually be designed for use with only one of those packages. The Cluster archetype <code>physical_examination</code> for example will only make sense in data defined by the <code>ehr</code> package. Consequently, it will have an archetype identifier of the form <code>openEHR-EHR-CLUSTER</code> . <code>physical_examination</code> .</p>
+<p>The notion of 'closure' is a top level package from which the focal class can be reached. In general, a given class can be reached from more than one top level package, but an archetype of that class will only be suitable for one of those packages. For example, the openEHR class <code>CLUSTER</code> is used by classes in both the <code>ehr</code> and <code>demographic</code> top level packages. However, an archetype of <code>CLUSTER</code> will usually be designed for use with only one of those packages. The Cluster archetype <code>physical_examination</code> for example will only make sense in data defined by the <code>ehr</code> package. Consequently, it will have an archetype identifier of the form <code>openEHR-EHR-CLUSTER</code> . <code>physical_examination</code> .</p>
 </div>
 <div class="paragraph">
-<p>The closure part of the identifier could be used by tools to ensure for example that an ‘EHR’ <code>CLUSTER</code> archetype was never attached to a ‘demographic’ information item.</p>
+<p>The closure part of the identifier could be used by tools to ensure for example that an 'EHR' <code>CLUSTER</code> archetype was never attached to a 'demographic' information item.</p>
 </div>
 <div class="sect4">
 <h5 id="_concept_identifier"><a class="anchor" href="#_concept_identifier"></a>Concept Identifier</h5>
 <div class="paragraph">
-<p>The second part of the human-readable identifier is a ‘short’ ontological identifier (known in ADL 1.4 as the ‘concept’ or ‘domain concept’). Such identifiers have historically been natural language words or phrases, typically in a short mnemonic form, e.g. ‘bp_measurement’ in the archetype identifier <code>ISO-ISO13606-ENTRY.bp_measurement.v1</code> .</p>
+<p>The second part of the human-readable identifier is a 'short' ontological identifier (known in ADL 1.4 as the 'concept' or 'domain concept'). Such identifiers have historically been natural language words or phrases, typically in a short mnemonic form, e.g. 'bp_measurement' in the archetype identifier <code>ISO-ISO13606-ENTRY.bp_measurement.v1</code> .</p>
 </div>
 </div>
 <div class="sect4">
 <h5 id="_legacy_adl_1_4_semantics"><a class="anchor" href="#_legacy_adl_1_4_semantics"></a>Legacy ADL 1.4 Semantics</h5>
 <div class="paragraph">
-<p>Historically in ADL 1.4 (ISO 13606-2:2008), the ‘concept’ part of the identifier encoded the specialisation hierarchy of concepts as a series of hyphated segments, e.g. ‘problem’ and ‘problem-diagnosis’, with the latter identifiying a specialised form of the former.The requirement for the concept name to include specialisations is removed in this specification, as well as the ADL / AOM 1.5 specifications. This enables the domain concept of any artefact to be freely assigned according to the purpose of the artefact.</p>
+<p>Historically in ADL 1.4 (ISO 13606-2:2008), the 'concept' part of the identifier encoded the specialisation hierarchy of concepts as a series of hyphated segments, e.g. 'problem' and 'problem-diagnosis', with the latter identifiying a specialised form of the former.The requirement for the concept name to include specialisations is removed in this specification, as well as the ADL / AOM 1.5 specifications. This enables the domain concept of any artefact to be freely assigned according to the purpose of the artefact.</p>
 </div>
 <div class="paragraph">
 <p>To allow for the fact that legacy specialised archetypes do in fact include the '-' style of separated domain concept identifier, the '-' character is still be allowed, but no longer has any semantic significance.</p>
@@ -801,7 +801,7 @@ the word 'archetype' as used in this specification means: any formal artefact wr
 <p>This specification takes the point of view that the concept part of a managed knowledge artefact identifier must come from an ontology corresponding to the namespace of the identifier, in other words, an ontology maintained by a Custodian Organisation or some higher authority.</p>
 </div>
 <div class="paragraph">
-<p>It is not the business of this specification to define the ontology, but we can indicate the general form as being an ontology of information entity types for use in the domain of health. It is assumed that there are nodes within the ontology are related to the classes from the information (i.e. ‘reference’) model. This leads to an ontology of the form shown below.</p>
+<p>It is not the business of this specification to define the ontology, but we can indicate the general form as being an ontology of information entity types for use in the domain of health. It is assumed that there are nodes within the ontology are related to the classes from the information (i.e. 'reference') model. This leads to an ontology of the form shown below.</p>
 </div>
 <div id="info_artefact_ontology" class="imageblock text-center" style="text-align: center">
 <div class="content">
@@ -813,10 +813,10 @@ the word 'archetype' as used in this specification means: any formal artefact wr
 <p>This (putative) ontology consists of high-level health information recording entities (black), a set of record entry types derived from the Clinical Investigator Record ontology (<a href="#Beale_Heard_2007">[Beale_Heard_2007]</a>), and domain-specific entities in blue. It is assumed that the top node(s) of the ontology could be related to nodes in a published ontology such as the Information Artefact Ontology (<a href="#IAO">[IAO]</a>), but this is not a pre-requisite for establishing this ontology. More ideally, its categories would be related to categories in the Basic Formal Ontology (<a href="#BFO">[BFO]</a>).</p>
 </div>
 <div class="paragraph">
-<p>The blue node <code>measurement_of_systemic_arterial_blood_pressure</code> (bottom left) describes an entity corresponding to a ‘record of systemic arterial blood pressure measurement’. Long names such as this are standard in the ontology community, and are designed to ensure that the name of a category is sufficient to unamiguously define its meaning. Such names are typically too long and unwieldy for the purposes of managable lexical identifiers such as for archetypes.</p>
+<p>The blue node <code>measurement_of_systemic_arterial_blood_pressure</code> (bottom left) describes an entity corresponding to a 'record of systemic arterial blood pressure measurement'. Long names such as this are standard in the ontology community, and are designed to ensure that the name of a category is sufficient to unamiguously define its meaning. Such names are typically too long and unwieldy for the purposes of managable lexical identifiers such as for archetypes.</p>
 </div>
 <div class="paragraph">
-<p>We therefore assume that a system of ‘short identifiers’ is possible within the ontology, where a ‘short id’ is a synonym for a full node identifier. If we further assume that the ontology is constructed with tools (e.g. Protege <a href="#Protege">[Protege]</a>) and that ontology identifiers are checked to ensure uniqueness.</p>
+<p>We therefore assume that a system of 'short identifiers' is possible within the ontology, where a 'short id' is a synonym for a full node identifier. If we further assume that the ontology is constructed with tools (e.g. Protege <a href="#Protege">[Protege]</a>) and that ontology identifiers are checked to ensure uniqueness.</p>
 </div>
 <div class="paragraph">
 <p>Facilities to manage such ontologies should be available either centrally (e.g. openEHR.org or at The Open Biological and Biomedical Ontologies <a href="#OBO">[OBO]</a>), so that every added archetype, template or subset is assigned a short ontological identifier from the ontology.</p>
@@ -828,18 +828,10 @@ the word 'archetype' as used in this specification means: any formal artefact wr
 <div class="sect4">
 <h5 id="_need_for_rm_class_name_in_identifier"><a class="anchor" href="#_need_for_rm_class_name_in_identifier"></a>Need for RM Class Name in Identifier</h5>
 <div class="paragraph">
-<p>Theoretically, the Reference Model class identifier part (qualified_rm_class_name above) should not be needed in a well constructed identifier, on the basis that there should never be a clash of concept identifiers, regardless of the RM class, even though they can easily be similar. For example, a reasonable <code>concept_id</code> for an <code>ENTRY</code> (ISO 13606) or <code>OBSERVATION</code> (openEHR) structure archetyped to represent a generic lab result result might be ‘lab_result’. For the COMPOSITION-level archetype designed to contain any ‘lab result’ <code>ENTRY</code> or <code>OBSERVATION</code>, a reasonable name would typically be ‘lab_report’ (or the equivalent in another language).</p>
+<p>Theoretically, the Reference Model class identifier part (qualified_rm_class_name above) should not be needed in a well constructed identifier, on the basis that there should never be a clash of concept identifiers, regardless of the RM class, even though they can easily be similar. For example, a reasonable <code>concept_id</code> for an <code>ENTRY</code> (ISO 13606) or <code>OBSERVATION</code> (openEHR) structure archetyped to represent a generic lab result result might be 'lab_result'. For the COMPOSITION-level archetype designed to contain any 'lab result' <code>ENTRY</code> or <code>OBSERVATION</code>, a reasonable name would typically be 'lab_report' (or the equivalent in another language).</p>
 </div>
 <div class="paragraph">
 <p>Unfortunately, for some informational concepts, the appropriate name for the actual core data level can appear to be perfectly reasonable also as a name for a higher level container of the same data. Without an efficient and essentially global ontology construction service or authority available, the inclusion of the qualified RM class name acts as a reasonable guard against such clashes.</p>
-</div>
-<div class="paragraph">
-<p>If in the future a capability becomes widely available for efficiently defining ontology concept identifiers for archetypes, the archetype identifier could be reduced to a purely namespaced and versioned ontology identifier. Such an identifier would resemble the following example:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre>    org.cimi::chem7_panel_result.v2.0.4</pre>
-</div>
 </div>
 </div>
 </div>
@@ -2535,7 +2527,7 @@ There is no assumption that a change of a given technical level (i.e. as evaluat
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2015-08-11 16:30:52 BRT
+Last updated 2015-08-11 20:30:52 BST
 </div>
 </div>
 </body>

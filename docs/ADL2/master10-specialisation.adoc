@@ -849,78 +849,6 @@ terminology
 
 All of the above specialisation based on reference model subtypes can be applied in the same way to identified object constraints.
 
-=== Terminology External Subset Redefinition
-
-A terminology external subset constraint is used to set the value set of a coded term to be one defined externally in a terminology, specified in the `term_definitions` sub-section of the `terminology` section, as shown in the following example.
-
-[source, adl]
---------
-definition
-    ELEMENT [id79] ∈ { -- cuff size
-        value ∈ {
-            DV_CODED_TEXT[id4] ∈ {
-                defining_code ∈ {[ac1]}
-            }
-        }
-    }
-    
-terminology
-    term_bindings = < 
-        ["snomed_ct"]    = <         
-            ["ac1"] = <http://terminology.org/id/12000001>
-        >
-    >
---------
-
-In a specialisation of the archetype, the value set reference can be redefined in two different ways. The first is by redefinition of the constraint to a narrower one. This is a achieved by redefining the constraint code, and adding a new definition in the terminology of the specialised archetype, as follows.
-
-[source, adl]
---------
-definition
-    ELEMENT [id79] ∈ {               -- cuff size
-        value ∈ {
-            DV_CODED_TEXT[id14] ∈ {
-                defining_code ∈ {[ac1.1]}
-            }
-        }
-    }
-    
-terminology
-    term_bindings = < 
-        ["snomed_ct"]    = <         
-            ["ac1.1"] = <http://terminology.org/id/12000002>
-        >
-    >
---------
-
-The second kind of redefinition is by an internval value set, as follows.
-
-[source, adl]
---------
-terminology
-    ...
-    value_sets = <
-        ["ac1"] = <
-            id = <"ac1">
-            members = "<at22",   -- child cuff
-                      "at23">    -- infant cuff
-        >
-    >
---------
-
-These redefinitions are assumed to be valid, although it is not directly validatable unless the terminology subset is available to the tooling.
-
-A third variation is when a term constraint is used as a redefinition of a previously unconstrained term code, e.g. as shown in the following fragment.
-
-[source, cadl]
---------
-    ELEMENT[id79] ∈ { -- cuff size
-        value ∈ {
-            DV_CODED_TEXT[id14]
-        }
-    }
---------
-
 === Internal Reference (Proxy Object) Redefinition
 
 An archetype proxy object, or `use_node` constraint is used to refer to an object constraint from a point elsewhere in the archetype. These references can be redefined in two ways, as follows.
@@ -999,7 +927,7 @@ External reference nodes can be redefined by another external reference node, in
 
 === Slot Filling and Redefinition
 
-Slots and slot-filling is a special kind of 'redefinition' in ADL. Logically, an archetype slot constraint is understood to consist of a) its definition (what archetypes are allowed to fill it) and b) current filler list. At the point of definition, the current fillers is invariably empty. More specialised descendants can progressively add or replace fillers for a slot. Thus, the appearance of an object node whose identifier is the specialisation of a slot node in the flat parent is always understood as a partial specialisation for it.
+Slots and slot-filling is a special kind of 'redefinition' in ADL, normally only used in templates. Logically, an archetype slot constraint is understood to consist of a) its definition (what archetypes are allowed to fill it) and b) current filler list. At the point of definition, the current fillers is invariably empty. More specialised descendants can progressively add or replace fillers for a slot. Thus, the appearance of an object node whose identifier is the specialisation of a slot node in the flat parent is always understood as a partial specialisation for it.
 
 In other words, a slot within an archetype can be specialised by any combination of the following:
 
@@ -1008,7 +936,7 @@ In other words, a slot within an archetype can be specialised by any combination
 
 Both types of redefinition are generally used by templates rather than published archetypes, since the business of filling slots is mostly related to local use-case specific uses of archetypes rather than part of the initial design.
 
-The following example shows a slot from a `SECTION` archetype for the concept 'history_medical_surgical' archetype.
+The following example shows a slot from a `SECTION` archetype for the 'history_medical_surgical' archetype.
 
 [source, cadl]
 --------
@@ -1140,6 +1068,8 @@ For terminal objects (i.e. elements of the type `C_PRIMITIVE_OBJECT`) redefiniti
 * redefined value ranges or sets using a narrower value range or set;
 * exclusions on the previously defined value ranges or sets which have the effect of narrowing the original range or set.
 
+==== Numeric Primitive Redefinition
+
 The following example shows a redefined real value range.
 
 Parent archetype:
@@ -1165,7 +1095,9 @@ Specialised archetype:
     }
 --------
 
-The following example shows a redefined `CODE_PHRASE` value set.
+==== Terminology Internal Value Set Redefinition
+
+The following example shows a redefined internal value set.
 
 Parent archetype:
 
@@ -1222,6 +1154,78 @@ terminology
             >
         >
     >
+--------
+
+==== Terminology External Subset Redefinition
+
+A terminology external subset constraint is used to set the value set of a coded term to be one defined externally in a terminology, specified in the `term_definitions` sub-section of the `terminology` section, as shown in the following example.
+
+[source, adl]
+--------
+definition
+    ELEMENT [id79] ∈ { -- cuff size
+        value ∈ {
+            DV_CODED_TEXT[id4] ∈ {
+                defining_code ∈ {[ac1]}
+            }
+        }
+    }
+    
+terminology
+    term_bindings = < 
+        ["snomed_ct"]    = <         
+            ["ac1"] = <http://terminology.org/id/12000001>
+        >
+    >
+--------
+
+In a specialisation of the archetype, the value set reference can be redefined in two different ways. The first is by redefinition of the constraint to a narrower one. This is a achieved by redefining the constraint code, and adding a new definition in the terminology of the specialised archetype, as follows.
+
+[source, adl]
+--------
+definition
+    ELEMENT [id79] ∈ {               -- cuff size
+        value ∈ {
+            DV_CODED_TEXT[id14] ∈ {
+                defining_code ∈ {[ac1.1]}
+            }
+        }
+    }
+    
+terminology
+    term_bindings = < 
+        ["snomed_ct"]    = <         
+            ["ac1.1"] = <http://terminology.org/id/12000002>
+        >
+    >
+--------
+
+The second kind of redefinition is by an internal value set, as follows.
+
+[source, adl]
+--------
+terminology
+    ...
+    value_sets = <
+        ["ac1"] = <
+            id = <"ac1">
+            members = "<at22",   -- child cuff
+                      "at23">    -- infant cuff
+        >
+    >
+--------
+
+These redefinitions are assumed to be valid, although it is not directly validatable unless the terminology subset is available to the tooling.
+
+A third variation is when a term constraint is used as a redefinition of a previously unconstrained term code, e.g. as shown in the following fragment.
+
+[source, cadl]
+--------
+    ELEMENT[id79] ∈ { -- cuff size
+        value ∈ {
+            DV_CODED_TEXT[id14]
+        }
+    }
 --------
 
 === Tuple Redefinition
