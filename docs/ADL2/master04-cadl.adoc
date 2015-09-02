@@ -837,66 +837,7 @@ The semantics of the `include` and `exclude` lists are somewhat subtle. They are
 
 The meaning of the slot constraint overall is that only archetypes matching the `include` constraint are allowed, and no others. The same logic applies in the reverse sense when the `exclude` constraint is substantive.
 
-==== Semantic Slot Definition
-
-There are various ways to define any other form of slot. The preferred approach is to define the set of allowable archetypes in terms of subsumption hierarchies within the archetype model space of the working Archetype Library. Such a constraint is formed from one or more expressions of the form:
-
---------
-    archetype_id matches {<subsumption_expression>}
---------
-
-where subsumption_expression is one of:
-
-* an archetype ontology entity
-* `'<'` | `'<<'` an archetype ontology entity
-
-and the unary operators '<' and '<<' have the following meanings:
-
-* `<` : descendant-of
-* `<<` : descendant-of-or-self
-
-An archetype ontology entity is either a Reference Model class name or an Archetype semantic identifier.
-
-A simple slot definition of this form is as follows:
-
-[source, cadl]
---------
-    allow_archetype ENTRY[id4] occurrences matches {0..*} matches {
-        include
-            archetype_id matches {< openEHR-EHR-OBSERVATION}
-    }
---------
-
-This constrains the archetype that can be used in the slot to being any based on the openEHR `OBSERVATION` class.
-
-The following example shows a more typical slot definition:
-
-[source, cadl]
---------
-    allow_archetype CLUSTER[id26] ∈ {
-        include
-            archetype_id ∈ {<< openEHR-EHR-CLUSTER.medical_device.v1}
-    }
---------
-
-Here, the archetype openEHR-EHR-CLUSTER.medical_device.v1 or any child can be used.
-
-More complex constraints can be created using Boolean expressions containing subsumption terms, for example:
-
-[source, cadl]
---------
-    allow_archetype CLUSTER[id26] ∈ {
-        include
-            archetype_id ∈ {
-                (<<openEHR-EHR-CLUSTER.medical_device.v1 or <<openEHR-EHR-CLUSTER.method.v1) and
-                not << openEHR-EHR-CLUSTER.protocol.v1
-            }
-    }
---------
-
 ==== Slots based on Lexical Archetype Identifiers
-
-Prior to ADL2, slots were defined using regular expressions on the archetype lexical identifier. This form remains legal in ADL2.0.x, but will be deprecated in future.
 
 In this kind of slot constraint, the core expression type is of the following form:
 

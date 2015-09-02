@@ -254,7 +254,7 @@ include::{uml_export_dir}/classes/archetype_constraint.adoc[]
 
 include::{uml_export_dir}/classes/c_attribute.adoc[]
 
-=== Conformance Semantics
+==== Conformance Semantics
 
 The following functions formally define the conformance of an attribute node in a specialised archetype to the corresponding node in a parent archetype, where 'corresponding' means a node found at the same or a congruent path.
 
@@ -300,7 +300,7 @@ cardinality_conforms_to (other: like Current): Boolean
     end
 ---------
 
-== Validity Rules
+==== Validity Rules
 
 The validity rules are as follows:
 
@@ -357,7 +357,7 @@ include::{uml_export_dir}/classes/cardinality.adoc[]
 
 include::{uml_export_dir}/classes/c_object.adoc[]
 
-== Occurrences inferencing rules
+==== Occurrences inferencing rules
 
 The notion of 'occurrences' does not exist in an object model that might be used as the reference model on which archteypes are based, because it is a class model. However, archetypes make statements about how many objects conforming to a specific object constraint node might exist, within a container attribute. In an operational template, an occurrences constraint is required on all children of container attributes. Most such constraints come from the source template(s) and archetypes, but in some cases, there will be nodes with no occurrences. In these cases, the occurrences constraint is inferred from the reference model according to the following algorithm, where `c_object` represents any object node in an archetype.
 
@@ -378,7 +378,7 @@ end
 
 Occurrences is not really required on children of single-valued attributes, because the notional occurrences is always the same as the existence constraint of the owning attribute in the flat parent structure, or else the reference model.
 
-== Conformance semantics
+==== Conformance semantics
 
 The following functions formally define the conformance of an object node in a specialised archetype to the corresponding node in a parent archetype, where 'corresponding' means a node found at the same or a congruent path.
 
@@ -435,7 +435,7 @@ node_id_conforms_to (other: like Current): Boolean
     end
 ---------
 
-== Validity Rules
+==== Validity Rules
 
 The validity rules for all `C_OBJECTs` are as follows:
 
@@ -493,7 +493,7 @@ include::{uml_export_dir}/classes/sibling_order.adoc[]
 include::{uml_export_dir}/classes/c_defined_object.adoc[]
 include::{uml_export_dir}/classes/c_complex_object.adoc[]
 
-== Validity Rules
+==== Validity Rules
 
 The validity rules for `C_COMPLEX_OBJECTs` are as follows:
 

@@ -91,35 +91,35 @@ component_terminologies: COMPONENT_TERMINOLOGIES_SECTION V_ODIN_LINE+ ;
 //  ============== Lexical rules ==============
 //
 
-SYM_ARCHETYPE             : ^[Aa][Rr][Cc][Hh][Ee][Tt][Yy][Pp][Ee] ;
+SYM_ARCHETYPE            : ^[Aa][Rr][Cc][Hh][Ee][Tt][Yy][Pp][Ee] ;
 SYM_TEMPLATE_OVERLAY     : ^[Tt][Ee][Mm][Pp][Ll][Aa][Tt][Ee]'_'[Oo][Vv][Ee][Rr][Ll][Aa][Yy] ;
 SYM_TEMPLATE             : ^[Tt][Ee][Mm][Pp][Ll][Aa][Tt][Ee] ;
 SYM_OPERATIONAL_TEMPLATE : ^[Oo][Pp][Ee][Rr][Aa][Tt][Ii][Oo][Nn][Aa][Ll]_[Tt][Ee][Mm][Pp][Ll][Aa][Tt][Ee] ;
 
 // meta-data keywords
 SYM_ADL_VERSION     : [Aa][Dd][Ll]_[Vv][Ee][Rr][Ss][Ii][Oo][Nn] ;
-SYM_RM_RELEASE         : [Rr][Mm]_[Rr][Ee][Ll][Ee][Aa][Ss][Ee] ;
-SYM_IS_CONTROLLED     : [Cc][Oo][Nn][Nn][Tt][Rr][Oo][Ll][Ll][Ee][Dd] ;
-SYM_IS_GENERATED     : [Gg][Ee][Nn][Ee][Rr][Aa][Tt][Ee][Dd] ;
+SYM_RM_RELEASE      : [Rr][Mm]_[Rr][Ee][Ll][Ee][Aa][Ss][Ee] ;
+SYM_IS_CONTROLLED   : [Cc][Oo][Nn][Nn][Tt][Rr][Oo][Ll][Ll][Ee][Dd] ;
+SYM_IS_GENERATED    : [Gg][Ee][Nn][Ee][Rr][Aa][Tt][Ee][Dd] ;
 SYM_UID             : [Uu][Ii][Dd] ;
-SYM_BUILD_UID         : [Bb][Uu][Ii][Ll][Dd]_[Uu][Ii][Dd] ;
+SYM_BUILD_UID       : [Bb][Uu][Ii][Ll][Dd]_[Uu][Ii][Dd] ;
 
 // keywords identifying various ADL sections
 
-SPECIALISE_SECTION     : ^SYM_SPECIALISE[ \t\r]*\n ;
-LANGUAGE_SECTION     : ^SYM_LANGUAGE[ \t\r]*\n         -> pushMode (ODIN) ;
-DESCRIPTION_SECTION    : ^SYM_DESCRIPTION[ \t\r]*\n     -> pushMode (ODIN) ;
+SPECIALISE_SECTION  : ^SYM_SPECIALISE[ \t\r]*\n ;
+LANGUAGE_SECTION    : ^SYM_LANGUAGE[ \t\r]*\n        -> pushMode (ODIN) ;
+DESCRIPTION_SECTION : ^SYM_DESCRIPTION[ \t\r]*\n     -> pushMode (ODIN) ;
 DEFINITION_SECTION  : ^SYM_DEFINITION[ \t\r]*\n      -> pushMode (CADL) ;
-RULES_SECTION         : ^SYM_RULES[ \t\r]*\n             -> pushMode (RULES) ;
+RULES_SECTION       : ^SYM_RULES[ \t\r]*\n           -> pushMode (RULES) ;
 TERMINOLOGY_SECTION : ^SYM_TERMINOLOGY[ \t\r]*\n     -> pushMode (ODIN) ;
 ANNOTATIONS_SECTION : ^SYM_ANNOTATIONS[ \t\r]*\n     -> pushMode (ODIN) ;
 COMPONENT_TERMINOLOGIES_SECTION : ^SYM_COMPONENT_TERMINOLOGIES[ \t\r]*\n -> pushMode (ODIN) ;
 
-fragment SYM_SPECIALIZE  : ^[Ss][Pp][Ee][Cc][Ii][Aa][Ll][Ii][SsZz][Ee][ \t\r]*\n ;
-fragment SYM_LANGUAGE      : [Ll][Aa][Nn][Gg][Uu][Aa][Gg][Ee] ;
+fragment SYM_SPECIALIZE  : [Ss][Pp][Ee][Cc][Ii][Aa][Ll][Ii][SsZz][Ee][ \t\r]*\n ;
+fragment SYM_LANGUAGE    : [Ll][Aa][Nn][Gg][Uu][Aa][Gg][Ee] ;
 fragment SYM_DESCRIPTION : [Dd][Ee][Ss][Cc][Rr][Ii][Pp][Tt][Ii][Oo][Nn] ;
 fragment SYM_DEFINITION  : [Dd][Ee][Ff][Ii][Nn][Ii][Tt][Ii][Oo][Nn] ;
-fragment SYM_RULES          : [Rr][Uu][Ll][Ee][Ss] ;
+fragment SYM_RULES       : [Rr][Uu][Ll][Ee][Ss] ;
 fragment SYM_TERMINOLOGY : [Tt][Ee][Rr][Mm][Ii][Nn][Oo][Ll][Oo][Gg][Yy] ;
 fragment SYM_ANNOTATIONS : [Aa][Nn][Nn][Oo][Tt][Aa][Tt][Ii][Oo][Nn][Ss] ;
 fragment SYM_COMPONENT_TERMINOLOGIES : [Cc][Oo][Mm][Pp][Oo][Nn][Ee][Nn][Tt]'_'[Tt][Ee][Rr][Mm][Ii][Nn][Oo][Ll][Oo][Gg][Ii][Ee][Ss] ;
@@ -131,16 +131,16 @@ HLINE : ^"-"{20,}[ \t\r]*\n ;
 
 // ---------- ODIN section -----------
 mode ODIN;
-EXIT_ODIN:        ^SECTION_KEYWORD     -> popMode ;
+EXIT_ODIN:       ^SECTION_KEYWORD     -> popMode ;
 V_ODIN_LINE:     .*\n ;    // gather any thing else, line by line
 
 // ---------- CADL section -----------
 mode CADL;
-EXIT_CADL:        ^SECTION_KEYWORD     -> popMode ;
+EXIT_CADL:       ^SECTION_KEYWORD     -> popMode ;
 V_CADL_LINE:     .*\n ;    // gather any thing else, line by line
 
 // ---------- RULES section -----------
 mode RULES;
-EXIT_RULES:        ^SECTION_KEYWORD     -> popMode ;
-V_RULES_LINE:     .*\n ;    // gather any thing else, line by line
+EXIT_RULES:      ^SECTION_KEYWORD     -> popMode ;
+V_RULES_LINE:    .*\n ;    // gather any thing else, line by line
 
