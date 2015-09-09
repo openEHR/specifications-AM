@@ -5,10 +5,11 @@ The notion of paths is integral to ADL, and a common path syntax is used to refe
 
 The general form of the path syntax is as follows (see syntax section below for full specification):
 
-```
-    path:: ['/'] path_segment { '/' path_segment }+
-    path_segment:: attr_name [ '[' object_id ']' ]
-```
+[source, antlr-java]
+--------
+    path: '/'? path_segment ( '/' path_segment )+ ;
+    path_segment: attr_name ( '[' object_id ']' )? ;
+--------
 
 Essentially, ADL paths consist of segments separated by slashes (`'/'`), where each segment is an attribute name with optional object identifier predicate, indicated by brackets ('[]').
 
@@ -31,6 +32,7 @@ The ADL path syntax is semantically a subset of the Xpath query language, with a
 
 ADL does not distinguish attributes from children, and also assumes the node_id attribute. Thus, the following expressions are legal for cADL structures:
 
+[source, cadl]
 ----
     items[1]                            -- the first member of 'items'
     items[systolic]                     -- the member of 'items' with meaning 'systolic'
@@ -39,6 +41,7 @@ ADL does not distinguish attributes from children, and also assumes the node_id 
 
 The Xpath equivalents are:
 
+[source, xpath]
 ----
     items[1]                           -- the first member of 'items'
     items[meaning() = 'systolic']      -- the member of 'items' for which the meaning()
@@ -46,7 +49,7 @@ The Xpath equivalents are:
     items[@archetype_node_id = 'id1']  -- the member of 'items' with key 'id1'
 ----
 
-In the above, `meaning()` is a notional function is defined for Xpath in openEHR, which returns the rubric for the node_id of the current node. Such paths are only for display purposes, and paths used for computing always use the 'at' codes, e.g. items[id1], for which the Xpath equivalent is `items[@node_id = 'id1']`.
+In the above, `meaning()` is a notional function is defined for Xpath in openEHR, which returns the rubric for the node_id of the current node. Such paths are only for display purposes, and paths used for computing always use the 'at' codes, e.g. `items[id1]`, for which the Xpath equivalent is `items[@node_id = 'id1']`.
 
 The ADL movable path pattern is a direct analogue of the Xpath syntax abbreviation for the 'descendant' axis.
 
