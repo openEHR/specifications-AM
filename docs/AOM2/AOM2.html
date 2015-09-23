@@ -9,7 +9,7 @@
 <meta name="keywords" content="EHR, ADL, AOM, health records, archetypes, constraint language, 13606, CIMI">
 <title>Archetype Object Model (AOM2)</title>
 <link rel="stylesheet" href="http://www.openehr.org/releases/BASE/latest/resources/css/openehr.css">
-<link rel="stylesheet" href="http://www.openehr.org/releases/BASE/latest/resources/css/pygments-murphy.css">
+<link rel="stylesheet" href="http://www.openehr.org/releases/BASE/latest/resources/css/pygments-default.css">
 </head>
 <body class="book toc2 toc-left">
 <div id="header">
@@ -315,6 +315,22 @@
 <ul class="sectlevel2">
 <li><a href="#_an_example">9.1. An Example</a></li>
 <li><a href="#_template_identifiers">9.2. Template Identifiers</a></li>
+</ul>
+</li>
+<li><a href="#_reference_model_adaptation">10. Reference Model Adaptation</a>
+<ul class="sectlevel2">
+<li><a href="#_aom_profile_configuration">10.1. AOM Profile Configuration</a>
+<ul class="sectlevel3">
+<li><a href="#_class_definitions_3">10.1.1. Class Definitions</a></li>
+<li><a href="#_aom_profile_class">10.1.2. AOM_PROFILE Class</a></li>
+<li><a href="#_aom_type_mapping_class">10.1.3. AOM_TYPE_MAPPING Class</a></li>
+<li><a href="#_aom_property_mapping_class">10.1.4. AOM_PROPERTY_MAPPING Class</a></li>
+<li><a href="#_configuration_file">10.1.5. Configuration File</a></li>
+</ul>
+</li>
+<li><a href="#_mapping_rm_entities_to_aom_entities">10.2. Mapping RM Entities to AOM Entities</a></li>
+<li><a href="#_rm_primitive_type_equivalence">10.3. RM Primitive Type Equivalence</a></li>
+<li><a href="#_aom_lifecycle_state_mappings">10.4. AOM Lifecycle State Mappings</a></li>
 </ul>
 </li>
 <li><a href="#_references">References</a>
@@ -6092,7 +6108,7 @@ Hash of keys ("text", "description" etc) and corresponding values.</p>
 <div class="sect4">
 <h5 id="_validate_against_reference_model"><a class="anchor" href="#_validate_against_reference_model"></a>Validate Against Reference Model</h5>
 <div class="paragraph">
-<p>The following checks require a computational representation of the Reference Model to be available.</p>
+<p>The following checks require a computational representation of the reference model to be available.</p>
 </div>
 <div class="ulist">
 <ul>
@@ -6479,6 +6495,375 @@ Hash of keys ("text", "description" etc) and corresponding values.</p>
 </div>
 </div>
 <div class="sect1">
+<h2 id="_reference_model_adaptation"><a class="anchor" href="#_reference_model_adaptation"></a>10. Reference Model Adaptation</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>So far ADL has been presented as an abstract formal language that defines legal information structures based on a reference model (RM). In real world applications, we need to consider where reference models come from, and the question of harmonising or otherwise integrating archetypes based on different but related RMs.</p>
+</div>
+<div class="paragraph">
+<p>One of the common problems in most domains is that competing reference models exist, typically defined by standards bodies such as ISO, CEN, ASTM, and/or other open standards bodies such as W3C and OASIS. For a given topic, e.g. 'cancer study trials' or 'Electronic Health Record' there can often be multiple information models that could be used as a basis for archetyping. Due to political pressures, national requiremenents or preferences and  variety of other non-technical factors, it is quite likely that archetypes will be authored within a domain based on multiple competing reference models that are reasonably similar without being easily machine inter-convertible.</p>
+</div>
+<div class="paragraph">
+<p>Since archetypes are generally authored by domain experts, the entities they represent tend to come from a homogeneous model space, with reference models being a technical detail that may not even be visible to the archetype author. Nevertheless, due to the above-mentioned factors, authors in different localities or jurisdictions may have no choice but to model the same entity, for example 'complete blood count' based on two or more different reference models.</p>
+</div>
+<div class="paragraph">
+<p>This creates a potential problem of competing libraries of archetypes trying to model the same information entities in slightly different but incompatible ways. This tends to needlessly split groups of domain modellers into disparate communities, when in fact they are modelling the same things.</p>
+</div>
+<div class="paragraph">
+<p>In order to alleviate some of the problems caused by this situation, some of the measures described below, which are outside the AOM proper, can be applied to enable archetypes and RMs treated to be treated more uniformly.</p>
+</div>
+<div class="sect2">
+<h3 id="_aom_profile_configuration"><a class="anchor" href="#_aom_profile_configuration"></a>10.1. AOM Profile Configuration</h3>
+<div class="paragraph">
+<p>These adaptations can be formalised in a configuration object that is an instance of the class <code>AOM_PROFILE</code>, illustrated below. This is only one way such information can be represented, and alternatives could be used.</p>
+</div>
+<div id="aom_profile" class="imageblock text-center" style="text-align: center">
+<div class="content">
+<img src="../UML/diagrams/AOM_PROFILE.svg" alt="AOM PROFILE">
+</div>
+<div class="title">Figure 25. aom_profile Package</div>
+</div>
+<div class="sect3">
+<h4 id="_class_definitions_3"><a class="anchor" href="#_class_definitions_3"></a>10.1.1. Class Definitions</h4>
+
+</div>
+<div class="sect3">
+<h4 id="_aom_profile_class"><a class="anchor" href="#_aom_profile_class"></a>10.1.2. AOM_PROFILE Class</h4>
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 16%;">
+<col style="width: 33%;">
+<col style="width: 50%;">
+</colgroup>
+<tbody>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Class</strong></p></th>
+<th class="tableblock halign-center valign-top" colspan="2"><p class="tableblock"><strong>AOM_PROFILE</strong></p></th>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Description</strong></p></th>
+<td class="tableblock halign-left valign-top" colspan="2"><div><div class="paragraph">
+<p>Profile of common settings relating to use of reference model(s) and terminology for a given archetype developing organisation.</p>
+</div></div></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Attributes</strong></p></th>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Signature</strong></p></th>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Meaning</strong></p></th>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>aom_rm_type_mappings</strong>: <code>Hash&lt;AOM_TYPE_MAPPING, String&gt;</code></p></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>Mappings from AOM built-in types to actual types in RM: whenever the type name is encountered in an archetype, it is mapped to a specific RM type.</p>
+</div></div></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>aom_rm_type_substitutions</strong>: <code>Hash&lt;String, String&gt;</code></p></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>Allowed type substitutions: Actual RM type names keyed by AOM built-in types which can subsitute for them in an archetype. E.g. &lt;value = "String", key = "ISO8601_DATE"&gt; means that if RM property TYPE.some_property is of type String, an ISO8601_DATE is allowed at that position in the archetype.</p>
+</div></div></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>aom_lifecycle_mappings</strong>: <code>Hash&lt;String, String&gt;</code></p></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>List of mappings of lifecycle state names used in archetypes to AOM lifecycle state names. value = AOM lifecycle state; key = source lifecycle state.</p>
+</div></div></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>1..1</strong></p></th>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>profile_name</strong>: <code>String</code></p></td>
+<td class="tableblock halign-left valign-top"><div></div></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect3">
+<h4 id="_aom_type_mapping_class"><a class="anchor" href="#_aom_type_mapping_class"></a>10.1.3. AOM_TYPE_MAPPING Class</h4>
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 16%;">
+<col style="width: 33%;">
+<col style="width: 50%;">
+</colgroup>
+<tbody>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Class</strong></p></th>
+<th class="tableblock halign-center valign-top" colspan="2"><p class="tableblock"><strong>AOM_TYPE_MAPPING</strong></p></th>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Description</strong></p></th>
+<td class="tableblock halign-left valign-top" colspan="2"><div><div class="paragraph">
+<p>Data object expressing a mapping between two types.</p>
+</div></div></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Attributes</strong></p></th>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Signature</strong></p></th>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Meaning</strong></p></th>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>1..1</strong></p></th>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>source_class_name</strong>: <code>String</code></p></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>Name of the AOM type being mapped to an RM type.</p>
+</div></div></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>1..1</strong></p></th>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>target_class_name</strong>: <code>String</code></p></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>Name of the RM type in the mapping.</p>
+</div></div></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>property_mappings</strong>: <code>List&lt;Hash&lt;AOM_PROPERTY_MAPPING, String&gt;&gt;</code></p></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>List of mappings of properties of this type to another type.</p>
+</div></div></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect3">
+<h4 id="_aom_property_mapping_class"><a class="anchor" href="#_aom_property_mapping_class"></a>10.1.4. AOM_PROPERTY_MAPPING Class</h4>
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 16%;">
+<col style="width: 33%;">
+<col style="width: 50%;">
+</colgroup>
+<tbody>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Class</strong></p></th>
+<th class="tableblock halign-center valign-top" colspan="2"><p class="tableblock"><strong>AOM_PROPERTY_MAPPING</strong></p></th>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Description</strong></p></th>
+<td class="tableblock halign-left valign-top" colspan="2"><div><div class="paragraph">
+<p>Data object expressing a mapping between two class properties.</p>
+</div></div></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Attributes</strong></p></th>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Signature</strong></p></th>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Meaning</strong></p></th>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>1..1</strong></p></th>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>source_property_name</strong>: <code>String</code></p></td>
+<td class="tableblock halign-left valign-top"><div></div></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>1..1</strong></p></th>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>target_property_name</strong>: <code>String</code></p></td>
+<td class="tableblock halign-left valign-top"><div></div></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect3">
+<h4 id="_configuration_file"><a class="anchor" href="#_configuration_file"></a>10.1.5. Configuration File</h4>
+<div class="paragraph">
+<p>Instances of the above classes can be expressed in an ODIN format file, as a convenient way of defining configuration for tools. Examples of such files used for the <a href="#openEHR_ADL_workbench">[openEHR_ADL_workbench]</a> tool can be found in the <a href="https://github.com/openEHR/adl-tools/tree/master/apps/resources/aom_profiles">Github project for the tool</a>.</p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_mapping_rm_entities_to_aom_entities"><a class="anchor" href="#_mapping_rm_entities_to_aom_entities"></a>10.2. Mapping RM Entities to AOM Entities</h3>
+<div class="paragraph">
+<p>One adjustment that can be made is to indicate equivalences between RM entities and AOM built-in types. This can be illustrated by a common situation in health, where multiple RMs have concretely different models of the 'coded term' notion. Semantically, these are all the same, and the correspond to the AOM built-in type <code>TERMINOLOGY_CODE</code>. However, there is nothing that can be stated in an ADL archetype that can indicate this relationship, with the result that ADL tools can&#8217;t infer that a certain type, e.g. openEHR&#8217;s <code>CODE_PHRASE</code> or ISO 13606&#8217;s <code>CODED_TEXT</code> are equivalents of the <code>TERMINOLOGY_CODE</code> type in the AOM.</p>
+</div>
+<div class="paragraph">
+<p>The mapping is achieved by using the <code><em>aom_rm_type_mappings</em></code> property of the <code>AOM_PROFILE</code> type, which enables equivalences between complex classes and properties to be described.</p>
+</div>
+<div class="paragraph">
+<p>The following example shows parts of two AOM profile files, illustrating two different mappings of RM types for 'coded text' to the AOM <code>TERMINOLOGY_CODE</code> class. The following extract is from the openEHR AOM profile file for the ADL Workbench.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="pygments highlight"><code data-lang="odin"><span class="tok-c">--</span>
+<span class="tok-c">-- mappings from AOM built-in types used for openEHR RM types</span>
+<span class="tok-c">--</span>
+<span class="tok-nc">aom_rm_type_mappings</span> <span class="tok-o">=</span> <span class="tok-p">&lt;</span>
+	<span class="tok-p">[</span><span class="tok-s">&quot;TERMINOLOGY_CODE&quot;</span><span class="tok-p">]</span> <span class="tok-o">=</span> <span class="tok-p">&lt;</span>
+		<span class="tok-nc">source_class_name</span> <span class="tok-o">=</span> <span class="tok-p">&lt;</span><span class="tok-s">&quot;TERMINOLOGY_CODE&quot;</span><span class="tok-p">&gt;</span>
+		<span class="tok-nc">target_class_name</span> <span class="tok-o">=</span> <span class="tok-p">&lt;</span><span class="tok-s">&quot;CODE_PHRASE&quot;</span><span class="tok-p">&gt;</span>
+		<span class="tok-nc">property_mappings</span> <span class="tok-o">=</span> <span class="tok-p">&lt;</span>
+			<span class="tok-p">[</span><span class="tok-s">&quot;terminology_id&quot;</span><span class="tok-p">]</span> <span class="tok-o">=</span> <span class="tok-p">&lt;</span>
+				<span class="tok-nc">source_property_name</span> <span class="tok-o">=</span> <span class="tok-p">&lt;</span><span class="tok-s">&quot;terminology_id&quot;</span><span class="tok-p">&gt;</span>
+				<span class="tok-nc">target_property_name</span> <span class="tok-o">=</span> <span class="tok-p">&lt;</span><span class="tok-s">&quot;terminology_id&quot;</span><span class="tok-p">&gt;</span>
+			<span class="tok-p">&gt;</span>
+			<span class="tok-p">[</span><span class="tok-s">&quot;code_string&quot;</span><span class="tok-p">]</span> <span class="tok-o">=</span> <span class="tok-p">&lt;</span>
+				<span class="tok-nc">source_property_name</span> <span class="tok-o">=</span> <span class="tok-p">&lt;</span><span class="tok-s">&quot;code_string&quot;</span><span class="tok-p">&gt;</span>
+				<span class="tok-nc">target_property_name</span> <span class="tok-o">=</span> <span class="tok-p">&lt;</span><span class="tok-s">&quot;code_string&quot;</span><span class="tok-p">&gt;</span>
+			<span class="tok-p">&gt;</span>
+		<span class="tok-p">&gt;</span>
+	<span class="tok-p">&gt;</span>
+<span class="tok-p">&gt;</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The following extract is from the <a href="#CIMI">[CIMI]</a> AOM profile file for the ADL Workbench. This defines a mapping from the CIMI RM class <code>CODED_TEXT</code> to the AOM class <code>TERMINOLOGY_CODE</code>.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="pygments highlight"><code data-lang="odin"><span class="tok-c">--</span>
+<span class="tok-c">-- mappings from AOM built-in types used for CIMI &lt;opencimi.org&gt; RM types</span>
+<span class="tok-c">--</span>
+
+<span class="tok-nc">aom_rm_type_mappings</span> <span class="tok-o">=</span> <span class="tok-p">&lt;</span>
+	<span class="tok-p">[</span><span class="tok-s">&quot;TERMINOLOGY_CODE&quot;</span><span class="tok-p">]</span> <span class="tok-o">=</span> <span class="tok-p">&lt;</span>
+		<span class="tok-nc">source_class_name</span> <span class="tok-o">=</span> <span class="tok-p">&lt;</span><span class="tok-s">&quot;TERMINOLOGY_CODE&quot;</span><span class="tok-p">&gt;</span>
+		<span class="tok-nc">target_class_name</span> <span class="tok-o">=</span> <span class="tok-p">&lt;</span><span class="tok-s">&quot;CODED_TEXT&quot;</span><span class="tok-p">&gt;</span>
+		<span class="tok-nc">property_mappings</span> <span class="tok-o">=</span> <span class="tok-p">&lt;</span>
+			<span class="tok-p">[</span><span class="tok-s">&quot;terminology_id&quot;</span><span class="tok-p">]</span> <span class="tok-o">=</span> <span class="tok-p">&lt;</span>
+				<span class="tok-nc">source_property_name</span> <span class="tok-o">=</span> <span class="tok-p">&lt;</span><span class="tok-s">&quot;terminology_id&quot;</span><span class="tok-p">&gt;</span>
+				<span class="tok-nc">target_property_name</span> <span class="tok-o">=</span> <span class="tok-p">&lt;</span><span class="tok-s">&quot;terminology_id&quot;</span><span class="tok-p">&gt;</span>
+			<span class="tok-p">&gt;</span>
+			<span class="tok-p">[</span><span class="tok-s">&quot;code_string&quot;</span><span class="tok-p">]</span> <span class="tok-o">=</span> <span class="tok-p">&lt;</span>
+				<span class="tok-nc">source_property_name</span> <span class="tok-o">=</span> <span class="tok-p">&lt;</span><span class="tok-s">&quot;code_string&quot;</span><span class="tok-p">&gt;</span>
+				<span class="tok-nc">target_property_name</span> <span class="tok-o">=</span> <span class="tok-p">&lt;</span><span class="tok-s">&quot;code&quot;</span><span class="tok-p">&gt;</span>
+			<span class="tok-p">&gt;</span>
+		<span class="tok-p">&gt;</span>
+	<span class="tok-p">&gt;</span>
+<span class="tok-p">&gt;</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The value of creating these mappings is that they inform tooling that constraints on the types <code>CODE_PHRASE</code> in openEHR archetypes, and <code>CODED_TEXT</code> in CIMI archetypes are to be understood as equivalent to contraints on the primitive AOM type <code>TERMINOLOGY_CODE</code>. This can be detected by the tool, and computed with, for example, with specific visualisation. Without this configuration, the archetype constraints are still correct, but the ADL tooling doesn&#8217;t treat them as different from any other RM complex type.</p>
+</div>
+<div class="paragraph">
+<p>Using class and property mappings can enable more sophisticated archetype comparison and potentially even harmonisation, as well as more intelligent data comparison.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_rm_primitive_type_equivalence"><a class="anchor" href="#_rm_primitive_type_equivalence"></a>10.3. RM Primitive Type Equivalence</h3>
+<div class="paragraph">
+<p>In some cases, primitive types as parsed in an archetype do not quite match those in the reference model. Typical examples of benign mismatches that can be silently corrected by defining mappings in the AOM profile are:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>numeric values that parse as native AOM REAL or INTEGER, but are defined as Double in the RM;</p>
+</li>
+<li>
+<p>ISO 8601 date/time values that are defined as String fields in the RM (due to the fact that ISO 8601 values are represented as strings).</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>These differences can be corrected by using the <code><em>aom_type_substitutions</em></code> configuration table defined in the <code>AOM_PROFILE</code> class. The following is an example of using this facility to enable primitive type matching for openEHR archetypes.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="pygments highlight"><code data-lang="odin"><span class="tok-c">--</span>
+<span class="tok-c">-- allowed substitutions from AOM built-in primitive types to openEHR RM types</span>
+<span class="tok-c">--</span>
+
+<span class="tok-nc">aom_rm_type_substitutions</span> <span class="tok-o">=</span> <span class="tok-p">&lt;</span>
+	<span class="tok-p">[</span><span class="tok-s">&quot;ISO8601_DATE&quot;</span><span class="tok-p">]</span> <span class="tok-o">=</span> <span class="tok-p">&lt;</span><span class="tok-s">&quot;String&quot;</span><span class="tok-p">&gt;</span>
+	<span class="tok-p">[</span><span class="tok-s">&quot;ISO8601_DATE_TIME&quot;</span><span class="tok-p">]</span> <span class="tok-o">=</span> <span class="tok-p">&lt;</span><span class="tok-s">&quot;String&quot;</span><span class="tok-p">&gt;</span>
+	<span class="tok-p">[</span><span class="tok-s">&quot;ISO8601_TIME&quot;</span><span class="tok-p">]</span> <span class="tok-o">=</span> <span class="tok-p">&lt;</span><span class="tok-s">&quot;String&quot;</span><span class="tok-p">&gt;</span>
+	<span class="tok-p">[</span><span class="tok-s">&quot;ISO8601_DURATION&quot;</span><span class="tok-p">]</span> <span class="tok-o">=</span> <span class="tok-p">&lt;</span><span class="tok-s">&quot;String&quot;</span><span class="tok-p">&gt;</span>
+	<span class="tok-p">[</span><span class="tok-s">&quot;REAL&quot;</span><span class="tok-p">]</span> <span class="tok-o">=</span> <span class="tok-p">&lt;</span><span class="tok-s">&quot;Double&quot;</span><span class="tok-p">&gt;</span>
+	<span class="tok-p">[</span><span class="tok-s">&quot;INTEGER&quot;</span><span class="tok-p">]</span> <span class="tok-o">=</span> <span class="tok-p">&lt;</span><span class="tok-s">&quot;Double&quot;</span><span class="tok-p">&gt;</span>
+<span class="tok-p">&gt;</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The effect of these mappings is that literal values in an archetype that parse as the left hand side type (<code>ISO8601_DATE</code> etc) etc will be silently mapped to the right hand RM type (<code>String</code> etc). The following CADL fragment provide an example.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="pygments highlight"><code data-lang="cadl">    <span class="tok-nc">ELEMENT</span><span class="tok-p">[</span><span class="tok-nd">id5</span><span class="tok-p">]</span> <span class="tok-kt">occurrences </span><span class="tok-o">matches </span><span class="tok-p">{</span><span class="tok-m">0..1</span><span class="tok-p">}</span> <span class="tok-o">matches </span><span class="tok-p">{</span>	<span class="tok-c">-- Systolic</span>
+        <span class="tok-nc">value</span> <span class="tok-o">matches </span><span class="tok-p">{</span>
+            <span class="tok-nc">DV_QUANTITY</span><span class="tok-p">[</span><span class="tok-nd">id1054</span><span class="tok-p">]</span> <span class="tok-o">matches </span><span class="tok-p">{</span>
+                <span class="tok-nc">property</span> <span class="tok-o">matches </span><span class="tok-p">{[</span><span class="tok-nd">at1055</span><span class="tok-p">]}</span>
+                <span class="tok-nc">magnitude</span> <span class="tok-o">matches </span><span class="tok-p">{|</span><span class="tok-mf">0.0</span><span class="tok-p">..&lt;</span><span class="tok-mf">1000.0</span><span class="tok-p">|}</span>  <span class="tok-c">-- **** parses as AOM REAL, but is Double in RM</span>
+                <span class="tok-nc">precision</span> <span class="tok-o">matches </span><span class="tok-p">{</span><span class="tok-m">0</span><span class="tok-p">}</span>
+                <span class="tok-nc">units</span> <span class="tok-o">matches </span><span class="tok-p">{</span><span class="tok-s">&quot;mm[Hg]&quot;</span><span class="tok-p">}</span>
+            <span class="tok-p">}</span>
+        <span class="tok-p">}</span>
+    <span class="tok-p">}</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The following example shows a native ISO Duration field that is mapped to a String value.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="pygments highlight"><code data-lang="cadl">    <span class="tok-nc">INTERVAL_EVENT</span><span class="tok-p">[</span><span class="tok-nd">id1043</span><span class="tok-p">]</span> <span class="tok-kt">occurrences </span><span class="tok-o">matches </span><span class="tok-p">{</span><span class="tok-m">0..1</span><span class="tok-p">}</span> <span class="tok-o">matches </span><span class="tok-p">{</span>	<span class="tok-c">-- 24 hour average</span>
+        <span class="tok-nc">width</span> <span class="tok-o">matches </span><span class="tok-p">{</span>
+            <span class="tok-nc">DV_DURATION</span><span class="tok-p">[</span><span class="tok-nd">id1064</span><span class="tok-p">]</span> <span class="tok-o">matches </span><span class="tok-p">{</span>
+                <span class="tok-nc">value</span> <span class="tok-o">matches </span><span class="tok-p">{</span><span class="tok-ld">PT24H</span><span class="tok-p">}</span>  <span class="tok-c">-- **** parses as AOM ISO8601_DURATION, but is String in RM</span>
+            <span class="tok-p">}</span>
+        <span class="tok-p">}</span>
+    <span class="tok-p">}</span></code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_aom_lifecycle_state_mappings"><a class="anchor" href="#_aom_lifecycle_state_mappings"></a>10.4. AOM Lifecycle State Mappings</h3>
+<div class="paragraph">
+<p>Another kind of useful mapping adjustment that can help to make tools process archetypes in a more homogeneous way is to do with the AOM life-cycle states, which are standardised in the openEHR Archetype Identification specification <a href="#openehr_am_identification">[openehr_am_identification]</a>. These states denote the state of a whole archetype in its authoring life cycle. Historically however there were no standard names, with the consequence that various archetype tools implement their own local lifecycle state names. To adjust for this the <code><em>aom_lifecycle_mappings</em></code> property in the <code>AOM_PROFILE</code> class can be used. These mappings have the effect of replacing the current value of the <code><em>lifecycle_state</em></code> property of the <code>RESOURCE_DESCRIPTION</code> instance of a parsed archetype with an openEHR standard state name. A typical example of the <code>description</code> section of an archetype with a local lifecycle state name is below.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="pygments highlight"><code data-lang="odin"><span class="tok-nc">description</span>
+    <span class="tok-nc">original_author</span> <span class="tok-o">=</span> <span class="tok-p">&lt;</span>
+        <span class="tok-p">[</span><span class="tok-s">&quot;name&quot;</span><span class="tok-p">]</span> <span class="tok-o">=</span> <span class="tok-p">&lt;</span><span class="tok-s">&quot;Dr J Joyce&quot;</span><span class="tok-p">&gt;</span>
+        <span class="tok-p">[</span><span class="tok-s">&quot;organisation&quot;</span><span class="tok-p">]</span> <span class="tok-o">=</span> <span class="tok-p">&lt;</span><span class="tok-s">&quot;NT Health Service&quot;</span><span class="tok-p">&gt;</span>
+        <span class="tok-p">[</span><span class="tok-s">&quot;date&quot;</span><span class="tok-p">]</span> <span class="tok-o">=</span> <span class="tok-p">&lt;</span><span class="tok-ld">2003-08-03</span><span class="tok-p">&gt;</span>
+    <span class="tok-p">&gt;</span>
+    <span class="tok-nc">lifecycle_state</span> <span class="tok-o">=</span>  <span class="tok-p">&lt;</span><span class="tok-s">&quot;AuthorDraft&quot;</span><span class="tok-p">&gt;</span> <span class="tok-c">-- **** should be &#39;unmanaged&#39;</span>
+    <span class="tok-nc">resource_package_uri</span> <span class="tok-o">=</span>  <span class="tok-p">&lt;</span><span class="tok-s">&quot;.....&quot;</span><span class="tok-p">&gt;</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The following example shows typical mappings of customs lifecycle state names to the openEHR standard state names.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="pygments highlight"><code data-lang="odin"><span class="tok-c">-- allowed substitutions from source RM lifecycle states to AOM lifecycle states</span>
+<span class="tok-c">-- States on the value side (right hand side) must be the AOM states:</span>
+<span class="tok-c">--</span>
+<span class="tok-c">--	&quot;unmanaged&quot;</span>
+<span class="tok-c">--	&quot;in_development&quot;</span>
+<span class="tok-c">--		&quot;draft&quot;</span>
+<span class="tok-c">--		&quot;in_review&quot;</span>
+<span class="tok-c">--		&quot;suspended&quot;</span>
+<span class="tok-c">--	&quot;release_candidate&quot;</span>
+<span class="tok-c">--	&quot;published&quot;</span>
+<span class="tok-c">--	&quot;deprecated&quot;</span>
+<span class="tok-c">--		&quot;obsolete&quot;</span>
+<span class="tok-c">--		&quot;superseded&quot;</span>
+
+<span class="tok-c">--</span>
+
+<span class="tok-nc">aom_lifecycle_mappings</span> <span class="tok-o">=</span> <span class="tok-p">&lt;</span>
+	<span class="tok-p">[</span><span class="tok-s">&quot;AuthorDraft&quot;</span><span class="tok-p">]</span> <span class="tok-o">=</span> <span class="tok-p">&lt;</span><span class="tok-s">&quot;unmanaged&quot;</span><span class="tok-p">&gt;</span>
+	<span class="tok-p">[</span><span class="tok-s">&quot;Draft&quot;</span><span class="tok-p">]</span> <span class="tok-o">=</span> <span class="tok-p">&lt;</span><span class="tok-s">&quot;in_development&quot;</span><span class="tok-p">&gt;</span>
+	<span class="tok-p">[</span><span class="tok-s">&quot;TeamReview&quot;</span><span class="tok-p">]</span> <span class="tok-o">=</span> <span class="tok-p">&lt;</span><span class="tok-s">&quot;in_development&quot;</span><span class="tok-p">&gt;</span>
+	<span class="tok-p">[</span><span class="tok-s">&quot;Team Review&quot;</span><span class="tok-p">]</span> <span class="tok-o">=</span> <span class="tok-p">&lt;</span><span class="tok-s">&quot;in_development&quot;</span><span class="tok-p">&gt;</span>
+	<span class="tok-p">[</span><span class="tok-s">&quot;ReviewSuspended&quot;</span><span class="tok-p">]</span> <span class="tok-o">=</span> <span class="tok-p">&lt;</span><span class="tok-s">&quot;in_development&quot;</span><span class="tok-p">&gt;</span>
+	<span class="tok-p">[</span><span class="tok-s">&quot;Review Suspended&quot;</span><span class="tok-p">]</span> <span class="tok-o">=</span> <span class="tok-p">&lt;</span><span class="tok-s">&quot;in_development&quot;</span><span class="tok-p">&gt;</span>
+	<span class="tok-p">[</span><span class="tok-s">&quot;Reassess&quot;</span><span class="tok-p">]</span> <span class="tok-o">=</span> <span class="tok-p">&lt;</span><span class="tok-s">&quot;published&quot;</span><span class="tok-p">&gt;</span>
+	<span class="tok-p">[</span><span class="tok-s">&quot;Published&quot;</span><span class="tok-p">]</span> <span class="tok-o">=</span> <span class="tok-p">&lt;</span><span class="tok-s">&quot;published&quot;</span><span class="tok-p">&gt;</span>
+	<span class="tok-p">[</span><span class="tok-s">&quot;Rejected&quot;</span><span class="tok-p">]</span> <span class="tok-o">=</span> <span class="tok-p">&lt;</span><span class="tok-s">&quot;rejected&quot;</span><span class="tok-p">&gt;</span>
+<span class="tok-p">&gt;</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Normally this kind of change should be written into the archetype, so that it is upgraded to the standard form. Tools should offer this possibility, including in batch/bulk mode.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
 <h2 id="_references"><a class="anchor" href="#_references"></a>References</h2>
 <div class="sectionbody">
 <div class="sect2">
@@ -6684,6 +7069,9 @@ Hash of keys ("text", "description" etc) and corresponding values.</p>
 <div class="olist bibliography">
 <ol class="bibliography">
 <li>
+<p><a id="CIMI"></a>[CIMI] Clinical Information Modelling Initiative (CIMI) Project. See <a href="http://opencimi.org" class="bare">http://opencimi.org</a>.</p>
+</li>
+<li>
 <p><a id="EHCR_supA_14"></a>[EHCR_supA_14] Dixon R, Grubb P A, Lloyd D, and Kalra D. <strong>Consolidated List of Requirements. EHCR Support Action Deliverable 1.4.</strong> European Commission DGXIII, Brussels; May 2001 59pp Available from <a href="http://www.chime.ucl.ac.uk/HealthI/EHCR-SupA/del1-4v1_3.PDF" class="bare">http://www.chime.ucl.ac.uk/HealthI/EHCR-SupA/del1-4v1_3.PDF</a>.</p>
 </li>
 <li>
@@ -6822,7 +7210,7 @@ Hash of keys ("text", "description" etc) and corresponding values.</p>
 <p><a id="openehr_CKM"></a>[openehr_CKM] <strong>The openEHR Clinical Knowledge Manager (CKM)</strong>. See <a href="http://www.openEHR.org/ckm" class="bare">http://www.openEHR.org/ckm</a></p>
 </li>
 <li>
-<p><a id="openehr_odin"></a>[openehr_odin] The openEHR Foundation. <strong>Object Data Instance Notation (ODIN).</strong> Available at <a href="http://www2.openehr.org/releases/BASE/latest/odin.html" class="bare">http://www2.openehr.org/releases/BASE/latest/odin.html</a>.</p>
+<p><a id="openehr_odin"></a>[openehr_odin] The openEHR Foundation. <strong>Object Data Instance Notation (ODIN).</strong> Available at <a href="http://www.openehr.org/releases/BASE/latest/odin.html" class="bare">http://www.openehr.org/releases/BASE/latest/odin.html</a>.</p>
 </li>
 <li>
 <p><a id="openehr_overview"></a>[openehr_overview] The openEHR Foundation. <strong>The openEHR Architecture Overview.</strong> See <a href="http://www.openehr.org/releases/BASE/dev/architecture_overview.html" class="bare">http://www.openehr.org/releases/BASE/dev/architecture_overview.html</a>.</p>
@@ -6859,7 +7247,7 @@ Hash of keys ("text", "description" etc) and corresponding values.</p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2015-08-28 05:25:31 AEST
+Last updated 2015-09-24 01:08:51 AEST
 </div>
 </div>
 </body>
