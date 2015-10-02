@@ -7,140 +7,82 @@
 //
 
 grammar adl;
-import odin_values, base_patterns;
+import cadl, odin;
 
 //
 //  ============== Parser rules ==============
 //
 
-adl:
-      archetype
-    | template
-    | template_overlay
-    | operational_template
-    ;
+adl: ( archetype | template | template_overlay | operational_template ) EOF ;
 
 archetype: 
-    SYM_ARCHETYPE meta_data? 
-    V_ARCHETYPE_ID 
-    specialisation?
-    language 
-    description 
-    definition 
-    rules? 
-    terminology 
-    annotations? 
+    SYM_ARCHETYPE meta_data?
+    ARCHETYPE_ID
+    specialization_section?
+    language_section
+    description_section
+    definition_section
+    rules_section?
+    terminology_section
+    annotations_section?
     ;
 
 template: 
     SYM_TEMPLATE meta_data? 
-    V_ARCHETYPE_ID 
-    specialisation 
-    language 
-    description 
-    definition 
-    rules? 
-    terminology 
-    annotations? 
+    ARCHETYPE_ID
+    specialization_section
+    language_section
+    description_section
+    definition_section
+    rules_section?
+    terminology_section
+    annotations_section?
     (HLINE template_overlay)*
     ;
 
 template_overlay: 
     SYM_TEMPLATE_OVERLAY 
-    V_ARCHETYPE_ID 
-    specialisation 
-    definition 
-    terminology 
+    ARCHETYPE_ID
+    specialization_section
+    definition_section
+    terminology_section
     ;
 
 operational_template: 
     SYM_OPERATIONAL_TEMPLATE meta_data? 
-    V_ARCHETYPE_ID 
-    language 
-    description 
-    definition 
-    rules? 
-    terminology 
-    annotations? 
-    component_terminologies?
+    ARCHETYPE_ID
+    language_section
+    description_section
+    definition_section
+    rules_section?
+    terminology_section
+    annotations_section?
+    component_terminologies_section?
     ;
+
+specialization_section : SYM_SPECIALIZE ARCHETYPE_REF ;
+language_section       : SYM_LANGUAGE odin_text ;
+description_section    : SYM_DESCRIPTION odin_text ;
+definition_section     : SYM_DEFINITION c_complex_object ;
+rules_section          : SYM_RULES assertion+ ;
+terminology_section    : SYM_TERMINOLOGY odin_text ;
+annotations_section    : SYM_ANNOTATIONS odin_text ;
+component_terminologies_section: SYM_COMPONENT_TERMINOLOGIES odin_text ;
 
 meta_data: '(' meta_data_item  (';' meta_data_item )* ')' ;
 
 meta_data_item:
-      SYM_ADL_VERSION '=' V_DOTTED_NUMERIC
-    | SYM_UID '=' ( V_DOTTED_NUMERIC | V_VALUE )
-    | SYM_BUILD_UID '=' V_VALUE
-    | SYM_RM_RELEASE '=' V_DOTTED_NUMERIC
+      SYM_ADL_VERSION '=' VERSION_ID
+    | SYM_UID '=' ( DOTTED_NUMERIC | GUID )  // TODO: this won't match all Oids properly
+    | SYM_BUILD_UID '=' ( DOTTED_NUMERIC | GUID )
+    | SYM_RM_RELEASE '=' VERSION_ID
     | SYM_IS_CONTROLLED
     | SYM_IS_GENERATED
-    | V_IDENTIFIER  ( '=' ( V_IDENTIFIER | V_VALUE ))?
-    | V_VALUE
+    | PROPER_ID  ( '=' ( PROPER_ID | meta_data_value ))?
     ;
 
-specialisation : SPECIALIZE_SECTION V_ARCHETYPE_ID ;
-language        : LANGUAGE_SECTION V_ODIN_LINE+ ;
-description    : DESCRIPTION_SECTION V_ODIN_LINE+ ;
-definition        : DEFINITION_SECTION V_CADL_LINE+ ;
-rules            : RULES_SECTION V_RULES_LINE+ ;
-terminology    : TERMINOLOGY_SECTION V_ODIN_LINE+ ;
-annotations    : ANNOTATIONS_SECTION V_ODIN_LINE+ ;
-component_terminologies: COMPONENT_TERMINOLOGIES_SECTION V_ODIN_LINE+ ;
-
-//
-//  ============== Lexical rules ==============
-//
-
-SYM_ARCHETYPE            : ^[Aa][Rr][Cc][Hh][Ee][Tt][Yy][Pp][Ee] ;
-SYM_TEMPLATE_OVERLAY     : ^[Tt][Ee][Mm][Pp][Ll][Aa][Tt][Ee]'_'[Oo][Vv][Ee][Rr][Ll][Aa][Yy] ;
-SYM_TEMPLATE             : ^[Tt][Ee][Mm][Pp][Ll][Aa][Tt][Ee] ;
-SYM_OPERATIONAL_TEMPLATE : ^[Oo][Pp][Ee][Rr][Aa][Tt][Ii][Oo][Nn][Aa][Ll]_[Tt][Ee][Mm][Pp][Ll][Aa][Tt][Ee] ;
-
-// meta-data keywords
-SYM_ADL_VERSION     : [Aa][Dd][Ll]_[Vv][Ee][Rr][Ss][Ii][Oo][Nn] ;
-SYM_RM_RELEASE      : [Rr][Mm]_[Rr][Ee][Ll][Ee][Aa][Ss][Ee] ;
-SYM_IS_CONTROLLED   : [Cc][Oo][Nn][Nn][Tt][Rr][Oo][Ll][Ll][Ee][Dd] ;
-SYM_IS_GENERATED    : [Gg][Ee][Nn][Ee][Rr][Aa][Tt][Ee][Dd] ;
-SYM_UID             : [Uu][Ii][Dd] ;
-SYM_BUILD_UID       : [Bb][Uu][Ii][Ll][Dd]_[Uu][Ii][Dd] ;
-
-// keywords identifying various ADL sections
-
-SPECIALISE_SECTION  : ^SYM_SPECIALISE[ \t\r]*\n ;
-LANGUAGE_SECTION    : ^SYM_LANGUAGE[ \t\r]*\n        -> pushMode (ODIN) ;
-DESCRIPTION_SECTION : ^SYM_DESCRIPTION[ \t\r]*\n     -> pushMode (ODIN) ;
-DEFINITION_SECTION  : ^SYM_DEFINITION[ \t\r]*\n      -> pushMode (CADL) ;
-RULES_SECTION       : ^SYM_RULES[ \t\r]*\n           -> pushMode (RULES) ;
-TERMINOLOGY_SECTION : ^SYM_TERMINOLOGY[ \t\r]*\n     -> pushMode (ODIN) ;
-ANNOTATIONS_SECTION : ^SYM_ANNOTATIONS[ \t\r]*\n     -> pushMode (ODIN) ;
-COMPONENT_TERMINOLOGIES_SECTION : ^SYM_COMPONENT_TERMINOLOGIES[ \t\r]*\n -> pushMode (ODIN) ;
-
-fragment SYM_SPECIALIZE  : [Ss][Pp][Ee][Cc][Ii][Aa][Ll][Ii][SsZz][Ee][ \t\r]*\n ;
-fragment SYM_LANGUAGE    : [Ll][Aa][Nn][Gg][Uu][Aa][Gg][Ee] ;
-fragment SYM_DESCRIPTION : [Dd][Ee][Ss][Cc][Rr][Ii][Pp][Tt][Ii][Oo][Nn] ;
-fragment SYM_DEFINITION  : [Dd][Ee][Ff][Ii][Nn][Ii][Tt][Ii][Oo][Nn] ;
-fragment SYM_RULES       : [Rr][Uu][Ll][Ee][Ss] ;
-fragment SYM_TERMINOLOGY : [Tt][Ee][Rr][Mm][Ii][Nn][Oo][Ll][Oo][Gg][Yy] ;
-fragment SYM_ANNOTATIONS : [Aa][Nn][Nn][Oo][Tt][Aa][Tt][Ii][Oo][Nn][Ss] ;
-fragment SYM_COMPONENT_TERMINOLOGIES : [Cc][Oo][Mm][Pp][Oo][Nn][Ee][Nn][Tt]'_'[Tt][Ee][Rr][Mm][Ii][Nn][Oo][Ll][Oo][Gg][Ii][Ee][Ss] ;
-fragment SECTION_KEYWORD : SYM_LANGUAGE | SYM_DESCRIPTION | SYM_DEFINITION | SYM_RULES | SYM_TERMINOLOGY | SYM_ANNOTATIONS | SYM_COMPONENT_TERMINOLOGIES ;
-
-// -------- miscellaneous --------
-
-HLINE : ^"-"{20,}[ \t\r]*\n ;
-
-// ---------- ODIN section -----------
-mode ODIN;
-EXIT_ODIN:       ^SECTION_KEYWORD     -> popMode ;
-V_ODIN_LINE:     .*\n ;    // gather any thing else, line by line
-
-// ---------- CADL section -----------
-mode CADL;
-EXIT_CADL:       ^SECTION_KEYWORD     -> popMode ;
-V_CADL_LINE:     .*\n ;    // gather any thing else, line by line
-
-// ---------- RULES section -----------
-mode RULES;
-EXIT_RULES:      ^SECTION_KEYWORD     -> popMode ;
-V_RULES_LINE:    .*\n ;    // gather any thing else, line by line
-
+meta_data_value:
+      primitive_value
+    | GUID
+    | VERSION_ID
+    ;

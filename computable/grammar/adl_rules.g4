@@ -7,49 +7,35 @@
 //
 
 grammar adl_rules;
-import adl_symbols, odin_values, base_patterns;
+import cadl_primitives;
 
 //
 //  ============== Parser rules ==============
 //
 
-assertion:
-      ( IDENTIFIER ':' )? boolean_node
-    | cadl_constraint_expr
-    ;
+assertion: ( PROPER_ID ':' )? boolean_expr ;
 
-boolean_node:
-      boolean_leaf
-    | boolean_expr
-    ;
+//
+// Expressions evaluating to boolean values
+//
 
-boolean_expr:
-      boolean_unop_expr
-    | boolean_binop_expr
+boolean_expr: boolean_expr boolean_binop boolean_leaf
+    | boolean_leaf
     ;
 
 boolean_leaf:
       boolean_literal
+    | adl_path
+    | SYM_EXISTS adl_path
     | boolean_constraint
-    | '(' boolean_node ')'
-    | boolean_unop_expr
+    | '(' boolean_expr ')'
     | arithmetic_relop_expr
+    | SYM_NOT boolean_leaf
     ;
 
-cadl_constraint_expr: REL_PATH SYM_MATCHES '{' c_primitive_object '}' ;
+boolean_constraint: ( adl_path | adl_relative_path ) SYM_MATCHES '{' c_primitive_object '}' ;
 
-boolean_constraint:
-      ABS_PATH SYM_MATCHES '{' c_primitive_object '}'
-    ;
-
-boolean_unop_expr:
-      ( SYM_EXISTS | SYM_NOT ) ABS_PATH
-    | SYM_NOT ( boolean_node )
-    ;
-
-boolean_binop_expr: boolean_node boolean_binop_symbol boolean_leaf ;
-
-boolean_binop_symbol:
+boolean_binop:
       SYM_OR
     | SYM_AND
     | SYM_XOR
@@ -61,53 +47,37 @@ boolean_literal:
     | SYM_FALSE
     ;
 
-arithmetic_relop_expr: arithmetic_node relational_binop_symbol arithmetic_node ;
+//
+// Expressions evaluating to arithmetic values
+//
 
-arithmetic_node:
-      arithmetic_leaf
-    | arithmetic_arith_binop_expr
-    ;
+arithmetic_relop_expr: arithmetic_arith_expr relational_binop arithmetic_arith_expr ;
 
 arithmetic_leaf:
-      arithmetic_value
-    | '(' arithmetic_node ')'
-    ;
-
-arithmetic_arith_binop_expr: arithmetic_node arithmetic_binop_symbol arithmetic_leaf ;
-
-arithmetic_value:
       integer_value
     | real_value
-    | ABS_PATH
+    | adl_path
+    | '(' arithmetic_arith_expr ')'
+    | '-' arithmetic_leaf
     ;
 
-relational_binop_symbol:
+arithmetic_arith_expr: arithmetic_arith_expr arithmetic_binop arithmetic_leaf
+    | arithmetic_leaf
+    ;
+
+relational_binop:
       '='
-    | SYM_NE
-    | SYM_LE
-    | SYM_LT
-    | SYM_GE
-    | SYM_GT
+    | '!='
+    | '<='
+    | '<'
+    | '>='
+    | '>'
     ;
 
-arithmetic_binop_symbol:
+arithmetic_binop:
       '/'
     | '*'
     | '+'
     | '-'
     | '^'
     ;
-
-//
-//  ============== Lexical rules ==============
-//
-
-SYM_THEN    : [Tt][Hh][Ee][Nn] ;
-SYM_ELSE    : [Ee][Ll][Ss][Ee] ;
-SYM_AND        : [Aa][Nn][Dd] ;
-SYM_OR        : [Oo][Rr] ;
-SYM_XOR        : [Xx][Oo][Rr] ;
-SYM_NOT        : [Nn][Oo][Tt] ;
-SYM_IMPLIES    : [Ii][Mm][Pp][Ll][Ii][Ee][Ss] ;
-SYM_FOR_ALL    : [Ff][Oo][Rr][_][Aa][Ll][Ll] ;
-SYM_EXISTS    : [Ee][Xx][Ii][Ss][Tt][Ss] ;

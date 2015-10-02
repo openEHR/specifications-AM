@@ -585,7 +585,7 @@ Paths for use with runtime data based on an archetype can be constructed in the 
 
 [source, cadl]
 --------
-    items cardinality matches {*} matches
+    items cardinality matches {*} matches {
         ELEMENT[id4] matches {  -- speed limit
             value matches {
                 DV_QUANTITY[id22] matches {                       -- miles per hour
@@ -655,32 +655,32 @@ The following example shows the definitions of the `ADDRESS` nodes for phone, fa
         }
         contacts cardinality ∈ {0..*} ∈ {
             CONTACT[id2] ∈ {      -- home address
-                purpose ∈ {-- etc --}        
-                addresses ∈ {-- etc --}
+                purpose ∈ {...}        
+                addresses ∈ {...}
             }
             CONTACT[id3] ∈ {      -- postal address
-                purpose ∈ {-- etc --}
-                addresses ∈ {-- etc --}
+                purpose ∈ {...}
+                addresses ∈ {...}
             }
             CONTACT[id4] ∈ {      -- home contact
-                purpose ∈ {-- etc --}    
+                purpose ∈ {...}    
                 addresses cardinality ∈ {0..*} ∈ { 
                     ADDRESS[id5] ∈ {                            -- phone
-                        type ∈ {-- etc --}
-                        details ∈ {-- etc --}
+                        type ∈ {...}
+                        details ∈ {...}
                     }
                     ADDRESS[id6] ∈ {                            -- fax
-                        type ∈ {-- etc --}
-                        details ∈ {-- etc --}
+                        type ∈ {...}
+                        details ∈ {...}
                     }
                     ADDRESS[id7] ∈ {                            -- email
-                        type ∈ {-- etc --}
-                        details ∈ {-- etc --}
+                        type ∈ {...}
+                        details ∈ {...}
                     }
                 }
             }
             CONTACT[id8] ∈ {                                    -- work contact
-                purpose ∈ {-- etc --}
+                purpose ∈ {...}
                 addresses cardinality ∈ {0..*} ∈ { 
                     use_node ADDRESS[id9] /contacts[id4]/addresses[id5]    -- phone
                     use_node ADDRESS[id10] /contacts[id4]/addresses[id6]   -- fax 
@@ -738,7 +738,7 @@ The following example shows sections of two parent archetypes both referring to 
 [source, cadl]
 --------
     INSTRUCTION[id1] ∈ {                                       -- Medication order
-        activities cardinality ∈ {0..*; unordered} matches {
+        activities cardinality ∈ {0..*; unordered} ∈ {
             ACTIVITY[id2] ∈ {                                  -- Medication activity
                 action_archetype_id ∈ {/openEHR-EHR-ACTION\.medication\.v1/}
                 description ∈ {
@@ -959,13 +959,13 @@ Under any given attribute node, any combination of these object constraint types
 --------
     SECTION[id2000] ∈ {                        
         items cardinality ∈ {0..*; ordered} ∈ {
-            ENTRY[id2001] ∈ {-- etc --}
-            allow_archetype ENTRY[id2002] ∈ {-- etc --}
+            ENTRY[id2001] ∈ {...}
+            allow_archetype ENTRY[id2002] ∈ {...}
             use_node ENTRY[id2003] /some_path[id4]
-            ENTRY[id2004] ∈ {-- etc --}
-            use_node ENTRY[id2005] /[id1002]/some_path[id1012]/
-            use_node ENTRY[id2006] /[id1005]/some_path[id1052]/
-            ENTRY[id2007] ∈ {-- etc --}
+            ENTRY[id2004] ∈ {...}
+            use_node ENTRY[id2005] /some_path[id1012]
+            use_node ENTRY[id2006] /some_path[id1052]
+            ENTRY[id2007] ∈ {...}
         }
     }
 --------
@@ -1736,7 +1736,9 @@ Various coded syntax rules have been defined for the cADL syntax, for use by par
 
 The state of this file at the issue of this document is as follows.
 
+[source, odin]
 --------
+syntax_errors = <
     ["SUNK"] = <"Syntax error (unknown cause)">
     ["SARID"] = <"Syntax error in artefact identification clause; expecting archetype id (format = model_issuer-package-class.concept.version)">
      
@@ -1788,4 +1790,5 @@ The state of this file at the issue of this document is as follows.
     ["STCDC"] = <"Syntax error: duplicate code(s) found in code list">
     ["STCAC"] = <"Syntax error: assumed value code $1 not found in code list">
     ["STCNT"] = <"Syntax error: terminology not specified">
+>
 --------
