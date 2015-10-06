@@ -6,37 +6,38 @@ This section describes whole ADL artefacts. The relationship of the cADL-encoded
 
 Some syntax valdity rules are defined, but validity in general is defined by the rules stated in the AOM specification, which can be checked by a compiler as soon as an AOM structure is parsed from an ADL document (or other serialsiation format).
 
-The general structure of ADL artefacts is as follows:
+The general structure of ADL artefacts is as follows (the full definitions are shown in the <<Syntax Specification>> section below):
 
 [source, antlr-java]
 --------
-adl_artefact: artefact_type '(' qualifiers? ')'
-    ARCHETYPE_HRID
-('specialize' 
-    ARCHETYPE_HRID)?
-'language'
-    ODIN_TEXT
-'description'
-    ODIN_TEXT
-'definition'
-    CADL_TEXT
-('rules'
-    FOPL_TEXT)?
-'terminology'
-    ODIN_TEXT
-('annotations' 
-    ODIN_TEXT)?
-('revision_history' 
-    ODIN_TEXT)?
+adl_artefact: artefact_type meta_data?
+        ARCHETYPE_HRID
+    ('specialize' 
+        ARCHETYPE_REF)?
+    'language'
+        odin_text
+    'description'
+        odin_text
+    'definition'
+        c_complex_object
+    ('rules'
+        assertion+)?
+    'terminology'
+        odin_text
+    ('annotations' 
+        odin_text)?
+    ('revision_history' 
+        odin_text)?
     ;
     
 artefact_type: 'archetype' | 'template' | 'template_overlay' | 'operational_template' ;
 
-qualifiers: qualifier ( ',' qualifier )* ;
+meta_data: '(' meta_data_item  (';' meta_data_item )* ')' ;
 
-qualifier: NAME ( '=' VALUE )? ;
+meta_data_item: ; // various qualifiers of the form name=value or flag, see syntax spec below
 
-ARCHETYPE_HRID: ; // human readable archetype identifier
+ARCHETYPE_HRID: ; // human readable archetype identifier, see syntax spec below
+ARCHETYPE_REF: ;  // human readable archetype reference, see syntax spec below
 --------
 
 The 'archetype' artefact type can have any or all of the above sections. The other artefact types are more specific in their form. 
@@ -45,24 +46,24 @@ An ADL source template has the following structure.
 
 [source, antlr-java]
 --------
-adl_template: 'template' '(' qualifiers? ')'
-    ARCHETYPE_HRID
-'specialize' 
-    ARCHETYPE_HRID
-'language'
-    ODIN_TEXT
-'description'
-    ODIN_TEXT
-'definition'
-    CADL_TEXT
-('rules'
-    FOPL_TEXT)?
-'terminology'
-    ODIN_TEXT
-('annotations' 
-    ODIN_TEXT)?
-('revision_history' 
-    ODIN_TEXT)?
+adl_template: 'template' meta_data?
+        ARCHETYPE_HRID
+    'specialize' 
+        ARCHETYPE_REF
+    'language'
+        odin_text
+    'description'
+        odin_text
+    'definition'
+        c_complex_object
+    ('rules'
+        assertion+)?
+    'terminology'
+        odin_text
+    ('annotations' 
+        odin_text)?
+    ('revision_history' 
+        odin_text)?
     ;
 --------
 
@@ -71,15 +72,15 @@ An ADL template overlay has the structure shown below.
 [source, antlr-java]
 --------
 adl_template_overlay: 'template_overlay'
-    ARCHETYPE_HRID
-'specialize' 
-    ARCHETYPE_HRID
-'definition'
-    CADL_TEXT
-('rules'
-    FOPL_TEXT)?
-'terminology'
-    ODIN_TEXT
+        ARCHETYPE_HRID
+    'specialize' 
+        ARCHETYPE_REF
+    'definition'
+        c_complex_object
+    ('rules'
+        assertion+)?
+    'terminology'
+        odin_text
     ;
 --------
 
@@ -87,22 +88,22 @@ The structure of an operational template is as follows.
 
 [source, antlr-java]
 --------
-adl_operational_template: 'operational_template' '(' qualifiers? ')'
-    ARCHETYPE_HRID
-'language'
-    ODIN_TEXT
-'description'
-    ODIN_TEXT
-'definition'
-    CADL_TEXT
-('rules'
-    FOPL_TEXT)?
-'terminology'
-    ODIN_TEXT
-('annotations' 
-    ODIN_TEXT)?
-'component_terminologies'
-    ODIN_TEXT
+adl_operational_template: 'operational_template' meta_data?
+        ARCHETYPE_HRID
+    'language'
+        odin_text
+    'description'
+        odin_text
+    'definition'
+        c_complex_object
+    ('rules'
+        assertion+)?
+    'terminology'
+        odin_text
+    ('annotations' 
+        odin_text)?
+    'component_terminologies'
+        odin_text
     ;
 --------
 

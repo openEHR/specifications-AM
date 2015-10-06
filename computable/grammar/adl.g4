@@ -17,7 +17,7 @@ adl: ( archetype | template | template_overlay | operational_template ) EOF ;
 
 archetype: 
     SYM_ARCHETYPE meta_data?
-    ARCHETYPE_ID
+    ARCHETYPE_HRID
     specialization_section?
     language_section
     description_section
@@ -29,7 +29,7 @@ archetype:
 
 template: 
     SYM_TEMPLATE meta_data? 
-    ARCHETYPE_ID
+    ARCHETYPE_HRID
     specialization_section
     language_section
     description_section
@@ -42,7 +42,7 @@ template:
 
 template_overlay: 
     SYM_TEMPLATE_OVERLAY 
-    ARCHETYPE_ID
+    ARCHETYPE_HRID
     specialization_section
     definition_section
     terminology_section
@@ -50,7 +50,7 @@ template_overlay:
 
 operational_template: 
     SYM_OPERATIONAL_TEMPLATE meta_data? 
-    ARCHETYPE_ID
+    ARCHETYPE_HRID
     language_section
     description_section
     definition_section

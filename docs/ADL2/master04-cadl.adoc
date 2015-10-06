@@ -1658,11 +1658,11 @@ The second variant uses the code `ac1`, which refers to a value set. This is by 
 
 The last variant shows a second value set, this time with an assumed code, where `at23` must be in the value set referred to by `ac2`.
 
-A further syntax possibility exists, for use at the point of operational template generation. As described in the Section [[terminology_integration_concrete_codes]], the choice may be made that a specific operational template should use external codes from the archetype bindings (such as from SNOMED CT, ICD10, etc) as the values of some or all coded nodes, rather than using the internal at-codes. 
+A further syntax possibility exists, for use at the point of operational template generation. As described in the Section [[terminology_integration_concrete_codes]], the choice may be made that a specific operational template (OPT) should use external codes from the archetype bindings (such as from SNOMED CT, ICD10, etc) as the values of some or all coded nodes, rather than using the internal at-codes. 
 
-To express this choice, the operational template's `definition` section contains a modified version of the usual syntax `[at1]` or `[ac1]` in those nodes where an external term from the bindings is to be used. This takes the form `[acN@ttttt]` or `[atN@ttttt]` where `ttttt` is the namespace identifier of a binding in the `terminology` section of the archetype.
+To express this choice, the OPT's `definition` section contains a modified version of the usual syntax `[at1]` or `[ac1]` in those nodes where an external term from the bindings is to be used. This takes the form `[acN@ttttt]` or `[atN@ttttt]` where `ttttt` is the namespace identifier of a binding in the `terminology` section of the archetype.
 
-Specifying which codable nodes (including 'all' and 'none' options) should have their values substituted by the external codes is assumed to be part of the operational template generator tool. Different terminology bindings may be specified on different nodes of the same archetype, or none at all, allowing for a mixture of external term substitional depending on node.
+Specifying which codable nodes (including 'all' and 'none' options) should have their values substituted by the external codes is assumed to be part of the OPT generator tool. Different terminology bindings may be specified on different nodes of the same archetype, or none at all, allowing for a mixture of external term substitional depending on node.
 
 The following example shows the result in an operational template fragment.
 

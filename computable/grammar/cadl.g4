@@ -44,11 +44,11 @@ c_attribute_def:
     | c_attribute_tuple
     ;
 
-c_attribute: adl_dir? ATTRIBUTE_ID c_existence? c_cardinality? ( SYM_MATCHES '{' c_objects '}' )? ;
+c_attribute: adl_dir? attribute_id c_existence? c_cardinality? ( SYM_MATCHES '{' c_objects '}' )? ;
 
 adl_dir  : '/' | ( adl_path_segment+ '/' ) ;
 
-c_attribute_tuple: '[' ATTRIBUTE_ID ( ',' ATTRIBUTE_ID )* ']' SYM_MATCHES '{' c_object_tuple ( ',' c_object_tuple )* '}' ;
+c_attribute_tuple: '[' attribute_id ( ',' attribute_id )* ']' SYM_MATCHES '{' c_object_tuple ( ',' c_object_tuple )* '}' ;
 
 c_object_tuple: '[' c_object_tuple_items ']' ;
 

@@ -3907,13 +3907,13 @@ the structure, as shown in the following example:</p>
 <p>The last variant shows a second value set, this time with an assumed code, where <code>at23</code> must be in the value set referred to by <code>ac2</code>.</p>
 </div>
 <div class="paragraph">
-<p>A further syntax possibility exists, for use at the point of operational template generation. As described in the Section <a id="terminology_integration_concrete_codes"></a>, the choice may be made that a specific operational template should use external codes from the archetype bindings (such as from SNOMED CT, ICD10, etc) as the values of some or all coded nodes, rather than using the internal at-codes.</p>
+<p>A further syntax possibility exists, for use at the point of operational template generation. As described in the Section <a id="terminology_integration_concrete_codes"></a>, the choice may be made that a specific operational template (OPT) should use external codes from the archetype bindings (such as from SNOMED CT, ICD10, etc) as the values of some or all coded nodes, rather than using the internal at-codes.</p>
 </div>
 <div class="paragraph">
-<p>To express this choice, the operational template&#8217;s <code>definition</code> section contains a modified version of the usual syntax <code>[at1]</code> or <code>[ac1]</code> in those nodes where an external term from the bindings is to be used. This takes the form <code>[acN@ttttt]</code> or <code>[atN@ttttt]</code> where <code>ttttt</code> is the namespace identifier of a binding in the <code>terminology</code> section of the archetype.</p>
+<p>To express this choice, the OPT&#8217;s <code>definition</code> section contains a modified version of the usual syntax <code>[at1]</code> or <code>[ac1]</code> in those nodes where an external term from the bindings is to be used. This takes the form <code>[acN@ttttt]</code> or <code>[atN@ttttt]</code> where <code>ttttt</code> is the namespace identifier of a binding in the <code>terminology</code> section of the archetype.</p>
 </div>
 <div class="paragraph">
-<p>Specifying which codable nodes (including 'all' and 'none' options) should have their values substituted by the external codes is assumed to be part of the operational template generator tool. Different terminology bindings may be specified on different nodes of the same archetype, or none at all, allowing for a mixture of external term substitional depending on node.</p>
+<p>Specifying which codable nodes (including 'all' and 'none' options) should have their values substituted by the external codes is assumed to be part of the OPT generator tool. Different terminology bindings may be specified on different nodes of the same archetype, or none at all, allowing for a mixture of external term substitional depending on node.</p>
 </div>
 <div class="paragraph">
 <p>The following example shows the result in an operational template fragment.</p>
@@ -4697,37 +4697,38 @@ the structure, as shown in the following example:</p>
 <p>Some syntax valdity rules are defined, but validity in general is defined by the rules stated in the AOM specification, which can be checked by a compiler as soon as an AOM structure is parsed from an ADL document (or other serialsiation format).</p>
 </div>
 <div class="paragraph">
-<p>The general structure of ADL artefacts is as follows:</p>
+<p>The general structure of ADL artefacts is as follows (the full definitions are shown in the <a href="#_syntax_specification">Syntax Specification</a> section below):</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="pygments highlight"><code data-lang="antlr-java"><span class="tok-nl">adl_artefact</span><span class="tok-p">:</span><span class="tok-w"> </span><span class="tok-nv">artefact_type</span><span class="tok-w"> </span><span class="tok-s">&#39;(&#39;</span><span class="tok-w"> </span><span class="tok-nv">qualifiers</span><span class="tok-o">?</span><span class="tok-w"> </span><span class="tok-s">&#39;)&#39;</span><span class="tok-w"></span>
-<span class="tok-w">    </span><span class="tok-no">ARCHETYPE_HRID</span><span class="tok-w"></span>
-<span class="tok-o">(</span><span class="tok-s">&#39;specialize&#39;</span><span class="tok-w"></span>
-<span class="tok-w">    </span><span class="tok-no">ARCHETYPE_HRID</span><span class="tok-o">)?</span><span class="tok-w"></span>
-<span class="tok-s">&#39;language&#39;</span><span class="tok-w"></span>
-<span class="tok-w">    </span><span class="tok-no">ODIN_TEXT</span><span class="tok-w"></span>
-<span class="tok-s">&#39;description&#39;</span><span class="tok-w"></span>
-<span class="tok-w">    </span><span class="tok-no">ODIN_TEXT</span><span class="tok-w"></span>
-<span class="tok-s">&#39;definition&#39;</span><span class="tok-w"></span>
-<span class="tok-w">    </span><span class="tok-no">CADL_TEXT</span><span class="tok-w"></span>
-<span class="tok-o">(</span><span class="tok-s">&#39;rules&#39;</span><span class="tok-w"></span>
-<span class="tok-w">    </span><span class="tok-no">FOPL_TEXT</span><span class="tok-o">)?</span><span class="tok-w"></span>
-<span class="tok-s">&#39;terminology&#39;</span><span class="tok-w"></span>
-<span class="tok-w">    </span><span class="tok-no">ODIN_TEXT</span><span class="tok-w"></span>
-<span class="tok-o">(</span><span class="tok-s">&#39;annotations&#39;</span><span class="tok-w"></span>
-<span class="tok-w">    </span><span class="tok-no">ODIN_TEXT</span><span class="tok-o">)?</span><span class="tok-w"></span>
-<span class="tok-o">(</span><span class="tok-s">&#39;revision_history&#39;</span><span class="tok-w"></span>
-<span class="tok-w">    </span><span class="tok-no">ODIN_TEXT</span><span class="tok-o">)?</span><span class="tok-w"></span>
+<pre class="pygments highlight"><code data-lang="antlr-java"><span class="tok-nl">adl_artefact</span><span class="tok-p">:</span><span class="tok-w"> </span><span class="tok-nv">artefact_type</span><span class="tok-w"> </span><span class="tok-nv">meta_data</span><span class="tok-o">?</span><span class="tok-w"></span>
+<span class="tok-w">        </span><span class="tok-no">ARCHETYPE_HRID</span><span class="tok-w"></span>
+<span class="tok-w">    </span><span class="tok-o">(</span><span class="tok-s">&#39;specialize&#39;</span><span class="tok-w"></span>
+<span class="tok-w">        </span><span class="tok-no">ARCHETYPE_REF</span><span class="tok-o">)?</span><span class="tok-w"></span>
+<span class="tok-w">    </span><span class="tok-s">&#39;language&#39;</span><span class="tok-w"></span>
+<span class="tok-w">        </span><span class="tok-nv">odin_text</span><span class="tok-w"></span>
+<span class="tok-w">    </span><span class="tok-s">&#39;description&#39;</span><span class="tok-w"></span>
+<span class="tok-w">        </span><span class="tok-nv">odin_text</span><span class="tok-w"></span>
+<span class="tok-w">    </span><span class="tok-s">&#39;definition&#39;</span><span class="tok-w"></span>
+<span class="tok-w">        </span><span class="tok-nv">c_complex_object</span><span class="tok-w"></span>
+<span class="tok-w">    </span><span class="tok-o">(</span><span class="tok-s">&#39;rules&#39;</span><span class="tok-w"></span>
+<span class="tok-w">        </span><span class="tok-nv">assertion</span><span class="tok-o">+)?</span><span class="tok-w"></span>
+<span class="tok-w">    </span><span class="tok-s">&#39;terminology&#39;</span><span class="tok-w"></span>
+<span class="tok-w">        </span><span class="tok-nv">odin_text</span><span class="tok-w"></span>
+<span class="tok-w">    </span><span class="tok-o">(</span><span class="tok-s">&#39;annotations&#39;</span><span class="tok-w"></span>
+<span class="tok-w">        </span><span class="tok-nv">odin_text</span><span class="tok-o">)?</span><span class="tok-w"></span>
+<span class="tok-w">    </span><span class="tok-o">(</span><span class="tok-s">&#39;revision_history&#39;</span><span class="tok-w"></span>
+<span class="tok-w">        </span><span class="tok-nv">odin_text</span><span class="tok-o">)?</span><span class="tok-w"></span>
 <span class="tok-w">    </span><span class="tok-p">;</span><span class="tok-w"></span>
 
 <span class="tok-nl">artefact_type</span><span class="tok-p">:</span><span class="tok-w"> </span><span class="tok-s">&#39;archetype&#39;</span><span class="tok-w"> </span><span class="tok-o">|</span><span class="tok-w"> </span><span class="tok-s">&#39;template&#39;</span><span class="tok-w"> </span><span class="tok-o">|</span><span class="tok-w"> </span><span class="tok-s">&#39;template_overlay&#39;</span><span class="tok-w"> </span><span class="tok-o">|</span><span class="tok-w"> </span><span class="tok-s">&#39;operational_template&#39;</span><span class="tok-w"> </span><span class="tok-p">;</span><span class="tok-w"></span>
 
-<span class="tok-nl">qualifiers</span><span class="tok-p">:</span><span class="tok-w"> </span><span class="tok-nv">qualifier</span><span class="tok-w"> </span><span class="tok-o">(</span><span class="tok-w"> </span><span class="tok-s">&#39;,&#39;</span><span class="tok-w"> </span><span class="tok-nv">qualifier</span><span class="tok-w"> </span><span class="tok-o">)*</span><span class="tok-w"> </span><span class="tok-p">;</span><span class="tok-w"></span>
+<span class="tok-nl">meta_data</span><span class="tok-p">:</span><span class="tok-w"> </span><span class="tok-s">&#39;(&#39;</span><span class="tok-w"> </span><span class="tok-nv">meta_data_item</span><span class="tok-w">  </span><span class="tok-o">(</span><span class="tok-s">&#39;;&#39;</span><span class="tok-w"> </span><span class="tok-nv">meta_data_item</span><span class="tok-w"> </span><span class="tok-o">)*</span><span class="tok-w"> </span><span class="tok-s">&#39;)&#39;</span><span class="tok-w"> </span><span class="tok-p">;</span><span class="tok-w"></span>
 
-<span class="tok-nl">qualifier</span><span class="tok-p">:</span><span class="tok-w"> </span><span class="tok-no">NAME</span><span class="tok-w"> </span><span class="tok-o">(</span><span class="tok-w"> </span><span class="tok-s">&#39;=&#39;</span><span class="tok-w"> </span><span class="tok-no">VALUE</span><span class="tok-w"> </span><span class="tok-o">)?</span><span class="tok-w"> </span><span class="tok-p">;</span><span class="tok-w"></span>
+<span class="tok-nl">meta_data_item</span><span class="tok-p">:</span><span class="tok-w"> </span><span class="tok-p">;</span><span class="tok-w"> </span><span class="tok-c">// various qualifiers of the form name=value or flag, see syntax spec below</span><span class="tok-w"></span>
 
-<span class="tok-nl">ARCHETYPE_HRID</span><span class="tok-p">:</span><span class="tok-w"> </span><span class="tok-p">;</span><span class="tok-w"> </span><span class="tok-c">// human readable archetype identifier</span><span class="tok-w"></span></code></pre>
+<span class="tok-nl">ARCHETYPE_HRID</span><span class="tok-p">:</span><span class="tok-w"> </span><span class="tok-p">;</span><span class="tok-w"> </span><span class="tok-c">// human readable archetype identifier, see syntax spec below</span><span class="tok-w"></span>
+<span class="tok-nl">ARCHETYPE_REF</span><span class="tok-p">:</span><span class="tok-w"> </span><span class="tok-p">;</span><span class="tok-w">  </span><span class="tok-c">// human readable archetype reference, see syntax spec below</span><span class="tok-w"></span></code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -4738,24 +4739,24 @@ the structure, as shown in the following example:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="pygments highlight"><code data-lang="antlr-java"><span class="tok-nl">adl_template</span><span class="tok-p">:</span><span class="tok-w"> </span><span class="tok-s">&#39;template&#39;</span><span class="tok-w"> </span><span class="tok-s">&#39;(&#39;</span><span class="tok-w"> </span><span class="tok-nv">qualifiers</span><span class="tok-o">?</span><span class="tok-w"> </span><span class="tok-s">&#39;)&#39;</span><span class="tok-w"></span>
-<span class="tok-w">    </span><span class="tok-no">ARCHETYPE_HRID</span><span class="tok-w"></span>
-<span class="tok-s">&#39;specialize&#39;</span><span class="tok-w"></span>
-<span class="tok-w">    </span><span class="tok-no">ARCHETYPE_HRID</span><span class="tok-w"></span>
-<span class="tok-s">&#39;language&#39;</span><span class="tok-w"></span>
-<span class="tok-w">    </span><span class="tok-no">ODIN_TEXT</span><span class="tok-w"></span>
-<span class="tok-s">&#39;description&#39;</span><span class="tok-w"></span>
-<span class="tok-w">    </span><span class="tok-no">ODIN_TEXT</span><span class="tok-w"></span>
-<span class="tok-s">&#39;definition&#39;</span><span class="tok-w"></span>
-<span class="tok-w">    </span><span class="tok-no">CADL_TEXT</span><span class="tok-w"></span>
-<span class="tok-o">(</span><span class="tok-s">&#39;rules&#39;</span><span class="tok-w"></span>
-<span class="tok-w">    </span><span class="tok-no">FOPL_TEXT</span><span class="tok-o">)?</span><span class="tok-w"></span>
-<span class="tok-s">&#39;terminology&#39;</span><span class="tok-w"></span>
-<span class="tok-w">    </span><span class="tok-no">ODIN_TEXT</span><span class="tok-w"></span>
-<span class="tok-o">(</span><span class="tok-s">&#39;annotations&#39;</span><span class="tok-w"></span>
-<span class="tok-w">    </span><span class="tok-no">ODIN_TEXT</span><span class="tok-o">)?</span><span class="tok-w"></span>
-<span class="tok-o">(</span><span class="tok-s">&#39;revision_history&#39;</span><span class="tok-w"></span>
-<span class="tok-w">    </span><span class="tok-no">ODIN_TEXT</span><span class="tok-o">)?</span><span class="tok-w"></span>
+<pre class="pygments highlight"><code data-lang="antlr-java"><span class="tok-nl">adl_template</span><span class="tok-p">:</span><span class="tok-w"> </span><span class="tok-s">&#39;template&#39;</span><span class="tok-w"> </span><span class="tok-nv">meta_data</span><span class="tok-o">?</span><span class="tok-w"></span>
+<span class="tok-w">        </span><span class="tok-no">ARCHETYPE_HRID</span><span class="tok-w"></span>
+<span class="tok-w">    </span><span class="tok-s">&#39;specialize&#39;</span><span class="tok-w"></span>
+<span class="tok-w">        </span><span class="tok-no">ARCHETYPE_REF</span><span class="tok-w"></span>
+<span class="tok-w">    </span><span class="tok-s">&#39;language&#39;</span><span class="tok-w"></span>
+<span class="tok-w">        </span><span class="tok-nv">odin_text</span><span class="tok-w"></span>
+<span class="tok-w">    </span><span class="tok-s">&#39;description&#39;</span><span class="tok-w"></span>
+<span class="tok-w">        </span><span class="tok-nv">odin_text</span><span class="tok-w"></span>
+<span class="tok-w">    </span><span class="tok-s">&#39;definition&#39;</span><span class="tok-w"></span>
+<span class="tok-w">        </span><span class="tok-nv">c_complex_object</span><span class="tok-w"></span>
+<span class="tok-w">    </span><span class="tok-o">(</span><span class="tok-s">&#39;rules&#39;</span><span class="tok-w"></span>
+<span class="tok-w">        </span><span class="tok-nv">assertion</span><span class="tok-o">+)?</span><span class="tok-w"></span>
+<span class="tok-w">    </span><span class="tok-s">&#39;terminology&#39;</span><span class="tok-w"></span>
+<span class="tok-w">        </span><span class="tok-nv">odin_text</span><span class="tok-w"></span>
+<span class="tok-w">    </span><span class="tok-o">(</span><span class="tok-s">&#39;annotations&#39;</span><span class="tok-w"></span>
+<span class="tok-w">        </span><span class="tok-nv">odin_text</span><span class="tok-o">)?</span><span class="tok-w"></span>
+<span class="tok-w">    </span><span class="tok-o">(</span><span class="tok-s">&#39;revision_history&#39;</span><span class="tok-w"></span>
+<span class="tok-w">        </span><span class="tok-nv">odin_text</span><span class="tok-o">)?</span><span class="tok-w"></span>
 <span class="tok-w">    </span><span class="tok-p">;</span><span class="tok-w"></span></code></pre>
 </div>
 </div>
@@ -4765,15 +4766,15 @@ the structure, as shown in the following example:</p>
 <div class="listingblock">
 <div class="content">
 <pre class="pygments highlight"><code data-lang="antlr-java"><span class="tok-nl">adl_template_overlay</span><span class="tok-p">:</span><span class="tok-w"> </span><span class="tok-s">&#39;template_overlay&#39;</span><span class="tok-w"></span>
-<span class="tok-w">    </span><span class="tok-no">ARCHETYPE_HRID</span><span class="tok-w"></span>
-<span class="tok-s">&#39;specialize&#39;</span><span class="tok-w"></span>
-<span class="tok-w">    </span><span class="tok-no">ARCHETYPE_HRID</span><span class="tok-w"></span>
-<span class="tok-s">&#39;definition&#39;</span><span class="tok-w"></span>
-<span class="tok-w">    </span><span class="tok-no">CADL_TEXT</span><span class="tok-w"></span>
-<span class="tok-o">(</span><span class="tok-s">&#39;rules&#39;</span><span class="tok-w"></span>
-<span class="tok-w">    </span><span class="tok-no">FOPL_TEXT</span><span class="tok-o">)?</span><span class="tok-w"></span>
-<span class="tok-s">&#39;terminology&#39;</span><span class="tok-w"></span>
-<span class="tok-w">    </span><span class="tok-no">ODIN_TEXT</span><span class="tok-w"></span>
+<span class="tok-w">        </span><span class="tok-no">ARCHETYPE_HRID</span><span class="tok-w"></span>
+<span class="tok-w">    </span><span class="tok-s">&#39;specialize&#39;</span><span class="tok-w"></span>
+<span class="tok-w">        </span><span class="tok-no">ARCHETYPE_REF</span><span class="tok-w"></span>
+<span class="tok-w">    </span><span class="tok-s">&#39;definition&#39;</span><span class="tok-w"></span>
+<span class="tok-w">        </span><span class="tok-nv">c_complex_object</span><span class="tok-w"></span>
+<span class="tok-w">    </span><span class="tok-o">(</span><span class="tok-s">&#39;rules&#39;</span><span class="tok-w"></span>
+<span class="tok-w">        </span><span class="tok-nv">assertion</span><span class="tok-o">+)?</span><span class="tok-w"></span>
+<span class="tok-w">    </span><span class="tok-s">&#39;terminology&#39;</span><span class="tok-w"></span>
+<span class="tok-w">        </span><span class="tok-nv">odin_text</span><span class="tok-w"></span>
 <span class="tok-w">    </span><span class="tok-p">;</span><span class="tok-w"></span></code></pre>
 </div>
 </div>
@@ -4782,22 +4783,22 @@ the structure, as shown in the following example:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="pygments highlight"><code data-lang="antlr-java"><span class="tok-nl">adl_operational_template</span><span class="tok-p">:</span><span class="tok-w"> </span><span class="tok-s">&#39;operational_template&#39;</span><span class="tok-w"> </span><span class="tok-s">&#39;(&#39;</span><span class="tok-w"> </span><span class="tok-nv">qualifiers</span><span class="tok-o">?</span><span class="tok-w"> </span><span class="tok-s">&#39;)&#39;</span><span class="tok-w"></span>
-<span class="tok-w">    </span><span class="tok-no">ARCHETYPE_HRID</span><span class="tok-w"></span>
-<span class="tok-s">&#39;language&#39;</span><span class="tok-w"></span>
-<span class="tok-w">    </span><span class="tok-no">ODIN_TEXT</span><span class="tok-w"></span>
-<span class="tok-s">&#39;description&#39;</span><span class="tok-w"></span>
-<span class="tok-w">    </span><span class="tok-no">ODIN_TEXT</span><span class="tok-w"></span>
-<span class="tok-s">&#39;definition&#39;</span><span class="tok-w"></span>
-<span class="tok-w">    </span><span class="tok-no">CADL_TEXT</span><span class="tok-w"></span>
-<span class="tok-o">(</span><span class="tok-s">&#39;rules&#39;</span><span class="tok-w"></span>
-<span class="tok-w">    </span><span class="tok-no">FOPL_TEXT</span><span class="tok-o">)?</span><span class="tok-w"></span>
-<span class="tok-s">&#39;terminology&#39;</span><span class="tok-w"></span>
-<span class="tok-w">    </span><span class="tok-no">ODIN_TEXT</span><span class="tok-w"></span>
-<span class="tok-o">(</span><span class="tok-s">&#39;annotations&#39;</span><span class="tok-w"></span>
-<span class="tok-w">    </span><span class="tok-no">ODIN_TEXT</span><span class="tok-o">)?</span><span class="tok-w"></span>
-<span class="tok-s">&#39;component_terminologies&#39;</span><span class="tok-w"></span>
-<span class="tok-w">    </span><span class="tok-no">ODIN_TEXT</span><span class="tok-w"></span>
+<pre class="pygments highlight"><code data-lang="antlr-java"><span class="tok-nl">adl_operational_template</span><span class="tok-p">:</span><span class="tok-w"> </span><span class="tok-s">&#39;operational_template&#39;</span><span class="tok-w"> </span><span class="tok-nv">meta_data</span><span class="tok-o">?</span><span class="tok-w"></span>
+<span class="tok-w">        </span><span class="tok-no">ARCHETYPE_HRID</span><span class="tok-w"></span>
+<span class="tok-w">    </span><span class="tok-s">&#39;language&#39;</span><span class="tok-w"></span>
+<span class="tok-w">        </span><span class="tok-nv">odin_text</span><span class="tok-w"></span>
+<span class="tok-w">    </span><span class="tok-s">&#39;description&#39;</span><span class="tok-w"></span>
+<span class="tok-w">        </span><span class="tok-nv">odin_text</span><span class="tok-w"></span>
+<span class="tok-w">    </span><span class="tok-s">&#39;definition&#39;</span><span class="tok-w"></span>
+<span class="tok-w">        </span><span class="tok-nv">c_complex_object</span><span class="tok-w"></span>
+<span class="tok-w">    </span><span class="tok-o">(</span><span class="tok-s">&#39;rules&#39;</span><span class="tok-w"></span>
+<span class="tok-w">        </span><span class="tok-nv">assertion</span><span class="tok-o">+)?</span><span class="tok-w"></span>
+<span class="tok-w">    </span><span class="tok-s">&#39;terminology&#39;</span><span class="tok-w"></span>
+<span class="tok-w">        </span><span class="tok-nv">odin_text</span><span class="tok-w"></span>
+<span class="tok-w">    </span><span class="tok-o">(</span><span class="tok-s">&#39;annotations&#39;</span><span class="tok-w"></span>
+<span class="tok-w">        </span><span class="tok-nv">odin_text</span><span class="tok-o">)?</span><span class="tok-w"></span>
+<span class="tok-w">    </span><span class="tok-s">&#39;component_terminologies&#39;</span><span class="tok-w"></span>
+<span class="tok-w">        </span><span class="tok-nv">odin_text</span><span class="tok-w"></span>
 <span class="tok-w">    </span><span class="tok-p">;</span><span class="tok-w"></span></code></pre>
 </div>
 </div>
@@ -8543,7 +8544,7 @@ Note that in the above, the '/' is used to denote '/protocol' as a differential 
 
 <span class="tok-nl">archetype</span><span class="tok-p">:</span><span class="tok-w"></span>
 <span class="tok-w">    </span><span class="tok-no">SYM_ARCHETYPE</span><span class="tok-w"> </span><span class="tok-nv">meta_data</span><span class="tok-o">?</span><span class="tok-w"></span>
-<span class="tok-w">    </span><span class="tok-no">ARCHETYPE_ID</span><span class="tok-w"></span>
+<span class="tok-w">    </span><span class="tok-no">ARCHETYPE_HRID</span><span class="tok-w"></span>
 <span class="tok-w">    </span><span class="tok-nv">specialization_section</span><span class="tok-o">?</span><span class="tok-w"></span>
 <span class="tok-w">    </span><span class="tok-nv">language_section</span><span class="tok-w"></span>
 <span class="tok-w">    </span><span class="tok-nv">description_section</span><span class="tok-w"></span>
@@ -8555,7 +8556,7 @@ Note that in the above, the '/' is used to denote '/protocol' as a differential 
 
 <span class="tok-nl">template</span><span class="tok-p">:</span><span class="tok-w"></span>
 <span class="tok-w">    </span><span class="tok-no">SYM_TEMPLATE</span><span class="tok-w"> </span><span class="tok-nv">meta_data</span><span class="tok-o">?</span><span class="tok-w"></span>
-<span class="tok-w">    </span><span class="tok-no">ARCHETYPE_ID</span><span class="tok-w"></span>
+<span class="tok-w">    </span><span class="tok-no">ARCHETYPE_HRID</span><span class="tok-w"></span>
 <span class="tok-w">    </span><span class="tok-nv">specialization_section</span><span class="tok-w"></span>
 <span class="tok-w">    </span><span class="tok-nv">language_section</span><span class="tok-w"></span>
 <span class="tok-w">    </span><span class="tok-nv">description_section</span><span class="tok-w"></span>
@@ -8568,7 +8569,7 @@ Note that in the above, the '/' is used to denote '/protocol' as a differential 
 
 <span class="tok-nl">template_overlay</span><span class="tok-p">:</span><span class="tok-w"></span>
 <span class="tok-w">    </span><span class="tok-no">SYM_TEMPLATE_OVERLAY</span><span class="tok-w"></span>
-<span class="tok-w">    </span><span class="tok-no">ARCHETYPE_ID</span><span class="tok-w"></span>
+<span class="tok-w">    </span><span class="tok-no">ARCHETYPE_HRID</span><span class="tok-w"></span>
 <span class="tok-w">    </span><span class="tok-nv">specialization_section</span><span class="tok-w"></span>
 <span class="tok-w">    </span><span class="tok-nv">definition_section</span><span class="tok-w"></span>
 <span class="tok-w">    </span><span class="tok-nv">terminology_section</span><span class="tok-w"></span>
@@ -8576,7 +8577,7 @@ Note that in the above, the '/' is used to denote '/protocol' as a differential 
 
 <span class="tok-nl">operational_template</span><span class="tok-p">:</span><span class="tok-w"></span>
 <span class="tok-w">    </span><span class="tok-no">SYM_OPERATIONAL_TEMPLATE</span><span class="tok-w"> </span><span class="tok-nv">meta_data</span><span class="tok-o">?</span><span class="tok-w"></span>
-<span class="tok-w">    </span><span class="tok-no">ARCHETYPE_ID</span><span class="tok-w"></span>
+<span class="tok-w">    </span><span class="tok-no">ARCHETYPE_HRID</span><span class="tok-w"></span>
 <span class="tok-w">    </span><span class="tok-nv">language_section</span><span class="tok-w"></span>
 <span class="tok-w">    </span><span class="tok-nv">description_section</span><span class="tok-w"></span>
 <span class="tok-w">    </span><span class="tok-nv">definition_section</span><span class="tok-w"></span>
@@ -8668,11 +8669,11 @@ Note that in the above, the '/' is used to denote '/protocol' as a differential 
 <span class="tok-w">    </span><span class="tok-o">|</span><span class="tok-w"> </span><span class="tok-nv">c_attribute_tuple</span><span class="tok-w"></span>
 <span class="tok-w">    </span><span class="tok-p">;</span><span class="tok-w"></span>
 
-<span class="tok-nl">c_attribute</span><span class="tok-p">:</span><span class="tok-w"> </span><span class="tok-nv">adl_dir</span><span class="tok-o">?</span><span class="tok-w"> </span><span class="tok-no">ATTRIBUTE_ID</span><span class="tok-w"> </span><span class="tok-nv">c_existence</span><span class="tok-o">?</span><span class="tok-w"> </span><span class="tok-nv">c_cardinality</span><span class="tok-o">?</span><span class="tok-w"> </span><span class="tok-o">(</span><span class="tok-w"> </span><span class="tok-no">SYM_MATCHES</span><span class="tok-w"> </span><span class="tok-s">&#39;{&#39;</span><span class="tok-w"> </span><span class="tok-nv">c_objects</span><span class="tok-w"> </span><span class="tok-s">&#39;}&#39;</span><span class="tok-w"> </span><span class="tok-o">)?</span><span class="tok-w"> </span><span class="tok-p">;</span><span class="tok-w"></span>
+<span class="tok-nl">c_attribute</span><span class="tok-p">:</span><span class="tok-w"> </span><span class="tok-nv">adl_dir</span><span class="tok-o">?</span><span class="tok-w"> </span><span class="tok-nv">attribute_id</span><span class="tok-w"> </span><span class="tok-nv">c_existence</span><span class="tok-o">?</span><span class="tok-w"> </span><span class="tok-nv">c_cardinality</span><span class="tok-o">?</span><span class="tok-w"> </span><span class="tok-o">(</span><span class="tok-w"> </span><span class="tok-no">SYM_MATCHES</span><span class="tok-w"> </span><span class="tok-s">&#39;{&#39;</span><span class="tok-w"> </span><span class="tok-nv">c_objects</span><span class="tok-w"> </span><span class="tok-s">&#39;}&#39;</span><span class="tok-w"> </span><span class="tok-o">)?</span><span class="tok-w"> </span><span class="tok-p">;</span><span class="tok-w"></span>
 
 <span class="tok-nl">adl_dir</span><span class="tok-w">  </span><span class="tok-p">:</span><span class="tok-w"> </span><span class="tok-s">&#39;/&#39;</span><span class="tok-w"> </span><span class="tok-o">|</span><span class="tok-w"> </span><span class="tok-o">(</span><span class="tok-w"> </span><span class="tok-nv">adl_path_segment</span><span class="tok-o">+</span><span class="tok-w"> </span><span class="tok-s">&#39;/&#39;</span><span class="tok-w"> </span><span class="tok-o">)</span><span class="tok-w"> </span><span class="tok-p">;</span><span class="tok-w"></span>
 
-<span class="tok-nl">c_attribute_tuple</span><span class="tok-p">:</span><span class="tok-w"> </span><span class="tok-s">&#39;[&#39;</span><span class="tok-w"> </span><span class="tok-no">ATTRIBUTE_ID</span><span class="tok-w"> </span><span class="tok-o">(</span><span class="tok-w"> </span><span class="tok-s">&#39;,&#39;</span><span class="tok-w"> </span><span class="tok-no">ATTRIBUTE_ID</span><span class="tok-w"> </span><span class="tok-o">)*</span><span class="tok-w"> </span><span class="tok-s">&#39;]&#39;</span><span class="tok-w"> </span><span class="tok-no">SYM_MATCHES</span><span class="tok-w"> </span><span class="tok-s">&#39;{&#39;</span><span class="tok-w"> </span><span class="tok-nv">c_object_tuple</span><span class="tok-w"> </span><span class="tok-o">(</span><span class="tok-w"> </span><span class="tok-s">&#39;,&#39;</span><span class="tok-w"> </span><span class="tok-nv">c_object_tuple</span><span class="tok-w"> </span><span class="tok-o">)*</span><span class="tok-w"> </span><span class="tok-s">&#39;}&#39;</span><span class="tok-w"> </span><span class="tok-p">;</span><span class="tok-w"></span>
+<span class="tok-nl">c_attribute_tuple</span><span class="tok-p">:</span><span class="tok-w"> </span><span class="tok-s">&#39;[&#39;</span><span class="tok-w"> </span><span class="tok-nv">attribute_id</span><span class="tok-w"> </span><span class="tok-o">(</span><span class="tok-w"> </span><span class="tok-s">&#39;,&#39;</span><span class="tok-w"> </span><span class="tok-nv">attribute_id</span><span class="tok-w"> </span><span class="tok-o">)*</span><span class="tok-w"> </span><span class="tok-s">&#39;]&#39;</span><span class="tok-w"> </span><span class="tok-no">SYM_MATCHES</span><span class="tok-w"> </span><span class="tok-s">&#39;{&#39;</span><span class="tok-w"> </span><span class="tok-nv">c_object_tuple</span><span class="tok-w"> </span><span class="tok-o">(</span><span class="tok-w"> </span><span class="tok-s">&#39;,&#39;</span><span class="tok-w"> </span><span class="tok-nv">c_object_tuple</span><span class="tok-w"> </span><span class="tok-o">)*</span><span class="tok-w"> </span><span class="tok-s">&#39;}&#39;</span><span class="tok-w"> </span><span class="tok-p">;</span><span class="tok-w"></span>
 
 <span class="tok-nl">c_object_tuple</span><span class="tok-p">:</span><span class="tok-w"> </span><span class="tok-s">&#39;[&#39;</span><span class="tok-w"> </span><span class="tok-nv">c_object_tuple_items</span><span class="tok-w"> </span><span class="tok-s">&#39;]&#39;</span><span class="tok-w"> </span><span class="tok-p">;</span><span class="tok-w"></span>
 
@@ -8789,7 +8790,7 @@ Note that in the above, the '/' is used to denote '/protocol' as a differential 
 <span class="tok-nl">adl_path</span><span class="tok-w"> </span><span class="tok-p">:</span><span class="tok-w"> </span><span class="tok-nv">adl_path_segment</span><span class="tok-o">+</span><span class="tok-w"> </span><span class="tok-p">;</span><span class="tok-w"></span>
 <span class="tok-nl">adl_relative_path</span><span class="tok-w"> </span><span class="tok-p">:</span><span class="tok-w"> </span><span class="tok-nv">adl_path_element</span><span class="tok-w"> </span><span class="tok-nv">adl_path</span><span class="tok-w"> </span><span class="tok-p">;</span><span class="tok-w">  </span><span class="tok-c">// TODO: remove when current slots no longer needed</span><span class="tok-w"></span>
 <span class="tok-nl">adl_path_segment</span><span class="tok-w"> </span><span class="tok-p">:</span><span class="tok-w"> </span><span class="tok-s">&#39;/&#39;</span><span class="tok-w"> </span><span class="tok-nv">adl_path_element</span><span class="tok-w"> </span><span class="tok-p">;</span><span class="tok-w"></span>
-<span class="tok-nl">adl_path_element</span><span class="tok-w"> </span><span class="tok-p">:</span><span class="tok-w"> </span><span class="tok-no">ATTRIBUTE_ID</span><span class="tok-w"> </span><span class="tok-o">(</span><span class="tok-w"> </span><span class="tok-s">&#39;[&#39;</span><span class="tok-w"> </span><span class="tok-no">ID_CODE</span><span class="tok-w"> </span><span class="tok-s">&#39;]&#39;</span><span class="tok-w"> </span><span class="tok-o">)?</span><span class="tok-w"> </span><span class="tok-p">;</span><span class="tok-w"></span>
+<span class="tok-nl">adl_path_element</span><span class="tok-w"> </span><span class="tok-p">:</span><span class="tok-w"> </span><span class="tok-nv">attribute_id</span><span class="tok-w"> </span><span class="tok-o">(</span><span class="tok-w"> </span><span class="tok-s">&#39;[&#39;</span><span class="tok-w"> </span><span class="tok-no">ID_CODE</span><span class="tok-w"> </span><span class="tok-s">&#39;]&#39;</span><span class="tok-w"> </span><span class="tok-o">)?</span><span class="tok-w"> </span><span class="tok-p">;</span><span class="tok-w"></span>
 
 
 <span class="tok-c">//</span><span class="tok-w"></span>
@@ -8996,7 +8997,10 @@ Note that in the above, the '/' is used to denote '/protocol' as a differential 
 <span class="tok-k">grammar</span><span class="tok-w"> </span><span class="tok-nc">odin_values</span><span class="tok-p">;</span><span class="tok-w"></span>
 <span class="tok-nl">import</span><span class="tok-w"> </span><span class="tok-err">base_patterns;</span><span class="tok-w"></span>
 
-<span class="tok-err">string_value</span><span class="tok-w"> </span><span class="tok-p">:</span><span class="tok-w"> </span><span class="tok-no">STRING</span><span class="tok-w"> </span><span class="tok-p">;</span><span class="tok-w"></span>
+<span class="tok-err">type_id</span><span class="tok-w">      </span><span class="tok-p">:</span><span class="tok-w"> </span><span class="tok-no">ALPHA_UC_ID</span><span class="tok-w"> </span><span class="tok-o">(</span><span class="tok-w"> </span><span class="tok-s">&#39;&lt;&#39;</span><span class="tok-w"> </span><span class="tok-nv">type_id</span><span class="tok-w"> </span><span class="tok-o">(</span><span class="tok-w"> </span><span class="tok-s">&#39;,&#39;</span><span class="tok-w"> </span><span class="tok-nv">type_id</span><span class="tok-w"> </span><span class="tok-o">)*</span><span class="tok-w"> </span><span class="tok-s">&#39;&gt;&#39;</span><span class="tok-w"> </span><span class="tok-o">)?</span><span class="tok-w"> </span><span class="tok-p">;</span><span class="tok-w"></span>
+<span class="tok-nl">attribute_id</span><span class="tok-w"> </span><span class="tok-p">:</span><span class="tok-w"> </span><span class="tok-no">ALPHA_LC_ID</span><span class="tok-w"> </span><span class="tok-p">;</span><span class="tok-w"></span>
+
+<span class="tok-nl">string_value</span><span class="tok-w"> </span><span class="tok-p">:</span><span class="tok-w"> </span><span class="tok-no">STRING</span><span class="tok-w"> </span><span class="tok-p">;</span><span class="tok-w"></span>
 <span class="tok-nl">string_list_value</span><span class="tok-w"> </span><span class="tok-p">:</span><span class="tok-w"> </span><span class="tok-nv">string_value</span><span class="tok-w"> </span><span class="tok-o">(</span><span class="tok-w"> </span><span class="tok-o">(</span><span class="tok-w"> </span><span class="tok-s">&#39;,&#39;</span><span class="tok-w"> </span><span class="tok-nv">string_value</span><span class="tok-w"> </span><span class="tok-o">)+</span><span class="tok-w"> </span><span class="tok-o">|</span><span class="tok-w"> </span><span class="tok-s">&#39;,&#39;</span><span class="tok-w"> </span><span class="tok-no">SYM_LIST_CONTINUE</span><span class="tok-w"> </span><span class="tok-o">)</span><span class="tok-w"> </span><span class="tok-p">;</span><span class="tok-w"></span>
 
 <span class="tok-nl">integer_value</span><span class="tok-w"> </span><span class="tok-p">:</span><span class="tok-w"> </span><span class="tok-o">(</span><span class="tok-w"> </span><span class="tok-s">&#39;+&#39;</span><span class="tok-w"> </span><span class="tok-o">|</span><span class="tok-w"> </span><span class="tok-s">&#39;-&#39;</span><span class="tok-w"> </span><span class="tok-o">)?</span><span class="tok-w"> </span><span class="tok-no">INTEGER</span><span class="tok-w"> </span><span class="tok-p">;</span><span class="tok-w"></span>
@@ -9093,10 +9097,14 @@ Note that in the above, the '/' is used to denote '/protocol' as a differential 
 
 <span class="tok-nl">ISO8601_DATE</span><span class="tok-w">      </span><span class="tok-p">:</span><span class="tok-w">     </span><span class="tok-no">YEAR</span><span class="tok-w"> </span><span class="tok-s">&#39;-&#39;</span><span class="tok-w"> </span><span class="tok-no">MONTH</span><span class="tok-w"> </span><span class="tok-o">(</span><span class="tok-w"> </span><span class="tok-s">&#39;-&#39;</span><span class="tok-w"> </span><span class="tok-no">DAY</span><span class="tok-w"> </span><span class="tok-o">)?</span><span class="tok-w"> </span><span class="tok-p">;</span><span class="tok-w"></span>
 <span class="tok-nl">ISO8601_TIME</span><span class="tok-w">      </span><span class="tok-p">:</span><span class="tok-w">     </span><span class="tok-no">HOUR</span><span class="tok-w"> </span><span class="tok-s">&#39;:&#39;</span><span class="tok-w"> </span><span class="tok-no">MINUTE</span><span class="tok-w"> </span><span class="tok-o">(</span><span class="tok-w"> </span><span class="tok-s">&#39;:&#39;</span><span class="tok-w"> </span><span class="tok-no">SECOND</span><span class="tok-w"> </span><span class="tok-o">(</span><span class="tok-w"> </span><span class="tok-s">&#39;,&#39;</span><span class="tok-w"> </span><span class="tok-no">INTEGER</span><span class="tok-w"> </span><span class="tok-o">)?)?</span><span class="tok-w"> </span><span class="tok-o">(</span><span class="tok-w"> </span><span class="tok-no">TIMEZONE</span><span class="tok-w"> </span><span class="tok-o">)?</span><span class="tok-w"> </span><span class="tok-p">;</span><span class="tok-w"></span>
-<span class="tok-nl">ISO8601_DATE_TIME</span><span class="tok-w"> </span><span class="tok-p">:</span><span class="tok-w">     </span><span class="tok-no">YEAR</span><span class="tok-w"> </span><span class="tok-s">&#39;-&#39;</span><span class="tok-w"> </span><span class="tok-no">MONTH</span><span class="tok-w"> </span><span class="tok-s">&#39;-&#39;</span><span class="tok-w"> </span><span class="tok-no">DAY</span><span class="tok-w"> </span><span class="tok-s">&#39;T&#39;</span><span class="tok-w"> </span><span class="tok-no">HOUR</span><span class="tok-w"> </span><span class="tok-o">(</span><span class="tok-s">&#39;:&#39;</span><span class="tok-w"> </span><span class="tok-no">MINUTE</span><span class="tok-w"> </span><span class="tok-o">(</span><span class="tok-s">&#39;:&#39;</span><span class="tok-w"> </span><span class="tok-no">SECOND</span><span class="tok-w"> </span><span class="tok-o">(</span><span class="tok-w"> </span><span class="tok-s">&#39;,&#39;</span><span class="tok-w"> </span><span class="tok-p">[</span><span class="tok-n">0</span><span class="tok-o">-</span><span class="tok-mi">9</span><span class="tok-p">]</span><span class="tok-o">+</span><span class="tok-w"> </span><span class="tok-o">)?)?)?</span><span class="tok-w"> </span><span class="tok-o">(</span><span class="tok-w"> </span><span class="tok-no">TIMEZONE</span><span class="tok-w"> </span><span class="tok-o">)?</span><span class="tok-w"> </span><span class="tok-p">;</span><span class="tok-w"></span>
+<span class="tok-nl">ISO8601_DATE_TIME</span><span class="tok-w"> </span><span class="tok-p">:</span><span class="tok-w">     </span><span class="tok-no">YEAR</span><span class="tok-w"> </span><span class="tok-s">&#39;-&#39;</span><span class="tok-w"> </span><span class="tok-no">MONTH</span><span class="tok-w"> </span><span class="tok-s">&#39;-&#39;</span><span class="tok-w"> </span><span class="tok-no">DAY</span><span class="tok-w"> </span><span class="tok-s">&#39;T&#39;</span><span class="tok-w"> </span><span class="tok-no">HOUR</span><span class="tok-w"> </span><span class="tok-o">(</span><span class="tok-s">&#39;:&#39;</span><span class="tok-w"> </span><span class="tok-no">MINUTE</span><span class="tok-w"> </span><span class="tok-o">(</span><span class="tok-s">&#39;:&#39;</span><span class="tok-w"> </span><span class="tok-no">SECOND</span><span class="tok-w"> </span><span class="tok-o">(</span><span class="tok-w"> </span><span class="tok-s">&#39;,&#39;</span><span class="tok-w"> </span><span class="tok-no">DIGIT</span><span class="tok-o">+</span><span class="tok-w"> </span><span class="tok-o">)?)?)?</span><span class="tok-w"> </span><span class="tok-o">(</span><span class="tok-w"> </span><span class="tok-no">TIMEZONE</span><span class="tok-w"> </span><span class="tok-o">)?</span><span class="tok-w"> </span><span class="tok-p">;</span><span class="tok-w"></span>
+
+<span class="tok-c">// ISO8601 DURATION PnYnMnWnDTnnHnnMnn.nnnS</span><span class="tok-w"></span>
+<span class="tok-c">// here we allow a deviation from the standard to allow weeks to be // mixed in with the rest since this commonly occurs in medicine</span><span class="tok-w"></span>
+<span class="tok-nl">ISO8601_DURATION</span><span class="tok-w"> </span><span class="tok-p">:</span><span class="tok-w"> </span><span class="tok-s">&#39;P&#39;</span><span class="tok-o">(</span><span class="tok-no">DIGIT</span><span class="tok-o">+</span><span class="tok-p">[</span><span class="tok-n">yY</span><span class="tok-p">]</span><span class="tok-o">)?(</span><span class="tok-no">DIGIT</span><span class="tok-o">+</span><span class="tok-p">[</span><span class="tok-n">mM</span><span class="tok-p">]</span><span class="tok-o">)?(</span><span class="tok-no">DIGIT</span><span class="tok-o">+</span><span class="tok-p">[</span><span class="tok-n">wW</span><span class="tok-p">]</span><span class="tok-o">)?(</span><span class="tok-no">DIGIT</span><span class="tok-o">+</span><span class="tok-p">[</span><span class="tok-n">dD</span><span class="tok-p">]</span><span class="tok-o">)?(</span><span class="tok-s">&#39;T&#39;</span><span class="tok-o">(</span><span class="tok-no">DIGIT</span><span class="tok-o">+</span><span class="tok-p">[</span><span class="tok-n">hH</span><span class="tok-p">]</span><span class="tok-o">)?(</span><span class="tok-no">DIGIT</span><span class="tok-o">+</span><span class="tok-p">[</span><span class="tok-n">mM</span><span class="tok-p">]</span><span class="tok-o">)?(</span><span class="tok-no">DIGIT</span><span class="tok-o">+(</span><span class="tok-s">&#39;.&#39;</span><span class="tok-no">DIGIT</span><span class="tok-o">+)?</span><span class="tok-p">[</span><span class="tok-n">sS</span><span class="tok-p">]</span><span class="tok-o">)?)?</span><span class="tok-w"> </span><span class="tok-p">;</span><span class="tok-w"></span>
 
 <span class="tok-k">fragment</span><span class="tok-w"> </span><span class="tok-nl">TIMEZONE</span><span class="tok-w">   </span><span class="tok-p">:</span><span class="tok-w">     </span><span class="tok-s">&#39;Z&#39;</span><span class="tok-w"> </span><span class="tok-o">|</span><span class="tok-w"> </span><span class="tok-o">(</span><span class="tok-s">&#39;+&#39;</span><span class="tok-o">|</span><span class="tok-s">&#39;-&#39;</span><span class="tok-o">)</span><span class="tok-w"> </span><span class="tok-no">HOUR_MIN</span><span class="tok-w"> </span><span class="tok-p">;</span><span class="tok-w">   </span><span class="tok-c">// hour offset, e.g. `+0930`, or else literal `Z` indicating +0000.</span><span class="tok-w"></span>
-<span class="tok-k">fragment</span><span class="tok-w"> </span><span class="tok-nl">YEAR</span><span class="tok-w">       </span><span class="tok-p">:</span><span class="tok-w">     </span><span class="tok-p">[</span><span class="tok-mi">1</span><span class="tok-o">-</span><span class="tok-mi">9</span><span class="tok-p">][</span><span class="tok-mi">0</span><span class="tok-o">-</span><span class="tok-mi">9</span><span class="tok-p">]</span><span class="tok-o">*</span><span class="tok-w"> </span><span class="tok-p">;</span><span class="tok-w"></span>
+<span class="tok-k">fragment</span><span class="tok-w"> </span><span class="tok-nl">YEAR</span><span class="tok-w">       </span><span class="tok-p">:</span><span class="tok-w">     </span><span class="tok-p">[</span><span class="tok-n">1</span><span class="tok-o">-</span><span class="tok-mi">9</span><span class="tok-p">][</span><span class="tok-mi">0</span><span class="tok-o">-</span><span class="tok-mi">9</span><span class="tok-p">]</span><span class="tok-o">*</span><span class="tok-w"> </span><span class="tok-p">;</span><span class="tok-w"></span>
 <span class="tok-k">fragment</span><span class="tok-w"> </span><span class="tok-nl">MONTH</span><span class="tok-w">      </span><span class="tok-p">:</span><span class="tok-w">     </span><span class="tok-o">(</span><span class="tok-w"> </span><span class="tok-p">[</span><span class="tok-mi">0</span><span class="tok-p">][</span><span class="tok-mi">0</span><span class="tok-o">-</span><span class="tok-mi">9</span><span class="tok-p">]</span><span class="tok-w"> </span><span class="tok-o">|</span><span class="tok-w"> </span><span class="tok-p">[</span><span class="tok-mi">1</span><span class="tok-p">][</span><span class="tok-mi">0</span><span class="tok-o">-</span><span class="tok-mi">2</span><span class="tok-p">]</span><span class="tok-w"> </span><span class="tok-o">)</span><span class="tok-w"> </span><span class="tok-p">;</span><span class="tok-w">    </span><span class="tok-c">// month in year</span><span class="tok-w"></span>
 <span class="tok-k">fragment</span><span class="tok-w"> </span><span class="tok-nl">DAY</span><span class="tok-w">        </span><span class="tok-p">:</span><span class="tok-w">     </span><span class="tok-o">(</span><span class="tok-w"> </span><span class="tok-p">[</span><span class="tok-mi">012</span><span class="tok-p">][</span><span class="tok-mi">0</span><span class="tok-o">-</span><span class="tok-mi">9</span><span class="tok-p">]</span><span class="tok-w"> </span><span class="tok-o">|</span><span class="tok-w"> </span><span class="tok-p">[</span><span class="tok-mi">3</span><span class="tok-p">][</span><span class="tok-mi">0</span><span class="tok-o">-</span><span class="tok-mi">2</span><span class="tok-p">]</span><span class="tok-w"> </span><span class="tok-o">)</span><span class="tok-w"> </span><span class="tok-p">;</span><span class="tok-w">  </span><span class="tok-c">// day in month</span><span class="tok-w"></span>
 <span class="tok-k">fragment</span><span class="tok-w"> </span><span class="tok-nl">HOUR</span><span class="tok-w">       </span><span class="tok-p">:</span><span class="tok-w">     </span><span class="tok-o">(</span><span class="tok-w"> </span><span class="tok-p">[</span><span class="tok-mi">01</span><span class="tok-p">]</span><span class="tok-o">?</span><span class="tok-p">[</span><span class="tok-mi">0</span><span class="tok-o">-</span><span class="tok-mi">9</span><span class="tok-p">]</span><span class="tok-w"> </span><span class="tok-o">|</span><span class="tok-w"> </span><span class="tok-p">[</span><span class="tok-mi">2</span><span class="tok-p">][</span><span class="tok-mi">0</span><span class="tok-o">-</span><span class="tok-mi">3</span><span class="tok-p">]</span><span class="tok-w"> </span><span class="tok-o">)</span><span class="tok-w"> </span><span class="tok-p">;</span><span class="tok-w">  </span><span class="tok-c">// hour in 24 hour clock</span><span class="tok-w"></span>
@@ -9104,24 +9112,19 @@ Note that in the above, the '/' is used to denote '/protocol' as a differential 
 <span class="tok-k">fragment</span><span class="tok-w"> </span><span class="tok-nl">HOUR_MIN</span><span class="tok-w">   </span><span class="tok-p">:</span><span class="tok-w">     </span><span class="tok-o">(</span><span class="tok-w"> </span><span class="tok-p">[</span><span class="tok-mi">01</span><span class="tok-p">]</span><span class="tok-o">?</span><span class="tok-p">[</span><span class="tok-mi">0</span><span class="tok-o">-</span><span class="tok-mi">9</span><span class="tok-p">]</span><span class="tok-w"> </span><span class="tok-o">|</span><span class="tok-w"> </span><span class="tok-p">[</span><span class="tok-mi">2</span><span class="tok-p">][</span><span class="tok-mi">0</span><span class="tok-o">-</span><span class="tok-mi">3</span><span class="tok-p">]</span><span class="tok-w"> </span><span class="tok-o">)</span><span class="tok-w"> </span><span class="tok-p">[</span><span class="tok-mi">0</span><span class="tok-o">-</span><span class="tok-mi">5</span><span class="tok-p">][</span><span class="tok-mi">0</span><span class="tok-o">-</span><span class="tok-mi">9</span><span class="tok-p">]</span><span class="tok-w"> </span><span class="tok-p">;</span><span class="tok-w">  </span><span class="tok-c">// hour / minutes quad digit pattern</span><span class="tok-w"></span>
 <span class="tok-k">fragment</span><span class="tok-w"> </span><span class="tok-nl">SECOND</span><span class="tok-w">     </span><span class="tok-p">:</span><span class="tok-w">     </span><span class="tok-p">[</span><span class="tok-mi">0</span><span class="tok-o">-</span><span class="tok-mi">5</span><span class="tok-p">][</span><span class="tok-mi">0</span><span class="tok-o">-</span><span class="tok-mi">9</span><span class="tok-p">]</span><span class="tok-w"> </span><span class="tok-p">;</span><span class="tok-w">                 </span><span class="tok-c">// seconds</span><span class="tok-w"></span>
 
-<span class="tok-c">// ISO8601 DURATION PnYnMnWnDTnnHnnMnn.nnnS</span><span class="tok-w"></span>
-<span class="tok-c">// here we allow a deviation from the standard to allow weeks to be</span><span class="tok-w"></span>
-<span class="tok-c">// mixed in with the rest since this commonly occurs in medicine</span><span class="tok-w"></span>
-<span class="tok-nl">ISO8601_DURATION</span><span class="tok-w"> </span><span class="tok-p">:</span><span class="tok-w"> </span><span class="tok-s">&#39;P&#39;</span><span class="tok-o">(</span><span class="tok-no">DIGIT</span><span class="tok-o">+</span><span class="tok-p">[</span><span class="tok-n">yY</span><span class="tok-p">]</span><span class="tok-o">)?(</span><span class="tok-no">DIGIT</span><span class="tok-o">+</span><span class="tok-p">[</span><span class="tok-n">mM</span><span class="tok-p">]</span><span class="tok-o">)?(</span><span class="tok-no">DIGIT</span><span class="tok-o">+</span><span class="tok-p">[</span><span class="tok-n">wW</span><span class="tok-p">]</span><span class="tok-o">)?(</span><span class="tok-no">DIGIT</span><span class="tok-o">+</span><span class="tok-p">[</span><span class="tok-n">dD</span><span class="tok-p">]</span><span class="tok-o">)?(</span><span class="tok-s">&#39;T&#39;</span><span class="tok-o">(</span><span class="tok-no">DIGIT</span><span class="tok-o">+</span><span class="tok-p">[</span><span class="tok-n">hH</span><span class="tok-p">]</span><span class="tok-o">)?(</span><span class="tok-no">DIGIT</span><span class="tok-o">+</span><span class="tok-p">[</span><span class="tok-n">mM</span><span class="tok-p">]</span><span class="tok-o">)?(</span><span class="tok-no">DIGIT</span><span class="tok-o">+(</span><span class="tok-s">&#39;.&#39;</span><span class="tok-no">DIGIT</span><span class="tok-o">+)?</span><span class="tok-p">[</span><span class="tok-n">sS</span><span class="tok-p">]</span><span class="tok-o">)?)?</span><span class="tok-w"> </span><span class="tok-p">;</span><span class="tok-w"></span>
-
 <span class="tok-c">// -------- other values --------</span><span class="tok-w"></span>
 
-<span class="tok-nl">ARCHETYPE_ID_ROOT</span><span class="tok-w">  </span><span class="tok-p">:</span><span class="tok-w"> </span><span class="tok-o">(</span><span class="tok-no">DOMAIN_NAME</span><span class="tok-w"> </span><span class="tok-s">&#39;::&#39;</span><span class="tok-o">)?</span><span class="tok-w"> </span><span class="tok-no">PROPER_ID</span><span class="tok-w"> </span><span class="tok-s">&#39;-&#39;</span><span class="tok-w"> </span><span class="tok-no">PROPER_ID</span><span class="tok-w"> </span><span class="tok-s">&#39;-&#39;</span><span class="tok-w"> </span><span class="tok-no">PROPER_ID</span><span class="tok-w"> </span><span class="tok-s">&#39;.&#39;</span><span class="tok-w"> </span><span class="tok-no">PROPER_ID</span><span class="tok-w"> </span><span class="tok-p">;</span><span class="tok-w"></span>
+<span class="tok-nl">ARCHETYPE_HRID</span><span class="tok-p">:</span><span class="tok-w"> </span><span class="tok-no">ARCHETYPE_HRID_ROOT</span><span class="tok-w"> </span><span class="tok-s">&#39;.v&#39;</span><span class="tok-w"> </span><span class="tok-no">VERSION_ID</span><span class="tok-w"> </span><span class="tok-p">;</span><span class="tok-w"></span>
+<span class="tok-nl">ARCHETYPE_REF</span><span class="tok-w"> </span><span class="tok-p">:</span><span class="tok-w"> </span><span class="tok-no">ARCHETYPE_HRID_ROOT</span><span class="tok-w"> </span><span class="tok-s">&#39;.v&#39;</span><span class="tok-w"> </span><span class="tok-no">INTEGER</span><span class="tok-w"> </span><span class="tok-no">DOT_SEGMENT</span><span class="tok-o">*</span><span class="tok-w"> </span><span class="tok-p">;</span><span class="tok-w"></span>
 
-<span class="tok-nl">ARCHETYPE_ID</span><span class="tok-w">  </span><span class="tok-p">:</span><span class="tok-w"> </span><span class="tok-no">ARCHETYPE_ID_ROOT</span><span class="tok-w"> </span><span class="tok-s">&#39;.v&#39;</span><span class="tok-w"> </span><span class="tok-no">VERSION_ID</span><span class="tok-w"> </span><span class="tok-p">;</span><span class="tok-w"></span>
-<span class="tok-nl">ARCHETYPE_REF</span><span class="tok-w"> </span><span class="tok-p">:</span><span class="tok-w"> </span><span class="tok-no">ARCHETYPE_ID_ROOT</span><span class="tok-w"> </span><span class="tok-s">&#39;.v&#39;</span><span class="tok-w"> </span><span class="tok-no">INTEGER</span><span class="tok-w"> </span><span class="tok-no">DOT_SEGMENT</span><span class="tok-o">*</span><span class="tok-w"> </span><span class="tok-p">;</span><span class="tok-w"></span>
+<span class="tok-k">fragment</span><span class="tok-w"> </span><span class="tok-nl">ARCHETYPE_HRID_ROOT</span><span class="tok-w">  </span><span class="tok-p">:</span><span class="tok-w"> </span><span class="tok-o">(</span><span class="tok-no">DOMAIN_NAME</span><span class="tok-w"> </span><span class="tok-s">&#39;::&#39;</span><span class="tok-o">)?</span><span class="tok-w"> </span><span class="tok-no">PROPER_ID</span><span class="tok-w"> </span><span class="tok-s">&#39;-&#39;</span><span class="tok-w"> </span><span class="tok-no">PROPER_ID</span><span class="tok-w"> </span><span class="tok-s">&#39;-&#39;</span><span class="tok-w"> </span><span class="tok-no">PROPER_ID</span><span class="tok-w"> </span><span class="tok-s">&#39;.&#39;</span><span class="tok-w"> </span><span class="tok-no">PROPER_ID</span><span class="tok-w"> </span><span class="tok-p">;</span><span class="tok-w"></span>
 
 <span class="tok-nl">DOMAIN_NAME</span><span class="tok-w">   </span><span class="tok-p">:</span><span class="tok-w"> </span><span class="tok-no">PROPER_ID</span><span class="tok-w"> </span><span class="tok-o">(</span><span class="tok-s">&#39;.&#39;</span><span class="tok-w"> </span><span class="tok-no">PROPER_ID</span><span class="tok-o">)+</span><span class="tok-w"> </span><span class="tok-p">;</span><span class="tok-w"></span>
 
-<span class="tok-nl">TYPE_NAME</span><span class="tok-w">     </span><span class="tok-p">:</span><span class="tok-w"> </span><span class="tok-no">ALPHA_UPPER</span><span class="tok-w"> </span><span class="tok-no">ID_CHAR</span><span class="tok-o">*</span><span class="tok-w"> </span><span class="tok-p">;</span><span class="tok-w"></span>
-<span class="tok-nl">ATTRIBUTE_ID</span><span class="tok-w">  </span><span class="tok-p">:</span><span class="tok-w"> </span><span class="tok-no">PROPER_ID</span><span class="tok-w"> </span><span class="tok-o">|</span><span class="tok-w"> </span><span class="tok-no">UNDERSCORE_ID</span><span class="tok-w"> </span><span class="tok-p">;</span><span class="tok-w"></span>
-<span class="tok-nl">PROPER_ID</span><span class="tok-w">     </span><span class="tok-p">:</span><span class="tok-w"> </span><span class="tok-no">ALPHA_CHAR</span><span class="tok-w"> </span><span class="tok-no">ID_CHAR</span><span class="tok-o">*</span><span class="tok-w"> </span><span class="tok-p">;</span><span class="tok-w"></span>
-<span class="tok-nl">UNDERSCORE_ID</span><span class="tok-w"> </span><span class="tok-p">:</span><span class="tok-w"> </span><span class="tok-s">&#39;_&#39;</span><span class="tok-w"> </span><span class="tok-no">PROPER_ID</span><span class="tok-w"> </span><span class="tok-p">;</span><span class="tok-w"></span>
+<span class="tok-nl">ALPHA_UC_ID</span><span class="tok-w">   </span><span class="tok-p">:</span><span class="tok-w"> </span><span class="tok-no">ALPHA_UPPER</span><span class="tok-w"> </span><span class="tok-no">ID_CHAR</span><span class="tok-o">*</span><span class="tok-w"> </span><span class="tok-p">;</span><span class="tok-w">          </span><span class="tok-c">// Must have an upper case alpha first character</span><span class="tok-w"></span>
+<span class="tok-nl">ALPHA_LC_ID</span><span class="tok-w">   </span><span class="tok-p">:</span><span class="tok-w"> </span><span class="tok-no">ALPHA_LOWER</span><span class="tok-w"> </span><span class="tok-no">ID_CHAR</span><span class="tok-o">*</span><span class="tok-w"> </span><span class="tok-p">;</span><span class="tok-w"></span>
+<span class="tok-nl">UNDERSCORE_ID</span><span class="tok-w"> </span><span class="tok-p">:</span><span class="tok-w"> </span><span class="tok-s">&#39;_&#39;</span><span class="tok-w"> </span><span class="tok-o">(</span><span class="tok-w"> </span><span class="tok-no">ALPHA_UC_ID</span><span class="tok-w"> </span><span class="tok-o">|</span><span class="tok-w"> </span><span class="tok-no">ALPHA_LC_ID</span><span class="tok-w"> </span><span class="tok-o">)</span><span class="tok-w"> </span><span class="tok-p">;</span><span class="tok-w"></span>
+<span class="tok-nl">PROPER_ID</span><span class="tok-w">     </span><span class="tok-p">:</span><span class="tok-w"> </span><span class="tok-no">ALPHA_UC_ID</span><span class="tok-w"> </span><span class="tok-o">|</span><span class="tok-w"> </span><span class="tok-no">ALPHA_LC_ID</span><span class="tok-w"> </span><span class="tok-p">;</span><span class="tok-w"></span>
 
 <span class="tok-nl">GUID</span><span class="tok-w">          </span><span class="tok-p">:</span><span class="tok-w"> </span><span class="tok-no">HEX_DIGIT</span><span class="tok-o">+</span><span class="tok-w"> </span><span class="tok-s">&#39;-&#39;</span><span class="tok-w"> </span><span class="tok-no">HEX_DIGIT</span><span class="tok-o">+</span><span class="tok-w"> </span><span class="tok-s">&#39;-&#39;</span><span class="tok-w"> </span><span class="tok-no">HEX_DIGIT</span><span class="tok-o">+</span><span class="tok-w"> </span><span class="tok-s">&#39;-&#39;</span><span class="tok-w"> </span><span class="tok-no">HEX_DIGIT</span><span class="tok-o">+</span><span class="tok-w"> </span><span class="tok-s">&#39;-&#39;</span><span class="tok-w"> </span><span class="tok-no">HEX_DIGIT</span><span class="tok-o">+</span><span class="tok-w"> </span><span class="tok-p">;</span><span class="tok-w"></span>
 

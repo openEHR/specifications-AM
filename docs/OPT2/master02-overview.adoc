@@ -1,0 +1,26 @@
+= Overview
+
+The Operational Template (OPT) is a family of technical artefacts that is generated from source templates and archetypes expressed in ADL2, as described in the http://www.openehr.org/releases/AM/latest/docs/Overview/Overview.html#_artefacts[Archetype Technology Overview document]. 
+
+There are two types of OPT: 'raw' and 'cooked'.  The raw form can informally be understood as being the single large archetype structure corresponding to many source archetypes and templates, flattened and expanded into a single artefact. A raw OPT contains all possible content in terms of languages and terminology bindings.
+
+A cooked OPT is one that has had some languages and some or all terminology bindings removed, potentially external terminology substitutions made, and potentially removal of the `annotations` section. This form of OPT is therefore the same formally as a raw OPT, just with less content. Consequently, only a single specification is needed to describe both forms.
+
+In order to prevent confusion, raw and cooked OPTs are saved using distinct filenames.
+
+Because an OPT operates as a single standalone archetype, it does not require all of the syntax or semantic features of source archetypes or templates. It can thus be understood as being like a top-level (i.e. non-specialised) archetype, with the following differences:
+
+* all archetype references have been resolved to specific archetype identifiers, including full version;
+* no specialisation statement - an OPT is considered a 'top-level' standalone artefact;
+* no sibling order (i.e. `before` or `after`) markers remain among object nodes under container attributes;
+* no `use_node` nodes, i.e. all internal references have been expanded out as copies of their targets;
+* all slot-fillers and direct external references (`use_archetype` nodes) have been resolved and substituted;
+* all closed slots are removed;
+* all attribute (`C_ATTRIBUTE`) nodes that have `existence matches {0}` (i.e. are logically removed) are removed;
+* all template overlays have been applied (flattening);
+* the flattened form of all `terminology` sections of all referenced archetypes are included in the `component_terminologies` section.
+
+Note that the identifiers of all of the deepest specialisations  of archetypes and templates used in the OPT are visible at the root nodes of the corresponding structures, starting with the top node. This enables the totality of implicated archetypes and templates to be retrieved by a combination of inspection of the OPT, and inspection of the directly referenced artefacts, to obtain the specialisation parents, where applicable.
+
+An OPT can be serialised in more than one form, including ADL, XML and JSON. To facilitate tooling and reduce confusion, distinct filename extensions are used, of the form `.opt` (ADL), `.optx` (XML), `.optj` and so on.
+

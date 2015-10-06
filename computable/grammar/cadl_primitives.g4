@@ -56,7 +56,7 @@ c_boolean: ( boolean_value | boolean_list_value ) ( ';' boolean_value )? ;
 adl_path : adl_path_segment+ ;
 adl_relative_path : adl_path_element adl_path ;  // TODO: remove when current slots no longer needed
 adl_path_segment : '/' adl_path_element ;
-adl_path_element : ATTRIBUTE_ID ( '[' ID_CODE ']' )? ;
+adl_path_element : attribute_id ( '[' ID_CODE ']' )? ;
 
 
 //
