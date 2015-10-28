@@ -28,15 +28,15 @@ An important aspect of identification relates to the rules governing when when t
 
 === Machine Identifiers
 
-Two machine identifiers are defined for archetypes. The `ARCHETYPE`.`_uid_` attribute defines a machine identifier equivalent to the human readable `_archetype_id_`.`_semantic_id_` , i.e. `ARCHETYPE_HRID` up to its major version, and changes whenever the latter does. It is defined as optional but to be practically useful would need to be mandatory for all archetypes within a custodian organisation where this identifier was in use. It could in principle be synthesised at any time for a custodian that decided to implement it.
+Two machine identifiers are defined for archetypes. The `ARCHETYPE`.`_uid_` attribute defines a machine identifier equivalent to the human readable `ARCHETYPE`.`_archetype_id_`.`_semantic_id_` , i.e. `ARCHETYPE_HRID` up to its major version, and changes whenever the latter does. It is defined as optional but to be practically useful would need to be mandatory for all archetypes within a custodian organisation where this identifier was in use. It could in principle be synthesised at any time for a custodian that decided to implement it.
 
-The `ARCHETYPE`.`_build_uid_` attribute is also optional, and if used, is intended to provide a unique identifier that corresponds to any change in version of the artefact. At a minimum, this means generating a new UID for each change to:
+The `ARCHETYPE`.`_build_uid_` attribute is also optional, and if used, is intended to provide a unique identifier that corresponds to any change in version of the artefact. At a minimum, this means generating a new UUID for each change to:
 
 * `ARCHETYPE`.`_archetype_id_`.`_release_version_`;
 * `ARCHETYPE`.`_archetype_id_`.`_build_count_`;
 * `ARCHETYPE`.`_description_`.`_lifecycle_state_`.
 
-For every change made to an archetype inside a controlled repository (for example, addition or update of meta-data fields), this field should be updated with a new GUID value, generated in the normal way.
+For every change made to an archetype inside a controlled repository (for example, addition or update of meta-data fields), this field should be updated with a new UUID value, generated in the normal way.
 
 == Top-level Meta-data
 
