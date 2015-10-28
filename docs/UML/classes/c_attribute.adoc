@@ -25,7 +25,7 @@ a|Constraint settable on every attribute, regardless of whether it is singular o
 
 h|*0..1*
 |*children*: `List<C_OBJECT>`
-a|Child C_OBJECT nodes. Each such node represents a constraint on the type of this attribute in its reference model. Multiples occur both for multiple items in the case of container attributes, and alternatives in the case of singular attributes. 
+a|Child C_OBJECT nodes. Each such node represents a constraint on the type of this attribute in its reference model. Multiples occur both for multiple items in the case of container attributes, and alternatives in the case of singular attributes.
 
 h|*0..1*
 |*differential_path*: `String`
@@ -61,12 +61,12 @@ a|True if this node logically represents a single-valued attribute. Evaluated as
 h|(effected)
 |*c_congruent_to* (other: `ARCHETYPE_CONSTRAINT`): `Boolean` +
 *_Post_*: Result = existence = Void and ((is_single and other.is_single) or (is_multiple and other.is_multiple and cardinality = Void))
-a|True if constraints represented by this node contain no further redefinitions with respect to the node other, with the exception of node_id redefnition in C_OBJECT nodes. 
+a|True if constraints represented by this node contain no further redefinitions with respect to the node other, with the exception of node_id redefnition in C_OBJECT nodes.
 Typically used to test if an inherited node locally contains any constraints.
 
 h|(effected)
 |*c_conforms_to* (other: `ARCHETYPE_CONSTRAINT`): `Boolean` +
 *_Post_*: Result = existence_conforms_to (other) and ((is_single and other.is_single) or else (is_multiple and cardinality_conforms_to (other)))
-a|True if constraints represented by this node, ignoring any sub-parts, are narrower or the same as other. 
+a|True if constraints represented by this node, ignoring any sub-parts, are narrower or the same as other.
 Typically used during validation of special-ised archetype nodes.
 |===
