@@ -27,9 +27,9 @@ adl_operational_template: 'operational_template' '(' qualifiers? ')'
     ;
 --------
 
-== Identifiers
+== Archetype References
 
-All archetype references (typically not including full version information) found in the source archetypes and templates are resolved to full archetype identifiers, and replaced by these identifiers in the OPT output (guaranteed to include full 3-part versions).
+All references to other archetypes (typically not including full version information) found in the source archetypes and templates are resolved to full archetype identifiers, and replaced by these identifiers in the OPT output (guaranteed to include full 3-part versions).
 
 == Flattening
 
@@ -37,6 +37,7 @@ The flattening process for an OPT is somewhat more extensive than the standard f
 
 OPT Flattening involves the following additional steps:
 
+* since sibling sets of object nodes under a container attribute node are expressed in full (i.e. taking into account additions and removals from specialised child archetypes), there are no sibling order markers (i.e. 'before' and 'after' markers) in a raw OPT;
 * `use_node` internal references are replaced by an inline copy of the target structure of the reference;
 * for slots:
 ** all `closed` slots are removed;
