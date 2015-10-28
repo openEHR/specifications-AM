@@ -440,18 +440,26 @@
 </thead>
 <tbody>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a id="latest_issue"></a>2.1.15</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a id="latest_issue"></a>2.1.16</p></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>Make <code>AUTHORED_RESOURCE</code>.<code><em>uid</em></code> and <code>AUTHORED_ARCHETYPE</code>.<code><em>build_uid</em></code> <code>UUIDs</code> rather than any kind of <code>UID</code>.</p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">T Beale</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a id="latest_issue_date"></a>29 Oct 2015</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">2.1.15</p></td>
 <td class="tableblock halign-left valign-top"><div><div class="paragraph">
 <p>Add <code>P_</code> serialisation model and template sections.</p>
 </div></div></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">T Beale</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a id="latest_issue_date"></a>31 Aug 2015</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">31 Aug 2015</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">2.1.14</p></td>
 <td class="tableblock halign-left valign-top"><div><div class="paragraph">
 <p>Refactor <code>ARCHETYPE</code> and <code>ARCHETYPE_TERMINOLOGY</code> models, in order to simplify: remove differential and flat forms of classes.<br>
- Split <code>ARCHETYPE</code> into two classes, with <code>AUTHORED_ARCHETYPE</code> as a new class that inherits from <code>AUTHORED_RESOURCE</code> .</p>
+ Split <code>ARCHETYPE</code> into two classes, with <code>AUTHORED_ARCHETYPE</code> as a new class that inherits from <code>AUTHORED_RESOURCE</code> .<br></p>
 </div></div></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">T Beale</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">04 Jan 2015</p></td>
@@ -1437,10 +1445,10 @@ of Date/Time fields.</p>
 <div class="sect3">
 <h4 id="_machine_identifiers"><a class="anchor" href="#_machine_identifiers"></a>3.2.2. Machine Identifiers</h4>
 <div class="paragraph">
-<p>Two machine identifiers are defined for archetypes. The <code>ARCHETYPE</code>.<code><em>uid</em></code> attribute defines a machine identifier equivalent to the human readable <code><em>archetype_id</em></code>.<code><em>semantic_id</em></code> , i.e. <code>ARCHETYPE_HRID</code> up to its major version, and changes whenever the latter does. It is defined as optional but to be practically useful would need to be mandatory for all archetypes within a custodian organisation where this identifier was in use. It could in principle be synthesised at any time for a custodian that decided to implement it.</p>
+<p>Two machine identifiers are defined for archetypes. The <code>ARCHETYPE</code>.<code><em>uid</em></code> attribute defines a machine identifier equivalent to the human readable <code>ARCHETYPE</code>.<code><em>archetype_id</em></code>.<code><em>semantic_id</em></code> , i.e. <code>ARCHETYPE_HRID</code> up to its major version, and changes whenever the latter does. It is defined as optional but to be practically useful would need to be mandatory for all archetypes within a custodian organisation where this identifier was in use. It could in principle be synthesised at any time for a custodian that decided to implement it.</p>
 </div>
 <div class="paragraph">
-<p>The <code>ARCHETYPE</code>.<code><em>build_uid</em></code> attribute is also optional, and if used, is intended to provide a unique identifier that corresponds to any change in version of the artefact. At a minimum, this means generating a new UID for each change to:</p>
+<p>The <code>ARCHETYPE</code>.<code><em>build_uid</em></code> attribute is also optional, and if used, is intended to provide a unique identifier that corresponds to any change in version of the artefact. At a minimum, this means generating a new UUID for each change to:</p>
 </div>
 <div class="ulist">
 <ul>
@@ -1456,7 +1464,7 @@ of Date/Time fields.</p>
 </ul>
 </div>
 <div class="paragraph">
-<p>For every change made to an archetype inside a controlled repository (for example, addition or update of meta-data fields), this field should be updated with a new GUID value, generated in the normal way.</p>
+<p>For every change made to an archetype inside a controlled repository (for example, addition or update of meta-data fields), this field should be updated with a new UUID value, generated in the normal way.</p>
 </div>
 </div>
 </div>
@@ -1852,7 +1860,7 @@ It is the parent class of all concrete types of archetype.</p>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>1..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>build_uid</strong>: <code>UID</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>build_uid</strong>: <code>UUID</code></p></td>
 <td class="tableblock halign-left valign-top"><div><div class="paragraph">
 <p>Unique identifier of this archetype artefact instance. A new identifier is assigned every time the content is changed by a tool. Used by tools to distinguish different revisions and/or interim snapshots of the same artefact.</p>
 </div></div></td>
