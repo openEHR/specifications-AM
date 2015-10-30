@@ -146,11 +146,11 @@ terminology
     >
     term_bindings = <
         ["snomed_ct"] = <
-            ["at10"] = <http://snomed.info/406464007>
-            ["at11"] = <http://snomed.info/406470001>
-            ["at12"] = <http://snomed.info/406472009>
-            ["at13"] = <http://snomed.info/410981007>
-            ["at14"] = <http://snomed.info/410980008>
+            ["at10"] = <http://snomed.info/406464007> -- Pollen allergen (substance)
+            ["at11"] = <http://snomed.info/406470001> -- Insect allergen (substance)
+            ["at12"] = <http://snomed.info/406472009> -- Animal protein and epidermal allergen (substance)
+            ["at13"] = <http://snomed.info/410981007> -- Plant extract and epidermal allergen (substance)
+            ["at14"] = <http://snomed.info/410980008> -- Dust allergen (substance)
         >
     >
 --------
@@ -181,12 +181,12 @@ terminology
     >
     term_bindings = <
         ["snomed_ct"] = <
-            ["ac1"] = <http://snomed.info/id/123456789> -- value set binding
-            ["at10"] = <http://snomed.info/406464007>
-            ["at11"] = <http://snomed.info/406470001>
-            ["at12"] = <http://snomed.info/406472009>
-            ["at13"] = <http://snomed.info/410981007>
-            ["at14"] = <http://snomed.info/410980008>
+            ["ac1"] = <http://snomed.info/id/900000000000123456> -- value set binding
+            ["at10"] = <http://snomed.info/406464007> -- Pollen allergen (substance)
+            ["at11"] = <http://snomed.info/406470001> -- Insect allergen (substance)
+            ["at12"] = <http://snomed.info/406472009> -- Animal protein and epidermal allergen (substance)
+            ["at13"] = <http://snomed.info/410981007> -- Plant extract and epidermal allergen (substance)
+            ["at14"] = <http://snomed.info/410980008> -- Dust allergen (substance)
         >
     >
 --------
@@ -210,7 +210,7 @@ terminology
     --
     term_bindings = <
         ["snomed_ct"] = <
-            ["ac1"] = <http://snomedct.info/id/123456789> -- value set binding
+            ["ac1"] = <http://snomedct.info/id/900000000000123456> -- value set binding
         >
     >
 --------
@@ -218,7 +218,7 @@ terminology
 [[terminology_integration_concrete_codes]]
 == From Constraints to Concrete Codes in Data
 
-A key question not obvious from the above is: what codes ultimately find their way into data created via archetypes used in conjunction with terminology? With the exception of alternative #4 above, there are two possibilities for recording values of coded terms in data. One is to use the at-codes chosen by the user (or software component) at execution time, and the other is to store the target of the term binding, i.e. a SNOMED CT, LOINC or other external code. Which strategy to use depends on a number of factors, mostly not determinable at archetype development time.
+A key question not answered by the above is: what codes ultimately find their way into data created via archetypes used in conjunction with terminology? With the exception of alternative #4 above, there are two ways of recording values of coded terms in data. One is to use the at-codes chosen by the user (or software component) at execution time, and the other is to store the target of the term binding, i.e. a SNOMED CT, LOINC or other external code. Which strategy to use depends on a number of factors, mostly not determinable at archetype development time.
 
 There are two dimensions that are relevant to determining a storage approach. One is to distinguish data representation within the internal environment from data formats used for sharing. Within the internal environment, if archetypes are actively used by the system, then local at-codes can be stored, since they can always be converted via the archetypes to whichever bindings are available. The second is is the distinction between 'large' and 'small' value sets mentioned earlier. Large value-sets are those which are always modelled by terminology, and even if not available today, terminology will be the only practical approach of implementing them. 
 
