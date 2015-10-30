@@ -2,15 +2,15 @@
 
 The Operational Template (OPT) is a family of technical artefacts that is generated from source templates and archetypes expressed in ADL2, as described in the http://www.openehr.org/releases/AM/latest/docs/Overview/Overview.html#_artefacts[Archetype Technology Overview document]. 
 
-There are two types of OPT: 'raw' and 'cooked'.  The raw form can informally be understood as being the single large archetype structure corresponding to many source archetypes and templates, flattened and expanded into a single artefact. A raw OPT contains all possible content in terms of languages and terminology bindings. The following diagram shows the progressive generation of these artefacts from original archetypes and templates.
+There are two types of OPT: 'raw' and 'profiled'.  The raw form can informally be understood as being the single large archetype structure corresponding to many source archetypes and templates, flattened and expanded into a single artefact. A raw OPT contains all possible content in terms of languages and terminology bindings. The following diagram shows the progressive generation of these artefacts from original archetypes and templates.
 
 [.text-center]
 .OPT Tool Chain
 image::diagrams/opt_tool_chain.svg[id=opt_tool_chain, align="center",width="80%"]
 
-A cooked OPT is one that has had some languages and some or all terminology bindings removed, potentially external terminology substitutions made, and potentially removal of the `annotations` section. This form of OPT is therefore the same formally as a raw OPT, just with less content. Consequently, only a single specification is needed to describe both forms.
+A profiled OPT is one that has had some languages and some or all terminology bindings removed, potentially external terminology substitutions made, and potentially removal of the `annotations` section. This form of OPT is therefore the same formally as a raw OPT, just with less content. Consequently, only a single specification is needed to describe both forms.
 
-In order to prevent confusion, raw and cooked OPTs are saved using distinct filenames.
+In order to prevent confusion, raw and profiled OPTs are saved using distinct filenames.
 
 Because an OPT operates as a single standalone archetype, it does not require all of the syntax or semantic features of source archetypes or templates. It can thus be understood as being like a top-level (i.e. non-specialised) archetype, with the following differences:
 
