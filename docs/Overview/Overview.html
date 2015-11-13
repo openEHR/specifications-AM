@@ -160,10 +160,16 @@
 </thead>
 <tbody>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a id="latest_issue"></a>0.9.0</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a id="latest_issue"></a>0.9.1</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Minor refinements to text in first section; new version of Fig 1 Archetype/Info model relationship.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">T Beale</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a id="latest_issue_date"></a>12 Nov 2015</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">0.9.0</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Addition of sections on business purpose, identifiers and collections.</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">T Beale</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a id="latest_issue_date"></a>10 Jun 2015</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">10 Jun 2015</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">0.8.0</p></td>
@@ -213,40 +219,43 @@
 <p>Archetypes are a way of adding domain semantics to information models, while avoiding endless growth and maintenance of the latter, as would occur if a textbook approach were used to modelling.</p>
 </div>
 <div class="paragraph">
-<p>To make the distinction between domain semantics and information models concrete, information models in openEHR, ISO 13606-1 and more generally in e-health typically define 'clinical data types', such as Quantity (with units, accuracy etc); Coded text; Ordinal (an Integer/symbol conjunction); and various generic clinical data structures, such as 'clinical statement' (denoted by the type <code>Entry</code> in openEHR and ISO 13606-1), 'clinical document', 'report', and so on. Such a class model may contain 50-100 classes, including 20+ classes for the clinical data types, and enables the construction of instance structures corresponding to the various parts and sections of e.g. a clinical encounter note or a hospital discharge summary. However, neither a class model of this size, nor the capabilities of standard UML can naturally accommodate the explosion of diversity of possible values of instances which can make up a clinical document created in every particular situation (e.g. a specific kind of patient visiting a specialist), nor for the tens of thousands of clinical observations (e.g. 'systolic blood pressure', 'visual acuity', etc, many of them consisting of multiple data points in specific structures), nor the O(1E5) laboratory analyte result types. Further, the size of terminology needed to annotate data items, both 'names' and 'values' in a name/value understanding of the data is in the O(1E5) - O(1E6) concepts range, as exemplified by the SNOMED CT and ICD11 terminologies.</p>
+<p>To make the distinction between domain semantics and information models concrete, information models in openEHR, ISO 13606-1 and more generally in e-health typically define 'clinical data types', such as Quantity (with units, accuracy etc); Coded text; Ordinal (an Integer/symbol conjunction); and various generic clinical data structures, such as 'clinical statement' (denoted by the type <code>Entry</code> in openEHR and ISO 13606-1), 'clinical document', 'report', and so on. Such an information model may contain 50-100 classes, including 20+ classes for the clinical data types, and enables the construction of instance structures corresponding to the various parts and sections of e.g. a clinical encounter note or a hospital discharge summary.</p>
+</div>
+<div class="paragraph">
+<p>However, neither a class model of this size, nor the capabilities of standard UML can naturally accommodate the explosion or diversity of possible values of instances that can make up a clinical document created in every particular situation (e.g. a specific kind of patient visiting a specialist), nor for the tens of thousands of clinical observations (e.g. 'systolic blood pressure', 'visual acuity', etc, many of them consisting of multiple data points in specific structures), nor the O(1E5) laboratory analyte result types. Further, the size of terminology needed to annotate data items, both 'names' and 'values' in a name/value representation of the data is in the O(1E5) - O(1E6) concepts range, as exemplified by the <a href="#SNOMED_CT">[SNOMED_CT]</a> and <a href="#WHO_ICD">[WHO_ICD]</a> terminologies.</p>
 </div>
 <div class="paragraph">
 <p>The above situation applies across most information-rich industries, with varying but generally very large numbers.</p>
 </div>
 <div class="paragraph">
-<p>Although technically these numerous possible values could just be understood as the specific values that 'happen to occur' in a situation of data creation, it is widely rcognised within mainstream IT that domain data value 'complexes' (co-occurring structures of data) correspond to meaningful patterns that constitute a relatively small fraction of the astronomical number of possible combinations of values within structures. Thus, while some tens to hundreds of thousands of 'clinical statement' patterns would adequately cover nearly all of general medical data recording (i.e. leaving the terminal real world values such as actual blood pressure open, within their respective sanity ranges), the information models in typical use would in fact permit possible instance structures numbering in the order of 1E10 and much higher ranges (defining a class model with 1E20 possible instances is a relatively trivial matter). In other words, most possible data constructions are garbage.</p>
+<p>Although technically these numerous possible values could just be understood as the specific values that 'happen to occur' in a situation of data creation, it is widely rcognised within mainstream IT that domain data value 'complexes' (co-occurring structures of data) correspond to meaningful patterns that constitute a relatively small fraction of the astronomical number of possible combinations of values within structures. Thus, while some tens to hundreds of thousands of 'clinical statement' patterns would adequately cover nearly all of general medical data recording (i.e. leaving the terminal real world values such as actual blood pressure open, within their respective sanity ranges), the information models in typical use would in fact permit possible instance structures numbering in the order of 1E10 and much higher ranges (defining a class model with 1E20 possible instances is a relatively trivial matter). In other words, <em>most possible data constructions are garbage</em>.</p>
 </div>
 <div class="paragraph">
-<p>This is akin to the situation in natural language, where meaningful sentences constitute a tiny fraction of possible, grammatically correct sentences.</p>
+<p>This is akin to the situation in natural language, where meaningful sentences constitute a tiny fraction of possible, grammatically correct word sequences.</p>
 </div>
 <div class="paragraph">
-<p>It is also widely recognized that mechanisms are needed to enable some sort of domain level 'modelling' or 'templating', to enable the common patterns to be defined, and thus to allow the subsequent development of software or other mechanisms (e.g. pre-built UI forms) to limit the possible instance structures to those that actually make sense. The general need was identified in Martin Fowler&#8217;s 1991 book 'Analysis Patterns' <a href="#Fowler_1991">[Fowler_1991]</a>, in which 'patterns' are illustrated in 'above the line' parts of UML diagrams, but has been known for some decades. It is generally understood that this kind of modelling cannot simply be an extension of the existing software or database schemata. The obvious 'IT reason' for this is that to do so implies endless maintenance and updating of deployed software, and worse, frequent database migration. In systems operating 24x365, and routinely creating Terabytes of data per year per hospital, this is not an acceptable approach.</p>
+<p>It is also widely recognized that mechanisms are needed to enable some sort of domain level 'modelling' or 'templating', to enable the common patterns to be defined, and thus to allow the subsequent development of software or other mechanisms (e.g. pre-built UI forms) to limit the possible instance structures to those that actually make sense. The general need was identified in Martin Fowler&#8217;s 1991 book 'Analysis Patterns' <a href="#Fowler_1991">[Fowler_1991]</a>, in which 'patterns' are illustrated in 'above the line' parts of UML diagrams, but has been known for some decades. It is generally understood that this kind of modelling cannot simply be an extension of the existing software or database schemata. The obvious 'IT reason' for this is that to do so implies endless maintenance and updating of deployed software, and worse, frequent database migration. In systems operating 24x365, and routinely creating Terabytes of data per year, this is not an acceptable approach.</p>
 </div>
 <div class="paragraph">
-<p>However, there is an arguably more important reason: the authors of domain level definitions or models will not be software or database developers, but domain experts of some kind, e.g. physicians or aeronatics engineers. The latter kind of professional will not generally know or care about the programming or modelling languages used by IT people, and will often have their own formalisms, incomprehensible to IT professionals.</p>
+<p>However, there is an arguably more important reason to provide a generic means of modelling domain information patterns: the authors of domain level definitions or models will not be software or database developers, but domain experts of some kind, e.g. physicians or aeronatics engineers. The latter kind of professional will not generally know or care about the programming or modelling languages used by IT people, and will often have their own formalisms, incomprehensible to IT professionals. Further, the semantics they use in their domain will often not be directly representable in simplistic 'formalism' of UML or ER models.</p>
 </div>
 <div class="paragraph">
-<p>Consequently, most large system software products in the health and other domains have some kind of configuration or template building tool(s) that enable modelling of typical domain content patterns, usually conceived of as screen forms. This partially addresses both problems: domain models are now separate from the software (but not the product), and they can be built by non-IT personnel, assuming a tool with a reasonable user interface.</p>
+<p>Consequently, most large software products in the health and other domains have some kind of configuration or template building tool(s) that enable modelling of typical domain content patterns, usually as screen form definitions. This partially addresses both problems: domain models are now separate from the software (but not the product), and they can be built by non-IT personnel, assuming a tool with a reasonable user interface.</p>
 </div>
 <div class="paragraph">
-<p>The problem in mainstream IT has been that no such capability is available independent of particular software products (i.e. specific vendors), concrete forms (UI forms, XML Schemas etc) or domains (e.g. process and control systems engineering have domain specific languages) - i.e. even tools that may be technically powerful enough are buried inside specific products, and are usually targeted to the database schemas of the product.</p>
+<p>The problem in mainstream IT has been that no such capability is available <em>independent</em> of particular software products (i.e. specific vendors), concrete visual forms (UI forms, XML Schemas etc) or domains (e.g. process and control systems engineering have domain specific languages) - i.e. even tools that may be technically powerful enough to do the job are buried inside specific products, and are usually targeted to the database schemas of the product.</p>
 </div>
 <div class="paragraph">
-<p>An important economic factor is that the creation of good quality domain models is time-consuming and expensive, relying as it does on domain experts - typically experienced clinicians, engineers etc - rather than IT staff. If models are created inside a specific product (e.g. a particular hospital information system), and that product is replaced, there is often little appetite or availability of the staff to recreate the work done in authoring the models/templates for the first product, in the new product environment. Multiplied across products, sites, and whole industry verticals, the lack of standard ways of representing models of domain content has become a significant obstruction to the production of high quality information systems. Instead, as each solution is replaced, its domain models usually die with it.</p>
+<p>An important economic factor is that the creation of good quality domain models is time-consuming and expensive, relying as it does on domain experts - typically experienced clinicians, engineers etc - rather than IT staff. If models are created inside a specific product (e.g. a particular hospital information system), and that product is replaced, there is often little appetite or availability of the staff to recreate the work done in authoring the models/templates for the first product, in the new product environment. Multiplied across products, sites, and whole industry verticals, <em>the lack of standard ways of representing models of domain content has become a significant obstruction to the production of high quality information systems</em>. Instead, as each solution is replaced, its domain models usually die with it.</p>
 </div>
 <div class="paragraph">
-<p>The need for an efficient, formal, and product- and implementation format-independent domain modelling capability is therefore clear. The sheer amount of domain semantics requiring formalisation in health has necessitated the creation in openEHR of the Archetype formalism, used in conjunction with terminologies (i.e. SNOMED CT, LOINC, ICDx and many others).</p>
+<p>The need for an efficient, formal, and product- and implementation format-independent domain modelling capability is therefore clear, nowhere moreso than in health, where the sheer amount of domain semantics requiring formalisation in health has necessitated the creation in openEHR of the Archetype formalism, used in conjunction with terminologies (i.e. SNOMED CT, LOINC, ICDx and many others).</p>
 </div>
 <div class="paragraph">
-<p>Two categories of domain content models can be distinguished, respnding to a universal need to be able to represent both use-independent definitions of 'data points', and use-case dependent definition of 'data sets'. Consider the case of recording patient vital signs. Assume that a content model can be defined for 'blood pressure', 'heart rate' and 'blood oxygen'. These definitions need to be independent of specific uses such as patient home measurement, GP encounter, and hospital bedside measurement, since in all these cases, the blood pressure etc. are recorded in exactly the same way. However in each case, these vital signs data points are recorded within a larger data set of items that correspond to the health system event occurring, such as a GP patient health checkup.</p>
+<p>Two categories of domain content models can be distinguished, respnding to a universal need to be able to represent both use-independent definitions of 'data points' and 'data groups', and use-case dependent definition of 'data sets'. Consider the case of recording patient vital signs. Assume that content models can be defined for 'blood pressure', 'heart rate' and 'blood oxygen'. These definitions need to be independent of specific uses such as patient home measurement, GP encounter, and hospital bedside measurement, since in all these cases, each vital sign is recorded in exactly the same way. However in each case, these vital signs data points are recorded within a larger data set of items that correspond to the health system event occurring, such as a GP patient health checkup or an ED initial assessment.</p>
 </div>
 <div class="paragraph">
-<p>Thus there are two related needs: to be able to model re-usable domain data items and structures, and secondly, to be able to model the larger use case specific structures in which they may occur. The alternative would be to create a domain model for every data set and within many of these models, to repeatedly define the same sub-model of recurring content, such as 'blood pressure'.</p>
+<p>Thus there are two related needs: to be able to model re-usable domain data items and structures, and secondly, to be able to model the larger use case specific combinations of these generic elements. The alternative would be to create a domain model for every data set and within many of these models, to repeatedly define the same sub-model of recurring content, such as 'blood pressure'.</p>
 </div>
 </div>
 </div>
@@ -283,12 +292,12 @@
 </div>
 <div id="archetype_quadrant" class="imageblock text-center" style="text-align: center">
 <div class="content">
-<img src="diagrams/archetype_quadrant.png" alt="archetype quadrant" width="60%">
+<img src="diagrams/archetype_quadrant.svg" alt="archetype quadrant" width="60%">
 </div>
 <div class="title">Figure 1. Archetype / Information Model Relationship</div>
 </div>
 <div class="paragraph">
-<p>In this approach, the Reference Model level is consciously designed to be limited to domain-invariant data elements and structures, such as Quantity, Coded text and various generic containment structures. This enables stable data processing sofware to be built and deployed independently of the definition of specific domain information entities.</p>
+<p>In this scheme, the information model (Reference Model) level is consciously designed to be limited to domain-invariant data elements and structures, such as Quantity, Coded text and various generic containment structures. This enables stable data processing sofware to be built and deployed independently of the definition of specific domain information entities. As noted earlier, a generic information model enables more or less 'any data' instances, while to achieve 'meaningful data', domain content models (archetypes and templates) are required.</p>
 </div>
 <div class="paragraph">
 <p>Although in the abstract, Archetypes are easily understood, Templates imply some nuances. A Template is an artefact that enables the content defined in published archetypes to be used for a particular use case or business event. In health this is often a ‘health service event’ such as a particular kind of encounter between a patient and a provider. Archetypes define content on the basis of topic or theme e.g. blood pressure, physical exam, report, independently of particular business events. Templates provide the way of using a particular set of archetypes, choosing a particular (often quite limited) set of nodes from each and then limiting values and/or terminology in a way specific to a particular kind of event, such as ‘diabetic patient admission’, ‘ED discharge’ and so on. Such events in an ICT environment often have a corresponding screen ‘form’ (which may have one or more ‘pages’ or subforms and some workflow logic) associated with them; as a result, an openEHR template is often a direct precursor to a form in the presentation layer of application software. Templates are the technical means of using archetypes in runtime systems.</p>
@@ -1013,16 +1022,16 @@
 <p><a id="openEHR_ADL_workbench"></a>[openEHR_ADL_workbench] The openEHR Foundation. <strong>The openEHR ADL Workbench</strong>. <a href="http://www.openehr.org/downloads/ADLworkbench/home" class="bare">http://www.openehr.org/downloads/ADLworkbench/home</a> .</p>
 </li>
 <li>
-<p><a id="openehr_am_overview"></a>[openehr_am_overview] The openEHR Foundation. <strong>The openEHR Archetypes Technical Overview.</strong> See <a href="http://www.openehr.org/releases/AM/dev/Overview.html" class="bare">http://www.openehr.org/releases/AM/dev/Overview.html</a>.</p>
+<p><a id="openehr_am_overview"></a>[openehr_am_overview] The openEHR Foundation. <strong>The openEHR Archetypes Technical Overview.</strong> See <a href="http://www.openehr.org/releases/AM/latest/Overview.html" class="bare">http://www.openehr.org/releases/AM/latest/Overview.html</a>.</p>
 </li>
 <li>
-<p><a id="openehr_am_adl"></a>[openehr_am_adl] The openEHR Foundation. <strong>Archetype Definition Language (ADL2).</strong> Available at <a href="http://www.openehr.org/releases/AM/dev/ADL2.html" class="bare">http://www.openehr.org/releases/AM/dev/ADL2.html</a>.</p>
+<p><a id="openehr_am_adl"></a>[openehr_am_adl] The openEHR Foundation. <strong>Archetype Definition Language (ADL2).</strong> Available at <a href="http://www.openehr.org/releases/AM/latest/ADL2.html" class="bare">http://www.openehr.org/releases/AM/latest/ADL2.html</a>.</p>
 </li>
 <li>
-<p><a id="openehr_am_aom"></a>[openehr_am_aom] The openEHR Foundation. <strong>Archetype Object Model (AOM2).</strong> Available at <a href="http://www.openehr.org/releases/AM/dev/AOM2.html" class="bare">http://www.openehr.org/releases/AM/dev/AOM2.html</a>.</p>
+<p><a id="openehr_am_aom"></a>[openehr_am_aom] The openEHR Foundation. <strong>Archetype Object Model (AOM2).</strong> Available at <a href="http://www.openehr.org/releases/AM/latest/AOM2.html" class="bare">http://www.openehr.org/releases/AM/latest/AOM2.html</a>.</p>
 </li>
 <li>
-<p><a id="openehr_am_identification"></a>[openehr_am_identification] The openEHR Foundation. <strong>Archetype Identification specification.</strong> Available at <a href="http://www.openehr.org/releases/AM/dev/Identification.html" class="bare">http://www.openehr.org/releases/AM/dev/Identification.html</a>.</p>
+<p><a id="openehr_am_identification"></a>[openehr_am_identification] The openEHR Foundation. <strong>Archetype Identification specification.</strong> Available at <a href="http://www.openehr.org/releases/AM/latest/Identification.html" class="bare">http://www.openehr.org/releases/AM/latest/Identification.html</a>.</p>
 </li>
 <li>
 <p><a id="openehr_CKM"></a>[openehr_CKM] <strong>The openEHR Clinical Knowledge Manager (CKM)</strong>. See <a href="http://www.openEHR.org/ckm" class="bare">http://www.openEHR.org/ckm</a></p>
@@ -1031,25 +1040,25 @@
 <p><a id="openehr_odin"></a>[openehr_odin] The openEHR Foundation. <strong>Object Data Instance Notation (ODIN).</strong> Available at <a href="http://www.openehr.org/releases/BASE/latest/odin.html" class="bare">http://www.openehr.org/releases/BASE/latest/odin.html</a>.</p>
 </li>
 <li>
-<p><a id="openehr_overview"></a>[openehr_overview] The openEHR Foundation. <strong>The openEHR Architecture Overview.</strong> See <a href="http://www.openehr.org/releases/BASE/dev/architecture_overview.html" class="bare">http://www.openehr.org/releases/BASE/dev/architecture_overview.html</a>.</p>
+<p><a id="openehr_overview"></a>[openehr_overview] The openEHR Foundation. <strong>The openEHR Architecture Overview.</strong> See <a href="http://www.openehr.org/releases/BASE/latest/architecture_overview.html" class="bare">http://www.openehr.org/releases/BASE/latest/architecture_overview.html</a>.</p>
 </li>
 <li>
-<p><a id="openehr_query_aql"></a>[openehr_query_aql] The openEHR Foundation. <strong>The openEHR Archetype Query language (AQL)</strong>. See <a href="http://www.openehr.org/releases/QUERY/dev/AQL.html" class="bare">http://www.openehr.org/releases/QUERY/dev/AQL.html</a>.</p>
+<p><a id="openehr_query_aql"></a>[openehr_query_aql] The openEHR Foundation. <strong>The openEHR Archetype Query language (AQL)</strong>. See <a href="http://www.openehr.org/releases/QUERY/latest/AQL.html" class="bare">http://www.openehr.org/releases/QUERY/latest/AQL.html</a>.</p>
 </li>
 <li>
-<p><a id="openehr_rm_data_types"></a>[openehr_rm_data_types] openEHR. <strong>Data Types Information Model.</strong> See <a href="http://www.openehr.org/releases/RM/dev/data_types.html" class="bare">http://www.openehr.org/releases/RM/dev/data_types.html</a>.</p>
+<p><a id="openehr_rm_data_types"></a>[openehr_rm_data_types] openEHR. <strong>Data Types Information Model.</strong> See <a href="http://www.openehr.org/releases/RM/latest/data_types.html" class="bare">http://www.openehr.org/releases/RM/latest/data_types.html</a>.</p>
 </li>
 <li>
-<p><a id="openehr_rm_data_structures"></a>[openehr_rm_data_structures] openEHR. <strong>Data Structures Information Model.</strong> See <a href="http://www.openehr.org/releases/RM/dev/data_structures.html" class="bare">http://www.openehr.org/releases/RM/dev/data_structures.html</a>.</p>
+<p><a id="openehr_rm_data_structures"></a>[openehr_rm_data_structures] openEHR. <strong>Data Structures Information Model.</strong> See <a href="http://www.openehr.org/releases/RM/latest/data_structures.html" class="bare">http://www.openehr.org/releases/RM/latest/data_structures.html</a>.</p>
 </li>
 <li>
-<p><a id="openehr_rm_common"></a>[openehr_rm_common] openEHR. <strong>Common Information Model.</strong> See <a href="http://www.openehr.org/releases/RM/dev/common.html" class="bare">http://www.openehr.org/releases/RM/dev/common.html</a>.</p>
+<p><a id="openehr_rm_common"></a>[openehr_rm_common] openEHR. <strong>Common Information Model.</strong> See <a href="http://www.openehr.org/releases/RM/latest/common.html" class="bare">http://www.openehr.org/releases/RM/latest/common.html</a>.</p>
 </li>
 <li>
-<p><a id="openehr_rm_ehr"></a>[openehr_rm_ehr] The openEHR Foundation. <strong>The EHR Information Model</strong>. <a href="http://www.openehr.org/releases/RM/dev/ehr.html" class="bare">http://www.openehr.org/releases/RM/dev/ehr.html</a>.</p>
+<p><a id="openehr_rm_ehr"></a>[openehr_rm_ehr] The openEHR Foundation. <strong>The EHR Information Model</strong>. <a href="http://www.openehr.org/releases/RM/latest/ehr.html" class="bare">http://www.openehr.org/releases/RM/latest/ehr.html</a>.</p>
 </li>
 <li>
-<p><a id="openehr_rm_support"></a>[openehr_rm_support] openEHR. <strong>Support Information Model.</strong> See <a href="http://www.openehr.org/releases/RM/dev/support.html" class="bare">http://www.openehr.org/releases/RM/dev/support.html</a>.</p>
+<p><a id="openehr_rm_support"></a>[openehr_rm_support] openEHR. <strong>Support Information Model.</strong> See <a href="http://www.openehr.org/releases/RM/latest/support.html" class="bare">http://www.openehr.org/releases/RM/latest/support.html</a>.</p>
 </li>
 <li>
 <p><a id="openehr_terminology"></a>[openehr_terminology] The openEHR Foundation. <strong>The openEHR Terminology</strong> <a href="http://www.openehr.org/releases/trunk/architecture/terminology.pdf" class="bare">http://www.openehr.org/releases/trunk/architecture/terminology.pdf</a></p>
@@ -1065,7 +1074,7 @@
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2015-08-12 05:31:12 AEST
+Last updated 2015-08-11 20:31:12 BST
 </div>
 </div>
 </body>
