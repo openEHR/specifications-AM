@@ -125,7 +125,6 @@ ADL has a small number of keywords which are reserved for use in archetype decla
 
 * `archetype`, `template`, `template_overlay`, `operational_template`,
 * `specialise` / `specialize`,
-* `concept` ,
 * `language` ,
 * `description` , `definition` , `rules` , `terminology`
 * `annotations`
@@ -236,7 +235,7 @@ archetype (adl_version=2.0.5; rm_release=1.0.2)
 [.deprecated]
 *Deprecated*: In ADL 1.4 and transitional forms of ADL 1.5, archetype identifiers included only a single version number, and this typically started at 1. Tools that deal with older archetypes should accept these identifiers, and convert the version part to 'v1.0.0' or any other appropriate identifier, obeying the openEHR Artefact Knowledge Identification specification.
 
-The multi-axial archetype identifier identifies archetypes in a global concept space within a given namespace. It is also known as an 'ontological' identifier, since the concept space can be understood as an ontology of informational concepts on which the archetypes are based. The syntax of the identifier is described in the Identification section of the openEHR Support IM specification. The structure of the concept space is essentially two-level, with the first level being a reference model class (e.g. openEHR `OBSERVATION` class) and the second being a domain concept (e.g. 'haematology result').
+The multi-axial archetype identifier identifies archetypes in a global concept space within a given namespace. It is also known as an 'ontological' identifier, since the concept space can be understood as an ontology of informational concepts on which the archetypes are based. The syntax of the identifier is described in the Identification section of the openEHR Support IM specification <<openehr_rm_support>>. The structure of the concept space is essentially two-level, with the first level being a reference model class (e.g. openEHR `OBSERVATION` class) and the second being a domain concept (e.g. 'haematology result').
 
 Because namespaces are usually treated hierarchically, higher level namespaces (e.g. '.org' domains) are assumed to be includable by more local namespaces, with the result that the concept definition space is inherited as well.
 
@@ -304,7 +303,7 @@ This optional section indicates that the archetype is a specialisation of some o
 [source, adl]
 --------
 archetype (adl_version=2.0.5; rm_release=1.0.2)
-    openEHR-EHR-OBSERVATION.cbc.v1
+    openEHR-EHR-OBSERVATION.cbc.v1.0.0
 specialise 
     openEHR-EHR-OBSERVATION.haematology.v1
 --------
@@ -347,7 +346,7 @@ language
     >
 --------
 
-Archetypes must always be translated completely, or not at all, to be valid. This means that when a new translation is made, every language dependent section of the `description` and `terminology` sections has to be translated into the new language, and an appropriate addition made to the ` translations` list in the language section.
+Archetypes must always be translated completely, or not at all, to be valid. This means that when a new translation is made, every language dependent section of the `description` and `terminology` sections has to be translated into the new language, and an appropriate addition made to the `translations` list in the language section.
 
 NOTE: some non-conforming ADL tools in the past created archetypes without a language section, relying on the terminology section to provide the original_language (there called primary_language) and list of languages (languages_available). In the interests of backward compatibility, tool builders should consider accepting archetypes of the old form and upgrading them when parsing to the correct form, which should then be used for serialising/saving.
 
@@ -390,7 +389,7 @@ description
     >
 --------
 
-A number of details are worth noting here. Firstly, the free hierarchical structuring capability of ODIN is exploited for expressing the 'deep' structure of the `details` section and its subsections. Secondly, the ODIN qualified list form is used to allow multiple translations of the `purpose` and `use` to be shown. Lastly, empty items such as `misuse` (structured if there is data) are shown with just one level of empty brackets. The above example shows meta-data based on the openEHR Archetype Object Model (AOM).
+A number of details are worth noting here. Firstly, the free hierarchical structuring capability of ODIN is exploited for expressing the 'deep' structure of the `details` section and its subsections. Secondly, the ODIN qualified list form is used to allow multiple translations of the `purpose` and `use` to be shown. Lastly, empty items such as `misuse` (structured if there is data) are shown with just one level of empty brackets. The above example shows meta-data based on the openEHR Archetype Object Model (AOM) <<openehr_am_aom>>.
 
 The `description` section is technically optional according to the AOM, but in any realistic use of ADL for archetypes, it will be required. A minimal description section satisfying to the AOM is as follows:
 
@@ -469,14 +468,14 @@ definition
                                         }
                                         value ∈ {
                                             DV_QUANTITY[id12] ∈ {
-                                                magnitude ∈ {0..1000}
+                                                magnitude ∈ {|0..1000|}
                                                 property ∈ {[properties::944]}  -- "pressure"
                                                 units ∈ {[units::387]}          -- "mm[Hg]"
                                             }
                                         }
                                     } 
                                     ELEMENT[id79] ∈ {                            -- diastolic BP
-                                        name ∈ {                             -- any synonym of 'diastolic'
+                                        name ∈ {                                 -- any synonym of 'diastolic'
                                             DV_CODED_TEXT[id14] ∈ {
                                                 defining_code ∈ {
                                                     CODE_PHRASE[id15] ∈ {[ac3]}
@@ -485,7 +484,7 @@ definition
                                         }
                                         value ∈ {
                                             DV_QUANTITY[id16] ∈ {
-                                                magnitude ∈ {0..1000}
+                                                magnitude ∈ {|0..1000|}
                                                 property ∈ {[properties::944]}   -- "pressure"
                                                 units ∈ {[units::387]}           -- "mm[Hg]"
                                             }
@@ -496,7 +495,7 @@ definition
                             ...
 --------
 
-This definition expresses constraints on instances of the types `ENTRY` , `HISTORY` , `EVENT` , `ITEM_LIST` , `ELEMENT` , `QUANTITY` , and `CODED_TEXT` so as to allow them to represent a blood pressure measurement, consisting of a history of measurement events, each consisting of at least systolic and diastolic pressures, as well as any number of other items (expressed by the `[at9000]` "any" node near the bottom).
+This definition expresses constraints on instances of the types `ENTRY` , `HISTORY` , `EVENT` , `ITEM_LIST` , `ELEMENT` , `QUANTITY` , and `CODED_TEXT` so as to allow them to represent a blood pressure measurement, consisting of a history of measurement events, each consisting of at least systolic and diastolic pressures, as well as any number of other items (expressed by the `[id17]` "any" node near the bottom).
 
 === Design-time and Run-time paths
 
@@ -614,7 +613,7 @@ The following example shows an extract from the English and German term definiti
     >
 --------
 
-In some cases, term definitions may have been lifted from existing terminologies (only a safe thing to do if the definitions exactly match the need in the archetype). To indicate where definitions come from, a "provenance" tag can be used, as follows:
+In some cases, term definitions may have been lifted from existing terminologies (only a safe thing to do if the definitions _exactly_ match the need in the archetype). To indicate where definitions come from, a "provenance" tag can be used, as follows:
 
 [source, odin]
 ----

@@ -2,103 +2,98 @@
 
 [cols="1,6a,2,2", options="header"]
 |===
-|Issue|Details|Raiser|Completed
+|Issue|Details|Raiser, Implementer|Completed
 
-|[[latest_issue]]2.1.16
+|[[latest_issue]]2.0.5
 |Make `AUTHORED_RESOURCE`.`_uid_` and `AUTHORED_ARCHETYPE`.`_build_uid_` `UUIDs` rather than any kind of `UID`.
 |T Beale
 |[[latest_issue_date]]29 Oct 2015
 
-|2.1.15
+|
 |Add `P_` serialisation model and template sections.
 |T Beale
 |31 Aug 2015
 
-|2.1.14
+|2.0.0
 |Refactor `ARCHETYPE` and `ARCHETYPE_TERMINOLOGY` models, in order to simplify: remove differential and flat forms of classes. +
  Split `ARCHETYPE` into two classes, with `AUTHORED_ARCHETYPE` as a new class that inherits from `AUTHORED_RESOURCE` . +
 |T Beale
 |04 Jan 2015
 
-|2.1.13
-|Remove `VDSSR` , `VSUNC` ; add `VDSSID` , `VARXID` . Replace ‘+u’ (unstable) version modifier with semver.org standard ‘-alpha’. Remove overview material to new Archetypes: Technical Overview specification.
+|
+|Remove `VDSSR` , `VSUNC` ; add `VDSSID` , `VARXID` . Replace `+u` (unstable) version modifier with semver.org standard `-alpha`. Remove overview material to new Archetypes: Technical Overview specification.
 |T Beale, +
  I McNicoll, +
  S Garde
 |12 Nov 2014
 
-|2.1.12
-|Remove `ARCHETYPE` .uid attribute.
-|H Solbrig
+|
+|Remove `ARCHETYPE`.`_provenance_id_` attribute.
+|H Solbrig, +
+ T Beale
 |08 Oct 2014
 
-|2.1.11
-|Correct spelling of ‘licence’ to international English; rename `ARCHETYPE`.`_urn_` to `_provenance_id_`.
+|
+|Correct spelling of `licence` to international English; rename `ARCHETYPE`.`_urn_` to `_provenance_id_`.
 |S Garde, +
  I McNicoll
 |29 Sep 2014
 
-|2.1.10
-|Modified `C_ARCHETYPE_ROOT` to have an id-code in all cases.
- Add error `VSONPO` , `VSONPT` : specialised archetype object node prohibited occurrences validity. +
+|
+|Modified `C_ARCHETYPE_ROOT` to have an id-code in all cases. +
+ Add error `VSONPO` , `VSONPT`: specialised archetype object node prohibited occurrences validity. +
  Added support for constraints on enumerated types.
 |CIMI, +
  P Langford, +
  T Beale
 |18 Jul 2014
 
-|2.1.9
-|Convert `ARCHETYPE` .uid to urn: `URN` .
+|
+|Convert `ARCHETYPE`.`_uid_` to `_urn_`: `URN`. +
+ Rename `ARCHETYPE`.`_commit_number_` to `_build_count_` .
 |I McNicoll, +
  S Garde, +
  T Beale
 |04 Jun 2014
 
-|2.1.8
-|Rename `ARCHETYPE` .commit_number to `_build_count_` .
-|I McNicoll, +
- S Garde, +
- T Beale
-|21 May 2014
-
-|2.1.7
+|
 |Make `VACMCL` a warning `WACMCL` .
 |D Moner
 |07 Apr 2014
 
-|2.1.6
-|Renamed `ARCHETYPE_INTERNAL_REF` to `C_OBJECT_PROXY` .
-|T Beale
-|09 Mar 2014
-
-|2.1.5
-|Renamed ontology to terminology and simplified.
-|T Beale
-|09 Jan 2014
-
-|2.1.4
-|Remove `CONSTRAINT_REF` , `C_REFERENCE_OBJECT` types; introduce new identification system.
+|
+|Renamed `ARCHETYPE_INTERNAL_REF` to `C_OBJECT_PROXY` . +
+ https://openehr.atlassian.net/browse/SPECAM-9[SPECAM-9]. Renamed `ontology` section to `terminology` and simplified. +
+ Remove `CONSTRAINT_REF`, `C_REFERENCE_OBJECT` types; +
+ https://openehr.atlassian.net/browse/SPECAM-2[SPECAM-2]. Introduce new archetype structured identification system; +
+ https://openehr.atlassian.net/browse/SPECAM-28[SPECAM-28]. Add IHTSDO standard terminology URIs to ADL and AOM.
 |T Beale +
  H Solbrig
-|07 Jan 2014
+|09 Mar 2014
 
-|2.1.3
+|
 |Detailed Technical Review.
 |H Solbrig
 |21 Nov 2013
 
-|2.1.2
+|
 |Remove `C_DOMAIN_TYPE` ; +
- merge `C_PRIMITIVE_OBJECT` and `C_PRIMITIVE` ; +
- Add support for tuple constraints, replacing ADL 1.4 special Ordinal and Quantity constrainer types;
- Add new primitive type `C_TERMINOLOGY_CODE` .
- Added `VSONIF` , removed `VSONCI` (dup of `VSONI` ).
+ https://openehr.atlassian.net/browse/SPECAM-27[SPECAM-27]. Merge `C_PRIMITIVE_OBJECT` and `C_PRIMITIVE`; +
+ Add support for tuple constraints, replacing ADL 1.4 special Ordinal and Quantity constrainer types; +
+ Add new primitive type `C_TERMINOLOGY_CODE` . +
+ Added `VSONIF`, removed `VSONCI` (dup of `VSONI`).
 |H Solbrig +
  T Beale
-|20 Aug2013
+|20 Aug 2013
 
-|2.1.1
-|Remove `C_SINGLE_ATTRIBUTE` and `C_MULTIPLE_ATTRIBUTE` classes.
+|
+|https://openehr.atlassian.net/browse/SPECAM-22[SPECAM-22]. Limit `_assumed_value_` to `C_PRIMITIVE_OBJECT`.
+|T Beale, +
+ R Chen
+|14 Jan 2013
+
+|
+|https://openehr.atlassian.net/browse/SPECAM-32[SPECAM-32]. Remove `C_SINGLE_ATTRIBUTE` and `C_MULTIPLE_ATTRIBUTE` classes.
 |T Beale, +
  S Garde, +
  S Kobayashi, +
@@ -106,12 +101,17 @@
  T Beale
 |15 Dec 2011
 
-|2.1.0
-|https://openehr.atlassian.net/browse/SPEC-270[SPEC-270]. Add specialisation semantics to ADL and AOM. Add various attributes and functions to `ARCHETYPE_CONSTRAINT` descendant classes.
+|
+|https://openehr.atlassian.net/browse/SPECAM-26[SPECAM-26]. Add `_any_allowed_` function to `ARCHETYPE_SLOT`.
+|T Beale
+|18 Aug 2010
+
+|
+|https://openehr.atlassian.net/browse/SPECAM-8[SPECAM-8]. Add specialisation semantics to ADL and AOM. Add various attributes and functions to `ARCHETYPE_CONSTRAINT` descendant classes.
 
 * move `C_PRIMITIVE`.`_assumed_value_` to attribute slot in UML
-* rename `C_DEFINED_OBJECT`.`_default_value_` function to prototype_value
-* correct `_assumed_value_` definition to be like ; remove its entry from all of the `C_PRIMITIVE` subtypes
+* rename `C_DEFINED_OBJECT`.`_default_value_` function to `prototype_value`
+* correct `_assumed_value_` definition to be like `_prototype_value_`; remove its entry from all of the `C_PRIMITIVE` subtypes
 * convert `BOOLEAN` flag representation of patterns to functions and add a String data member for the pattern value, thus matching the XSDs and ADL
 * add `ARCHETYPE`.`_is_template_` attribute.
 * add `ARCHETYPE`.`_is_component_` attribute.
@@ -121,30 +121,30 @@
 |T Beale
 |10 Dec 2009
 
-|2.0.9
-|https://openehr.atlassian.net/browse/SPEC-263[SPEC-263]. Change Date, Time etc classes in AOM to `ISO8601_DATE` , `ISO8601_TIME` etc from Support IM.
+|
+|https://openehr.atlassian.net/browse/SPECAM-1[SPECAM-1]. Change Date, Time etc classes in AOM to `ISO8601_DATE` , `ISO8601_TIME` etc from Support IM.
 |T Beale
 |20 Jul 2009
 
 |
-|https://openehr.atlassian.net/browse/SPEC-296[SPEC-296]. Convert _Interval<Integer>_ to `MULTIPLICITY_INTERVAL` to simplify specification and implementation.
+|https://openehr.atlassian.net/browse/SPECAM-10[SPECAM-10]. Convert `Interval<Integer>` to `MULTIPLICITY_INTERVAL` to simplify specification and implementation.
 |T Beale
 |
 
 |
-|https://openehr.atlassian.net/browse/SPEC-300[SPEC-300]. Archetype slot regular expressions should cover whole identifier. Added `C_STRING`.`_is_pattern_` .
+|https://openehr.atlassian.net/browse/SPECAM-5[SPECAM-5]. Archetype slot regular expressions should cover whole identifier. Added `C_STRING`.`_is_pattern_` .
 |A Flinton
 |
 
 |
-|https://openehr.atlassian.net/browse/SPEC-303[SPEC-303]. Make existence, occurrences and cardinality optional in AOM.
+|https://openehr.atlassian.net/browse/SPECAM-7[SPECAM-7]. Make existence, occurrences and cardinality optional in AOM.
 |S Heard
 |
 
 |
-|https://openehr.atlassian.net/browse/SPEC-308[SPEC-308]. Add validity rules to `ARCHETYPE_TERMINOLOGY` . +
-https://openehr.atlassian.net/browse/SPEC-309[SPEC-309]. `ARCHETYPE_CONSTRAINT` adjustments. +
-https://openehr.atlassian.net/browse/SPEC-178[SPEC-178]. Add template object model to AM. +
+|https://openehr.atlassian.net/browse/SPECAM-16[SPECAM-16]. Add validity rules to `ARCHETYPE_TERMINOLOGY` . +
+https://openehr.atlassian.net/browse/SPECAM-11[SPECAM-11]. `ARCHETYPE_CONSTRAINT` adjustments. +
+https://openehr.atlassian.net/browse/SPECAM-17[SPECAM-17]. Add template object model to AM. +
 
 * Add `_is_exhaustive_` attribute to `ARCHETYPE_SLOT` .
 * Add `_is_template_` attribute to `ARCHETYPE` .

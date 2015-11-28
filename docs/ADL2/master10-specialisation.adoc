@@ -94,7 +94,7 @@ The second text below is from the 'problem-diagnosis' archetype, i.e. a 'diagnos
 
 === Redefinition for Specialisation
 
-The example shown below illustrates redefinition in a specialised archetype. The first text is taken from the definition section of the 'laboratory result' `OBSERVATION` archetype (available at openEHR.org CKM <<>>), and contains an `ELEMENT` node whose identifier is `[id79]` , defined as 'panel item' in the archetype terminology (sibling nodes are not shown here). The intention is that the `id79` node be specialised into particular 'panel items' or analytes according to particular types of test result. Accordingly, the `id79` node has occurrences of `0..*` and its value is not constrained with respect to the reference model, meaning that the type of the `_value_` attirbute can be any descendant of `DATA_VALUE` .
+The example shown below illustrates redefinition in a specialised archetype. The first text is taken from the definition section of the 'laboratory result' `OBSERVATION` archetype (available at http://ckm.openehr.org[openEHR CKM]), and contains an `ELEMENT` node whose identifier is `[id79]` , defined as 'panel item' in the archetype terminology (sibling nodes are not shown here). The intention is that the `id79` node be specialised into particular 'panel items' or analytes according to particular types of test result. Accordingly, the `id79` node has occurrences of `0..*` and its value is not constrained with respect to the reference model, meaning that the type of the `_value_` attirbute can be any descendant of `DATA_VALUE` .
 
 [source, cadl]
 [[redefinition-and-extension]]
@@ -610,7 +610,7 @@ Should these children be considered exhaustive? One point of view says so, since
 
 This kind of argument comes up time and again, and the need for catch-all categories (archetype nodes) and the possibility of future discoveries cannot be predicted. Even in situations such as a lab result (e.g. cholesterol), where the list of analytes seem to be known and fixed, experience of clinical modellers has shown that there is nevertheless no guarantee of not needing another data point, perhaps for something other than an analyte.
 
-The default situation is that they do , unless explicitly stated otherwise, by excluding the parent node in the normal way (i.e. using occurrences matches `{0}`).The first example would then become:
+The default situation is that they do, unless explicitly stated otherwise, by excluding the parent node in the normal way (i.e. using `occurrences matches {0}`). The first example would then become:
 
 Parent archetype:
 
@@ -645,7 +645,7 @@ Child archetype:
     }
 --------
 
-Without the above specification, a further child archetype could then redefine both the original `id79` node (e.g. into `id79.0.1` , `id79.0.2`), and any of the `id79` nodes (e.g. `id79.1.1` , `id79.1.2` ); with it, only the latter is possible.
+Without the above specification, a deeper child archetype could then redefine both the original `id79` node (e.g. into `id79.0.1` , `id79.0.2`), and any of the `id79.x` nodes (e.g. `id79.1.1` , `id79.1.2`); with it, only the latter is possible. The `id79` node can thus be considered to be logically 'frozen', in a similar way to frozen class methods in some programming languages.
 
 ==== Adding Nodes
 

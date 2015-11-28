@@ -54,6 +54,7 @@ For existing users of ADL or archetype development tools, the following provides
 The object syntax used to represent the description, terminology and annotations sections of an ADL archetype has been historically known as 'dADL' (i.e. 'data ADL'). Since this syntax is completely generic and has no specific dependency on either ADL or openEHR, it has been separated out into its own specification known as Object Data Instance Notation (ODIN).
 
 === ADL 2.0
+
 ==== Changes
 The changes in version 2.0 are designed to make archetypes more computable with respect to terminology. The changes with respect to 1.x versions include:
 
@@ -64,8 +65,7 @@ The changes in version 2.0 are designed to make archetypes more computable with 
 * value sets are now declared in their own subsection of the terminology section rather than inline in the definition section;
 
 ==== Backward Compatibility
-In its current form, the changes to the internal coding system and value set representation in ADL 2.x and the AOM with respect to ADL/AOM 1.5 constitute syntactically breaking changes, and therefore require conversion of ADL 1.4 archetypes to ADL 2 form. The changes have been carefully designed to allow this conversion to be implementable, and are implemented in the ADL Workbench tool. ADL
-1.4 style paths are generatable from ADL 2 archetypes, so that AQL queries can be built for use with ADL 1.4 based data.
+In its current form, the changes to the internal coding system and value set representation in ADL 2.x and the AOM with respect to ADL/AOM 1.5 constitute syntactically breaking changes, and therefore require conversion of ADL 1.4 archetypes to ADL 2 form. The changes have been carefully designed to allow this conversion to be implementable, and are implemented in the ADL Workbench tool. ADL 1.4 style paths are generatable from ADL 2 archetypes, so that AQL queries can be built for use with ADL 1.4 based data.
 
 === ADL 1.5
 ==== Changes
@@ -84,7 +84,7 @@ The changes for ADL 1.5 include:
 * In the ADL grammar, the language section is now mandatory;
 * `.adls` files are introduced as the standard file extension for differential ADL files (`.adl` files are retained for standalone, inheritance-flattened, or 'flat', archetype).
 
-Nearly all the changes occur in the section on cADL - Constraint ADL on page 22 or the new section Specialisation on page 90.
+Nearly all the changes occur in the section <<cADL - Constraint ADL>> or the new section <<Specialisation>>.
 
 === ADL 1.4
 A number of small changes were made in this version, along with significant tightening up of the explanatory text and examples.
@@ -199,5 +199,5 @@ These changes will affect the parsing of container structures and keys in the de
 Revision history is now recorded in a separate section of the archetype, both to logically separate it from the archetype descriptive details, and to facilitate automatic processing by version control systems in which archtypes may be stored. This section is included at the end of the archetype because it is in general a monotonically growing section.
 
 ==== Primary_language and Languages_available Sections
-An attribute previously called `_primary_language_` was required in the ontology section of an ADL 1.1 archetype. This is renamed to `_original_language_` and is now moved to a new top level section in the archetype called `language`. Its value is still expressed as a dADL String attribute. The `_languages_available_` attribute previously required in the ontology section of the archetype is renamed to `_translations_`, no longer includes the original languages, and is also moved to this new top level section.
+An attribute previously called `_primary_language_` was required in the ontology section of an ADL 1.1 archetype. This is renamed to `_original_language_` and is now moved to a new top level section in the archetype called `language`. Its value is still expressed as a dADL String attribute. The `_languages_available_` attribute previously required in the `ontolog`y section of the archetype is renamed to `_translations_`, no longer includes the original languages, and is also moved to this new top level section.
 

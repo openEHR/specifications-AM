@@ -5,9 +5,9 @@
 <!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge"><![endif]-->
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="generator" content="Asciidoctor 1.5.2">
-<meta name="description" content="openEHR Archetype Object Model (AOM2) specification">
+<meta name="description" content="openEHR AOM2 Specification">
 <meta name="keywords" content="EHR, ADL, AOM, health records, archetypes, constraint language, 13606, CIMI">
-<title>Archetype Object Model (AOM2)</title>
+<title>Archetype Object Model 2 (AOM2) Specification</title>
 <link rel="stylesheet" href="http://www.openehr.org/releases/BASE/latest/resources/css/openehr.css">
 <link rel="stylesheet" href="http://www.openehr.org/releases/BASE/latest/resources/css/pygments-default.css">
 </head>
@@ -16,7 +16,7 @@
 <div id="toc" class="toc2">
 <div id="toctitle">Table of Contents</div>
 <ul class="sectlevel0">
-<li><a href="#_archetype_object_model_aom2">Archetype Object Model (AOM2)</a>
+<li><a href="#_archetype_object_model_2_aom2_specification">Archetype Object Model 2 (AOM2) Specification</a>
 <ul class="sectlevel1">
 <li><a href="#_amendment_record">Amendment Record</a></li>
 <li><a href="#_acknowledgements">Acknowledgements</a>
@@ -146,7 +146,6 @@
 <li><a href="#_valid_value">Valid_value</a></li>
 <li><a href="#_prototype_value">Prototype_value</a></li>
 <li><a href="#_default_value">Default_value</a></li>
-<li><a href="#__frozen_nodes">'Frozen' Nodes</a></li>
 </ul>
 </li>
 <li><a href="#_reference_objects">4.2.5. Reference Objects</a></li>
@@ -363,7 +362,7 @@
 </div>
 </div>
 </div>
-<h1 id="_archetype_object_model_aom2" class="sect0">Archetype Object Model (AOM2)</h1>
+<h1 id="_archetype_object_model_2_aom2_specification" class="sect0">Archetype Object Model 2 (AOM2) Specification</h1>
 <div class="openblock partintro">
 <div class="content">
 <table class="tableblock frame-all grid-all spread">
@@ -434,13 +433,13 @@
 <tr>
 <th class="tableblock halign-left valign-top">Issue</th>
 <th class="tableblock halign-left valign-top">Details</th>
-<th class="tableblock halign-left valign-top">Raiser</th>
+<th class="tableblock halign-left valign-top">Raiser, Implementer</th>
 <th class="tableblock halign-left valign-top">Completed</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a id="latest_issue"></a>2.1.16</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a id="latest_issue"></a>2.0.5</p></td>
 <td class="tableblock halign-left valign-top"><div><div class="paragraph">
 <p>Make <code>AUTHORED_RESOURCE</code>.<code><em>uid</em></code> and <code>AUTHORED_ARCHETYPE</code>.<code><em>build_uid</em></code> <code>UUIDs</code> rather than any kind of <code>UID</code>.</p>
 </div></div></td>
@@ -448,7 +447,7 @@
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a id="latest_issue_date"></a>29 Oct 2015</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">2.1.15</p></td>
+<td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"><div><div class="paragraph">
 <p>Add <code>P_</code> serialisation model and template sections.</p>
 </div></div></td>
@@ -456,7 +455,7 @@
 <td class="tableblock halign-left valign-top"><p class="tableblock">31 Aug 2015</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">2.1.14</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">2.0.0</p></td>
 <td class="tableblock halign-left valign-top"><div><div class="paragraph">
 <p>Refactor <code>ARCHETYPE</code> and <code>ARCHETYPE_TERMINOLOGY</code> models, in order to simplify: remove differential and flat forms of classes.<br>
  Split <code>ARCHETYPE</code> into two classes, with <code>AUTHORED_ARCHETYPE</code> as a new class that inherits from <code>AUTHORED_RESOURCE</code> .<br></p>
@@ -465,9 +464,9 @@
 <td class="tableblock halign-left valign-top"><p class="tableblock">04 Jan 2015</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">2.1.13</p></td>
+<td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"><div><div class="paragraph">
-<p>Remove <code>VDSSR</code> , <code>VSUNC</code> ; add <code>VDSSID</code> , <code>VARXID</code> . Replace ‘+u’ (unstable) version modifier with semver.org standard ‘-alpha’. Remove overview material to new Archetypes: Technical Overview specification.</p>
+<p>Remove <code>VDSSR</code> , <code>VSUNC</code> ; add <code>VDSSID</code> , <code>VARXID</code> . Replace <code>+u</code> (unstable) version modifier with semver.org standard <code>-alpha</code>. Remove overview material to new Archetypes: Technical Overview specification.</p>
 </div></div></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">T Beale,<br>
  I McNicoll,<br>
@@ -475,27 +474,28 @@
 <td class="tableblock halign-left valign-top"><p class="tableblock">12 Nov 2014</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">2.1.12</p></td>
+<td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"><div><div class="paragraph">
-<p>Remove <code>ARCHETYPE</code> .uid attribute.</p>
+<p>Remove <code>ARCHETYPE</code>.<code><em>provenance_id</em></code> attribute.</p>
 </div></div></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">H Solbrig</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">H Solbrig,<br>
+ T Beale</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">08 Oct 2014</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">2.1.11</p></td>
+<td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"><div><div class="paragraph">
-<p>Correct spelling of ‘licence’ to international English; rename <code>ARCHETYPE</code>.<code><em>urn</em></code> to <code><em>provenance_id</em></code>.</p>
+<p>Correct spelling of <code>licence</code> to international English; rename <code>ARCHETYPE</code>.<code><em>urn</em></code> to <code><em>provenance_id</em></code>.</p>
 </div></div></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">S Garde,<br>
  I McNicoll</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">29 Sep 2014</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">2.1.10</p></td>
+<td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"><div><div class="paragraph">
-<p>Modified <code>C_ARCHETYPE_ROOT</code> to have an id-code in all cases.
- Add error <code>VSONPO</code> , <code>VSONPT</code> : specialised archetype object node prohibited occurrences validity.<br>
+<p>Modified <code>C_ARCHETYPE_ROOT</code> to have an id-code in all cases.<br>
+ Add error <code>VSONPO</code> , <code>VSONPT</code>: specialised archetype object node prohibited occurrences validity.<br>
  Added support for constraints on enumerated types.</p>
 </div></div></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">CIMI,<br>
@@ -504,9 +504,10 @@
 <td class="tableblock halign-left valign-top"><p class="tableblock">18 Jul 2014</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">2.1.9</p></td>
+<td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"><div><div class="paragraph">
-<p>Convert <code>ARCHETYPE</code> .uid to urn: <code>URN</code> .</p>
+<p>Convert <code>ARCHETYPE</code>.<code><em>uid</em></code> to <code><em>urn</em></code>: <code>URN</code>.<br>
+ Rename <code>ARCHETYPE</code>.<code><em>commit_number</em></code> to <code><em>build_count</em></code> .</p>
 </div></div></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">I McNicoll,<br>
  S Garde,<br>
@@ -514,17 +515,7 @@
 <td class="tableblock halign-left valign-top"><p class="tableblock">04 Jun 2014</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">2.1.8</p></td>
-<td class="tableblock halign-left valign-top"><div><div class="paragraph">
-<p>Rename <code>ARCHETYPE</code> .commit_number to <code><em>build_count</em></code> .</p>
-</div></div></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">I McNicoll,<br>
- S Garde,<br>
- T Beale</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">21 May 2014</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">2.1.7</p></td>
+<td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"><div><div class="paragraph">
 <p>Make <code>VACMCL</code> a warning <code>WACMCL</code> .</p>
 </div></div></td>
@@ -532,32 +523,20 @@
 <td class="tableblock halign-left valign-top"><p class="tableblock">07 Apr 2014</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">2.1.6</p></td>
+<td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"><div><div class="paragraph">
-<p>Renamed <code>ARCHETYPE_INTERNAL_REF</code> to <code>C_OBJECT_PROXY</code> .</p>
-</div></div></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">T Beale</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">09 Mar 2014</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">2.1.5</p></td>
-<td class="tableblock halign-left valign-top"><div><div class="paragraph">
-<p>Renamed ontology to terminology and simplified.</p>
-</div></div></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">T Beale</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">09 Jan 2014</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">2.1.4</p></td>
-<td class="tableblock halign-left valign-top"><div><div class="paragraph">
-<p>Remove <code>CONSTRAINT_REF</code> , <code>C_REFERENCE_OBJECT</code> types; introduce new identification system.</p>
+<p>Renamed <code>ARCHETYPE_INTERNAL_REF</code> to <code>C_OBJECT_PROXY</code> .<br>
+ <a href="https://openehr.atlassian.net/browse/SPECAM-9">SPECAM-9</a>. Renamed <code>ontology</code> section to <code>terminology</code> and simplified.<br>
+ Remove <code>CONSTRAINT_REF</code>, <code>C_REFERENCE_OBJECT</code> types;<br>
+ <a href="https://openehr.atlassian.net/browse/SPECAM-2">SPECAM-2</a>. Introduce new archetype structured identification system;<br>
+ <a href="https://openehr.atlassian.net/browse/SPECAM-28">SPECAM-28</a>. Add IHTSDO standard terminology URIs to ADL and AOM.</p>
 </div></div></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">T Beale<br>
  H Solbrig</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">07 Jan 2014</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">09 Mar 2014</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">2.1.3</p></td>
+<td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"><div><div class="paragraph">
 <p>Detailed Technical Review.</p>
 </div></div></td>
@@ -565,22 +544,31 @@
 <td class="tableblock halign-left valign-top"><p class="tableblock">21 Nov 2013</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">2.1.2</p></td>
+<td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"><div><div class="paragraph">
 <p>Remove <code>C_DOMAIN_TYPE</code> ;<br>
- merge <code>C_PRIMITIVE_OBJECT</code> and <code>C_PRIMITIVE</code> ;<br>
- Add support for tuple constraints, replacing ADL 1.4 special Ordinal and Quantity constrainer types;
- Add new primitive type <code>C_TERMINOLOGY_CODE</code> .
- Added <code>VSONIF</code> , removed <code>VSONCI</code> (dup of <code>VSONI</code> ).</p>
+ <a href="https://openehr.atlassian.net/browse/SPECAM-27">SPECAM-27</a>. Merge <code>C_PRIMITIVE_OBJECT</code> and <code>C_PRIMITIVE</code>;<br>
+ Add support for tuple constraints, replacing ADL 1.4 special Ordinal and Quantity constrainer types;<br>
+ Add new primitive type <code>C_TERMINOLOGY_CODE</code> .<br>
+ Added <code>VSONIF</code>, removed <code>VSONCI</code> (dup of <code>VSONI</code>).</p>
 </div></div></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">H Solbrig<br>
  T Beale</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">20 Aug2013</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">20 Aug 2013</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">2.1.1</p></td>
+<td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"><div><div class="paragraph">
-<p>Remove <code>C_SINGLE_ATTRIBUTE</code> and <code>C_MULTIPLE_ATTRIBUTE</code> classes.</p>
+<p><a href="https://openehr.atlassian.net/browse/SPECAM-22">SPECAM-22</a>. Limit <code><em>assumed_value</em></code> to <code>C_PRIMITIVE_OBJECT</code>.</p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">T Beale,<br>
+ R Chen</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">14 Jan 2013</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p><a href="https://openehr.atlassian.net/browse/SPECAM-32">SPECAM-32</a>. Remove <code>C_SINGLE_ATTRIBUTE</code> and <code>C_MULTIPLE_ATTRIBUTE</code> classes.</p>
 </div></div></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">T Beale,<br>
  S Garde,<br>
@@ -590,9 +578,17 @@
 <td class="tableblock halign-left valign-top"><p class="tableblock">15 Dec 2011</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">2.1.0</p></td>
+<td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"><div><div class="paragraph">
-<p><a href="https://openehr.atlassian.net/browse/SPEC-270">SPEC-270</a>. Add specialisation semantics to ADL and AOM. Add various attributes and functions to <code>ARCHETYPE_CONSTRAINT</code> descendant classes.</p>
+<p><a href="https://openehr.atlassian.net/browse/SPECAM-26">SPECAM-26</a>. Add <code><em>any_allowed</em></code> function to <code>ARCHETYPE_SLOT</code>.</p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">T Beale</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">18 Aug 2010</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p><a href="https://openehr.atlassian.net/browse/SPECAM-8">SPECAM-8</a>. Add specialisation semantics to ADL and AOM. Add various attributes and functions to <code>ARCHETYPE_CONSTRAINT</code> descendant classes.</p>
 </div>
 <div class="ulist">
 <ul>
@@ -600,10 +596,10 @@
 <p>move <code>C_PRIMITIVE</code>.<code><em>assumed_value</em></code> to attribute slot in UML</p>
 </li>
 <li>
-<p>rename <code>C_DEFINED_OBJECT</code>.<code><em>default_value</em></code> function to prototype_value</p>
+<p>rename <code>C_DEFINED_OBJECT</code>.<code><em>default_value</em></code> function to <code>prototype_value</code></p>
 </li>
 <li>
-<p>correct <code><em>assumed_value</em></code> definition to be like ; remove its entry from all of the <code>C_PRIMITIVE</code> subtypes</p>
+<p>correct <code><em>assumed_value</em></code> definition to be like <code><em>prototype_value</em></code>; remove its entry from all of the <code>C_PRIMITIVE</code> subtypes</p>
 </li>
 <li>
 <p>convert <code>BOOLEAN</code> flag representation of patterns to functions and add a String data member for the pattern value, thus matching the XSDs and ADL</p>
@@ -626,9 +622,9 @@
 <td class="tableblock halign-left valign-top"><p class="tableblock">10 Dec 2009</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">2.0.9</p></td>
+<td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"><div><div class="paragraph">
-<p><a href="https://openehr.atlassian.net/browse/SPEC-263">SPEC-263</a>. Change Date, Time etc classes in AOM to <code>ISO8601_DATE</code> , <code>ISO8601_TIME</code> etc from Support IM.</p>
+<p><a href="https://openehr.atlassian.net/browse/SPECAM-1">SPECAM-1</a>. Change Date, Time etc classes in AOM to <code>ISO8601_DATE</code> , <code>ISO8601_TIME</code> etc from Support IM.</p>
 </div></div></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">T Beale</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">20 Jul 2009</p></td>
@@ -636,7 +632,7 @@
 <tr>
 <td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"><div><div class="paragraph">
-<p><a href="https://openehr.atlassian.net/browse/SPEC-296">SPEC-296</a>. Convert <em>Interval&lt;Integer&gt;</em> to <code>MULTIPLICITY_INTERVAL</code> to simplify specification and implementation.</p>
+<p><a href="https://openehr.atlassian.net/browse/SPECAM-10">SPECAM-10</a>. Convert <code>Interval&lt;Integer&gt;</code> to <code>MULTIPLICITY_INTERVAL</code> to simplify specification and implementation.</p>
 </div></div></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">T Beale</p></td>
 <td class="tableblock halign-left valign-top"></td>
@@ -644,7 +640,7 @@
 <tr>
 <td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"><div><div class="paragraph">
-<p><a href="https://openehr.atlassian.net/browse/SPEC-300">SPEC-300</a>. Archetype slot regular expressions should cover whole identifier. Added <code>C_STRING</code>.<code><em>is_pattern</em></code> .</p>
+<p><a href="https://openehr.atlassian.net/browse/SPECAM-5">SPECAM-5</a>. Archetype slot regular expressions should cover whole identifier. Added <code>C_STRING</code>.<code><em>is_pattern</em></code> .</p>
 </div></div></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">A Flinton</p></td>
 <td class="tableblock halign-left valign-top"></td>
@@ -652,7 +648,7 @@
 <tr>
 <td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"><div><div class="paragraph">
-<p><a href="https://openehr.atlassian.net/browse/SPEC-303">SPEC-303</a>. Make existence, occurrences and cardinality optional in AOM.</p>
+<p><a href="https://openehr.atlassian.net/browse/SPECAM-7">SPECAM-7</a>. Make existence, occurrences and cardinality optional in AOM.</p>
 </div></div></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">S Heard</p></td>
 <td class="tableblock halign-left valign-top"></td>
@@ -660,9 +656,9 @@
 <tr>
 <td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"><div><div class="paragraph">
-<p><a href="https://openehr.atlassian.net/browse/SPEC-308">SPEC-308</a>. Add validity rules to <code>ARCHETYPE_TERMINOLOGY</code> .<br>
-<a href="https://openehr.atlassian.net/browse/SPEC-309">SPEC-309</a>. <code>ARCHETYPE_CONSTRAINT</code> adjustments.<br>
-<a href="https://openehr.atlassian.net/browse/SPEC-178">SPEC-178</a>. Add template object model to AM.<br></p>
+<p><a href="https://openehr.atlassian.net/browse/SPECAM-16">SPECAM-16</a>. Add validity rules to <code>ARCHETYPE_TERMINOLOGY</code> .<br>
+<a href="https://openehr.atlassian.net/browse/SPECAM-11">SPECAM-11</a>. <code>ARCHETYPE_CONSTRAINT</code> adjustments.<br>
+<a href="https://openehr.atlassian.net/browse/SPECAM-17">SPECAM-17</a>. Add template object model to AM.<br></p>
 </div>
 <div class="ulist">
 <ul>
@@ -2212,10 +2208,10 @@ It is the parent class of all concrete types of archetype.</p>
 <p><strong>VARRV</strong>: RM release validity. The <code><em>rm_release</em></code> top-level meta-data item must exist and consist of a valid 3-part version identifier.</p>
 </div>
 <div class="paragraph rule">
-<p><strong>VARCN</strong>: archetype concept validity. The node_id of the root object of the archetype must be of the form id1\{.1}*, where the number of ‘.1’ components equals the specalisation depth, and must be defined in the terminology.</p>
+<p><strong>VARCN</strong>: archetype concept validity. The <code><em>node_id</em></code> of the root object of the archetype must be of the form <code>id1{.1}*</code>, where the number of <code>.1</code> components equals the specalisation depth, and must be defined in the terminology.</p>
 </div>
 <div class="paragraph rule">
-<p><strong>VATDF</strong>: value code validity. Each value code (at-code) used in a term constraint in the archetype definition must be defined in the term_definitions part of the terminology of the flattened form of the current archetype.</p>
+<p><strong>VATDF</strong>: value code validity. Each value code (at-code) used in a term constraint in the archetype definition must be defined in the <code>term_definitions</code> part of the terminology of the flattened form of the current archetype.</p>
 </div>
 <div class="paragraph rule">
 <p><strong>VACDF</strong>: constraint code validity. Each value set code (ac-code) used in a term constraint in the archetype definition must be defined in the term_definitions part of the terminology of the current archetype.</p>
@@ -2227,22 +2223,22 @@ It is the parent class of all concrete types of archetype.</p>
 <p><strong>VETDF</strong>: external term validity. Each external term used within the archetype definition must exist in the relevant terminology (subject to tool accesibility; codes for inaccessible terminologies should be flagged with a warning indicating that no verification was possible).</p>
 </div>
 <div class="paragraph rule">
-<p><strong>VOTM</strong>: terminology translations validity. Translations must exist for term_definitions and constraint_definitions sections for all languages defined in the description / translations section.</p>
+<p><strong>VOTM</strong>: terminology translations validity. Translations must exist for <code>term_definitions</code> and <code>constraint_definitions</code> sections for all languages defined in the <code>description</code> / <code>translations</code> sections.</p>
 </div>
 <div class="paragraph rule">
-<p><strong>VOKU</strong>: object key unique. Within any keyed list in an archetype, including the desription, terminology, and annotations sections, each item must have a unique key with respect to its siblings.</p>
+<p><strong>VOKU</strong>: object key unique. Within any keyed list in an archetype, including the <code>desription</code>, <code>terminology</code>, and <code>annotations</code> sections, each item must have a unique key with respect to its siblings.</p>
 </div>
 <div class="paragraph rule">
 <p><strong>VARDT</strong>: archetype definition typename validity. The typename mentioned in the outer block of the archetype definition section must match the type mentioned in the first segment of the archetype id.</p>
 </div>
 <div class="paragraph rule">
-<p><strong>VRANP</strong>: annotation path valid. Each path mentioned in an annotation within the annotations section must either be a valid archetype path, or a ‘reference model’ path, i.e. a path that is valid for the root class of the archetype.</p>
+<p><strong>VRANP</strong>: annotation path valid. Each path mentioned in an annotation within the <code>annotations</code> section must either be a valid archetype path, or a 'reference model' path, i.e. a path that is valid for the root class of the archetype.</p>
 </div>
 <div class="paragraph rule">
-<p><strong>VRRLP</strong>: rule path valid. Each path mentioned in a rule in the rules section must be found within the archetype, or be an RM-valid extension of a path found within the archetype.</p>
+<p><strong>VRRLP</strong>: rule path valid. Each path mentioned in a rule in the <code>rules</code> section must be found within the archetype, or be an RM-valid extension of a path found within the archetype.</p>
 </div>
 <div class="paragraph">
-<p>The following validity rules apply to <code>ARCHETYPE</code> objects for which <code><em>is_overlay</em></code> = False:</p>
+<p>The following validity rules apply to instances of <code>ARCHETYPE</code> and subtypes other than <code>TEMPLATE_OVERLAY</code>:</p>
 </div>
 <div class="paragraph rule">
 <p><strong>VARID</strong>: archetype identifier validity. The archetype must have an identifier that conforms to the openEHR specification for archetype identifiers.</p>
@@ -2251,22 +2247,22 @@ It is the parent class of all concrete types of archetype.</p>
 <p><strong>VDEOL</strong>: original language specified. An <code>original_language</code> section containing the meta-data of the original authoring language must exist.</p>
 </div>
 <div class="paragraph rule">
-<p><strong>VARD</strong>: description specified. A description section containing the main meta-data of the archetype must exist.</p>
+<p><strong>VARD</strong>: description specified. A <code>description</code> section containing the main meta-data of the archetype must exist.</p>
 </div>
 <div class="paragraph">
-<p>The following rules apply to specialised archetypes.</p>
+<p>The following rules apply to specialised archetypes, for which <code>ARCHETYPE</code>.<code><em>is_specialised</em></code> returns <code>True</code>.</p>
 </div>
 <div class="paragraph rule">
-<p><strong>VASID</strong>: archetype specialisation parent identifier validity. The archetype identifier stated in the specialise clause must be the identifier of the immediate specialisation parent archetype.</p>
+<p><strong>VASID</strong>: archetype specialisation parent identifier validity. The archetype identifier stated in the <code>specialise</code> clause must be the identifier of the immediate specialisation parent archetype.</p>
 </div>
 <div class="paragraph rule">
 <p><strong>VALC</strong>: archetype language conformance. The languages defined in a specialised archetype must be the same as or a subset of those defined in the flat parent.</p>
 </div>
 <div class="paragraph rule">
-<p><strong>VACSD</strong>: archetype concept specialisation depth. The specialisation depth of the concept code must be one greater than the specialisation depth of the parent archetype.</p>
+<p><strong>VACSD</strong>: archetype concept specialisation depth. The specialisation depth of the archetypes must be one greater than the specialisation depth of the parent archetype.</p>
 </div>
 <div class="paragraph rule">
-<p><strong>VATCD</strong>: archetype code specialisation level validity. Each archetype term (‘at’ code) and constraint code (‘ac’ code) used in the archetype definition part must have a specialisation level no greater than the specialisation level of the archetype.</p>
+<p><strong>VATCD</strong>: archetype code specialisation level validity. Each archetype term ('at' code) and constraint code ('ac' code) used in the archetype <code>definition</code> section must have a specialisation level no greater than the specialisation level of the archetype.</p>
 </div>
 </div>
 </div>
@@ -2441,12 +2437,6 @@ It is the parent class of all concrete types of archetype.</p>
 <h5 id="_default_value"><a class="anchor" href="#_default_value"></a>Default_value</h5>
 <div class="paragraph">
 <p>This attribute allows a user-specified default value to be defined within an archetype. The <code><em>default_value</em></code> object must be of the same type as defined by the <code><em>prototype_value</em></code> function, pass the <code><em>valid_value</em></code> test. Where defined, the <code><em>prototype_value</em></code> function would return this value instead of a synthesised value.</p>
-</div>
-</div>
-<div class="sect4">
-<h5 id="__frozen_nodes"><a class="anchor" href="#__frozen_nodes"></a>'Frozen' Nodes</h5>
-<div class="paragraph">
-<p>A node may be redefined into multiple child nodes in a specialised archetype. If the children are considered to exhaustively define the value space corresponding to the original node, the latter may be 'frozen', meaning no further children can be defined. This also has a runtime implication: a frozen node cannot have any instances, only its children can.</p>
 </div>
 </div>
 </div>
@@ -7206,13 +7196,28 @@ Hash of keys ("text", "description" etc) and corresponding values.</p>
 <p><a id="openehr_am_overview"></a>[openehr_am_overview] The openEHR Foundation. <strong>The openEHR Archetypes Technical Overview.</strong> See <a href="http://www.openehr.org/releases/AM/latest/Overview.html" class="bare">http://www.openehr.org/releases/AM/latest/Overview.html</a>.</p>
 </li>
 <li>
-<p><a id="openehr_am_adl"></a>[openehr_am_adl] The openEHR Foundation. <strong>Archetype Definition Language (ADL2).</strong> Available at <a href="http://www.openehr.org/releases/AM/latest/ADL2.html" class="bare">http://www.openehr.org/releases/AM/latest/ADL2.html</a>.</p>
+<p><a id="openehr_am_adl14"></a>[openehr_am_adl14] The openEHR Foundation. <strong>Archetype Definition Language 1.4 (ADL1.4).</strong> Available at <a href="http://www.openehr.org/releases/AM/latest/ADL1.4.html" class="bare">http://www.openehr.org/releases/AM/latest/ADL1.4.html</a>.</p>
 </li>
 <li>
-<p><a id="openehr_am_aom"></a>[openehr_am_aom] The openEHR Foundation. <strong>Archetype Object Model (AOM2).</strong> Available at <a href="http://www.openehr.org/releases/AM/latest/AOM2.html" class="bare">http://www.openehr.org/releases/AM/latest/AOM2.html</a>.</p>
+<p><a id="openehr_am_aom14"></a>[openehr_am_aom14] The openEHR Foundation. <strong>Archetype Object Model 1.4 (AOM1.4).</strong> Available at <a href="http://www.openehr.org/releases/AM/latest/AOM1.4.html" class="bare">http://www.openehr.org/releases/AM/latest/AOM1.4.html</a>.</p>
+</li>
+<li>
+<p><a id="openehr_am_adl2"></a>[openehr_am_adl2] The openEHR Foundation. <strong>Archetype Definition Language 2 (ADL2).</strong> Available at <a href="http://www.openehr.org/releases/AM/latest/ADL2.html" class="bare">http://www.openehr.org/releases/AM/latest/ADL2.html</a>.</p>
+</li>
+<li>
+<p><a id="openehr_am_aom2"></a>[openehr_am_aom2] The openEHR Foundation. <strong>Archetype Object Model 2 (AOM2).</strong> Available at <a href="http://www.openehr.org/releases/AM/latest/AOM2.html" class="bare">http://www.openehr.org/releases/AM/latest/AOM2.html</a>.</p>
 </li>
 <li>
 <p><a id="openehr_am_identification"></a>[openehr_am_identification] The openEHR Foundation. <strong>Archetype Identification specification.</strong> Available at <a href="http://www.openehr.org/releases/AM/latest/Identification.html" class="bare">http://www.openehr.org/releases/AM/latest/Identification.html</a>.</p>
+</li>
+<li>
+<p><a id="openehr_am_def_pri"></a>[openehr_am_def_pri] The openEHR Foundation. <strong>Archetype Definitions and Principles.</strong> (deprecated) Available at <a href="http://www.openehr.org/releases/1.0.2/architecture/am/archetype_principles.pdf" class="bare">http://www.openehr.org/releases/1.0.2/architecture/am/archetype_principles.pdf</a>.</p>
+</li>
+<li>
+<p><a id="openehr_am_sys"></a>[openehr_am_sys] The openEHR Foundation. <strong>The Archetype System.</strong> (deprecated) Available at <a href="http://www.openehr.org/releases/1.0.2/architecture/am/archetype_system.pdf" class="bare">http://www.openehr.org/releases/1.0.2/architecture/am/archetype_system.pdf</a>.</p>
+</li>
+<li>
+<p><a id="openehr_am_oap"></a>[openehr_am_oap] The openEHR Foundation. <strong>The openEHR Archetype Profile.</strong> <a href="http://www.openehr.org/releases/1.0.2/architecture/am/openehr_archetype_profile.pdf" class="bare">http://www.openehr.org/releases/1.0.2/architecture/am/openehr_archetype_profile.pdf</a> .</p>
 </li>
 <li>
 <p><a id="openehr_CKM"></a>[openehr_CKM] <strong>The openEHR Clinical Knowledge Manager (CKM)</strong>. See <a href="http://www.openEHR.org/ckm" class="bare">http://www.openEHR.org/ckm</a></p>
@@ -7255,7 +7260,7 @@ Hash of keys ("text", "description" etc) and corresponding values.</p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2015-09-23 16:08:51 BST
+Last updated 2015-11-17 14:10:05 GMT
 </div>
 </div>
 </body>

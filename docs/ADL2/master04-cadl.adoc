@@ -129,7 +129,7 @@ image::{uml_export_dir}/diagrams/ADL-demographics.svg[id=uml_model_of_person, al
 
 Constraints expressed in cADL cannot be stronger than those from the information model. For example, the `PERSON`.`_family_name_` attribute is mandatory in the model in the above `PERSON` model, so it is not valid to express a constraint allowing the attribute to be optional. In general, a cADL archetype can only further constrain an existing information model. However, it must be remembered that for very generic models consisting of only a few classes and a lot of optionality, this rule is not so much a limitation as a way of adding meaning to information. Thus, for a demographic information model which has only the types `PARTY` and `PERSON`, one can write cADL which defines the concepts of entities such as `COMPANY` , `EMPLOYEE` , `PROFESSIONAL` , and so on, in terms of constraints on the types available in the information model.
 
-This general approach can be used to express constraints for instances of any information model. The following example shows how to express a constraint on the _value_ property of an `ELEMENT` class to be a `DV_QUANTITY` with a suitable range for expressing blood pressure.
+This general approach can be used to express constraints for instances of any information model. The following example shows how to express a constraint on the `_value_` property of an `ELEMENT` class to be a `DV_QUANTITY` with a suitable range for expressing blood pressure.
 
 [source, cadl]
 --------
@@ -186,7 +186,7 @@ The following example links the name of a type `XXX` with a hierarchical value s
     }
 --------
 
-The meaning of the syntax above is: data matching the constraints conssists of an instance of type `XXX` , or any subtype allowed by the underlying information model, for which the value of attribute _aaa_ is of type `YYY` , or any subtype allowed by the underlying information model, and so on, recursively until leaf level constraints are reached.
+The meaning of the syntax above is: data matching the constraints conssists of an instance of type `XXX` , or any subtype allowed by the underlying information model, for which the value of attribute `_aaa_` is of type `YYY` , or any subtype allowed by the underlying information model, and so on, recursively until leaf level constraints are reached.
 
 Occasionally the `matches` operator needs to be used in the negative, usually at a leaf block. Any of the following can be used to constrain the value space of the attribute `aaa` to any number except 5:
 
@@ -209,15 +209,15 @@ This section describes the semantics for constraining objects of complex, i.e. n
 
 === Attribute Constraints
 
-In any information model, attributes are either single-valued or multiply-valued, i.e. of a generic container type such as `List<Contact>` . Both have _existence_ , while multiply-valued attributes also have _cardinality_ .
+In any information model, attributes are either single-valued or multiply-valued, i.e. of a generic container type such as `List<Contact>` . Both have `_existence_` , while multiply-valued attributes also have `_cardinality_`.
 
 ==== Existence
 
-The existence constraint may be used with any attribute to further constrain the existence defined by the underlying reference model. An existence constraint indicates whether an attribute value is mandatory or optional, and is indicated by "0..1" or "1" markers at line ends in UML diagrams (and often mistakenly referred to as a "cardinality of 1..1"). Attributes defined in the reference model have an effective existence constraint, defined by the invariants (or lack thereof) of the relevant class. For example, the _protocol_ attribute in the openEHR `OBSERVATION` class <<EHR_IM>> is defined in the reference model as being optional, i.e. `0..1`. An archetype may redefine this to `{1..1}`, making the attribute mandatory. Existence constraints are expressed in cADL as follows:
+The existence constraint may be used with any attribute to further constrain the existence defined by the underlying reference model. An existence constraint indicates whether an attribute value is mandatory or optional, and is indicated by "0..1" or "1" markers at line ends in UML diagrams (and often mistakenly referred to as a "cardinality of 1..1"). Attributes defined in the reference model have an effective existence constraint, defined by the invariants (or lack thereof) of the relevant class. For example, the `_protocol_` attribute in the openEHR `OBSERVATION` class <<EHR_IM>> is defined in the reference model as being optional, i.e. `0..1`. An archetype may redefine this to `{1..1}`, making the attribute mandatory. Existence constraints are expressed in cADL as follows:
 
 [source, cadl]
 --------
-    OBSERVATION matches {
+    OBSERVATION[id1] matches {
         protocol existence matches {1..1} matches {
             -- details
         }
@@ -227,7 +227,7 @@ The existence constraint may be used with any attribute to further constrain the
 The meaning of an existence constraint is to indicate whether a value - i.e. an object - is mandatory or optional (i.e. obligatory or not) in runtime data for the attribute in question. The same logic applies whether the attribute is of single or multiple cardinality, i.e. whether it is a container type or not. For container attributes, the existence constraint indicates whether the whole container (usually a list or set) is mandatory or not; a further cardinality constraint (described below) indicates how many members in the container are allowed.
 
 [.principle]
-An existence constraint may be used directly after any attribute identifier, and indicates whether the object to which the attribute refers is mandatory or optional in the data.
+An *existence constraint* may be used directly after any attribute identifier, and indicates whether the object to which the attribute refers is mandatory or optional in the data.
 
 Existence is shown using the same constraint language as the rest of the archetype definition. Existence constraints can take the values `{0}` , `{0..0}` , `{0..1}` , `{1}` , or `{1..1}` . The first two of these constraints may not seem initially obvious, but can be used to indicate that an attribute must not be present in the particular situation modelled by the archetype. This may be reasonable in some cases.
 
@@ -273,7 +273,7 @@ Two or more object constraints introduced by type names appearing after a single
 
 ==== Cardinality
 
-The cardinality of container attributes may be constrained in cADL with the _cardinality_ constraint. Cardinality indicates limits on the number of instance members of a container types such as lists and sets. Consider the following example:
+The cardinality of container attributes may be constrained in cADL with the `_cardinality_` constraint. Cardinality indicates limits on the number of instance members of a container types such as lists and sets. Consider the following example:
 
 [source, cadl]
 --------
@@ -308,9 +308,9 @@ Although this is not strictly ncessary for the purpose of expressing valid arche
 In theory, no cardinality constraint can be stronger than the semantics of the corresponding container in the relevant part of the reference model. However, in practice, developers often use lists to facilitate data integration, when the actual semantics are intended to be of a set; in such cases, they typically ensure set-like semantics in their own code rather than by using an `Set<T>` type. How such constraints are evaluated in practice may depend somewhat on knowledge of the software system.
 
 [.principle]
-A cardinality constraint must be used after any Reference Model container attribute name (or after its existence constraint, if there is one) in order to designate it as a container attribute. Additionally, it may constrain the number of member items it may have in the data, and whether it has "list", "set", or "bag" semantics, via the use of the keywords 'ordered', 'unordered', 'unique' and 'non-unique'.
+A *cardinality constraint* must be used after any Reference Model container attribute name (or after its existence constraint, if there is one) in order to designate it as a container attribute. Additionally, it may constrain the number of member items it may have in the data, and whether it has "list", "set", or "bag" semantics, via the use of the keywords 'ordered', 'unordered', 'unique' and 'non-unique'.
 
-The numeric part of the cardinality contraint can take the values `{0}`, `{0..0}`, `{0..n}`, `{m..n}`, `{0..\*}`, or `{*}`, or a syntactic equivalent. The first two of these constraints are unlikely to be useful, but there is no reason to prevent them. There is no default cardinality, since if none is shown, the relevant attribute is assumed to be single-valued (in the interests of uniformity in archetypes, this holds even for smarter parsers that can access the reference model and determine that the attribute is in fact a container.
+The numeric part of the cardinality contraint can take the values `{0}`, `{0..0}`, `{0..n}`, `{m..n}`, `{0..*}`, or `{*}`, or a syntactic equivalent. The first two of these constraints are unlikely to be useful, but there is no reason to prevent them. There is no default cardinality, since if none is shown, the relevant attribute is assumed to be single-valued (in the interests of uniformity in archetypes, this holds even for smarter parsers that can access the reference model and determine that the attribute is in fact a container).
 
 Cardinality and existence constraints can co-occur, in order to indicate various combinations on a container type property, e.g. that it is optional, but if present, is a container that may be empty, as in the following:
 
@@ -335,7 +335,7 @@ The structural function of node identifiers is to allow the formation of paths:
 All object nodes require a node identifier, guaranteeing the ability to generate unique paths, and to process specialised archetypes with respect to inheritance parents.
 
 [.principle]
-A Node identifier is required for every object node in an archetype.
+A *Node identifier* is required for every object node in an archetype.
 
 The node identifier can also perform a semantic function, that of giving a design-time meaning to the node, by equating the node identifier to some description. The use of node identifiers in archetypes is the main source of their expressive power. Each node identifier acts as a 'semantic marker' or 'override' on the node. Thus, in the example shown in <<The Underlying Information Model>>, the `ELEMENT` node is identified by the code `[id10]` , which can be designated elsewhere in an archetype as meaning "diastolic blood pressure". In this way rich meaning is given to data constructed from a limited number of object types.
 
@@ -375,15 +375,15 @@ The following example expresses a constraint on instances of `GROUP` such that f
     }
 --------
 
-The first `occurrences` constraint indicates that a `PERSON` with the title `"head"` is mandatory in the `GROUP` , while the second indicates that at runtime, instances of `PERSON` with the title `"member"` can number from none to many. Occurrences may take the value of any range including `{0..\*}`, meaning that any number of instances of the given type may appear in data, each conforming to the one constraint block in the archetype. A single positive integer, or the infinity indicator, may also be used on its own, thus: `{2}` , `{*}` . A range of `{0..0}` or `{0}` indicates that no occurrences of this object are allowed in this archetype. If no occurrences constraint is stated, the occurrences of the object is define by the underlying reference model.
+The first `occurrences` constraint indicates that a `PERSON` with the title `"head"` is mandatory in the `GROUP` , while the second indicates that at runtime, instances of `PERSON` with the title `"member"` can number from none to many. Occurrences may take the value of any range including `{0..*}`, meaning that any number of instances of the given type may appear in data, each conforming to the one constraint block in the archetype. A single positive integer, or the infinity indicator, may also be used on its own, thus: `{2}` , `{*}` . A range of `{0..0}` or `{0}` indicates that no occurrences of this object are allowed in this archetype. If no occurrences constraint is stated, the occurrences of the object is define by the underlying reference model.
 
 [.principle]
-An occurrences constraint may appear directly after the type name of any object constraint within a container attribute, in order to indicate how many times data objects conforming to the block may occur in the data.
+An *occurrences constraint* may appear directly after the type name of any object constraint within a container attribute, in order to indicate how many times data objects conforming to the block may occur in the data.
 
 Where cardinality constraints are used (remembering that occurrences is always there by default, if not explicitly specified), cardinality and occurrences must always be compatible. The rules for this are formally stated in the Archetype Object Model specification. The key elements of these rules are as follows:
 
 * where a cardinality constraint is stated with a finite upper bound:
-** any child object with either stated occurrences with an open upper bound (typically `0..\*` or `1..*`) or else inferred occurrences (`0..*`) is legal, since the occurrences open upper bound is interpreted to mean the maximum value allowed by the cardinality upper bound.
+** any child object with either stated occurrences with an open upper bound (typically `0..*` or `1..*`) or else inferred occurrences (`0..*`) is legal, since the occurrences open upper bound is interpreted to mean the maximum value allowed by the cardinality upper bound.
 ** the sum of all child object occurrences lower bounds must be less than the cardinality upper bound;
 * no 'orphans': at least instance of one optional child object (occurrences lower bound = 0), and one instance of every mandatory child object (occurrences lower bound > 0) must be includable within the cardinality range.
 
@@ -412,9 +412,10 @@ The second use of "any" as a constraint value is for types, such as in the follo
     }
 --------
 
-The meaning of this constraint is that in the data at runtime, the _value_ property of `ELEMENT` must be of type `DV_QUANTITY` , but can have any value internally. This is most useful for constraining objects to be of a certain type, without further constraining value, and is especially useful where the information model contains subtyping, and there is a need to restrict data to be of certain subtypes in certain contexts.
+The meaning of this constraint is that in the data at runtime, the `_value_` property of `ELEMENT` must be of type `DV_QUANTITY` , but can have any value internally. This is most useful for constraining objects to be of a certain type, without further constraining value, and is especially useful where the information model contains subtyping, and there is a need to restrict data to be of certain subtypes in certain contexts.
 
-* In ADL 1.4, 'any' constraints were represented with an additional `matches {*}` at the end of the statement. This is deprecated. It is recommended that parsers silently accept this form, but output the modern ADL 1.5 form.
+[.deprecated]
+*Deprecated*: In ADL 1.4, 'any' constraints were represented with an additional `matches {*}` at the end of the statement. This is deprecated. It is recommended that parsers silently accept this form, but output the modern ADL 2 form.
 
 === Reference Model Type Matching
 
@@ -449,9 +450,9 @@ However, in some circumstances, it may be desirable to define a constraint that 
     }
 --------
 
-This cADL text says that the instance value of the _counter_party_ attribute in the data can either be a `PERSON` object matching the `PERSON` block, with a _date_of_birth_ matching the given range, or else any other kind of `PARTY` object.
+This cADL text says that the instance value of the `_counter_party_` attribute in the data can either be a `PERSON` object matching the `PERSON` block, with a `_date_of_birth_` matching the given range, or else any other kind of `PARTY` object.
 
-Under a multiply-valued attribute, the alternative subtypes are included as identified child members. The following example illustrates a constraint on the _counter_parties_ attribute of instances of the class `YYYY` in <<ADL-demographics-parties>>.
+Under a multiply-valued attribute, the alternative subtypes are included as identified child members. The following example illustrates a constraint on the `_counter_parties_` attribute of instances of the class `YYYY` in <<ADL-demographics-parties>>.
 
 [source, cadl]
 --------
@@ -501,7 +502,7 @@ In the following example, the `PERSON` constraint node is the sole object constr
     }
 --------
 
-Two valid paths to the object under the _title_ attribute are possible:
+Two valid paths to the object under the `_title_` attribute are possible:
 
 [source, cadl]
 --------
@@ -523,7 +524,7 @@ Where there are more than one sibling node, node identifiers must be used to ens
     }
 --------
 
-The paths to the respective _title_ attributes are now:
+The paths to the respective `_title_` attributes are now:
 
 [source, cadl]
 --------
@@ -853,9 +854,9 @@ The following example shows how the "Objective" `SECTION` in a problem/SOAP head
 
 [source, cadl]
 --------
-    SECTION [at2000] occurrences ∈ {0..1} ∈ {                      -- objective
+    SECTION [id1] occurrences ∈ {0..1} ∈ {                      -- objective
         items cardinality ∈ {0..*} ∈ {
-            allow_archetype SECTION[at2002] occurrences ∈ {0..*} ∈ {
+            allow_archetype SECTION[id2] occurrences ∈ {0..*} ∈ {
                 include
                     archetype_id/value ∈ {/.*/}
                 exclude
@@ -867,12 +868,12 @@ The following example shows how the "Objective" `SECTION` in a problem/SOAP head
 
 Here, every constraint inside the block starting on an `allow_archetype` line contains constraints that must be met by archetypes in order to fill the slot. In the examples above, the constraints are in the form of regular expressions on archetype identifiers. In cADL, the PERL regular expression syntax is assumed.
 
-There are two ways in which _archetype_id_ regular expressions patterns can be used:
+There are two ways in which `_archetype_id_` regular expressions patterns can be used:
 
 * as a pattern against which to test a particular archetype identifier being proposed for that slot;
 * as a pattern to use against a population of archetypes (e.g. all archetypes in a particular repository) in order to generate a list of all possible archetypes for filling the slot.
 
-Due to the second use, it is required that the regular expression pattern always cover a full archetype identifier rather than only sub-parts. As a consequence, a 'meta-pattern' can be defined to check _archetype_id_ regular expressions for validity:
+Due to the second use, it is required that the regular expression pattern always cover a full archetype identifier rather than only sub-parts. As a consequence, a 'meta-pattern' can be defined to check `_archetype_id_` regular expressions for validity:
 
 ```
     ^.+-.+-.+\..*\..+$
@@ -970,7 +971,7 @@ Under any given attribute node, any combination of these object constraint types
     }
 --------
 
-Here we have a constraint on an attribute called `_items_` (of cardinality `0..*`), expressed as a series of possible constraints on objects of type `ENTRY`. The 1st, 4th and 7th are described inline; the 3rd, 5th and 6th are expressed in terms of internal references to other nodes earlier in the archetype, while the 2nd is an archetype slot, whose constraints are expressed in other archetypes matching the include/exclude constraints appearing between the braces of this node. Note also that the `ordered` keyword on the enclosing _items_ node has been used to indicate that the list order is intended to be significant.
+Here we have a constraint on an attribute called `_items_` (of cardinality `0..*`), expressed as a series of possible constraints on objects of type `ENTRY`. The 1st, 4th and 7th are described inline; the 3rd, 5th and 6th are expressed in terms of internal references to other nodes earlier in the archetype, while the 2nd is an archetype slot, whose constraints are expressed in other archetypes matching the include/exclude constraints appearing between the braces of this node. Note also that the `ordered` keyword on the enclosing `_items_` node has been used to indicate that the list order is intended to be significant.
 
 == Second-order Constraints
 
@@ -1323,7 +1324,7 @@ A String-valued attribute can be constrained by a list of strings (using the ODI
     species ∈ {"platypus", "kangaroo", "wombat"}
 --------
 
-The first example constraints the runtime value of the `_species_` attribute of some object to take the value "platypus"; the second constrains it be either "platypus" or "kangaroo", and so on. In almost all cases, this kind of string constraint should be avoided, since it usually renders the body of the archetype language-dependent. Exceptions are proper names (e.g. "NHS", "Apgar"), product tradenames (but note even these are typically different in different language locales, even if the different names are not literally translations of each other). The preferred way of constraining string attributes in a language independent way is with value sets of terminology codes. See Section <<Terminology Constraints>>.
+The first example constrains the runtime value of the `_species_` attribute of some object to take the value "platypus"; the second constrains it be either "platypus" or "kangaroo", and so on. *In almost all cases, this kind of string constraint should be avoided*, since it usually renders the body of the archetype language-dependent. Exceptions are proper names (e.g. "NHS", "Apgar"), product tradenames (but note even these are typically different in different language locales, even if the different names are not literally translations of each other). The preferred way of constraining string attributes in a language independent way is with value sets of terminology codes. See Section <<Terminology Constraints>>.
 
 ==== Regular Expression
 
@@ -1361,7 +1362,7 @@ The regular expression patterns supported in cADL are as follows.
 
 3+^h|Occurrences
 
-| `\*`      |match 0 or more of the preceding atomic item.              |E.g. `.\*` matches any string; `[a-z][a-z0-9]*` matches any alphanumeric string starting with a letter;
+| `*`      |match 0 or more of the preceding atomic item.              |E.g. `.\*` matches any string; `[a-z][a-z0-9]*` matches any alphanumeric string starting with a letter;
 | `+`       |match 1 or more occurrences of the preceding atomic item.  |E.g. `a[^\s]+` matches any string starting with 'a', followed by at least one further non-whitespace character;
 | `?`       |match 0 or 1 occurrences of the preceding atomic item.     |E.g. `ab?` matches the strings `"a"` and `"ab"` ;
 | `{m,n}`   |match m to n occurrences of the preceding atomic item.     |E.g. `ab{1,3}` matches the strings `"ab"` and `"abb"` and `"abbb"` ; `[a-z]{1,3}` matches all lower-case alphabetic strings of one to three characters in length;
@@ -1395,7 +1396,7 @@ Lists of integers expressed in the syntax from ODIN can be used as a constraint,
     magnitude matches {0, 5, 8} -- any of 0, 5 or 8
 --------
 
-The first constraint requires the attribute length to be 1000, while the second limits the value of magnitude to be 0, 5, or 8 only. A list may contain a single integer only:
+The first constraint requires the attribute `_length_` to be 1000, while the second limits the value of `_magnitude_` to be 0, 5, or 8 only. A list may contain a single integer only:
 
 [source, cadl]
 --------
@@ -1404,7 +1405,7 @@ The first constraint requires the attribute length to be 1000, while the second 
 
 ==== Interval of Integer
 
-Integer intervals are expressed using the interval syntax from ODIN (described in the ODIN specification). Examples of 2-sided intervals include:
+Integer intervals are expressed using the interval syntax from ODIN (described in the ODIN specification <<openehr_odin>>). Examples of 2-sided intervals include:
 
 [source, cadl]
 --------

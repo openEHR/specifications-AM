@@ -213,10 +213,10 @@ The following validity rules apply to all varieties of `ARCHETYPE` object:
 *VARRV*: RM release validity. The `_rm_release_` top-level meta-data item must exist and consist of a valid 3-part version identifier.
 
 [.rule]
-*VARCN*: archetype concept validity. The node_id of the root object of the archetype must be of the form id1\{.1}*, where the number of ‘.1’ components equals the specalisation depth, and must be defined in the terminology.
+*VARCN*: archetype concept validity. The `_node_id_` of the root object of the archetype must be of the form `id1{.1}*`, where the number of `.1` components equals the specalisation depth, and must be defined in the terminology.
 
 [.rule]
-*VATDF*: value code validity. Each value code (at-code) used in a term constraint in the archetype definition must be defined in the term_definitions part of the terminology of the flattened form of the current archetype.
+*VATDF*: value code validity. Each value code (at-code) used in a term constraint in the archetype definition must be defined in the `term_definitions` part of the terminology of the flattened form of the current archetype.
 
 [.rule]
 *VACDF*: constraint code validity. Each value set code (ac-code) used in a term constraint in the archetype definition must be defined in the term_definitions part of the terminology of the current archetype.
@@ -228,21 +228,21 @@ The following validity rules apply to all varieties of `ARCHETYPE` object:
 *VETDF*: external term validity. Each external term used within the archetype definition must exist in the relevant terminology (subject to tool accesibility; codes for inaccessible terminologies should be flagged with a warning indicating that no verification was possible).
 
 [.rule]
-*VOTM*: terminology translations validity. Translations must exist for term_definitions and constraint_definitions sections for all languages defined in the description / translations section.
+*VOTM*: terminology translations validity. Translations must exist for `term_definitions` and `constraint_definitions` sections for all languages defined in the `description` / `translations` sections.
 
 [.rule]
-*VOKU*: object key unique. Within any keyed list in an archetype, including the desription, terminology, and annotations sections, each item must have a unique key with respect to its siblings.
+*VOKU*: object key unique. Within any keyed list in an archetype, including the `desription`, `terminology`, and `annotations` sections, each item must have a unique key with respect to its siblings.
 
 [.rule]
 *VARDT*: archetype definition typename validity. The typename mentioned in the outer block of the archetype definition section must match the type mentioned in the first segment of the archetype id.
 
 [.rule]
-*VRANP*: annotation path valid. Each path mentioned in an annotation within the annotations section must either be a valid archetype path, or a ‘reference model’ path, i.e. a path that is valid for the root class of the archetype.
+*VRANP*: annotation path valid. Each path mentioned in an annotation within the `annotations` section must either be a valid archetype path, or a 'reference model' path, i.e. a path that is valid for the root class of the archetype.
 
 [.rule]
-*VRRLP*: rule path valid. Each path mentioned in a rule in the rules section must be found within the archetype, or be an RM-valid extension of a path found within the archetype.
+*VRRLP*: rule path valid. Each path mentioned in a rule in the `rules` section must be found within the archetype, or be an RM-valid extension of a path found within the archetype.
 
-The following validity rules apply to `ARCHETYPE` objects for which `_is_overlay_` = False:
+The following validity rules apply to instances of `ARCHETYPE` and subtypes other than `TEMPLATE_OVERLAY`:
 
 [.rule]
 *VARID*: archetype identifier validity. The archetype must have an identifier that conforms to the openEHR specification for archetype identifiers.
@@ -251,19 +251,19 @@ The following validity rules apply to `ARCHETYPE` objects for which `_is_overlay
 *VDEOL*: original language specified. An `original_language` section containing the meta-data of the original authoring language must exist.
 
 [.rule]
-*VARD*: description specified. A description section containing the main meta-data of the archetype must exist.
+*VARD*: description specified. A `description` section containing the main meta-data of the archetype must exist.
 
-The following rules apply to specialised archetypes.
+The following rules apply to specialised archetypes, for which `ARCHETYPE`.`_is_specialised_` returns `True`.
 
 [.rule]
-*VASID*: archetype specialisation parent identifier validity. The archetype identifier stated in the specialise clause must be the identifier of the immediate specialisation parent archetype.
+*VASID*: archetype specialisation parent identifier validity. The archetype identifier stated in the `specialise` clause must be the identifier of the immediate specialisation parent archetype.
 
 [.rule]
 *VALC*: archetype language conformance. The languages defined in a specialised archetype must be the same as or a subset of those defined in the flat parent.
 
 [.rule]
-*VACSD*: archetype concept specialisation depth. The specialisation depth of the concept code must be one greater than the specialisation depth of the parent archetype.
+*VACSD*: archetype concept specialisation depth. The specialisation depth of the archetypes must be one greater than the specialisation depth of the parent archetype.
 
 [.rule]
-*VATCD*: archetype code specialisation level validity. Each archetype term (‘at’ code) and constraint code (‘ac’ code) used in the archetype definition part must have a specialisation level no greater than the specialisation level of the archetype.
+*VATCD*: archetype code specialisation level validity. Each archetype term ('at' code) and constraint code ('ac' code) used in the archetype `definition` section must have a specialisation level no greater than the specialisation level of the archetype.
 
