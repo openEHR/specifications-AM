@@ -77,8 +77,8 @@ Within <> delimiters, various characters are used as follows to indicate primiti
 
 In a dADL text, comments satisfy the following rule.
 
-[.rule]
-Comments are indicated by the characters "--". Multi-line comments are achieved using the "--" leader on each line where the comment continues.
+[.principle]
+*Comments* are indicated by the characters "--". Multi-line comments are achieved using the "--" leader on each line where the comment continues.
 
 In this document, dADL comments are shown in brown.
 
@@ -86,7 +86,7 @@ In this document, dADL comments are shown in brown.
 
 Two types of identifiers from information models are used in dADL: type names and attribute names. 
 
-[.rule]
+[.principle]
 A *type name* is any identifier with an initial upper case letter, followed by any combination of letters, digits and underscores. A *generic type name* (including nested forms) additionally may include commas and angle brackets, and must be syntactically correct as per the UML. An *attribute name* is any identifier with an initial lower case letter, followed by any combination of letters, digits and underscores. Any convention that obeys this rule is allowed.
 
 At least two well-known conventions that are ubiquitous in information models obey the above rule. One of these is the following convention:
@@ -112,7 +112,7 @@ term = <
 >
 --------
 
-[.rule]
+[.principle]
 Semi-colons are completely optional in dADL.
 
 == Paths
@@ -139,7 +139,7 @@ attribute_name '=' '<' value '>' ;
 
 Each attribute name is the name of an attribute in an implied or actual object or relational model. Each "value" is either a literal value of a primitive type (see section <<See Primitive Types>>) or a further nesting of attribute names and values, terminating in leaf nodes of primitive type values. Where sibling attribute nodes occur, the attribute identifiers must be unique, just as in a standard object or relational model.
 
-[.rule]
+[.principle]
 Sibling attribute names must be unique.
 
 The following shows a typical structure.
@@ -175,7 +175,7 @@ To be completely regular, an outer level of delimiters should be used, because t
 >
 ----
 
-[.rule]
+[.principle]
 Outer '<>' delimiters in a dADL text are optional.
 
 ==== Paths
@@ -210,7 +210,7 @@ Nested empty sections can be used.
 
 NOTE: within this document, empty sections are shown in many places to represent fully populated data, which would of course require much more space.
 
-[.rule]
+[.principle]
 Empty sections can appear anywhere.
 
 === Container Objects
@@ -298,8 +298,8 @@ school_schedule = <
 >
 --------
 
-[.rule]
-Container instances are expressed using repetitions of a block introduced by a key, in the form of a primitive value in brackets i.e. '[]'.
+[.principle]
+*Container instances* are expressed using repetitions of a block introduced by a key, in the form of a primitive value in brackets i.e. '[]'.
 
 The example above conforms directly to the object-oriented type specification (given in a pascal-like syntax):
 
@@ -402,14 +402,14 @@ This illustrates the use of generic, i.e. template types, expressed in the stand
 
 Type identifiers can also include namespace information, which is necessary when same-named types appear in different packages of a model. Namespaces are included by prepending package names, separated by the '.' character, in the same way as in most programming languages, as in the qualified type names `org.openehr.rm.ehr.content.ENTRY` and `Core.Abstractions.Relationships.Relationship`.
 
-[.rule]
-Type Information can be included optionally on any node immediately before the opening '<' of any block, in the form of a UML-style type identifier in parentheses. Dot-separated namespace identifiers and template parameters may be used.
+[.principle]
+*Type Information* can be included optionally on any node immediately before the opening '<' of any block, in the form of a UML-style type identifier in parentheses. Dot-separated namespace identifiers and template parameters may be used.
 
 === Associations and Shared Objects
 
 All of the facilities described so far allow any object-oriented data to be faithfully expressed in a formal, systematic way which is both machine- and human-readable, and allow any node in the data to be addressed using an Xpath-style path. The availability of reliable paths allows not only the representation of single 'business objects', which are the equivalent of UML _aggregation_ (and _composition_) hierarchies, but also the representation of associations between objects, and by extension, shared objects.
 
-Consider that in the example above, 'hotel' objects may be shared objects, referred to by assocation. This can be expressed as follows.
+Consider that in the example above, 'hotel' objects may be shared objects, referred to by association. This can be expressed as follows.
 
 [source, odin]
 --------
@@ -436,12 +436,12 @@ hotels = <
 >
 --------
 
-Associations are expressed via the use of fully qualified paths as the data for a attribute. In this example, there are references from a list of destinations, and from a booking list, to the same hotel object. If type information is included, it should go in the declarations of the relevant objects; type declarations can also be used before path references, which might be useful if the association type is an ancestor type (i.e. more general type) of the type of the actual object being referred to. 
+Associations are expressed via the use of fully qualified paths as the data for an attribute. In this example, there are references from a list of destinations, and from a booking list, to the same hotel object. If type information is included, it should go in the declarations of the relevant objects; type declarations can also be used before path references, which might be useful if the association type is an ancestor type (i.e. more general type) of the type of the actual object being referred to. 
 
 Data in other dADL documents can be referred to using the URI syntax to locate the document, with the internal path included as described above.
 
-[.rule]
-Shared objects are referenced using paths. Objects in other dADL documents can be referred to using normal URIs whose path section conforms to dADL path syntax.
+[.principle]
+*Shared objects* are referenced using paths. Objects in other dADL documents can be referred to using normal URIs whose path section conforms to dADL path syntax.
 
 ==== Paths
 The path set from the above example is as follows:
@@ -556,18 +556,16 @@ dd = day in month
 hh = hour in 24 hour clock
 mm = minutes
 ss,sss = seconds, incuding fractional part
-Z = the timezone in the form of a '+' or '-' followed by 4 digits
-    indicating the hour offset, e.g. +0930, or else the literal 'Z'
-    indicating +0000 (the Greenwich meridian).
+Z = the timezone in the form of a '+' or '-' followed by 4 digits indicating the hour offset, e.g. +0930, or else the literal 'Z' indicating +0000 (the Greenwich meridian).
 ----
 
 Durations are expressed using a string which starts with 'P', and is followed by a list of periods, each appended by a single letter designator: 'Y' for years, "M' for months, 'W' for weeks, 'D' for days, 'H' for hours, 'M' for minutes, and 'S' for seconds. The literal 'T' separates the YMWD part from the HMS part, ensuring that months and minutes can be distinguished. Examples of date/time data include:
 
 ----
-1919-01-23 -- birthdate of Django Reinhardt
-16:35:04,5 -- rise of Venus in Sydney on 24 Jul 2003
-2001-05-12T07:35:20+1000 -- timestamp on an email received from Australia
-P22D4TH15M0S -- period of 22 days, 4 hours, 15 minutes
+1919-01-23                  -- birthdate of Django Reinhardt
+16:35:04,5                  -- rise of Venus in Sydney on 24 Jul 2003
+2001-05-12T07:35:20+1000    -- timestamp on an email received from Australia
+P22D4TH15M0S                -- period of 22 days, 4 hours, 15 minutes
 ----
 
 ===== Partial Date/Times
@@ -585,18 +583,18 @@ To deal with the limitations of ISO 8601 partial patterns in a context-free pars
 ----
 yyyy-MM-??  -- date with unknown day in month
 yyyy-??-??  -- date with unknown month and day
----
+----
 
 Valid partial times follow the patterns:
 
----
+----
 hh:mm:?? -- time with unknown seconds
 hh:??:?? -- time with unknown minutes and seconds
----
+----
 
 Valid date/times follow the patterns:
 
----
+----
 yyyy-MM-ddThh:mm:?? -- date/time with unknown seconds
 yyyy-MM-ddThh:??:?? -- date/time with unknown minutes and seconds
 yyyy-MM-ddT??:??:?? -- date/time with unknown time
@@ -737,7 +735,7 @@ Single attribute nodes map to tagged nodes of the same name.
 Container attribute nodes map to a series of tagged nodes of the same name, each with the XML attribute `_id_` set to the dADL key. For example, the dADL:
 
 [source, odin]
-----
+--------
 subjects = <
     ["philosophy:plato"] = <
         name = <"philosophy">
@@ -746,12 +744,12 @@ subjects = <
         name = <"philosophy">
     >
 >
-----
+--------
 
 maps to the XML:
 
 [source, xml]
-----
+--------
 <subjects id="philosophy:plato">
     <name>
         philosophy
@@ -762,15 +760,16 @@ maps to the XML:
         philosophy
     </name>
 </subjects>
-----
+--------
 
-This guarantees that the path subjects[@id="philosophy:plato"]/name navigates to the same element in both dADL and the XML.
+This guarantees that the path `subjects[@id="philosophy:plato"]/name` navigates to the same element in both dADL and the XML.
 
 === Nested Container Attributes
 
 Nested container attribute nodes map to a series of tagged nodes of the same name, each with the XML attribute `_id_` set to the dADL key. For example, consider an object structure defined by the signature `countries:Hash<Hash<Hotel,String>,String>`. An instance of this in dADL looks as follows:
 
-----
+[source, odin]
+--------
 countries = <
     ["spain"] = <
         ["hotels"] = <...>
@@ -781,7 +780,7 @@ countries = <
         ["attractions"] = <...>
     >
 >
-----
+--------
 
 can be mapped to the XML in which the synthesised element tag "_items" and the attribute "key" are used:
 
@@ -805,13 +804,13 @@ can be mapped to the XML in which the synthesised element tag "_items" and the a
 </countries>
 --------
 
-In this case, the dADL path countries["spain"]/["hotels"] will be transformed to the Xpath
-countries[@key="spain"]/_items[@key="hotels"] in order to navigate to the same element.
+In this case, the dADL path countries["spain"]/["hotels"] will be transformed to the Xpath `countries[@key="spain"]/_items[@key="hotels"]` in order to navigate to the same element.
 
 === Type Names
 
 Type names map to XML 'type' attributes e.g. the dADL:
 
+[source, odin]
 --------
 destinations = <
     ["seville"] = (TOURIST_DESTINATION) <

@@ -8,7 +8,7 @@ A situation in which standard ADL falls short is when the required semantics of 
 
 [.text-center]
 .QTY class
-image::diagrams/qty_class.png[id=qty_class, align="center", width=30%]
+image::diagrams/qty_class.png[id=qty_class, align="center", width=20%]
 
 A typical ADL constraint to enable `QTY` to be used to represent age in clinical data can be expressed in natural language as follows:
 
@@ -47,7 +47,7 @@ image::diagrams/c_qty_class.png[id=c_qty_class, align="center", width=50%]
 
 The question now is how to express a constraint corresponding to this class in an ADL archetype. The solution is logical, and uses standard ADL. Consider that a particular constraint on a `QTY` must be an instance of the `C_QTY` type. An instance of any class can be expressed in ADL using the dADL sytnax (ADL’s object serialisation syntax) at the appropriate point in the archetype, as follows:
 
-[source, cadl]
+[source, dadl]
 --------
 value matches {
     C_QTY <
@@ -78,7 +78,7 @@ NOTE: that the classes in the above example are a simplified form of classes fou
 
 === Custom Syntax
 
-A dADL section is not the only possibility for expressing a custom constraint type. A useful alternative is a custom addition to the ADL syntax. Custom syntax can be smaller, more intuitive to read, and easier to parse than embedded dADL sections. A typical example of the use of custom syntax is to express constraints on the type `CODE_PHRASE` in the openEHR reference model (rm.data_types package). This type models the notion of a ‘coded term’, which is ubiquitous in clinical computing. The standard ADL for a constraint on the defining_code attribute of a class `CODE_PHRASE` is as follows:
+A dADL section is not the only possibility for expressing a custom constraint type. A useful alternative is a custom addition to the ADL syntax. Custom syntax can be smaller, more intuitive to read, and easier to parse than embedded dADL sections. A typical example of the use of custom syntax is to express constraints on the type `CODE_PHRASE` in the openEHR reference model (rm.data_types package). This type models the notion of a ‘coded term’, which is ubiquitous in clinical computing. The standard ADL for a constraint on the `_defining_code_` attribute of a class `CODE_PHRASE` is as follows:
 
 [source, cadl]
 --------
@@ -122,9 +122,9 @@ Although this is perfectly legal, a more compact and readable rendition of this 
 [source, cadl]
 --------
 defining_code matches {
-[local::
-at0039,
-at0040]
+    [local::
+    at0039,
+    at0040]
 }
 --------
 

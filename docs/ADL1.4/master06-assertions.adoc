@@ -5,9 +5,11 @@
 This section describes the assertion sub-language of archetypes. Assertions are used in archetype "slot" clauses in the cADL `definition` section, and in the `invariant` section. The following simple assertion in an invariant clause says that the speed in kilometres of some node is related to the speed-in-miles by a factor of 1.6:
 
 [source, expr]
-----------------------------------------------------------------------------------------------
+--------
     validity: /speed[at0002]/kilometres/magnitude = /speed[at0004]/miles/magnitude * 1.6
-----------------------------------------------------------------------------------------------
+--------
+
+The archetype assertion language is a small language of its own. Formally it is a first-order predicate logic with equality and comparison operators (=, >, etc). It is very nearly a subset of the OMG’s emerging OCL (Object Constraint Language) syntax, and is very similar to the assertion syntax which has been used in the <<Object_Z>> and <<Eiffel>> languages and tools for over a decade. (See <<Sowa_2000>>, <<Hein_2002>>, <<Kilov_1994>> for an explanation of predicate logic in information modelling.)
 
 == Keywords
 
@@ -65,7 +67,7 @@ The semantics of these operators are of value comparison.
 The supported relational operators are as follows:
 
 * less than: `<`
-* less than or equal: `<=`
+* less than or equal: `\<=`
 * greater than: `>`
 * greater than or equal: `>=`
 
@@ -90,18 +92,23 @@ The two standard logical quantifier operators are supported:
 * existential quantifier: `exists`
 * universal quantifier: `for_all`
 
-These operators also have the usual symbolic equivalents shown earlier. The `exists` operator can be used on an variable, including paths referring to a node or value within an archetype. The `for_all` operator can be applied to sets and lists, such as referred to by a path to a multiply-valued attribute.
+These operators also have the usual symbolic equivalents shown earlier.
 
 == Operands
 
 Operands in an assertion expression can be any of the following:
 
-_manifest constant_:: any constant of any primitive type, expressed according to the dADL syntax for values
+_manifest constant_:: any constant of any primitive type, expressed according to the dADL syntax for values;
 _variable reference_:: any name starting with `$`, e.g. `$body_weight`;
-_object reference_:: a path referring to an object node, i.e. any path ending in a node identifier
-_property reference_:: a path referring to a property, i.e. any path ending in `.property_name`
+_object reference_:: a path referring to an object node, i.e. any path ending in a node identifier;
+_property reference_:: a path referring to a property, i.e. any path ending in `.property_name`.
 
 If an assertion is used in an archetype slot definition, its paths refer to the archetype filling the slot, not the one containing the slot.
+
+== Precedence and Parentheses
+
+[.tbd]
+To be continued.
 
 == Future
 
@@ -121,8 +128,8 @@ A number of predefined variables can be referenced in ADL assertion expressions,
 * `$current_time: Time`; returns time whenever the archetype is evaluated
 * `$current_date_time: Date_Time`; returns date/time whenever the archetype is evaluated
 
-[.tbc]
-*To Be Continued*: these should be coded as well, using openEHR codes
+[.tbd]
+To Be Continued: these should be coded as well, using openEHR codes
 
 ==== Archetype-defined Variables
 
@@ -132,7 +139,7 @@ Variables can also be defined inside an archetype, as part of the assertion stat
  let $var_name = reference
 ----
 
-Here, a reference can be any of the operand types listed above. 'Let' statements can come anywhere in an invariant block, but for readability, should generally come first.
+Here, a reference can be any of the operand types listed above. 'Let' statements can come anywhere in an `invariant` block, but for readability, should generally come first.
 The following example illustrates the use of variables in an invariant block:
 
 ----
@@ -148,7 +155,7 @@ The assertion grammar is part of the cADL grammar. This grammar is implemented a
 
 === Grammar
 
-The following provides the assertion parser production rules (yacc specification). Note that because of interdependcies with path and assertion production rules, practical implementations may have to include all production rules in one parser.
+The following provides the assertion parser production rules (yacc specification). Note that because of interdependencies with path and assertion production rules, practical implementations may have to include all production rules in one parser.
 
 [source, antlr-java]
 --------
