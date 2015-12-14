@@ -21,20 +21,20 @@ image::http://www.openehr.org/releases/BASE/latest/resources/images/openehr_logo
 
 = Archetype Model (AM) - {am_release}
 
-//
-// Use the following version for a release
-//
-// :jira-pr-release: https://openehr.atlassian.net/projects/SPECPR/versions/10060
-// :jira-cr-release: https://openehr.atlassian.net/projects/SPECAM/versions/10860
-// [.title-para]
-// {jira-pr-release}[Problems Fixed] | {jira-cr-release}[Changes Implemented] | {jira-roadmap}[Roadmap] | {jira-hist-issues}[Change History]
-
-//
 // Use the following version for 'latest'
-//
+ifeval::["{am_release}" == "latest"]
 :jira-issues: https://openehr.atlassian.net/issues/?filter=10721
 [.title-para]
 {jira-roadmap}[Roadmap] | {jira-issues}[Current Issues] | {jira-hist-issues}[Change History]
+endif::[]
+
+// Use the following version for a release
+ifeval::["{am_release}" != "latest"]
+:jira-pr-release: https://openehr.atlassian.net/projects/SPECPR/versions/10060
+:jira-cr-release: https://openehr.atlassian.net/projects/SPECAM/versions/10860
+[.title-para]
+{jira-pr-release}[Problems Fixed] | {jira-cr-release}[Changes Implemented] | {jira-roadmap}[Roadmap] | {jira-hist-issues}[Change History]
+endif::[]
 
 == Specifications
 
