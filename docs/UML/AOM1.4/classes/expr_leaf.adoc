@@ -1,0 +1,25 @@
+=== EXPR_LEAF Class
+
+[cols="^1,2,3"]
+|===
+h|*Class*
+2+^h|*EXPR_LEAF*
+
+h|*Description*
+2+a|Expression tree leaf item representing one of:
+• a manifest constant of any primitive type;
+• a path referring to a value in the archetype;
+• a constraint;
+• a variable reference.
+
+h|*Inherit*
+2+|EXPR_ITEM
+
+h|*Functions*
+^h|*Signature*
+^h|*Meaning*
+
+h|
+|*reference_type*: `String`
+a|Type of reference: “constant”, “attribute”, “function”, “constraint”. The first three are used to indicate the referencing mechanism for an operand. The last is used to indicate a constraint operand, as happens in the case of the right-hand operand of the ‘matches’ operator.
+|===

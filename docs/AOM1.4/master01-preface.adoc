@@ -1,0 +1,66 @@
+= Preface
+
+== Purpose
+
+This document contains the definitive statement of archetype semantics, in the form of an object model for archetypes. The model presented here can be used as a basis for building software that processes archetypes, independent of their persistent representation; equally, it can be used to develop the output side of parsers that process archetypes in a linguistic format, such as the openEHR Archetype Definition Language (ADL) <<openehr_am_adl14>>, XML-instance and so on. As a specification, it can be treated as an API for archetypes.
+
+It is recommended that the openEHR ADL document <<openehr_am_adl14>> be read in conjunction with this document, since it contains a detailed explanation of the semantics of archetypes, and many of the examples are more obvious in ADL, regardless of whether ADL is actually used with the object model presented here or not.
+
+== Related Documents
+
+Prerequisite documents for reading this document include:
+
+* The openEHR Architecture Overview (<<openehr_overview>>);
+* The openEHR Archetypes Technical Overview (<<openehr_am_overview>>).
+
+Related documents include:
+
+* The openEHR Definition Language (<<openehr_am_adl14>>);
+* The openEHR Archetype Profile (<<openehr_am_oap>>)
+
+== Nomenclature
+
+In this document, the term 'attribute' denotes any stored property of a type defined in an object model, including primitive attributes and any kind of relationship such as an association or aggregation. XML 'attributes' are always referred to explicitly as 'XML attributes'.
+
+== Status
+
+This specification is in the {spec_status} state. The development version of this document can be found at http://www.openehr.org/releases/AM/latest/AOM14.html.
+
+Known omissions or questions are indicated in the text with a 'to be determined' paragraph, as follows:
+[.tbd]
+*TBD*: (example To Be Determined paragraph)
+
+Users are encouraged to comment on and/or advise on these paragraphs as well as the main content.  Feedback should be provided either on the http://lists.openehr.org/mailman/listinfo/openehr-technical_lists.openehr.org[technical mailing list], or on the https://openehr.atlassian.net/browse/SPECPR/?selectedTab=com.atlassian.jira.jira-projects-plugin:issues-panel[specifications issue tracker].
+
+NOTE: this specification is a re-formatted issue of the http://www.openehr.org/releases/1.0.2/architecture/am/aom1.4.pdf[original AOM 1.4 Specification from openEHR Release 1.0.2]. There are slight changes in formatting, citations and other references, corrections to typographical errors and changed syntax colourisation due to the use of more modern language-based syntax colourisers in the publishing tools.
+
+NOTE: for users requiring the most recent form of ADL and archteype technology in general, the http://www.openehr.org/programs/specification/releases/currentbaseline#AOM2[Archetype Definition Language 2 (ADL2) specifications should be used]. In particular, the http://www.openehr.org/releases/AM/latest/Overview.html[Archetype Technology Overview] should be referred to for the most current state of Archetype Technology.
+
+== Background
+
+=== What is an Archetype?
+
+Archetypes are constraint-based models of domain entities, or what some might call "structured business rules". Each archetype describes configurations of data instances whose classes are described in a reference model; the instance configurations are considered to be valid exemplars of a particular domain concept. Thus, in medicine, an archetype might be designed to constrain configurations of instances of a simple node/arc information model, that express a "microbiology test result" or a "physical examination". Archetypes can be composed, specialised, and templated for local use. The archetype concept has been described in detail by Beale <<Beale_2000>>, <<Beale_2002>>. Most of the detailed formal semantics are described in the openEHR Archetype Definition Language <<openehr_am_adl14>>. The openEHR archetype framework is described in terms of Archetype Definitions and Principles <<openehr_am_def_pri>> and an Archetype System <<openehr_am_sys>>.
+
+=== Context
+
+The object model described in this document relates to linguistic forms of archetypes as shown in the figure below. The model (upper right in the figure) is the object-oriented semantic equivalent of the ADL the Archetype Definition Language BNF language definition, and, by extension, any formal transformation of it. Instances of the model (lower right on the figure) are themselves archetypes, and correspond one-to-one with archetype documents expressed in ADL or a related language.
+
+[.text-center]
+.Relationship of Archetype Object Model to Archetype Languages
+image::diagrams/syntax_model_relationship.png[id=syntax_model_relationship, align="center", width=80%]
+
+== Tools
+
+Various tools exist for creating and processing archetypes. The http://www.openehr.org/downloads/ADLworkbench/home[ADL Workbench] is a reference compiler, visualiser and editor. The openEHR tools can be http://www.openehr.org/downloads/modellingtools[downloaded from the website] .
+Source projects can be found at the https://github.com/openEHR[openEHR Github project].
+
+== Changes from Previous Versions
+
+=== Version 0.6 to 2.0
+
+As part of the changes carried out to ADL version 1.3, the archetype object model specified here is revised, also to version 2.0, to indicate that ADL and the AOM can be regarded as 100% synchronised specifications.
+
+* added a new attribute `_adl_version_ : String` to the `ARCHETYPE` class;
+* changed name of `ARCHETYPE._concept_code_` attribute to `_concept_`.
+

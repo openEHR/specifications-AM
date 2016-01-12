@@ -1,0 +1,14 @@
+[appendix]
+= Domain-specific Extension Example
+
+== Overview
+
+Domain-specific classes can be added to the archetype constraint model by inheriting from the class `C_DOMAIN_TYPE`. This section provides an example of how domain-specific constraint classes are added to the archetype model. Actual additions to the AOM for openEHR are documented in the openEHR Archetype Profile (oAP) specification.
+
+== Scientific/Clinical Computing Types
+
+The following figure shows the general approach, used to add constraint classes for commonly used concepts in scientific and clinical computing, such as 'ordinal' (used heavily in medicine, particularly in pathology testing), 'coded term' (also heavily used in clinical computing) and 'quantity', a general scientific meansurement concept. The constraint types shown are `C_ORDINAL`, `C_CODED_TEXT` and `C_QUANTITY` which can optionally be used in archetypes to replace the default constraint semantics represented by the use of instances of `C_OBJECT` / `C_ATTRIBUTE` to constrain ordinals, coded terms and quantities. The following model is intended only as an example, and does not try to define any normative semantics of the particular constraint types shown.
+
+[.text-center]
+.Example domain-specific package
+image::diagrams/example_domain_package.png[id=example_domain_package, align="center"]

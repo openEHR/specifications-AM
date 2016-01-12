@@ -1,0 +1,34 @@
+=== ARCHETYPE_SLOT Class
+
+[cols="^1,2,3"]
+|===
+h|*Class*
+2+^h|*ARCHETYPE_SLOT*
+
+h|*Description*
+2+a|Constraint describing a  slot' where another archetype can occur.
+
+h|*Inherit*
+2+|C_REFERENCE_OBJECT
+
+h|*Attributes*
+^h|*Signature*
+^h|*Meaning*
+
+h|*0..1*
+|*includes*: `List<ASSERTION>`
+a|List of constraints defining other archetypes that could be included at this point.
+
+h|*0..1*
+|*excludes*: `List<ASSERTION>`
+a|List of constraints defining other archetypes that cannot be included at this point.
+
+h|*Invariant*
+2+a|*_Includes_valid_*: includes /= Void implies not includes.is_empty
+
+h|
+2+a|*_Excludes_valid_*: excludes /= Void implies not excludes.is_empty
+
+h|
+2+a|*_Validity_*: any_allowed xor (includes /= Void or excludes /= Void)
+|===

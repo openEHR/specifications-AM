@@ -1,0 +1,17 @@
+= The Archetype Package
+
+== Overview
+
+The model of an archetype, illustrated in the following figure, is straightforward at an abstract level, mimicking the structure of an archetype document as defined in the openEHR Archetype Definition Language (ADL) document. An archetype is a modelled as a particular kind of `AUTHORED_RESOURCE`, and as such, includes descriptive meta-data, language information and revision history. The `ARCHETYPE` class adds identifying information, a `definition` - expressed in terms of constraints on instances of an object model, and an `ontology`. The archetype `definition`, the 'main' part of an archetype, is an instance of a `C_COMPLEX_OBJECT`, which is to say, the root of the constraint structure of an archetype always takes the form of a constraint on a non-primitive object type. The last section of an archetype, the `ontology`, is represented by its own class, and is what allows the archetypes to be natural language- and terminology-neutral.
+
+[.text-center]
+.openehr.am.archetype Package
+image::{uml_export_dir}/AOM1.4/diagrams/AOM-archetype.svg[id=archetype_package, align="center"]
+
+A utility class, `VALIDITY_KIND` is also included in the Archetype package. This class contains one integer attribute and three constant definitions, and is intended to be used as the type of any attribute in this constraint model whose value is logically 'mandatory', 'optional', or 'disallowed'. It is used in this model in the classes `C_DATE`, `C_TIME` and `C_DATE_TIME`.
+
+== Class Descriptions
+
+include::{uml_export_dir}/AOM1.4/classes/archetype.adoc[]
+include::{uml_export_dir}/AOM1.4/classes/validity_kind.adoc[]
+

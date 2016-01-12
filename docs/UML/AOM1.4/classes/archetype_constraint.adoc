@@ -1,0 +1,35 @@
+=== ARCHETYPE_CONSTRAINT Class
+
+[cols="^1,2,3"]
+|===
+h|*Class*
+2+^h|*_ARCHETYPE_CONSTRAINT (abstract)_*
+
+h|*Description*
+2+a|Archetype equivalent to LOCATABLE class in openEHR Common reference model. Defines common constraints for any inheritor of LOCATABLE in any reference model.
+
+h|*Functions*
+^h|*Signature*
+^h|*Meaning*
+
+h|
+|*is_subset_of* (other: `ARCHETYPE_CONSTRAINT`): `Boolean`
+a|True if constraints represented by this node, ignoring any sub-parts, are narrower or the same as other.
+Typically used during validation of special-ised archetype nodes.
+
+h|
+|*is_valid*: `Boolean`
+a|
+
+h|
+|*path*: `String`
+a|Path of this node relative to root of archetype.
+
+h|
+|*has_path* (a_path: `String`): `Boolean`
+a|True if the relative path a_path exists at this node.
+
+h|
+|*any_allowed*: `Boolean`
+a|True if any value (i.e. instance) of the reference model type would be allowed. Redefined in descendants.
+|===

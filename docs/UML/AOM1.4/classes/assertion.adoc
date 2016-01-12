@@ -1,0 +1,36 @@
+=== ASSERTION Class
+
+[cols="^1,2,3"]
+|===
+h|*Class*
+2+^h|*ASSERTION*
+
+h|*Description*
+2+a|Structural model of a typed first order predicate logic assertion, in the form of an expression tree, including optional variable definitions.
+
+h|*Attributes*
+^h|*Signature*
+^h|*Meaning*
+
+h|*0..1*
+|*tag*: `String`
+a|Expression tag, used for differentiating multiple assertions.
+
+h|*0..1*
+|*string_expression*: `String`
+a|String form of expression, in case an expression evaluator taking String expressions is used for evaluation.
+
+h|*1..1*
+|*expression*: `EXPR_ITEM`
+a|Root of expression tree.
+
+h|*0..1*
+|*variables*: `List<ASSERTION_VARIABLE>`
+a|Definitions of variables used in the assertion expression.
+
+h|*Invariant*
+2+a|*_Tag_valid_*: tag /= Void implies not tag.is_empty
+
+h|
+2+a|*_Expression_valid_*: expression /= Void and then expression.type.is_equal(“BOOLEAN”)
+|===
