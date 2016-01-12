@@ -2,15 +2,15 @@
 
 == Overview
 
-The top-level model of archetypes and templates (all variant forms) is illustrated in Figure <<archetype_package>>. The model defines a standard structural representation of an archetype. Archetypes authored as independent entities are instances of the class `AUTHORED_ARCHETYPE` which is a descendant of `AUTHORED_RESOURCE` and `ARCHETYPE`. The former provides a standardised model of descriptive meta-data, language information, annotations and revision history for any resource. The latter class defines the core structure of any kind of archetype, including definition, terminology, optional rules part, along with a ‘semantic identifier’ (`ARCHETYPE`.`_archetype_id_`).
+The top-level model of archetypes and templates (all variant forms) is illustrated in Figure <<archetype_package>>. The model defines a standard structural representation of an archetype. Archetypes authored as independent entities are instances of the class `AUTHORED_ARCHETYPE` which is a descendant of `AUTHORED_RESOURCE` and `ARCHETYPE`. The former provides a standardised model of descriptive meta-data, language information, annotations and revision history for any resource. The latter class defines the core structure of any kind of archetype, including definition, terminology, optional rules part, along with a 'semantic identifier' (`ARCHETYPE`.`_archetype_id_`).
 
-The `AUTHORED_ARCHETYPE` class adds identifying attributes, flags and descriptive meta-data, and is the ancestor type for two further specialisations - `TEMPLATE` and `OPERATIONAL_TEMPLATE` . The `TEMPLATE` class defines the notion of a ‘templated’ archetype, i.e. an archetype containing fillers/references (ADL's `use_archetype` statements), typically designed to represent a data set. To enable this, it may contain ‘overlays’, private archetypes that specialise one or more of the referenced / filler archetypes it uses. Overlays are instances of the `TEMPLATE_OVERLAY` class, have no meta-data of their own, but are otherwise computationally just like any other archetype. 
+The `AUTHORED_ARCHETYPE` class adds identifying attributes, flags and descriptive meta-data, and is the ancestor type for two further specialisations - `TEMPLATE` and `OPERATIONAL_TEMPLATE` . The `TEMPLATE` class defines the notion of a 'templated' archetype, i.e. an archetype containing fillers/references (ADL's `use_archetype` statements), typically designed to represent a data set. To enable this, it may contain 'overlays', private archetypes that specialise one or more of the referenced / filler archetypes it uses. Overlays are instances of the `TEMPLATE_OVERLAY` class, have no meta-data of their own, but are otherwise computationally just like any other archetype. 
 
 [.text-center]
 .Archetype Package
 image::{uml_export_dir}/diagrams/AOM-archetype.svg[id=archetype_package, align="center"]
 
-The `OPERATIONAL_TEMPLATE` class represents the fully flattened form of a template, i.e. with all fillers and references substituted and overlays processed, to form what is in practical terms, a single custom-made ‘operational’ artefact, ready for transformation to downstream artefacts. Because an operational template includes one or more other archetype structures inline, it also includes their terminologies, enabling it to be treated as a self-standing artefact.
+The `OPERATIONAL_TEMPLATE` class represents the fully flattened form of a template, i.e. with all fillers and references substituted and overlays processed, to form what is in practical terms, a single custom-made 'operational' artefact, ready for transformation to downstream artefacts. Because an operational template includes one or more other archetype structures inline, it also includes their terminologies, enabling it to be treated as a self-standing artefact.
 
 == Archteype Identification
 
@@ -22,9 +22,9 @@ All archetype variants based on `ARCHETYPE` have a human-readable, structured id
 .Archetype HRID Structure
 image::diagrams/archetype_hrid_structure.png[id=archetype_hrid_structure, align="center",width="80%"]
 
-For specialised archetypes, the `_parent_archetype_id_` is also required. This is a string `_reference_` to an archetype, and is normally the ‘interface’ form of the id, i.e. down to the major version only. In some circumstances, it is useful to include the minor and patch version numbers as well.
+For specialised archetypes, the `_parent_archetype_id_` is also required. This is a string `_reference_` to an archetype, and is normally the 'interface' form of the id, i.e. down to the major version only. In some circumstances, it is useful to include the minor and patch version numbers as well.
 
-An important aspect of identification relates to the rules governing when when the HRID namespace changes or is retained, with respect to when ‘moves’ or ‘forks’ occur. Its value is always the same as one of the `_original_namespace_` and `_custodian_namespace_` properties inherited from `AUTHORED_RESOURCE`.`_description_` (or both, in the case where they are the same). A full explanation of the identification system and rules is given in the openEHR Knowledge Artefact Identification specification.
+An important aspect of identification relates to the rules governing when when the HRID namespace changes or is retained, with respect to when 'moves' or 'forks' occur. Its value is always the same as one of the `_original_namespace_` and `_custodian_namespace_` properties inherited from `AUTHORED_RESOURCE`.`_description_` (or both, in the case where they are the same). A full explanation of the identification system and rules is given in the openEHR Knowledge Artefact Identification specification.
 
 === Machine Identifiers
 
@@ -44,11 +44,11 @@ The following items correspond to syntax elements that may appear in parentheses
 
 === ADL Version
 
-The `ARCHETYPE`.`_adl_version_` attribute in ADL 1.4 was used to indicate the ADL release used in the archetype source file from which the AOM structure was created (the version number comes from the revision history of the openEHR ADL specification). In the current and future AOM and ADL specifications, the meaning of this attribute is generalised to mean ‘the version of the archetype formalism’ in which the current archetype is expressed. For reasons of convenience, the version number is still taken from the ADL specification, but now refers to all archetype-related specifications together, since they are always updated in a synchronised fashion.
+The `ARCHETYPE`.`_adl_version_` attribute in ADL 1.4 was used to indicate the ADL release used in the archetype source file from which the AOM structure was created (the version number comes from the revision history of the openEHR ADL specification). In the current and future AOM and ADL specifications, the meaning of this attribute is generalised to mean 'the version of the archetype formalism' in which the current archetype is expressed. For reasons of convenience, the version number is still taken from the ADL specification, but now refers to all archetype-related specifications together, since they are always updated in a synchronised fashion.
 
 === Reference Model Release
 
-The `ARCHETYPE`.`_rm_release_` attribute designates the release of the reference model on which the archetype is based, in the archetype’s current version. This means `_rm_release_` can change with new versions of the archetype, where re-versioning includes upgrading the archetype to a later RM release. However, such upgrading still has to obey the basic rule of archetype compatibility: later minor, patch versions and builds cannot create data that is not valid with respect to the prior version.
+The `ARCHETYPE`.`_rm_release_` attribute designates the release of the reference model on which the archetype is based, in the archetype's current version. This means `_rm_release_` can change with new versions of the archetype, where re-versioning includes upgrading the archetype to a later RM release. However, such upgrading still has to obey the basic rule of archetype compatibility: later minor, patch versions and builds cannot create data that is not valid with respect to the prior version.
 
 This should be in the same semver.org 3-part form as the `ARCHETYPE_HRID`.`_release_version_` property, e.g. "1.0.2". This property does not indicate conformance to any particular reference model version(s) other than the named one, since most archetypes can easily conform to more than one. More minimal archetypes are likely to technically conform to more old and future releases than more complex archteypes.
 
@@ -70,11 +70,11 @@ image::images/metadata_governance.png[id=metadata_governance, align="center", wi
 
 ==== Package
 
-The optional `_resource_package_uri_` property enables the recording of a reference to a package of archetypes or other resources, to which this archetype is considered to below. It may be in the form of ‘text <URL>’.
+The optional `_resource_package_uri_` property enables the recording of a reference to a package of archetypes or other resources, to which this archetype is considered to below. It may be in the form of 'text <URL>'.
 
 ==== Lifecycle_state
 
-The `_description_`.`_lifecycle_state_` is an important property of an archetype, which is used to record its state in a defined lifecycle. The lifecycle state machine and versioning rules are explained fully in the http://www.openehr.org/releases/trunk/architecture/am/knowledge_id_system.pdf[openEHR Knowledge Artefact Identification specification]. Here we simply note that the value of the property is a coded term corresponding to one of the macro-state names on the diagram, i.e. ‘unmanaged’, ‘in_development’, and so on.
+The `_description_`.`_lifecycle_state_` is an important property of an archetype, which is used to record its state in a defined lifecycle. The lifecycle state machine and versioning rules are explained fully in the http://www.openehr.org/releases/trunk/architecture/am/knowledge_id_system.pdf[openEHR Knowledge Artefact Identification specification]. Here we simply note that the value of the property is a coded term corresponding to one of the macro-state names on the diagram, i.e. 'unmanaged', 'in_development', and so on.
 
 ==== Original_namespace and Original_publisher
 
@@ -86,13 +86,13 @@ These two optional properties state a formal namespace, and a human-readable org
 
 ==== Intellectual Property Items
 
-There are three properties in the class that `RESOURCE_DESCRIPTION` relate to intellectual property (IP). Licence is a String field for recording of the licence (US: ‘license’) under which the artefact can be used. The recommended format is 
+There are three properties in the class that `RESOURCE_DESCRIPTION` relate to intellectual property (IP). Licence is a String field for recording of the licence (US: 'license') under which the artefact can be used. The recommended format is 
 
 ----
 licence name <reliable URL to licence statement>
 ----
 
-The copyright property records the copyright applying to the artefact, and is normally in the standard form ‘(c) name’ or ‘(c) year name’. The special character © may also be used (UTF-8 0xC2A9).
+The copyright property records the copyright applying to the artefact, and is normally in the standard form '(c) name' or '(c) year name'. The special character © may also be used (UTF-8 0xC2A9).
 
 === Authorship Meta-data
 
@@ -104,7 +104,7 @@ image::images/metadata_authoring.png[id=metadata_authoring, align="center", widt
 
 ==== Original Author
 
-The `RESOURCE_DESCRIPTION`.`_original_author_` property defines a simple list of name/value pairs via which the original author can be documented. Typical key values include ‘name’, ‘organi[zs]ation’, ‘email’ and ‘date’.
+The `RESOURCE_DESCRIPTION`.`_original_author_` property defines a simple list of name/value pairs via which the original author can be documented. Typical key values include 'name', 'organi[zs]ation', 'email' and 'date'.
 
 ==== Contributors
 
@@ -149,7 +149,7 @@ The `_keywords_` property is a list of Strings designed to record search keyword
 The `_original_resource_uri_` property is used to record one or more references to resources in each particular language.
 
 [.tbd]
-*TBD*: This property does not appear to have ever been used, and it may not be useful, since ‘resources’ are not typically available for each language.
+*TBD*: This property does not appear to have ever been used, and it may not be useful, since 'resources' are not typically available for each language.
 
 == Structural Definition
 
@@ -159,19 +159,19 @@ The archetype definition is the main definitional part of an archetype and is an
 
 The terminology section of an archetype is represented by its own classes, and is what allows archetypes to be natural language- and terminology-neutral. It is described in detail in the <<terminology_package>>.
 
-An archetype may include one or more rules. Rules are statements expressed in a subset of predicate logic, which can be used to state constraints on multiple parts of an object. They are not needed to constrain single attributes or objects (since this can be done with an appopriate `C_ATTRIBUTE` or `C_OBJECT` ), but are necessary for constraints referring to more than one attribute, such as a constraint that ‘systolic pressure should be >= diastolic pressure’ in a blood pressure measurement archetype. They can also be used to declare variables, including external data query results, and make other constraints dependent on a variable value, e.g. the gender of the record subject.
+An archetype may include one or more rules. Rules are statements expressed in a subset of predicate logic, which can be used to state constraints on multiple parts of an object. They are not needed to constrain single attributes or objects (since this can be done with an appopriate `C_ATTRIBUTE` or `C_OBJECT` ), but are necessary for constraints referring to more than one attribute, such as a constraint that 'systolic pressure should be >= diastolic pressure' in a blood pressure measurement archetype. They can also be used to declare variables, including external data query results, and make other constraints dependent on a variable value, e.g. the gender of the record subject.
 
 Lastly, annotations and revision history sections, inherited from the `AUTHORED_RESOURCE` class, can be included as required. The annotations section is of particular relevance to archetypes and templates, and is used to document individual nodes within an archetype or template, and/or nodes in reference model data, that may not be constrained in the archetype, but whose specific use in the archetyped data needs to be documented. In the former case, the annotations are keyed by an archetype path, while in the latter case, by a reference model path.
 
 === Structural Variants
 
-The model in Figure <<archetype_package>> defines the structures of a number of variants of the ‘archetype’ idea. All concrete instances are instances of one of the concrete descendants of `ARCHETYPE`. Figure <<source_archetype_structure>> illustrates the typical object structure of a source archetype - the form of archetype created by an authoring tool - represented by a `DIFFERENTIAL_ARCHETYPE` instance. Mandatory parts are shown in bold.
+The model in Figure <<archetype_package>> defines the structures of a number of variants of the 'archetype' idea. All concrete instances are instances of one of the concrete descendants of `ARCHETYPE`. Figure <<source_archetype_structure>> illustrates the typical object structure of a source archetype - the form of archetype created by an authoring tool - represented by a `DIFFERENTIAL_ARCHETYPE` instance. Mandatory parts are shown in bold.
 
 [.text-center]
 .Source Archetype Structure
 image::{uml_export_dir}/diagrams/AOM-source_archetype_structure.svg[id=source_archetype_structure, align="center", width="60%"]
 
-Source archetypes can be specialised, in which case their definition structure is a partial overlay on the flat parent, or ‘top-level’, in which case the definition structure is complete. `C_ARCHETYPE_ROOT` instances may only occur representing direct references to other archetypes - ‘external references’.
+Source archetypes can be specialised, in which case their definition structure is a partial overlay on the flat parent, or 'top-level', in which case the definition structure is complete. `C_ARCHETYPE_ROOT` instances may only occur representing direct references to other archetypes - 'external references'.
 
 A flat archetype is generated from one or more source archetypes via the flattening process described in the next chapter of this specification, (also in the ADL specification). This generates a `FLAT_ARCHETYPE` from a `DIFFERENTIAL_ARCHETYPE` instance. The main two changes that occur in this operation are a) specialised archetype overlays are applied to the flat parent structure, resulting in a full archetype structure, and b) internal references (use_nodes) are replaced by their expanded form, i.e. a copy of the subtrees to which they point.
 
@@ -179,13 +179,13 @@ A flat archetype is generated from one or more source archetypes via the flatten
 .Source Template Structure
 image::{uml_export_dir}/diagrams/AOM-source_template_structure.svg[id=source_template_structure, align="center", width="80%"]
 
-This form is used to represent the full ‘operational’ structure of a specialised archetype, and has two uses. The first is to generate backwards compatible ADL 1.4 legacy archetypes (always in flat form); the second is during the template flattening process, when the flat forms of all referenced archetypes and templates are ultimately combined into a single operational template.
+This form is used to represent the full 'operational' structure of a specialised archetype, and has two uses. The first is to generate backwards compatible ADL 1.4 legacy archetypes (always in flat form); the second is during the template flattening process, when the flat forms of all referenced archetypes and templates are ultimately combined into a single operational template.
 
 Figure <<source_template_structure>> illustrates the structure of a source template, i.e instances of `TEMPLATE`. A source template is an archetype containing `C_ARCHETYPE_ROOT` objects representing slot fillers - each referring to an external archetype or template, or potentially an overlay archetype.
 
-Another archetype variant, also shown in <<source_template_structure>> is the template overlay, i.e. an instance of `TEMPLATE_OVERLAY`. These are purely local components of templates, and include only the definition and terminology. The definition structure is always a specialised overlay on something else, and may not contain any slot fillers or external references, i.e. no `C_ARCHETYPE_ROOT` objects. No identifier, adl_version, languages or description are required, as they are considered to be propagated from the owning root template. Accordingly, template overlays act like a simplified specialised archetype. Template overlays can be thought of as being similar to ‘anonymous’ or ‘inner’ classes in some object-oriented programming languages.
+Another archetype variant, also shown in <<source_template_structure>> is the template overlay, i.e. an instance of `TEMPLATE_OVERLAY`. These are purely local components of templates, and include only the definition and terminology. The definition structure is always a specialised overlay on something else, and may not contain any slot fillers or external references, i.e. no `C_ARCHETYPE_ROOT` objects. No identifier, adl_version, languages or description are required, as they are considered to be propagated from the owning root template. Accordingly, template overlays act like a simplified specialised archetype. Template overlays can be thought of as being similar to 'anonymous' or 'inner' classes in some object-oriented programming languages.
 
-Figure <<operational_template_structure>> illustrates the resulting operational template, or compiled form of a template. This is created by building the composition of referenced archetypes and/or templates and/or template overlays, in their flattened form, to generate a single ‘giant’ archetype. The root node of this archetype, along with every archetype/template root node within, is represented using a `C_ARCHETYPE_ROOT` object. An operational template also has a component_terminologies property containing the ontologies from every constituent archetype, template and overlay.
+Figure <<operational_template_structure>> illustrates the resulting operational template, or compiled form of a template. This is created by building the composition of referenced archetypes and/or templates and/or template overlays, in their flattened form, to generate a single 'giant' archetype. The root node of this archetype, along with every archetype/template root node within, is represented using a `C_ARCHETYPE_ROOT` object. An operational template also has a component_terminologies property containing the ontologies from every constituent archetype, template and overlay.
 
 [.text-center]
 .Operational Template Structure

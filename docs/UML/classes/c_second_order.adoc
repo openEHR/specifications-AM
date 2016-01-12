@@ -15,4 +15,15 @@ h|*Attributes*
 h|*0..1*
 |*members*: `List<ARCHETYPE_CONSTRAINT>`
 a|Members of this second order constrainer. Normally redefined in descendants.
+h|*Functions*
+^h|*Signature*
+^h|*Meaning*
+
+h|
+|*c_conforms_to* (other: `C_SECOND_ORDER`): `Boolean`
+a|True if constraints represented by this node, ignoring any sub-parts, are narrower or the same as other. Typically used during validation of specialised archetype nodes.
+
+h|
+|*c_congruent_to* (other: `C_SECOND_ORDER`): `Boolean`
+a|True if constraints represented by this node contain no further redefinitions with respect to the node other. Typically used to test if an inherited node locally contains any constraints.
 |===

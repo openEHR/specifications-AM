@@ -194,19 +194,19 @@ All of the constraint semantics described above can be considered 'first order' 
 
 Some constraints however do not fit directly within the object/attribute/object hierarchy scheme, and are considered 'second order constraints' in the archetype formalism. The 'rule' constraints ('invariants' in ADL/AOM 1.4) constitute one such group. These constraints are defined in terms of first order predicate logic statements that can refer to any number of constraint nodes within the main hierarchy. These are described in Figure <<rules_package>>.
 
-Another type of second order constraint can be 'attached' to the object/attribute/object hierarchy in order to further limit structural possibilities. Although these constraints could also theoretically be expressed as rules, they are supported by direct additions to the main constraint model since they can be easily and intuitively represented 'inline' in ADL and corresponding AOM structures.
+Another type of second order constraint can be 'attached' to the object/attribute/object hierarchy in order to further limit structural possibilities. Although these constraints could also theoretically be expressed as rules, they are supported by direct additions to the main constraint model since they can be easily and intuitively represented inline in ADL and corresponding AOM structures.
 
 === Tuple Constraints
 
-Tuple constraints are designed to account for the very common need to constrain the values of more than one RM class attribute together. This effectively treats the attributes in question as a tuple, and the corresponding object constraints are accordingly modelled as tuples. Additions to the main constraint model to support tuples are shown below.
+Tuple constraints are designed to account for the very common need to constrain the values of more than one RM class attribute together. This effectively treats the attributes in question as a tuple, and the corresponding object constraints are accordingly modelled as tuples as well. A detailed explanation of tuples can be found in the ADL2 specification's http://www.openehr.org/releases/AM/latest/docs/ADL2/ADL2.html#_second_order_constraints[section on second order constraints]. Additions to the main constraint model to support tuples are shown below.
 
 [.text-center]
 .Tuple Constraint Model
 image::{uml_export_dir}/diagrams/AOM-constraint_model-tuple.svg[id=tuple_constraint_model, align="center"]
 
-In this model, the type `C_ATTRIBUTE_TUPLE` groups the co-constrained `C_ATTRIBUTE`s under a `C_COMPLEX_OBJECT`. Currently the concrete type is limited to being `C_PRIMITIVE_OBJECT`, to reduce complexity, and since this caters for the known examples of tuple constraints. In principle, any `C_DEFINED_OBJECT` would be allowed, and this may change in the future.
+In this model, the type `C_ATTRIBUTE_TUPLE` groups the co-constrained `C_ATTRIBUTEs` under a `C_COMPLEX_OBJECT`. Currently the concrete type is limited to being `C_PRIMITIVE_OBJECT` to reduce complexity, and since it caters for all known examples of tuple constraints. In principle, any `C_DEFINED_OBJECT` could be allowed, and this may change in the future.
 
-The tuple constraint type replaces all domain-specific constraint types defined in ADL/AOM 1.4, including `C_DV_QUANTITY` and `C_DV_ORDINAL`.
+The tuple constraint type replaces all domain-specific constraint types defined in ADL/AOM 1.4 <<openehr_am_adl14>>, including `C_DV_QUANTITY` and `C_DV_ORDINAL`.
 
 These additions allow standard constraint structures (i.e. `C_ATTRIBUTE` / `C_COMPLEX_OBJECT` / `C_PRIMITIVE_OBJECT` hierarchies) to be 'annotated', while leaving the first order structure intact. The following example shows an archetype instance structure in which a notional `ORDINAL` type is constrained. The logical requirement is to constrain a `ORDINAL` to one of three instance possibilities, each of which consists of a pair of values for the attributes value and symbol, of type Integer and `TERMINOLOGY_CODE` respectively. Each of these three instance constraints should be understood as an alternative for the single valued owning attribute, `ELEMENT` .value. Tuple constraints achieve the requirement to express the constraints as pairs not just as allowable alternatives at the final leaf level, which would incorrectly allowing any mixing of the Integer and code values.
 
@@ -604,5 +604,6 @@ include::{uml_export_dir}/classes/c_date_time.adoc[]
 include::{uml_export_dir}/classes/c_duration.adoc[]
 include::{uml_export_dir}/classes/c_terminology_code.adoc[]
 include::{uml_export_dir}/classes/c_second_order.adoc[]
+include::{uml_export_dir}/classes/c_primitive_tuple.adoc[]
 include::{uml_export_dir}/classes/c_attribute_tuple.adoc[]
 
