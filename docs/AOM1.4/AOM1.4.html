@@ -79,12 +79,12 @@
 <li><a href="#_attribute_node_types">4.2.2. Attribute Node Types</a></li>
 <li><a href="#_object_node_types">4.2.3. Object Node Types</a>
 <ul class="sectlevel4">
-<li><a href="#_node_id_and_paths">Node_id and Paths</a></li>
-<li><a href="#_defined_object_nodes_c_defined_object">Defined Object Nodes (C_DEFINED_OBJECT)</a></li>
-<li><a href="#_complex_objects_c_complex_object">Complex Objects (C_COMPLEX_OBJECT)</a></li>
-<li><a href="#_primitive_types">Primitive Types</a></li>
-<li><a href="#_domain_specific_extensions_c_domain_type">Domain-specific Extensions (C_DOMAIN_TYPE)</a></li>
-<li><a href="#_reference_objects_c_reference_object">Reference Objects (C_REFERENCE_OBJECT)</a></li>
+<li><a href="#_node_id_and_paths">4.2.3.1. Node_id and Paths</a></li>
+<li><a href="#_defined_object_nodes_c_defined_object">4.2.3.2. Defined Object Nodes (C_DEFINED_OBJECT)</a></li>
+<li><a href="#_complex_objects_c_complex_object">4.2.3.3. Complex Objects (C_COMPLEX_OBJECT)</a></li>
+<li><a href="#_primitive_types">4.2.3.4. Primitive Types</a></li>
+<li><a href="#_domain_specific_extensions_c_domain_type">4.2.3.5. Domain-specific Extensions (C_DOMAIN_TYPE)</a></li>
+<li><a href="#_reference_objects_c_reference_object">4.2.3.6. Reference Objects (C_REFERENCE_OBJECT)</a></li>
 </ul>
 </li>
 <li><a href="#_assertions">4.2.4. Assertions</a></li>
@@ -153,7 +153,7 @@
 <ul class="sectlevel3">
 <li><a href="#_specialisation_depth">7.2.1. Specialisation Depth</a>
 <ul class="sectlevel4">
-<li><a href="#_term_and_constraint_definitions">Term and Constraint Definitions</a></li>
+<li><a href="#_term_and_constraint_definitions">7.2.1.1. Term and Constraint Definitions</a></li>
 </ul>
 </li>
 </ul>
@@ -197,7 +197,6 @@
 <li><a href="#_tools_2">Tools</a></li>
 </ul>
 </li>
-<li><a href="#_openehr_resources">openEHR Resources</a></li>
 </ul>
 </li>
 </ul>
@@ -529,10 +528,10 @@ Includes detailed input and review from:</p>
 <div class="sect2">
 <h3 id="_purpose"><a class="anchor" href="#_purpose"></a>1.1. Purpose</h3>
 <div class="paragraph">
-<p>This document contains the definitive statement of archetype semantics, in the form of an object model for archetypes. The model presented here can be used as a basis for building software that processes archetypes, independent of their persistent representation; equally, it can be used to develop the output side of parsers that process archetypes in a linguistic format, such as the openEHR Archetype Definition Language (ADL) <a href="#openehr_am_adl14">[openehr_am_adl14]</a>, XML-instance and so on. As a specification, it can be treated as an API for archetypes.</p>
+<p>This document contains the definitive statement of archetype semantics, in the form of an object model for archetypes. The model presented here can be used as a basis for building software that processes archetypes, independent of their persistent representation; equally, it can be used to develop the output side of parsers that process archetypes in a linguistic format, such as the <a href="http://www.openehr.org/releases/AM/latest/ADL1.4.html">openEHR Archetype Definition Language (ADL)</a>, XML-instance and so on. As a specification, it can be treated as an API for archetypes.</p>
 </div>
 <div class="paragraph">
-<p>It is recommended that the openEHR ADL document <a href="#openehr_am_adl14">[openehr_am_adl14]</a> be read in conjunction with this document, since it contains a detailed explanation of the semantics of archetypes, and many of the examples are more obvious in ADL, regardless of whether ADL is actually used with the object model presented here or not.</p>
+<p>It is recommended that the <a href="http://www.openehr.org/releases/AM/latest/ADL1.4.html">openEHR ADL document</a> be read in conjunction with this document, since it contains a detailed explanation of the semantics of archetypes, and many of the examples are more obvious in ADL, regardless of whether ADL is actually used with the object model presented here or not.</p>
 </div>
 </div>
 <div class="sect2">
@@ -543,10 +542,10 @@ Includes detailed input and review from:</p>
 <div class="ulist">
 <ul>
 <li>
-<p>The openEHR Architecture Overview (<a href="#openehr_overview">[openehr_overview]</a>);</p>
+<p>The <a href="http://www.openehr.org/releases/BASE/latest/architecture_overview.html">openEHR Architecture Overview</a>;</p>
 </li>
 <li>
-<p>The openEHR Archetypes Technical Overview (<a href="#openehr_am_overview">[openehr_am_overview]</a>).</p>
+<p>The <a href="http://www.openehr.org/releases/AM/latest/Overview.html">openEHR Archetypes Technical Overview</a>.</p>
 </li>
 </ul>
 </div>
@@ -556,10 +555,10 @@ Includes detailed input and review from:</p>
 <div class="ulist">
 <ul>
 <li>
-<p>The openEHR Definition Language (<a href="#openehr_am_adl14">[openehr_am_adl14]</a>);</p>
+<p>The <a href="http://www.openehr.org/releases/AM/latest/ADL1.4.html">openEHR Definition Language</a>;</p>
 </li>
 <li>
-<p>The openEHR Archetype Profile (<a href="#openehr_am_oap">[openehr_am_oap]</a>)</p>
+<p>The <a href="http://www.openehr.org/releases/1.0.2/architecture/am/openehr_archetype_profile.pdf">openEHR Archetype Profile</a>.</p>
 </li>
 </ul>
 </div>
@@ -614,7 +613,7 @@ for users requiring the most recent form of ADL and archteype technology in gene
 <div class="sect3">
 <h4 id="_what_is_an_archetype"><a class="anchor" href="#_what_is_an_archetype"></a>1.5.1. What is an Archetype?</h4>
 <div class="paragraph">
-<p>Archetypes are constraint-based models of domain entities, or what some might call "structured business rules". Each archetype describes configurations of data instances whose classes are described in a reference model; the instance configurations are considered to be valid exemplars of a particular domain concept. Thus, in medicine, an archetype might be designed to constrain configurations of instances of a simple node/arc information model, that express a "microbiology test result" or a "physical examination". Archetypes can be composed, specialised, and templated for local use. The archetype concept has been described in detail by Beale <a href="#Beale_2000">[Beale_2000]</a>, <a href="#Beale_2002">[Beale_2002]</a>. Most of the detailed formal semantics are described in the openEHR Archetype Definition Language <a href="#openehr_am_adl14">[openehr_am_adl14]</a>. The openEHR archetype framework is described in terms of Archetype Definitions and Principles <a href="#openehr_am_def_pri">[openehr_am_def_pri]</a> and an Archetype System <a href="#openehr_am_sys">[openehr_am_sys]</a>.</p>
+<p>Archetypes are constraint-based models of domain entities, or what some might call "structured business rules". Each archetype describes configurations of data instances whose classes are described in a reference model; the instance configurations are considered to be valid exemplars of a particular domain concept. Thus, in medicine, an archetype might be designed to constrain configurations of instances of a simple node/arc information model, that express a "microbiology test result" or a "physical examination". Archetypes can be composed, specialised, and templated for local use. The archetype concept has been described in detail by Beale <a href="#Beale_2000">[Beale_2000]</a>, <a href="#Beale_2002">[Beale_2002]</a>. Most of the detailed formal semantics are described in the <a href="http://www.openehr.org/releases/AM/latest/ADL1.4.html">openEHR Archetype Definition Language</a>. The openEHR archetype framework is described in terms of <a href="http://www.openehr.org/releases/1.0.2/architecture/am/archetype_principles.pdf">Archetype Definitions and Principles</a> and an <a href="http://www.openehr.org/releases/1.0.2/architecture/am/archetype_system.pdf">Archetype System</a>.</p>
 </div>
 </div>
 <div class="sect3">
@@ -1124,7 +1123,7 @@ of Date/Time fields.</p>
 <div class="sect3">
 <h4 id="_object_node_types"><a class="anchor" href="#_object_node_types"></a>4.2.3. Object Node Types</h4>
 <div class="sect4">
-<h5 id="_node_id_and_paths"><a class="anchor" href="#_node_id_and_paths"></a>Node_id and Paths</h5>
+<h5 id="_node_id_and_paths"><a class="anchor" href="#_node_id_and_paths"></a>4.2.3.1. Node_id and Paths</h5>
 <div class="paragraph">
 <p>The <code><em>node_id</em></code> attribute in the class <code>C_OBJECT</code>, inherited by all subtypes, is of great importance in the archetype constraint model. It has two functions:</p>
 </div>
@@ -1143,7 +1142,7 @@ of Date/Time fields.</p>
 </div>
 </div>
 <div class="sect4">
-<h5 id="_defined_object_nodes_c_defined_object"><a class="anchor" href="#_defined_object_nodes_c_defined_object"></a>Defined Object Nodes (C_DEFINED_OBJECT)</h5>
+<h5 id="_defined_object_nodes_c_defined_object"><a class="anchor" href="#_defined_object_nodes_c_defined_object"></a>4.2.3.2. Defined Object Nodes (C_DEFINED_OBJECT)</h5>
 <div class="paragraph">
 <p>The <code>C_DEFINED_OBJECT</code> subtype corresponds to the category of <code>C_OBJECTs</code> that are defined in an archetype by value, i.e. by inline definition. Four properties characterise <code>C_DEFINED_OBJECTs</code> as follows.</p>
 </div>
@@ -1176,26 +1175,26 @@ of Date/Time fields.</p>
 </div>
 </div>
 <div class="sect4">
-<h5 id="_complex_objects_c_complex_object"><a class="anchor" href="#_complex_objects_c_complex_object"></a>Complex Objects (C_COMPLEX_OBJECT)</h5>
+<h5 id="_complex_objects_c_complex_object"><a class="anchor" href="#_complex_objects_c_complex_object"></a>4.2.3.3. Complex Objects (C_COMPLEX_OBJECT)</h5>
 <div class="paragraph">
 <p>Along with <code>C_ATTRIBUTE</code>, <code>C_COMPLEX_OBJECT</code> is the key structuring type of the constraint_model package, and consists of attributes of type <code>C_ATTRIBUTE</code>, which are constraints on the attributes (i.e. any property, including relationships) of the reference model type. Accordingly, each <code>C_ATTRIBUTE</code> records the name of the constrained attribute (in <code><em>rm_attr_name</em></code>), the existence and cardinality expressed by the constraint (depending on whether the attribute it constrains is a multiple or single relationship), and the constraint on the object to which this <code>C_ATTRIBUTE</code> refers via its children attribute (according to its reference model) in the form of further <code>C_OBJECTs</code>.</p>
 </div>
 </div>
 <div class="sect4">
-<h5 id="_primitive_types"><a class="anchor" href="#_primitive_types"></a>Primitive Types</h5>
+<h5 id="_primitive_types"><a class="anchor" href="#_primitive_types"></a>4.2.3.4. Primitive Types</h5>
 <div class="paragraph">
 <p>Constraints on primitive types are defined by the classes inheriting from <code>C_PRIMITIVE</code>, namely <code>C_STRING</code>, <code>C_INTEGER</code> and so on. These types do not inherit from <code>ARCHETYPE_CONSTRAINT</code>, but rather are related by association, in order to allow them to have the simplest possible definitions, independent even from the rest of ADL, in the hope of acceptance in heath standardisation organisations. Technically, avoiding inheritance from <code>ARCHETYPE_CONSTRAINT</code> / <code>C_PRIMITIVE_OBJECT</code> into these base types (in other words, coalescing the classes <code>C_PRIMITIVE_OBJECT</code> and <code>C_PRIMITIVE</code>) does not pose a problem, but could be effected at a later date if desired.</p>
 </div>
 </div>
 <div class="sect4">
-<h5 id="_domain_specific_extensions_c_domain_type"><a class="anchor" href="#_domain_specific_extensions_c_domain_type"></a>Domain-specific Extensions (C_DOMAIN_TYPE)</h5>
+<h5 id="_domain_specific_extensions_c_domain_type"><a class="anchor" href="#_domain_specific_extensions_c_domain_type"></a>4.2.3.5. Domain-specific Extensions (C_DOMAIN_TYPE)</h5>
 <div class="paragraph">
 <p>The main part of the archetype constraint model allows any type in a reference model to be archetyped - i.e. constrained - in a standard way, which is to say, by a regular cascade of <code>C_COMPLEX_OBJECT</code> / <code>C_ATTRIBUTE</code> / <code>C_PRIMITIVE_OBJECT</code> objects. This generally works well, especially for 'outer' container types in models. However, it occurs reasonably often that lower level logical 'leaf' types need special constraint semantics that are not conveniently achieved with the standard aproach. To enable such classes to be integrated into the generic constraint model, the class <code>C_DOMAIN_TYPE</code> is included. This enables the creation of specific <code>C_</code> classes, inheriting from
-<code>C_DOMAIN_TYPE</code>, which represent custom semantics for particular reference model types. For example, a class called <code>C_QUANTITY</code> might be created which has different constraint semantics from the default effect of a <code>C_COMPLEX_OBJECT</code> / <code>C_ATTRIBUTE</code> cascade representing such constraints in the generic way (i.e. systematically based on the reference model). An example of domain-specific extension classes is shown in Domain-specific Extension Example on page 51.</p>
+<code>C_DOMAIN_TYPE</code>, which represent custom semantics for particular reference model types. For example, a class called <code>C_QUANTITY</code> might be created which has different constraint semantics from the default effect of a <code>C_COMPLEX_OBJECT</code> / <code>C_ATTRIBUTE</code> cascade representing such constraints in the generic way (i.e. systematically based on the reference model). An example of domain-specific extension classes is shown in the section <a href="#_domain_specific_extension_example">Domain-specific Extension Example</a>.</p>
 </div>
 </div>
 <div class="sect4">
-<h5 id="_reference_objects_c_reference_object"><a class="anchor" href="#_reference_objects_c_reference_object"></a>Reference Objects (C_REFERENCE_OBJECT)</h5>
+<h5 id="_reference_objects_c_reference_object"><a class="anchor" href="#_reference_objects_c_reference_object"></a>4.2.3.6. Reference Objects (C_REFERENCE_OBJECT)</h5>
 <div class="paragraph">
 <p>The subtypes of <code>C_REFERENCE_OBJECT</code>, namely, <code>ARCHETYPE_SLOT</code>, <code>ARCHETYPE_INTERNAL_REF</code> and <code>CONSTRAINT_REF</code> are used to express, respectively, a 'slot' where further archetypes can be used to continue describing constraints; a reference to a part of the current archetype that expresses exactly the same constraints needed at another point; and a reference to a constraint on a constraint defined in the archetype ontology, which in turn points to an external knowledge resource, such as a terminology.</p>
 </div>
@@ -1216,7 +1215,7 @@ of Date/Time fields.</p>
 </ul>
 </div>
 <div class="paragraph">
-<p>See the ADL specification for a fuller explanation, under the heading Placeholder constraints in the cADL section.</p>
+<p>See <a href="http://www.openehr.org/releases/AM/latest/ADL1.4.html#_placeholder_constraints">Placeholder constraints</a> in the ADL specification for a fuller explanation.</p>
 </div>
 </div>
 </div>
@@ -1283,13 +1282,6 @@ Typically used during validation of special-ised archetype nodes.</p>
 <p>True if the relative path a_path exists at this node.</p>
 </div></div></td>
 </tr>
-<tr>
-<th class="tableblock halign-center valign-top"></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>any_allowed</strong>: <code>Boolean</code></p></td>
-<td class="tableblock halign-left valign-top"><div><div class="paragraph">
-<p>True if any value (i.e. instance) of the reference model type would be allowed. Redefined in descendants.</p>
-</div></div></td>
-</tr>
 </tbody>
 </table>
 </div>
@@ -1309,7 +1301,7 @@ Typically used during validation of special-ised archetype nodes.</p>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Description</strong></p></th>
 <td class="tableblock halign-left valign-top" colspan="2"><div><div class="paragraph">
-<p>Abstract model of constraint on any kind of attribute in a class model.</p>
+<p>Abstract model of constraint on any kind of attribute node.</p>
 </div></div></td>
 </tr>
 <tr>
@@ -1330,9 +1322,9 @@ Typically used during validation of special-ised archetype nodes.</p>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>1..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>existence</strong>: <code>MULTIPLICITY_INTERVAL</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>existence</strong>: <code>Interval&lt;Integer&gt;</code></p></td>
 <td class="tableblock halign-left valign-top"><div><div class="paragraph">
-<p>Constraint settable on every attribute, regardless of whether it is singular or of a container type, which indicates whether its target object exists or not (i.e. is mandatory or not).</p>
+<p>Constraint on every attribute, regardless of whether it is singular or of a container type, which indicates whether its target object exists or not (i.e. is mandatory or not).</p>
 </div></div></td>
 </tr>
 <tr>
@@ -1340,6 +1332,19 @@ Typically used during validation of special-ised archetype nodes.</p>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><strong>children</strong>: <code>List&lt;C_OBJECT&gt;</code></p></td>
 <td class="tableblock halign-left valign-top"><div><div class="paragraph">
 <p>Child C_OBJECT nodes. Each such node represents a constraint on the type of this attribute in its reference model. Multiples occur both for multiple items in the case of container attributes, and alternatives in the case of singular attributes.</p>
+</div></div></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Functions</strong></p></th>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Signature</strong></p></th>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Meaning</strong></p></th>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"></th>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>any_allowed</strong>: <code>Boolean</code><br>
+<strong><em>Post</em></strong>: Result := children = Void or else children.is_empty</p></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>True if any value (i.e. instance) of the reference model attribute represented by this C_ATTIRBUTE is allowed.</p>
 </div></div></td>
 </tr>
 <tr>
@@ -1378,7 +1383,9 @@ Typically used during validation of special-ised archetype nodes.</p>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Description</strong></p></th>
-<td class="tableblock halign-left valign-top" colspan="2"><div></div></td>
+<td class="tableblock halign-left valign-top" colspan="2"><div><div class="paragraph">
+<p>Concrete model of constraint on a single-valued attribute node. The meaning of the inherited children attribute is that they are alternatives.</p>
+</div></div></td>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Inherit</strong></p></th>
@@ -1392,7 +1399,9 @@ Typically used during validation of special-ised archetype nodes.</p>
 <tr>
 <th class="tableblock halign-center valign-top"></th>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><strong>alternatives</strong>: <code>List&lt;C_OBJECT&gt;</code></p></td>
-<td class="tableblock halign-left valign-top"><div></div></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>List of alternative constraints for the single child of this attribute within the data.</p>
+</div></div></td>
 </tr>
 </tbody>
 </table>
@@ -1412,7 +1421,9 @@ Typically used during validation of special-ised archetype nodes.</p>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Description</strong></p></th>
-<td class="tableblock halign-left valign-top" colspan="2"><div></div></td>
+<td class="tableblock halign-left valign-top" colspan="2"><div><div class="paragraph">
+<p>Concrete model of constraint on multiply-valued (ie. container) attribute node.</p>
+</div></div></td>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Inherit</strong></p></th>
@@ -1424,10 +1435,10 @@ Typically used during validation of special-ised archetype nodes.</p>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Meaning</strong></p></th>
 </tr>
 <tr>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>1..1</strong></p></th>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><strong>cardinality</strong>: <code>CARDINALITY</code></p></td>
 <td class="tableblock halign-left valign-top"><div><div class="paragraph">
-<p>Cardinality constraint of attribute, if a container attribute.</p>
+<p>Cardinality of this attribute constraint, if it constraints a container attribute.</p>
 </div></div></td>
 </tr>
 <tr>
@@ -1438,7 +1449,15 @@ Typically used during validation of special-ised archetype nodes.</p>
 <tr>
 <th class="tableblock halign-center valign-top"></th>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><strong>members</strong>: <code>List&lt;C_OBJECT&gt;</code></p></td>
-<td class="tableblock halign-left valign-top"><div></div></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>List of constraints representing members of the container value of this attribute within the data. Semantics of the uniqueness and ordering of items in the container are given by the cardinality.</p>
+</div></div></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Invariant</strong></p></th>
+<td class="tableblock halign-left valign-top" colspan="2"><div><div class="paragraph">
+<p><strong><em>Members_valid</em></strong>: members /= Void and then members.for_all(co: C_OBJECT &#124; co.occurrences.upper &#8656; 1)</p>
+</div></div></td>
 </tr>
 </tbody>
 </table>
@@ -1469,7 +1488,7 @@ Typically used during validation of special-ised archetype nodes.</p>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>1..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>interval</strong>: <code>MULTIPLICITY_INTERVAL</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>interval</strong>: <code>Interval&lt;Integer&gt;</code></p></td>
 <td class="tableblock halign-left valign-top"><div><div class="paragraph">
 <p>The interval of this cardinality.</p>
 </div></div></td>
@@ -1553,11 +1572,10 @@ Typically used during validation of special-ised archetype nodes.</p>
 </div></div></td>
 </tr>
 <tr>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>occurrences</strong>: <code>MULTIPLICITY_INTERVAL</code></p></td>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>1..1</strong></p></th>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>occurrences</strong>: <code>Interval&lt;Integer&gt;</code></p></td>
 <td class="tableblock halign-left valign-top"><div><div class="paragraph">
-<p>Occurrences of this object node in the data, under the owning attribute. Upper limit can only be greater than 1 if owning attribute has a cardinality of more than 1.
-Only set if it overrides the parent archetype in the case of specialised archetypes, or else the occurrences inferred from the underlying reference model existence and/or cardinality of the containing attribute.</p>
+<p>Occurrences of this object node in the data, under the owning attribute. Upper limit can only be greater than 1 if owning attribute has a cardinality of more than 1).</p>
 </div></div></td>
 </tr>
 <tr>
@@ -1627,13 +1645,6 @@ For C_PRIMITIVE_OBJECTs, it will have the special value Primitive_node_id.</p>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>has_default_value</strong>: <code>Boolean</code></p></td>
-<td class="tableblock halign-left valign-top"><div><div class="paragraph">
-<p>True if there is an assumed value.</p>
-</div></div></td>
-</tr>
-<tr>
-<th class="tableblock halign-center valign-top"></th>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><strong>has_assumed_value</strong>: <code>Boolean</code></p></td>
 <td class="tableblock halign-left valign-top"><div><div class="paragraph">
 <p>True if there is an assumed value.</p>
@@ -1642,7 +1653,23 @@ For C_PRIMITIVE_OBJECTs, it will have the special value Primitive_node_id.</p>
 <tr>
 <th class="tableblock halign-center valign-top"></th>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><strong>default_value</strong>: <code>Any</code></p></td>
-<td class="tableblock halign-left valign-top"><div></div></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>Generate a default value from this constraint object.</p>
+</div></div></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"></th>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>any_allowed</strong>: <code>Boolean</code><br>
+<strong><em>Post</em></strong>: Result = attributes.is_empty</p></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>True if any value of the reference model type being constrained is allowed. Redefine in descendants.</p>
+</div></div></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Invariant</strong></p></th>
+<td class="tableblock halign-left valign-top" colspan="2"><div><div class="paragraph">
+<p><strong><em>Assumed_value_valid</em></strong>: has_assumed_value implies valid_value(assumed_value)</p>
+</div></div></td>
 </tr>
 </tbody>
 </table>
@@ -1740,6 +1767,19 @@ For C_PRIMITIVE_OBJECTs, it will have the special value Primitive_node_id.</p>
 </div></div></td>
 </tr>
 <tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Functions</strong></p></th>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Signature</strong></p></th>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Meaning</strong></p></th>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock">(effected)</p></th>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>any_allowed</strong>: <code>Boolean</code><br>
+<strong><em>Post</em></strong>: Result = item = Void</p></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>True if any value of the type being constrained in item is allowed.</p>
+</div></div></td>
+</tr>
+<tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Invariant</strong></p></th>
 <td class="tableblock halign-left valign-top" colspan="2"><div><div class="paragraph">
 <p><strong><em>Item_valid</em></strong>: any_allowed xor item /= Void</p>
@@ -1763,7 +1803,9 @@ For C_PRIMITIVE_OBJECTs, it will have the special value Primitive_node_id.</p>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Description</strong></p></th>
-<td class="tableblock halign-left valign-top" colspan="2"><div></div></td>
+<td class="tableblock halign-left valign-top" colspan="2"><div><div class="paragraph">
+<p>Abstract parent type of domain-specific constrainer types, to be defined in external packages.</p>
+</div></div></td>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Inherit</strong></p></th>
@@ -1777,7 +1819,9 @@ For C_PRIMITIVE_OBJECTs, it will have the special value Primitive_node_id.</p>
 <tr>
 <th class="tableblock halign-center valign-top"></th>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><strong>standard_equivalent</strong>: <code>C_COMPLEX_OBJECT</code></p></td>
-<td class="tableblock halign-left valign-top"><div></div></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>Standard (i.e. C_OBJECT) form of constraint.</p>
+</div></div></td>
 </tr>
 </tbody>
 </table>
@@ -3144,7 +3188,7 @@ archetype.</p>
 <p>This systematic definition of codes enables software to use the structure of the codes to more quickly and accurately make inferences about term definitions up and down specialisation hierarchies. Constraint codes on the other hand do not follow these rules, and exist in a flat code space instead.</p>
 </div>
 <div class="sect4">
-<h5 id="_term_and_constraint_definitions"><a class="anchor" href="#_term_and_constraint_definitions"></a>Term and Constraint Definitions</h5>
+<h5 id="_term_and_constraint_definitions"><a class="anchor" href="#_term_and_constraint_definitions"></a>7.2.1.1. Term and Constraint Definitions</h5>
 <div class="paragraph">
 <p>Local term and constraint definitions are modelled as instances of the class <code>ARCHETYPE_TERM</code>, which is a code associated with a list of name/value pairs. For any term or constraint definition, this list must at least include the name/value pairs for the names "text" and "description". It might also include such things as "provenance", which would be used to indicate that a term was sourced from an external terminology. The attribute <code><em>term_attribute_names</em></code> in <code>ARCHETYPE_ONTOLOGY</code> provides a list of attribute names used in term and constraint definitions in the archetype, including "text" and "description", as well as any others which are used in various places.</p>
 </div>
@@ -3768,91 +3812,12 @@ Hash of keys ("text", "description" etc) and corresponding values.</p>
 </div>
 </div>
 </div>
-<div class="sect2">
-<h3 id="_openehr_resources"><a class="anchor" href="#_openehr_resources"></a>openEHR Resources</h3>
-<div class="olist bibliography">
-<ol class="bibliography">
-<li>
-<p><a id="openehr_18308"></a>[openehr_18308] The openEHR Foundation. <strong>Conformance of openEHR architecture to ISO TS 18308, "Requirements for EHR Architectures"</strong>. See <a href="http://www.openehr.org/releases/trunk/architecture/iso18308_conformance.pdf" class="bare">http://www.openehr.org/releases/trunk/architecture/iso18308_conformance.pdf</a>.</p>
-</li>
-<li>
-<p><a id="openEHR_ADL_workbench"></a>[openEHR_ADL_workbench] The openEHR Foundation. <strong>The openEHR ADL Workbench</strong>. <a href="http://www.openehr.org/downloads/ADLworkbench/home" class="bare">http://www.openehr.org/downloads/ADLworkbench/home</a> .</p>
-</li>
-<li>
-<p><a id="openehr_am_overview"></a>[openehr_am_overview] The openEHR Foundation. <strong>The openEHR Archetypes Technical Overview.</strong> See <a href="http://www.openehr.org/releases/AM/latest/Overview.html" class="bare">http://www.openehr.org/releases/AM/latest/Overview.html</a>.</p>
-</li>
-<li>
-<p><a id="openehr_am_adl14"></a>[openehr_am_adl14] The openEHR Foundation. <strong>Archetype Definition Language 1.4 (ADL1.4).</strong> Available at <a href="http://www.openehr.org/releases/AM/latest/ADL1.4.html" class="bare">http://www.openehr.org/releases/AM/latest/ADL1.4.html</a>.</p>
-</li>
-<li>
-<p><a id="openehr_am_aom14"></a>[openehr_am_aom14] The openEHR Foundation. <strong>Archetype Object Model 1.4 (AOM1.4).</strong> Available at <a href="http://www.openehr.org/releases/AM/latest/AOM1.4.html" class="bare">http://www.openehr.org/releases/AM/latest/AOM1.4.html</a>.</p>
-</li>
-<li>
-<p><a id="openehr_am_adl2"></a>[openehr_am_adl2] The openEHR Foundation. <strong>Archetype Definition Language 2 (ADL2).</strong> Available at <a href="http://www.openehr.org/releases/AM/latest/ADL2.html" class="bare">http://www.openehr.org/releases/AM/latest/ADL2.html</a>.</p>
-</li>
-<li>
-<p><a id="openehr_am_aom2"></a>[openehr_am_aom2] The openEHR Foundation. <strong>Archetype Object Model 2 (AOM2).</strong> Available at <a href="http://www.openehr.org/releases/AM/latest/AOM2.html" class="bare">http://www.openehr.org/releases/AM/latest/AOM2.html</a>.</p>
-</li>
-<li>
-<p><a id="openehr_am_identification"></a>[openehr_am_identification] The openEHR Foundation. <strong>Archetype Identification specification.</strong> Available at <a href="http://www.openehr.org/releases/AM/latest/Identification.html" class="bare">http://www.openehr.org/releases/AM/latest/Identification.html</a>.</p>
-</li>
-<li>
-<p><a id="openehr_am_def_pri"></a>[openehr_am_def_pri] The openEHR Foundation. <strong>Archetype Definitions and Principles.</strong> (deprecated) Available at <a href="http://www.openehr.org/releases/1.0.2/architecture/am/archetype_principles.pdf" class="bare">http://www.openehr.org/releases/1.0.2/architecture/am/archetype_principles.pdf</a>.</p>
-</li>
-<li>
-<p><a id="openehr_am_sys"></a>[openehr_am_sys] The openEHR Foundation. <strong>The Archetype System.</strong> (deprecated) Available at <a href="http://www.openehr.org/releases/1.0.2/architecture/am/archetype_system.pdf" class="bare">http://www.openehr.org/releases/1.0.2/architecture/am/archetype_system.pdf</a>.</p>
-</li>
-<li>
-<p><a id="openehr_am_oap"></a>[openehr_am_oap] The openEHR Foundation. <strong>The openEHR Archetype Profile.</strong> <a href="http://www.openehr.org/releases/1.0.2/architecture/am/openehr_archetype_profile.pdf" class="bare">http://www.openehr.org/releases/1.0.2/architecture/am/openehr_archetype_profile.pdf</a> .</p>
-</li>
-<li>
-<p><a id="openehr_CKM"></a>[openehr_CKM] <strong>The openEHR Clinical Knowledge Manager (CKM)</strong>. See <a href="http://www.openEHR.org/ckm" class="bare">http://www.openEHR.org/ckm</a></p>
-</li>
-<li>
-<p><a id="openehr_odin"></a>[openehr_odin] The openEHR Foundation. <strong>Object Data Instance Notation (ODIN).</strong> Available at <a href="http://www.openehr.org/releases/BASE/latest/odin.html" class="bare">http://www.openehr.org/releases/BASE/latest/odin.html</a>.</p>
-</li>
-<li>
-<p><a id="openehr_overview"></a>[openehr_overview] The openEHR Foundation. <strong>The openEHR Architecture Overview.</strong> See <a href="http://www.openehr.org/releases/BASE/latest/architecture_overview.html" class="bare">http://www.openehr.org/releases/BASE/latest/architecture_overview.html</a>.</p>
-</li>
-<li>
-<p><a id="openehr_query_aql"></a>[openehr_query_aql] The openEHR Foundation. <strong>The openEHR Archetype Query language (AQL)</strong>. See <a href="http://www.openehr.org/releases/QUERY/latest/AQL.html" class="bare">http://www.openehr.org/releases/QUERY/latest/AQL.html</a>.</p>
-</li>
-<li>
-<p><a id="openehr_rm_data_types"></a>[openehr_rm_data_types] openEHR. <strong>Data Types Information Model.</strong> See <a href="http://www.openehr.org/releases/RM/latest/data_types.html" class="bare">http://www.openehr.org/releases/RM/latest/data_types.html</a>.</p>
-</li>
-<li>
-<p><a id="openehr_rm_data_structures"></a>[openehr_rm_data_structures] openEHR. <strong>Data Structures Information Model.</strong> See <a href="http://www.openehr.org/releases/RM/latest/data_structures.html" class="bare">http://www.openehr.org/releases/RM/latest/data_structures.html</a>.</p>
-</li>
-<li>
-<p><a id="openehr_rm_common"></a>[openehr_rm_common] openEHR. <strong>Common Information Model.</strong> See <a href="http://www.openehr.org/releases/RM/latest/common.html" class="bare">http://www.openehr.org/releases/RM/latest/common.html</a>.</p>
-</li>
-<li>
-<p><a id="openehr_rm_ehr"></a>[openehr_rm_ehr] The openEHR Foundation. <strong>The EHR Information Model</strong>. <a href="http://www.openehr.org/releases/RM/latest/ehr.html" class="bare">http://www.openehr.org/releases/RM/latest/ehr.html</a>.</p>
-</li>
-<li>
-<p><a id="openehr_rm_ehr_extract"></a>[openehr_rm_ehr_extract] The openEHR Foundation. <strong>The EHR Extrct Information Model</strong>. <a href="http://www.openehr.org/releases/RM/latest/ehr_extract.html" class="bare">http://www.openehr.org/releases/RM/latest/ehr_extract.html</a>.</p>
-</li>
-<li>
-<p><a id="openehr_rm_integration"></a>[openehr_rm_integration] The openEHR Foundation. <strong>The Integration Information Model</strong>. <a href="http://www.openehr.org/releases/RM/latest/integration.html" class="bare">http://www.openehr.org/releases/RM/latest/integration.html</a>.</p>
-</li>
-<li>
-<p><a id="openehr_rm_support"></a>[openehr_rm_support] openEHR. <strong>Support Information Model.</strong> See <a href="http://www.openehr.org/releases/RM/latest/support.html" class="bare">http://www.openehr.org/releases/RM/latest/support.html</a>.</p>
-</li>
-<li>
-<p><a id="openehr_terminology"></a>[openehr_terminology] The openEHR Foundation. <strong>The openEHR Terminology</strong> <a href="http://www.openehr.org/releases/TERM/latest/SupportTerminology.html" class="bare">http://www.openehr.org/releases/TERM/latest/SupportTerminology.html</a>.</p>
-</li>
-<li>
-<p><a id="openehr_terminology_resources"></a>[openehr_terminology_resources] The openEHR Foundation. <strong>The openEHR Terminology project (GitHub)</strong> <a href="https://github.com/openEHR/terminology" class="bare">https://github.com/openEHR/terminology</a>.</p>
-</li>
-</ol>
-</div>
-</div>
 </div>
 </div>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2015-12-26 17:17:35 GMT
+Last updated 2016-01-16 14:36:14 GMT
 </div>
 </div>
 </body>

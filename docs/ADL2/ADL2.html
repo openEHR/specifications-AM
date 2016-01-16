@@ -442,7 +442,6 @@
 <li><a href="#_tools_2">Tools</a></li>
 </ul>
 </li>
-<li><a href="#_openehr_resources">openEHR Resources</a></li>
 </ul>
 </li>
 </ul>
@@ -1120,10 +1119,10 @@
 <div class="ulist">
 <ul>
 <li>
-<p>The openEHR Architecture Overview (<a href="#openehr_overview">[openehr_overview]</a>);</p>
+<p>The <a href="http://www.openehr.org/releases/BASE/latest/architecture_overview.html">openEHR Architecture Overview</a>;</p>
 </li>
 <li>
-<p>The openEHR Archetype Technical Overview (<a href="#openehr_am_overview">[openehr_am_overview]</a>)</p>
+<p>The <a href="http://www.openehr.org/releases/AM/latest/Overview.html">openEHR Archetype Technical Overview</a>;</p>
 </li>
 </ul>
 </div>
@@ -1133,10 +1132,10 @@
 <div class="ulist">
 <ul>
 <li>
-<p>The openEHR Archetype Object Model (AOM2) (<a href="#openehr_am_aom">[openehr_am_aom]</a>);</p>
+<p>The <a href="http://www.openehr.org/releases/AM/latest/AOM2.html">openEHR Archetype Object Model (AOM2)</a>;</p>
 </li>
 <li>
-<p>The openEHR Template Guide (<a href="#openehr_am_templates">[openehr_am_templates]</a>).</p>
+<p>The <a href="http://www.openehr.org/releases/AM/latest/OPT2.html">openEHR Operational Template Specification</a>.</p>
 </li>
 </ul>
 </div>
@@ -5000,13 +4999,13 @@ the structure, as shown in the following example:</p>
 <p><strong>Deprecated</strong>: In ADL 1.4 and transitional forms of ADL 1.5, archetype identifiers included only a single version number, and this typically started at 1. Tools that deal with older archetypes should accept these identifiers, and convert the version part to 'v1.0.0' or any other appropriate identifier, obeying the openEHR Artefact Knowledge Identification specification.</p>
 </div>
 <div class="paragraph">
-<p>The multi-axial archetype identifier identifies archetypes in a global concept space within a given namespace. It is also known as an 'ontological' identifier, since the concept space can be understood as an ontology of informational concepts on which the archetypes are based. The syntax of the identifier is described in the Identification section of the openEHR Support IM specification <a href="#openehr_rm_support">[openehr_rm_support]</a>. The structure of the concept space is essentially two-level, with the first level being a reference model class (e.g. openEHR <code>OBSERVATION</code> class) and the second being a domain concept (e.g. 'haematology result').</p>
+<p>The multi-axial archetype identifier identifies archetypes in a global concept space within a given namespace. It is also known as an 'ontological' identifier, since the concept space can be understood as an ontology of informational concepts on which the archetypes are based. The syntax of the identifier is described in the Identification section of the <a href="http://www.openehr.org/releases/RM/latest/support.html">openEHR Support IM specification</a>. The structure of the concept space is essentially two-level, with the first level being a reference model class (e.g. openEHR <code>OBSERVATION</code> class) and the second being a domain concept (e.g. 'haematology result').</p>
 </div>
 <div class="paragraph">
 <p>Because namespaces are usually treated hierarchically, higher level namespaces (e.g. '.org' domains) are assumed to be includable by more local namespaces, with the result that the concept definition space is inherited as well.</p>
 </div>
 <div class="paragraph">
-<p>The semantics of the ontological identifier are described in detail in <a href="#openehr_am_identification">[openehr_am_identification]</a>.</p>
+<p>The semantics of the ontological identifier are described in detail in the <a href="http://www.openehr.org/releases/AM/latest/Identification.html">openEHR Identification Specification</a>.</p>
 </div>
 </div>
 <div class="sect3">
@@ -5200,7 +5199,7 @@ some non-conforming ADL tools in the past created archetypes without a language 
 </div>
 </div>
 <div class="paragraph">
-<p>A number of details are worth noting here. Firstly, the free hierarchical structuring capability of ODIN is exploited for expressing the 'deep' structure of the <code>details</code> section and its subsections. Secondly, the ODIN qualified list form is used to allow multiple translations of the <code>purpose</code> and <code>use</code> to be shown. Lastly, empty items such as <code>misuse</code> (structured if there is data) are shown with just one level of empty brackets. The above example shows meta-data based on the openEHR Archetype Object Model (AOM) <a href="#openehr_am_aom">[openehr_am_aom]</a>.</p>
+<p>A number of details are worth noting here. Firstly, the free hierarchical structuring capability of ODIN is exploited for expressing the 'deep' structure of the <code>details</code> section and its subsections. Secondly, the ODIN qualified list form is used to allow multiple translations of the <code>purpose</code> and <code>use</code> to be shown. Lastly, empty items such as <code>misuse</code> (structured if there is data) are shown with just one level of empty brackets. The above example shows meta-data based on the <a href="http://www.openehr.org/releases/AM/latest/AOM2.html">openEHR Archetype Object Model (AOM)</a>.</p>
 </div>
 <div class="paragraph">
 <p>The <code>description</code> section is technically optional according to the AOM, but in any realistic use of ADL for archetypes, it will be required. A minimal description section satisfying to the AOM is as follows:</p>
@@ -7148,7 +7147,7 @@ Note that in the above, the '/' is used to denote '/protocol' as a differential 
 <div class="sect3">
 <h4 id="_reference_model_type_refinement"><a class="anchor" href="#_reference_model_type_refinement"></a>10.5.3. Reference Model Type Refinement</h4>
 <div class="paragraph">
-<p>The type of an object may be redefined to one of its subtypes as defined by the reference model. A typical example of where this occurs in archetypes based on the openEHR reference model is when <code>ELEMENT</code>.<code><em>value</em></code> is constrained to <code>*</code> in a parent archetype, meaning 'no further constraint on its RM type of <code>DATA_VALUE&#8217;, but is then constrained in a specialised archetype to subtypes of `DATA_VALUE</code>, e.g. <code>DV_QUANTITY</code> or <code>DV_PROPORTION</code> (see <a href="#openehr_rm_data_types">[openehr_rm_data_types]</a>). The following figure containts a simplified extract of the data values part of the openEHR reference model, and is the basis for the examples below.</p>
+<p>The type of an object may be redefined to one of its subtypes as defined by the reference model. A typical example of where this occurs in archetypes based on the openEHR reference model is when <code>ELEMENT</code>.<code><em>value</em></code> is constrained to <code>*</code> in a parent archetype, meaning 'no further constraint on its RM type of <code>DATA_VALUE&#8217;, but is then constrained in a specialised archetype to subtypes of `DATA_VALUE</code>, e.g. <code>DV_QUANTITY</code> or <code>DV_PROPORTION</code> (see <a href="http://www.openehr.org/releases/RM/latest/data_types.html">openEHR Data Types</a>). The following figure containts a simplified extract of the data values part of the openEHR reference model, and is the basis for the examples below.</p>
 </div>
 <div id="rm_type_structure" class="imageblock text-center" style="text-align: center">
 <div class="content">
@@ -9522,91 +9521,12 @@ Note that in the above, the '/' is used to denote '/protocol' as a differential 
 </div>
 </div>
 </div>
-<div class="sect2">
-<h3 id="_openehr_resources"><a class="anchor" href="#_openehr_resources"></a>openEHR Resources</h3>
-<div class="olist bibliography">
-<ol class="bibliography">
-<li>
-<p><a id="openehr_18308"></a>[openehr_18308] The openEHR Foundation. <strong>Conformance of openEHR architecture to ISO TS 18308, "Requirements for EHR Architectures"</strong>. See <a href="http://www.openehr.org/releases/trunk/architecture/iso18308_conformance.pdf" class="bare">http://www.openehr.org/releases/trunk/architecture/iso18308_conformance.pdf</a>.</p>
-</li>
-<li>
-<p><a id="openEHR_ADL_workbench"></a>[openEHR_ADL_workbench] The openEHR Foundation. <strong>The openEHR ADL Workbench</strong>. <a href="http://www.openehr.org/downloads/ADLworkbench/home" class="bare">http://www.openehr.org/downloads/ADLworkbench/home</a> .</p>
-</li>
-<li>
-<p><a id="openehr_am_overview"></a>[openehr_am_overview] The openEHR Foundation. <strong>The openEHR Archetypes Technical Overview.</strong> See <a href="http://www.openehr.org/releases/AM/latest/Overview.html" class="bare">http://www.openehr.org/releases/AM/latest/Overview.html</a>.</p>
-</li>
-<li>
-<p><a id="openehr_am_adl14"></a>[openehr_am_adl14] The openEHR Foundation. <strong>Archetype Definition Language 1.4 (ADL1.4).</strong> Available at <a href="http://www.openehr.org/releases/AM/latest/ADL1.4.html" class="bare">http://www.openehr.org/releases/AM/latest/ADL1.4.html</a>.</p>
-</li>
-<li>
-<p><a id="openehr_am_aom14"></a>[openehr_am_aom14] The openEHR Foundation. <strong>Archetype Object Model 1.4 (AOM1.4).</strong> Available at <a href="http://www.openehr.org/releases/AM/latest/AOM1.4.html" class="bare">http://www.openehr.org/releases/AM/latest/AOM1.4.html</a>.</p>
-</li>
-<li>
-<p><a id="openehr_am_adl2"></a>[openehr_am_adl2] The openEHR Foundation. <strong>Archetype Definition Language 2 (ADL2).</strong> Available at <a href="http://www.openehr.org/releases/AM/latest/ADL2.html" class="bare">http://www.openehr.org/releases/AM/latest/ADL2.html</a>.</p>
-</li>
-<li>
-<p><a id="openehr_am_aom2"></a>[openehr_am_aom2] The openEHR Foundation. <strong>Archetype Object Model 2 (AOM2).</strong> Available at <a href="http://www.openehr.org/releases/AM/latest/AOM2.html" class="bare">http://www.openehr.org/releases/AM/latest/AOM2.html</a>.</p>
-</li>
-<li>
-<p><a id="openehr_am_identification"></a>[openehr_am_identification] The openEHR Foundation. <strong>Archetype Identification specification.</strong> Available at <a href="http://www.openehr.org/releases/AM/latest/Identification.html" class="bare">http://www.openehr.org/releases/AM/latest/Identification.html</a>.</p>
-</li>
-<li>
-<p><a id="openehr_am_def_pri"></a>[openehr_am_def_pri] The openEHR Foundation. <strong>Archetype Definitions and Principles.</strong> (deprecated) Available at <a href="http://www.openehr.org/releases/1.0.2/architecture/am/archetype_principles.pdf" class="bare">http://www.openehr.org/releases/1.0.2/architecture/am/archetype_principles.pdf</a>.</p>
-</li>
-<li>
-<p><a id="openehr_am_sys"></a>[openehr_am_sys] The openEHR Foundation. <strong>The Archetype System.</strong> (deprecated) Available at <a href="http://www.openehr.org/releases/1.0.2/architecture/am/archetype_system.pdf" class="bare">http://www.openehr.org/releases/1.0.2/architecture/am/archetype_system.pdf</a>.</p>
-</li>
-<li>
-<p><a id="openehr_am_oap"></a>[openehr_am_oap] The openEHR Foundation. <strong>The openEHR Archetype Profile.</strong> <a href="http://www.openehr.org/releases/1.0.2/architecture/am/openehr_archetype_profile.pdf" class="bare">http://www.openehr.org/releases/1.0.2/architecture/am/openehr_archetype_profile.pdf</a> .</p>
-</li>
-<li>
-<p><a id="openehr_CKM"></a>[openehr_CKM] <strong>The openEHR Clinical Knowledge Manager (CKM)</strong>. See <a href="http://www.openEHR.org/ckm" class="bare">http://www.openEHR.org/ckm</a></p>
-</li>
-<li>
-<p><a id="openehr_odin"></a>[openehr_odin] The openEHR Foundation. <strong>Object Data Instance Notation (ODIN).</strong> Available at <a href="http://www.openehr.org/releases/BASE/latest/odin.html" class="bare">http://www.openehr.org/releases/BASE/latest/odin.html</a>.</p>
-</li>
-<li>
-<p><a id="openehr_overview"></a>[openehr_overview] The openEHR Foundation. <strong>The openEHR Architecture Overview.</strong> See <a href="http://www.openehr.org/releases/BASE/latest/architecture_overview.html" class="bare">http://www.openehr.org/releases/BASE/latest/architecture_overview.html</a>.</p>
-</li>
-<li>
-<p><a id="openehr_query_aql"></a>[openehr_query_aql] The openEHR Foundation. <strong>The openEHR Archetype Query language (AQL)</strong>. See <a href="http://www.openehr.org/releases/QUERY/latest/AQL.html" class="bare">http://www.openehr.org/releases/QUERY/latest/AQL.html</a>.</p>
-</li>
-<li>
-<p><a id="openehr_rm_data_types"></a>[openehr_rm_data_types] openEHR. <strong>Data Types Information Model.</strong> See <a href="http://www.openehr.org/releases/RM/latest/data_types.html" class="bare">http://www.openehr.org/releases/RM/latest/data_types.html</a>.</p>
-</li>
-<li>
-<p><a id="openehr_rm_data_structures"></a>[openehr_rm_data_structures] openEHR. <strong>Data Structures Information Model.</strong> See <a href="http://www.openehr.org/releases/RM/latest/data_structures.html" class="bare">http://www.openehr.org/releases/RM/latest/data_structures.html</a>.</p>
-</li>
-<li>
-<p><a id="openehr_rm_common"></a>[openehr_rm_common] openEHR. <strong>Common Information Model.</strong> See <a href="http://www.openehr.org/releases/RM/latest/common.html" class="bare">http://www.openehr.org/releases/RM/latest/common.html</a>.</p>
-</li>
-<li>
-<p><a id="openehr_rm_ehr"></a>[openehr_rm_ehr] The openEHR Foundation. <strong>The EHR Information Model</strong>. <a href="http://www.openehr.org/releases/RM/latest/ehr.html" class="bare">http://www.openehr.org/releases/RM/latest/ehr.html</a>.</p>
-</li>
-<li>
-<p><a id="openehr_rm_ehr_extract"></a>[openehr_rm_ehr_extract] The openEHR Foundation. <strong>The EHR Extrct Information Model</strong>. <a href="http://www.openehr.org/releases/RM/latest/ehr_extract.html" class="bare">http://www.openehr.org/releases/RM/latest/ehr_extract.html</a>.</p>
-</li>
-<li>
-<p><a id="openehr_rm_integration"></a>[openehr_rm_integration] The openEHR Foundation. <strong>The Integration Information Model</strong>. <a href="http://www.openehr.org/releases/RM/latest/integration.html" class="bare">http://www.openehr.org/releases/RM/latest/integration.html</a>.</p>
-</li>
-<li>
-<p><a id="openehr_rm_support"></a>[openehr_rm_support] openEHR. <strong>Support Information Model.</strong> See <a href="http://www.openehr.org/releases/RM/latest/support.html" class="bare">http://www.openehr.org/releases/RM/latest/support.html</a>.</p>
-</li>
-<li>
-<p><a id="openehr_terminology"></a>[openehr_terminology] The openEHR Foundation. <strong>The openEHR Terminology</strong> <a href="http://www.openehr.org/releases/TERM/latest/SupportTerminology.html" class="bare">http://www.openehr.org/releases/TERM/latest/SupportTerminology.html</a>.</p>
-</li>
-<li>
-<p><a id="openehr_terminology_resources"></a>[openehr_terminology_resources] The openEHR Foundation. <strong>The openEHR Terminology project (GitHub)</strong> <a href="https://github.com/openEHR/terminology" class="bare">https://github.com/openEHR/terminology</a>.</p>
-</li>
-</ol>
-</div>
-</div>
 </div>
 </div>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2015-12-10 13:19:37 GMT
+Last updated 2016-01-16 15:02:42 GMT
 </div>
 </div>
 </body>

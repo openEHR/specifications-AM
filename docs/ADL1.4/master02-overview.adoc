@@ -2,9 +2,9 @@
 
 == What is ADL?
 
-Archetype Definition Language (ADL) is a formal language for expressing archetypes, which are constraint-based models of domain entities, or what some might call 'structured business rules'. The archetype concept is described by Beale <<Beale_2000>>, <<Beale_2002>>. The openEHR Archetype Object Model 1.4 <<openehr_am_adl14>> describes the definitive semantic model of archetypes, in the form of an object model. The ADL syntax is one possible serialisation of an archetype.
+Archetype Definition Language (ADL) is a formal language for expressing archetypes, which are constraint-based models of domain entities, or what some might call 'structured business rules'. The archetype concept is described by Beale <<Beale_2000>>, <<Beale_2002>>. The {openehr_am_adl14}[openEHR Archetype Object Model 1.4] describes the definitive semantic model of archetypes, in the form of an object model. The ADL syntax is one possible serialisation of an archetype.
 
-The openEHR archetype framework is described in terms of Archetype Definitions and Principles <<openehr_am_def_pri>> and an Archetype System <<openehr_am_sys>>. Other semantic formalisms considered in the course of the development of ADL, and some which remain relevant are described in detailed in section <<Relationship of ADL to Other Formalisms>>.
+The openEHR archetype framework is described in terms of {openehr_am_def_pri}[Archetype Definitions and Principles] and an {openehr_am_arch_sys}[Archetype System]. Other semantic formalisms considered in the course of the development of ADL, and some which remain relevant are described in detailed in section <<Relationship of ADL to Other Formalisms>>.
 
 ADL uses three other syntaxes, cADL (constraint form of ADL), dADL (data definition form of ADL), and a version of first-order predicate logic (FOPL), to describe constraints on data which are instances of some information model (e.g. expressed in UML). It is most useful when very generic information models are used for describing the data in a system, for example, where the logical concepts `PATIENT`, `DOCTOR` and `HOSPITAL` might all be represented using a small number of classes such as `PARTY` and `ADDRESS`. In such cases, archetypes are used to constrain the valid structures of instances of these generic classes to represent the desired domain concepts. In this way future-proof information systems can be built - relatively simple information models and database schemas can be defined, and archetypes supply the semantic modelling, completely outside the software. ADL can thus be used to write archetypes for any domain where formal object model(s) exist which describe data instances.
 
@@ -85,7 +85,7 @@ ontology
 
 === Semantics
 
-As a parsable syntax, ADL has a formal relationship with structural models such as those expressed in UML, according to the scheme of the following figure. Here we can see that ADL documents are parsed into a network of objects (often known as a ‘parse tree’) which are themselves defined by a formal, abstract object model (see The openEHR Archetype Object Model 1.4 <<openehr_am_adl14>>). Such a model can in turn be reexpressed as any number of concrete models, such as in a programming language, XML-schema or OMG IDL.
+As a parsable syntax, ADL has a formal relationship with structural models such as those expressed in UML, according to the scheme of the following figure. Here we can see that ADL documents are parsed into a network of objects (often known as a ‘parse tree’) which are themselves defined by a formal, abstract object model (see The {openehr_am_adl14}[openEHR Archetype Object Model 1.4]. Such a model can in turn be reexpressed as any number of concrete models, such as in a programming language, XML-schema or OMG IDL.
 
 While ADL syntax remains the primary abstract formalism for expressing archetypes, the AOM defines the semantics of an archetype, in particular relationships which must hold true between the parts of an archetype for it to be valid as a whole.
 

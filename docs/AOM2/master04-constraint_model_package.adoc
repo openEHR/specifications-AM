@@ -123,7 +123,7 @@ The primitive constraint for each primitive type may itself be complex. Its type
 |Real               |`List <Interval<Real>>`    |As for Ordered type, with T = `Real`
 |*Temporal types*   |`List <Interval<T->ISO8601_TYPE>>` +
                      OR +
-                    `String` (ADL pattern)      |As for ordered types, with T being an ISO8601-based type, with the addition of a second type constraint - a pattern based on ISO8601 syntax. See <<openehr_am_adl>>.
+                    `String` (ADL pattern)      |As for ordered types, with T being an ISO8601-based type, with the addition of a second type constraint - {openehr_am_adl2}#_constraints_on_dates_times_and_durations[a pattern based on ISO8601 syntax].
 |Date               |`List <Interval<ISO8601_DATE>>` +
                      OR +
                      pattern                    |As for Temporal types with T = `ISO8601_DATE`
@@ -206,7 +206,7 @@ image::{uml_export_dir}/diagrams/AOM-constraint_model-tuple.svg[id=tuple_constra
 
 In this model, the type `C_ATTRIBUTE_TUPLE` groups the co-constrained `C_ATTRIBUTEs` under a `C_COMPLEX_OBJECT`. Currently the concrete type is limited to being `C_PRIMITIVE_OBJECT` to reduce complexity, and since it caters for all known examples of tuple constraints. In principle, any `C_DEFINED_OBJECT` could be allowed, and this may change in the future.
 
-The tuple constraint type replaces all domain-specific constraint types defined in ADL/AOM 1.4 <<openehr_am_adl14>>, including `C_DV_QUANTITY` and `C_DV_ORDINAL`.
+The tuple constraint type replaces all domain-specific constraint types defined in {openehr_am_adl14}[ADL/AOM 1.4], including `C_DV_QUANTITY` and `C_DV_ORDINAL`.
 
 These additions allow standard constraint structures (i.e. `C_ATTRIBUTE` / `C_COMPLEX_OBJECT` / `C_PRIMITIVE_OBJECT` hierarchies) to be 'annotated', while leaving the first order structure intact. The following example shows an archetype instance structure in which a notional `ORDINAL` type is constrained. The logical requirement is to constrain a `ORDINAL` to one of three instance possibilities, each of which consists of a pair of values for the attributes value and symbol, of type Integer and `TERMINOLOGY_CODE` respectively. Each of these three instance constraints should be understood as an alternative for the single valued owning attribute, `ELEMENT` .value. Tuple constraints achieve the requirement to express the constraints as pairs not just as allowable alternatives at the final leaf level, which would incorrectly allowing any mixing of the Integer and code values.
 
@@ -220,7 +220,7 @@ image::diagrams/tuple_example_data.png[id=tuple_constraint_example_data, align="
 
 === Assertions
 
-Assertions are also used in `ARCHETYPE_SLOTs` , in order to express the 'included' and 'excluded' archetypes for the slot. In this case, each assertion is an expression that refers to parts of other archetypes, such as its identifier (e.g. 'include archetypes with `_short_concept_name_` matching `xxxx` '). Assertions are modelled here as a generic expression tree of unary prefix and binary infix operators. Examples of archetype slots in ADL syntax are given in the openEHR ADL specifcation <<openehr_am_adl>>.
+Assertions are also used in `ARCHETYPE_SLOTs` , in order to express the 'included' and 'excluded' archetypes for the slot. In this case, each assertion is an expression that refers to parts of other archetypes, such as its identifier (e.g. 'include archetypes with `_short_concept_name_` matching `xxxx` '). Assertions are modelled here as a generic expression tree of unary prefix and binary infix operators. Examples of archetype slots in ADL syntax are given in the {openehr_am_adl2}[openEHR ADL specifcation].
 
 == AOM Type Substitutions
 

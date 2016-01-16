@@ -76,7 +76,7 @@ Constraints on primitive types are defined by the classes inheriting from `C_PRI
 ==== Domain-specific Extensions (C_DOMAIN_TYPE)
 
 The main part of the archetype constraint model allows any type in a reference model to be archetyped - i.e. constrained - in a standard way, which is to say, by a regular cascade of `C_COMPLEX_OBJECT` / `C_ATTRIBUTE` / `C_PRIMITIVE_OBJECT` objects. This generally works well, especially for 'outer' container types in models. However, it occurs reasonably often that lower level logical 'leaf' types need special constraint semantics that are not conveniently achieved with the standard aproach. To enable such classes to be integrated into the generic constraint model, the class `C_DOMAIN_TYPE` is included. This enables the creation of specific `C_` classes, inheriting from
-`C_DOMAIN_TYPE`, which represent custom semantics for particular reference model types. For example, a class called `C_QUANTITY` might be created which has different constraint semantics from the default effect of a `C_COMPLEX_OBJECT` / `C_ATTRIBUTE` cascade representing such constraints in the generic way (i.e. systematically based on the reference model). An example of domain-specific extension classes is shown in Domain-specific Extension Example on page 51.
+`C_DOMAIN_TYPE`, which represent custom semantics for particular reference model types. For example, a class called `C_QUANTITY` might be created which has different constraint semantics from the default effect of a `C_COMPLEX_OBJECT` / `C_ATTRIBUTE` cascade representing such constraints in the generic way (i.e. systematically based on the reference model). An example of domain-specific extension classes is shown in the section <<Domain-specific Extension Example>>.
 
 ==== Reference Objects (C_REFERENCE_OBJECT)
 
@@ -88,7 +88,7 @@ A `CONSTRAINT_REF` is really a proxy for a set of constraints on an object that 
 * an `INTERVAL<QUANTITY>` forming a reference range
 * a set of units or properties or other numerical item
 
-See the ADL specification for a fuller explanation, under the heading Placeholder constraints in the cADL section.
+See {openehr_am_adl14}#_placeholder_constraints[Placeholder constraints] in the ADL specification for a fuller explanation.
 
 === Assertions
 
