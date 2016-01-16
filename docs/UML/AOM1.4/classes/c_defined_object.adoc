@@ -31,14 +31,18 @@ h|
 a|Generate a prototype value from this constraint object.
 
 h|
-|*has_default_value*: `Boolean`
-a|True if there is an assumed value.
-
-h|
 |*has_assumed_value*: `Boolean`
 a|True if there is an assumed value.
 
 h|
 |*default_value*: `Any`
-a|
+a|Generate a default value from this constraint object.
+
+h|
+|*any_allowed*: `Boolean` +
+*_Post_*: Result = attributes.is_empty
+a|True if any value of the reference model type being constrained is allowed. Redefine in descendants.
+
+h|*Invariant*
+2+a|*_Assumed_value_valid_*: has_assumed_value implies valid_value(assumed_value)
 |===

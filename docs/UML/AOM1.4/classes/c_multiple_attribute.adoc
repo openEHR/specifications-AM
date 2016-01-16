@@ -6,7 +6,7 @@ h|*Class*
 2+^h|*C_MULTIPLE_ATTRIBUTE*
 
 h|*Description*
-2+a|
+2+a|Concrete model of constraint on multiply-valued (ie. container) attribute node.
 
 h|*Inherit*
 2+|C_ATTRIBUTE
@@ -15,14 +15,17 @@ h|*Attributes*
 ^h|*Signature*
 ^h|*Meaning*
 
-h|*0..1*
+h|*1..1*
 |*cardinality*: `CARDINALITY`
-a|Cardinality constraint of attribute, if a container attribute.
+a|Cardinality of this attribute constraint, if it constraints a container attribute.
 h|*Functions*
 ^h|*Signature*
 ^h|*Meaning*
 
 h|
 |*members*: `List<C_OBJECT>`
-a|
+a|List of constraints representing members of the container value of this attribute within the data. Semantics of the uniqueness and ordering of items in the container are given by the cardinality.
+
+h|*Invariant*
+2+a|*_Members_valid_*: members /= Void and then members.for_all(co: C_OBJECT &#124; co.occurrences.upper <= 1)
 |===

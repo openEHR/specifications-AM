@@ -6,7 +6,7 @@ h|*Class*
 2+^h|*_C_ATTRIBUTE (abstract)_*
 
 h|*Description*
-2+a|Abstract model of constraint on any kind of attribute in a class model.
+2+a|Abstract model of constraint on any kind of attribute node.
 
 h|*Inherit*
 2+|ARCHETYPE_CONSTRAINT
@@ -20,12 +20,20 @@ h|*1..1*
 a|Reference model attribute within the enclosing type represented by a C_OBJECT.
 
 h|*1..1*
-|*existence*: `MULTIPLICITY_INTERVAL`
-a|Constraint settable on every attribute, regardless of whether it is singular or of a container type, which indicates whether its target object exists or not (i.e. is mandatory or not).
+|*existence*: `Interval<Integer>`
+a|Constraint on every attribute, regardless of whether it is singular or of a container type, which indicates whether its target object exists or not (i.e. is mandatory or not).
 
 h|*0..1*
 |*children*: `List<C_OBJECT>`
 a|Child C_OBJECT nodes. Each such node represents a constraint on the type of this attribute in its reference model. Multiples occur both for multiple items in the case of container attributes, and alternatives in the case of singular attributes.
+h|*Functions*
+^h|*Signature*
+^h|*Meaning*
+
+h|
+|*any_allowed*: `Boolean` +
+*_Post_*: Result := children = Void or else children.is_empty
+a|True if any value (i.e. instance) of the reference model attribute represented by this C_ATTIRBUTE is allowed.
 
 h|*Invariant*
 2+a|*_Rm_attribute_name_valid_*: not rm_attribute_name.is_empty
