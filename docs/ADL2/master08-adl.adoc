@@ -236,7 +236,7 @@ The multi-axial archetype identifier identifies archetypes in a global concept s
 
 Because namespaces are usually treated hierarchically, higher level namespaces (e.g. '.org' domains) are assumed to be includable by more local namespaces, with the result that the concept definition space is inherited as well.
 
-The semantics of the ontological identifier are described in detail in the {openehr_am_identification}[openEHR Identification Specification].
+The semantics of the ontological identifier are described in detail in the {openehr_am_id}[openEHR Identification Specification].
 
 === Specialised Archetype Identification
 
@@ -573,7 +573,7 @@ The `term_definitions` section is mandatory, and must contain definitions for al
 * all at-codes
 * all ac-codes
 
-The following example shows an extract from the English and German term definitions for the archetype local terms in a problem/SOAP headings archetype. Each term is defined using a structure of name/value pairs, and must at least include the names "text" and "description", which correspond to the usual rubric and full definition found in terminologies like SNOMED CT. Each term object is then included in the appropriate language list of term definitions, as shown in the example below.
+The following example shows an extract from the English and German term definitions for the archetype local terms in a problem/SOAP headings archetype. Each term is defined using a structure of name/value pairs, and must at least include the names "text" and "description", which correspond to the usual rubric and full definition found in terminologies like {snomed_ct}[SNOMED CT]. Each term object is then included in the appropriate language list of term definitions, as shown in the example below.
 
 [source, odin]
 --------
@@ -692,7 +692,7 @@ Keys can be any one of:
 * an at-code;
 * an ac-code.
 
-Binding targets are expressed as URIs that follow the model for terminology URIs published by IHTSDO <<IHTSDO_URIs>> or a similar model, in the case of terminologies other than SNOMED CT. Because URIs are native types in ADL/ODIN, they do not need quotes.
+Binding targets are expressed as URIs that follow the model for terminology URIs published by IHTSDO <<IHTSDO_URIs>> or a similar model, in the case of terminologies other than {snomed_ct}[SNOMED CT]. Because URIs are native types in ADL/ODIN, they do not need quotes.
 
 Bindings may be defined for a given set of terms for more than one terminology, enabling the different bindings to be used in different contexts, e.g. hospital deployment versus aged care.
 
@@ -748,9 +748,9 @@ The following is an extract from a https://github.com/openEHR/adl-archetypes/blo
     >
 --------
 
-The reason for code and path keys for id-codes is to enable two types of id-code bindings. A binding to a simple code such as `id26|Total|`, above, means that the bound term (referred to by the URI `http://snomedct.info/id/249228009`) has a context-independent correlation to the id-code. However, a 'pre-coordinated' code such as SNOMED CT `169895004|Apgar score at 1 minute|` cannot be bound just to `id26|Total|`, but rather to the node representing the 1-minute total, i.e. at the path `/data[id3]/events[id4|1 minute|]/data[id2]/items[id26]`. Such paths can be considered as equivalent to a 'post-coordinated' code, and thus the binding establishes a correspondence between an internal post-coordination and an external pre-coordinated code.
+The reason for code and path keys for id-codes is to enable two types of id-code bindings. A binding to a simple code such as `id26|Total|`, above, means that the bound term (referred to by the URI `http://snomedct.info/id/249228009`) has a context-independent correlation to the id-code. However, a 'pre-coordinated' code such as {snomed_ct}[SNOMED CT] `169895004|Apgar score at 1 minute|` cannot be bound just to `id26|Total|`, but rather to the node representing the 1-minute total, i.e. at the path `/data[id3]/events[id4|1 minute|]/data[id2]/items[id26]`. Such paths can be considered as equivalent to a 'post-coordinated' code, and thus the binding establishes a correspondence between an internal post-coordination and an external pre-coordinated code.
 
-In the example shown below, the `id4` code identifies a 'temperature' node in an archetype, and the codes `id3`, `id5`, `id6` etc correspond to various times such as 'any', '1-hour average', '1-hour maximum' and so on. Some terminologies (notably LOINC, the laboratory terminology in this example) define pre-coordinated codes, such as '1 hour body temperature'; these clearly correspond not to single codes such as `id4` in the archetype, but to whole paths.
+In the example shown below, the `id4` code identifies a 'temperature' node in an archetype, and the codes `id3`, `id5`, `id6` etc correspond to various times such as 'any', '1-hour average', '1-hour maximum' and so on. Some terminologies (notably {loinc}[LOINC], the laboratory terminology in this example) define pre-coordinated codes, such as '1 hour body temperature'; these clearly correspond not to single codes such as `id4` in the archetype, but to whole paths.
 
 [source, odin]
 --------
@@ -775,7 +775,7 @@ Bindings to external value sets are also included in the bindings section, also 
     >
 --------
 
-In this example, each local constraint code is formally defined to refer to a value set whose identifier is known in the SNOMED-CT terminology.
+In this example, each local constraint code is formally defined to refer to a value set whose identifier is known in the {snomed_ct}[SNOMED CT] terminology.
 
 The next section describes the semantics of term constraining, value sets and binding in some detail.
 

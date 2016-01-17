@@ -404,7 +404,7 @@ NOTE: the use of `items` in the above is historical in ADL, and will be changed 
 
 === Constraint_definitions Section
 
-The constraint_definitions section is of exactly the same form as the `term_definitions` section, and provides the definitions - i.e. the meanings - of the local constraint codes, which are of the form `[acNNNN]`. Each such code refers to some constraint such as "any term which is a subtype of 'hepatitis' in the ICD9AM terminology"; the constraint definitions do not provide the constraints themselves, but define the _meanings_ of such constraints, in a manner comprehensible to human beings, and usable in GUI applications. This may seem a superfluous thing to do, but in fact it is quite important. Firstly, term constraints can only be expressed with respect to particular terminologies - a constraint for "kind of hepatitis" would be expressed in different ways for each terminology which the archetype is bound to. For this reason, the actual constraints are defined in the `constraint_bindings` section. An example of a constraint term definition for the hepatitis constraint is as follows:
+The constraint_definitions section is of exactly the same form as the `term_definitions` section, and provides the definitions - i.e. the meanings - of the local constraint codes, which are of the form `[acNNNN]`. Each such code refers to some constraint such as "any term which is a subtype of 'hepatitis' in the ICD10AM terminology"; the constraint definitions do not provide the constraints themselves, but define the _meanings_ of such constraints, in a manner comprehensible to human beings, and usable in GUI applications. This may seem a superfluous thing to do, but in fact it is quite important. Firstly, term constraints can only be expressed with respect to particular terminologies - a constraint for "kind of hepatitis" would be expressed in different ways for each terminology which the archetype is bound to. For this reason, the actual constraints are defined in the `constraint_bindings` section. An example of a constraint term definition for the hepatitis constraint is as follows:
 
 [source, odin]
 ----
@@ -416,7 +416,7 @@ items = <
 >
 ----
 
-Note that while it often seems tempting to use classification codes, e.g. from the ICD vocabularies, these will rarely be much use in terminology or constraint definitions, because it is nearly always _descriptive_, not classificatory terms which are needed.
+Note that while it often seems tempting to use classification codes, e.g. from the {who_icd}[ICD vocabularies], these will rarely be much use in terminology or constraint definitions, because it is nearly always _descriptive_, not classificatory terms which are needed.
 
 === Term_bindings Section
 
@@ -451,7 +451,7 @@ Each entry indicates which term in an external terminology is equivalent to the 
 
 ==== Path-based Bindings
 
-The second kind of binding is one between an archetype path and an external code. This occurs commonly for archetypes where a term us re-used at the leaf level. For example, in the binding example below, the at0004 code represents 'temperature' and the codes `at0003`, `at0005`, `at0006` etc correspond to various times such as 'any', 1-hour average, 1-hour maximum and so on. Some terminologies (notably LOINC, the laboratory terminology in this example) define 'pre-coordinated' codes, such as '1 hour body temperature'; these clearly correspond not to single codes such as at0004 in the archetype, but to whole paths. In such cases, the key in each term binding row is a full path rather than a single term.
+The second kind of binding is one between an archetype path and an external code. This occurs commonly for archetypes where a term us re-used at the leaf level. For example, in the binding example below, the at0004 code represents 'temperature' and the codes `at0003`, `at0005`, `at0006` etc correspond to various times such as 'any', 1-hour average, 1-hour maximum and so on. Some terminologies (notably {loinc}[LOINC], the laboratory terminology in this example) define 'pre-coordinated' codes, such as '1 hour body temperature'; these clearly correspond not to single codes such as at0004 in the archetype, but to whole paths. In such cases, the key in each term binding row is a full path rather than a single term.
 
 [source, odin]
 ----

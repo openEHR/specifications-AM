@@ -595,7 +595,7 @@ Other constraints are possible as well, including that the allowed archetype mus
             short_concept_name ∈ {"risk_family_history"}
                 ∧ ∃ /subject/relationship/defining_code -> ~ /subject/relationship/defining_code/code_list.has([openehr::0]) -- self
     }
---------
+--------    
 
 This says that the slot allows archetypes on the `EVALUATION` class, which either have as their concept "risk_family_history" or, if there is a constraint on the subject relationship, then it may not include the code `[openehr::0]` (the openEHR term for "self") - i.e. it must be an archetype designed for family members rather than the subject of care herself.
 
@@ -606,7 +606,7 @@ Not all constraints can be defined easily within an archetype. One common catego
 
 The value set could be simply enumerated within the archetype, for example using the `C_CODE_PHRASE` type defined in the openEHR Archetype Profile; this will work perfectly well, but has at least two limitations. Firstly, the intended set of values allowed for the attribute may change over time (e.g. as has happened with 'types of hepatitis' since 1980), requiring the archetype to be updated. With a large repository of archetypes, each containing coded term constraints, this approach is likely to be unsustainable and error-prone. Secondly, the best means of defining the value set is in general not likely to be via enumeration of the individual terms, but in the form of a semantic expression that can be evaluated against the terminology. This is because the value set is typically logically specified in terms of inclusions, exclusions, conjunctions and disjunctions of general categories.
 
-Consider for example the value set logically defined as "any bacterial infection of the lung". The possible values would be codes from a target terminology, corresponding to numerous strains of pneumococcus, staphlycoccus and so on, but not including species that are never found in the lung. Rather than enumerate the list of codes corresponding to this value set (which is likely to be quite large), the archetype author is more likely to rely on semantic links within the terminology to express the set; a query such as 'is-a bacteria and has-site lung' might be definable against the terminology (such as SNOMED-CT or the WHO ICD10 terminology).
+Consider for example the value set logically defined as "any bacterial infection of the lung". The possible values would be codes from a target terminology, corresponding to numerous strains of pneumococcus, staphlycoccus and so on, but not including species that are never found in the lung. Rather than enumerate the list of codes corresponding to this value set (which is likely to be quite large), the archetype author is more likely to rely on semantic links within the terminology to express the set; a query such as 'is-a bacteria and has-site lung' might be definable against the terminology (such as {snomed_ct}[SNOMED CT] or the {who_icd}[WHO ICD10] terminology).
 
 In a similar way, other value sets, including for quantitative values, are likely to be specified by queries or formal expressions, and evaluated by an external knowledge service. Examples include "any
 unit of pressure" and "normal range values for serum sodium".

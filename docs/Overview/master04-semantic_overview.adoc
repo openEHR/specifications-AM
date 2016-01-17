@@ -18,7 +18,7 @@ We can understand this model space equivalently as an ontological space, where t
 
 Returning to the Archetype HRID, the leading namespace indicates the Custodian Organisation, here the UK NHS. The implication of the namespace within the HRID is that multiple agencies may publish competing ideas of a ‘medication_order’ archetype based on the openEHR `COMPOSITION` class, and there will not be any clash. Although the namespace is prepended to the archetype identifier in the usual way, in fact it should be understood as a discriminator on the domain entity. In other words, the identifiers `uk.gov.nhs::openEHR-EHR-COMPOSITION.medication_order.v1` and `no.regjeringen::openEHR-EHR-COMPOSITION.medication_order.v1` should be understood as UK NHS and Norwegian Health Department ideas of ‘medication_order’, based on the same openEHR Reference Model `COMPOSITION` class.
 
-This is useful as a practical measure, to avoid immediate chaos. In the longer term, it is intended that archetype semantic identifiers for a given domain are located in a common international ontology of information artefact types. For the clinical domain, it could look as shown in the figure <<information_ontology>>, where it is assumed that the Basic Formal Ontology 2nd Edition (<<BFO>>) and the Information Artefact Ontology (<<IAO>>) upper level ontologies would provide the foundation of clinically specific models.
+This is useful as a practical measure, to avoid immediate chaos. In the longer term, it is intended that archetype semantic identifiers for a given domain are located in a common international ontology of information artefact types. For the clinical domain, it could look as shown in the figure <<information_ontology>>, where it is assumed that the {bfo}[Basic Formal Ontology (BFO) 2nd Edition] and the {iao}[Information Artefact Ontology (IAO)] upper level ontologies would provide the foundation of clinically specific models.
 
 [.text-center]
 .Example archetype artefact ontology
@@ -32,7 +32,7 @@ An Archetype HRID may legally have no namespace. This means it is uncontrolled a
 
 The last part of the archetype identifier is the version. Logical archetype identifiers include the major version i.e. first number of a 3-part version (e.g. 1.5.0), on the basis that a change in major version number is generally understood in IT to be a breaking change to the artefact. Accordingly, different major versions are considered different artefacts from a computational point of view. The full version can also be used to construct an identifier useful for physical resources, e.g. files or version system references.
 
-Making progress on a universal ontology for a whole domain such as clinical informatics is likely to be complex and slow, due to the fact that two types of ‘custodian’ or ‘publisher’ are involved, namely Reference Model custodians - typically standards bodies - and Archetype custodians - typically domain-related organisations within major jurisdictions, e.g. MoH Information Authorities. If we also assume the involvement of an organisation such as the Open Biological and Biomedical Ontologies <<OBO>>, a multi-year process is clearly implied.
+Making progress on a universal ontology for a whole domain such as clinical informatics is likely to be complex and slow, due to the fact that two types of ‘custodian’ or ‘publisher’ are involved, namely Reference Model custodians - typically standards bodies - and Archetype custodians - typically domain-related organisations within major jurisdictions, e.g. MoH Information Authorities. If we also assume the involvement of an organisation such as the {obo}[Open Biological and Biomedical Ontologies (OBO)], a multi-year process is clearly implied.
 
 A practical view is to treat a given Reference Model (or, a small number of strongly related RMs) as fixed, and to try to develop an ontology of archetypes under that. This would require agreements across Archetype custodians, and a successful outcome would result in a single definitional space - everyone would agree for example that a ‘systemic arterial blood pressure measurement’ was called just that, and had a short name of (say) ‘bp_measurement’. It would not obviate the need for custodians however, since it is clear that for most domains, there remain real distinctions across geographies and sub-specialties. For example, an internationally agreed ‘pregnancy record’ entity might have real specialisations such as ‘European standard pregnancy record’, ‘Swedish pregnancy record’ and so on, where some European body, and the Swedish Ministry of Health were both custodians.
 
@@ -43,7 +43,7 @@ Accordingly, the formalism and tooling is designed on the basis of the simplest 
 * real data can be computationally classified under various points in the ontology - i.e. we can computationally determine if certain data are a ‘bp_measurement’, a ‘UK NHS bp_measurement’ or even just an `OBSERVATION` ;
 * we can use the subsumption operator on the IS-A hierarchy to define useful subsets of the overall space, e.g. `{any-descendant of ‘medical_device’}, {any-descendant-or-self of OBSERVATION}` and so on.
 
-The IS-A hierarchy is available in archetype tools such as the <<openEHR_ADL_workbench>>, as shown in the figure <<archetypes_is_a_hierarchy>>.
+The IS-A hierarchy is available in archetype tools such as the {openehr_awb}[openEHR ADL Workbench], as shown in the figure <<archetypes_is_a_hierarchy>>.
 
 [.text-center]
 .Is-A hierarchy of the openEHR international archetypes
@@ -93,7 +93,7 @@ An XML schema for archetypes is available on the openEHR website.
 
 === Archetype Definition Language (ADL)
 
-ADL uses three sub-syntaxes: cADL (constraint form of ADL), ODIN (Object Data Instance Notation), and a version of first-order predicate logic (FOPL). The cADL and FOPL parts express constraints on data which are instances of an underlying information model, which may be expressed in UML, relational form, or in a programming language. ADL itself is a very simple ‘glue’ syntax, which connects blocks of the subordinate syntaxes to form an overall artefact. The cADL syntax is used to express the archetype `definition` , while the ODIN syntax is used to express data which appears in the  language` , `description` , `terminology` , and `revision_history` sections of an ADL archetype. The top-level structure of an ADL archetype is shown in the figure below.
+ADL uses three sub-syntaxes: cADL (constraint form of ADL), {openehr_odin}[ODIN (Object Data Instance Notation)], and a version of first-order predicate logic (FOPL). The cADL and FOPL parts express constraints on data which are instances of an underlying information model, which may be expressed in UML, relational form, or in a programming language. ADL itself is a very simple ‘glue’ syntax, which connects blocks of the subordinate syntaxes to form an overall artefact. The cADL syntax is used to express the archetype `definition` , while the ODIN syntax is used to express data which appears in the  language` , `description` , `terminology` , and `revision_history` sections of an ADL archetype. The top-level structure of an ADL archetype is shown in the figure below.
 
 [.text-center]
 .ADL Archetype Structure
@@ -115,6 +115,7 @@ This job of a template is as follows:
 
 A template may compose any number of archetypes, but choose very few data points from each, thus having the effect of creating a small data set from a very large number of data points defined in the original archetypes.
 
-The archetype semantics used in templates are described in detail in the ADL specification; a detailed description of their use is given in the Template Guide specification.
+The archetype semantics used in templates are described in detail in the ADL specification; a detailed description of their use is given in the {openehr_am_adl2}#_templates[ADL2 specification, Templates section].
 
-The AOM describes in structural form all the semantics of templates. Note that the AOM does not distinguish between archetypes, specialised archetypes or templates other than by use of an artefact type classifier. All other differences in how archetypes and templates work are implemented in tools that may prevent or allow certain operations depending on whether the artefact being worked on is an archetype or template.
+The {openehr_am_aom2}#_templates[AOM specification] describes in structural form all the semantics of templates. Note that the AOM does not distinguish between archetypes, specialised archetypes or templates other than by use of an artefact type classifier. All other differences in how archetypes and templates work are implemented in tools that may prevent or allow certain operations depending on whether the artefact being worked on is an archetype or template.
+

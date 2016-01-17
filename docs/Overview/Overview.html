@@ -58,12 +58,10 @@
 <li><a href="#_publications">Publications</a></li>
 <li><a href="#_resources">Resources</a>
 <ul class="sectlevel3">
-<li><a href="#_ontology">Ontology</a></li>
 <li><a href="#_general">General</a></li>
 <li><a href="#_e_health_standards">e-Health Standards</a></li>
 <li><a href="#_e_health_projects">e-Health Projects</a></li>
 <li><a href="#_general_standards">General Standards</a></li>
-<li><a href="#_tools">Tools</a></li>
 </ul>
 </li>
 </ul>
@@ -221,10 +219,10 @@
 <p>Archetypes are a way of adding domain semantics to information models, while avoiding endless growth and maintenance of the latter, as would occur if a textbook approach were used to modelling.</p>
 </div>
 <div class="paragraph">
-<p>To make the distinction between domain semantics and information models concrete, information models in openEHR, ISO 13606-1 and more generally in e-health typically define 'clinical data types', such as Quantity (with units, accuracy etc); Coded text; Ordinal (an Integer/symbol conjunction); and various generic clinical data structures, such as 'clinical statement' (denoted by the type <code>Entry</code> in openEHR and ISO 13606-1), 'clinical document', 'report', and so on. Such an information model may contain 50-100 classes, including 20+ classes for the clinical data types, and enables the construction of instance structures corresponding to the various parts and sections of e.g. a clinical encounter note or a hospital discharge summary.</p>
+<p>To make the distinction between domain semantics and information models concrete, information models in openEHR, ISO 13606-1, HL7 CDA and more generally in e-health typically define 'clinical data types', such as Quantity (with units, accuracy etc); Coded text; Ordinal (an Integer/symbol conjunction); and various generic clinical data structures, such as 'clinical statement' (denoted by the type <code>Entry</code> in openEHR and ISO 13606-1), 'clinical document', 'report', and so on. Such an information model may contain 50-100 classes, including 30+ classes for the clinical data types, and enables the construction of instance structures corresponding to the various parts and sections of e.g. a clinical encounter note or a hospital discharge summary.</p>
 </div>
 <div class="paragraph">
-<p>However, neither a class model of this size, nor the capabilities of standard UML can naturally accommodate the explosion or diversity of possible values of instances that can make up a clinical document created in every particular situation (e.g. a specific kind of patient visiting a specialist), nor for the tens of thousands of clinical observations (e.g. 'systolic blood pressure', 'visual acuity', etc, many of them consisting of multiple data points in specific structures), nor the O(1E5) laboratory analyte result types. Further, the size of terminology needed to annotate data items, both 'names' and 'values' in a name/value representation of the data is in the O(1E5) - O(1E6) concepts range, as exemplified by the <a href="#SNOMED_CT">[SNOMED_CT]</a> and <a href="#WHO_ICD">[WHO_ICD]</a> terminologies.</p>
+<p>However, neither a class model of this size, nor the capabilities of standard UML can naturally accommodate the explosion or diversity of possible values of instances that can make up a clinical document created in every particular situation (e.g. a specific kind of patient visiting a specialist), nor for the tens of thousands of clinical observations (e.g. 'systolic blood pressure', 'visual acuity', etc, many of them consisting of multiple data points in specific structures), nor the O(1E4) laboratory analyte result types. Further, the size of terminology needed to annotate data items, both 'names' and 'values' in a name/value representation of the data is in the O(1E5) - O(1E6) concepts range, as exemplified by the <a href="http://www.ihtsdo.org">SNOMED CT</a> and <a href="http://www.who.int/classifications/icd/en/">ICDx</a> terminologies.</p>
 </div>
 <div class="paragraph">
 <p>The above situation applies across most information-rich industries, with varying but generally very large numbers.</p>
@@ -251,7 +249,7 @@
 <p>An important economic factor is that the creation of good quality domain models is time-consuming and expensive, relying as it does on domain experts - typically experienced clinicians, engineers etc - rather than IT staff. If models are created inside a specific product (e.g. a particular hospital information system), and that product is replaced, there is often little appetite or availability of the staff to recreate the work done in authoring the models/templates for the first product, in the new product environment. Multiplied across products, sites, and whole industry verticals, <em>the lack of standard ways of representing models of domain content has become a significant obstruction to the production of high quality information systems</em>. Instead, as each solution is replaced, its domain models usually die with it.</p>
 </div>
 <div class="paragraph">
-<p>The need for an efficient, formal, and product- and implementation format-independent domain modelling capability is therefore clear, nowhere moreso than in health, where the sheer amount of domain semantics requiring formalisation in health has necessitated the creation in openEHR of the Archetype formalism, used in conjunction with terminologies (i.e. SNOMED CT, LOINC, ICDx and many others).</p>
+<p>The need for an efficient, formal, and product- and implementation format-independent domain modelling capability is therefore clear, nowhere moreso than in health, where the sheer amount of domain semantics requiring formalisation in health has necessitated the creation in openEHR of the Archetype formalism, used in conjunction with terminologies (i.e. <a href="http://www.ihtsdo.org">SNOMED CT</a>, <a href="http://loinc.org">LOINC</a>, <a href="http://www.who.int/classifications/icd/en/">ICDx</a> and many others).</p>
 </div>
 <div class="paragraph">
 <p>Two categories of domain content models can be distinguished, respnding to a universal need to be able to represent both use-independent definitions of 'data points' and 'data groups', and use-case dependent definition of 'data sets'. Consider the case of recording patient vital signs. Assume that content models can be defined for 'blood pressure', 'heart rate' and 'blood oxygen'. These definitions need to be independent of specific uses such as patient home measurement, GP encounter, and hospital bedside measurement, since in all these cases, each vital sign is recorded in exactly the same way. However in each case, these vital signs data points are recorded within a larger data set of items that correspond to the health system event occurring, such as a GP patient health checkup or an ED initial assessment.</p>
@@ -305,7 +303,7 @@
 <p>Although in the abstract, Archetypes are easily understood, Templates imply some nuances. A Template is an artefact that enables the content defined in published archetypes to be used for a particular use case or business event. In health this is often a ‘health service event’ such as a particular kind of encounter between a patient and a provider. Archetypes define content on the basis of topic or theme e.g. blood pressure, physical exam, report, independently of particular business events. Templates provide the way of using a particular set of archetypes, choosing a particular (often quite limited) set of nodes from each and then limiting values and/or terminology in a way specific to a particular kind of event, such as ‘diabetic patient admission’, ‘ED discharge’ and so on. Such events in an ICT environment often have a corresponding screen ‘form’ (which may have one or more ‘pages’ or subforms and some workflow logic) associated with them; as a result, an openEHR template is often a direct precursor to a form in the presentation layer of application software. Templates are the technical means of using archetypes in runtime systems.</p>
 </div>
 <div class="paragraph">
-<p>One other semantic ingredient is crucial: that of <strong>terminology</strong>, with the implication of underlying ontology/ies. The RM/Archetypes/Templates ‘model stack’ defines information as it is created and used - an <em>epistemological view</em>, but does not try to describe the <em>ontological</em> semantics of each information element. The latter is the business of ontologies, such as can be found in the Open Biomedical Ontology (<a href="#OBO">[OBO]</a>) Foundry, and terminologies, such as SNOMED CT, which define naming over an ontological framework for use in particular contexts.</p>
+<p>One other semantic ingredient is crucial: that of <strong>terminology</strong>, with the implication of underlying ontology/ies. The RM/Archetypes/Templates ‘model stack’ defines information as it is created and used - an <em>epistemological view</em>, but does not try to describe the <em>ontological</em> semantics of each information element. The latter is the business of ontologies, such as can be found in the <a href="http://www.obofoundry.org/">Open Biomedical Ontology (OBO) Foundry</a>, and terminologies, such as <a href="http://www.ihtsdo.org">SNOMED CT</a>, which define naming over an ontological framework for use in particular contexts.</p>
 </div>
 <div id="openehr_architecture" class="imageblock text-center" style="text-align: center">
 <div class="content">
@@ -416,7 +414,7 @@
 <p>Returning to the Archetype HRID, the leading namespace indicates the Custodian Organisation, here the UK NHS. The implication of the namespace within the HRID is that multiple agencies may publish competing ideas of a ‘medication_order’ archetype based on the openEHR <code>COMPOSITION</code> class, and there will not be any clash. Although the namespace is prepended to the archetype identifier in the usual way, in fact it should be understood as a discriminator on the domain entity. In other words, the identifiers <code>uk.gov.nhs::openEHR-EHR-COMPOSITION.medication_order.v1</code> and <code>no.regjeringen::openEHR-EHR-COMPOSITION.medication_order.v1</code> should be understood as UK NHS and Norwegian Health Department ideas of ‘medication_order’, based on the same openEHR Reference Model <code>COMPOSITION</code> class.</p>
 </div>
 <div class="paragraph">
-<p>This is useful as a practical measure, to avoid immediate chaos. In the longer term, it is intended that archetype semantic identifiers for a given domain are located in a common international ontology of information artefact types. For the clinical domain, it could look as shown in the figure <a href="#information_ontology">Example archetype artefact ontology</a>, where it is assumed that the Basic Formal Ontology 2nd Edition (<a href="#BFO">[BFO]</a>) and the Information Artefact Ontology (<a href="#IAO">[IAO]</a>) upper level ontologies would provide the foundation of clinically specific models.</p>
+<p>This is useful as a practical measure, to avoid immediate chaos. In the longer term, it is intended that archetype semantic identifiers for a given domain are located in a common international ontology of information artefact types. For the clinical domain, it could look as shown in the figure <a href="#information_ontology">Example archetype artefact ontology</a>, where it is assumed that the <a href="http://ifomis.uni-saarland.de/bfo/">Basic Formal Ontology (BFO) 2nd Edition</a> and the <a href="https://code.google.com/p/information-artifact-ontology/">Information Artefact Ontology (IAO)</a> upper level ontologies would provide the foundation of clinically specific models.</p>
 </div>
 <div id="information_ontology" class="imageblock text-center" style="text-align: center">
 <div class="content">
@@ -437,7 +435,7 @@
 <p>The last part of the archetype identifier is the version. Logical archetype identifiers include the major version i.e. first number of a 3-part version (e.g. 1.5.0), on the basis that a change in major version number is generally understood in IT to be a breaking change to the artefact. Accordingly, different major versions are considered different artefacts from a computational point of view. The full version can also be used to construct an identifier useful for physical resources, e.g. files or version system references.</p>
 </div>
 <div class="paragraph">
-<p>Making progress on a universal ontology for a whole domain such as clinical informatics is likely to be complex and slow, due to the fact that two types of ‘custodian’ or ‘publisher’ are involved, namely Reference Model custodians - typically standards bodies - and Archetype custodians - typically domain-related organisations within major jurisdictions, e.g. MoH Information Authorities. If we also assume the involvement of an organisation such as the Open Biological and Biomedical Ontologies <a href="#OBO">[OBO]</a>, a multi-year process is clearly implied.</p>
+<p>Making progress on a universal ontology for a whole domain such as clinical informatics is likely to be complex and slow, due to the fact that two types of ‘custodian’ or ‘publisher’ are involved, namely Reference Model custodians - typically standards bodies - and Archetype custodians - typically domain-related organisations within major jurisdictions, e.g. MoH Information Authorities. If we also assume the involvement of an organisation such as the <a href="http://www.obofoundry.org/">Open Biological and Biomedical Ontologies (OBO)</a>, a multi-year process is clearly implied.</p>
 </div>
 <div class="paragraph">
 <p>A practical view is to treat a given Reference Model (or, a small number of strongly related RMs) as fixed, and to try to develop an ontology of archetypes under that. This would require agreements across Archetype custodians, and a successful outcome would result in a single definitional space - everyone would agree for example that a ‘systemic arterial blood pressure measurement’ was called just that, and had a short name of (say) ‘bp_measurement’. It would not obviate the need for custodians however, since it is clear that for most domains, there remain real distinctions across geographies and sub-specialties. For example, an internationally agreed ‘pregnancy record’ entity might have real specialisations such as ‘European standard pregnancy record’, ‘Swedish pregnancy record’ and so on, where some European body, and the Swedish Ministry of Health were both custodians.</p>
@@ -459,7 +457,7 @@
 </ul>
 </div>
 <div class="paragraph">
-<p>The IS-A hierarchy is available in archetype tools such as the <a href="#openEHR_ADL_workbench">[openEHR_ADL_workbench]</a>, as shown in the figure <a href="#archetypes_is_a_hierarchy">Is-A hierarchy of the openEHR international archetypes</a>.</p>
+<p>The IS-A hierarchy is available in archetype tools such as the <a href="http://www.openehr.org/downloads/ADLworkbench/home">openEHR ADL Workbench</a>, as shown in the figure <a href="#archetypes_is_a_hierarchy">Is-A hierarchy of the openEHR international archetypes</a>.</p>
 </div>
 <div id="archetypes_is_a_hierarchy" class="imageblock text-center" style="text-align: center">
 <div class="content">
@@ -540,7 +538,7 @@
 <div class="sect3">
 <h4 id="_archetype_definition_language_adl"><a class="anchor" href="#_archetype_definition_language_adl"></a>4.4.1. Archetype Definition Language (ADL)</h4>
 <div class="paragraph">
-<p>ADL uses three sub-syntaxes: cADL (constraint form of ADL), ODIN (Object Data Instance Notation), and a version of first-order predicate logic (FOPL). The cADL and FOPL parts express constraints on data which are instances of an underlying information model, which may be expressed in UML, relational form, or in a programming language. ADL itself is a very simple ‘glue’ syntax, which connects blocks of the subordinate syntaxes to form an overall artefact. The cADL syntax is used to express the archetype <code>definition</code> , while the ODIN syntax is used to express data which appears in the  language` , <code>description</code> , <code>terminology</code> , and <code>revision_history</code> sections of an ADL archetype. The top-level structure of an ADL archetype is shown in the figure below.</p>
+<p>ADL uses three sub-syntaxes: cADL (constraint form of ADL), <a href="http://www.openehr.org/releases/BASE/latest/odin.html">ODIN (Object Data Instance Notation)</a>, and a version of first-order predicate logic (FOPL). The cADL and FOPL parts express constraints on data which are instances of an underlying information model, which may be expressed in UML, relational form, or in a programming language. ADL itself is a very simple ‘glue’ syntax, which connects blocks of the subordinate syntaxes to form an overall artefact. The cADL syntax is used to express the archetype <code>definition</code> , while the ODIN syntax is used to express data which appears in the  language` , <code>description</code> , <code>terminology</code> , and <code>revision_history</code> sections of an ADL archetype. The top-level structure of an ADL archetype is shown in the figure below.</p>
 </div>
 <div id="archetype_structure" class="imageblock text-center" style="text-align: center">
 <div class="content">
@@ -591,10 +589,10 @@
 <p>A template may compose any number of archetypes, but choose very few data points from each, thus having the effect of creating a small data set from a very large number of data points defined in the original archetypes.</p>
 </div>
 <div class="paragraph">
-<p>The archetype semantics used in templates are described in detail in the ADL specification; a detailed description of their use is given in the Template Guide specification.</p>
+<p>The archetype semantics used in templates are described in detail in the ADL specification; a detailed description of their use is given in the <a href="http://www.openehr.org/releases/AM/latest/ADL2.html#_templates">ADL2 specification, Templates section</a>.</p>
 </div>
 <div class="paragraph">
-<p>The AOM describes in structural form all the semantics of templates. Note that the AOM does not distinguish between archetypes, specialised archetypes or templates other than by use of an artefact type classifier. All other differences in how archetypes and templates work are implemented in tools that may prevent or allow certain operations depending on whether the artefact being worked on is an archetype or template.</p>
+<p>The <a href="http://www.openehr.org/releases/AM/latest/AOM2.html#_templates">AOM specification</a> describes in structural form all the semantics of templates. Note that the AOM does not distinguish between archetypes, specialised archetypes or templates other than by use of an artefact type classifier. All other differences in how archetypes and templates work are implemented in tools that may prevent or allow certain operations depending on whether the artefact being worked on is an archetype or template.</p>
 </div>
 </div>
 </div>
@@ -675,7 +673,7 @@
 <p>The differential in-memory representation is validated by the semantic checker, which verifies numerous things, such as that term codes referenced in the definition section are defined in the terminology section. It can also validate the classes and attributes mentioned in the archetype against a specification for the relevant reference model.</p>
 </div>
 <div class="paragraph">
-<p>The results of the compilation process can be seen in the archetype visualisations in the openEHR <a href="#ADL_workbench">[ADL_workbench]</a>.</p>
+<p>The results of the compilation process can be seen in the archetype visualisations in the openEHR <a href="http://www.openehr.org/downloads/ADLworkbench/home">ADL Workbench</a>.</p>
 </div>
 </div>
 <div class="sect2">
@@ -798,31 +796,6 @@
 <div class="sect2">
 <h3 id="_resources"><a class="anchor" href="#_resources"></a>Resources</h3>
 <div class="sect3">
-<h4 id="_ontology"><a class="anchor" href="#_ontology"></a>Ontology</h4>
-<div class="olist bibliography">
-<ol class="bibliography">
-<li>
-<p><a id="bfo"></a>[bfo] Institute for Formal Ontology and Medical Information Science (IFOMIS). <strong>Basic Formal Ontology (BFO).</strong> <a href="http://ifomis.uni-saarland.de/bfo/" class="bare">http://ifomis.uni-saarland.de/bfo/</a> .</p>
-</li>
-<li>
-<p><a id="FMA"></a>[FMA] <a href="http://sig.biostr.washington.edu/projects/fm/" class="bare">http://sig.biostr.washington.edu/projects/fm/</a> .</p>
-</li>
-<li>
-<p><a id="Horrocks_owl"></a>[Horrocks_owl] Patel-Schneider P, Horrocks I, Hayes P. <strong>OWL Web Ontology Language Semantics and Abstract Syntax.</strong> See <a href="http://w3c.org/TR/owl-semantics/" class="bare">http://w3c.org/TR/owl-semantics/</a> .</p>
-</li>
-<li>
-<p><a id="IAO"></a>[IAO] <strong>Information Artefact Ontology</strong>.  <a href="https://code.google.com/p/information-artifact-ontology/" class="bare">https://code.google.com/p/information-artifact-ontology/</a> .</p>
-</li>
-<li>
-<p><a id="OBO"></a>[OBO] <strong>The Open Biological and Biomedical Ontologies</strong>. See <a href="http://www.obofoundry.org/" class="bare">http://www.obofoundry.org/</a> .</p>
-</li>
-<li>
-<p><a id="OGMS"></a>[OGMS] <strong>Ontology for General Medical Science (OGMS)</strong>. <a href="https://code.google.com/p/ogms/" class="bare">https://code.google.com/p/ogms/</a> .</p>
-</li>
-</ol>
-</div>
-</div>
-<div class="sect3">
 <h4 id="_general"><a class="anchor" href="#_general"></a>General</h4>
 <div class="olist bibliography">
 <ol class="bibliography">
@@ -837,22 +810,10 @@
 <div class="olist bibliography">
 <ol class="bibliography">
 <li>
-<p><a id="ENV_13606-1"></a>[ENV_13606-1] <strong>ENV 13606-1 - Electronic healthcare record communication - Part 1: Extended architecture.</strong> CEN/ TC 251 Health Informatics Technical Committee.</p>
+<p><a id="Corbamed_PIDS"></a>[Corbamed_PIDS] Object Management Group. <strong>Person Identification Service.</strong> March 1999. See <a href="http://www.omg.org/spec/PIDS/" class="bare">http://www.omg.org/spec/PIDS/</a> .</p>
 </li>
 <li>
-<p><a id="ENV_13606-2"></a>[ENV_13606-2] <strong>ENV 13606-2 - Electronic healthcare record communication - Part 2: Domain term list.</strong> CEN/TC 251 Health Informatics Technical Committee.</p>
-</li>
-<li>
-<p><a id="ENV_13606-3"></a>[ENV_13606-3] <strong>ENV 13606-3 - Electronic healthcare record communication - Part 3: Distribution rules.</strong> CEN/TC 251 Health Informatics Technical Committee.</p>
-</li>
-<li>
-<p><a id="ENV_13606-4"></a>[ENV_13606-4] <strong>ENV 13606-4 - Electronic Healthcare Record Communication standard Part 4: Messages for the exchange of information.</strong> CEN/ TC 251 Health Informatics Technical Committee.</p>
-</li>
-<li>
-<p><a id="Corbamed_PIDS"></a>[Corbamed_PIDS] Object Management Group. <strong>Person Identification Service.</strong> March 1999.</p>
-</li>
-<li>
-<p><a id="Corbamed_LQS"></a>[Corbamed_LQS] Object Management Group. <strong>Lexicon Query Service.</strong> March 1999.</p>
+<p><a id="Corbamed_LQS"></a>[Corbamed_LQS] Object Management Group. <strong>Lexicon Query Service.</strong> March 1999. <a href="http://www.omg.org/spec/LQS/" class="bare">http://www.omg.org/spec/LQS/</a> .</p>
 </li>
 <li>
 <p><a id="HL7v3_ballot2"></a>[HL7v3_ballot2] JL7 International. <strong>HL7 version 3 2nd Ballot specification</strong>. Available at <a href="http://www.hl7.org" class="bare">http://www.hl7.org</a>.</p>
@@ -864,31 +825,28 @@
 <p><a id="hl7_v3_rim"></a>[hl7_v3_rim] HL7. <strong>HL7 v3 RIM</strong>. See <a href="http://www.hl7.org" class="bare">http://www.hl7.org</a> .</p>
 </li>
 <li>
-<p><a id="ICD10AM"></a>[ICD10AM]. WHO / ACCD. International Classification of Diseases, 10th Revision, Australian Modifications. See <a href="https://www.accd.net.au/Icd10.aspx" class="bare">https://www.accd.net.au/Icd10.aspx</a></p>
-</li>
-<li>
-<p><a id="IHTSDO"></a>[IHTSDO] International Health Terminology Standards Development Organisation (IHTSDO). <a href="http://www.ihtsdo.org" class="bare">http://www.ihtsdo.org</a>.</p>
-</li>
-<li>
 <p><a id="IHTSDO_URIs"></a>[IHTSDO_URIs] IHTSDO. SNOMED CT URI Standard. <a href="http://ihtsdo.org/fileadmin/user_upload/doc/download/doc_UriStandard_Current-en-US_INT_20140527.pdf?ok" class="bare">http://ihtsdo.org/fileadmin/user_upload/doc/download/doc_UriStandard_Current-en-US_INT_20140527.pdf?ok</a>.</p>
 </li>
 <li>
 <p><a id="NLM_UML_list"></a>[NLM_UML_list] National Library of Medicine. UMLS Terminologies List. <a href="http://www.nlm.nih.gov/research/umls/metaa1.html" class="bare">http://www.nlm.nih.gov/research/umls/metaa1.html</a>.</p>
 </li>
 <li>
-<p><a id="SNOMED_CT"></a>[SNOMED_CT] IHTSDO. Sytematised Nomenclature for Medicine. See <a href="http://www.ohtsdo.org" class="bare">http://www.ohtsdo.org</a>.</p>
+<p><a id="ISO_13606-1"></a>[ISO_13606-1] <strong>ISO 13606-1 - Electronic healthcare record communication - Part 1: Extended architecture.</strong> CEN TC251 Health Informatics Technical Committee.</p>
 </li>
 <li>
-<p><a id="WHO_ICD"></a>[WHO_ICD] World Health Organisation (WHO). <strong>International Classification of Diseases (ICD).</strong> See: <a href="http://www.who.int/classifications/icd/en/" class="bare">http://www.who.int/classifications/icd/en/</a> .</p>
+<p><a id="ISO_13606-2"></a>[ISO_13606-2] <strong>ISO 13606-2 - Electronic healthcare record communication - Part 2: Domain term list.</strong> CEN TC251 Health Informatics Technical Committee.</p>
+</li>
+<li>
+<p><a id="ISO_13606-3"></a>[ISO_13606-3] <strong>ISO 13606-3 - Electronic healthcare record communication - Part 3: Distribution rules.</strong> CEN TC251 Health Informatics Technical Committee.</p>
+</li>
+<li>
+<p><a id="ISO_13606-4"></a>[ISO_13606-4] <strong>ISO 13606-4 - Electronic Healthcare Record Communication standard Part 4: Messages for the exchange of information.</strong> CEN TC251 Health Informatics Technical Committee.</p>
 </li>
 <li>
 <p><a id="ISO_18308"></a>[ISO_18308] Schloeffel P. (Editor). <strong>Requirements for an Electronic Health Record Reference Architecture.</strong> (ISO TC 215/SC N; ISO/WD 18308). International Standards Organisation, Australia, 2002.</p>
 </li>
 <li>
 <p><a id="ISO_20514"></a>[ISO_20514] ISO. <strong>The Integrated Care EHR.</strong> See <a href="http://www.iso.org/iso/iso_catalogue/catalogue_tc/catalogue_detail.htm?csnumber=39525" class="bare">http://www.iso.org/iso/iso_catalogue/catalogue_tc/catalogue_detail.htm?csnumber=39525</a> .</p>
-</li>
-<li>
-<p><a id="UCUM"></a>[UCUM] Schadow G, McDonald C J. <strong>The Unified Code for Units of Measure, Version 1.4</strong> 2000. Regenstrief Institute for Health Care, Indianapolis. See <a href="http://aurora.rg.iupui.edu/UCUM" class="bare">http://aurora.rg.iupui.edu/UCUM</a></p>
 </li>
 </ol>
 </div>
@@ -897,9 +855,6 @@
 <h4 id="_e_health_projects"><a class="anchor" href="#_e_health_projects"></a>e-Health Projects</h4>
 <div class="olist bibliography">
 <ol class="bibliography">
-<li>
-<p><a id="CIMI"></a>[CIMI] Clinical Information Modelling Initiative (CIMI) Project. See <a href="http://opencimi.org" class="bare">http://opencimi.org</a>.</p>
-</li>
 <li>
 <p><a id="EHCR_supA_14"></a>[EHCR_supA_14] Dixon R, Grubb P A, Lloyd D, and Kalra D. <strong>Consolidated List of Requirements. EHCR Support Action Deliverable 1.4.</strong> European Commission DGXIII, Brussels; May 2001 59pp Available from <a href="http://www.chime.ucl.ac.uk/HealthI/EHCR-SupA/del1-4v1_3.PDF" class="bare">http://www.chime.ucl.ac.uk/HealthI/EHCR-SupA/del1-4v1_3.PDF</a>.</p>
 </li>
@@ -910,28 +865,28 @@
 <p><a id="EHCR_supA_24"></a>[EHCR_supA_24] Dixon R, Grubb P, Lloyd D. <strong>EHCR Support Action Deliverable 2.4 "Guidelines on Interpretation and implementation of CEN EHCRA".</strong> Oct 2000. Available at <a href="http://www.chime.ucl.ac.uk/HealthI/EHCR-SupA/documents.htm" class="bare">http://www.chime.ucl.ac.uk/HealthI/EHCR-SupA/documents.htm</a>.</p>
 </li>
 <li>
-<p>[<a id="EHCR_supA_31_32"></a> Lloyd D, et al. <strong>EHCR Support Action Deliverable 3.1&amp;3.2 “Interim Report to CEN”.</strong> July 1998. Available at <a href="http://www.chime.ucl.ac.uk/HealthI/EHCR-SupA/documents.htm" class="bare">http://www.chime.ucl.ac.uk/HealthI/EHCR-SupA/documents.htm</a>.</p>
+<p><a id="EHCR_supA_31_32"></a>[EHCR_supA_31_32] Lloyd D, et al. <strong>EHCR Support Action Deliverable 3.1&amp;3.2 “Interim Report to CEN”.</strong> July 1998. Available at <a href="http://www.chime.ucl.ac.uk/HealthI/EHCR-SupA/documents.htm" class="bare">http://www.chime.ucl.ac.uk/HealthI/EHCR-SupA/documents.htm</a>.</p>
 </li>
 <li>
-<p><a id="GEHR_del_4"></a>[GEHR_del_4] <strong>Deliverable 4: GEHR Requirements for Clinical Comprehensiveness.</strong> GEHR Project 1992</p>
+<p><a id="GEHR_del_4"></a>[GEHR_del_4] <strong>Deliverable 4: GEHR Requirements for Clinical Comprehensiveness.</strong> GEHR Project 1992. Available at <a href="http://www.openehr.org/files/resources/related_projects/gehr/gehr_deliverable-4.pdf" class="bare">http://www.openehr.org/files/resources/related_projects/gehr/gehr_deliverable-4.pdf</a> .</p>
 </li>
 <li>
-<p><a id="GEHR_del_7"></a>[GEHR_del_7] <strong>Deliverable 7: Clinical Functional Specifications.</strong> GEHR Project 1993</p>
+<p><a id="GEHR_del_7"></a>[GEHR_del_7] <strong>Deliverable 7: Clinical Functional Specifications.</strong> GEHR Project 1993.</p>
 </li>
 <li>
-<p><a id="GEHR_del_8"></a>[GEHR_del_8] <strong>Deliverable 8: Ethical and legal Requirements of GEHR Architecture and Systems.</strong> GEHR Project 1994</p>
+<p><a id="GEHR_del_8"></a>[GEHR_del_8] <strong>Deliverable 8: Ethical and legal Requirements of GEHR Architecture and Systems.</strong> GEHR Project 1994. Available at <a href="http://www.openehr.org/files/resources/related_projects/gehr/gehr_deliverable-8.pdf" class="bare">http://www.openehr.org/files/resources/related_projects/gehr/gehr_deliverable-8.pdf</a> .</p>
 </li>
 <li>
-<p><a id="GEHR_del_19_20_24"></a>[GEHR_del_19_20_24] <strong>Deliverable 19,20,24: GEHR Architecture.</strong> GEHR Project 30/6/1995</p>
+<p><a id="GEHR_del_19_20_24"></a>[GEHR_del_19_20_24] <strong>Deliverable 19,20,24: GEHR Architecture.</strong> GEHR Project 30/6/1995. Available at <a href="http://www.openehr.org/files/resources/related_projects/gehr/gehr_deliverable-19_20_24.pdf" class="bare">http://www.openehr.org/files/resources/related_projects/gehr/gehr_deliverable-19_20_24.pdf</a> .</p>
 </li>
 <li>
 <p><a id="GeHR_AUS"></a>[GeHR_AUS] Heard S, Beale T. <strong>The Good Electronic Health Record (GeHR) (Australia).</strong> See <a href="http://www.openehr.org/resources/related_projects#gehraus" class="bare">http://www.openehr.org/resources/related_projects#gehraus</a> .</p>
 </li>
 <li>
-<p><a id="GeHR_Aus_gpcg"></a>[GeHR_Aus_gpcg] Heard S. <strong>GEHR Project Australia, GPCG Trial.</strong> Available at <a href="http://www.gehr.org/gpcg/ehra.htm" class="bare">http://www.gehr.org/gpcg/ehra.htm</a>.</p>
+<p><a id="GeHR_Aus_gpcg"></a>[GeHR_Aus_gpcg] Heard S. <strong>GEHR Project Australia, GPCG Trial.</strong> See <a href="http://www.openehr.org/resources/related_projects#gehraus" class="bare">http://www.openehr.org/resources/related_projects#gehraus</a> .</p>
 </li>
 <li>
-<p><a id="GeHR_Aus_req"></a>[GeHR_Aus_req] Beale T, Heard S. <strong>GEHR Technical Requirements.</strong> See <a href="http://www.gehr.org/technical/requirements/gehr_requirements.html" class="bare">http://www.gehr.org/technical/requirements/gehr_requirements.html</a>.</p>
+<p><a id="GeHR_Aus_req"></a>[GeHR_Aus_req] Beale T, Heard S. <strong>GEHR Technical Requirements.</strong> See <a href="http://www.openehr.org/files/resources/related_projects/gehr_australia/gehr_requirements.pdf" class="bare">http://www.openehr.org/files/resources/related_projects/gehr_australia/gehr_requirements.pdf</a> .</p>
 </li>
 <li>
 <p><a id="Synapses_req_A"></a>[Synapses_req_A] Kalra D. (Editor). <strong>The Synapses User Requirements and Functional Specification (Part A).</strong> EU Telematics Application Programme, Brussels; 1996; The Synapses Project: Deliverable USER 1.1.1a. 6 chapters, 176 pages.</p>
@@ -940,7 +895,7 @@
 <p><a id="Synapses_req_B"></a>[Synapses_req_B] Grimson W. and Groth T. (Editors). <strong>The Synapses User Requirements and Functional Specification (Part B).</strong> EU Telematics Application Programme, Brussels; 1996; The Synapses Project: Deliverable USER 1.1.1b.</p>
 </li>
 <li>
-<p><a id="Synapses_odp"></a>[Synapses_odp] Kalra D. (Editor). <strong>Synapses ODP Information Viewpoint.</strong> EU Telematics Application Programme, Brussels; 1998; The Synapses Project: Final Deliverable. 10 chapters, 64 pages.</p>
+<p><a id="Synapses_odp"></a>[Synapses_odp] Kalra D. (Editor). <strong>Synapses ODP Information Viewpoint.</strong> EU Telematics Application Programme, Brussels; 1998; The Synapses Project: Final Deliverable. 10 chapters, 64 pages. See <a href="http://discovery.ucl.ac.uk/66235/" class="bare">http://discovery.ucl.ac.uk/66235/</a> .</p>
 </li>
 <li>
 <p><a id="synex"></a>[synex] University College London. <strong>SynEx project</strong>. <a href="http://www.chime.ucl.ac.uk/HealthI/SynEx/" class="bare">http://www.chime.ucl.ac.uk/HealthI/SynEx/</a> .</p>
@@ -956,13 +911,10 @@
 <p><a id="OCL"></a>[OCL] <strong>The Object Constraint Language 2.0.</strong> Object Management Group (OMG). Available at <a href="http://www.omg.org/cgi-bin/doc?ptc/2003-10-14" class="bare">http://www.omg.org/cgi-bin/doc?ptc/2003-10-14</a> .</p>
 </li>
 <li>
-<p><a id="IANA"></a>[IANA] IANA. <a href="http://www.iana.org/" class="bare">http://www.iana.org/</a>.</p>
-</li>
-<li>
 <p><a id="IEEE_828"></a>[IEEE_828] IEEE. <strong>IEEE 828-2005: standard for Software Configuration Management Plans.</strong></p>
 </li>
 <li>
-<p><a id="ISO_8601"></a>[ISO_8601] <strong>ISO 8601 standard describing formats for representing times, dates, and durations.</strong> See e.g. <a href="http://www.mcs.vuw.ac.nz/technical/software/SGML/doc/iso8601/ISO8601.html" class="bare">http://www.mcs.vuw.ac.nz/technical/software/SGML/doc/iso8601/ISO8601.html</a> and <a href="http://www.cl.cam.ac.uk/~mgk25/iso-time.html" class="bare">http://www.cl.cam.ac.uk/~mgk25/iso-time.html</a>.</p>
+<p><a id="ISO_8601"></a>[ISO_8601] <strong>ISO 8601 standard describing formats for representing times, dates, and durations.</strong> See <a href="https://en.wikipedia.org/wiki/ISO_8601" class="bare">https://en.wikipedia.org/wiki/ISO_8601</a>.</p>
 </li>
 <li>
 <p><a id="ISO_2788"></a>[ISO_2788] ISO. ISO 2788 <strong>Guide to Establishment and development of monolingual thesauri</strong>.</p>
@@ -972,9 +924,6 @@
 </li>
 <li>
 <p><a id="Perl_regex"></a>[Perl_regex] Perl.org. <strong>Perl Regular Expressions</strong>. Available at <a href="http://perldoc.perl.org/perlre.html" class="bare">http://perldoc.perl.org/perlre.html</a> .</p>
-</li>
-<li>
-<p><a id="Protege"></a>[Protege] Stanford University. See <a href="http://protege.stanford.edu/" class="bare">http://protege.stanford.edu/</a> .</p>
 </li>
 <li>
 <p><a id="rfc_2396"></a>[rfc_2396] Berners-Lee T. <strong>Universal Resource Identifiers in WWW</strong>. Available at <a href="http://www.ietf.org/rfc/rfc2396.txt" class="bare">http://www.ietf.org/rfc/rfc2396.txt</a>. This is a World-Wide Web RFC for global identification of resources. In current use on the web, e.g. by Mosaic, Netscape and similar tools. See <a href="http://www.w3.org/Addressing" class="bare">http://www.w3.org/Addressing</a> for a starting point on URIs.</p>
@@ -1008,16 +957,6 @@
 </li>
 <li>
 <p><a id="w3c_xpath"></a>[w3c_xpath] W3C. <strong>XML Path Language</strong>. See <a href="http://w3c.org/TR/xpath" class="bare">http://w3c.org/TR/xpath</a> .</p>
-</li>
-</ol>
-</div>
-</div>
-<div class="sect3">
-<h4 id="_tools"><a class="anchor" href="#_tools"></a>Tools</h4>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p><a id="Template_Designer"></a>[Template_Designer] <strong>Template Designer</strong>. Ocean Informatics. <a href="http://www.openehr.org/downloads/modellingtools" class="bare">http://www.openehr.org/downloads/modellingtools</a>.</p>
 </li>
 </ol>
 </div>
