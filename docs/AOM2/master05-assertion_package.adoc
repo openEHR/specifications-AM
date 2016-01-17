@@ -1,8 +1,10 @@
-= The Assertion Package
+= The Rules Package
 
 == Overview
 
-Assertions are expressed in archetypes in typed first-order predicate logic (FOL). They are used in two places: to express archetype slot constraints, and to express rules in complex object constraints. In both of these places, their role is to constrain something _inside_ the archetype. Constraints on external resources such as terminologies are expressed in the constraint binding part of the archetype `terminology` section, described in Figure <<terminology_package>>. The assertion package is illustrated below.
+The `rules` package defines the model of a generalised notion of 'rules' that can appear in various places in an archetype. Rules in the sense modelled here can be understood as 'declarations' and 'assertions'. Declarations consist of statements defining particular types of variables while assertions consistitute the main substantive kind of rule statement. Assertions are expressed in typed first-order predicate logic (FOPL).
+
+Rules can be used in two places in archetypes. The first is the use of assertions to express archetype slot constraints in instances of the `ARCHETYPE_SLOT` class. The second place is in the archetype `rules` section, where both variable declarataions and assertions are used to express object constraints ranging across multiple nodes, i.e. constraints that can't be expressed 'inline' within the main `definition` section structure. In both of these places, their role is to constrain something _inside_ the current archetype. Constraints on external resources such as terminologies are expressed in the constraint binding part of the archetype `terminology` section, described in Figure <<terminology_package>>. The assertion package is illustrated below.
 
 [.text-center]
 .Rules Package

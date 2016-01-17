@@ -232,7 +232,7 @@
 </li>
 </ul>
 </li>
-<li><a href="#_the_assertion_package">5. The Assertion Package</a>
+<li><a href="#_the_rules_package">5. The Rules Package</a>
 <ul class="sectlevel2">
 <li><a href="#_overview_4">5.1. Overview</a></li>
 <li><a href="#_semantics_2">5.2. Semantics</a></li>
@@ -447,7 +447,7 @@
 <p>Make <code>AUTHORED_RESOURCE</code>.<code><em>uid</em></code> and <code>AUTHORED_ARCHETYPE</code>.<code><em>build_uid</em></code> <code>UUIDs</code> rather than any kind of <code>UID</code>.</p>
 </div></div></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">T Beale</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a id="latest_issue_date"></a>10 Jan 2016</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a id="latest_issue_date"></a>17 Jan 2016</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"></td>
@@ -4677,12 +4677,15 @@ For a slot-filler or a redefined external reference, the node_id is set to a spe
 </div>
 </div>
 <div class="sect1">
-<h2 id="_the_assertion_package"><a class="anchor" href="#_the_assertion_package"></a>5. The Assertion Package</h2>
+<h2 id="_the_rules_package"><a class="anchor" href="#_the_rules_package"></a>5. The Rules Package</h2>
 <div class="sectionbody">
 <div class="sect2">
 <h3 id="_overview_4"><a class="anchor" href="#_overview_4"></a>5.1. Overview</h3>
 <div class="paragraph">
-<p>Assertions are expressed in archetypes in typed first-order predicate logic (FOL). They are used in two places: to express archetype slot constraints, and to express rules in complex object constraints. In both of these places, their role is to constrain something <em>inside</em> the archetype. Constraints on external resources such as terminologies are expressed in the constraint binding part of the archetype <code>terminology</code> section, described in Figure <a href="#terminology_package">Terminology Package</a>. The assertion package is illustrated below.</p>
+<p>The <code>rules</code> package defines the model of a generalised notion of 'rules' that can appear in various places in an archetype. Rules in the sense modelled here can be understood as 'declarations' and 'assertions'. Declarations consist of statements defining particular types of variables while assertions consistitute the main substantive kind of rule statement. Assertions are expressed in typed first-order predicate logic (FOPL).</p>
+</div>
+<div class="paragraph">
+<p>Rules can be used in two places in archetypes. The first is the use of assertions to express archetype slot constraints in instances of the <code>ARCHETYPE_SLOT</code> class. The second place is in the archetype <code>rules</code> section, where both variable declarataions and assertions are used to express object constraints ranging across multiple nodes, i.e. constraints that can&#8217;t be expressed 'inline' within the main <code>definition</code> section structure. In both of these places, their role is to constrain something <em>inside</em> the current archetype. Constraints on external resources such as terminologies are expressed in the constraint binding part of the archetype <code>terminology</code> section, described in Figure <a href="#terminology_package">Terminology Package</a>. The assertion package is illustrated below.</p>
 </div>
 <div id="rules_package" class="imageblock text-center" style="text-align: center">
 <div class="content">
