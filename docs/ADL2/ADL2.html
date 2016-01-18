@@ -208,7 +208,7 @@
 <li><a href="#_syntax_validity_rules">4.6. Syntax Validity Rules</a></li>
 </ul>
 </li>
-<li><a href="#_assertions">5. Assertions</a>
+<li><a href="#_rules">5. Rules</a>
 <ul class="sectlevel2">
 <li><a href="#_overview_3">5.1. Overview</a>
 <ul class="sectlevel3">
@@ -384,7 +384,7 @@
 <li><a href="#_tuple_redefinition">10.5.9. Tuple Redefinition</a></li>
 </ul>
 </li>
-<li><a href="#_rules">10.6. Rules</a></li>
+<li><a href="#_rules_2">10.6. Rules</a></li>
 <li><a href="#_languages">10.7. Languages</a></li>
 <li><a href="#_description_section_2">10.8. Description Section</a></li>
 <li><a href="#_terminology">10.9. Terminology</a></li>
@@ -2629,7 +2629,7 @@ the structure, as shown in the following example:</p>
 <div class="sect3">
 <h4 id="_archetype_slots"><a class="anchor" href="#_archetype_slots"></a>4.3.10. Archetype Slots</h4>
 <div class="paragraph">
-<p>At any point in a cADL definition, a constraint can be defined that allows other archetypes to be used, rather than defining the desired constraints inline. This is known as an archetype 'slot', i.e. a connection point whose allowable 'fillers' are constrained by a set of statements, written in the ADL assertion language (described in the <a href="#_assertions">Assertions</a> section).</p>
+<p>At any point in a cADL definition, a constraint can be defined that allows other archetypes to be used, rather than defining the desired constraints inline. This is known as an archetype 'slot', i.e. a connection point whose allowable 'fillers' are constrained by a set of statements, written in the ADL assertion language (described in the <a href="#Assertions">[Assertions]</a> section).</p>
 </div>
 <div class="paragraph principle">
 <p>An archetype slot defines a constrained compositional chaining point in an archetype at which other archetypes can be inserted, if they are in the set defined by the slot constraint.</p>
@@ -4058,12 +4058,12 @@ the structure, as shown in the following example:</p>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_assertions"><a class="anchor" href="#_assertions"></a>5. Assertions</h2>
+<h2 id="_rules"><a class="anchor" href="#_rules"></a>5. Rules</h2>
 <div class="sectionbody">
 <div class="sect2">
 <h3 id="_overview_3"><a class="anchor" href="#_overview_3"></a>5.1. Overview</h3>
 <div class="paragraph">
-<p>This section describes the assertion sub-language of archetypes. Assertions are used in archetype "slot" clauses in the cADL <code>definition</code> section, and in the <code>rules</code> section. The following simple assertion in the ` rules` section of an archetype says that the speed in kilometres of some node is related to the speed-in-miles by a factor of 1.6:</p>
+<p>This section describes the rules sub-language of archetypes, which consists of <em>assertions</em> and additionally various kinds of <em>variable declarations</em>. Assertions are used in archetype "slot" clauses in the cADL <code>definition</code> section, and in the <code>rules</code> section. The following simple assertion in the <code>rules</code> section of an archetype says that the speed in kilometres of some node is related to the speed-in-miles by a factor of 1.6:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -5343,7 +5343,7 @@ some non-conforming ADL tools in the past created archetypes without a language 
 <div class="sect2">
 <h3 id="_rules_section"><a class="anchor" href="#_rules_section"></a>8.11. Rules Section</h3>
 <div class="paragraph">
-<p>The <code>rules</code> section in an ADL archetype introduces assertions which relate to the entire archetype, and can be used to make statements which are not possible within the block structure of the <code>definition</code> section. Any constraint which relates more than one property to another is in this category, as are most constraints containing mathematical or logical formulae. Rules are expressed in the archetype assertion language, described in the <a href="#_assertions">Assertions</a> Section.</p>
+<p>The <code>rules</code> section in an ADL archetype introduces assertions which relate to the entire archetype, and can be used to make statements which are not possible within the block structure of the <code>definition</code> section. Any constraint which relates more than one property to another is in this category, as are most constraints containing mathematical or logical formulae. Rules are expressed in the archetype assertion language, described in the <a href="#Assertions">[Assertions]</a> Section.</p>
 </div>
 <div class="paragraph">
 <p>An assertion is a first order predicate logic statement which can be evaluated to a boolean result at runtime. Objects and properties are referred to using paths.</p>
@@ -7783,7 +7783,7 @@ Note that in the above, the '/' is used to denote '/protocol' as a differential 
 </div>
 </div>
 <div class="sect2">
-<h3 id="_rules"><a class="anchor" href="#_rules"></a>10.6. Rules</h3>
+<h3 id="_rules_2"><a class="anchor" href="#_rules_2"></a>10.6. Rules</h3>
 <div class="paragraph">
 <p>The <code>rules</code> section in an archetype consists of definitions and assertion statements. Assertions in archetypes have the effect of further reducing the instance space that conforms to an archetype by specifying relationships between values that must hold. For example the main part of an archetype may specify that the existence of a subtree, containing data points related to 'tobacco use' for example, is dependent on the value of another data point representing 'smoker?' being True.</p>
 </div>
@@ -8643,11 +8643,9 @@ Note that in the above, the '/' is used to denote '/protocol' as a differential 
 
 <span class="tok-c">// ======================== Components =======================</span><span class="tok-w"></span>
 
-<span class="tok-nl">c_objects</span><span class="tok-p">:</span><span class="tok-w"> </span><span class="tok-nv">c_non_primitive_object_ordered</span><span class="tok-o">+</span><span class="tok-w"> </span><span class="tok-o">|</span><span class="tok-w"> </span><span class="tok-nv">c_primitive_object</span><span class="tok-w"> </span><span class="tok-p">;</span><span class="tok-w"></span>
+<span class="tok-nl">c_objects</span><span class="tok-p">:</span><span class="tok-w"> </span><span class="tok-o">(</span><span class="tok-w"> </span><span class="tok-nv">sibling_order</span><span class="tok-o">?</span><span class="tok-w"> </span><span class="tok-nv">c_non_primitive_object</span><span class="tok-w"> </span><span class="tok-o">)+</span><span class="tok-w"> </span><span class="tok-o">|</span><span class="tok-w"> </span><span class="tok-nv">c_primitive_object</span><span class="tok-w"> </span><span class="tok-p">;</span><span class="tok-w"></span>
 
 <span class="tok-nl">sibling_order</span><span class="tok-p">:</span><span class="tok-w"> </span><span class="tok-o">(</span><span class="tok-w"> </span><span class="tok-no">SYM_AFTER</span><span class="tok-w"> </span><span class="tok-o">|</span><span class="tok-w"> </span><span class="tok-no">SYM_BEFORE</span><span class="tok-w"> </span><span class="tok-o">)</span><span class="tok-w"> </span><span class="tok-s">&#39;[&#39;</span><span class="tok-w"> </span><span class="tok-no">ID_CODE</span><span class="tok-w"> </span><span class="tok-s">&#39;]&#39;</span><span class="tok-w"> </span><span class="tok-p">;</span><span class="tok-w"></span>
-
-<span class="tok-nl">c_non_primitive_object_ordered</span><span class="tok-p">:</span><span class="tok-w"> </span><span class="tok-nv">sibling_order</span><span class="tok-o">?</span><span class="tok-w"> </span><span class="tok-nv">c_non_primitive_object</span><span class="tok-w"> </span><span class="tok-p">;</span><span class="tok-w"></span>
 
 <span class="tok-nl">c_non_primitive_object</span><span class="tok-p">:</span><span class="tok-w"></span>
 <span class="tok-w">      </span><span class="tok-nv">c_complex_object</span><span class="tok-w"></span>
@@ -8660,14 +8658,7 @@ Note that in the above, the '/' is used to denote '/protocol' as a differential 
 
 <span class="tok-nl">c_complex_object_proxy</span><span class="tok-p">:</span><span class="tok-w"> </span><span class="tok-no">SYM_USE_NODE</span><span class="tok-w"> </span><span class="tok-nv">type_id</span><span class="tok-w"> </span><span class="tok-s">&#39;[&#39;</span><span class="tok-w"> </span><span class="tok-no">ID_CODE</span><span class="tok-w"> </span><span class="tok-s">&#39;]&#39;</span><span class="tok-w"> </span><span class="tok-nv">c_occurrences</span><span class="tok-o">?</span><span class="tok-w"> </span><span class="tok-nv">adl_path</span><span class="tok-w"> </span><span class="tok-p">;</span><span class="tok-w"></span>
 
-<span class="tok-nl">archetype_slot</span><span class="tok-p">:</span><span class="tok-w"></span>
-<span class="tok-w">      </span><span class="tok-nv">c_archetype_slot_head</span><span class="tok-w"> </span><span class="tok-no">SYM_MATCHES</span><span class="tok-w"> </span><span class="tok-s">&#39;{&#39;</span><span class="tok-w"> </span><span class="tok-nv">c_includes</span><span class="tok-o">?</span><span class="tok-w"> </span><span class="tok-nv">c_excludes</span><span class="tok-o">?</span><span class="tok-w"> </span><span class="tok-s">&#39;}&#39;</span><span class="tok-w"></span>
-<span class="tok-w">    </span><span class="tok-o">|</span><span class="tok-w"> </span><span class="tok-nv">c_archetype_slot_head</span><span class="tok-w"></span>
-<span class="tok-w">    </span><span class="tok-p">;</span><span class="tok-w"></span>
-
-<span class="tok-nl">c_archetype_slot_head</span><span class="tok-p">:</span><span class="tok-w"> </span><span class="tok-nv">c_archetype_slot_id</span><span class="tok-w"> </span><span class="tok-nv">c_occurrences</span><span class="tok-o">?</span><span class="tok-w"> </span><span class="tok-p">;</span><span class="tok-w"></span>
-
-<span class="tok-nl">c_archetype_slot_id</span><span class="tok-p">:</span><span class="tok-w"> </span><span class="tok-no">SYM_ALLOW_ARCHETYPE</span><span class="tok-w"> </span><span class="tok-nv">type_id</span><span class="tok-w"> </span><span class="tok-s">&#39;[&#39;</span><span class="tok-w"> </span><span class="tok-no">ID_CODE</span><span class="tok-w"> </span><span class="tok-s">&#39;]&#39;</span><span class="tok-w"> </span><span class="tok-no">SYM_CLOSED</span><span class="tok-o">?</span><span class="tok-w"> </span><span class="tok-p">;</span><span class="tok-w"></span>
+<span class="tok-nl">archetype_slot</span><span class="tok-p">:</span><span class="tok-w"> </span><span class="tok-no">SYM_ALLOW_ARCHETYPE</span><span class="tok-w"> </span><span class="tok-nv">type_id</span><span class="tok-w"> </span><span class="tok-s">&#39;[&#39;</span><span class="tok-w"> </span><span class="tok-no">ID_CODE</span><span class="tok-w"> </span><span class="tok-s">&#39;]&#39;</span><span class="tok-w"> </span><span class="tok-o">((</span><span class="tok-w"> </span><span class="tok-nv">c_occurrences</span><span class="tok-o">?</span><span class="tok-w"> </span><span class="tok-o">(</span><span class="tok-w"> </span><span class="tok-no">SYM_MATCHES</span><span class="tok-w"> </span><span class="tok-s">&#39;{&#39;</span><span class="tok-w"> </span><span class="tok-nv">c_includes</span><span class="tok-o">?</span><span class="tok-w"> </span><span class="tok-nv">c_excludes</span><span class="tok-o">?</span><span class="tok-w"> </span><span class="tok-s">&#39;}&#39;</span><span class="tok-w"> </span><span class="tok-o">)?</span><span class="tok-w"> </span><span class="tok-o">)</span><span class="tok-w"> </span><span class="tok-o">|</span><span class="tok-w"> </span><span class="tok-no">SYM_CLOSED</span><span class="tok-w"> </span><span class="tok-o">)</span><span class="tok-w"> </span><span class="tok-p">;</span><span class="tok-w"></span>
 
 <span class="tok-nl">c_attribute_def</span><span class="tok-p">:</span><span class="tok-w"></span>
 <span class="tok-w">      </span><span class="tok-nv">c_attribute</span><span class="tok-w"></span>
@@ -9465,7 +9456,7 @@ Note that in the above, the '/' is used to denote '/protocol' as a differential 
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2016-01-17 17:52:10 GMT
+Last updated 2016-01-17 22:49:21 GMT
 </div>
 </div>
 </body>

@@ -1,20 +1,20 @@
-= Assertions
+= Rules
 
 == Overview
 
-This section describes the assertion sub-language of archetypes. Assertions are used in archetype "slot" clauses in the cADL `definition` section, and in the `rules` section. The following simple assertion in the ` rules` section of an archetype says that the speed in kilometres of some node is related to the speed-in-miles by a factor of 1.6:
+This section describes the rules sub-language of archetypes, which consists of _assertions_ and additionally various kinds of _variable declarations_. Assertions are used in archetype "slot" clauses in the cADL `definition` section, and in the `rules` section. The following simple assertion in the `rules` section of an archetype says that the speed in kilometres of some node is related to the speed-in-miles by a factor of 1.6:
 
 [source, expr]
-----------------------------------------------------------------------------------------------
+--------
     validity: /speed[id2]/kilometres[id14]/magnitude = /speed[id4]/miles[id14]/magnitude * 1.6
-----------------------------------------------------------------------------------------------
+--------
 
 === Requirements
 
 Assertions are needed in archetypes to express rules in two locations in an archetype. In an archetype slot, assertions can be stated to control what archetypes are allowed in the slot, as shown in the following example:
 
 [source, cadl]
-----------------------------------------------------------------------------------
+--------
     CLUSTER[id3] occurrences matches {0..1} matches {   -- Detail
         items cardinality matches {0..*; unordered} matches {
             allow_archetype CLUSTER[id9] occurrences matches {0..1} matches {
@@ -23,7 +23,7 @@ Assertions are needed in archetypes to express rules in two locations in an arch
             }
         }
     }
-----------------------------------------------------------------------------------
+--------
 
 In the above, the statement following the `include` keyword expresses a condition on the value found at the path `archetype_id/value` , using the familiar ADL `matches` operator, and a regular expression on archetype identifiers. Most slot statements are of this kind, with some requiring slightly more complex expressions. See <<Archetype Slots>> for more details.
 
@@ -176,35 +176,35 @@ Constant values are of any primitive type defined in the openEHR Support IM Assu
 
 A reference to an object in data, including a leaf value, is expressed using an archetype path. All such paths are absolute (i.e. contain a leading '/') and are understood to be with respect to the root of the current archetype. References to archetype nodes have the type defined at the relevant point in the underlying reference model. Examples include:
 
----------------------------------------------------------------------------------------
+--------
     /data[id2]/items[id3]/value[id35]/value -- Date of initial onset; type ISO8601_DATE
----------------------------------------------------------------------------------------
+--------
 
 === Built-in Variables
 
 A small number of built-in variables are available for use in assertions, and are referred to using a '$' symbol, for example ` $current_date` . Built-in variables defined include:
 
------------------------------------------
+--------
     $current_date: ISO8601_DATE
     $current_time: ISO8601_TIME
     $current_date_time: ISO8601_DATE_TIME
     $current_year: Integer
     $current_month: Integer
------------------------------------------
+--------
 
 === Archetype-defined Variables
 
 Variables may be declared within the rules section of an archetype. This is done using the following syntax:
 
----------------------------------
+--------
     $var_name:Type ::= expression
----------------------------------
+--------
 
 This facility can be used to equate a variable name to a path, e.g. the following equates the variable ` $diagnosis` to the code at the path contianing the diagnosis (e.g. in the `openEHR-EHR-EVALUATION.problem-diagnosis.v1` archetype):
 
----------------------------------------------------------------------
+--------
     $diagnosis:CODE_PHRASE ::= /data/items[id2.1]/value/defining_code
----------------------------------------------------------------------
+--------
 
 The variable can then be used instead of the path in subsequent expressions.
 
@@ -212,17 +212,17 @@ The variable can then be used instead of the path in subsequent expressions.
 
 An expression referring to an externally defined query, possibly including arguments, may be defined using the variable declaration syntax. The general pattern is as follows:
 
-----
+--------
     $varname:Type ::= query(context, query_name, arg1, arg2, ...)
-----
+--------
 
 Examples include:
 
----------------------------------------------------------------------------------
+--------
     $date_of_birth:ISO8601_DATE ::= query("ehr", "date_of_birth")
     $has_diabetes:Boolean ::= query("ehr", "has_diagnosis", "snomed_ct::1234567")
     $is_female:Boolean ::= query("ehr", "is_female")
----------------------------------------------------------------------------------
+--------
 
 Any number of arguments can be included.
 
@@ -241,9 +241,9 @@ Any number of arguments can be included.
 
 Example....
 
-------------------------------------------
+--------
     $is_female implies exists /path/to/xxx
-------------------------------------------
+--------
 
 == Natural Language Issues
 
