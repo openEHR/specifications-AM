@@ -110,12 +110,17 @@
 </li>
 <li><a href="#_class_descriptions">3.6. Class Descriptions</a>
 <ul class="sectlevel3">
-<li><a href="#_archetype_class">3.6.1. ARCHETYPE Class</a></li>
-<li><a href="#_authored_archetype_class">3.6.2. AUTHORED_ARCHETYPE Class</a></li>
-<li><a href="#_archetype_hrid_class">3.6.3. ARCHETYPE_HRID Class</a></li>
-<li><a href="#_template_class">3.6.4. TEMPLATE Class</a></li>
-<li><a href="#_template_overlay_class">3.6.5. TEMPLATE_OVERLAY Class</a></li>
-<li><a href="#_operational_template_class">3.6.6. OPERATIONAL_TEMPLATE Class</a></li>
+<li><a href="#_authored_resource_class">3.6.1. AUTHORED_RESOURCE Class</a></li>
+<li><a href="#_resource_description_class">3.6.2. RESOURCE_DESCRIPTION Class</a></li>
+<li><a href="#_resource_description_item_class">3.6.3. RESOURCE_DESCRIPTION_ITEM Class</a></li>
+<li><a href="#_resource_annotations_class">3.6.4. RESOURCE_ANNOTATIONS Class</a></li>
+<li><a href="#_translation_details_class">3.6.5. TRANSLATION_DETAILS Class</a></li>
+<li><a href="#_archetype_class">3.6.6. ARCHETYPE Class</a></li>
+<li><a href="#_authored_archetype_class">3.6.7. AUTHORED_ARCHETYPE Class</a></li>
+<li><a href="#_archetype_hrid_class">3.6.8. ARCHETYPE_HRID Class</a></li>
+<li><a href="#_template_class">3.6.9. TEMPLATE Class</a></li>
+<li><a href="#_template_overlay_class">3.6.10. TEMPLATE_OVERLAY Class</a></li>
+<li><a href="#_operational_template_class">3.6.11. OPERATIONAL_TEMPLATE Class</a></li>
 </ul>
 </li>
 <li><a href="#_validity_rules">3.7. Validity Rules</a></li>
@@ -1193,7 +1198,7 @@ Source projects can be found at the <a href="https://github.com/openEHR">openEHR
 <div class="sect3">
 <h4 id="_overview"><a class="anchor" href="#_overview"></a>2.2.1. Overview</h4>
 <div class="paragraph">
-<p>Various definitional classes are used in the AOM. Some are defined in the <code>aom.definitions</code> package, while others come from the openEHR <code>definitions</code> package. These are illustrated below.</p>
+<p>Various definitional classes are used in the AOM. Some are defined in the <code>aom.definitions</code> package from the AM component, while others come from the openEHR <code>definitions</code> package from the BASE component. These are illustrated below.</p>
 </div>
 <div id="definition_package" class="imageblock text-center" style="text-align: center">
 <div class="content">
@@ -1703,7 +1708,477 @@ first names last name, organisation &lt;organisation email address&gt;</pre>
 <div class="sect2">
 <h3 id="_class_descriptions"><a class="anchor" href="#_class_descriptions"></a>3.6. Class Descriptions</h3>
 <div class="sect3">
-<h4 id="_archetype_class"><a class="anchor" href="#_archetype_class"></a>3.6.1. ARCHETYPE Class</h4>
+<h4 id="_authored_resource_class"><a class="anchor" href="#_authored_resource_class"></a>3.6.1. AUTHORED_RESOURCE Class</h4>
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 16.6666%;">
+<col style="width: 33.3333%;">
+<col style="width: 50.0001%;">
+</colgroup>
+<tbody>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Class</strong></p></th>
+<th class="tableblock halign-center valign-top" colspan="2"><p class="tableblock"><strong><em>AUTHORED_RESOURCE (abstract)</em></strong></p></th>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Description</strong></p></th>
+<td class="tableblock halign-left valign-top" colspan="2"><div><div class="paragraph">
+<p>Abstract idea of an online resource created by a human author.</p>
+</div></div></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Attributes</strong></p></th>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Signature</strong></p></th>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Meaning</strong></p></th>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>1..1</strong></p></th>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>original_language</strong>: <code>TERMINOLOGY_CODE</code></p></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>Language in which this resource was initially authored. Although there is no language primacy of resources overall, the language of original authoring is required to ensure natural language translations can preserve quality. Language is relevant in both the description and ontology sections.</p>
+</div></div></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>is_controlled</strong>: <code>Boolean</code></p></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>True if this resource is under any kind of change control (even file copying), in which case revision history is created.</p>
+</div></div></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>translations</strong>: <code>List&lt;TRANSLATION_DETAILS&gt;</code></p></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>List of details for each natural translation made of this resource, keyed by language. For each translation listed here, there must be corresponding sections in all language-dependent parts of the resource. The original_language does not appear in this list.</p>
+</div></div></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>description</strong>: <code>RESOURCE_DESCRIPTION</code></p></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>Description and lifecycle information of the resource.</p>
+</div></div></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>uid</strong>: <code>UUID</code></p></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>Unique identifier of the family of archetypes having the same interface identifier (same major version).</p>
+</div></div></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>annotations</strong>: <code>RESOURCE_ANNOTATIONS</code></p></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>Annotations on individual items within the resource, keyed by path. The inner table takes the form of a Hash table of String values keyed by String tags.</p>
+</div></div></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>revision_history</strong>:</p></td>
+<td class="tableblock halign-left valign-top"><div></div></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Functions</strong></p></th>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Signature</strong></p></th>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Meaning</strong></p></th>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"></th>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>current_revision</strong>: <code>String</code><br>
+<strong><em>Post</em></strong>: Result = revision_history.most_recent_version</p></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>Most recent revision in revision_history if is_controlled else  (uncontrolled) .</p>
+</div></div></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"></th>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>languages_available</strong>: <code>List&lt;String&gt;</code></p></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>Total list of languages available in this resource, derived from original_language and translations.</p>
+</div></div></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Invariant</strong></p></th>
+<td class="tableblock halign-left valign-top" colspan="2"><div><div class="paragraph">
+<p><strong><em>Original_language_valid</em></strong>: code_set (Code_set_id_languages).has_code (original_language.as_string)</p>
+</div></div></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"></th>
+<td class="tableblock halign-left valign-top" colspan="2"><div><div class="paragraph">
+<p><strong><em>Current_revision_valid</em></strong>: (current_revision /= Void and not is_controlled) implies current_revision.is_equal (“(uncontrolled)”)</p>
+</div></div></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"></th>
+<td class="tableblock halign-left valign-top" colspan="2"><div><div class="paragraph">
+<p><strong><em>Translations_valid</em></strong>: translations /= Void implies (not translations.is_empty and not translations.has (orginal_language.code_string))</p>
+</div></div></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"></th>
+<td class="tableblock halign-left valign-top" colspan="2"><div><div class="paragraph">
+<p><strong><em>Description_valid</em></strong>: translations /= Void implies (description.details.for_all (d &#124;
+translations.has_key (d.language.code_string)))</p>
+</div></div></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"></th>
+<td class="tableblock halign-left valign-top" colspan="2"><div><div class="paragraph">
+<p><strong><em>Languages_available_valid</em></strong>: languages_available.has (original_language)</p>
+</div></div></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"></th>
+<td class="tableblock halign-left valign-top" colspan="2"><div><div class="paragraph">
+<p><strong><em>Revision_history_valid</em></strong>: is_controlled xor revision_history = Void</p>
+</div></div></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect3">
+<h4 id="_resource_description_class"><a class="anchor" href="#_resource_description_class"></a>3.6.2. RESOURCE_DESCRIPTION Class</h4>
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 16.6666%;">
+<col style="width: 33.3333%;">
+<col style="width: 50.0001%;">
+</colgroup>
+<tbody>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Class</strong></p></th>
+<th class="tableblock halign-center valign-top" colspan="2"><p class="tableblock"><strong>RESOURCE_DESCRIPTION</strong></p></th>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Description</strong></p></th>
+<td class="tableblock halign-left valign-top" colspan="2"><div><div class="paragraph">
+<p>Defines the descriptive meta-data of a resource.</p>
+</div></div></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Attributes</strong></p></th>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Signature</strong></p></th>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Meaning</strong></p></th>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>1..1</strong></p></th>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>original_author</strong>: <code>Hash&lt;String, String&gt;</code></p></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>Original author of this resource, with all relevant details, including organisation.</p>
+</div></div></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>original_namespace</strong>: <code>String</code></p></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>Namespace of original author&#8217;s organisation, in reverse internet form, if applicable.</p>
+</div></div></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>original_publisher</strong>: <code>String</code></p></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>Plain text name of organisation that originally published this artefact, if any.</p>
+</div></div></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>other_contributors</strong>: <code>List&lt;String&gt;</code></p></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>Other contributors to the resource, each listed in "name &lt;email&gt;"  form.</p>
+</div></div></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>1..1</strong></p></th>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>lifecycle_state</strong>: <code>TERMINOLOGY_CODE</code></p></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>Lifecycle state of the resource, typically including states such as: initial, in_development, in_review, published, superseded, obsolete.</p>
+</div></div></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>1..1</strong></p></th>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>parent_resource</strong>: <code>AUTHORED_RESOURCE&#160;=&#160;</code></p></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>Reference to owning resource.</p>
+</div></div></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>details</strong>: <code>List&lt;RESOURCE_DESCRIPTION_ITEM&gt;</code></p></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>Details of all parts of resource description that are natural language-dependent, keyed by language code.</p>
+</div></div></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>custodian_namespace</strong>: <code>String</code></p></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>Namespace in reverse internet id form, of current custodian organisation.</p>
+</div></div></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>custodian_organisation</strong>: <code>String</code></p></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>Plain text name of current custodian organisation.</p>
+</div></div></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>copyright</strong>: <code>String</code></p></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>Optional copyright statement for the resource as a knowledge resource.</p>
+</div></div></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>licence</strong>: <code>String</code></p></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>Licence of current artefact, in format "short licence name &lt;URL of licence&gt;", e.g. "Apache 2.0 License &lt;<a href="http://www.apache.org/licenses/LICENSE-2.0.html&gt;"" class="bare">http://www.apache.org/licenses/LICENSE-2.0.html&gt;"</a></p>
+</div></div></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>ip_acknowledgements</strong>: <code>Hash&lt;String, String&gt;</code></p></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>List of acknowledgements of other IP directly referenced in this archetype, typically terminology codes, ontology ids etc. Recommended keys are the widely known name or namespace for the IP source, as shown in the following example:</p>
+</div>
+<div class="paragraph">
+<p>ip_acknowledgements = &lt;
+["loinc"] = &lt;"This content from LOINC® is copyright © 1995 Regenstrief Institute, Inc. and the LOINC Committee, and available at no cost under the license at <a href="http://loinc.org/terms-of-use"&gt" class="bare">http://loinc.org/terms-of-use"&gt</a>;
+["snomedct"] = &lt;"Content from SNOMED CT® is copyright © 2007 IHTSDO &lt;ihtsdo.org&gt;"&gt;
+&gt;</p>
+</div></div></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>references</strong>: <code>Hash&lt;String, String&gt;</code></p></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>List of references of material on which this artefact is based, as a keyed list of strings. The keys should be in a standard citation format.</p>
+</div></div></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>resource_package_uri</strong>: <code>String</code></p></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>URI of package to which this resource belongs.</p>
+</div></div></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>conversion_details</strong>: <code>Hash&lt;String, String&gt;</code></p></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>Details related to conversion process that generated this model from an original, if relevant, as a list of name/value pairs. Typical example with recommended tags:
+conversion_details = &lt;
+["source_model"] = &lt;"CEM model xyz <a href="http://location.in.clinicalelementmodels.com&gt;"" class="bare">http://location.in.clinicalelementmodels.com&gt;"</a>
+["tool"] = &lt;"cem2adl v6.3.0"&gt;
+["time"] = &lt;"2014-11-03T09:05:00"&gt;
+&gt;</p>
+</div></div></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>other_details</strong>: <code>Hash&lt;String, String&gt;</code></p></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>Additional non language-senstive resource meta-data, as a list of name/value pairs.</p>
+</div></div></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect3">
+<h4 id="_resource_description_item_class"><a class="anchor" href="#_resource_description_item_class"></a>3.6.3. RESOURCE_DESCRIPTION_ITEM Class</h4>
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 16.6666%;">
+<col style="width: 33.3333%;">
+<col style="width: 50.0001%;">
+</colgroup>
+<tbody>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Class</strong></p></th>
+<th class="tableblock halign-center valign-top" colspan="2"><p class="tableblock"><strong>RESOURCE_DESCRIPTION_ITEM</strong></p></th>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Description</strong></p></th>
+<td class="tableblock halign-left valign-top" colspan="2"><div><div class="paragraph">
+<p>Language-specific detail of resource description. When a resource is translated for use in another language environment, each RESOURCE_DESCRIPTION_ITEM needs to be copied and translated into the new language.</p>
+</div></div></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Attributes</strong></p></th>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Signature</strong></p></th>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Meaning</strong></p></th>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>1..1</strong></p></th>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>language</strong>: <code>TERMINOLOGY_CODE</code></p></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>The localised language in which the items in this description item are written. Coded from openEHR Code Set  languages.</p>
+</div></div></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>1..1</strong></p></th>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>purpose</strong>: <code>String</code></p></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>Purpose of the resource.</p>
+</div></div></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>keywords</strong>: <code>List&lt;String&gt;</code></p></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>Keywords which characterise this resource, used e.g. for indexing and searching.</p>
+</div></div></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>use</strong>: <code>String</code></p></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>Description of the uses of the resource, i.e. contexts in which it could be used.</p>
+</div></div></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>misuse</strong>: <code>String</code></p></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>Description of any misuses of the resource, i.e. contexts in which it should not be used.</p>
+</div></div></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>original_resource_uri</strong>: <code>List&lt;Hash&lt;String, String&gt;&gt;</code></p></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>URIs of original clinical document(s) or description of which resource is a formalisation, in the language of this description item; keyed by meaning.</p>
+</div></div></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>other_details</strong>: <code>Hash&lt;String, String&gt;</code></p></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>Additional language-senstive resource metadata, as a list of name/value pairs.</p>
+</div></div></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect3">
+<h4 id="_resource_annotations_class"><a class="anchor" href="#_resource_annotations_class"></a>3.6.4. RESOURCE_ANNOTATIONS Class</h4>
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 16.6666%;">
+<col style="width: 33.3333%;">
+<col style="width: 50.0001%;">
+</colgroup>
+<tbody>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Class</strong></p></th>
+<th class="tableblock halign-center valign-top" colspan="2"><p class="tableblock"><strong>RESOURCE_ANNOTATIONS</strong></p></th>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Description</strong></p></th>
+<td class="tableblock halign-left valign-top" colspan="2"><div><div class="paragraph">
+<p>Object representing annotations on an archetype. These can be of various forms, with a documentation form defined so far, which has a multi-level tabular structure [ [ [String value, String key], path key], language key]. Example instance, showing the documentation structure.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>    documentation = &lt;
+        ["en"] = &lt;
+           ["/data[id2]"] = &lt;
+               ["ui"] = &lt;"passthrough"&gt;
+           &gt;
+           ["/data[id2]/items[id3]"] = &lt;
+               ["design note"] = &lt;"this is a design note on Statement"&gt;
+               ["requirements note"] = &lt;"this is a requirements note on Statement"&gt;
+               ["medline ref"] = &lt;"this is a medline ref on Statement"&gt;
+           &gt;
+        &gt;
+    &gt;</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Other sub-structures might have different keys, e.g.  based on programming languages, UI toolkits etc.</p>
+</div></div></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Attributes</strong></p></th>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Signature</strong></p></th>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Meaning</strong></p></th>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>1..1</strong></p></th>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>documentation</strong>: <code>Hash&lt;Hash&lt;Hash&lt;String, String&gt;, String&gt;, String&gt;</code></p></td>
+<td class="tableblock halign-left valign-top"><div></div></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect3">
+<h4 id="_translation_details_class"><a class="anchor" href="#_translation_details_class"></a>3.6.5. TRANSLATION_DETAILS Class</h4>
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 16.6666%;">
+<col style="width: 33.3333%;">
+<col style="width: 50.0001%;">
+</colgroup>
+<tbody>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Class</strong></p></th>
+<th class="tableblock halign-center valign-top" colspan="2"><p class="tableblock"><strong>TRANSLATION_DETAILS</strong></p></th>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Description</strong></p></th>
+<td class="tableblock halign-left valign-top" colspan="2"><div><div class="paragraph">
+<p>Class providing details of a natural language translation.</p>
+</div></div></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Attributes</strong></p></th>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Signature</strong></p></th>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Meaning</strong></p></th>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>1..1</strong></p></th>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>language</strong>: <code>TERMINOLOGY_CODE</code></p></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>Language of the translation.</p>
+</div></div></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>1..1</strong></p></th>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>author</strong>: <code>Hash&lt;String, String&gt;</code></p></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>Translator name and other demographic details.</p>
+</div></div></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>accreditaton</strong>: <code>String</code></p></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>Accreditation of translator, usually a national translator&#8217;s registration or association membership id.</p>
+</div></div></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>other_details</strong>: <code>Hash&lt;String, String&gt;</code></p></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>Any other meta-data.</p>
+</div></div></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>version_last_translated</strong>: <code>String</code></p></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>Version of this resource last time it was translated into the language represented by this TRANSLATION_DETAILS object.</p>
+</div></div></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect3">
+<h4 id="_archetype_class"><a class="anchor" href="#_archetype_class"></a>3.6.6. ARCHETYPE Class</h4>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
 <col style="width: 16.6666%;">
@@ -1828,7 +2303,7 @@ It is the parent class of all concrete types of archetype.</p>
 </table>
 </div>
 <div class="sect3">
-<h4 id="_authored_archetype_class"><a class="anchor" href="#_authored_archetype_class"></a>3.6.2. AUTHORED_ARCHETYPE Class</h4>
+<h4 id="_authored_archetype_class"><a class="anchor" href="#_authored_archetype_class"></a>3.6.7. AUTHORED_ARCHETYPE Class</h4>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
 <col style="width: 16.6666%;">
@@ -1904,7 +2379,7 @@ It is the parent class of all concrete types of archetype.</p>
 </table>
 </div>
 <div class="sect3">
-<h4 id="_archetype_hrid_class"><a class="anchor" href="#_archetype_hrid_class"></a>3.6.3. ARCHETYPE_HRID Class</h4>
+<h4 id="_archetype_hrid_class"><a class="anchor" href="#_archetype_hrid_class"></a>3.6.8. ARCHETYPE_HRID Class</h4>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
 <col style="width: 16.6666%;">
@@ -2064,7 +2539,7 @@ It is the parent class of all concrete types of archetype.</p>
 </table>
 </div>
 <div class="sect3">
-<h4 id="_template_class"><a class="anchor" href="#_template_class"></a>3.6.4. TEMPLATE Class</h4>
+<h4 id="_template_class"><a class="anchor" href="#_template_class"></a>3.6.9. TEMPLATE Class</h4>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
 <col style="width: 16.6666%;">
@@ -2108,7 +2583,7 @@ It is the parent class of all concrete types of archetype.</p>
 </table>
 </div>
 <div class="sect3">
-<h4 id="_template_overlay_class"><a class="anchor" href="#_template_overlay_class"></a>3.6.5. TEMPLATE_OVERLAY Class</h4>
+<h4 id="_template_overlay_class"><a class="anchor" href="#_template_overlay_class"></a>3.6.10. TEMPLATE_OVERLAY Class</h4>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
 <col style="width: 16.6666%;">
@@ -2140,7 +2615,7 @@ It is the parent class of all concrete types of archetype.</p>
 </table>
 </div>
 <div class="sect3">
-<h4 id="_operational_template_class"><a class="anchor" href="#_operational_template_class"></a>3.6.6. OPERATIONAL_TEMPLATE Class</h4>
+<h4 id="_operational_template_class"><a class="anchor" href="#_operational_template_class"></a>3.6.11. OPERATIONAL_TEMPLATE Class</h4>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
 <col style="width: 16.6666%;">
