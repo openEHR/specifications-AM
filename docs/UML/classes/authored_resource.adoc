@@ -21,10 +21,6 @@ h|*0..1*
 a|True if this resource is under any kind of change control (even file copying), in which case revision history is created.
 
 h|*0..1*
-|*translations*: `List<TRANSLATION_DETAILS>`
-a|List of details for each natural translation made of this resource, keyed by language. For each translation listed here, there must be corresponding sections in all language-dependent parts of the resource. The original_language does not appear in this list.
-
-h|*0..1*
 |*description*: `RESOURCE_DESCRIPTION`
 a|Description and lifecycle information of the resource.
 
@@ -37,8 +33,8 @@ h|*0..1*
 a|Annotations on individual items within the resource, keyed by path. The inner table takes the form of a Hash table of String values keyed by String tags.
 
 h|*0..1*
-|*revision_history*: 
-a|
+|*translations*: `Hash<TRANSLATION_DETAILS, String>`
+a|List of details for each natural translation made of this resource, keyed by language. For each translation listed here, there must be corresponding sections in all language-dependent parts of the resource. The original_language does not appear in this list.
 h|*Functions*
 ^h|*Signature*
 ^h|*Meaning*

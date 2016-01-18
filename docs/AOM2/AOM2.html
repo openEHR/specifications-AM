@@ -1747,13 +1747,6 @@ first names last name, organisation &lt;organisation email address&gt;</pre>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>translations</strong>: <code>List&lt;TRANSLATION_DETAILS&gt;</code></p></td>
-<td class="tableblock halign-left valign-top"><div><div class="paragraph">
-<p>List of details for each natural translation made of this resource, keyed by language. For each translation listed here, there must be corresponding sections in all language-dependent parts of the resource. The original_language does not appear in this list.</p>
-</div></div></td>
-</tr>
-<tr>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><strong>description</strong>: <code>RESOURCE_DESCRIPTION</code></p></td>
 <td class="tableblock halign-left valign-top"><div><div class="paragraph">
 <p>Description and lifecycle information of the resource.</p>
@@ -1775,8 +1768,10 @@ first names last name, organisation &lt;organisation email address&gt;</pre>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>revision_history</strong>:</p></td>
-<td class="tableblock halign-left valign-top"><div></div></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>translations</strong>: <code>Hash&lt;TRANSLATION_DETAILS, String&gt;</code></p></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>List of details for each natural translation made of this resource, keyed by language. For each translation listed here, there must be corresponding sections in all language-dependent parts of the resource. The original_language does not appear in this list.</p>
+</div></div></td>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Functions</strong></p></th>
@@ -1906,13 +1901,6 @@ translations.has_key (d.language.code_string)))</p>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>details</strong>: <code>List&lt;RESOURCE_DESCRIPTION_ITEM&gt;</code></p></td>
-<td class="tableblock halign-left valign-top"><div><div class="paragraph">
-<p>Details of all parts of resource description that are natural language-dependent, keyed by language code.</p>
-</div></div></td>
-</tr>
-<tr>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><strong>custodian_namespace</strong>: <code>String</code></p></td>
 <td class="tableblock halign-left valign-top"><div><div class="paragraph">
 <p>Namespace in reverse internet id form, of current custodian organisation.</p>
@@ -1983,6 +1971,13 @@ conversion_details = &lt;
 <td class="tableblock halign-left valign-top"><p class="tableblock"><strong>other_details</strong>: <code>Hash&lt;String, String&gt;</code></p></td>
 <td class="tableblock halign-left valign-top"><div><div class="paragraph">
 <p>Additional non language-senstive resource meta-data, as a list of name/value pairs.</p>
+</div></div></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>details</strong>: <code>Hash&lt;RESOURCE_DESCRIPTION_ITEM, String&gt;</code></p></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>Details of all parts of resource description that are natural language-dependent, keyed by language code.</p>
 </div></div></td>
 </tr>
 </tbody>
@@ -2110,7 +2105,9 @@ conversion_details = &lt;
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>1..1</strong></p></th>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><strong>documentation</strong>: <code>Hash&lt;Hash&lt;Hash&lt;String, String&gt;, String&gt;, String&gt;</code></p></td>
-<td class="tableblock halign-left valign-top"><div></div></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>Documentary annotations in a multi-level keyed structure.</p>
+</div></div></td>
 </tr>
 </tbody>
 </table>
@@ -2373,6 +2370,12 @@ It is the parent class of all concrete types of archetype.</p>
 <th class="tableblock halign-center valign-top"></th>
 <td class="tableblock halign-left valign-top" colspan="2"><div><div class="paragraph">
 <p><strong><em>Invariant_rm_release</em></strong>: valid_version_id (rm_release)</p>
+</div></div></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"></th>
+<td class="tableblock halign-left valign-top" colspan="2"><div><div class="paragraph">
+<p><strong><em>Description_validity</em></strong>: description /= Void</p>
 </div></div></td>
 </tr>
 </tbody>
