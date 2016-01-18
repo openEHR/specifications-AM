@@ -445,7 +445,7 @@
 <p>Make <code>AUTHORED_RESOURCE</code>.<code><em>uid</em></code> and <code>AUTHORED_ARCHETYPE</code>.<code><em>build_uid</em></code> <code>UUIDs</code> rather than any kind of <code>UID</code>.</p>
 </div></div></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">T Beale</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a id="latest_issue_date"></a>17 Jan 2016</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a id="latest_issue_date"></a>18 Jan 2016</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"></td>
@@ -1392,6 +1392,13 @@ of Date/Time fields.</p>
 <p>Regex pattern of the root id code of any archetype. Corresponds to codes of the form id1, id1.1, id1.1.1 etc..</p>
 </div></div></td>
 </tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>1..1</strong></p></th>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Primitive_node_id</strong>: <code>String&#160;=&#160;"id9999"</code></p></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>Code id used for C_PRIMITIVE_OBJECT nodes on creation.</p>
+</div></div></td>
+</tr>
 </tbody>
 </table>
 </div>
@@ -2294,7 +2301,7 @@ It is the parent class of all concrete types of archetype.</p>
 <p><code>C_ATTRIBUTE</code> : a node representing a constraint on an attribute (i.e. UML 'relationship' or 'primitive attribute') in an object type;</p>
 </li>
 <li>
-<p><code>C_PRIMITIVE_OBJECT</code> : an node representing a constraint on a primitive (built-in) object type;</p>
+<p><code>C_PRIMITIVE_OBJECT</code> : a node representing a constraint on a primitive (built-in) object type;</p>
 </li>
 <li>
 <p><code>C_COMPLEX_OBJECT_PROXY</code> : a node that refers to a previously defined <code>C_COMPLEX_OBJECT</code> node in the same archetype. The reference is made using a path;</p>
@@ -2403,6 +2410,9 @@ It is the parent class of all concrete types of archetype.</p>
 <div class="paragraph">
 <p>The existence of <code><em>node_ids</em></code> in an archetype allows archetype paths to be created, which refer to each node. Every node in the archetype needs a <code><em>node_id</em></code> , but only node_ids for nodes under container attributes must have a terminology definition. For nodes under single-valued attributes, the terminology definition is optional (and typically not supplied), since the meaning is given by the reference model attribute definition.</p>
 </div>
+<div class="paragraph">
+<p>Note that instances of <code>C_PRIMITIVE_OBJECT</code> have a constant <code><em>node_id</em></code> (see below) and thus do not require node identifiers to be supplied in syntax or serial forms that are converted to AOM structural form.</p>
+</div>
 </div>
 <div class="sect4">
 <h5 id="_sibling_ordering"><a class="anchor" href="#_sibling_ordering"></a>Sibling Ordering</h5>
@@ -2457,6 +2467,9 @@ It is the parent class of all concrete types of archetype.</p>
 <h4 id="_primitive_types_c_primitive_object_descendants"><a class="anchor" href="#_primitive_types_c_primitive_object_descendants"></a>4.2.7. Primitive Types (C_PRIMITIVE_OBJECT descendants)</h4>
 <div class="paragraph">
 <p>Constraints on primitive types are defined by the classes inheriting from <code>C_PRIMITIVE_OBJECT</code> , i.e. <code>C_STRING</code> , <code>C_INTEGER</code> and so on. The primitive types are represented in such a way as to accommodate both 'tuple' constraints and logically unary constraints, using a tuple array whose members are each a primitive constraint corresponding to each primitive type. Tuple constraints are second order constraints, described below, enable covarying constraints to be stated. In the unary case, the constraint is the first member of a tuple array.</p>
+</div>
+<div class="paragraph">
+<p><code>C_PRIMITIVE_OBJECT</code> instances are created with a fixed id-code <code>ADL_CODE_DEFINITIONS.<em>primitive_node_id</em></code> as the value of <code><em>node_id</em></code> (see <a href="#_adl_code_definitions_class">ADL_CODE_DEFINITIONS Class</a>). For this reason, no node identifier needs to be supplied in a syntax or serialised form of an archetype, including ADL.</p>
 </div>
 <div class="paragraph">
 <p>The primitive constraint for each primitive type may itself be complex. Its type is given by the type of the constraint accessor in each <code>C_PRIMITIVE_OBJECT</code> descendant and is summarised in the following table.</p>

@@ -12,7 +12,7 @@ The definition part of an archetype is an instance of a `C_COMPLEX_OBJECT` and c
 
 * `C_COMPLEX_OBJECT` : any interior node representing a constraint on instances of some non-primitive type, e.g. `OBSERVATION` , `SECTION` ;
 * `C_ATTRIBUTE` : a node representing a constraint on an attribute (i.e. UML 'relationship' or 'primitive attribute') in an object type;
-* `C_PRIMITIVE_OBJECT` : an node representing a constraint on a primitive (built-in) object type;
+* `C_PRIMITIVE_OBJECT` : a node representing a constraint on a primitive (built-in) object type;
 * `C_COMPLEX_OBJECT_PROXY` : a node that refers to a previously defined `C_COMPLEX_OBJECT` node in the same archetype. The reference is made using a path;
 * `ARCHETYPE_SLOT` : a node whose statements define a constraint that determines which other archetypes can appear at that point in the current archetype. It can be thought of like a keyhole, into which few or many keys might fit, depending on how specific its shape is. Logically it has the same semantics as a `C_COMPLEX_OBJECT` , except that the constraints are expressed in another archetype, not the current one.
 * `C_ARCHETYPE_ROOT` : stands for the root node of an archetype; enables another archetype to be referenced from the present one. Used in both archetypes and templates.
@@ -74,6 +74,8 @@ The `_node_id_` attribute in the class `C_OBJECT`, inherited by all subtypes, is
 
 The existence of `_node_ids_` in an archetype allows archetype paths to be created, which refer to each node. Every node in the archetype needs a `_node_id_` , but only node_ids for nodes under container attributes must have a terminology definition. For nodes under single-valued attributes, the terminology definition is optional (and typically not supplied), since the meaning is given by the reference model attribute definition.
 
+Note that instances of `C_PRIMITIVE_OBJECT` have a constant `_node_id_` (see below) and thus do not require node identifiers to be supplied in syntax or serial forms that are converted to AOM structural form.
+
 ==== Sibling Ordering
 
 Within a specialised archetype, redefined or added object nodes may be defined under a container attribute. Since specialised archetypes are in differential form, i.e. only redefined or added nodes are expressed, not nodes inherited unchanged, the relative ordering of siblings can't be stated simply by the ordering of such items within the relevant list within the differential form of the archetype. An explicit ordering indicator is required if indeed order is specific. The `C_OBJECT`.`_sibling_order_` attribute provides this possibility. It can only be set on a `C_OBJECT` descendant within a multiply-valued attribute, i.e. an instance of `C_ATTRIBUTE` for which the `_cardinality_` is ordered.
@@ -109,6 +111,8 @@ Along with `C_ATTRIBUTE`, `C_COMPLEX_OBJECT` is the key structuring type of the 
 === Primitive Types (C_PRIMITIVE_OBJECT descendants)
 
 Constraints on primitive types are defined by the classes inheriting from `C_PRIMITIVE_OBJECT` , i.e. `C_STRING` , `C_INTEGER` and so on. The primitive types are represented in such a way as to accommodate both 'tuple' constraints and logically unary constraints, using a tuple array whose members are each a primitive constraint corresponding to each primitive type. Tuple constraints are second order constraints, described below, enable covarying constraints to be stated. In the unary case, the constraint is the first member of a tuple array.
+
+`C_PRIMITIVE_OBJECT` instances are created with a fixed id-code `ADL_CODE_DEFINITIONS._primitive_node_id_` as the value of `_node_id_` (see <<ADL_CODE_DEFINITIONS Class>>). For this reason, no node identifier needs to be supplied in a syntax or serialised form of an archetype, including ADL.
 
 The primitive constraint for each primitive type may itself be complex. Its type is given by the type of the constraint accessor in each `C_PRIMITIVE_OBJECT` descendant and is summarised in the following table.
 
