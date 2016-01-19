@@ -256,11 +256,15 @@ include::{uml_export_dir}/classes/c_attribute.adoc[]
 
 ==== Conformance Semantics
 
-The following functions formally define the conformance of an attribute node in a specialised archetype to the corresponding node in a parent archetype, where 'corresponding' means a node found at the same or a congruent path.
+The following functions formally define the conformance of a `C_ATRIBUTE` node in a specialised archetype to the corresponding node in a parent archetype, where 'corresponding' means a node found at the same or a congruent path.
 
 [source,eiffel]
 ---------
 c_conforms_to (other: like Current): Boolean
+        -- True if this node on its own (ignoring any subparts) expresses the same or narrower constraints as `other'.
+        -- Returns False if any of the following is incompatible:
+        --	 * cardinality
+        --	 * existence
     require
         other /= Void
     do
@@ -270,6 +274,7 @@ c_conforms_to (other: like Current): Boolean
     end
 
 c_congruent_to (other: like Current): Boolean
+		-- True if this node on its own (ignoring any subparts) expresses no additional constraints than `other'.
     require
         other /= Void
     do
@@ -278,6 +283,7 @@ c_congruent_to (other: like Current): Boolean
     end
 
 existence_conforms_to (other: like Current): Boolean
+		-- True if the existence of this node conforms to other.existence
     require
         other_exists: other /= Void
     do
@@ -289,6 +295,7 @@ existence_conforms_to (other: like Current): Boolean
     end
 
 cardinality_conforms_to (other: like Current): Boolean
+		-- True if the cardinality of this node conforms to other.cardinality, if it exists
     require
         other_exists: other /= Void
     do
@@ -380,45 +387,54 @@ Occurrences is not really required on children of single-valued attributes, beca
 
 ==== Conformance semantics
 
-The following functions formally define the conformance of an object node in a specialised archetype to the corresponding node in a parent archetype, where 'corresponding' means a node found at the same or a congruent path.
+The following functions formally define the conformance of a `C_OBJECT` node in a specialised archetype to the corresponding node in a parent archetype, where 'corresponding' means a node found at the same or a congruent path.
 
 [source,eiffel]
 ---------
-c_conforms_to (other: like Current): Boolean
+c_conforms_to (other: like Current; agent rm_types_conformant (a_type, other_type: String)): Boolean
+        -- True if this node on its own (ignoring any subparts) expresses the same or narrower constraints 
+        -- as `other'. 
+        -- `other' is typically from the flat parent archetype.
+        -- Returns True only when the following is True:
+        --	 * rm_type_name is the same or a subtype of rm_type_name of other;
+        --	 * occurrences is same (= Void) or a sub-interval
+        --	 * node_id is the same, or redefined to a legal code at the level of the owning archetype
+        -- `rm_types_conformant' is an agent (lambda) that can test an RM type's conformance to another RM type
     require
         other /= Void
+        rm_types_conformant /= Void
     do
         Result := node_id_conforms_to (other) and
             occurrences_conforms_to (other) and
-            (rm_type_name.is_equal (other.rm_type_name) or else
-            rm_types_conformant(rm_type_name, other.rm_type_name))
+            (rm_type_name.is_case_insensitive_equal (other.rm_type_name) or else
+            rm_types_conformant (rm_type_name, other.rm_type_name))
     end
 
 c_congruent_to (other: like Current): Boolean
-        -- True if this node makes no changes to 'other' (from a
-        -- specialisation parent archetype) apart from possible
-        -- change of node-id
+        -- True if this node on its own (ignoring any subparts) expresses no constraints in addition 
+        -- to `other', other than possible redefinition of the node id, which doesn't matter, since 
+        -- this won't get lost in a compressed path.
+        -- Current and `other' are typically from flat archetypes being compared to generate a diff.
+        -- Used to determine if path segments can be compressed.
+        -- Returns True if:
+        --	 * rm_type_name is identical
+        --	 * occurrences is Void or else identical to other.occurrences
+        -- 	 * sibling_order is Void or else identical to other.sibling_order
+        --	 * node_id is identical or else is the only child that overlays the parent node
     require
         other /= Void
     do
         Result := rm_type_name.is_case_insensitive_equal (other.rm_type_name) and
-            (occurrences = Void or else occurrences ~ other.occurrences) and
-            (sibling_order = Void or else sibling_order ~ other.sibling_order) and
+            (occurrences = Void or else (other.occurrences /= Void and then 
+                occurrences.is_equal (other.occurrences))) and
+            (sibling_order = Void or else (other.sibling_order /= Void and then 
+                sibling_order.is_equal (other.sibling_order))) and
             node_reuse_congruent (other)
-    end
-
-rm_type_conforms_to (other: like Current): Boolean
-    require
-        other /= Void
-    do
-        Result := rm_type_name.is_equal (other.rm_type_name) or
-            rm_checker.is_sub_type_of (rm_type_name, other.rm_type_name)
     end
 
 occurrences_conforms_to (other: like Current): Boolean
     require
         other_exists: other /= Void
-        other_is_flat: other.occurrences /= Void
     do
         if occurrences /= Void and other.occurrences /= Void then
             Result := other.occurrences.contains (occurrences)
@@ -433,6 +449,15 @@ node_id_conforms_to (other: like Current): Boolean
     do
         Result := codes_conformant (node_id, other.node_id)
     end
+
+node_reuse_congruent (other: like Current): BOOLEAN
+        -- True if this node is the sole re-using node of the corresponding node in the flat
+    do
+        Result := node_id_conforms_to (other) and
+            (is_root or else
+            attached parent and then parent.child_reuse_count (other.node_id) = 1)
+    end
+
 ---------
 
 ==== Validity Rules
@@ -596,18 +621,247 @@ The validity rules for `C_PRIMITIVE_OBJECTs` are as follows:
 [.rule]
 *VOBAV* object node assumed value validity: the value of an assumed value must fall within the value space defined by the constraint to which it is attached.
 
+==== Conformance semantics
+
+The following functions formally define the conformance of a node of a `C_PRIMITIVE_OBJECT` descendant type in a specialised archetype to a corresponding node in a parent archetype, where 'corresponding' means a node found at the same or a congruent path and of the same AOM type.
+
+[source,eiffel]
+---------
+c_conforms_to (other: like Current; agent rm_types_conformant (a_type, other_type: String)): Boolean
+        -- True if this node on its own (ignoring any subparts) expresses the same or narrower constraints 
+        -- as `other'. Returns True only when the following is True:
+        --   * occurrences conforms
+        --   * `rm_type_name' is identical to that in `other'
+        -- `rm_types_conformant' is an agent (lambda) that can test an RM type's conformance to another RM type
+    require
+        other /= Void
+        rm_types_conformant /= Void
+    do
+        Result := occurrences_conforms_to (other) and rm_type_name.is_case_insensitive_equal (other.rm_type_name)
+    end
+
+c_congruent_to (other: like Current): Boolean
+        -- True if this node on its own (ignoring any subparts) expresses no constraints in addition to `other'
+    require
+        other /= Void
+    do
+		Result := rm_typename.is_case_insensitive_equal (other.rm_typename)
+    end
+
+---------
+
 include::{uml_export_dir}/classes/c_boolean.adoc[]
+
+==== Conformance semantics
+
+The following functions formally define the conformance of a `C_BOOLEAN` node in a specialised archetype to a corresponding node in a parent archetype, where 'corresponding' means a node found at the same or a congruent path and of the same AOM type.
+
+[source,eiffel]
+---------
+c_conforms_to (other: like Current; agent rm_types_conformant (a_type, other_type: String)): Boolean
+        -- True if this node on its own (ignoring any subparts) expresses the same or narrower constraints 
+        -- as `other'. Returns True only when the following is True:
+        --   * C_PRIMITIVE_OBJECT conditions are met and
+        --   * every `constraint' value is in `other.constraint'
+        -- `rm_types_conformant' is an agent (lambda) that can test an RM type's conformance to another RM type
+    require
+        other /= Void
+        rm_types_conformant /= Void
+    do
+        Result := precursor (other, rm_type_conformance_checker) and  -- precursor is from C_PRIMITIVE_OBJECT
+            constraint.count < other.constraint.count and
+            across constraint as val_csr all other.constraint.has (val_csr.item) end
+    end
+
+c_congruent_to (other: like Current): Boolean
+        -- True if this node on its own (ignoring any subparts) expresses no constraints in addition to `other'
+    require
+        other /= Void
+    do
+        Result := precursor (other) and   -- precursor is from C_PRIMITIVE_OBJECT
+            constraint.count = other.constraint.count and
+            across constraint as val_csr all other.constraint.has (val_csr.item) end
+    end
+
+---------
+
 include::{uml_export_dir}/classes/c_string.adoc[]
+
+==== Conformance semantics
+
+The following functions formally define the conformance of a `C_STRING` node in a specialised archetype to a corresponding node in a parent archetype, where 'corresponding' means a node found at the same or a congruent path and of the same AOM type.
+
+[source,eiffel]
+---------
+c_conforms_to (other: like Current; agent rm_types_conformant (a_type, other_type: String)): Boolean
+        -- True if this node on its own (ignoring any subparts) expresses the same or narrower constraints 
+        -- as `other'. Returns True only when the following is True:
+        --   * C_PRIMITIVE_OBJECT conditions are met and
+        --   * every `constraint' string or pattern is in `other.constraint'
+        -- `rm_types_conformant' is an agent (lambda) that can test an RM type's conformance to another RM type
+    require
+        other /= Void
+        rm_types_conformant /= Void
+    do
+        Result := precursor (other, rm_type_conformance_checker) and -- precursor is from C_PRIMITIVE_OBJECT
+            constraint.count < other.constraint.count and
+            across constraint as constraint_csr all other.constraint.has (constraint_csr.item) end
+end
+
+c_congruent_to (other: like Current): Boolean
+        -- True if this node on its own (ignoring any subparts) expresses no constraints in addition to `other'
+    require
+        other /= Void
+    do
+        Result := precursor (other) and -- precursor is from C_PRIMITIVE_OBJECT
+            constraint.count = other.constraint.count and then
+            across constraint as str_csr all 
+                other.constraint.i_th (str_csr.cursor_index).is_equal (str_csr.item) 
+            end
+    end
+
+---------
+
 include::{uml_export_dir}/classes/c_ordered.adoc[]
+
+==== Conformance semantics
+
+The following functions formally define the conformance of a node of a `C_ORDERED` descendant type in a specialised archetype to a corresponding node in a parent archetype, where 'corresponding' means a node found at the same or a congruent path and of the same AOM type.
+
+[source,eiffel]
+---------
+c_conforms_to (other: like Current; agent rm_types_conformant (a_type, other_type: String)): Boolean
+        -- True if this node on its own (ignoring any subparts) expresses the same or narrower constraints 
+        -- as `other'. Returns True only when the following is True:
+        --   * C_PRIMITIVE_OBJECT conditions are met and
+        --   * every interval constraint (if amy exist) is inside at least one interval in other.constraint
+        -- `rm_types_conformant' is an agent (lambda) that can test an RM type's conformance to another RM type
+    require
+        other /= Void
+        rm_types_conformant /= Void
+    do
+        if precursor (other, rm_types_conformant) and -- precursor is from C_PRIMITIVE_OBJECT
+            across constraint as ivl_csr all
+                across other.constraint as other_ivl_csr some other_ivl_csr.item.contains (ivl_csr.item) end
+            end
+        end
+    end
+
+c_congruent_to (other: like Current): Boolean
+        -- True if this node on its own (ignoring any subparts) expresses no constraints in addition to `other'
+    require
+        other /= Void
+    do
+        Result := precursor (other) and  -- precursor is from C_PRIMITIVE_OBJECT
+            constraint.count = other.constraint.count and
+            across constraint as ivl_csr all
+                ivl_csr.item.is_equal (other.constraint.i_th (ivl_csr.cursor_index))
+            end
+    end
+
+---------
+
 include::{uml_export_dir}/classes/c_integer.adoc[]
 include::{uml_export_dir}/classes/c_real.adoc[]
 include::{uml_export_dir}/classes/c_temporal.adoc[]
+
+==== Conformance semantics
+
+The following functions formally define the conformance of a node of a `C_TEMPORAL` descendant type in a specialised archetype to a corresponding node in a parent archetype, where 'corresponding' means a node found at the same or a congruent path and of the same AOM type.
+
+[source,eiffel]
+---------
+c_conforms_to (other: like Current; agent rm_types_conformant (a_type, other_type: String)): Boolean
+        -- True if this node on its own (ignoring any subparts) expresses the same or narrower constraints 
+        -- as `other'. Returns True only when the following is True:
+        --   * C_ORDERED conditions are met and
+        --   * every interval in `constraint' (if amy exist) is inside an interval in `other.constraint'
+        --   * if `pattern_constraint' exists, it is the same or a valid replacement of that in `other'.
+        -- `rm_types_conformant' is an agent (lambda) that can test an RM type's conformance to another RM type
+    require
+        other /= Void
+        rm_types_conformant /= Void
+    do
+        if precursor (other, rm_types_conformant) then -- precursor is from C_ORDERED
+            if not pattern_constraint.is_empty and not other.pattern_constraint.is_empty then
+                Result := valid_pattern_constraint_replacement (pattern_constraint, other.pattern_constraint)
+            else
+                Result := pattern_constraint.is_empty and other.pattern_constraint.is_empty
+            end
+        end
+    end
+
+c_congruent_to (other: like Current): Boolean
+        -- True if this node on its own (ignoring any subparts) expresses no constraints in addition to `other'
+    require
+        other /= Void
+    do
+        if precursor (other) then -- precursor is from C_ORDERED
+            if not pattern_constraint.is_empty and not other.pattern_constraint.is_empty then
+                Result := pattern_constraint.is_equal (other.pattern_constraint)
+            else
+                Result := pattern_constraint.is_empty and other.pattern_constraint.is_empty
+            end
+        end
+    end
+
+---------
+
 include::{uml_export_dir}/classes/c_date.adoc[]
 include::{uml_export_dir}/classes/c_time.adoc[]
 include::{uml_export_dir}/classes/c_date_time.adoc[]
 include::{uml_export_dir}/classes/c_duration.adoc[]
 include::{uml_export_dir}/classes/c_terminology_code.adoc[]
+
+==== Conformance semantics
+
+The following functions formally define the conformance of a `C_TERMINOLOGY_CODE` node in a specialised archetype to a corresponding node in a parent archetype, where 'corresponding' means a node found at the same or a congruent path and of the same AOM type.
+
+[source,eiffel]
+---------
+c_conforms_to (other: like Current; agent rm_types_conformant (a_type, other_type: String)): Boolean
+        -- True if this node on its own (ignoring any subparts) expresses the same or narrower constraints 
+        -- as `other'. Returns True only when the following is True:
+        --   * C_PRIMITIVE_OBJECT conditions are met and
+        --   * the value set represented by `constraint' is subsumed under that of `other.constraint'
+        -- `rm_types_conformant' is an agent (lambda) that can test an RM type's conformance to another RM type
+    require
+        other /= Void
+        rm_types_conformant /= Void
+    do
+        if precursor (other, rm_type_conformance_checker) then  -- precursor is from C_PRIMITIVE_OBJECT
+            if is_valid_value_set_code (constraint) and is_valid_value_set_code (other.constraint) then
+                this_vset := value_set_expanded
+                other_vset := other.value_set_expanded
+                Result := codes_conformant (constraint, other.constraint) and then
+                    across this_vset as vset_csr all other_vset.has (vset_csr.item) end
+            else
+                Result := codes_conformant (constraint, other.constraint)
+            end
+        end
+    end
+
+c_congruent_to (other: like Current): Boolean
+        -- True if this node on its own (ignoring any subparts) expresses no constraints in addition 
+        -- to `other'
+    require
+        other /= Void
+    do
+        if precursor (other) then  -- precursor is from C_PRIMITIVE_OBJECT
+            if is_valid_value_set_code (constraint) and is_valid_value_set_code (other.constraint) then
+                this_vset := value_set_expanded
+                other_vset := other.value_set_expanded
+                Result := constraint.is_equal (other.constraint) and then
+                    this_vset.count = other_vset.count and then
+                        across this_vset as vset_csr all other_vset.has (vset_csr.item) end
+            else
+                Result := constraint.is_equal (other.constraint)
+            end
+        end
+    end
+
+---------
+
 include::{uml_export_dir}/classes/c_second_order.adoc[]
 include::{uml_export_dir}/classes/c_primitive_tuple.adoc[]
 include::{uml_export_dir}/classes/c_attribute_tuple.adoc[]
-
