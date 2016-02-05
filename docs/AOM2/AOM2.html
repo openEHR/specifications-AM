@@ -264,23 +264,24 @@
 <li><a href="#_semantics_2">5.2. Semantics</a></li>
 <li><a href="#_class_descriptions_2">5.3. Class Descriptions</a>
 <ul class="sectlevel3">
-<li><a href="#_rule_statement_class">5.3.1. RULE_STATEMENT Class</a></li>
-<li><a href="#_assertion_class">5.3.2. ASSERTION Class</a></li>
-<li><a href="#_variable_declaration_class">5.3.3. VARIABLE_DECLARATION Class</a></li>
-<li><a href="#_expr_variable_class">5.3.4. EXPR_VARIABLE Class</a></li>
-<li><a href="#_builtin_variable_class">5.3.5. BUILTIN_VARIABLE Class</a></li>
-<li><a href="#_query_variable_class">5.3.6. QUERY_VARIABLE Class</a></li>
-<li><a href="#_expr_item_class">5.3.7. EXPR_ITEM Class</a></li>
-<li><a href="#_expr_leaf_class">5.3.8. EXPR_LEAF Class</a></li>
-<li><a href="#_expr_constant_class">5.3.9. EXPR_CONSTANT Class</a></li>
-<li><a href="#_expr_constraint_class">5.3.10. EXPR_CONSTRAINT Class</a></li>
-<li><a href="#_expr_archetype_id_constraint_class">5.3.11. EXPR_ARCHETYPE_ID_CONSTRAINT Class</a></li>
-<li><a href="#_expr_model_ref_class">5.3.12. EXPR_MODEL_REF Class</a></li>
-<li><a href="#_expr_variable_ref_class">5.3.13. EXPR_VARIABLE_REF Class</a></li>
-<li><a href="#_expr_operator_class">5.3.14. EXPR_OPERATOR Class</a></li>
-<li><a href="#_expr_unary_operator_class">5.3.15. EXPR_UNARY_OPERATOR Class</a></li>
-<li><a href="#_expr_binary_operator_class">5.3.16. EXPR_BINARY_OPERATOR Class</a></li>
-<li><a href="#_operator_kind_enumeration">5.3.17. OPERATOR_KIND Enumeration</a></li>
+<li><a href="#_rule_element_class">5.3.1. RULE_ELEMENT Class</a></li>
+<li><a href="#_rule_statement_class">5.3.2. RULE_STATEMENT Class</a></li>
+<li><a href="#_assertion_class">5.3.3. ASSERTION Class</a></li>
+<li><a href="#_variable_declaration_class">5.3.4. VARIABLE_DECLARATION Class</a></li>
+<li><a href="#_expr_variable_class">5.3.5. EXPR_VARIABLE Class</a></li>
+<li><a href="#_builtin_variable_class">5.3.6. BUILTIN_VARIABLE Class</a></li>
+<li><a href="#_query_variable_class">5.3.7. QUERY_VARIABLE Class</a></li>
+<li><a href="#_expr_item_class">5.3.8. EXPR_ITEM Class</a></li>
+<li><a href="#_expr_leaf_class">5.3.9. EXPR_LEAF Class</a></li>
+<li><a href="#_expr_constant_class">5.3.10. EXPR_CONSTANT Class</a></li>
+<li><a href="#_expr_constraint_class">5.3.11. EXPR_CONSTRAINT Class</a></li>
+<li><a href="#_expr_archetype_id_constraint_class">5.3.12. EXPR_ARCHETYPE_ID_CONSTRAINT Class</a></li>
+<li><a href="#_expr_model_ref_class">5.3.13. EXPR_MODEL_REF Class</a></li>
+<li><a href="#_expr_variable_ref_class">5.3.14. EXPR_VARIABLE_REF Class</a></li>
+<li><a href="#_expr_operator_class">5.3.15. EXPR_OPERATOR Class</a></li>
+<li><a href="#_expr_unary_operator_class">5.3.16. EXPR_UNARY_OPERATOR Class</a></li>
+<li><a href="#_expr_binary_operator_class">5.3.17. EXPR_BINARY_OPERATOR Class</a></li>
+<li><a href="#_operator_kind_enumeration">5.3.18. OPERATOR_KIND Enumeration</a></li>
 </ul>
 </li>
 </ul>
@@ -466,12 +467,22 @@
 </thead>
 <tbody>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a id="latest_issue"></a>2.0.5</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a id="latest_issue"></a>2.0.6</p></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>Correct <code>ASSERTION.<em>variables</em></code> association to refer to <code>VARIABLE_DECLARATION</code>.<br>
+ Add <code>RULE_ELEMENT</code> class table to specification (reported in <a href="https://openehr.atlassian.net/browse/SPECPR-160">SPECPR-160</a>)<br>
+ Correct <code>CARDINALITY.<em>is_set</em></code> documentation (reported in <a href="https://openehr.atlassian.net/browse/SPECPR-147">SPECPR-147</a>).</p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">T Beale</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a id="latest_issue_date"></a>05 Feb 2016</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">2.0.5</p></td>
 <td class="tableblock halign-left valign-top"><div><div class="paragraph">
 <p>Make <code>AUTHORED_RESOURCE</code>.<code><em>uid</em></code> and <code>AUTHORED_ARCHETYPE</code>.<code><em>build_uid</em></code> <code>UUIDs</code> rather than any kind of <code>UID</code>.</p>
 </div></div></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">T Beale</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a id="latest_issue_date"></a>18 Jan 2016</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">18 Jan 2016</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"></td>
@@ -3678,7 +3689,7 @@ Typically used during validation of special-ised archetype nodes.</p>
 <th class="tableblock halign-center valign-top"></th>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><strong>is_set</strong>: <code>Boolean</code></p></td>
 <td class="tableblock halign-left valign-top"><div><div class="paragraph">
-<p>True if the semantics of this cardinality represent a bag, i.e. unordered, non-unique membership.</p>
+<p>True if the semantics of this cardinality represent a set, i.e. unordered, unique membership.</p>
 </div></div></td>
 </tr>
 </tbody>
@@ -4542,7 +4553,7 @@ For a slot-filler or a redefined external reference, the node_id is set to a spe
 <pre class="pygments highlight"><code data-lang="eiffel"><span class="tok-n">c_conforms_to</span> <span class="tok-p">(</span><span class="tok-n">other</span><span class="tok-p">:</span> <span class="tok-kr">like</span> <span class="tok-kc">Current</span><span class="tok-p">;</span> <span class="tok-kr">agent</span> <span class="tok-n">rm_types_conformant</span> <span class="tok-p">(</span><span class="tok-n">a_type</span><span class="tok-p">,</span> <span class="tok-n">other_type</span><span class="tok-p">:</span> <span class="tok-n">String</span><span class="tok-p">)):</span> <span class="tok-n">Boolean</span>
         <span class="tok-c1">-- True if this node on its own (ignoring any subparts) expresses the same or narrower constraints</span>
         <span class="tok-c1">-- as `other&#39;. Returns True only when the following is True:</span>
-        <span class="tok-c1">--	 * C_PRIMITIVE_OBJECT conditions are met and</span>
+        <span class="tok-c1">--   * C_PRIMITIVE_OBJECT conditions are met and</span>
         <span class="tok-c1">--   * every `constraint&#39; value is in `other.constraint&#39;</span>
         <span class="tok-c1">-- `rm_types_conformant&#39; is an agent (lambda) that can test an RM type&#39;s conformance to another RM type</span>
     <span class="tok-kr">require</span>
@@ -4559,7 +4570,7 @@ For a slot-filler or a redefined external reference, the node_id is set to a spe
     <span class="tok-kr">require</span>
         <span class="tok-n">other</span> <span class="tok-o">/=</span> <span class="tok-kc">Void</span>
     <span class="tok-kr">do</span>
-		<span class="tok-kc">Result</span> <span class="tok-o">:=</span> <span class="tok-kc">precursor</span> <span class="tok-p">(</span><span class="tok-n">other</span><span class="tok-p">)</span> <span class="tok-ow">and</span>   <span class="tok-c1">-- precursor is from C_PRIMITIVE_OBJECT</span>
+        <span class="tok-kc">Result</span> <span class="tok-o">:=</span> <span class="tok-kc">precursor</span> <span class="tok-p">(</span><span class="tok-n">other</span><span class="tok-p">)</span> <span class="tok-ow">and</span>   <span class="tok-c1">-- precursor is from C_PRIMITIVE_OBJECT</span>
             <span class="tok-n">constraint</span><span class="tok-p">.</span><span class="tok-n">count</span> <span class="tok-o">=</span> <span class="tok-n">other</span><span class="tok-p">.</span><span class="tok-n">constraint</span><span class="tok-p">.</span><span class="tok-n">count</span> <span class="tok-ow">and</span>
             <span class="tok-kr">across</span> <span class="tok-n">constraint</span> <span class="tok-kr">as</span> <span class="tok-n">val_csr</span> <span class="tok-kr">all</span> <span class="tok-n">other</span><span class="tok-p">.</span><span class="tok-n">constraint</span><span class="tok-p">.</span><span class="tok-n">has</span> <span class="tok-p">(</span><span class="tok-n">val_csr</span><span class="tok-p">.</span><span class="tok-n">item</span><span class="tok-p">)</span> <span class="tok-kr">end</span>
     <span class="tok-kr">end</span></code></pre>
@@ -4906,7 +4917,7 @@ For a slot-filler or a redefined external reference, the node_id is set to a spe
     <span class="tok-kr">end</span>
 
 <span class="tok-n">c_congruent_to</span> <span class="tok-p">(</span><span class="tok-n">other</span><span class="tok-p">:</span> <span class="tok-kr">like</span> <span class="tok-kc">Current</span><span class="tok-p">):</span> <span class="tok-n">Boolean</span>
-		<span class="tok-c1">-- True if this node on its own (ignoring any subparts) expresses no constraints in addition to `other&#39;</span>
+        <span class="tok-c1">-- True if this node on its own (ignoring any subparts) expresses no constraints in addition to `other&#39;</span>
     <span class="tok-kr">require</span>
         <span class="tok-n">other</span> <span class="tok-o">/=</span> <span class="tok-kc">Void</span>
     <span class="tok-kr">do</span>
@@ -5578,7 +5589,44 @@ For a slot-filler or a redefined external reference, the node_id is set to a spe
 <div class="sect2">
 <h3 id="_class_descriptions_2"><a class="anchor" href="#_class_descriptions_2"></a>5.3. Class Descriptions</h3>
 <div class="sect3">
-<h4 id="_rule_statement_class"><a class="anchor" href="#_rule_statement_class"></a>5.3.1. RULE_STATEMENT Class</h4>
+<h4 id="_rule_element_class"><a class="anchor" href="#_rule_element_class"></a>5.3.1. RULE_ELEMENT Class</h4>
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 16.6666%;">
+<col style="width: 33.3333%;">
+<col style="width: 50.0001%;">
+</colgroup>
+<tbody>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Class</strong></p></th>
+<th class="tableblock halign-center valign-top" colspan="2"><p class="tableblock"><strong><em>RULE_ELEMENT (abstract)</em></strong></p></th>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Description</strong></p></th>
+<td class="tableblock halign-left valign-top" colspan="2"><div><div class="paragraph">
+<p>Abstract ancestor type of all rule element types. The <code>type</code> attribute is used to record the arithmetic type of any node.</p>
+</div></div></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Attributes</strong></p></th>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Signature</strong></p></th>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Meaning</strong></p></th>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>1..1</strong></p></th>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>type</strong>: <code>String</code></p></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>Type name of this item in the arithmetic/logical sense. For leaf nodes, this is the name of a primitive type, or else a reference model type referred to by the 'matches' operator.</p>
+</div>
+<div class="paragraph">
+<p>The type for any relational or boolean operator will be “Boolean”, while the type for any arithmetic operator, will be “Real” or “Integer”.</p>
+</div></div></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect3">
+<h4 id="_rule_statement_class"><a class="anchor" href="#_rule_statement_class"></a>5.3.2. RULE_STATEMENT Class</h4>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
 <col style="width: 16.6666%;">
@@ -5604,7 +5652,7 @@ For a slot-filler or a redefined external reference, the node_id is set to a spe
 </table>
 </div>
 <div class="sect3">
-<h4 id="_assertion_class"><a class="anchor" href="#_assertion_class"></a>5.3.2. ASSERTION Class</h4>
+<h4 id="_assertion_class"><a class="anchor" href="#_assertion_class"></a>5.3.3. ASSERTION Class</h4>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
 <col style="width: 16.6666%;">
@@ -5646,24 +5694,24 @@ For a slot-filler or a redefined external reference, the node_id is set to a spe
 </div></div></td>
 </tr>
 <tr>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>variables</strong>: <code>List&lt;ASSERTION_VARIABLE&gt;</code></p></td>
-<td class="tableblock halign-left valign-top"><div><div class="paragraph">
-<p>Definitions of variables used in the assertion expression.</p>
-</div></div></td>
-</tr>
-<tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>1..1</strong></p></th>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><strong>expression</strong>: <code>EXPR_ITEM</code></p></td>
 <td class="tableblock halign-left valign-top"><div><div class="paragraph">
 <p>Root of expression tree.</p>
 </div></div></td>
 </tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>variables</strong>: <code>List&lt;VARIABLE_DECLARATION&gt;</code></p></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>Definitions of variables used in the assertion expression.</p>
+</div></div></td>
+</tr>
 </tbody>
 </table>
 </div>
 <div class="sect3">
-<h4 id="_variable_declaration_class"><a class="anchor" href="#_variable_declaration_class"></a>5.3.3. VARIABLE_DECLARATION Class</h4>
+<h4 id="_variable_declaration_class"><a class="anchor" href="#_variable_declaration_class"></a>5.3.4. VARIABLE_DECLARATION Class</h4>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
 <col style="width: 16.6666%;">
@@ -5718,7 +5766,7 @@ For a slot-filler or a redefined external reference, the node_id is set to a spe
 </table>
 </div>
 <div class="sect3">
-<h4 id="_expr_variable_class"><a class="anchor" href="#_expr_variable_class"></a>5.3.4. EXPR_VARIABLE Class</h4>
+<h4 id="_expr_variable_class"><a class="anchor" href="#_expr_variable_class"></a>5.3.5. EXPR_VARIABLE Class</h4>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
 <col style="width: 16.6666%;">
@@ -5756,7 +5804,7 @@ For a slot-filler or a redefined external reference, the node_id is set to a spe
 </table>
 </div>
 <div class="sect3">
-<h4 id="_builtin_variable_class"><a class="anchor" href="#_builtin_variable_class"></a>5.3.5. BUILTIN_VARIABLE Class</h4>
+<h4 id="_builtin_variable_class"><a class="anchor" href="#_builtin_variable_class"></a>5.3.6. BUILTIN_VARIABLE Class</h4>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
 <col style="width: 16.6666%;">
@@ -5785,7 +5833,7 @@ For a slot-filler or a redefined external reference, the node_id is set to a spe
 </table>
 </div>
 <div class="sect3">
-<h4 id="_query_variable_class"><a class="anchor" href="#_query_variable_class"></a>5.3.6. QUERY_VARIABLE Class</h4>
+<h4 id="_query_variable_class"><a class="anchor" href="#_query_variable_class"></a>5.3.7. QUERY_VARIABLE Class</h4>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
 <col style="width: 16.6666%;">
@@ -5840,7 +5888,7 @@ Not yet standardised.</p>
 </table>
 </div>
 <div class="sect3">
-<h4 id="_expr_item_class"><a class="anchor" href="#_expr_item_class"></a>5.3.7. EXPR_ITEM Class</h4>
+<h4 id="_expr_item_class"><a class="anchor" href="#_expr_item_class"></a>5.3.8. EXPR_ITEM Class</h4>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
 <col style="width: 16.6666%;">
@@ -5876,7 +5924,7 @@ Not yet standardised.</p>
 </table>
 </div>
 <div class="sect3">
-<h4 id="_expr_leaf_class"><a class="anchor" href="#_expr_leaf_class"></a>5.3.8. EXPR_LEAF Class</h4>
+<h4 id="_expr_leaf_class"><a class="anchor" href="#_expr_leaf_class"></a>5.3.9. EXPR_LEAF Class</h4>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
 <col style="width: 16.6666%;">
@@ -5918,7 +5966,7 @@ Not yet standardised.</p>
 </table>
 </div>
 <div class="sect3">
-<h4 id="_expr_constant_class"><a class="anchor" href="#_expr_constant_class"></a>5.3.9. EXPR_CONSTANT Class</h4>
+<h4 id="_expr_constant_class"><a class="anchor" href="#_expr_constant_class"></a>5.3.10. EXPR_CONSTANT Class</h4>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
 <col style="width: 16.6666%;">
@@ -5965,7 +6013,7 @@ Not yet standardised.</p>
 </table>
 </div>
 <div class="sect3">
-<h4 id="_expr_constraint_class"><a class="anchor" href="#_expr_constraint_class"></a>5.3.10. EXPR_CONSTRAINT Class</h4>
+<h4 id="_expr_constraint_class"><a class="anchor" href="#_expr_constraint_class"></a>5.3.11. EXPR_CONSTRAINT Class</h4>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
 <col style="width: 16.6666%;">
@@ -6003,7 +6051,7 @@ Not yet standardised.</p>
 </table>
 </div>
 <div class="sect3">
-<h4 id="_expr_archetype_id_constraint_class"><a class="anchor" href="#_expr_archetype_id_constraint_class"></a>5.3.11. EXPR_ARCHETYPE_ID_CONSTRAINT Class</h4>
+<h4 id="_expr_archetype_id_constraint_class"><a class="anchor" href="#_expr_archetype_id_constraint_class"></a>5.3.12. EXPR_ARCHETYPE_ID_CONSTRAINT Class</h4>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
 <col style="width: 16.6666%;">
@@ -6040,7 +6088,7 @@ Not yet standardised.</p>
 </table>
 </div>
 <div class="sect3">
-<h4 id="_expr_model_ref_class"><a class="anchor" href="#_expr_model_ref_class"></a>5.3.12. EXPR_MODEL_REF Class</h4>
+<h4 id="_expr_model_ref_class"><a class="anchor" href="#_expr_model_ref_class"></a>5.3.13. EXPR_MODEL_REF Class</h4>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
 <col style="width: 16.6666%;">
@@ -6080,7 +6128,7 @@ Not yet standardised.</p>
 </table>
 </div>
 <div class="sect3">
-<h4 id="_expr_variable_ref_class"><a class="anchor" href="#_expr_variable_ref_class"></a>5.3.13. EXPR_VARIABLE_REF Class</h4>
+<h4 id="_expr_variable_ref_class"><a class="anchor" href="#_expr_variable_ref_class"></a>5.3.14. EXPR_VARIABLE_REF Class</h4>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
 <col style="width: 16.6666%;">
@@ -6118,7 +6166,7 @@ Not yet standardised.</p>
 </table>
 </div>
 <div class="sect3">
-<h4 id="_expr_operator_class"><a class="anchor" href="#_expr_operator_class"></a>5.3.14. EXPR_OPERATOR Class</h4>
+<h4 id="_expr_operator_class"><a class="anchor" href="#_expr_operator_class"></a>5.3.15. EXPR_OPERATOR Class</h4>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
 <col style="width: 16.6666%;">
@@ -6163,7 +6211,7 @@ Not yet standardised.</p>
 </table>
 </div>
 <div class="sect3">
-<h4 id="_expr_unary_operator_class"><a class="anchor" href="#_expr_unary_operator_class"></a>5.3.15. EXPR_UNARY_OPERATOR Class</h4>
+<h4 id="_expr_unary_operator_class"><a class="anchor" href="#_expr_unary_operator_class"></a>5.3.16. EXPR_UNARY_OPERATOR Class</h4>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
 <col style="width: 16.6666%;">
@@ -6201,7 +6249,7 @@ Not yet standardised.</p>
 </table>
 </div>
 <div class="sect3">
-<h4 id="_expr_binary_operator_class"><a class="anchor" href="#_expr_binary_operator_class"></a>5.3.16. EXPR_BINARY_OPERATOR Class</h4>
+<h4 id="_expr_binary_operator_class"><a class="anchor" href="#_expr_binary_operator_class"></a>5.3.17. EXPR_BINARY_OPERATOR Class</h4>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
 <col style="width: 16.6666%;">
@@ -6246,7 +6294,7 @@ Not yet standardised.</p>
 </table>
 </div>
 <div class="sect3">
-<h4 id="_operator_kind_enumeration"><a class="anchor" href="#_operator_kind_enumeration"></a>5.3.17. OPERATOR_KIND Enumeration</h4>
+<h4 id="_operator_kind_enumeration"><a class="anchor" href="#_operator_kind_enumeration"></a>5.3.18. OPERATOR_KIND Enumeration</h4>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
 <col style="width: 16.6666%;">
