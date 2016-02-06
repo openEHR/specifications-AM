@@ -6,7 +6,7 @@ h|*Class*
 2+^h|*C_TIME*
 
 h|*Description*
-2+a|ISO 8601-compatible constraint on instances of Time in the form either of a set of validity values, or else date ranges based on the C_ORDERED list constraint. There is no validity flag for ‘hour’, since it must always be by definition mandatory in order to have a sensible time at all. Syntax expressions of instances of this class include “HH:??:xx” (time with optional minutes and seconds not allowed).
+2+a|ISO 8601-compatible constraint on instances of Time. There is no validity flag for ‘hour’, since it must always be by definition mandatory in order to have a sensible time at all. Syntax expressions of instances of this class include “HH:??:xx” (time with optional minutes and seconds not allowed).
 
 h|*Inherit*
 2+|C_PRIMITIVE
@@ -17,29 +17,45 @@ h|*Attributes*
 
 h|*0..1*
 |*minute_validity*: `VALIDITY_KIND`
-a|
+a|Validity of minute in constrained time.
 
 h|*0..1*
 |*second_validity*: `VALIDITY_KIND`
-a|
+a|Validity of second in constrained time.
 
 h|*0..1*
 |*millisecond_validity*: `VALIDITY_KIND`
-a|
+a|Validity of millisecond in constrained time.
 
 h|*0..1*
 |*timezone_validity*: `VALIDITY_KIND`
-a|
+a|Validity of timezone in constrained date.
 
 h|*0..1*
-|*range*: `Interval<ISO8601_TIME>`
-a|
+|*range*: `Interval<Time>`
+a|Interval of Times specifying constraint.
 
 h|*0..1 +
 (redefined)*
-|*assumed_value*: `ISO8601_TIME`
-a|
+|*assumed_value*: `Time`
+a|The value to assume if this item is not included in data, due to being part of an optional structure.
+h|*Functions*
+^h|*Signature*
+^h|*Meaning*
+
+h|
+|*validity_is_range*: `Boolean`
+a|True if validity is in the form of a range; useful for developers to check which kind of constraint has been set.
 
 h|*Invariant*
-2+a|*_Pattern_validity_*: pattern /= Void implies valid_iso8601_time_constraint_pattern (pattern)
+2+a|*_Minute_validity_optional_*: minute_validity = {VALIDITY_KIND}.optional implies (second_validity = {VALIDITY_KIND}.optional or second_validity = {VALIDITY_KIND}.disallowed)
+
+h|
+2+a|*_Minute_validity_disallowed_*: minute_validity = {VALIDITY_KIND}.disallowed implies second_validity = {VALIDITY_KIND}.disallowed
+
+h|
+2+a|*_Second_validity_optional_*: second_validity = {VALIDITY_KIND}.optional implies (millisecond_validity = {VALIDITY_KIND}.optional or millisecond_validity = {VALIDITY_KIND}.disallowed)
+
+h|
+2+a|*_Second_validity_disallowed_*: second_validity = {VALIDITY_KIND}.disallowed implies millisecond_validity = {VALIDITY_KIND}.disallowed Validity_is_range: validity_is_range = (range /= Void)
 |===

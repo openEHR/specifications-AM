@@ -13,14 +13,10 @@ h|*Attributes*
 ^h|*Meaning*
 
 h|*1..1*
-|*original_language*: `String`
-a|Original language of the terminology, as set at archetype creation or parsing time; must be a code in the ISO 639-1 2 character language code-set.
-
-h|*1..1*
 |*term_codes*: `List<String>`
 a|List of all term codes in the ontology. Most of these correspond to “at” codes in an ADL archetype, which are the node_ids on C_OBJECT descendants. There may be an extra one, if a different term is used as the overall archetype concept from that used as the node_id of the outermost C_OBJECT in the definition part.
 
-h|*0..1*
+h|*1..1*
 |*constraint_codes*: `List<String>`
 a|List of all term codes in the ontology. These correspond to the “ac” codes in an ADL archetype, or equivalently, the CONSTRAINT_REF.reference values in the archetype definition.
 
@@ -48,12 +44,16 @@ h|
 a|True if terminology ‘a_terminology’ is present in archetype ontology.
 
 h|
-|*has_terminology* (a_terminology_id: `String`): `boolean`
+|*has_terminology* (a_terminology_id: `String`): `Boolean`
 a|True if terminology `a_terminology' is present in archetype ontology.
 
 h|
-|*has_term_code* (a_code: `String`): `boolean`
+|*has_term_code* (a_code: `String`): `Boolean`
 a|True if term_codes has a_code.
+
+h|
+|*has_constraint_code* (a_code: `String`): `Boolean`
+a|True if constraint_codes has a_code.
 
 h|
 |*term_definition* (a_lang: `String`, a_code: `String`): `ARCHETYPE_TERM` +
@@ -62,19 +62,19 @@ h|
 a|Term definition for a code, in a specified language.
 
 h|
-|*term_binding* (a_terminology: `String`, a_code: `String`): `Uri` +
-*_Pre_*: has_term_binding (a_terminology_id, a_code)
-a|Binding of constraint corresponding to a_code in target external terminology a_terminology_id, as a string, which is usually a formal query expression.
-
-h|
-|*has_constraint_code* (a_code: `String`): `boolean`
-a|True if constraint_codes has a_code.
-
-h|
 |*constraint_definition* (a_code: `String`, a_lang: `String`): `ARCHETYPE_TERM` +
 *_Pre_*: has_language (a_lang) +
 *_Pre_2_*: has_constraint_code (a_code)
 a|Constraint definition for a code, in a specified language.
+
+h|
+|*term_binding* (a_terminology: `String`, a_code: `String`): `CODE_PHRASE` +
+*_Pre_*: has_term_binding (a_terminology_id, a_code)
+a|Binding of constraint corresponding to a_code in target external terminology a_terminology_id, as a string, which is usually a formal query expression.
+
+h|
+|*constraint_binding* (a_terminology_id: `String`, a_code: `String`): `String`
+a|Binding of constraint corresponding to a_code in target external terminology a_terminology_id, as a string, which is usually a formal query expression.
 
 h|*Invariant*
 2+a|*_Original_language_validity_*: code_set (Code_set_id_languages).has_concept_id (original_language)
@@ -86,5 +86,5 @@ h|
 2+a|*_Term_bindings_validity_*: bindings /= void implies not bindings.is_empty
 
 h|
-2+a|*_Parent_archetype_valid_*: parent_archetype.terminology = Current
+2+a|*_Parent_archetype_valid_*: parent_archetype.ontology = Current
 |===

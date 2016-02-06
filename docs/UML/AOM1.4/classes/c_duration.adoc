@@ -6,7 +6,7 @@ h|*Class*
 2+^h|*C_DURATION*
 
 h|*Description*
-2+a|
+2+a|ISO 8601-compatible constraint on instances of Duration. In ISO 8601 terms, constraints might are of the form “PWD” (weeks and/or days), “PDTHMS” (days, hours, minutes, seconds) and so on. In official ISO 8601:2004, the ‘W’ (week) designator cannot be mixed in; allowing it is an openEHR-wide exception. Both range and the constraint pattern can be set at the same time, corresponding to the ADL constraint PWD/&#124;P0W..P50W&#124;.
 
 h|*Inherit*
 2+|C_PRIMITIVE
@@ -21,7 +21,7 @@ a|
 
 h|*0..1*
 |*months_allowed*: `Boolean`
-a|
+a|True if months are allowed in the constrained Duration.
 
 h|*0..1*
 |*weeks_allowed*: `Boolean`
@@ -29,15 +29,15 @@ a|
 
 h|*0..1*
 |*days_allowed*: `Boolean`
-a|
+a|True if days are allowed in the constrained Duration.
 
 h|*0..1*
 |*hours_allowed*: `Boolean`
-a|
+a|True if hours are allowed in the constrained Duration.
 
 h|*0..1*
 |*minutes_allowed*: `Boolean`
-a|
+a|True if minutes are allowed in the constrained Duration.
 
 h|*0..1*
 |*seconds_allowed*: `Boolean`
@@ -45,14 +45,14 @@ a|
 
 h|*0..1*
 |*fractional_seconds_allowed*: `Boolean`
-a|
+a|True if fractional seconds are allowed in the constrained Duration.
 
 h|*0..1*
-|*range*: `Interval<ISO8601_DURATION>`
-a|
+|*range*: `Interval<Duration>`
+a|Range of Durations specifying constraint.
 
 h|*0..1 +
 (redefined)*
-|*assumed_value*: `ISO8601_DURATION`
-a|
+|*assumed_value*: `Duration`
+a|The value to assume if this item is not included in data, due to being part of an optional structure.
 |===

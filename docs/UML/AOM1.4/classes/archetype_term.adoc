@@ -13,19 +13,21 @@ h|*Attributes*
 ^h|*Meaning*
 
 h|*1..1*
-|*code*: 
+|*code*: `String`
 a|Code of this term.
 
-h|*1..1*
-|*text*: `String`
-a|Short term text, typically for display.
-
-h|*1..1*
-|*description*: `String`
-a|Full description text.
-
 h|*0..1*
-|*other_items*: `Hash<String, String>`
-a|Hash of keys and corresponding values for other items in a term, e.g. provenance.
+|*items*: `Hash<String, String>`
+a|Hash of keys (“text”, “description” etc) and corresponding values.
 Hash of keys ("text", "description" etc) and corresponding values.
+h|*Functions*
+^h|*Signature*
+^h|*Meaning*
+
+h|
+|*keys*: `List<String>`
+a|List of all keys used in this term.
+
+h|*Invariant*
+2+a|*_Code_valid_*: not code.is_empty
 |===
