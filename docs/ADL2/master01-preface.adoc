@@ -40,12 +40,12 @@ Known omissions or questions are indicated in the text with a 'to be determined'
 [.tbd]
 *TBD*: (example To Be Determined paragraph)
 
-Users are encouraged to comment on and/or advise on these paragraphs as well as the main content.  Feedback should be provided either on the http://lists.openehr.org/mailman/listinfo/openehr-technical_lists.openehr.org[technical mailing list], or on the https://openehr.atlassian.net/browse/SPECPR/?selectedTab=com.atlassian.jira.jira-projects-plugin:issues-panel[specifications issue tracker].
+Users are encouraged to comment on and/or advise on these paragraphs as well as the main content.  Feedback should be provided either on the {openehr_technical_list}[technical mailing list], or on the {openehr_jira}/SPECPR/?selectedTab=com.atlassian.jira.jira-projects-plugin:issues-panel[specifications issue tracker].
 
 == Tools
 
-Various tools exist for creating and processing archetypes. The http://www.openehr.org/downloads/ADLworkbench/home[ADL Workbench] is a reference compiler, visualiser and editor. The openEHR tools can be http://www.openehr.org/downloads/modellingtools[downloaded from the website] .
-Source projects can be found at the https://github.com/openEHR[openEHR Github project].
+Various tools exist for creating and processing archetypes. The {openehr_awb}[ADL Workbench] is a reference compiler, visualiser and editor. The openEHR tools can be http://www.openehr.org/downloads/modellingtools[downloaded from the website] .
+Source projects can be found at the {openehr_git}[openEHR Github project].
 
 == Changes from Previous Versions
 For existing users of ADL or archetype development tools, the following provides a guide to the changes in the syntax.
@@ -196,8 +196,10 @@ the structure, as shown in the following example:
 These changes will affect the parsing of container structures and keys in the description and terminology parts of the archetype.
 
 ==== Revision History Section
+
 Revision history is now recorded in a separate section of the archetype, both to logically separate it from the archetype descriptive details, and to facilitate automatic processing by version control systems in which archtypes may be stored. This section is included at the end of the archetype because it is in general a monotonically growing section.
 
 ==== Primary_language and Languages_available Sections
-An attribute previously called `_primary_language_` was required in the ontology section of an ADL 1.1 archetype. This is renamed to `_original_language_` and is now moved to a new top level section in the archetype called `language`. Its value is still expressed as a dADL String attribute. The `_languages_available_` attribute previously required in the `ontolog`y section of the archetype is renamed to `_translations_`, no longer includes the original languages, and is also moved to this new top level section.
+
+An attribute previously called `_primary_language_` was required in the ontology section of an ADL 1.1 archetype. This is renamed to `_original_language_` and is now moved to a new top level section in the archetype called `language`. Its value is still expressed as a dADL String attribute. The `_languages_available_` attribute previously required in the `ontology` section of the archetype is renamed to `_translations_`, no longer includes the original languages, and is also moved to this new top level section.
 
