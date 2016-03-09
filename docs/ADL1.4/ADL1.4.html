@@ -3419,12 +3419,12 @@ the syntax in this section is not part of dADL
 <div class="sect3">
 <h4 id="__any_constraints"><a class="anchor" href="#__any_constraints"></a>5.3.5. "Any" Constraints</h4>
 <div class="paragraph">
-<p>There are two cases where it is useful to state a completely open, or "any", constraint. The "any" constraint is shown by a single asterisk (*) in braces. The first is when it is desired to show explicitly that some property can have any value, such as in the following:</p>
+<p>There are two cases where it is useful to state a completely open, or "any", constraint. The "any" constraint is shown by a single asterisk (<code>*</code>) in braces. The first is when it is desired to show explicitly that some property can have any value, such as in the following:</p>
 </div>
 <div class="listingblock">
 <div class="content">
 <pre class="pygments highlight"><code data-lang="cadl">    <span class="tok-nc">PERSON</span><span class="tok-p">[</span><span class="tok-nd">at0001</span><span class="tok-p">]</span> <span class="tok-o">∈</span> <span class="tok-p">{</span>
-        <span class="tok-nc">name</span> <span class="tok-kt">existence </span><span class="tok-o">∈</span> <span class="tok-p">{</span><span class="tok-m">0..1</span><span class="tok-p">}</span> <span class="tok-nc">matchs</span> <span class="tok-p">{</span><span class="tok-m">*</span><span class="tok-p">}</span>
+        <span class="tok-nc">name</span> <span class="tok-kt">existence </span><span class="tok-o">∈</span> <span class="tok-p">{</span><span class="tok-m">0..1</span><span class="tok-p">}</span> <span class="tok-o">matches </span><span class="tok-p">{</span><span class="tok-m">*</span><span class="tok-p">}</span>
         <span class="tok-c">-- etc --</span>
     <span class="tok-p">}</span></code></pre>
 </div>
@@ -3439,7 +3439,7 @@ the syntax in this section is not part of dADL
 <div class="content">
 <pre class="pygments highlight"><code data-lang="cadl">    <span class="tok-nc">ELEMENT</span><span class="tok-p">[</span><span class="tok-nd">at0004</span><span class="tok-p">]</span> <span class="tok-o">∈</span> <span class="tok-p">{</span>          <span class="tok-c">-- speed limit</span>
         <span class="tok-nc">value</span> <span class="tok-o">∈</span> <span class="tok-p">{</span>
-            <span class="tok-nc">QUANTITY</span> <span class="tok-nc">matchs</span> <span class="tok-p">{</span><span class="tok-m">*</span><span class="tok-p">}</span>
+            <span class="tok-nc">QUANTITY</span> <span class="tok-o">matches </span><span class="tok-p">{</span><span class="tok-m">*</span><span class="tok-p">}</span>
         <span class="tok-p">}</span>
     <span class="tok-p">}</span></code></pre>
 </div>
@@ -6678,6 +6678,9 @@ that the classes in the above example are a simplified form of classes found in 
 <p><a id="Object_Z"></a>[Object_Z] Smith G. <strong>The Object Z Specification Language</strong>. Kluwer Academic Publishers 2000. See <a href="http://www.itee.uq.edu.au/~smith/objectz.html" class="bare">http://www.itee.uq.edu.au/~smith/objectz.html</a> .</p>
 </li>
 <li>
+<p><a id="GLIF"></a>[GLIF] Lucila Ohno-Machado, John H. Gennari, Shawn N. Murphy, Nilesh L. Jain, Samson W. Tu, Diane E. Oliver, Edward Pattison-Gordon, Robert A. Greenes, Edward H. Shortliffe, and G. Octo Barnett.  <strong>The GuideLine Interchange Format - A Model for Representing Guidelines</strong>. J Am Med Inform Assoc. 1998 Jul-Aug; 5(4): 357–372.</p>
+</li>
+<li>
 <p><a id="Rector_1994"></a>[Rector_1994] Rector A L, Nowlan W A, Kay S. <strong>Foundations for an Electronic Medical Record.</strong> The IMIA Yearbook of Medical Informatics 1992 (Eds. van Bemmel J, McRay A). Stuttgart Schattauer 1994.</p>
 </li>
 <li>
@@ -6730,7 +6733,13 @@ that the classes in the above example are a simplified form of classes found in 
 <p><a id="HL7v3_data_types"></a>[HL7v3_data_types] Schadow G, Biron P. <strong>HL7 version 3 deliverable: Version 3 Data Types.</strong> (2nd ballot 2002 version).</p>
 </li>
 <li>
-<p><a id="hl7_v3_rim"></a>[hl7_v3_rim] HL7. <strong>HL7 v3 RIM</strong>. See <a href="http://www.hl7.org" class="bare">http://www.hl7.org</a> .</p>
+<p><a id="hl7_v3_rim"></a>[hl7_v3_rim] HL7 International. <strong>HL7 v3 RIM</strong>. See <a href="http://www.hl7.org" class="bare">http://www.hl7.org</a> .</p>
+</li>
+<li>
+<p><a id="hl7_arden"></a>[hl7_arden] HL7 International. <strong>HL7 Arden Syntax</strong>. See <a href="http://www.hl7.org/Special/committees/Arden/index.cfm" class="bare">http://www.hl7.org/Special/committees/Arden/index.cfm</a> .</p>
+</li>
+<li>
+<p><a id="hl7_gello"></a>[hl7_gello] HL7 International. <strong>GELLO Decision Support Language</strong>. <a href="http://www.hl7.org/implement/standards/product_brief.cfm?product_id=5" class="bare">http://www.hl7.org/implement/standards/product_brief.cfm?product_id=5</a> .</p>
 </li>
 <li>
 <p><a id="IHTSDO_URIs"></a>[IHTSDO_URIs] IHTSDO. SNOMED CT URI Standard. <a href="http://ihtsdo.org/fileadmin/user_upload/doc/download/doc_UriStandard_Current-en-US_INT_20140527.pdf?ok" class="bare">http://ihtsdo.org/fileadmin/user_upload/doc/download/doc_UriStandard_Current-en-US_INT_20140527.pdf?ok</a>.</p>

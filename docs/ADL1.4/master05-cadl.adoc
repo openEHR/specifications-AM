@@ -325,12 +325,12 @@ Where `cardinality` constraints are used (remembering that `occurrences` is alwa
 
 === "Any" Constraints
 
-There are two cases where it is useful to state a completely open, or "any", constraint. The "any" constraint is shown by a single asterisk (*) in braces. The first is when it is desired to show explicitly that some property can have any value, such as in the following:
+There are two cases where it is useful to state a completely open, or "any", constraint. The "any" constraint is shown by a single asterisk (`*`) in braces. The first is when it is desired to show explicitly that some property can have any value, such as in the following:
 
 [source, cadl]
 --------
     PERSON[at0001] ∈ {
-        name existence ∈ {0..1} matchs {*}
+        name existence ∈ {0..1} matches {*}
         -- etc --
     }
 --------
@@ -343,7 +343,7 @@ The second use of "any" as a constraint value is for types, such as in the follo
 --------
     ELEMENT[at0004] ∈ {          -- speed limit
         value ∈ {
-            QUANTITY matchs {*}
+            QUANTITY matches {*}
         }
     }
 --------
