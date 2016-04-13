@@ -515,17 +515,41 @@ In the above, the node identifier `[id1]` is assigned a meaning such as "clinica
 
 == Rules Section
 
-The `rules` section in an ADL archetype introduces assertions which relate to the entire archetype, and can be used to make statements which are not possible within the block structure of the `definition` section. Any constraint which relates more than one property to another is in this category, as are most constraints containing mathematical or logical formulae. Rules are expressed in the archetype assertion language, described in the <<Assertions>> Section.
+The `rules` section in an ADL archetype contains assertions which relate to the entire archetype, and can be used to make statements which are not possible within the block structure of the `definition` section. Any constraint that relates more than one property to another is in this category, as are most constraints containing mathematical or logical formulae. Archetype assertions are a subset of the openEHR rules, described in the {openehr_expression}[openEHR Expression Language specification].
 
-An assertion is a first order predicate logic statement which can be evaluated to a boolean result at runtime. Objects and properties are referred to using paths.
+Semantically, an assertion is a first order predicate logic statement which can be evaluated to a Boolean result at runtime. Objects and properties are referred to using paths within an assertion. The assertions permitted in an archetype are a limited subset of the openEHR rules plus a couple of leaf types specific to archetypes. Variables are not allowed.
 
-The following simple example says that the speed in kilometres of some node is related to the speed-in-miles by a factor of 1.6:
+A reference to an object in data, including a leaf value, is expressed using an archetype path. All such paths are absolute (i.e. contain a leading '/') and are understood to be with respect to the root of the current archetype. References to archetype nodes have the type defined at the relevant point in the underlying reference model. Examples include:
+
+--------
+    /data[id2]/items[id3]/value[id35]/value -- Date of initial onset; type ISO8601_DATE
+--------
+
+The main requirement for assertions in archetypes is for expressing statements that cannot be expressed using inline cADL syntax. Types of statements include:
+
+* _simple arithmetic relations_: constraints involving more than one node in an archetype, such as an assertion stating that the sum of the five 0-2 value scores in an Apgar test (heartrate, breathing, muscle tone, reflex, colour) is equal to the Apgar total, recorded in a sixth node;
+* _mathematical formulae_: constraints involving a mathematical formulae that relate various items together, e.g. the pulse pressure and mean arterial pressure formulae used in cardiology;
+* _value-dependent existence_: in some cases optional archetype nodes are intended to be mandatory (or occasionally non-existent) if some other element within the same archetype has a specific value, for example a sub-tree that records details of 'tobacco use' may be considered mandatory if an earlier Boolean node representing 'tobacco user?' has a positive value.
+
+The following ADL example shows a `rules` section containing the Blood Pressure MAP and Pulse pressure formulae expressed using references to the relevant input and output values in the archetype.
 
 [source, adl]
 --------
 rules
-    validity: /speed[id2]/kilometres[id13]/magnitude = /speed[id4]/miles[id14]/magnitude * 1.6
+	mean_arterial_pressure: /data[id2]/events[id7]/data[id4]/items[id1007]/value/magnitude = 
+        /data[id2]/events[id7]/data[id4]/items[id6]/value/magnitude + 
+        0.33 * /data[id2]/events[id7]/data[id4]/items[id5]/value/magnitude - 
+        /data[id2]/events[id7]/data[id4]/items[id6]/value/magnitude
+    
+	pulse_pressure: /data[id2]/events[id7]/data[id4]/items[id1008]/value/magnitude = 
+        /data[id2]/events[id7]/data[id4]/items[id5]/value/magnitude - /data[id2]/events[id7]/data[id4]/items[id6]/value/magnitude
 --------
+
+These assertions can be visualised in tools, e.g. as follows in the {openehr_awb}[ADL Workbench].
+
+[.text-center]
+.ADL assertion examples
+image::images/assertions_bp_map_pp.png[id=assertions_bp_map_pp.png, align="center", width="70%"]
 
 == Terminology Section
 
