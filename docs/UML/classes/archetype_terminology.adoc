@@ -25,11 +25,11 @@ h|*1..1*
 a|Term code defining the meaning of the archetype as a whole, and always used as the at-code on the root node of the archetype. Must be defined in the term_definitions property.
 
 h|*1..1*
-|*term_definitions*: `Hash<Hash<ARCHETYPE_TERM, String>, String>`
+|*term_definitions*: `Hash<String, Hash<String, ARCHETYPE_TERM>>`
 a|Directory of term definitions as a two-level table. The outer hash keys are language codes, e.g. “en”, “de”, while the inner hash keys are term codes, e.g. “id17”, “at4”.
 
 h|*0..1*
-|*term_bindings*: `Hash <Hash<Uri, String>, String>`
+|*term_bindings*: `Hash <String, Hash<String, Uri>>`
 a|Directory of bindings to external terminology codes and value sets, as a two-level table. The outer hash keys are terminology ids, e.g. “SNOMED_CT”, and the inner hash keys are constraint codes, e.g. “at4”, “ac13” or paths. The indexed DV_URI objects represent references to externally defined resources, either terms, ontology concepts, or terminology subsets / ref-sets.
 
 h|*1..1*
@@ -37,11 +37,11 @@ h|*1..1*
 a|Archetype which owns this terminology.
 
 h|*0..1*
-|*value_sets*: `Hash<VALUE_SET, String>`
+|*value_sets*: `Hash<String, VALUE_SET>`
 a|Archetype-local value sets, each keyed by value-set id, i.e. an ac-code.
 
 h|*0..1*
-|*terminology_extracts*: `Hash<Hash<ARCHETYPE_TERM, String>, String>`
+|*terminology_extracts*: `Hash<String, Hash<String, ARCHETYPE_TERM>>`
 a|Directory of extracts of external terminologies, as a two-level table. The outer hash keys are terminology ids, e.g. “SNOMED_CT”, while the inner hash keys are term codes or code-phrases from the relevant terminology, e.g. “10094842”.
 h|*Functions*
 ^h|*Signature*

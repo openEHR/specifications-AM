@@ -178,21 +178,21 @@
 <li><a href="#_class_definitions_2">4.5. Class Definitions</a>
 <ul class="sectlevel3">
 <li><a href="#_archetype_constraint_class">4.5.1. ARCHETYPE_CONSTRAINT Class</a></li>
-<li><a href="#_c_attribute_class">4.5.2. C_ATTRIBUTE Class</a>
+<li><a href="#_c_attribute_class">4.5.2. C_ATTRIBUTE Class</a></li>
+<li><a href="#_cardinality_class">4.5.3. CARDINALITY Class</a>
 <ul class="sectlevel4">
-<li><a href="#_conformance_semantics">4.5.2.1. Conformance Semantics</a></li>
-<li><a href="#_validity_rules_2">4.5.2.2. Validity Rules</a></li>
+<li><a href="#_conformance_semantics">4.5.3.1. Conformance Semantics</a></li>
+<li><a href="#_validity_rules_2">4.5.3.2. Validity Rules</a></li>
 </ul>
 </li>
-<li><a href="#_cardinality_class">4.5.3. CARDINALITY Class</a></li>
-<li><a href="#_c_object_class">4.5.4. C_OBJECT Class</a>
+<li><a href="#_c_object_class">4.5.4. C_OBJECT Class</a></li>
+<li><a href="#_sibling_order_class">4.5.5. SIBLING_ORDER Class</a>
 <ul class="sectlevel4">
-<li><a href="#_occurrences_inferencing_rules">4.5.4.1. Occurrences inferencing rules</a></li>
-<li><a href="#_conformance_semantics_2">4.5.4.2. Conformance semantics</a></li>
-<li><a href="#_validity_rules_3">4.5.4.3. Validity Rules</a></li>
+<li><a href="#_occurrences_inferencing_rules">4.5.5.1. Occurrences inferencing rules</a></li>
+<li><a href="#_conformance_semantics_2">4.5.5.2. Conformance semantics</a></li>
+<li><a href="#_validity_rules_3">4.5.5.3. Validity Rules</a></li>
 </ul>
 </li>
-<li><a href="#_sibling_order_class">4.5.5. SIBLING_ORDER Class</a></li>
 <li><a href="#_c_defined_object_class">4.5.6. C_DEFINED_OBJECT Class</a></li>
 <li><a href="#_c_complex_object_class">4.5.7. C_COMPLEX_OBJECT Class</a>
 <ul class="sectlevel4">
@@ -264,24 +264,9 @@
 <li><a href="#_semantics_2">5.2. Semantics</a></li>
 <li><a href="#_class_descriptions_2">5.3. Class Descriptions</a>
 <ul class="sectlevel3">
-<li><a href="#_rule_element_class">5.3.1. RULE_ELEMENT Class</a></li>
-<li><a href="#_rule_statement_class">5.3.2. RULE_STATEMENT Class</a></li>
-<li><a href="#_assertion_class">5.3.3. ASSERTION Class</a></li>
-<li><a href="#_variable_declaration_class">5.3.4. VARIABLE_DECLARATION Class</a></li>
-<li><a href="#_expr_variable_class">5.3.5. EXPR_VARIABLE Class</a></li>
-<li><a href="#_builtin_variable_class">5.3.6. BUILTIN_VARIABLE Class</a></li>
-<li><a href="#_query_variable_class">5.3.7. QUERY_VARIABLE Class</a></li>
-<li><a href="#_expr_item_class">5.3.8. EXPR_ITEM Class</a></li>
-<li><a href="#_expr_leaf_class">5.3.9. EXPR_LEAF Class</a></li>
-<li><a href="#_expr_constant_class">5.3.10. EXPR_CONSTANT Class</a></li>
-<li><a href="#_expr_constraint_class">5.3.11. EXPR_CONSTRAINT Class</a></li>
-<li><a href="#_expr_archetype_id_constraint_class">5.3.12. EXPR_ARCHETYPE_ID_CONSTRAINT Class</a></li>
-<li><a href="#_expr_model_ref_class">5.3.13. EXPR_MODEL_REF Class</a></li>
-<li><a href="#_expr_variable_ref_class">5.3.14. EXPR_VARIABLE_REF Class</a></li>
-<li><a href="#_expr_operator_class">5.3.15. EXPR_OPERATOR Class</a></li>
-<li><a href="#_expr_unary_operator_class">5.3.16. EXPR_UNARY_OPERATOR Class</a></li>
-<li><a href="#_expr_binary_operator_class">5.3.17. EXPR_BINARY_OPERATOR Class</a></li>
-<li><a href="#_operator_kind_enumeration">5.3.18. OPERATOR_KIND Enumeration</a></li>
+<li><a href="#_expr_constraint_class">5.3.1. EXPR_CONSTRAINT Class</a></li>
+<li><a href="#_expr_archetype_id_constraint_class">5.3.2. EXPR_ARCHETYPE_ID_CONSTRAINT Class</a></li>
+<li><a href="#_expr_archetype_ref_class">5.3.3. EXPR_ARCHETYPE_REF Class</a></li>
 </ul>
 </li>
 </ul>
@@ -467,14 +452,26 @@
 </thead>
 <tbody>
 <tr>
+<th class="tableblock halign-center valign-top" colspan="4"><p class="tableblock"><strong>R E L E A S E&#160;&#160;&#160;&#160;&#160;2.0.6</strong></p></th>
+</tr>
+<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a id="latest_issue"></a>2.0.6</p></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p><a href="https://openehr.atlassian.net/browse/SPECBASE-4">SPECBASE-4</a>Change order of type parameters in <code>Hash&lt;V,K&gt;</code> type to <code>Hash&lt;K,V&gt;</code>.</p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">D Boscá</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a id="latest_issue_date"></a>13 Apr 2016</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"><div><div class="paragraph">
 <p>Correct <code>ASSERTION.<em>variables</em></code> association to refer to <code>VARIABLE_DECLARATION</code>.<br>
  Add <code>RULE_ELEMENT</code> class table to specification (reported in <a href="https://openehr.atlassian.net/browse/SPECPR-160">SPECPR-160</a>)<br>
- Correct <code>CARDINALITY.<em>is_set</em></code> documentation (reported in <a href="https://openehr.atlassian.net/browse/SPECPR-147">SPECPR-147</a>).</p>
+ Correct <code>CARDINALITY.<em>is_set</em></code> documentation (reported in <a href="https://openehr.atlassian.net/browse/SPECPR-147">SPECPR-147</a>).<br>
+ Add missing type of <code>String</code> to <code>ARCHETYPE_TERM.<em>CODE</em></code>. (reported in <a href="https://openehr.atlassian.net/browse/SPECPR-162">SPECPR-162</a>).</p>
 </div></div></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">T Beale</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a id="latest_issue_date"></a>05 Feb 2016</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">B Verhees</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">05 Apr 2016</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">2.0.5</p></td>
@@ -995,7 +992,7 @@ Includes detailed input and review from:</p>
 <div class="ulist">
 <ul>
 <li>
-<p>University College London - Centre for Health Informatics and Multi-professional Education (CHIME);</p>
+<p>UCL (University College London) - Centre for Health Informatics and Multiprofessional Education (CHIME);</p>
 </li>
 <li>
 <p>Ocean Informatics.</p>
@@ -1003,7 +1000,7 @@ Includes detailed input and review from:</p>
 </ul>
 </div>
 <div class="paragraph">
-<p>Special thanks to Prof David Ingram, head of CHIME, who provided a vision and collegial working environment ever since the days of GEHR (1992).</p>
+<p>Special thanks to Prof David Ingram, founding Director of CHIME, UCL, who provided a vision and collegial working environment ever since the days of GEHR (1992).</p>
 </div>
 </div>
 <div class="sect2">
@@ -1800,7 +1797,7 @@ first names last name, organisation &lt;organisation email address&gt;</pre>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>translations</strong>: <code>Hash&lt;TRANSLATION_DETAILS, String&gt;</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>translations</strong>: <code>Hash&lt;String,TRANSLATION_DETAILS&gt;</code></p></td>
 <td class="tableblock halign-left valign-top"><div><div class="paragraph">
 <p>List of details for each natural translation made of this resource, keyed by language. For each translation listed here, there must be corresponding sections in all language-dependent parts of the resource. The original_language does not appear in this list.</p>
 </div></div></td>
@@ -2007,7 +2004,7 @@ conversion_details = &lt;
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>details</strong>: <code>Hash&lt;RESOURCE_DESCRIPTION_ITEM, String&gt;</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>details</strong>: <code>Hash&lt;String,RESOURCE_DESCRIPTION_ITEM&gt;</code></p></td>
 <td class="tableblock halign-left valign-top"><div><div class="paragraph">
 <p>Details of all parts of resource description that are natural language-dependent, keyed by language code.</p>
 </div></div></td>
@@ -2268,7 +2265,7 @@ It is the parent class of all concrete types of archetype.</p>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>rules</strong>: <code>List&lt;RULE_STATEMENT&gt;</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>rules</strong>: <code>List&lt;STATEMENT&gt;</code></p></td>
 <td class="tableblock halign-left valign-top"><div><div class="paragraph">
 <p>Rules relating to this archetype. Statements are expressed in first order predicate logic, and usually refer to at least two attributes.</p>
 </div></div></td>
@@ -2682,14 +2679,14 @@ It is the parent class of all concrete types of archetype.</p>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>component_terminologies</strong>: <code>Hash&lt;ARCHETYPE_TERMINOLOGY, String&gt;</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>component_terminologies</strong>: <code>Hash&lt;String, ARCHETYPE_TERMINOLOGY&gt;</code></p></td>
 <td class="tableblock halign-left valign-top"><div><div class="paragraph">
 <p>Compendium of flattened terminologies of archetypes externally referenced from this archetype, keyed by archetype identifier. This will almost always be present in a template.</p>
 </div></div></td>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>terminology_extracts</strong>: <code>Hash&lt;ARCHETYPE_TERMINOLOGY, String&gt;</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>terminology_extracts</strong>: <code>Hash&lt;String,ARCHETYPE_TERMINOLOGY&gt;</code></p></td>
 <td class="tableblock halign-left valign-top"><div><div class="paragraph">
 <p>Directory of term definitions as a two-level  table. The outer hash keys are term codes,  e.g. "at4", and the inner hash key are term  attribute names, e.g. "text", "description" etc.</p>
 </div></div></td>
@@ -3275,12 +3272,12 @@ Since an archetype might not contain external terminology bindings for all (or e
 </div>
 </li>
 <li>
-<p>A terminal <code>C_COMPLEX_OBJECT</code> node containing no constraint other than RM type, <code><em>node_id</em></code> and possibly occurrences (i.e. having no substructure), can be redefined by a constraint of any other AOM type.</p>
+<p>A 'terminal' <code>C_COMPLEX_OBJECT</code> node containing no constraint other than RM type, <code><em>node_id</em></code> and possibly occurrences (i.e. having no substructure), can be redefined by a constraint of any other AOM type.</p>
 </li>
 </ul>
 </div>
 <div class="paragraph">
-<p>The 'terminal <code>C_COMPLEX_OBJECT</code> ' can be understood as a placeholder node primarily defined for the purpose of stating meaning.</p>
+<p>The 'terminal' <code>C_COMPLEX_OBJECT</code> can be understood as a placeholder node primarily defined for the purpose of stating RM type and meaning (id-code).</p>
 </div>
 </div>
 <div class="sect2">
@@ -3303,6 +3300,10 @@ Since an archetype might not contain external terminology bindings for all (or e
 <td class="tableblock halign-left valign-top" colspan="2"><div><div class="paragraph">
 <p>Archetype equivalent to LOCATABLE class in openEHR Common reference model. Defines common constraints for any inheritor of LOCATABLE in any reference model.</p>
 </div></div></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Inherit</strong></p></th>
+<td class="tableblock halign-left valign-top" colspan="2"><p class="tableblock">Any</p></td>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Attributes</strong></p></th>
@@ -3505,121 +3506,6 @@ Typically used during validation of special-ised archetype nodes.</p>
 </tr>
 </tbody>
 </table>
-<div class="sect4">
-<h5 id="_conformance_semantics"><a class="anchor" href="#_conformance_semantics"></a>4.5.2.1. Conformance Semantics</h5>
-<div class="paragraph">
-<p>The following functions formally define the conformance of a <code>C_ATRIBUTE</code> node in a specialised archetype to the corresponding node in a parent archetype, where 'corresponding' means a node found at the same or a congruent path.</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="pygments highlight"><code data-lang="eiffel"><span class="tok-n">c_conforms_to</span> <span class="tok-p">(</span><span class="tok-n">other</span><span class="tok-p">:</span> <span class="tok-kr">like</span> <span class="tok-kc">Current</span><span class="tok-p">):</span> <span class="tok-n">Boolean</span>
-        <span class="tok-c1">-- True if this node on its own (ignoring any subparts) expresses the same or narrower constraints as `other&#39;.</span>
-        <span class="tok-c1">-- Returns False if any of the following is incompatible:</span>
-        <span class="tok-c1">--	 * cardinality</span>
-        <span class="tok-c1">--	 * existence</span>
-    <span class="tok-kr">require</span>
-        <span class="tok-n">other</span> <span class="tok-o">/=</span> <span class="tok-kc">Void</span>
-    <span class="tok-kr">do</span>
-        <span class="tok-kc">Result</span> <span class="tok-o">:=</span> <span class="tok-n">existence_conforms_to</span> <span class="tok-p">(</span><span class="tok-n">other</span><span class="tok-p">)</span> <span class="tok-ow">and</span>
-            <span class="tok-p">((</span><span class="tok-n">is_single</span> <span class="tok-ow">and</span> <span class="tok-n">other</span><span class="tok-p">.</span><span class="tok-n">is_single</span><span class="tok-p">)</span> <span class="tok-ow">or else</span>
-            <span class="tok-p">(</span><span class="tok-n">is_multiple</span> <span class="tok-ow">and</span> <span class="tok-n">cardinality_conforms_to</span> <span class="tok-p">(</span><span class="tok-n">other</span><span class="tok-p">)))</span>
-    <span class="tok-kr">end</span>
-
-<span class="tok-n">c_congruent_to</span> <span class="tok-p">(</span><span class="tok-n">other</span><span class="tok-p">:</span> <span class="tok-kr">like</span> <span class="tok-kc">Current</span><span class="tok-p">):</span> <span class="tok-n">Boolean</span>
-		<span class="tok-c1">-- True if this node on its own (ignoring any subparts) expresses no additional constraints than `other&#39;.</span>
-    <span class="tok-kr">require</span>
-        <span class="tok-n">other</span> <span class="tok-o">/=</span> <span class="tok-kc">Void</span>
-    <span class="tok-kr">do</span>
-        <span class="tok-kc">Result</span> <span class="tok-o">:=</span> <span class="tok-n">existence</span> <span class="tok-o">=</span> <span class="tok-kc">Void</span> <span class="tok-ow">and</span> <span class="tok-p">((</span><span class="tok-n">is_single</span> <span class="tok-ow">and</span> <span class="tok-n">other</span><span class="tok-p">.</span><span class="tok-n">is_single</span><span class="tok-p">)</span> <span class="tok-ow">or</span>
-                <span class="tok-p">(</span><span class="tok-n">is_multiple</span> <span class="tok-ow">and</span> <span class="tok-n">other</span><span class="tok-p">.</span><span class="tok-n">is_multiple</span> <span class="tok-ow">and</span> <span class="tok-n">cardinality</span> <span class="tok-o">=</span> <span class="tok-kc">Void</span><span class="tok-p">))</span>
-    <span class="tok-kr">end</span>
-
-<span class="tok-n">existence_conforms_to</span> <span class="tok-p">(</span><span class="tok-n">other</span><span class="tok-p">:</span> <span class="tok-kr">like</span> <span class="tok-kc">Current</span><span class="tok-p">):</span> <span class="tok-n">Boolean</span>
-		<span class="tok-c1">-- True if the existence of this node conforms to other.existence</span>
-    <span class="tok-kr">require</span>
-        <span class="tok-n">other_exists</span><span class="tok-p">:</span> <span class="tok-n">other</span> <span class="tok-o">/=</span> <span class="tok-kc">Void</span>
-    <span class="tok-kr">do</span>
-        <span class="tok-kr">if</span> <span class="tok-n">existence</span> <span class="tok-o">/=</span> <span class="tok-kc">Void</span> <span class="tok-ow">and</span> <span class="tok-n">other</span><span class="tok-p">.</span><span class="tok-n">existence</span> <span class="tok-o">/=</span> <span class="tok-kc">Void</span> <span class="tok-kr">then</span>
-            <span class="tok-kc">Result</span> <span class="tok-o">:=</span> <span class="tok-n">other</span><span class="tok-p">.</span><span class="tok-n">existence</span><span class="tok-p">.</span><span class="tok-n">contains</span> <span class="tok-p">(</span><span class="tok-n">existence</span><span class="tok-p">)</span>
-        <span class="tok-kr">else</span>
-            <span class="tok-kc">Result</span> <span class="tok-o">:=</span> <span class="tok-kc">True</span>
-        <span class="tok-kr">end</span>
-    <span class="tok-kr">end</span>
-
-<span class="tok-n">cardinality_conforms_to</span> <span class="tok-p">(</span><span class="tok-n">other</span><span class="tok-p">:</span> <span class="tok-kr">like</span> <span class="tok-kc">Current</span><span class="tok-p">):</span> <span class="tok-n">Boolean</span>
-		<span class="tok-c1">-- True if the cardinality of this node conforms to other.cardinality, if it exists</span>
-    <span class="tok-kr">require</span>
-        <span class="tok-n">other_exists</span><span class="tok-p">:</span> <span class="tok-n">other</span> <span class="tok-o">/=</span> <span class="tok-kc">Void</span>
-    <span class="tok-kr">do</span>
-        <span class="tok-kr">if</span> <span class="tok-n">cardinality</span> <span class="tok-o">/=</span> <span class="tok-kc">Void</span> <span class="tok-ow">and</span> <span class="tok-n">other</span><span class="tok-p">.</span><span class="tok-n">cardinality</span> <span class="tok-o">/=</span> <span class="tok-kc">Void</span> <span class="tok-kr">then</span>
-            <span class="tok-kc">Result</span> <span class="tok-o">:=</span> <span class="tok-n">other</span><span class="tok-p">.</span><span class="tok-n">cardinality</span><span class="tok-p">.</span><span class="tok-n">contains</span> <span class="tok-p">(</span><span class="tok-n">cardinality</span><span class="tok-p">)</span>
-        <span class="tok-kr">else</span>
-            <span class="tok-kc">Result</span> <span class="tok-o">:=</span> <span class="tok-kc">True</span>
-        <span class="tok-kr">end</span>
-    <span class="tok-kr">end</span></code></pre>
-</div>
-</div>
-</div>
-<div class="sect4">
-<h5 id="_validity_rules_2"><a class="anchor" href="#_validity_rules_2"></a>4.5.2.2. Validity Rules</h5>
-<div class="paragraph">
-<p>The validity rules are as follows:</p>
-</div>
-<div class="paragraph rule">
-<p><strong>VCARM</strong>: attribute name reference model validity: an attribute name introducing an attribute constraint block must be defined in the underlying information model as an attribute (stored or computed) of the type which introduces the enclosing object block.</p>
-</div>
-<div class="paragraph rule">
-<p><strong>VCAEX</strong>: archetype attribute reference model existence conformance: the existence of an attribute, if set, must conform, i.e. be the same or narrower, to the existence of the corresponding attribute in the underlying information model.</p>
-</div>
-<div class="paragraph rule">
-<p><strong>VCAM</strong>: archetype attribute reference model multiplicity conformance: the multiplicity, i.e. whether an attribute is multiply- or single-valued, of an attribute must conform to that of the corresponding attribute in the underlying information model.</p>
-</div>
-<div class="paragraph rule">
-<p><strong>VDIFV</strong>: archetype attribute differential path validity: an archetype may only have a differential path if it is specialised..</p>
-</div>
-<div class="paragraph">
-<p>The following validity rule applies to redefinition in a specialised archetype:</p>
-</div>
-<div class="paragraph rule">
-<p><strong>VDIFP</strong>: specialised archetype attribute differential path validity: if an attribute constraint has a differential path, the path must exist in the flat parent, and also be valid with respect to the reference model, i.e. in the sense that it corresponds to a legal potential construction of objects.</p>
-</div>
-<div class="paragraph rule">
-<p><strong>VSANCE</strong>: specialised archetype attribute node existence conformance: the existence of a redefined attribute node in a specialised archetype, if stated, must conform to the existence of the corresponding node in the flat parent archetype, by having an identical range, or a range wholly contained by the latter.</p>
-</div>
-<div class="paragraph rule">
-<p><strong>VSAM</strong>: specialised archetype attribute multiplicity conformance: the multiplicity, i.e. whether an attribute is multiply- or single-valued, of a redefined attribute must conform to that of the corresponding attribute in the parent archetype.</p>
-</div>
-<div class="paragraph">
-<p>The following validity rules apply to single-valued attributes, i.e when <code>C_ATTRIBUTE</code>.<code><em>is_multiple</em></code> is False:</p>
-</div>
-<div class="paragraph rule">
-<p><strong>VACSO</strong>: single-valued attribute child object occurrences validity: the occurrences of a child object of a single-valued attribute cannot have an upper limit greater than 1.</p>
-</div>
-<div class="paragraph">
-<p>The following validity rules apply to container attributes, i.e when <code>C_ATTRIBUTE</code>.<code><em>is_multiple</em></code> is True:</p>
-</div>
-<div class="paragraph rule">
-<p><strong>VACMCU</strong>: cardinality/occurrences upper bound validity: where a cardinality with a finite upper bound is stated on an attribute, for all immediate child objects for which an occurrences constraint is stated, the occurrences must either have an open upper bound (i.e. n..*) which is interpreted as the maximum value allowed within the cardinality, or else a finite upper bound which is &#8656; the cardinality upper bound.</p>
-</div>
-<div class="paragraph rule">
-<p><strong>VACMCO</strong>: cardinality/occurrences orphans: it must be possible for at least one instance of one optional child object (i.e. an object for which the occurrences lower bound is 0) and one instance of every mandatory child object (i.e. object constraints for which the occurrences lower bound is &gt;= 1) to be included within the cardinality range.</p>
-</div>
-<div class="paragraph rule">
-<p><strong>VCACA</strong>: archetype attribute reference model cardinality conformance: the cardinality of an attribute must conform, i.e. be the same or narrower, to the cardinality of the corresponding attribute in the underlying information model.</p>
-</div>
-<div class="paragraph">
-<p>The following validity warnings apply to container attributes, i.e when <code>C_ATTRIBUTE</code>.<code><em>is_multiple</em></code> is True:</p>
-</div>
-<div class="paragraph rule">
-<p><strong>WACMCL</strong>: cardinality/occurrences lower bound validity: where a cardinality with a finite upper bound is stated on an attribute, for all immediate child objects for which an occurrences constraint is stated, the sum of occurrences lower bounds should be lower than the cardinality upper limit.</p>
-</div>
-<div class="paragraph">
-<p>The following validity rule applies to cardinality redefinition in a specialised archetype:</p>
-</div>
-<div class="paragraph rule">
-<p><strong>VSANCC</strong>: specialised archetype attribute node cardinality conformance: the cardinality of a redefined (multiply-valued) attribute node in a specialised archetype, if stated, must conform to the cardinality of the corresponding node in the flat parent archetype by either being identical, or being wholly contained by the latter.</p>
-</div>
-</div>
 </div>
 <div class="sect3">
 <h4 id="_cardinality_class"><a class="anchor" href="#_cardinality_class"></a>4.5.3. CARDINALITY Class</h4>
@@ -3694,6 +3580,121 @@ Typically used during validation of special-ised archetype nodes.</p>
 </tr>
 </tbody>
 </table>
+<div class="sect4">
+<h5 id="_conformance_semantics"><a class="anchor" href="#_conformance_semantics"></a>4.5.3.1. Conformance Semantics</h5>
+<div class="paragraph">
+<p>The following functions formally define the conformance of a <code>C_ATRIBUTE</code> node in a specialised archetype to the corresponding node in a parent archetype, where 'corresponding' means a node found at the same or a congruent path.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="pygments highlight"><code data-lang="eiffel"><span class="tok-n">c_conforms_to</span> <span class="tok-p">(</span><span class="tok-n">other</span><span class="tok-p">:</span> <span class="tok-kr">like</span> <span class="tok-kc">Current</span><span class="tok-p">):</span> <span class="tok-n">Boolean</span>
+        <span class="tok-c1">-- True if this node on its own (ignoring any subparts) expresses the same or narrower constraints as `other&#39;.</span>
+        <span class="tok-c1">-- Returns False if any of the following is incompatible:</span>
+        <span class="tok-c1">--	 * cardinality</span>
+        <span class="tok-c1">--	 * existence</span>
+    <span class="tok-kr">require</span>
+        <span class="tok-n">other</span> <span class="tok-o">/=</span> <span class="tok-kc">Void</span>
+    <span class="tok-kr">do</span>
+        <span class="tok-kc">Result</span> <span class="tok-o">:=</span> <span class="tok-n">existence_conforms_to</span> <span class="tok-p">(</span><span class="tok-n">other</span><span class="tok-p">)</span> <span class="tok-ow">and</span>
+            <span class="tok-p">((</span><span class="tok-n">is_single</span> <span class="tok-ow">and</span> <span class="tok-n">other</span><span class="tok-p">.</span><span class="tok-n">is_single</span><span class="tok-p">)</span> <span class="tok-ow">or else</span>
+            <span class="tok-p">(</span><span class="tok-n">is_multiple</span> <span class="tok-ow">and</span> <span class="tok-n">cardinality_conforms_to</span> <span class="tok-p">(</span><span class="tok-n">other</span><span class="tok-p">)))</span>
+    <span class="tok-kr">end</span>
+
+<span class="tok-n">c_congruent_to</span> <span class="tok-p">(</span><span class="tok-n">other</span><span class="tok-p">:</span> <span class="tok-kr">like</span> <span class="tok-kc">Current</span><span class="tok-p">):</span> <span class="tok-n">Boolean</span>
+		<span class="tok-c1">-- True if this node on its own (ignoring any subparts) expresses no additional constraints than `other&#39;.</span>
+    <span class="tok-kr">require</span>
+        <span class="tok-n">other</span> <span class="tok-o">/=</span> <span class="tok-kc">Void</span>
+    <span class="tok-kr">do</span>
+        <span class="tok-kc">Result</span> <span class="tok-o">:=</span> <span class="tok-n">existence</span> <span class="tok-o">=</span> <span class="tok-kc">Void</span> <span class="tok-ow">and</span> <span class="tok-p">((</span><span class="tok-n">is_single</span> <span class="tok-ow">and</span> <span class="tok-n">other</span><span class="tok-p">.</span><span class="tok-n">is_single</span><span class="tok-p">)</span> <span class="tok-ow">or</span>
+                <span class="tok-p">(</span><span class="tok-n">is_multiple</span> <span class="tok-ow">and</span> <span class="tok-n">other</span><span class="tok-p">.</span><span class="tok-n">is_multiple</span> <span class="tok-ow">and</span> <span class="tok-n">cardinality</span> <span class="tok-o">=</span> <span class="tok-kc">Void</span><span class="tok-p">))</span>
+    <span class="tok-kr">end</span>
+
+<span class="tok-n">existence_conforms_to</span> <span class="tok-p">(</span><span class="tok-n">other</span><span class="tok-p">:</span> <span class="tok-kr">like</span> <span class="tok-kc">Current</span><span class="tok-p">):</span> <span class="tok-n">Boolean</span>
+		<span class="tok-c1">-- True if the existence of this node conforms to other.existence</span>
+    <span class="tok-kr">require</span>
+        <span class="tok-n">other_exists</span><span class="tok-p">:</span> <span class="tok-n">other</span> <span class="tok-o">/=</span> <span class="tok-kc">Void</span>
+    <span class="tok-kr">do</span>
+        <span class="tok-kr">if</span> <span class="tok-n">existence</span> <span class="tok-o">/=</span> <span class="tok-kc">Void</span> <span class="tok-ow">and</span> <span class="tok-n">other</span><span class="tok-p">.</span><span class="tok-n">existence</span> <span class="tok-o">/=</span> <span class="tok-kc">Void</span> <span class="tok-kr">then</span>
+            <span class="tok-kc">Result</span> <span class="tok-o">:=</span> <span class="tok-n">other</span><span class="tok-p">.</span><span class="tok-n">existence</span><span class="tok-p">.</span><span class="tok-n">contains</span> <span class="tok-p">(</span><span class="tok-n">existence</span><span class="tok-p">)</span>
+        <span class="tok-kr">else</span>
+            <span class="tok-kc">Result</span> <span class="tok-o">:=</span> <span class="tok-kc">True</span>
+        <span class="tok-kr">end</span>
+    <span class="tok-kr">end</span>
+
+<span class="tok-n">cardinality_conforms_to</span> <span class="tok-p">(</span><span class="tok-n">other</span><span class="tok-p">:</span> <span class="tok-kr">like</span> <span class="tok-kc">Current</span><span class="tok-p">):</span> <span class="tok-n">Boolean</span>
+		<span class="tok-c1">-- True if the cardinality of this node conforms to other.cardinality, if it exists</span>
+    <span class="tok-kr">require</span>
+        <span class="tok-n">other_exists</span><span class="tok-p">:</span> <span class="tok-n">other</span> <span class="tok-o">/=</span> <span class="tok-kc">Void</span>
+    <span class="tok-kr">do</span>
+        <span class="tok-kr">if</span> <span class="tok-n">cardinality</span> <span class="tok-o">/=</span> <span class="tok-kc">Void</span> <span class="tok-ow">and</span> <span class="tok-n">other</span><span class="tok-p">.</span><span class="tok-n">cardinality</span> <span class="tok-o">/=</span> <span class="tok-kc">Void</span> <span class="tok-kr">then</span>
+            <span class="tok-kc">Result</span> <span class="tok-o">:=</span> <span class="tok-n">other</span><span class="tok-p">.</span><span class="tok-n">cardinality</span><span class="tok-p">.</span><span class="tok-n">contains</span> <span class="tok-p">(</span><span class="tok-n">cardinality</span><span class="tok-p">)</span>
+        <span class="tok-kr">else</span>
+            <span class="tok-kc">Result</span> <span class="tok-o">:=</span> <span class="tok-kc">True</span>
+        <span class="tok-kr">end</span>
+    <span class="tok-kr">end</span></code></pre>
+</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_validity_rules_2"><a class="anchor" href="#_validity_rules_2"></a>4.5.3.2. Validity Rules</h5>
+<div class="paragraph">
+<p>The validity rules are as follows:</p>
+</div>
+<div class="paragraph rule">
+<p><strong>VCARM</strong>: attribute name reference model validity: an attribute name introducing an attribute constraint block must be defined in the underlying information model as an attribute (stored or computed) of the type which introduces the enclosing object block.</p>
+</div>
+<div class="paragraph rule">
+<p><strong>VCAEX</strong>: archetype attribute reference model existence conformance: the existence of an attribute, if set, must conform, i.e. be the same or narrower, to the existence of the corresponding attribute in the underlying information model.</p>
+</div>
+<div class="paragraph rule">
+<p><strong>VCAM</strong>: archetype attribute reference model multiplicity conformance: the multiplicity, i.e. whether an attribute is multiply- or single-valued, of an attribute must conform to that of the corresponding attribute in the underlying information model.</p>
+</div>
+<div class="paragraph rule">
+<p><strong>VDIFV</strong>: archetype attribute differential path validity: an archetype may only have a differential path if it is specialised..</p>
+</div>
+<div class="paragraph">
+<p>The following validity rule applies to redefinition in a specialised archetype:</p>
+</div>
+<div class="paragraph rule">
+<p><strong>VDIFP</strong>: specialised archetype attribute differential path validity: if an attribute constraint has a differential path, the path must exist in the flat parent, and also be valid with respect to the reference model, i.e. in the sense that it corresponds to a legal potential construction of objects.</p>
+</div>
+<div class="paragraph rule">
+<p><strong>VSANCE</strong>: specialised archetype attribute node existence conformance: the existence of a redefined attribute node in a specialised archetype, if stated, must conform to the existence of the corresponding node in the flat parent archetype, by having an identical range, or a range wholly contained by the latter.</p>
+</div>
+<div class="paragraph rule">
+<p><strong>VSAM</strong>: specialised archetype attribute multiplicity conformance: the multiplicity, i.e. whether an attribute is multiply- or single-valued, of a redefined attribute must conform to that of the corresponding attribute in the parent archetype.</p>
+</div>
+<div class="paragraph">
+<p>The following validity rules apply to single-valued attributes, i.e when <code>C_ATTRIBUTE</code>.<code><em>is_multiple</em></code> is False:</p>
+</div>
+<div class="paragraph rule">
+<p><strong>VACSO</strong>: single-valued attribute child object occurrences validity: the occurrences of a child object of a single-valued attribute cannot have an upper limit greater than 1.</p>
+</div>
+<div class="paragraph">
+<p>The following validity rules apply to container attributes, i.e when <code>C_ATTRIBUTE</code>.<code><em>is_multiple</em></code> is True:</p>
+</div>
+<div class="paragraph rule">
+<p><strong>VACMCU</strong>: cardinality/occurrences upper bound validity: where a cardinality with a finite upper bound is stated on an attribute, for all immediate child objects for which an occurrences constraint is stated, the occurrences must either have an open upper bound (i.e. n..*) which is interpreted as the maximum value allowed within the cardinality, or else a finite upper bound which is &#8656; the cardinality upper bound.</p>
+</div>
+<div class="paragraph rule">
+<p><strong>VACMCO</strong>: cardinality/occurrences orphans: it must be possible for at least one instance of one optional child object (i.e. an object for which the occurrences lower bound is 0) and one instance of every mandatory child object (i.e. object constraints for which the occurrences lower bound is &gt;= 1) to be included within the cardinality range.</p>
+</div>
+<div class="paragraph rule">
+<p><strong>VCACA</strong>: archetype attribute reference model cardinality conformance: the cardinality of an attribute must conform, i.e. be the same or narrower, to the cardinality of the corresponding attribute in the underlying information model.</p>
+</div>
+<div class="paragraph">
+<p>The following validity warnings apply to container attributes, i.e when <code>C_ATTRIBUTE</code>.<code><em>is_multiple</em></code> is True:</p>
+</div>
+<div class="paragraph rule">
+<p><strong>WACMCL</strong>: cardinality/occurrences lower bound validity: where a cardinality with a finite upper bound is stated on an attribute, for all immediate child objects for which an occurrences constraint is stated, the sum of occurrences lower bounds should be lower than the cardinality upper limit.</p>
+</div>
+<div class="paragraph">
+<p>The following validity rule applies to cardinality redefinition in a specialised archetype:</p>
+</div>
+<div class="paragraph rule">
+<p><strong>VSANCC</strong>: specialised archetype attribute node cardinality conformance: the cardinality of a redefined (multiply-valued) attribute node in a specialised archetype, if stated, must conform to the cardinality of the corresponding node in the flat parent archetype by either being identical, or being wholly contained by the latter.</p>
+</div>
+</div>
 </div>
 <div class="sect3">
 <h4 id="_c_object_class"><a class="anchor" href="#_c_object_class"></a>4.5.4. C_OBJECT Class</h4>
@@ -3774,8 +3775,64 @@ For C_PRIMITIVE_OBJECTs, it will have the special value Primitive_node_id.</p>
 </tr>
 </tbody>
 </table>
+</div>
+<div class="sect3">
+<h4 id="_sibling_order_class"><a class="anchor" href="#_sibling_order_class"></a>4.5.5. SIBLING_ORDER Class</h4>
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 16.6666%;">
+<col style="width: 33.3333%;">
+<col style="width: 50.0001%;">
+</colgroup>
+<tbody>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Class</strong></p></th>
+<th class="tableblock halign-center valign-top" colspan="2"><p class="tableblock"><strong>SIBLING_ORDER</strong></p></th>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Description</strong></p></th>
+<td class="tableblock halign-left valign-top" colspan="2"><div><div class="paragraph">
+<p>Defines the order indicator that can be used on a C_OBJECT within a container attribute in a specialised archetype to indicate its order with respect to a sibling defined in a higher specialisation level.</p>
+</div>
+<div class="paragraph">
+<p>Misuse: This type cannot be used on a C_OBJECT other than one within a container attribute in a specialised archetype.</p>
+</div></div></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Attributes</strong></p></th>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Signature</strong></p></th>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Meaning</strong></p></th>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>1..1</strong></p></th>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>is_before</strong>: <code>Boolean</code></p></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>True if the order relationship is ‘before’, if False, it is ‘after’.</p>
+</div></div></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>1..1</strong></p></th>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>sibling_node_id</strong>: <code>String</code></p></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>Node identifier of sibling before or after which this node should come.</p>
+</div></div></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Functions</strong></p></th>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Signature</strong></p></th>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Meaning</strong></p></th>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"></th>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>is_after</strong>: <code>Boolean</code></p></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>True if the order relationship is ‘after’, computed as the negation of is_before.</p>
+</div></div></td>
+</tr>
+</tbody>
+</table>
 <div class="sect4">
-<h5 id="_occurrences_inferencing_rules"><a class="anchor" href="#_occurrences_inferencing_rules"></a>4.5.4.1. Occurrences inferencing rules</h5>
+<h5 id="_occurrences_inferencing_rules"><a class="anchor" href="#_occurrences_inferencing_rules"></a>4.5.5.1. Occurrences inferencing rules</h5>
 <div class="paragraph">
 <p>The notion of 'occurrences' does not exist in an object model that might be used as the reference model on which archteypes are based, because it is a class model. However, archetypes make statements about how many objects conforming to a specific object constraint node might exist, within a container attribute. In an operational template, an occurrences constraint is required on all children of container attributes. Most such constraints come from the source template(s) and archetypes, but in some cases, there will be nodes with no occurrences. In these cases, the occurrences constraint is inferred from the reference model according to the following algorithm, where <code>c_object</code> represents any object node in an archetype.</p>
 </div>
@@ -3799,7 +3856,7 @@ For C_PRIMITIVE_OBJECTs, it will have the special value Primitive_node_id.</p>
 </div>
 </div>
 <div class="sect4">
-<h5 id="_conformance_semantics_2"><a class="anchor" href="#_conformance_semantics_2"></a>4.5.4.2. Conformance semantics</h5>
+<h5 id="_conformance_semantics_2"><a class="anchor" href="#_conformance_semantics_2"></a>4.5.5.2. Conformance semantics</h5>
 <div class="paragraph">
 <p>The following functions formally define the conformance of a <code>C_OBJECT</code> node in a specialised archetype to the corresponding node in a parent archetype, where 'corresponding' means a node found at the same or a congruent path.</p>
 </div>
@@ -3875,7 +3932,7 @@ For C_PRIMITIVE_OBJECTs, it will have the special value Primitive_node_id.</p>
 </div>
 </div>
 <div class="sect4">
-<h5 id="_validity_rules_3"><a class="anchor" href="#_validity_rules_3"></a>4.5.4.3. Validity Rules</h5>
+<h5 id="_validity_rules_3"><a class="anchor" href="#_validity_rules_3"></a>4.5.5.3. Validity Rules</h5>
 <div class="paragraph">
 <p>The validity rules for all <code>C_OBJECTs</code> are as follows:</p>
 </div>
@@ -3931,62 +3988,6 @@ For C_PRIMITIVE_OBJECTs, it will have the special value Primitive_node_id.</p>
 <p><strong>VSSM</strong> specialised archetype sibling order validity: the sibling order node id code used in a sibling marker in a specialised archetype must refer to a node found within the same container in the flat parent archetype.</p>
 </div>
 </div>
-</div>
-<div class="sect3">
-<h4 id="_sibling_order_class"><a class="anchor" href="#_sibling_order_class"></a>4.5.5. SIBLING_ORDER Class</h4>
-<table class="tableblock frame-all grid-all spread">
-<colgroup>
-<col style="width: 16.6666%;">
-<col style="width: 33.3333%;">
-<col style="width: 50.0001%;">
-</colgroup>
-<tbody>
-<tr>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Class</strong></p></th>
-<th class="tableblock halign-center valign-top" colspan="2"><p class="tableblock"><strong>SIBLING_ORDER</strong></p></th>
-</tr>
-<tr>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Description</strong></p></th>
-<td class="tableblock halign-left valign-top" colspan="2"><div><div class="paragraph">
-<p>Defines the order indicator that can be used on a C_OBJECT within a container attribute in a specialised archetype to indicate its order with respect to a sibling defined in a higher specialisation level.</p>
-</div>
-<div class="paragraph">
-<p>Misuse: This type cannot be used on a C_OBJECT other than one within a container attribute in a specialised archetype.</p>
-</div></div></td>
-</tr>
-<tr>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Attributes</strong></p></th>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Signature</strong></p></th>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Meaning</strong></p></th>
-</tr>
-<tr>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>1..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>is_before</strong>: <code>Boolean</code></p></td>
-<td class="tableblock halign-left valign-top"><div><div class="paragraph">
-<p>True if the order relationship is ‘before’, if False, it is ‘after’.</p>
-</div></div></td>
-</tr>
-<tr>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>1..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>sibling_node_id</strong>: <code>String</code></p></td>
-<td class="tableblock halign-left valign-top"><div><div class="paragraph">
-<p>Node identifier of sibling before or after which this node should come.</p>
-</div></div></td>
-</tr>
-<tr>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Functions</strong></p></th>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Signature</strong></p></th>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Meaning</strong></p></th>
-</tr>
-<tr>
-<th class="tableblock halign-center valign-top"></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>is_after</strong>: <code>Boolean</code></p></td>
-<td class="tableblock halign-left valign-top"><div><div class="paragraph">
-<p>True if the order relationship is ‘after’, computed as the negation of is_before.</p>
-</div></div></td>
-</tr>
-</tbody>
-</table>
 </div>
 <div class="sect3">
 <h4 id="_c_defined_object_class"><a class="anchor" href="#_c_defined_object_class"></a>4.5.6. C_DEFINED_OBJECT Class</h4>
@@ -4446,7 +4447,7 @@ For a slot-filler or a redefined external reference, the node_id is set to a spe
 <div class="sect4">
 <h5 id="_validity_rules_8"><a class="anchor" href="#_validity_rules_8"></a>4.5.11.1. Validity Rules</h5>
 <div class="paragraph">
-<p>The validity rules for <code>C_PRIMITIVE_OBJECTs</code> are as follows:</p>
+<p>Validity rules applying to all <code>C_PRIMITIVE_OBJECT</code> types are as follows:</p>
 </div>
 <div class="paragraph rule">
 <p><strong>VOBAV</strong> object node assumed value validity: the value of an assumed value must fall within the value space defined by the constraint to which it is attached.</p>
@@ -4645,6 +4646,9 @@ For a slot-filler or a redefined external reference, the node_id is set to a spe
 </tr>
 </tbody>
 </table>
+<div class="paragraph tbd">
+<p>TBD: there is an argument for only allowing a single String value rather than a list, where the value is aways a regex since <code>{"platypus", "kangaroo", "wombat"}</code> can be expressed as <code>{/platypus|kangaroo|wombat/}</code>. See also ADL spec.</p>
+</div>
 <div class="sect4">
 <h5 id="_conformance_semantics_5"><a class="anchor" href="#_conformance_semantics_5"></a>4.5.13.1. Conformance semantics</h5>
 <div class="paragraph">
@@ -4717,7 +4721,7 @@ For a slot-filler or a redefined external reference, the node_id is set to a spe
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Meaning</strong></p></th>
 </tr>
 <tr>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>1..1<br>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1<br>
 (redefined)</strong></p></th>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><strong>constraint</strong>: <code>List&lt;Interval&gt;</code></p></td>
 <td class="tableblock halign-left valign-top"><div><div class="paragraph">
@@ -4785,12 +4789,17 @@ For a slot-filler or a redefined external reference, the node_id is set to a spe
 </div></div></td>
 </tr>
 <tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Inherit</strong></p></th>
+<td class="tableblock halign-left valign-top" colspan="2"><p class="tableblock">C_ORDERED</p></td>
+</tr>
+<tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Attributes</strong></p></th>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Signature</strong></p></th>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Meaning</strong></p></th>
 </tr>
 <tr>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>1..1</strong></p></th>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>1..1<br>
+(redefined)</strong></p></th>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><strong>constraint</strong>: <code>List&lt;Interval&lt;Integer&gt;&gt;</code></p></td>
 <td class="tableblock halign-left valign-top"><div><div class="paragraph">
 <p>Formal constraint on Integer, in the form of a List of Interval&lt;Integer&gt;.</p>
@@ -4819,12 +4828,17 @@ For a slot-filler or a redefined external reference, the node_id is set to a spe
 </div></div></td>
 </tr>
 <tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Inherit</strong></p></th>
+<td class="tableblock halign-left valign-top" colspan="2"><p class="tableblock">C_ORDERED</p></td>
+</tr>
+<tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Attributes</strong></p></th>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Signature</strong></p></th>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Meaning</strong></p></th>
 </tr>
 <tr>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>1..1</strong></p></th>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>1..1<br>
+(redefined)</strong></p></th>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><strong>constraint</strong>: <code>List&lt;Interval&lt;Real&gt;&gt;</code></p></td>
 <td class="tableblock halign-left valign-top"><div><div class="paragraph">
 <p>Formal constraint on Real, in the form of a List of Interval&lt;Real&gt;.</p>
@@ -4862,7 +4876,7 @@ For a slot-filler or a redefined external reference, the node_id is set to a spe
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Meaning</strong></p></th>
 </tr>
 <tr>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>1..1</strong></p></th>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><strong>pattern_constraint</strong>: <code>String</code></p></td>
 <td class="tableblock halign-left valign-top"><div><div class="paragraph">
 <p>Optional alternative constraint in the form of a pattern based on ISO8601. See descendants for details.</p>
@@ -4953,13 +4967,18 @@ For a slot-filler or a redefined external reference, the node_id is set to a spe
 </div></div></td>
 </tr>
 <tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Inherit</strong></p></th>
+<td class="tableblock halign-left valign-top" colspan="2"><p class="tableblock">C_TEMPORAL</p></td>
+</tr>
+<tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Attributes</strong></p></th>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Signature</strong></p></th>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Meaning</strong></p></th>
 </tr>
 <tr>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>1..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>constraint</strong>: <code>List&lt;Interval&lt;ISO8601_DATE&gt;&gt;</code></p></td>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1<br>
+(redefined)</strong></p></th>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>constraint</strong>: <code>List&lt;Interval&lt;Date&gt;&gt;</code></p></td>
 <td class="tableblock halign-left valign-top"><div><div class="paragraph">
 <p>Formal constraint on ISO8601_DATE, in the form of List of Interval&lt;ISO8601_DATE&gt;.</p>
 </div></div></td>
@@ -5019,13 +5038,18 @@ For a slot-filler or a redefined external reference, the node_id is set to a spe
 </div></div></td>
 </tr>
 <tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Inherit</strong></p></th>
+<td class="tableblock halign-left valign-top" colspan="2"><p class="tableblock">C_TEMPORAL</p></td>
+</tr>
+<tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Attributes</strong></p></th>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Signature</strong></p></th>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Meaning</strong></p></th>
 </tr>
 <tr>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>1..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>constraint</strong>: <code>List&lt;Interval&lt;ISO8601_TIME&gt;&gt;</code></p></td>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1<br>
+(redefined)</strong></p></th>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>constraint</strong>: <code>List&lt;Interval&lt;Time&gt;&gt;</code></p></td>
 <td class="tableblock halign-left valign-top"><div><div class="paragraph">
 <p>Formal constraint on ISO8601_TIME, in the form of a List of Interval&lt;ISO8601_TIME&gt;.</p>
 </div></div></td>
@@ -5092,13 +5116,18 @@ For a slot-filler or a redefined external reference, the node_id is set to a spe
 </div></div></td>
 </tr>
 <tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Inherit</strong></p></th>
+<td class="tableblock halign-left valign-top" colspan="2"><p class="tableblock">C_TEMPORAL</p></td>
+</tr>
+<tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Attributes</strong></p></th>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Signature</strong></p></th>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Meaning</strong></p></th>
 </tr>
 <tr>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>1..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>constraint</strong>: <code>List&lt;Interval&lt;ISO8601_DATE_TIME&gt;&gt;</code></p></td>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1<br>
+(redefined)</strong></p></th>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>constraint</strong>: <code>List&lt;Interval&lt;Date_time&gt;&gt;</code></p></td>
 <td class="tableblock halign-left valign-top"><div><div class="paragraph">
 <p>Formal constraint on ISO8601_DATE_TIME, in the form of List of Interval&lt;ISO8601_DATE_TIME&gt;.</p>
 </div></div></td>
@@ -5177,13 +5206,18 @@ For a slot-filler or a redefined external reference, the node_id is set to a spe
 <td class="tableblock halign-left valign-top" colspan="2"><div></div></td>
 </tr>
 <tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Inherit</strong></p></th>
+<td class="tableblock halign-left valign-top" colspan="2"><p class="tableblock">C_TEMPORAL</p></td>
+</tr>
+<tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Attributes</strong></p></th>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Signature</strong></p></th>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Meaning</strong></p></th>
 </tr>
 <tr>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>1..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>constraint</strong>: <code>List&lt;Interval&lt;ISO8601_DURATION&gt;&gt;</code></p></td>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1<br>
+(redefined)</strong></p></th>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>constraint</strong>: <code>List&lt;Interval&lt;Duration&gt;&gt;</code></p></td>
 <td class="tableblock halign-left valign-top"><div></div></td>
 </tr>
 <tr>
@@ -5543,10 +5577,10 @@ For a slot-filler or a redefined external reference, the node_id is set to a spe
 <div class="sect2">
 <h3 id="_overview_4"><a class="anchor" href="#_overview_4"></a>5.1. Overview</h3>
 <div class="paragraph">
-<p>The <code>rules</code> package defines the model of a generalised notion of 'rules' that can appear in various places in an archetype. Rules in the sense modelled here can be understood as 'declarations' and 'assertions'. Declarations consist of statements defining particular types of variables while assertions consistitute the main substantive kind of rule statement. Assertions are expressed in typed first-order predicate logic (FOPL).</p>
+<p>The AOM <code>rules</code> package builds upon a subset of the <code>BASE::org::openehr::statement</code> package described in the <a href="http://www.openehr.org/releases/BASE/latest/expression.html">openEHR Expression Language specification</a>, and adds a small number of classes to express leaf reference types specific to archetypes. This enables assertions to be stated within archetypes using archetype paths as values and also the <code>matches</code> operator and <code>C_PRIMITIVE_OBJECT</code> constraints.</p>
 </div>
 <div class="paragraph">
-<p>Rules can be used in two places in archetypes. The first is the use of assertions to express archetype slot constraints in instances of the <code>ARCHETYPE_SLOT</code> class. The second place is in the archetype <code>rules</code> section, where both variable declarataions and assertions are used to express object constraints ranging across multiple nodes, i.e. constraints that can&#8217;t be expressed 'inline' within the main <code>definition</code> section structure. In both of these places, their role is to constrain something <em>inside</em> the current archetype. Constraints on external resources such as terminologies are expressed in the constraint binding part of the archetype <code>terminology</code> section, described in Figure <a href="#terminology_package">Terminology Package</a>. The assertion package is illustrated below.</p>
+<p>Assertions can be used in two places in archetypes. The first is the use of expressions to express archetype slot constraints in instances of the <code>ARCHETYPE_SLOT</code> class (<code><em>includes</em></code> and <code><em>excludes</em></code> attributes). The second place is in the archetype <code>rules</code> section, where both variable declarataions and assertions are used to express object constraints ranging across multiple nodes, i.e. constraints that can&#8217;t be expressed 'inline' within the main <code>definition</code> section structure. In both of these places, their role is to constrain something <em>inside</em> the current archetype. Constraints on external resources such as terminologies are expressed in the constraint binding part in the archetype <code>terminology</code>, described in the <a href="#_terminology_package">Terminology Package</a> section. The assertion package is illustrated below.</p>
 </div>
 <div id="rules_package" class="imageblock text-center" style="text-align: center">
 <div class="content">
@@ -5558,462 +5592,71 @@ For a slot-filler or a redefined external reference, the node_id is set to a spe
 <div class="sect2">
 <h3 id="_semantics_2"><a class="anchor" href="#_semantics_2"></a>5.2. Semantics</h3>
 <div class="paragraph">
-<p>Archetype assertions are statements which contain the following elements:</p>
+<p>Archetype assertions are expressions which may contain the following elements:</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p>variables, which are inbuilt, archetype path-based, or external query results;</p>
+<p><em>constants</em>:</p>
+<div class="ulist">
+<ul>
+<li>
+<p><em>primitive values</em>: including the date/time types;</p>
 </li>
 <li>
-<p>manifest constants of any primitive type, including the date/time types</p>
+<p><em>constraints</em> operands, i.e. <code>C_PRIMITIVE_OBJECT</code> instances, used as arguments to the <code>matches</code> operator;</p>
 </li>
 <li>
-<p>arithmetic operators: <code>+</code>, <code>*</code>, <code>-</code>, <code>/</code>, <code>^</code> (exponent), <code>%</code> (modulo division)</p>
+<p><em>archetype id constraints</em>, i.e. <code>C_STRING</code> instances representing possible archetype identifiers, used in slot constraints.</p>
+</li>
+</ul>
+</div>
 </li>
 <li>
-<p>relational operators: <code>&gt;</code>, <code>&lt;</code>, <code>&gt;=</code>, <code>&lt;=</code>, <code>=</code>, <code>!=</code>, <code>matches</code></p>
+<p>any of the openEHR rules operators, i.e.:</p>
+<div class="ulist">
+<ul>
+<li>
+<p><em>arithmetic operators</em>: <code>+</code>, <code>*</code>, <code>-</code>, <code>/</code>, <code>^</code> (exponent), <code>%</code> (modulo division)</p>
 </li>
 <li>
-<p>boolean operators: <code>not</code>, <code>and</code>, <code>or</code>, <code>xor</code></p>
+<p><em>relational operators</em>: <code>&gt;</code>, <code>&lt;</code>, <code>&gt;=</code>, <code>&lt;=</code>, <code>=</code>, <code>!=</code>;</p>
 </li>
 <li>
-<p>quantifiers applied to container variables: <code>for_all</code>, <code>exists</code></p>
+<p><em>boolean operators</em>: <code>not</code>, <code>and</code>, <code>or</code>, <code>xor</code>;</p>
+</li>
+<li>
+<p><em>quantifiers</em> applied to container variables: <code>for_all</code>, <code>exists</code>;</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><em>functions</em> e.g. basic arithmetic, trigonometric and other functions;</p>
+</li>
+<li>
+<p>the following additional semantics:</p>
+<div class="ulist">
+<ul>
+<li>
+<p><em>references</em> to archetyped values in data, specified by archetype paths;</p>
+</li>
+</ul>
+</div>
 </li>
 </ul>
 </div>
 <div class="paragraph">
-<p>A syntax of assertions is defined in the openEHR ADL specification. The package described here is designed to allow the representation of a general-purpose expression tree, as generated by a parser. This relatively simple model of expressions is sufficiently powerful for representing the subset of FOL expressions required in archetypes and templates.</p>
+<p>Variables, assignments, and external queries as described in the main openEHR Rules language are not allowed.</p>
 </div>
 </div>
 <div class="sect2">
 <h3 id="_class_descriptions_2"><a class="anchor" href="#_class_descriptions_2"></a>5.3. Class Descriptions</h3>
-<div class="sect3">
-<h4 id="_rule_element_class"><a class="anchor" href="#_rule_element_class"></a>5.3.1. RULE_ELEMENT Class</h4>
-<table class="tableblock frame-all grid-all spread">
-<colgroup>
-<col style="width: 16.6666%;">
-<col style="width: 33.3333%;">
-<col style="width: 50.0001%;">
-</colgroup>
-<tbody>
-<tr>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Class</strong></p></th>
-<th class="tableblock halign-center valign-top" colspan="2"><p class="tableblock"><strong><em>RULE_ELEMENT (abstract)</em></strong></p></th>
-</tr>
-<tr>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Description</strong></p></th>
-<td class="tableblock halign-left valign-top" colspan="2"><div><div class="paragraph">
-<p>Abstract ancestor type of all rule element types. The <code>type</code> attribute is used to record the arithmetic type of any node.</p>
-</div></div></td>
-</tr>
-<tr>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Attributes</strong></p></th>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Signature</strong></p></th>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Meaning</strong></p></th>
-</tr>
-<tr>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>1..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>type</strong>: <code>String</code></p></td>
-<td class="tableblock halign-left valign-top"><div><div class="paragraph">
-<p>Type name of this item in the arithmetic/logical sense. For leaf nodes, this is the name of a primitive type, or else a reference model type referred to by the 'matches' operator.</p>
-</div>
 <div class="paragraph">
-<p>The type for any relational or boolean operator will be “Boolean”, while the type for any arithmetic operator, will be “Real” or “Integer”.</p>
-</div></div></td>
-</tr>
-</tbody>
-</table>
+<p>The following classes augment the core model described in the <a href="http://www.openehr.org/releases/BASE/latest/expression.html">openEHR Expression Language specification</a>.</p>
 </div>
 <div class="sect3">
-<h4 id="_rule_statement_class"><a class="anchor" href="#_rule_statement_class"></a>5.3.2. RULE_STATEMENT Class</h4>
-<table class="tableblock frame-all grid-all spread">
-<colgroup>
-<col style="width: 16.6666%;">
-<col style="width: 33.3333%;">
-<col style="width: 50.0001%;">
-</colgroup>
-<tbody>
-<tr>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Class</strong></p></th>
-<th class="tableblock halign-center valign-top" colspan="2"><p class="tableblock"><strong><em>RULE_STATEMENT (abstract)</em></strong></p></th>
-</tr>
-<tr>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Description</strong></p></th>
-<td class="tableblock halign-left valign-top" colspan="2"><div><div class="paragraph">
-<p>Abstract concept of any statement in a block of rule statements.</p>
-</div></div></td>
-</tr>
-<tr>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Inherit</strong></p></th>
-<td class="tableblock halign-left valign-top" colspan="2"><p class="tableblock">RULE_ELEMENT</p></td>
-</tr>
-</tbody>
-</table>
-</div>
-<div class="sect3">
-<h4 id="_assertion_class"><a class="anchor" href="#_assertion_class"></a>5.3.3. ASSERTION Class</h4>
-<table class="tableblock frame-all grid-all spread">
-<colgroup>
-<col style="width: 16.6666%;">
-<col style="width: 33.3333%;">
-<col style="width: 50.0001%;">
-</colgroup>
-<tbody>
-<tr>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Class</strong></p></th>
-<th class="tableblock halign-center valign-top" colspan="2"><p class="tableblock"><strong>ASSERTION</strong></p></th>
-</tr>
-<tr>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Description</strong></p></th>
-<td class="tableblock halign-left valign-top" colspan="2"><div><div class="paragraph">
-<p>Structural model of a typed first order predicate logic assertion, in the form of an expression tree, including optional variable definitions.</p>
-</div></div></td>
-</tr>
-<tr>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Inherit</strong></p></th>
-<td class="tableblock halign-left valign-top" colspan="2"><p class="tableblock">RULE_STATEMENT</p></td>
-</tr>
-<tr>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Attributes</strong></p></th>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Signature</strong></p></th>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Meaning</strong></p></th>
-</tr>
-<tr>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>tag</strong>: <code>String</code></p></td>
-<td class="tableblock halign-left valign-top"><div><div class="paragraph">
-<p>Expression tag, used for differentiating multiple assertions.</p>
-</div></div></td>
-</tr>
-<tr>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>string_expression</strong>: <code>String</code></p></td>
-<td class="tableblock halign-left valign-top"><div><div class="paragraph">
-<p>String form of expression, in case an expression evaluator taking String expressions is used for evaluation.</p>
-</div></div></td>
-</tr>
-<tr>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>1..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>expression</strong>: <code>EXPR_ITEM</code></p></td>
-<td class="tableblock halign-left valign-top"><div><div class="paragraph">
-<p>Root of expression tree.</p>
-</div></div></td>
-</tr>
-<tr>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>variables</strong>: <code>List&lt;VARIABLE_DECLARATION&gt;</code></p></td>
-<td class="tableblock halign-left valign-top"><div><div class="paragraph">
-<p>Definitions of variables used in the assertion expression.</p>
-</div></div></td>
-</tr>
-</tbody>
-</table>
-</div>
-<div class="sect3">
-<h4 id="_variable_declaration_class"><a class="anchor" href="#_variable_declaration_class"></a>5.3.4. VARIABLE_DECLARATION Class</h4>
-<table class="tableblock frame-all grid-all spread">
-<colgroup>
-<col style="width: 16.6666%;">
-<col style="width: 33.3333%;">
-<col style="width: 50.0001%;">
-</colgroup>
-<tbody>
-<tr>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Class</strong></p></th>
-<th class="tableblock halign-center valign-top" colspan="2"><p class="tableblock"><strong><em>VARIABLE_DECLARATION (abstract)</em></strong></p></th>
-</tr>
-<tr>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Description</strong></p></th>
-<td class="tableblock halign-left valign-top" colspan="2"><div><div class="paragraph">
-<p>Definition of a named variable used in an assertion expression.</p>
-</div></div></td>
-</tr>
-<tr>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Inherit</strong></p></th>
-<td class="tableblock halign-left valign-top" colspan="2"><p class="tableblock">RULE_STATEMENT</p></td>
-</tr>
-<tr>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Attributes</strong></p></th>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Signature</strong></p></th>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Meaning</strong></p></th>
-</tr>
-<tr>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>1..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>name</strong>: <code>String</code></p></td>
-<td class="tableblock halign-left valign-top"><div></div></td>
-</tr>
-<tr>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Functions</strong></p></th>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Signature</strong></p></th>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Meaning</strong></p></th>
-</tr>
-<tr>
-<th class="tableblock halign-center valign-top"></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>definition</strong>: <code>String</code></p></td>
-<td class="tableblock halign-left valign-top"><div><div class="paragraph">
-<p>Formal definition of the variable.</p>
-</div></div></td>
-</tr>
-<tr>
-<th class="tableblock halign-center valign-top"></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>value</strong>: <code>Any</code></p></td>
-<td class="tableblock halign-left valign-top"><div><div class="paragraph">
-<p>Formal definition of the variable. Value of the variable once evaluated.</p>
-</div></div></td>
-</tr>
-</tbody>
-</table>
-</div>
-<div class="sect3">
-<h4 id="_expr_variable_class"><a class="anchor" href="#_expr_variable_class"></a>5.3.5. EXPR_VARIABLE Class</h4>
-<table class="tableblock frame-all grid-all spread">
-<colgroup>
-<col style="width: 16.6666%;">
-<col style="width: 33.3333%;">
-<col style="width: 50.0001%;">
-</colgroup>
-<tbody>
-<tr>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Class</strong></p></th>
-<th class="tableblock halign-center valign-top" colspan="2"><p class="tableblock"><strong>EXPR_VARIABLE</strong></p></th>
-</tr>
-<tr>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Description</strong></p></th>
-<td class="tableblock halign-left valign-top" colspan="2"><div><div class="paragraph">
-<p>A variable whose definition is an expression, including atomic expressions such as constants and model references (i.e. path references).</p>
-</div></div></td>
-</tr>
-<tr>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Inherit</strong></p></th>
-<td class="tableblock halign-left valign-top" colspan="2"><p class="tableblock">VARIABLE_DECLARATION</p></td>
-</tr>
-<tr>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Attributes</strong></p></th>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Signature</strong></p></th>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Meaning</strong></p></th>
-</tr>
-<tr>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>1..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>expression</strong>: <code>EXPR_ITEM</code></p></td>
-<td class="tableblock halign-left valign-top"><div><div class="paragraph">
-<p>Expression tree of expression.</p>
-</div></div></td>
-</tr>
-</tbody>
-</table>
-</div>
-<div class="sect3">
-<h4 id="_builtin_variable_class"><a class="anchor" href="#_builtin_variable_class"></a>5.3.6. BUILTIN_VARIABLE Class</h4>
-<table class="tableblock frame-all grid-all spread">
-<colgroup>
-<col style="width: 16.6666%;">
-<col style="width: 33.3333%;">
-<col style="width: 50.0001%;">
-</colgroup>
-<tbody>
-<tr>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Class</strong></p></th>
-<th class="tableblock halign-center valign-top" colspan="2"><p class="tableblock"><strong>BUILTIN_VARIABLE</strong></p></th>
-</tr>
-<tr>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Description</strong></p></th>
-<td class="tableblock halign-left valign-top" colspan="2"><div><div class="paragraph">
-<p>A variable with a name and definition from a small set of assumed environmental variables. It is assumed that the implementation will correctly generate the ap-propriate values and types for these variables. The current set of built-in varia-bles is as follows:
-• current_date: ISO8601_DATE
-• current_time: ISO8601_TIME
-• current_date_time: ISO8601_DATE_TIME</p>
-</div></div></td>
-</tr>
-<tr>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Inherit</strong></p></th>
-<td class="tableblock halign-left valign-top" colspan="2"><p class="tableblock">VARIABLE_DECLARATION</p></td>
-</tr>
-</tbody>
-</table>
-</div>
-<div class="sect3">
-<h4 id="_query_variable_class"><a class="anchor" href="#_query_variable_class"></a>5.3.7. QUERY_VARIABLE Class</h4>
-<table class="tableblock frame-all grid-all spread">
-<colgroup>
-<col style="width: 16.6666%;">
-<col style="width: 33.3333%;">
-<col style="width: 50.0001%;">
-</colgroup>
-<tbody>
-<tr>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Class</strong></p></th>
-<th class="tableblock halign-center valign-top" colspan="2"><p class="tableblock"><strong>QUERY_VARIABLE</strong></p></th>
-</tr>
-<tr>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Description</strong></p></th>
-<td class="tableblock halign-left valign-top" colspan="2"><div><div class="paragraph">
-<p>Definition of a variable whose value is derived from a query run on a data con-text in the operational environment. Typical uses of this kind of variable are to obtain values like the patient date of birth, sex, weight, and so on. It could also be used to obtain items from a knowledge context, such as a drug database.</p>
-</div></div></td>
-</tr>
-<tr>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Inherit</strong></p></th>
-<td class="tableblock halign-left valign-top" colspan="2"><p class="tableblock">VARIABLE_DECLARATION</p></td>
-</tr>
-<tr>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Attributes</strong></p></th>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Signature</strong></p></th>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Meaning</strong></p></th>
-</tr>
-<tr>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>1..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>context</strong>: <code>String</code></p></td>
-<td class="tableblock halign-left valign-top"><div><div class="paragraph">
-<p>Optional name of context. This allows a basic separation of query types to be done in more sophisticated environments. Possible values might be “patient”, “medications” and so on.
-Not yet standardised.</p>
-</div></div></td>
-</tr>
-<tr>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>1..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>query_id</strong>: <code>String</code></p></td>
-<td class="tableblock halign-left valign-top"><div><div class="paragraph">
-<p>Identifier of query in the external context, e.g. “date_of_birth”.
-Not yet standardised.</p>
-</div></div></td>
-</tr>
-<tr>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>query_args</strong>: <code>List&lt;String&gt;</code></p></td>
-<td class="tableblock halign-left valign-top"><div><div class="paragraph">
-<p>Optional arguments to query.
-Not yet standardised.</p>
-</div></div></td>
-</tr>
-</tbody>
-</table>
-</div>
-<div class="sect3">
-<h4 id="_expr_item_class"><a class="anchor" href="#_expr_item_class"></a>5.3.8. EXPR_ITEM Class</h4>
-<table class="tableblock frame-all grid-all spread">
-<colgroup>
-<col style="width: 16.6666%;">
-<col style="width: 33.3333%;">
-<col style="width: 50.0001%;">
-</colgroup>
-<tbody>
-<tr>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Class</strong></p></th>
-<th class="tableblock halign-center valign-top" colspan="2"><p class="tableblock"><strong><em>EXPR_ITEM (abstract)</em></strong></p></th>
-</tr>
-<tr>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Description</strong></p></th>
-<td class="tableblock halign-left valign-top" colspan="2"><div><div class="paragraph">
-<p>Abstract parent of all expression tree items.</p>
-</div></div></td>
-</tr>
-<tr>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Inherit</strong></p></th>
-<td class="tableblock halign-left valign-top" colspan="2"><p class="tableblock">RULE_ELEMENT</p></td>
-</tr>
-<tr>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Functions</strong></p></th>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Signature</strong></p></th>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Meaning</strong></p></th>
-</tr>
-<tr>
-<th class="tableblock halign-center valign-top"></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>value</strong>: <code>Any</code></p></td>
-<td class="tableblock halign-left valign-top"><div></div></td>
-</tr>
-</tbody>
-</table>
-</div>
-<div class="sect3">
-<h4 id="_expr_leaf_class"><a class="anchor" href="#_expr_leaf_class"></a>5.3.9. EXPR_LEAF Class</h4>
-<table class="tableblock frame-all grid-all spread">
-<colgroup>
-<col style="width: 16.6666%;">
-<col style="width: 33.3333%;">
-<col style="width: 50.0001%;">
-</colgroup>
-<tbody>
-<tr>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Class</strong></p></th>
-<th class="tableblock halign-center valign-top" colspan="2"><p class="tableblock"><strong>EXPR_LEAF</strong></p></th>
-</tr>
-<tr>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Description</strong></p></th>
-<td class="tableblock halign-left valign-top" colspan="2"><div><div class="paragraph">
-<p>Expression tree leaf item representing one of:
-• a manifest constant of any primitive type;
-• a path referring to a value in the archetype;
-• a constraint;
-• a variable reference.</p>
-</div></div></td>
-</tr>
-<tr>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Inherit</strong></p></th>
-<td class="tableblock halign-left valign-top" colspan="2"><p class="tableblock">EXPR_ITEM</p></td>
-</tr>
-<tr>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Functions</strong></p></th>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Signature</strong></p></th>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Meaning</strong></p></th>
-</tr>
-<tr>
-<th class="tableblock halign-center valign-top"></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>reference_type</strong>: <code>String</code></p></td>
-<td class="tableblock halign-left valign-top"><div><div class="paragraph">
-<p>Type of reference: “constant”, “attribute”, “function”, “constraint”. The first three are used to indicate the referencing mechanism for an operand. The last is used to indicate a constraint operand, as happens in the case of the right-hand operand of the ‘matches’ operator.</p>
-</div></div></td>
-</tr>
-</tbody>
-</table>
-</div>
-<div class="sect3">
-<h4 id="_expr_constant_class"><a class="anchor" href="#_expr_constant_class"></a>5.3.10. EXPR_CONSTANT Class</h4>
-<table class="tableblock frame-all grid-all spread">
-<colgroup>
-<col style="width: 16.6666%;">
-<col style="width: 33.3333%;">
-<col style="width: 50.0001%;">
-</colgroup>
-<tbody>
-<tr>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Class</strong></p></th>
-<th class="tableblock halign-center valign-top" colspan="2"><p class="tableblock"><strong>EXPR_CONSTANT</strong></p></th>
-</tr>
-<tr>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Description</strong></p></th>
-<td class="tableblock halign-left valign-top" colspan="2"><div><div class="paragraph">
-<p>Constant expression tree leaf item. This can represent a manifest constant of any primitive type, i.e.:
-• Integer,
-• Real,
-• Boolean,
-• String,
-• Character,
-• Date,
-• Time,
-• Date_time,
-• Duration
-• an Interval of any of the above types that are Ordered (see Support IM)
-• a list of any of the above types.</p>
-</div></div></td>
-</tr>
-<tr>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Inherit</strong></p></th>
-<td class="tableblock halign-left valign-top" colspan="2"><p class="tableblock">EXPR_LEAF</p></td>
-</tr>
-<tr>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Attributes</strong></p></th>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Signature</strong></p></th>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Meaning</strong></p></th>
-</tr>
-<tr>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>1..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>value</strong>: <code>Any</code></p></td>
-<td class="tableblock halign-left valign-top"><div></div></td>
-</tr>
-</tbody>
-</table>
-</div>
-<div class="sect3">
-<h4 id="_expr_constraint_class"><a class="anchor" href="#_expr_constraint_class"></a>5.3.11. EXPR_CONSTRAINT Class</h4>
+<h4 id="_expr_constraint_class"><a class="anchor" href="#_expr_constraint_class"></a>5.3.1. EXPR_CONSTRAINT Class</h4>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
 <col style="width: 16.6666%;">
@@ -6028,12 +5671,12 @@ Not yet standardised.</p>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Description</strong></p></th>
 <td class="tableblock halign-left valign-top" colspan="2"><div><div class="paragraph">
-<p>Expression tree leaf item representing a constraint on a primitive type, expressed in the form of concrete subtype of C_PRIMITIVE_OBJECT.</p>
+<p>Expression tree leaf item representing a constraint on a primitive type, expressed in the form of a concrete subtype of C_PRIMITIVE_OBJECT.</p>
 </div></div></td>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Inherit</strong></p></th>
-<td class="tableblock halign-left valign-top" colspan="2"><p class="tableblock">EXPR_LEAF</p></td>
+<td class="tableblock halign-left valign-top" colspan="2"><p class="tableblock">EXPR_LITERAL</p></td>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Attributes</strong></p></th>
@@ -6041,7 +5684,8 @@ Not yet standardised.</p>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Meaning</strong></p></th>
 </tr>
 <tr>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>1..1</strong></p></th>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>1..1<br>
+(redefined)</strong></p></th>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><strong>item</strong>: <code>C_PRIMITIVE_OBJECT</code></p></td>
 <td class="tableblock halign-left valign-top"><div><div class="paragraph">
 <p>The constraint.</p>
@@ -6051,7 +5695,7 @@ Not yet standardised.</p>
 </table>
 </div>
 <div class="sect3">
-<h4 id="_expr_archetype_id_constraint_class"><a class="anchor" href="#_expr_archetype_id_constraint_class"></a>5.3.12. EXPR_ARCHETYPE_ID_CONSTRAINT Class</h4>
+<h4 id="_expr_archetype_id_constraint_class"><a class="anchor" href="#_expr_archetype_id_constraint_class"></a>5.3.2. EXPR_ARCHETYPE_ID_CONSTRAINT Class</h4>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
 <col style="width: 16.6666%;">
@@ -6082,13 +5726,15 @@ Not yet standardised.</p>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>1..1<br>
 (redefined)</strong></p></th>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><strong>item</strong>: <code>C_STRING</code></p></td>
-<td class="tableblock halign-left valign-top"><div></div></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>A C_STRING representing a regular expression for matching Archetype identifiers.</p>
+</div></div></td>
 </tr>
 </tbody>
 </table>
 </div>
 <div class="sect3">
-<h4 id="_expr_model_ref_class"><a class="anchor" href="#_expr_model_ref_class"></a>5.3.13. EXPR_MODEL_REF Class</h4>
+<h4 id="_expr_archetype_ref_class"><a class="anchor" href="#_expr_archetype_ref_class"></a>5.3.3. EXPR_ARCHETYPE_REF Class</h4>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
 <col style="width: 16.6666%;">
@@ -6098,19 +5744,27 @@ Not yet standardised.</p>
 <tbody>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Class</strong></p></th>
-<th class="tableblock halign-center valign-top" colspan="2"><p class="tableblock"><strong>EXPR_MODEL_REF</strong></p></th>
+<th class="tableblock halign-center valign-top" colspan="2"><p class="tableblock"><strong>EXPR_ARCHETYPE_REF</strong></p></th>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Description</strong></p></th>
 <td class="tableblock halign-left valign-top" colspan="2"><div><div class="paragraph">
-<p>Expression tree leaf item representing a reference to a value found in data at a location specified by a path in the archetype definition.
-• A path referring to a value in the archetype (paths with a leading ‘/’ are in the definition section.
-• Paths with no leading ‘/’ are in the outer part of the archetype, e.g. “arche-type_id/value” refers to the String value of the archetype_id attribute of the enclosing archetype.</p>
+<p>Expression tree leaf item representing a reference to a value found in data at a location specified by a path in the archetype definition.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>A path referring to a value in the archetype (paths with a leading ‘/’ are in the definition section.</p>
+</li>
+<li>
+<p>Paths with no leading ‘/’ are in the outer part of the archetype, e.g. “archetype_id/value” refers to the String value of the archetype_id attribute of the enclosing archetype.</p>
+</li>
+</ul>
 </div></div></td>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Inherit</strong></p></th>
-<td class="tableblock halign-left valign-top" colspan="2"><p class="tableblock">EXPR_LEAF</p></td>
+<td class="tableblock halign-left valign-top" colspan="2"><p class="tableblock">EXPR_VALUE_REF</p></td>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Attributes</strong></p></th>
@@ -6124,331 +5778,11 @@ Not yet standardised.</p>
 <p>The path to the archetype node.</p>
 </div></div></td>
 </tr>
-</tbody>
-</table>
-</div>
-<div class="sect3">
-<h4 id="_expr_variable_ref_class"><a class="anchor" href="#_expr_variable_ref_class"></a>5.3.14. EXPR_VARIABLE_REF Class</h4>
-<table class="tableblock frame-all grid-all spread">
-<colgroup>
-<col style="width: 16.6666%;">
-<col style="width: 33.3333%;">
-<col style="width: 50.0001%;">
-</colgroup>
-<tbody>
 <tr>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Class</strong></p></th>
-<th class="tableblock halign-center valign-top" colspan="2"><p class="tableblock"><strong>EXPR_VARIABLE_REF</strong></p></th>
-</tr>
-<tr>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Description</strong></p></th>
-<td class="tableblock halign-left valign-top" colspan="2"><div><div class="paragraph">
-<p>Expression tree leaf item representing a reference to a defined variable.</p>
-</div></div></td>
-</tr>
-<tr>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Inherit</strong></p></th>
-<td class="tableblock halign-left valign-top" colspan="2"><p class="tableblock">EXPR_LEAF</p></td>
-</tr>
-<tr>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Attributes</strong></p></th>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Signature</strong></p></th>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Meaning</strong></p></th>
-</tr>
-<tr>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>1..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>declaration</strong>: <code>VARIABLE_DECLARATION</code></p></td>
-<td class="tableblock halign-left valign-top"><div><div class="paragraph">
-<p>The variable referred to.</p>
-</div></div></td>
-</tr>
-</tbody>
-</table>
-</div>
-<div class="sect3">
-<h4 id="_expr_operator_class"><a class="anchor" href="#_expr_operator_class"></a>5.3.15. EXPR_OPERATOR Class</h4>
-<table class="tableblock frame-all grid-all spread">
-<colgroup>
-<col style="width: 16.6666%;">
-<col style="width: 33.3333%;">
-<col style="width: 50.0001%;">
-</colgroup>
-<tbody>
-<tr>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Class</strong></p></th>
-<th class="tableblock halign-center valign-top" colspan="2"><p class="tableblock"><strong><em>EXPR_OPERATOR (abstract)</em></strong></p></th>
-</tr>
-<tr>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Description</strong></p></th>
-<td class="tableblock halign-left valign-top" colspan="2"><div><div class="paragraph">
-<p>Abstract parent of operator types.</p>
-</div></div></td>
-</tr>
-<tr>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Inherit</strong></p></th>
-<td class="tableblock halign-left valign-top" colspan="2"><p class="tableblock">EXPR_ITEM</p></td>
-</tr>
-<tr>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Attributes</strong></p></th>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Signature</strong></p></th>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Meaning</strong></p></th>
-</tr>
-<tr>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>precedence_overridden</strong>: <code>Boolean</code></p></td>
-<td class="tableblock halign-left valign-top"><div><div class="paragraph">
-<p>True if the natural precedence of operators is overridden in the expression represented by this node of the expression tree. If True, parentheses should be introduced around the totality of the syntax expression corresponding to this operator node and its operands.</p>
-</div></div></td>
-</tr>
-<tr>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>1..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>operator</strong>: <code>OPERATOR_KIND</code></p></td>
-<td class="tableblock halign-left valign-top"><div><div class="paragraph">
-<p>Type of operator as an Integer value from the OPERATOR_KIND enumeration.</p>
-</div></div></td>
-</tr>
-</tbody>
-</table>
-</div>
-<div class="sect3">
-<h4 id="_expr_unary_operator_class"><a class="anchor" href="#_expr_unary_operator_class"></a>5.3.16. EXPR_UNARY_OPERATOR Class</h4>
-<table class="tableblock frame-all grid-all spread">
-<colgroup>
-<col style="width: 16.6666%;">
-<col style="width: 33.3333%;">
-<col style="width: 50.0001%;">
-</colgroup>
-<tbody>
-<tr>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Class</strong></p></th>
-<th class="tableblock halign-center valign-top" colspan="2"><p class="tableblock"><strong>EXPR_UNARY_OPERATOR</strong></p></th>
-</tr>
-<tr>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Description</strong></p></th>
-<td class="tableblock halign-left valign-top" colspan="2"><div><div class="paragraph">
-<p>Unary operator expression node.</p>
-</div></div></td>
-</tr>
-<tr>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Inherit</strong></p></th>
-<td class="tableblock halign-left valign-top" colspan="2"><p class="tableblock">EXPR_OPERATOR</p></td>
-</tr>
-<tr>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Attributes</strong></p></th>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Signature</strong></p></th>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Meaning</strong></p></th>
-</tr>
-<tr>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>1..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>operand</strong>: <code>EXPR_ITEM</code></p></td>
-<td class="tableblock halign-left valign-top"><div><div class="paragraph">
-<p>Operand node.</p>
-</div></div></td>
-</tr>
-</tbody>
-</table>
-</div>
-<div class="sect3">
-<h4 id="_expr_binary_operator_class"><a class="anchor" href="#_expr_binary_operator_class"></a>5.3.17. EXPR_BINARY_OPERATOR Class</h4>
-<table class="tableblock frame-all grid-all spread">
-<colgroup>
-<col style="width: 16.6666%;">
-<col style="width: 33.3333%;">
-<col style="width: 50.0001%;">
-</colgroup>
-<tbody>
-<tr>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Class</strong></p></th>
-<th class="tableblock halign-center valign-top" colspan="2"><p class="tableblock"><strong>EXPR_BINARY_OPERATOR</strong></p></th>
-</tr>
-<tr>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Description</strong></p></th>
-<td class="tableblock halign-left valign-top" colspan="2"><div><div class="paragraph">
-<p>Binary operator expression node.</p>
-</div></div></td>
-</tr>
-<tr>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Inherit</strong></p></th>
-<td class="tableblock halign-left valign-top" colspan="2"><p class="tableblock">EXPR_OPERATOR</p></td>
-</tr>
-<tr>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Attributes</strong></p></th>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Signature</strong></p></th>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Meaning</strong></p></th>
-</tr>
-<tr>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>1..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>left_operand</strong>: <code>EXPR_ITEM</code></p></td>
-<td class="tableblock halign-left valign-top"><div><div class="paragraph">
-<p>Left operand node.</p>
-</div></div></td>
-</tr>
-<tr>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>1..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>right_operand</strong>: <code>EXPR_ITEM</code></p></td>
-<td class="tableblock halign-left valign-top"><div><div class="paragraph">
-<p>Right operand node.</p>
-</div></div></td>
-</tr>
-</tbody>
-</table>
-</div>
-<div class="sect3">
-<h4 id="_operator_kind_enumeration"><a class="anchor" href="#_operator_kind_enumeration"></a>5.3.18. OPERATOR_KIND Enumeration</h4>
-<table class="tableblock frame-all grid-all spread">
-<colgroup>
-<col style="width: 16.6666%;">
-<col style="width: 33.3333%;">
-<col style="width: 50.0001%;">
-</colgroup>
-<tbody>
-<tr>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Enumeration</strong></p></th>
-<th class="tableblock halign-center valign-top" colspan="2"><p class="tableblock"><strong>OPERATOR_KIND</strong></p></th>
-</tr>
-<tr>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Description</strong></p></th>
-<td class="tableblock halign-left valign-top" colspan="2"><div><div class="paragraph">
-<p>Enumeration type for operator types in assertion expressions.</p>
-</div></div></td>
-</tr>
-<tr>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Attributes</strong></p></th>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Signature</strong></p></th>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Meaning</strong></p></th>
-</tr>
-<tr>
-<th class="tableblock halign-center valign-top"></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock">op_eq</p></td>
-<td class="tableblock halign-left valign-top"><div><div class="paragraph">
-<p>Equals operator (= or ==)</p>
-</div></div></td>
-</tr>
-<tr>
-<th class="tableblock halign-center valign-top"></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock">op_ne</p></td>
-<td class="tableblock halign-left valign-top"><div><div class="paragraph">
-<p>Not equals operator (!= or /=)</p>
-</div></div></td>
-</tr>
-<tr>
-<th class="tableblock halign-center valign-top"></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock">op_le</p></td>
-<td class="tableblock halign-left valign-top"><div><div class="paragraph">
-<p>Less-than or equals operator (&#8656;)</p>
-</div></div></td>
-</tr>
-<tr>
-<th class="tableblock halign-center valign-top"></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock">op_lt</p></td>
-<td class="tableblock halign-left valign-top"><div><div class="paragraph">
-<p>Less-than operator (&#8656;)</p>
-</div></div></td>
-</tr>
-<tr>
-<th class="tableblock halign-center valign-top"></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock">op_ge</p></td>
-<td class="tableblock halign-left valign-top"><div><div class="paragraph">
-<p>Greater-than or equals operator (&gt;=)</p>
-</div></div></td>
-</tr>
-<tr>
-<th class="tableblock halign-center valign-top"></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock">op_gt</p></td>
-<td class="tableblock halign-left valign-top"><div><div class="paragraph">
-<p>Greater-than operator (&gt;)</p>
-</div></div></td>
-</tr>
-<tr>
-<th class="tableblock halign-center valign-top"></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock">op_matches</p></td>
-<td class="tableblock halign-left valign-top"><div><div class="paragraph">
-<p>Matches operator (matches or is_in)</p>
-</div></div></td>
-</tr>
-<tr>
-<th class="tableblock halign-center valign-top"></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock">op_not</p></td>
-<td class="tableblock halign-left valign-top"><div><div class="paragraph">
-<p>Not logical operator</p>
-</div></div></td>
-</tr>
-<tr>
-<th class="tableblock halign-center valign-top"></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock">op_and</p></td>
-<td class="tableblock halign-left valign-top"><div><div class="paragraph">
-<p>And logical operator</p>
-</div></div></td>
-</tr>
-<tr>
-<th class="tableblock halign-center valign-top"></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock">op_or</p></td>
-<td class="tableblock halign-left valign-top"><div><div class="paragraph">
-<p>Or logical operator.</p>
-</div></div></td>
-</tr>
-<tr>
-<th class="tableblock halign-center valign-top"></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock">op_xor</p></td>
-<td class="tableblock halign-left valign-top"><div><div class="paragraph">
-<p>Xor logical operator</p>
-</div></div></td>
-</tr>
-<tr>
-<th class="tableblock halign-center valign-top"></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock">op_implies</p></td>
-<td class="tableblock halign-left valign-top"><div><div class="paragraph">
-<p>Implies logical operator</p>
-</div></div></td>
-</tr>
-<tr>
-<th class="tableblock halign-center valign-top"></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock">op_for_all</p></td>
-<td class="tableblock halign-left valign-top"><div><div class="paragraph">
-<p>For-all (universal) quantifier</p>
-</div></div></td>
-</tr>
-<tr>
-<th class="tableblock halign-center valign-top"></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock">op_exists</p></td>
-<td class="tableblock halign-left valign-top"><div><div class="paragraph">
-<p>Exists quantifier</p>
-</div></div></td>
-</tr>
-<tr>
-<th class="tableblock halign-center valign-top"></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock">op_plus</p></td>
-<td class="tableblock halign-left valign-top"><div><div class="paragraph">
-<p>Arithmetic plus operator (+)</p>
-</div></div></td>
-</tr>
-<tr>
-<th class="tableblock halign-center valign-top"></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock">op_minus</p></td>
-<td class="tableblock halign-left valign-top"><div><div class="paragraph">
-<p>Arithmetic minus operator (-)</p>
-</div></div></td>
-</tr>
-<tr>
-<th class="tableblock halign-center valign-top"></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock">op_multiply</p></td>
-<td class="tableblock halign-left valign-top"><div><div class="paragraph">
-<p>Arithmetic multiplication operator (*)</p>
-</div></div></td>
-</tr>
-<tr>
-<th class="tableblock halign-center valign-top"></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock">op_divide</p></td>
-<td class="tableblock halign-left valign-top"><div><div class="paragraph">
-<p>Arithmetic division operator (/)</p>
-</div></div></td>
-</tr>
-<tr>
-<th class="tableblock halign-center valign-top"></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock">op_exponent</p></td>
-<td class="tableblock halign-left valign-top"><div><div class="paragraph">
-<p>Arithmetic exponentiation operator (^)</p>
-</div></div></td>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>1..1<br>
+(redefined)</strong></p></th>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>item</strong>: <code>ARCHETYPE_CONSTRAINT</code></p></td>
+<td class="tableblock halign-left valign-top"><div></div></td>
 </tr>
 </tbody>
 </table>
@@ -6584,14 +5918,14 @@ Not yet standardised.</p>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>1..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>term_definitions</strong>: <code>Hash&lt;Hash&lt;ARCHETYPE_TERM, String&gt;, String&gt;</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>term_definitions</strong>: <code>Hash&lt;String, Hash&lt;String, ARCHETYPE_TERM&gt;&gt;</code></p></td>
 <td class="tableblock halign-left valign-top"><div><div class="paragraph">
 <p>Directory of term definitions as a two-level table. The outer hash keys are language codes, e.g. “en”, “de”, while the inner hash keys are term codes, e.g. “id17”, “at4”.</p>
 </div></div></td>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>term_bindings</strong>: <code>Hash &lt;Hash&lt;Uri, String&gt;, String&gt;</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>term_bindings</strong>: <code>Hash &lt;String, Hash&lt;String, Uri&gt;&gt;</code></p></td>
 <td class="tableblock halign-left valign-top"><div><div class="paragraph">
 <p>Directory of bindings to external terminology codes and value sets, as a two-level table. The outer hash keys are terminology ids, e.g. “SNOMED_CT”, and the inner hash keys are constraint codes, e.g. “at4”, “ac13” or paths. The indexed DV_URI objects represent references to externally defined resources, either terms, ontology concepts, or terminology subsets / ref-sets.</p>
 </div></div></td>
@@ -6605,14 +5939,14 @@ Not yet standardised.</p>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>value_sets</strong>: <code>Hash&lt;VALUE_SET, String&gt;</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>value_sets</strong>: <code>Hash&lt;String, VALUE_SET&gt;</code></p></td>
 <td class="tableblock halign-left valign-top"><div><div class="paragraph">
 <p>Archetype-local value sets, each keyed by value-set id, i.e. an ac-code.</p>
 </div></div></td>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>terminology_extracts</strong>: <code>Hash&lt;Hash&lt;ARCHETYPE_TERM, String&gt;, String&gt;</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>terminology_extracts</strong>: <code>Hash&lt;String, Hash&lt;String, ARCHETYPE_TERM&gt;&gt;</code></p></td>
 <td class="tableblock halign-left valign-top"><div><div class="paragraph">
 <p>Directory of extracts of external terminologies, as a two-level table. The outer hash keys are terminology ids, e.g. “SNOMED_CT”, while the inner hash keys are term codes or code-phrases from the relevant terminology, e.g. “10094842”.</p>
 </div></div></td>
@@ -6834,7 +6168,7 @@ Not yet standardised.</p>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>1..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>code</strong>:</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>code</strong>: <code>String</code></p></td>
 <td class="tableblock halign-left valign-top"><div><div class="paragraph">
 <p>Code of this term.</p>
 </div></div></td>
@@ -7513,13 +6847,6 @@ Hash of keys ("text", "description" etc) and corresponding values.</p>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>aom_rm_type_mappings</strong>: <code>Hash&lt;AOM_TYPE_MAPPING, String&gt;</code></p></td>
-<td class="tableblock halign-left valign-top"><div><div class="paragraph">
-<p>Mappings from AOM built-in types to actual types in RM: whenever the type name is encountered in an archetype, it is mapped to a specific RM type.</p>
-</div></div></td>
-</tr>
-<tr>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><strong>aom_rm_type_substitutions</strong>: <code>Hash&lt;String, String&gt;</code></p></td>
 <td class="tableblock halign-left valign-top"><div><div class="paragraph">
 <p>Allowed type substitutions: Actual RM type names keyed by AOM built-in types which can subsitute for them in an archetype. E.g. &lt;value = "String", key = "ISO8601_DATE"&gt; means that if RM property TYPE.some_property is of type String, an ISO8601_DATE is allowed at that position in the archetype.</p>
@@ -7535,7 +6862,16 @@ Hash of keys ("text", "description" etc) and corresponding values.</p>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>1..1</strong></p></th>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><strong>profile_name</strong>: <code>String</code></p></td>
-<td class="tableblock halign-left valign-top"><div></div></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>Name of this profile, usually based on the publisher it pertains to e.g. "openEHR", "cdisc", etc.</p>
+</div></div></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>aom_rm_type_mappings</strong>: <code>Hash&lt;String,AOM_TYPE_MAPPING&gt;</code></p></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>Mappings from AOM built-in types to actual types in RM: whenever the type name is encountered in an archetype, it is mapped to a specific RM type.</p>
+</div></div></td>
 </tr>
 </tbody>
 </table>
@@ -7580,7 +6916,7 @@ Hash of keys ("text", "description" etc) and corresponding values.</p>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>property_mappings</strong>: <code>List&lt;Hash&lt;AOM_PROPERTY_MAPPING, String&gt;&gt;</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>property_mappings</strong>: <code>Hash&lt;String,AOM_PROPERTY_MAPPING&gt;</code></p></td>
 <td class="tableblock halign-left valign-top"><div><div class="paragraph">
 <p>List of mappings of properties of this type to another type.</p>
 </div></div></td>
@@ -7615,12 +6951,16 @@ Hash of keys ("text", "description" etc) and corresponding values.</p>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>1..1</strong></p></th>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><strong>source_property_name</strong>: <code>String</code></p></td>
-<td class="tableblock halign-left valign-top"><div></div></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>Name of property in source class.</p>
+</div></div></td>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>1..1</strong></p></th>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><strong>target_property_name</strong>: <code>String</code></p></td>
-<td class="tableblock halign-left valign-top"><div></div></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>Name of property in target class.</p>
+</div></div></td>
 </tr>
 </tbody>
 </table>
@@ -7903,6 +7243,9 @@ Hash of keys ("text", "description" etc) and corresponding values.</p>
 <p><a id="Object_Z"></a>[Object_Z] Smith G. <strong>The Object Z Specification Language</strong>. Kluwer Academic Publishers 2000. See <a href="http://www.itee.uq.edu.au/~smith/objectz.html" class="bare">http://www.itee.uq.edu.au/~smith/objectz.html</a> .</p>
 </li>
 <li>
+<p><a id="GLIF"></a>[GLIF] Lucila Ohno-Machado, John H. Gennari, Shawn N. Murphy, Nilesh L. Jain, Samson W. Tu, Diane E. Oliver, Edward Pattison-Gordon, Robert A. Greenes, Edward H. Shortliffe, and G. Octo Barnett.  <strong>The GuideLine Interchange Format - A Model for Representing Guidelines</strong>. J Am Med Inform Assoc. 1998 Jul-Aug; 5(4): 357–372.</p>
+</li>
+<li>
 <p><a id="Rector_1994"></a>[Rector_1994] Rector A L, Nowlan W A, Kay S. <strong>Foundations for an Electronic Medical Record.</strong> The IMIA Yearbook of Medical Informatics 1992 (Eds. van Bemmel J, McRay A). Stuttgart Schattauer 1994.</p>
 </li>
 <li>
@@ -7955,7 +7298,13 @@ Hash of keys ("text", "description" etc) and corresponding values.</p>
 <p><a id="HL7v3_data_types"></a>[HL7v3_data_types] Schadow G, Biron P. <strong>HL7 version 3 deliverable: Version 3 Data Types.</strong> (2nd ballot 2002 version).</p>
 </li>
 <li>
-<p><a id="hl7_v3_rim"></a>[hl7_v3_rim] HL7. <strong>HL7 v3 RIM</strong>. See <a href="http://www.hl7.org" class="bare">http://www.hl7.org</a> .</p>
+<p><a id="hl7_v3_rim"></a>[hl7_v3_rim] HL7 International. <strong>HL7 v3 RIM</strong>. See <a href="http://www.hl7.org" class="bare">http://www.hl7.org</a> .</p>
+</li>
+<li>
+<p><a id="hl7_arden"></a>[hl7_arden] HL7 International. <strong>HL7 Arden Syntax</strong>. See <a href="http://www.hl7.org/Special/committees/Arden/index.cfm" class="bare">http://www.hl7.org/Special/committees/Arden/index.cfm</a> .</p>
+</li>
+<li>
+<p><a id="hl7_gello"></a>[hl7_gello] HL7 International. <strong>GELLO Decision Support Language</strong>. <a href="http://www.hl7.org/implement/standards/product_brief.cfm?product_id=5" class="bare">http://www.hl7.org/implement/standards/product_brief.cfm?product_id=5</a> .</p>
 </li>
 <li>
 <p><a id="IHTSDO_URIs"></a>[IHTSDO_URIs] IHTSDO. SNOMED CT URI Standard. <a href="http://ihtsdo.org/fileadmin/user_upload/doc/download/doc_UriStandard_Current-en-US_INT_20140527.pdf?ok" class="bare">http://ihtsdo.org/fileadmin/user_upload/doc/download/doc_UriStandard_Current-en-US_INT_20140527.pdf?ok</a>.</p>
@@ -8100,7 +7449,7 @@ Hash of keys ("text", "description" etc) and corresponding values.</p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2016-02-06 18:04:59 GMT
+Last updated 2016-03-10 14:03:38 GMT
 </div>
 </div>
 </body>

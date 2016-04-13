@@ -244,15 +244,17 @@ The rules for meta-type redefinition are as follows:
 ** an `ARCHETYPE_SLOT` , in order to close the slot.
 * A `C_ARCHETYPE_ROOT` node can be redefined by:
 ** A `C_ARCHETYPE_ROOT` , where the archetype_ref of the redefining node is a specialisation of that mentioned in the parent node.
-* A terminal `C_COMPLEX_OBJECT` node containing no constraint other than RM type, `_node_id_` and possibly occurrences (i.e. having no substructure), can be redefined by a constraint of any other AOM type.
+* A 'terminal' `C_COMPLEX_OBJECT` node containing no constraint other than RM type, `_node_id_` and possibly occurrences (i.e. having no substructure), can be redefined by a constraint of any other AOM type.
 
-The 'terminal `C_COMPLEX_OBJECT` ' can be understood as a placeholder node primarily defined for the purpose of stating meaning.
+The 'terminal' `C_COMPLEX_OBJECT` can be understood as a placeholder node primarily defined for the purpose of stating RM type and meaning (id-code).
 
 == Class Definitions
 
 include::{uml_export_dir}/classes/archetype_constraint.adoc[]
 
 include::{uml_export_dir}/classes/c_attribute.adoc[]
+
+include::{uml_export_dir}/classes/cardinality.adoc[]
 
 ==== Conformance Semantics
 
@@ -360,9 +362,8 @@ The following validity rule applies to cardinality redefinition in a specialised
 [.rule]
 *VSANCC*: specialised archetype attribute node cardinality conformance: the cardinality of a redefined (multiply-valued) attribute node in a specialised archetype, if stated, must conform to the cardinality of the corresponding node in the flat parent archetype by either being identical, or being wholly contained by the latter.
 
-include::{uml_export_dir}/classes/cardinality.adoc[]
-
 include::{uml_export_dir}/classes/c_object.adoc[]
+include::{uml_export_dir}/classes/sibling_order.adoc[]
 
 ==== Occurrences inferencing rules
 
@@ -514,7 +515,6 @@ _Deprecated_: *VSONI* specialised archetype redefined object node identifier val
 [.rule]
 *VSSM* specialised archetype sibling order validity: the sibling order node id code used in a sibling marker in a specialised archetype must refer to a node found within the same container in the flat parent archetype.
 
-include::{uml_export_dir}/classes/sibling_order.adoc[]
 include::{uml_export_dir}/classes/c_defined_object.adoc[]
 include::{uml_export_dir}/classes/c_complex_object.adoc[]
 
@@ -616,7 +616,7 @@ include::{uml_export_dir}/classes/c_primitive_object.adoc[]
 
 ==== Validity Rules
 
-The validity rules for `C_PRIMITIVE_OBJECTs` are as follows:
+Validity rules applying to all `C_PRIMITIVE_OBJECT` types are as follows:
 
 [.rule]
 *VOBAV* object node assumed value validity: the value of an assumed value must fall within the value space defined by the constraint to which it is attached.
@@ -686,6 +686,9 @@ c_congruent_to (other: like Current): Boolean
 ---------
 
 include::{uml_export_dir}/classes/c_string.adoc[]
+
+[.tbd]
+TBD: there is an argument for only allowing a single String value rather than a list, where the value is aways a regex since `{"platypus", "kangaroo", "wombat"}` can be expressed as `{/platypus|kangaroo|wombat/}`. See also ADL spec.
 
 ==== Conformance semantics
 
