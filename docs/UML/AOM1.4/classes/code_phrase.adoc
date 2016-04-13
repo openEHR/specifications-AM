@@ -6,25 +6,20 @@ h|*Class*
 2+^h|*CODE_PHRASE*
 
 h|*Description*
-2+a|Logically primitive type representing a reference to a terminology concept, in the form of a terminology identifier, optional version, and a code or code string from the terminology.
+2+a|A fully coordinated (i.e. all  coordination  has been performed) term from a terminology service (as distinct from a particular terminology).
 
 h|*Attributes*
 ^h|*Signature*
 ^h|*Meaning*
 
 h|*1..1*
-|*terminology_id*: `String`
-a|The archetype environment namespace identifier used to identify a terminology. Typically a value like "snomed_ct" that is mapped elsewhere to the full URI identifying the terminology.
-
-h|*0..1*
-|*terminology_version*: `String`
-a|Optional string value representing terminology version, typically a date or dotted numeric.
+|*terminology_id*: `TERMINOLOGY_ID`
+a|Identifier of the distinct terminology from which the code_string (or its elements) was extracted.
 
 h|*1..1*
 |*code_string*: `String`
-a|A terminology code or post-coordinated code expression, if supported by the terminology.
+a|The key used by the terminology service to identify a concept or coordination of concepts.  This string is most likely parsable inside the terminology service, but nothing can be assumed about its syntax outside that context.
 
-h|*0..1*
-|*uri*: `Uri`
-a|The URI equivalent of the other three attributes.
+h|*Invariant*
+2+a|*_Code_string_valid_*: not code_string.is_empty
 |===

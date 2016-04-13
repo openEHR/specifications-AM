@@ -6,13 +6,52 @@ h|*Class*
 2+^h|*RESOURCE_DESCRIPTION*
 
 h|*Description*
-2+a|
+2+a|Defines the descriptive meta-data of a resource.
 
 h|*Attributes*
 ^h|*Signature*
 ^h|*Meaning*
 
 h|*1..1*
-|*parent_resource*: 
-a|
+|*original_author*: `Hash<String, String>`
+a|Original author of this resource, with all relevant details, including organisation.
+
+h|*0..1*
+|*other_contributors*: `List<String>`
+a|Other contributors to the resource, probably listed in  name <email>  form.
+
+h|*1..1*
+|*lifecycle_state*: `String`
+a|Lifecycle state of the resource, typically including states such as: initial, submitted, experimental, awaiting_approval, approved, superseded, obsolete.
+
+h|*0..1*
+|*resource_package_uri*: `String`
+a|URI of package to which this resource belongs.
+
+h|*0..1*
+|*other_details*: `Hash<String, String>`
+a|Additional non language-senstive resource meta-data, as a list of name/value pairs.
+
+h|*1..1*
+|*parent_resource*: `AUTHORED_RESOURCE{nbsp}={nbsp}0..1`
+a|Reference to owning resource.
+
+h|*1..1*
+|*details*: `Hash<String,RESOURCE_DESCRIPTION_ITEM>`
+a|Details of all parts of resource description that are natural language-dependent, keyed by language code.
+
+h|*Invariant*
+2+a|*_Original_author_valid_*: not original_author.is_empty
+
+h|
+2+a|*_Lifecycle_state_valid_*: not lifecycle_state.is_empty
+
+h|
+2+a|*_Details_valid_*: not details.is_empty
+
+h|
+2+a|*_Language_valid_*: parent_resource /= Void implies details.for_all (d &#124; parent_resource.languages_available.has (d.language.code_string))
+
+h|
+2+a|*_Parent_resource_valid_*: parent_resource /= Void implies parent_resource.description = self
 |===
