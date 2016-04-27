@@ -1,10 +1,19 @@
 = The Rules Package
 
+NOTE: the semantics described in this part of the model should not yet be considered stable, as it depends on the openEHR Expression Language, which is still be stabilised.
+
 == Overview
 
-The AOM `rules` package builds upon a subset of the `BASE::org::openehr::statement` package described in the {openehr_expression}[openEHR Expression Language specification], and adds a small number of classes to express leaf reference types specific to archetypes. This enables assertions to be stated within archetypes using archetype paths as values and also the `matches` operator and `C_PRIMITIVE_OBJECT` constraints.
+The AOM `rules` package builds upon a subset of the `BASE::org::openehr::expressions` package described in the {openehr_expression}[openEHR Expression Language specification], and adds a small number of classes to express leaf reference types specific to archetypes. This enables expressions to be declared within archetypes that:
 
-Assertions can be used in two places in archetypes. The first is the use of expressions to express archetype slot constraints in instances of the `ARCHETYPE_SLOT` class (`_includes_` and `_excludes_` attributes). The second place is in the archetype `rules` section, where both variable declarataions and assertions are used to express object constraints ranging across multiple nodes, i.e. constraints that can't be expressed 'inline' within the main `definition` section structure. In both of these places, their role is to constrain something _inside_ the current archetype. Constraints on external resources such as terminologies are expressed in the constraint binding part in the archetype `terminology`, described in the <<Terminology Package>> section. The assertion package is illustrated below.
+* use archetype paths as value references, and;
+* include `C_PRIMITIVE_OBJECT` constraints as Boolean-valued sub-expressions.
+
+A special case of the latter is the `C_STRING` leaf constraint type, which is used to represent archetype slot constraints in instances of the `ARCHETYPE_SLOT` class (`_includes_` and `_excludes_` attributes).
+
+The general use of expressions in an archetype is in the `rules` section, where both variable declarataions and assertions are used to express object constraints ranging across multiple nodes, i.e. constraints that can't be expressed 'inline' within the main `definition` section structure. In both of these places, their role is to constrain something _inside_ the current archetype. 
+
+Constraints on external resources such as terminologies are expressed in the constraint binding part in the archetype `terminology`, described in the <<Terminology Package>> section. The AOM `rules` package is illustrated below.
 
 [.text-center]
 .Rules Package
@@ -25,7 +34,7 @@ Archetype assertions are expressions which may contain the following elements:
 ** _quantifiers_ applied to container variables: `for_all`, `exists`;
 * _functions_ e.g. basic arithmetic, trigonometric and other functions;
 * the following additional semantics:
-** _references_ to archetyped values in data, specified by archetype paths;
+** _references_ to archetyped values in data, specified by archetype paths.
 
 Variables, assignments, and external queries as described in the main openEHR Rules language are not allowed.
 

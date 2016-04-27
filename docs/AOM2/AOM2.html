@@ -457,10 +457,18 @@
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a id="latest_issue"></a>2.0.6</p></td>
 <td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>Change Rules section to document re-use of new openEHR Expression Language and Model.</p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">T Beale</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a id="latest_issue_date"></a>28 Apr 2016</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
 <p><a href="https://openehr.atlassian.net/browse/SPECBASE-4">SPECBASE-4</a>Change order of type parameters in <code>Hash&lt;V,K&gt;</code> type to <code>Hash&lt;K,V&gt;</code>.</p>
 </div></div></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">D Boscá</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a id="latest_issue_date"></a>13 Apr 2016</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">13 Apr 2016</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"></td>
@@ -5574,13 +5582,41 @@ For a slot-filler or a redefined external reference, the node_id is set to a spe
 <div class="sect1">
 <h2 id="_the_rules_package"><a class="anchor" href="#_the_rules_package"></a>5. The Rules Package</h2>
 <div class="sectionbody">
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Note</div>
+</td>
+<td class="content">
+the semantics described in this part of the model should not yet be considered stable, as it depends on the openEHR Expression Language, which is still be stabilised.
+</td>
+</tr>
+</table>
+</div>
 <div class="sect2">
 <h3 id="_overview_4"><a class="anchor" href="#_overview_4"></a>5.1. Overview</h3>
 <div class="paragraph">
-<p>The AOM <code>rules</code> package builds upon a subset of the <code>BASE::org::openehr::statement</code> package described in the <a href="http://www.openehr.org/releases/BASE/latest/expression.html">openEHR Expression Language specification</a>, and adds a small number of classes to express leaf reference types specific to archetypes. This enables assertions to be stated within archetypes using archetype paths as values and also the <code>matches</code> operator and <code>C_PRIMITIVE_OBJECT</code> constraints.</p>
+<p>The AOM <code>rules</code> package builds upon a subset of the <code>BASE::org::openehr::expressions</code> package described in the <a href="http://www.openehr.org/releases/BASE/latest/expression.html">openEHR Expression Language specification</a>, and adds a small number of classes to express leaf reference types specific to archetypes. This enables expressions to be declared within archetypes that:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>use archetype paths as value references, and;</p>
+</li>
+<li>
+<p>include <code>C_PRIMITIVE_OBJECT</code> constraints as Boolean-valued sub-expressions.</p>
+</li>
+</ul>
 </div>
 <div class="paragraph">
-<p>Assertions can be used in two places in archetypes. The first is the use of expressions to express archetype slot constraints in instances of the <code>ARCHETYPE_SLOT</code> class (<code><em>includes</em></code> and <code><em>excludes</em></code> attributes). The second place is in the archetype <code>rules</code> section, where both variable declarataions and assertions are used to express object constraints ranging across multiple nodes, i.e. constraints that can&#8217;t be expressed 'inline' within the main <code>definition</code> section structure. In both of these places, their role is to constrain something <em>inside</em> the current archetype. Constraints on external resources such as terminologies are expressed in the constraint binding part in the archetype <code>terminology</code>, described in the <a href="#_terminology_package">Terminology Package</a> section. The assertion package is illustrated below.</p>
+<p>A special case of the latter is the <code>C_STRING</code> leaf constraint type, which is used to represent archetype slot constraints in instances of the <code>ARCHETYPE_SLOT</code> class (<code><em>includes</em></code> and <code><em>excludes</em></code> attributes).</p>
+</div>
+<div class="paragraph">
+<p>The general use of expressions in an archetype is in the <code>rules</code> section, where both variable declarataions and assertions are used to express object constraints ranging across multiple nodes, i.e. constraints that can&#8217;t be expressed 'inline' within the main <code>definition</code> section structure. In both of these places, their role is to constrain something <em>inside</em> the current archetype.</p>
+</div>
+<div class="paragraph">
+<p>Constraints on external resources such as terminologies are expressed in the constraint binding part in the archetype <code>terminology</code>, described in the <a href="#_terminology_package">Terminology Package</a> section. The AOM <code>rules</code> package is illustrated below.</p>
 </div>
 <div id="rules_package" class="imageblock text-center" style="text-align: center">
 <div class="content">
@@ -5639,7 +5675,7 @@ For a slot-filler or a redefined external reference, the node_id is set to a spe
 <div class="ulist">
 <ul>
 <li>
-<p><em>references</em> to archetyped values in data, specified by archetype paths;</p>
+<p><em>references</em> to archetyped values in data, specified by archetype paths.</p>
 </li>
 </ul>
 </div>
@@ -7292,7 +7328,10 @@ Hash of keys ("text", "description" etc) and corresponding values.</p>
 <p><a id="Corbamed_LQS"></a>[Corbamed_LQS] Object Management Group. <strong>Lexicon Query Service.</strong> March 1999. <a href="http://www.omg.org/spec/LQS/" class="bare">http://www.omg.org/spec/LQS/</a> .</p>
 </li>
 <li>
-<p><a id="HL7v3_ballot2"></a>[HL7v3_ballot2] JL7 International. <strong>HL7 version 3 2nd Ballot specification</strong>. Available at <a href="http://www.hl7.org" class="bare">http://www.hl7.org</a>.</p>
+<p><a id="hl7_cda"></a>[hl7_cda] HL7 International. <strong>HL7 version Clinical Document Architecture (CDA)</strong>. Available at <a href="http://www.hl7.org.uk/version3group/cda.asp" class="bare">http://www.hl7.org.uk/version3group/cda.asp</a>.</p>
+</li>
+<li>
+<p><a id="HL7v3_ballot2"></a>[HL7v3_ballot2] HL7 International. <strong>HL7 version 3 2nd Ballot specification</strong>. Available at <a href="http://www.hl7.org" class="bare">http://www.hl7.org</a>.</p>
 </li>
 <li>
 <p><a id="HL7v3_data_types"></a>[HL7v3_data_types] Schadow G, Biron P. <strong>HL7 version 3 deliverable: Version 3 Data Types.</strong> (2nd ballot 2002 version).</p>
@@ -7313,10 +7352,10 @@ Hash of keys ("text", "description" etc) and corresponding values.</p>
 <p><a id="NLM_UML_list"></a>[NLM_UML_list] National Library of Medicine. UMLS Terminologies List. <a href="http://www.nlm.nih.gov/research/umls/metaa1.html" class="bare">http://www.nlm.nih.gov/research/umls/metaa1.html</a>.</p>
 </li>
 <li>
-<p><a id="ISO_13606-1"></a>[ISO_13606-1] <strong>ISO 13606-1 - Electronic healthcare record communication - Part 1: Extended architecture.</strong> CEN TC251 Health Informatics Technical Committee.</p>
+<p><a id="ISO_13606-1"></a>[ISO_13606-1] <strong>ISO 13606-1 - Electronic healthcare record communication - Part 1: Extended architecture.</strong> CEN TC251 Health Informatics Technical Committee. Available at <a href="http://www.iso.org/iso/catalogue_detail.htm?csnumber=40784" class="bare">http://www.iso.org/iso/catalogue_detail.htm?csnumber=40784</a> .</p>
 </li>
 <li>
-<p><a id="ISO_13606-2"></a>[ISO_13606-2] <strong>ISO 13606-2 - Electronic healthcare record communication - Part 2: Domain term list.</strong> CEN TC251 Health Informatics Technical Committee.</p>
+<p><a id="ISO_13606-2"></a>[ISO_13606-2] <strong>ISO 13606-2 - Electronic healthcare record communication - Part 2: Domain term list.</strong> CEN TC251 Health Informatics Technical Committee. Available at <a href="http://www.iso.org/iso/iso_catalogue/catalogue_tc/catalogue_detail.htm?csnumber=50119" class="bare">http://www.iso.org/iso/iso_catalogue/catalogue_tc/catalogue_detail.htm?csnumber=50119</a> .</p>
 </li>
 <li>
 <p><a id="ISO_13606-3"></a>[ISO_13606-3] <strong>ISO 13606-3 - Electronic healthcare record communication - Part 3: Distribution rules.</strong> CEN TC251 Health Informatics Technical Committee.</p>
