@@ -8,12 +8,16 @@ h|*Class*
 h|*Description*
 2+a|ISO 8601-compatible constraint on instances of Time in the form either of a set of validity values, or else date ranges based on the C_ORDERED list constraint. There is no validity flag for ‘hour’, since it must always be by definition mandatory in order to have a sensible time at all. Syntax expressions of instances of this class include “HH:??:xx” (time with optional minutes and seconds not allowed).
 
+h|*Inherit*
+2+|C_TEMPORAL
+
 h|*Attributes*
 ^h|*Signature*
 ^h|*Meaning*
 
-h|*1..1*
-|*constraint*: `List<Interval<ISO8601_TIME>>`
+h|*0..1 +
+(redefined)*
+|*constraint*: `List<Interval<Time>>`
 a|Formal constraint on ISO8601_TIME, in the form of a List of Interval<ISO8601_TIME>.
 h|*Functions*
 ^h|*Signature*
