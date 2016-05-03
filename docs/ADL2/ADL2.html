@@ -5272,7 +5272,7 @@ the syntax of this section should not yet be considered stable, as it depends on
 <div class="sect2">
 <h3 id="_annotations_section"><a class="anchor" href="#_annotations_section"></a>7.13. Annotations Section</h3>
 <div class="paragraph">
-<p>The annotations section of an archetype or template provides a place for node-level meta-data to be added to the archetype. This can be used during the design phase to track dependencies, design decisions, and specific resource references.</p>
+<p>The <code>annotations</code> section of an archetype or template provides a place for node-level meta-data to be added. This can be used during the design phase to track dependencies, design decisions, and specific resource references.</p>
 </div>
 <div class="paragraph">
 <p>Annotations are divided into major named groups. Currently a <code>documentation</code> group is defined, intended for documentary (i.e. human-readable text) annotations. Other groups are likely to be defined in the future for various kinds of processing, where the annotations may be formal expressions or code fragments.</p>
@@ -5349,7 +5349,7 @@ the syntax of this section should not yet be considered stable, as it depends on
 <div class="sect2">
 <h3 id="_revision_history_section_2"><a class="anchor" href="#_revision_history_section_2"></a>7.14. Revision History Section</h3>
 <div class="paragraph">
-<p>The revision history section of an archetype shows the audit history of changes to the archetype, and is expressed in ODIN syntax. It is optional, and is included at the end of the archetype, since it does not contain content of direct interest to archetype authors, and will monotonically grow in size. Where archetypes are stored in a version-controlled repository such as CVS or some commercial product, the revision history section would normally be regenerated each time by the authoring software, e.g. via processing of the output of the 'prs' command used with SCCS files, or 'rlog' for RCS files. The following shows a typical example, with entries in most-recent-first order (although technically speaking, the order is irrelevant to ADL).</p>
+<p>The revision history section of an archetype shows the audit history of changes to the archetype, and is expressed in ODIN syntax. It is optional, and is included at the end of the archetype, since it does not contain content of direct interest to archetype authors, and will monotonically grow in size. Where archetypes are stored in a version-controlled repository such as CVS or some commercial product, the revision history section would normally be regenerated each time by the authoring software, e.g. via processing of the output of the <code>prs</code> command used with SCCS files, or <code>rlog</code> for RCS files. The following shows a typical example, with entries in most-recent-first order (although technically speaking, the order is irrelevant to ADL).</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -5457,13 +5457,13 @@ the syntax of this section should not yet be considered stable, as it depends on
 <p>Taken together, these issues necessitate a design strategy that doesn&#8217;t rely in the first instance on external terminologies to provide either identifiers (names of things), values (taken individually) or explicit value sets. Instead, archetypes rely on internal coding of all identifiable elements (nodes with id-codes), as well as the availability of a mechanism for defining at least the 'small' value sets - the ac- and at-codes.</p>
 </div>
 <div class="paragraph">
-<p>Connection with terminology is managed using in the <code>term_binding</code> section described earlier, and also via transformation from archetypes and template to the deployable operational template. The sections below describe various use cases for terminology constraint, binding and deployment.</p>
+<p>Connection with external terminology is managed using in the <code>term_binding</code> section described earlier, and also via transformation from archetypes and template to the deployable operational template. The sections below describe various use cases for terminology constraint, binding and deployment.</p>
 </div>
 </div>
 <div class="sect2">
 <h3 id="_term_constraint_basics"><a class="anchor" href="#_term_constraint_basics"></a>8.2. Term Constraint Basics</h3>
 <div class="paragraph">
-<p>Expressing terminology constraints in cADL was briefly described in <a href="#cADL_Terminology_Constraints">Terminology Constraints</a>. Constraints in with <code>definition</code> part of the archetype are only a small part of the picture. The targets of of the at- and ac- codes are defined in the archetype terminology, potentially with bindings to external terminology. In order to illustrate the approach clearly, the cADL example from earlier is repeated here, minus the node containing the assumed value, and this time with an extract from the terminology section.</p>
+<p>Expressing terminology constraints in cADL was briefly described in <a href="#cADL_Terminology_Constraints">Terminology Constraints</a>. Constraints in the <code>definition</code> section of an archetype are only a small part of the picture. The targets of of the at- and ac- codes are defined in the archetype <code>terminology</code> section, potentially with bindings to external terminology. In order to illustrate the approach clearly, the cADL example from earlier is repeated here, minus the node containing the assumed value, and this time with an extract from the terminology section.</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -5529,7 +5529,7 @@ the syntax of this section should not yet be considered stable, as it depends on
 </div>
 </div>
 <div class="paragraph">
-<p>The at- and ac- codes (and of course id-codes) in the above are defined in the archetype terminology in the normal way, with various possibilities for defining and binding the value set. Below is shown the first alternative: local value-set definition.</p>
+<p>The at- and ac- codes (and of course id-codes) in the above are defined in the archetype terminology in the normal way (noting that codes <code>id8</code> and <code>id55</code> do not need local terminology definitions, following the rules described earlier<a href="#_node_identifiers_2">Node Identifiers</a>), with various possibilities for defining and binding the value set denoted by the code <code>ac1</code>. Below is shown the first alternative: local value-set definition.</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -5550,7 +5550,7 @@ the syntax of this section should not yet be considered stable, as it depends on
 </div>
 </div>
 <div class="paragraph">
-<p>The <code>value_sets</code> section shows the definition of the <code>ac1</code> value set as containing the five codes <code>at10</code> - <code>at14</code> (note: this is not clinically complete). A local value set definition is part of the archetype, and has no reliance on external terminology. For many value sets, definition in the archetype is the only option available either due to their arbitrary contents, specificity (to the archetype) or the simple practical fact that no-one has done the work to create them elsewhere.</p>
+<p>The <code>value_sets</code> sub-section shows the definition of the <code>ac1</code> value set as containing the five codes <code>at10</code> - <code>at14</code> (note: this does not attempt to be clinically complete). A local value set definition is part of the archetype, and has no reliance on external terminology. For many value sets, definition in the archetype is the only option available either due to their arbitrary contents, specificity (to the archetype) or the simple practical fact that no-one has done the work to create them elsewhere.</p>
 </div>
 <div class="paragraph">
 <p>The next variation is that bindings are found for the at-codes from a terminology such as SNOMED CT. This would enable the code chosen at runtime in the system using the archetype to be mapped to a SNOMED CT code.</p>
@@ -5585,11 +5585,11 @@ it is quite common that only <em>some</em> of the local at-codes have equivalent
     <span class="tok-p">&gt;</span>
     <span class="tok-nc">term_bindings</span> <span class="tok-o">=</span> <span class="tok-p">&lt;</span>
         <span class="tok-p">[</span><span class="tok-s">&quot;snomed_ct&quot;</span><span class="tok-p">]</span> <span class="tok-o">=</span> <span class="tok-p">&lt;</span>
-            <span class="tok-p">[</span><span class="tok-s">&quot;at10&quot;</span><span class="tok-p">]</span> <span class="tok-o">=</span> <span class="tok-p">&lt;</span><span class="tok-l">http://snomed.info/406464007</span><span class="tok-p">&gt;</span> <span class="tok-c">-- Pollen allergen (substance)</span>
-            <span class="tok-p">[</span><span class="tok-s">&quot;at11&quot;</span><span class="tok-p">]</span> <span class="tok-o">=</span> <span class="tok-p">&lt;</span><span class="tok-l">http://snomed.info/406470001</span><span class="tok-p">&gt;</span> <span class="tok-c">-- Insect allergen (substance)</span>
-            <span class="tok-p">[</span><span class="tok-s">&quot;at12&quot;</span><span class="tok-p">]</span> <span class="tok-o">=</span> <span class="tok-p">&lt;</span><span class="tok-l">http://snomed.info/406472009</span><span class="tok-p">&gt;</span> <span class="tok-c">-- Animal protein and epidermal allergen (substance)</span>
-            <span class="tok-p">[</span><span class="tok-s">&quot;at13&quot;</span><span class="tok-p">]</span> <span class="tok-o">=</span> <span class="tok-p">&lt;</span><span class="tok-l">http://snomed.info/410981007</span><span class="tok-p">&gt;</span> <span class="tok-c">-- Plant extract and epidermal allergen (substance)</span>
-            <span class="tok-p">[</span><span class="tok-s">&quot;at14&quot;</span><span class="tok-p">]</span> <span class="tok-o">=</span> <span class="tok-p">&lt;</span><span class="tok-l">http://snomed.info/410980008</span><span class="tok-p">&gt;</span> <span class="tok-c">-- Dust allergen (substance)</span>
+            <span class="tok-p">[</span><span class="tok-s">&quot;at10&quot;</span><span class="tok-p">]</span> <span class="tok-o">=</span> <span class="tok-p">&lt;</span><span class="tok-l">http://snomed.info/id/406464007</span><span class="tok-p">&gt;</span> <span class="tok-c">-- Pollen allergen (substance)</span>
+            <span class="tok-p">[</span><span class="tok-s">&quot;at11&quot;</span><span class="tok-p">]</span> <span class="tok-o">=</span> <span class="tok-p">&lt;</span><span class="tok-l">http://snomed.info/id/406470001</span><span class="tok-p">&gt;</span> <span class="tok-c">-- Insect allergen (substance)</span>
+            <span class="tok-p">[</span><span class="tok-s">&quot;at12&quot;</span><span class="tok-p">]</span> <span class="tok-o">=</span> <span class="tok-p">&lt;</span><span class="tok-l">http://snomed.info/id/406472009</span><span class="tok-p">&gt;</span> <span class="tok-c">-- Animal protein and epidermal allergen (substance)</span>
+            <span class="tok-p">[</span><span class="tok-s">&quot;at13&quot;</span><span class="tok-p">]</span> <span class="tok-o">=</span> <span class="tok-p">&lt;</span><span class="tok-l">http://snomed.info/id/410981007</span><span class="tok-p">&gt;</span> <span class="tok-c">-- Plant extract and epidermal allergen (substance)</span>
+            <span class="tok-p">[</span><span class="tok-s">&quot;at14&quot;</span><span class="tok-p">]</span> <span class="tok-o">=</span> <span class="tok-p">&lt;</span><span class="tok-l">http://snomed.info/id/410980008</span><span class="tok-p">&gt;</span> <span class="tok-c">-- Dust allergen (substance)</span>
         <span class="tok-p">&gt;</span>
     <span class="tok-p">&gt;</span></code></pre>
 </div>
@@ -5625,11 +5625,11 @@ it is quite common that only <em>some</em> of the local at-codes have equivalent
     <span class="tok-nc">term_bindings</span> <span class="tok-o">=</span> <span class="tok-p">&lt;</span>
         <span class="tok-p">[</span><span class="tok-s">&quot;snomed_ct&quot;</span><span class="tok-p">]</span> <span class="tok-o">=</span> <span class="tok-p">&lt;</span>
             <span class="tok-p">[</span><span class="tok-s">&quot;ac1&quot;</span><span class="tok-p">]</span> <span class="tok-o">=</span> <span class="tok-p">&lt;</span><span class="tok-l">http://snomed.info/id/900000000000123456</span><span class="tok-p">&gt;</span> <span class="tok-c">-- value set binding</span>
-            <span class="tok-p">[</span><span class="tok-s">&quot;at10&quot;</span><span class="tok-p">]</span> <span class="tok-o">=</span> <span class="tok-p">&lt;</span><span class="tok-l">http://snomed.info/406464007</span><span class="tok-p">&gt;</span> <span class="tok-c">-- Pollen allergen (substance)</span>
-            <span class="tok-p">[</span><span class="tok-s">&quot;at11&quot;</span><span class="tok-p">]</span> <span class="tok-o">=</span> <span class="tok-p">&lt;</span><span class="tok-l">http://snomed.info/406470001</span><span class="tok-p">&gt;</span> <span class="tok-c">-- Insect allergen (substance)</span>
-            <span class="tok-p">[</span><span class="tok-s">&quot;at12&quot;</span><span class="tok-p">]</span> <span class="tok-o">=</span> <span class="tok-p">&lt;</span><span class="tok-l">http://snomed.info/406472009</span><span class="tok-p">&gt;</span> <span class="tok-c">-- Animal protein and epidermal allergen (substance)</span>
-            <span class="tok-p">[</span><span class="tok-s">&quot;at13&quot;</span><span class="tok-p">]</span> <span class="tok-o">=</span> <span class="tok-p">&lt;</span><span class="tok-l">http://snomed.info/410981007</span><span class="tok-p">&gt;</span> <span class="tok-c">-- Plant extract and epidermal allergen (substance)</span>
-            <span class="tok-p">[</span><span class="tok-s">&quot;at14&quot;</span><span class="tok-p">]</span> <span class="tok-o">=</span> <span class="tok-p">&lt;</span><span class="tok-l">http://snomed.info/410980008</span><span class="tok-p">&gt;</span> <span class="tok-c">-- Dust allergen (substance)</span>
+            <span class="tok-p">[</span><span class="tok-s">&quot;at10&quot;</span><span class="tok-p">]</span> <span class="tok-o">=</span> <span class="tok-p">&lt;</span><span class="tok-l">http://snomed.info/id/406464007</span><span class="tok-p">&gt;</span> <span class="tok-c">-- Pollen allergen (substance)</span>
+            <span class="tok-p">[</span><span class="tok-s">&quot;at11&quot;</span><span class="tok-p">]</span> <span class="tok-o">=</span> <span class="tok-p">&lt;</span><span class="tok-l">http://snomed.info/id/406470001</span><span class="tok-p">&gt;</span> <span class="tok-c">-- Insect allergen (substance)</span>
+            <span class="tok-p">[</span><span class="tok-s">&quot;at12&quot;</span><span class="tok-p">]</span> <span class="tok-o">=</span> <span class="tok-p">&lt;</span><span class="tok-l">http://snomed.info/id/406472009</span><span class="tok-p">&gt;</span> <span class="tok-c">-- Animal protein and epidermal allergen (substance)</span>
+            <span class="tok-p">[</span><span class="tok-s">&quot;at13&quot;</span><span class="tok-p">]</span> <span class="tok-o">=</span> <span class="tok-p">&lt;</span><span class="tok-l">http://snomed.info/id/410981007</span><span class="tok-p">&gt;</span> <span class="tok-c">-- Plant extract and epidermal allergen (substance)</span>
+            <span class="tok-p">[</span><span class="tok-s">&quot;at14&quot;</span><span class="tok-p">]</span> <span class="tok-o">=</span> <span class="tok-p">&lt;</span><span class="tok-l">http://snomed.info/id/410980008</span><span class="tok-p">&gt;</span> <span class="tok-c">-- Dust allergen (substance)</span>
         <span class="tok-p">&gt;</span>
     <span class="tok-p">&gt;</span></code></pre>
 </div>
@@ -5734,7 +5734,7 @@ it is quite common that only <em>some</em> of the local at-codes have equivalent
 <div class="sect2">
 <h3 id="_overview_6"><a class="anchor" href="#_overview_6"></a>9.1. Overview</h3>
 <div class="paragraph">
-<p>Archetypes can be specialised in a similar way to classes in object-oriented programming languages. Common to both situations is the use of a differential style of declaration, i.e. the contents of a specialised entity are expressed as differences with respect to the parent - previously defined elements from the parent that are not changed are not repeated in the descendant. Two extra constructs are included in the ADL syntax to support redefinition in specialised archetypes or templates.</p>
+<p>Archetypes can be specialised in a similar way to classes in object-oriented programming languages. Common to both situations is the use of a differential style of declaration, i.e. the contents of a specialised artefact are expressed as differences with respect to the parent artefact - previously defined elements from the parent that are not changed are not repeated in the descendant. Two extra constructs are included in the ADL syntax to support redefinition in specialised archetypes or templates.</p>
 </div>
 <div class="paragraph">
 <p>The basic test that must be satisfied by a specialised archetype is as follows:</p>
@@ -5750,7 +5750,7 @@ it is quite common that only <em>some</em> of the local at-codes have equivalent
 <p>This condition ensures that data created by a specialised archetype that is not itself shared by two systems can be processed by the use of a more general parent that is shared.</p>
 </div>
 <div class="paragraph">
-<p>The semantics that allow this are similar to the 'covariant redefinition' (see <a href="#cov_contra">[cov_contra]</a>) notion used in some object-oriented programming languages, and can be summarised as follows.</p>
+<p>The semantics that allow this are similar to the 'covariant redefinition' <a href="#cov_contra">[cov_contra]</a> notion used in some object-oriented programming languages, and can be summarised as follows.</p>
 </div>
 <div class="ulist">
 <ul>

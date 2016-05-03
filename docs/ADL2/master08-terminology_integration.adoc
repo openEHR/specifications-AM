@@ -33,11 +33,11 @@ In sum, external terminologies address certain types of information very well, a
 
 Taken together, these issues necessitate a design strategy that doesn't rely in the first instance on external terminologies to provide either identifiers (names of things), values (taken individually) or explicit value sets. Instead, archetypes rely on internal coding of all identifiable elements (nodes with id-codes), as well as the availability of a mechanism for defining at least the 'small' value sets - the ac- and at-codes.
 
-Connection with terminology is managed using in the `term_binding` section described earlier, and also via transformation from archetypes and template to the deployable operational template. The sections below describe various use cases for terminology constraint, binding and deployment.
+Connection with external terminology is managed using in the `term_binding` section described earlier, and also via transformation from archetypes and template to the deployable operational template. The sections below describe various use cases for terminology constraint, binding and deployment.
 
 == Term Constraint Basics
 
-Expressing terminology constraints in cADL was briefly described in <<cADL_Terminology_Constraints>>. Constraints in with `definition` part of the archetype are only a small part of the picture. The targets of of the at- and ac- codes are defined in the archetype terminology, potentially with bindings to external terminology. In order to illustrate the approach clearly, the cADL example from earlier is repeated here, minus the node containing the assumed value, and this time with an extract from the terminology section.
+Expressing terminology constraints in cADL was briefly described in <<cADL_Terminology_Constraints>>. Constraints in the `definition` section of an archetype are only a small part of the picture. The targets of of the at- and ac- codes are defined in the archetype `terminology` section, potentially with bindings to external terminology. In order to illustrate the approach clearly, the cADL example from earlier is repeated here, minus the node containing the assumed value, and this time with an extract from the terminology section.
 
 [source, adl]
 --------
@@ -102,7 +102,7 @@ terminology
     >
 --------
 
-The at- and ac- codes (and of course id-codes) in the above are defined in the archetype terminology in the normal way, with various possibilities for defining and binding the value set. Below is shown the first alternative: local value-set definition.
+The at- and ac- codes (and of course id-codes) in the above are defined in the archetype terminology in the normal way (noting that codes `id8` and `id55` do not need local terminology definitions, following the rules described earlier<<_node_identifiers_2>>), with various possibilities for defining and binding the value set denoted by the code `ac1`. Below is shown the first alternative: local value-set definition.
 
 [source, adl]
 --------
@@ -122,7 +122,7 @@ terminology
     >
 --------
 
-The `value_sets` section shows the definition of the `ac1` value set as containing the five codes `at10` - `at14` (note: this is not clinically complete). A local value set definition is part of the archetype, and has no reliance on external terminology. For many value sets, definition in the archetype is the only option available either due to their arbitrary contents, specificity (to the archetype) or the simple practical fact that no-one has done the work to create them elsewhere.
+The `value_sets` sub-section shows the definition of the `ac1` value set as containing the five codes `at10` - `at14` (note: this does not attempt to be clinically complete). A local value set definition is part of the archetype, and has no reliance on external terminology. For many value sets, definition in the archetype is the only option available either due to their arbitrary contents, specificity (to the archetype) or the simple practical fact that no-one has done the work to create them elsewhere.
 
 The next variation is that bindings are found for the at-codes from a terminology such as SNOMED CT. This would enable the code chosen at runtime in the system using the archetype to be mapped to a SNOMED CT code.
 
@@ -146,11 +146,11 @@ terminology
     >
     term_bindings = <
         ["snomed_ct"] = <
-            ["at10"] = <http://snomed.info/406464007> -- Pollen allergen (substance)
-            ["at11"] = <http://snomed.info/406470001> -- Insect allergen (substance)
-            ["at12"] = <http://snomed.info/406472009> -- Animal protein and epidermal allergen (substance)
-            ["at13"] = <http://snomed.info/410981007> -- Plant extract and epidermal allergen (substance)
-            ["at14"] = <http://snomed.info/410980008> -- Dust allergen (substance)
+            ["at10"] = <http://snomed.info/id/406464007> -- Pollen allergen (substance)
+            ["at11"] = <http://snomed.info/id/406470001> -- Insect allergen (substance)
+            ["at12"] = <http://snomed.info/id/406472009> -- Animal protein and epidermal allergen (substance)
+            ["at13"] = <http://snomed.info/id/410981007> -- Plant extract and epidermal allergen (substance)
+            ["at14"] = <http://snomed.info/id/410980008> -- Dust allergen (substance)
         >
     >
 --------
@@ -182,11 +182,11 @@ terminology
     term_bindings = <
         ["snomed_ct"] = <
             ["ac1"] = <http://snomed.info/id/900000000000123456> -- value set binding
-            ["at10"] = <http://snomed.info/406464007> -- Pollen allergen (substance)
-            ["at11"] = <http://snomed.info/406470001> -- Insect allergen (substance)
-            ["at12"] = <http://snomed.info/406472009> -- Animal protein and epidermal allergen (substance)
-            ["at13"] = <http://snomed.info/410981007> -- Plant extract and epidermal allergen (substance)
-            ["at14"] = <http://snomed.info/410980008> -- Dust allergen (substance)
+            ["at10"] = <http://snomed.info/id/406464007> -- Pollen allergen (substance)
+            ["at11"] = <http://snomed.info/id/406470001> -- Insect allergen (substance)
+            ["at12"] = <http://snomed.info/id/406472009> -- Animal protein and epidermal allergen (substance)
+            ["at13"] = <http://snomed.info/id/410981007> -- Plant extract and epidermal allergen (substance)
+            ["at14"] = <http://snomed.info/id/410980008> -- Dust allergen (substance)
         >
     >
 --------
