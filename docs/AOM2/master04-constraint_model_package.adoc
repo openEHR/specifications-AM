@@ -367,24 +367,67 @@ include::{uml_export_dir}/classes/sibling_order.adoc[]
 
 ==== Occurrences inferencing rules
 
-The notion of 'occurrences' does not exist in an object model that might be used as the reference model on which archteypes are based, because it is a class model. However, archetypes make statements about how many objects conforming to a specific object constraint node might exist, within a container attribute. In an operational template, an occurrences constraint is required on all children of container attributes. Most such constraints come from the source template(s) and archetypes, but in some cases, there will be nodes with no occurrences. In these cases, the occurrences constraint is inferred from the reference model according to the following algorithm, where `c_object` represents any object node in an archetype.
+The notion of 'occurrences' does not exist in an object model that might be used as the reference model on which archteypes are based, because it is a class model. However, archetypes commonly constrain the occurrences of object nodes under a container attribute, indicating how many objects conforming to a specific object constraint node might exist.
+
+There are various circumstances where it is useful to know the effective occurrences of an archetype object node. One is in validation, in order to determine validity of occurrences constraints; another is in archetype editor tools. Similarly, in an {openehr_am_opt2}[operational template], an occurrences constraint is required on all child object nodes of container attributes. Most such constraints come from the source template(s) and archetypes, but often there will be nodes with no occurrences set. In these cases, the occurrences constraint is inferred from the archetype and the reference model according to the following algorithm, where `c_object` represents any object node in an archetype.
 
 [source,eiffel]
 ---------
-if not c_object.is_root and c_object.occurrences = Void then
-    if is_container_attribute_in_rm (c_object.parent) then
-        if rm_parent_attr.cardinality.upper_unbounded then
-            c_object.set_occurrences (|0..*|)
+effective_occurrences (rm_prop_mult: FUNCTION [args: TUPLE[rm_type_name: STRING, rm_property_path: STRING], result: MULTIPLICITY_INTERVAL]): MULTIPLICITY_INTERVAL
+        -- evaluate effective occurrences, using the RM when no occurrences constraint or parent node 
+        -- cardinality exists.
+        -- In this case, the upper limit of the RM's owning attribute is used to provide a value.
+        -- `rm_prop_mult' is a function object that knows how to compute effective object multiplicity
+        -- by looking at the owning RM property.
+    local
+        occ_lower: INTEGER
+    do
+        if occurrences /= Void then
+            Result := occurrences
+
+        elseif parent /= Void then
+            if parent.existence /= Void then
+                occ_lower := parent.existence.lower
+            end
+            if parent.cardinality /= Void then
+                if parent.cardinality.interval.upper_unbounded then
+                    create Result.make_upper_unbounded (occ_lower)
+                else
+                    create Result.make_bounded (occ_lower, parent.cardinality.interval.upper)
+                end
+            elseif parent.parent /= Void then
+                Result := rm_prop_mult (parent.parent.rm_type_name, parent.parent.rm_attribute_path)
+            else
+                create Result.make_upper_unbounded (occ_lower)
+            end
         else
-            c_object.set_occurrences (|0..rm_parent_attr.cardinality.upper|)
+            create Result.make_open
         end
-    else
-        c_object.set_occurrences (rm_parent_attr.existence)
     end
-end
 ---------
 
-Occurrences is not really required on children of single-valued attributes, because the notional occurrences is always the same as the existence constraint of the owning attribute in the flat parent structure, or else the reference model.
+In the above, `_rm_prop_mult_` is a reference to a function within an RM schema representation, which has the following logic:
+
+[source, eiffel]
+---------
+object_multiplicity (rm_type_name: STRING, rm_property_path: STRING): MULTIPLICITY_INTERVAL
+        -- compute the effective object multiplicity of objects at rm_property_path within type rm_type_name
+        -- from the Reference Model
+    do
+        rm_property_def := get_rm_property_def (rm_type_name: STRING, rm_property_path: STRING)
+        if rm_property_def.is_container then
+            if rm_property_def.cardinality.upper_unbounded then
+                create Result.make_upper_unbounded (0)
+            else
+                create Result.make_bounded (0, rm_property_def.cardinality.upper)
+            end
+        else
+            Result := rm_property_def.existence
+        end
+    end
+---------
+
+How this is concretely implemented depends on the modelling environment. Once possible RM model implementation is described in the {openehr_base_bmm}[openEHR Basic meta-model (BMM) specification].
 
 ==== Conformance semantics
 

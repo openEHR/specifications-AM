@@ -458,10 +458,11 @@
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a id="latest_issue"></a>2.0.6</p></td>
 <td class="tableblock halign-left valign-top"><div><div class="paragraph">
 <p>Change Rules section to document re-use of new openEHR Expression Language and Model.<br>
- Change the types constrained by <code>C_DATE</code> etc to <code>Date</code> etc, instead of <code>ISO8601_DATE</code>.</p>
+ Change the types constrained by <code>C_DATE</code> etc to <code>Date</code> etc, instead of <code>ISO8601_DATE</code>.<br>
+ Update occurrences inferencing rules in section 4.</p>
 </div></div></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">T Beale</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a id="latest_issue_date"></a>28 Apr 2016</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a id="latest_issue_date"></a>11 May 2016</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"></td>
@@ -3843,25 +3844,70 @@ For C_PRIMITIVE_OBJECTs, it will have the special value Primitive_node_id.</p>
 <div class="sect4">
 <h5 id="_occurrences_inferencing_rules"><a class="anchor" href="#_occurrences_inferencing_rules"></a>4.5.5.1. Occurrences inferencing rules</h5>
 <div class="paragraph">
-<p>The notion of 'occurrences' does not exist in an object model that might be used as the reference model on which archteypes are based, because it is a class model. However, archetypes make statements about how many objects conforming to a specific object constraint node might exist, within a container attribute. In an operational template, an occurrences constraint is required on all children of container attributes. Most such constraints come from the source template(s) and archetypes, but in some cases, there will be nodes with no occurrences. In these cases, the occurrences constraint is inferred from the reference model according to the following algorithm, where <code>c_object</code> represents any object node in an archetype.</p>
+<p>The notion of 'occurrences' does not exist in an object model that might be used as the reference model on which archteypes are based, because it is a class model. However, archetypes commonly constrain the occurrences of object nodes under a container attribute, indicating how many objects conforming to a specific object constraint node might exist.</p>
+</div>
+<div class="paragraph">
+<p>There are various circumstances where it is useful to know the effective occurrences of an archetype object node. One is in validation, in order to determine validity of occurrences constraints; another is in archetype editor tools. Similarly, in an <a href="http://www.openehr.org/releases/AM/latest/OPT2.html">operational template</a>, an occurrences constraint is required on all child object nodes of container attributes. Most such constraints come from the source template(s) and archetypes, but often there will be nodes with no occurrences set. In these cases, the occurrences constraint is inferred from the archetype and the reference model according to the following algorithm, where <code>c_object</code> represents any object node in an archetype.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="pygments highlight"><code data-lang="eiffel"><span class="tok-kr">if</span> <span class="tok-ow">not</span> <span class="tok-n">c_object</span><span class="tok-p">.</span><span class="tok-n">is_root</span> <span class="tok-ow">and</span> <span class="tok-n">c_object</span><span class="tok-p">.</span><span class="tok-n">occurrences</span> <span class="tok-o">=</span> <span class="tok-kc">Void</span> <span class="tok-kr">then</span>
-    <span class="tok-kr">if</span> <span class="tok-n">is_container_attribute_in_rm</span> <span class="tok-p">(</span><span class="tok-n">c_object</span><span class="tok-p">.</span><span class="tok-n">parent</span><span class="tok-p">)</span> <span class="tok-kr">then</span>
-        <span class="tok-kr">if</span> <span class="tok-n">rm_parent_attr</span><span class="tok-p">.</span><span class="tok-n">cardinality</span><span class="tok-p">.</span><span class="tok-n">upper_unbounded</span> <span class="tok-kr">then</span>
-            <span class="tok-n">c_object</span><span class="tok-p">.</span><span class="tok-n">set_occurrences</span> <span class="tok-p">(</span><span class="tok-o">|</span><span class="tok-mf">0.</span><span class="tok-p">.</span><span class="tok-o">*|</span><span class="tok-p">)</span>
+<pre class="pygments highlight"><code data-lang="eiffel"><span class="tok-n">effective_occurrences</span> <span class="tok-p">(</span><span class="tok-n">rm_prop_mult</span><span class="tok-p">:</span> <span class="tok-nc">FUNCTION</span> <span class="tok-o">[</span><span class="tok-n">args</span><span class="tok-p">:</span> <span class="tok-nc">TUPLE</span><span class="tok-o">[</span><span class="tok-n">rm_type_name</span><span class="tok-p">:</span> <span class="tok-nc">STRING</span><span class="tok-p">,</span> <span class="tok-n">rm_property_path</span><span class="tok-p">:</span> <span class="tok-nc">STRING</span><span class="tok-o">]</span><span class="tok-p">,</span> <span class="tok-kc">result</span><span class="tok-p">:</span> <span class="tok-nc">MULTIPLICITY_INTERVAL</span><span class="tok-o">]</span><span class="tok-p">):</span> <span class="tok-nc">MULTIPLICITY_INTERVAL</span>
+        <span class="tok-c1">-- evaluate effective occurrences, using the RM when no occurrences constraint or parent node</span>
+        <span class="tok-c1">-- cardinality exists.</span>
+        <span class="tok-c1">-- In this case, the upper limit of the RM&#39;s owning attribute is used to provide a value.</span>
+        <span class="tok-c1">-- `rm_prop_mult&#39; is a function object that knows how to compute effective object multiplicity</span>
+        <span class="tok-c1">-- by looking at the owning RM property.</span>
+    <span class="tok-kr">local</span>
+        <span class="tok-n">occ_lower</span><span class="tok-p">:</span> <span class="tok-nc">INTEGER</span>
+    <span class="tok-kr">do</span>
+        <span class="tok-kr">if</span> <span class="tok-n">occurrences</span> <span class="tok-o">/=</span> <span class="tok-kc">Void</span> <span class="tok-kr">then</span>
+            <span class="tok-kc">Result</span> <span class="tok-o">:=</span> <span class="tok-n">occurrences</span>
+
+        <span class="tok-kr">elseif</span> <span class="tok-n">parent</span> <span class="tok-o">/=</span> <span class="tok-kc">Void</span> <span class="tok-kr">then</span>
+            <span class="tok-kr">if</span> <span class="tok-n">parent</span><span class="tok-p">.</span><span class="tok-n">existence</span> <span class="tok-o">/=</span> <span class="tok-kc">Void</span> <span class="tok-kr">then</span>
+                <span class="tok-n">occ_lower</span> <span class="tok-o">:=</span> <span class="tok-n">parent</span><span class="tok-p">.</span><span class="tok-n">existence</span><span class="tok-p">.</span><span class="tok-n">lower</span>
+            <span class="tok-kr">end</span>
+            <span class="tok-kr">if</span> <span class="tok-n">parent</span><span class="tok-p">.</span><span class="tok-n">cardinality</span> <span class="tok-o">/=</span> <span class="tok-kc">Void</span> <span class="tok-kr">then</span>
+                <span class="tok-kr">if</span> <span class="tok-n">parent</span><span class="tok-p">.</span><span class="tok-n">cardinality</span><span class="tok-p">.</span><span class="tok-n">interval</span><span class="tok-p">.</span><span class="tok-n">upper_unbounded</span> <span class="tok-kr">then</span>
+                    <span class="tok-kr">create</span> <span class="tok-kc">Result</span><span class="tok-p">.</span><span class="tok-n">make_upper_unbounded</span> <span class="tok-p">(</span><span class="tok-n">occ_lower</span><span class="tok-p">)</span>
+                <span class="tok-kr">else</span>
+                    <span class="tok-kr">create</span> <span class="tok-kc">Result</span><span class="tok-p">.</span><span class="tok-n">make_bounded</span> <span class="tok-p">(</span><span class="tok-n">occ_lower</span><span class="tok-p">,</span> <span class="tok-n">parent</span><span class="tok-p">.</span><span class="tok-n">cardinality</span><span class="tok-p">.</span><span class="tok-n">interval</span><span class="tok-p">.</span><span class="tok-n">upper</span><span class="tok-p">)</span>
+                <span class="tok-kr">end</span>
+            <span class="tok-kr">elseif</span> <span class="tok-n">parent</span><span class="tok-p">.</span><span class="tok-n">parent</span> <span class="tok-o">/=</span> <span class="tok-kc">Void</span> <span class="tok-kr">then</span>
+                <span class="tok-kc">Result</span> <span class="tok-o">:=</span> <span class="tok-n">rm_prop_mult</span> <span class="tok-p">(</span><span class="tok-n">parent</span><span class="tok-p">.</span><span class="tok-n">parent</span><span class="tok-p">.</span><span class="tok-n">rm_type_name</span><span class="tok-p">,</span> <span class="tok-n">parent</span><span class="tok-p">.</span><span class="tok-n">parent</span><span class="tok-p">.</span><span class="tok-n">rm_attribute_path</span><span class="tok-p">)</span>
+            <span class="tok-kr">else</span>
+                <span class="tok-kr">create</span> <span class="tok-kc">Result</span><span class="tok-p">.</span><span class="tok-n">make_upper_unbounded</span> <span class="tok-p">(</span><span class="tok-n">occ_lower</span><span class="tok-p">)</span>
+            <span class="tok-kr">end</span>
         <span class="tok-kr">else</span>
-            <span class="tok-n">c_object</span><span class="tok-p">.</span><span class="tok-n">set_occurrences</span> <span class="tok-p">(</span><span class="tok-o">|</span><span class="tok-mf">0.</span><span class="tok-p">.</span><span class="tok-n">rm_parent_attr</span><span class="tok-p">.</span><span class="tok-n">cardinality</span><span class="tok-p">.</span><span class="tok-n">upper</span><span class="tok-o">|</span><span class="tok-p">)</span>
+            <span class="tok-kr">create</span> <span class="tok-kc">Result</span><span class="tok-p">.</span><span class="tok-n">make_open</span>
         <span class="tok-kr">end</span>
-    <span class="tok-kr">else</span>
-        <span class="tok-n">c_object</span><span class="tok-p">.</span><span class="tok-n">set_occurrences</span> <span class="tok-p">(</span><span class="tok-n">rm_parent_attr</span><span class="tok-p">.</span><span class="tok-n">existence</span><span class="tok-p">)</span>
-    <span class="tok-kr">end</span>
-<span class="tok-kr">end</span></code></pre>
+    <span class="tok-kr">end</span></code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>Occurrences is not really required on children of single-valued attributes, because the notional occurrences is always the same as the existence constraint of the owning attribute in the flat parent structure, or else the reference model.</p>
+<p>In the above, <code><em>rm_prop_mult</em></code> is a reference to a function within an RM schema representation, which has the following logic:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="pygments highlight"><code data-lang="eiffel"><span class="tok-n">object_multiplicity</span> <span class="tok-p">(</span><span class="tok-n">rm_type_name</span><span class="tok-p">:</span> <span class="tok-nc">STRING</span><span class="tok-p">,</span> <span class="tok-n">rm_property_path</span><span class="tok-p">:</span> <span class="tok-nc">STRING</span><span class="tok-p">):</span> <span class="tok-nc">MULTIPLICITY_INTERVAL</span>
+        <span class="tok-c1">-- compute the effective object multiplicity of objects at rm_property_path within type rm_type_name</span>
+        <span class="tok-c1">-- from the Reference Model</span>
+    <span class="tok-kr">do</span>
+        <span class="tok-n">rm_property_def</span> <span class="tok-o">:=</span> <span class="tok-n">get_rm_property_def</span> <span class="tok-p">(</span><span class="tok-n">rm_type_name</span><span class="tok-p">:</span> <span class="tok-nc">STRING</span><span class="tok-p">,</span> <span class="tok-n">rm_property_path</span><span class="tok-p">:</span> <span class="tok-nc">STRING</span><span class="tok-p">)</span>
+        <span class="tok-kr">if</span> <span class="tok-n">rm_property_def</span><span class="tok-p">.</span><span class="tok-n">is_container</span> <span class="tok-kr">then</span>
+            <span class="tok-kr">if</span> <span class="tok-n">rm_property_def</span><span class="tok-p">.</span><span class="tok-n">cardinality</span><span class="tok-p">.</span><span class="tok-n">upper_unbounded</span> <span class="tok-kr">then</span>
+                <span class="tok-kr">create</span> <span class="tok-kc">Result</span><span class="tok-p">.</span><span class="tok-n">make_upper_unbounded</span> <span class="tok-p">(</span><span class="tok-mi">0</span><span class="tok-p">)</span>
+            <span class="tok-kr">else</span>
+                <span class="tok-kr">create</span> <span class="tok-kc">Result</span><span class="tok-p">.</span><span class="tok-n">make_bounded</span> <span class="tok-p">(</span><span class="tok-mi">0</span><span class="tok-p">,</span> <span class="tok-n">rm_property_def</span><span class="tok-p">.</span><span class="tok-n">cardinality</span><span class="tok-p">.</span><span class="tok-n">upper</span><span class="tok-p">)</span>
+            <span class="tok-kr">end</span>
+        <span class="tok-kr">else</span>
+            <span class="tok-kc">Result</span> <span class="tok-o">:=</span> <span class="tok-n">rm_property_def</span><span class="tok-p">.</span><span class="tok-n">existence</span>
+        <span class="tok-kr">end</span>
+    <span class="tok-kr">end</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>How this is concretely implemented depends on the modelling environment. Once possible RM model implementation is described in the <a href="http://www.openehr.org/releases/BASE/latest/bmm.html">openEHR Basic meta-model (BMM) specification</a>.</p>
 </div>
 </div>
 <div class="sect4">
@@ -6612,7 +6658,7 @@ Hash of keys ("text", "description" etc) and corresponding values.</p>
 <p>Diffing is the reverse of flattening, and is primarily used to support editing operations. The basis of visual editing of an archetype is the flat form of the parent, with the user permitted to make modifications that are conformant with the flat parent. The Diffing operation is used to extract the resulting differential form archetype from the final state of visual editing.</p>
 </div>
 <div class="paragraph">
-<p>The algorithm used in the ADL Workbench provide a reasonable template for achieving diffing of AOM archetypes.</p>
+<p>The algorithm used in the ADL Workbench provides a reasonable template for achieving diffing of AOM archetypes.</p>
 </div>
 </div>
 </div>

@@ -76,7 +76,7 @@ The rules for specialisation paths are as follows.
 
 === Path Congruence
 
-Any node in an archetype can unambiguously be located by its archetype path. For example, the text value of the 'problem' node of the `openEHR-EHR-EVALUATION.problem.v1` archetype shown at the top of <<redefinition-and-extension>> is:
+Any node in an archetype can unambiguously be located by its archetype path. For example, the text value of the 'problem' node of the `openEHR-EHR-EVALUATION.problem.v1` archetype shown at the top of the <<Redefinition for Specialisation>> example is:
 
 [source, cadl]
 --------
@@ -168,15 +168,15 @@ The example shown below is from an older version of the openEHR 'Problem' archet
 
 [source, cadl]
 --------
-    ------ openEHR-EHR-EVALUATION.problem.v1 ------
+    -- openEHR-EHR-EVALUATION.problem.v1 --
     
-    EVALUATION[id1] ∈ {                                                 -- Problem
+    EVALUATION[id1] ∈ {                                              -- Problem
         data ∈ {
             ITEM_TREE[id2] ∈ {
                 items cardinality ∈ {0..*; ordered} ∈ {
                     ELEMENT[id3] occurrences ∈ {1} ∈ {
                         value ∈ {
-                            DV_TEXT[id4]                                 -- *** NODE A
+                            DV_TEXT[id4]                             -- *** NODE A
                         }
                     }
                     ELEMENT[id5] occurrences ∈ {0..1} ∈ {...}       -- Date of initial onset
@@ -197,38 +197,37 @@ The second text below is from the 'problem-diagnosis' archetype, i.e. a 'diagnos
 
 [source, cadl]
 --------
-    ------ openEHR-EHR-EVALUATION.problem-diagnosis.v1 ------                 -- specialisation of openEHR-EHR-EVALUATION.problem.v1
+    -- openEHR-EHR-EVALUATION.problem-diagnosis.v1 --   -- specialises openEHR-EHR-EVALUATION.problem.v1
     
-    EVALUATION[id1.1] ∈ {                                                     -- Recording of diagnosis
+    EVALUATION[id1.1] ∈ {                               -- Recording of diagnosis
         /data[id2]/items[id3]/value ∈ {
-            DV_CODED_TEXT[id4] ∈ {                                            --
-                defining_code ∈ {[ac0.1]} -- X 'is_a' diagnosis               -- << This node is redefined from 'NODE A' above
-            }                                                                  --
+            DV_CODED_TEXT[id4] ∈ {                      -- << This node redefines 'NODE A' above
+                defining_code ∈ {[ac0.1]}
+            }
         }
         /data/items cardinality ∈ {0..*; ordered} ∈ {
             before [id5]
-            ELEMENT[id0.32] occurrences ∈ {0..1} ∈ {                         -- Status    ++ This node added
+            ELEMENT[id0.32] occurrences ∈ {0..1} ∈ {    -- Status    ++ This node added
                 value ∈ {
                     DV_CODED_TEXT[id0.33] ∈ {
                         defining_code ∈ {
-                            [local::at0.33, at0.34]                           -- provisional
+                            [local::at0.33, at0.34]      -- provisional
                         }
                     }
                 }
             }
             after [id31]
-            CLUSTER[id0.35] occurrences ∈ {0..1} ∈ {...}                    -- Diag. criteria     -- ++ This node added
-            CLUSTER[id0.37] occurrences ∈ {0..1} ∈ {...}                    -- Clin. staging      -- ++ This node added
+            CLUSTER[id0.35] occurrences ∈ {0..1} ∈ {...}  -- Diag. criteria  ++ This node added
+            CLUSTER[id0.37] occurrences ∈ {0..1} ∈ {...}  -- Clin. staging   ++ This node added
         }
     }
 --------
 
 === Redefinition for Specialisation
 
-The example shown below illustrates redefinition in a specialised archetype. The first text is taken from the definition section of the 'laboratory result' `OBSERVATION` archetype (available at http://ckm.openehr.org[openEHR CKM]), and contains an `ELEMENT` node whose identifier is `[id79]` , defined as 'panel item' in the archetype terminology (sibling nodes are not shown here). The intention is that the `id79` node be specialised into particular 'panel items' or analytes according to particular types of test result. Accordingly, the `id79` node has occurrences of `0..*` and its value is not constrained with respect to the reference model, meaning that the type of the `_value_` attirbute can be any descendant of `DATA_VALUE` .
+The example shown below illustrates redefinition in a specialised archetype. The first text is taken from the definition section of the 'laboratory result' `OBSERVATION` archetype (available at {openehr_CKM}[openEHR CKM]), and contains an `ELEMENT` node whose identifier is `[id79]` , defined as 'panel item' in the archetype terminology (sibling nodes are not shown here). The intention is that the `id79` node be specialised into particular 'panel items' or analytes according to particular types of test result. Accordingly, the `id79` node has occurrences of `0..*` and its value is not constrained with respect to the reference model, meaning that the type of the `_value_` attirbute can be any descendant of `DATA_VALUE` .
 
 [source, cadl]
-[[redefinition-and-extension]]
 --------
     ------ openEHR-EHR-OBSERVATION.laboratory.v1 ------
     OBSERVATION[id1] ∈ {                                                       -- Laboratory Result
@@ -241,11 +240,11 @@ The example shown below illustrates redefinition in a specialised archetype. The
                                 items cardinality ∈ {0..*; unordered} ∈ {
                                     CLUSTER[id5] occurrences ∈ {1} ∈ {...}      -- Specimen
                                     ELEMENT[id8] occurrences ∈ {0..1} ∈ {...}   -- Diagnostic services
-                                    CLUSTER[id11] occurrences ∈ {0..*} ∈ {...} -- level 1
+                                    CLUSTER[id11] occurrences ∈ {0..*} ∈ {...}  -- level 1
                                     ELEMENT[id79] occurrences ∈ {0..*}          -- panel item
-                                    ELEMENT[id17] occurrences ∈ {0..1} ∈ {...} -- Overall Comment
-                                    CLUSTER[id18] occurrences ∈ {0..1} ∈ {...} -- Quality
-                                    ELEMENT[id37] occurrences ∈ {0..1} ∈ {...} -- Multimedia rep.
+                                    ELEMENT[id17] occurrences ∈ {0..1} ∈ {...}  -- Overall Comment
+                                    CLUSTER[id18] occurrences ∈ {0..1} ∈ {...}  -- Quality
+                                    ELEMENT[id37] occurrences ∈ {0..1} ∈ {...}  -- Multimedia rep.
                                 }
                             }
                         }
@@ -263,7 +262,7 @@ The second text, below, is a specialised version of the laboratory result archet
     ------ openEHR-EHR-OBSERVATION.laboratory-thyroid.v1 ------
     OBSERVATION[id1.1] -- Thyroid function tests
         /data[id2]/events[id3]/data[id4]/items ∈ {
-            ELEMENT[id79.2] occurrences ∈ {0..1} ∈ {-- TSH
+            ELEMENT[id79.2] occurrences ∈ {0..1} ∈ {        -- TSH
                 value ∈ {
                     DV_QUANTITY[id0.7] ∈ {
                         property ∈ {[at15]}
@@ -272,13 +271,13 @@ The second text, below, is a specialised version of the laboratory result archet
                     }
                 }
             }
-            ELEMENT[id79.7] occurrences ∈ {0..1} ∈ {...} -- Free Triiodothyronine (Free T3)
-            ELEMENT[id79.8] occurrences ∈ {0..1} ∈ {...} -- Total Triiodothyronine (Total T3)
-            ELEMENT[id79.3] occurrences ∈ {0..1} ∈ {...} -- Free thyroxine (Free T4)
-            ELEMENT[id79.4] occurrences ∈ {0..1} ∈ {...} -- Total Thyroxine (Total T4)
-            ELEMENT[id79.5] occurrences ∈ {0..1} ∈ {...} -- T4 loaded uptake
-            ELEMENT[id79.9] occurrences ∈ {0..1} ∈ {...} -- Free Triiodothyronine index (Free T3 index)
-            ELEMENT[id79.6] occurrences ∈ {0..1} ∈ {...} -- Free thyroxine index (FTI)
+            ELEMENT[id79.7] occurrences ∈ {0..1} ∈ {...}    -- Free Triiodothyronine (Free T3)
+            ELEMENT[id79.8] occurrences ∈ {0..1} ∈ {...}    -- Total Triiodothyronine (Total T3)
+            ELEMENT[id79.3] occurrences ∈ {0..1} ∈ {...}    -- Free thyroxine (Free T4)
+            ELEMENT[id79.4] occurrences ∈ {0..1} ∈ {...}    -- Total Thyroxine (Total T4)
+            ELEMENT[id79.5] occurrences ∈ {0..1} ∈ {...}    -- T4 loaded uptake
+            ELEMENT[id79.9] occurrences ∈ {0..1} ∈ {...}    -- Free Triiodothyronine index (Free T3 index)
+            ELEMENT[id79.6] occurrences ∈ {0..1} ∈ {...}    -- Free thyroxine index (FTI)
         }
     }
 --------
@@ -292,7 +291,7 @@ The redefinitions include:
 
 This archetype is typical of a class of specialisations that use only redefinition, due to the fact that all objects in the redefined part of the specialised version are semantically specific kinds of a general object, in this case, 'panel item'.
 
-=== Specialisation with Cloning
+==== Specialisation with Cloning
 
 In the previous example, each of the nodes with identifiers of the form `id79.N` would be effectively copied to the flat output, since the node being redefined (`id79`) has no sub-structure, i.e. it is a 'matches any' node. However, the general case is that the node in the parent has its own structure, typically some boilerplate nodes that would be used by any specialisation. In that case, an archetype containing nodes that specialise a node with existing structure cause a 'clone and overlay' operation. That is, to generate the flat output of the specialised archetype, the parent node is first cloned from the flat parent to the new flat output, and then the specialised node is overlaid on the cloned structure. The following example shows a parent archetype that defines a 'laboratory result' structure as a `CLUSTER` containing a number of `ELEMENT` objects, defining things like Result value, Reference range guidance and so on. The `id2` Result value node is intended to be specialised.
 
@@ -337,14 +336,13 @@ Parent archetype:
     }
 --------
 
-
 Specialised child archetype:
 
 [source, cadl]
 --------
-    CLUSTER[id1.1] ∈ {                                    -- Lipid studies panel
+    CLUSTER[id1.1] ∈ {                                 -- Lipid studies panel
         /items ∈ {
-            CLUSTER[id3.1] ∈ {                            -- LDL
+            CLUSTER[id3.1] ∈ {                         -- LDL
                 items ∈ {
                     ELEMENT[id2.2] ∈ {  
                         value ∈ {
@@ -357,7 +355,7 @@ Specialised child archetype:
                     }
                 }
             }
-            CLUSTER[id3.2] ∈ {                            -- HDL
+            CLUSTER[id3.2] ∈ {                         -- HDL
                 items ∈ {
                     ELEMENT[id2.3] ∈ {
                         value matches {
@@ -371,7 +369,7 @@ Specialised child archetype:
                 }
             }
     
-            CLUSTER[id3.5] ∈ {                     -- Cholesterol Result
+            CLUSTER[id3.5] ∈ {                         -- Cholesterol Result
                 items ∈ {
                     ELEMENT[id2.4] ∈ {  
                         value matches {
@@ -388,11 +386,13 @@ Specialised child archetype:
     }
 --------
 
-The flattened result consists of a number of repetitions of the entire `CLUSTER[id3]` structure from the parent, corresponding to the specialisations in the child. The ADL source form is tool large to show here, but the ADL Workbench provides a visualisation in <<specialisation_with_cloning>>. In this figure we can see that the `CLUSTER` / `ELEMENT` overlays from the child archetype have been overlaid on clones of the `CLUSTER[id3]` structure from the parent, preserving the `id4` , `id5` etc nodes.
+The flattened result consists of a number of repetitions of the entire `CLUSTER[id3]` structure from the parent, corresponding to the specialisations in the child. The ADL source form is too large to show here, but the {openehr_awb}[ADL Workbench] provides a visualisation in the section <<specialisation_with_cloning>>. In this figure we can see that the `CLUSTER` / `ELEMENT` overlays from the child archetype have been overlaid on clones of the `CLUSTER[id3]` structure from the parent, preserving the `id4` , `id5` etc nodes. Elements shown in light blue are inherited; where they appear under the nodes `[id3.1]`, `[id3.2]` etc, they are cloned from the corresponding nodes under `[id3]`.
 
 [.text-center]
 .Specialisation with Cloning
 image::images/specialisation_with_cloning.png[id=specialisation_with_cloning, align="center", width="60%"]
+
+It can also be seen that the original `[id3]` sub-tree remains. This can be removed if required, as described in <<Exhaustive and non-exhaustive specialisation>>.
 
 == Attribute Redefinition
 
@@ -456,7 +456,7 @@ Parent archetype:
 
 [source, cadl]
 --------
-    ITEM_LIST[id3] ∈ {                                       -- general check list
+    ITEM_LIST[id3] ∈ {                                      -- general check list
         items cardinality ∈ {0..*} ∈ {                      -- any number of items
             ELEMENT[id12] occurrences ∈ {0..*} ∈ {...}      -- generic checklist item
         }
@@ -467,7 +467,7 @@ Child archetype:
 
 [source, cadl]
 --------
-    ITEM_LIST[id3] ∈ {                                       -- pre-operative check list
+    ITEM_LIST[id3] ∈ {                                      -- pre-operative check list
         /items cardinality ∈ {3..10} ∈ {                    -- at least 3 mandatory items
             ELEMENT[id12.1] occurrences ∈ {1} ∈ {...}       -- item #1
             ELEMENT[id12.2] occurrences ∈ {1} ∈ {...}       -- item #2
@@ -486,18 +486,18 @@ Within container attributes, the order of objects may be significant from the po
 [source, cadl]
 --------
     items cardinality ∈ {0..*; ordered} ∈ {
-        ELEMENT[id2] occurrences ∈ {1} ∈ {...}                         -- Problem
-        ELEMENT[id3] occurrences ∈ {0..1} ∈ {...}                      -- Date of initial onset
-        ELEMENT[id4] occurrences ∈ {0..1} ∈ {...}                      -- Age at initial onset
-        ELEMENT[id5] occurrences ∈ {0..1} ∈ {...}                      -- Severity
-        ELEMENT[id9] occurrences ∈ {0..1} ∈ {...}                      -- Clinical description
-        ELEMENT[id10] occurrences ∈ {0..1} ∈ {...}                     -- Date clinically received
-        CLUSTER[id11] occurrences ∈ {0..*} ∈ {...}                     -- Location
-        CLUSTER[id14] occurrences ∈ {0..1} ∈ {...}                     -- Aetiology
-        CLUSTER[id18] occurrences ∈ {0..1} ∈ {...}                     -- Occurrences or exacerb'ns
-        CLUSTER[id26] occurrences ∈ {0..1} ∈ {...}                     -- Related problems
-        ELEMENT[id30] occurrences ∈ {0..1} ∈ {...}                     -- Date of resolution
-        ELEMENT[id31] occurrences ∈ {0..1} ∈ {...}                     -- Age at resolution
+        ELEMENT[id2] occurrences ∈ {1} ∈ {...}               -- Problem
+        ELEMENT[id3] occurrences ∈ {0..1} ∈ {...}            -- Date of initial onset
+        ELEMENT[id4] occurrences ∈ {0..1} ∈ {...}            -- Age at initial onset
+        ELEMENT[id5] occurrences ∈ {0..1} ∈ {...}            -- Severity
+        ELEMENT[id9] occurrences ∈ {0..1} ∈ {...}            -- Clinical description
+        ELEMENT[id10] occurrences ∈ {0..1} ∈ {...}           -- Date clinically received
+        CLUSTER[id11] occurrences ∈ {0..*} ∈ {...}           -- Location
+        CLUSTER[id14] occurrences ∈ {0..1} ∈ {...}           -- Aetiology
+        CLUSTER[id18] occurrences ∈ {0..1} ∈ {...}           -- Occurrences or exacerb'ns
+        CLUSTER[id26] occurrences ∈ {0..1} ∈ {...}           -- Related problems
+        ELEMENT[id30] occurrences ∈ {0..1} ∈ {...}           -- Date of resolution
+        ELEMENT[id31] occurrences ∈ {0..1} ∈ {...}           -- Age at resolution
     }
 --------
 
@@ -507,11 +507,11 @@ To indicate significant ordering in the specialised problem-diagnosis archetype,
 --------
     /data[id3]/items ∈ {
         before [id3] 
-        ELEMENT[id2.1] ∈ {...}                         -- Diagnosis
-        ELEMENT[id0.32] occurrences ∈ {0..1} ∈ {...}  -- Status
+        ELEMENT[id2.1] ∈ {...}                                -- Diagnosis
+        ELEMENT[id0.32] occurrences ∈ {0..1} ∈ {...}          -- Status
         after [id26]
-        CLUSTER[id0.35] occurrences ∈ {0..1} ∈ {...}  -- Diagnostic criteria
-        CLUSTER[id0.37] occurrences ∈ {0..1} ∈ {...}  -- Clinical Staging
+        CLUSTER[id0.35] occurrences ∈ {0..1} ∈ {...}          -- Diagnostic criteria
+        CLUSTER[id0.37] occurrences ∈ {0..1} ∈ {...}          -- Clinical Staging
     }
 --------
 
@@ -519,7 +519,7 @@ These keywords are followed by a node identifier reference, and act to modify th
 
 [source, cadl]
 --------
-    after [id26] CLUSTER[id0.35] occurrences ∈ {0..1} ∈ {...} -- etc
+    after [id26] CLUSTER[id0.35] occurrences ∈ {0..1} ∈ {...}  -- etc
 --------
 
 The rules for specifying ordering are as follows.
@@ -558,7 +558,7 @@ Parent archetype:
 
 [source, cadl]
 --------
-    EVALUATION[id1] ∈ {                             -- Medical Certificate
+    EVALUATION[id1] ∈ {                                      -- Medical Certificate
         data ∈ {
             ITEM_TREE[id2] ∈ {  
                 items ∈ {
@@ -579,7 +579,7 @@ Child archetype:
 --------
     EVALUATION[id1.1] ∈ {                              -- Singapore Medical Certificate
         /data[id2]/items ∈ {
-            ELEMENT[id5.1]                              -- Summary
+            ELEMENT[id5.1]                             -- Summary
         }
     }
 --------
@@ -587,8 +587,6 @@ Child archetype:
 Here the `id5` ('Description') node is refined in meaning to `id5.1` ('Summary'). Since there is no other constraint to be stated, no further `matches` block is required.
 
 An example of the 3rd case above of redefinition is shown in the first archetype in <<Specialised archetype showing redefinition and extension>>, where the node `[id79]` is redefined into a number of more specialised nodes `[id79.2]` - `[id79.9]` , while in the second, the identifier `[id2]` is redefined to a single node `[id2.1]` .
-
-==== Node Redefinition Semantics
 
 The syntactic form of the identifier of a redefined node is a copy of the original followed by a dot ('.'), optionally intervening instances of the pattern '0.' and then a further non-zero number, i.e.:
 
@@ -601,51 +599,6 @@ Examples of redefined node identifiers:
 * `id2.1`   -- redefinition of `id1` at level 1 specialisation
 * `id2.0.1` -- redefinition of `id1` node in level 2 specialisation archetype
 * `id2.1.1` -- redefinition of `id2.1` in level 2 specialisation archetype.
-
-Redefined versions of nodes with no node id in the parent archetype do not require a node identifier in the child archetype.
-
-In both cases, there is a question of whether the original node being redefined (`id79` and `id2` respectively in the examples) remains available for further redefinition in subsequent child archetypes, or do the redefinition children exhaustively define the instance space for the given parent node?
-
-Should these children be considered exhaustive? One point of view says so, since all subsequently discovered varieties of hepratitis (C, D, E, etc) would now become children of 'hepatitis non-A non-B'. However this is likely to be sub-optimal, since now the category 'hepatitis non-A non-B' probably exists solely because of the order in which the various hepatitis virus tests were perfected. Therefore an alternative argument would say that the categories 'hepatitis C', 'hepatitis D' etc should be defined directly below 'hepatitis', as if 'hepatitis non-A non-B' had never existed. Under this argument, the children would not be declared, even when they are theoretically exhaustive.
-
-This kind of argument comes up time and again, and the need for catch-all categories (archetype nodes) and the possibility of future discoveries cannot be predicted. Even in situations such as a lab result (e.g. cholesterol), where the list of analytes seem to be known and fixed, experience of clinical modellers has shown that there is nevertheless no guarantee of not needing another data point, perhaps for something other than an analyte.
-
-The default situation is that they do, unless explicitly stated otherwise, by excluding the parent node in the normal way (i.e. using `occurrences matches {0}`). The first example would then become:
-
-Parent archetype:
-
-[source, cadl]
---------
-    items cardinality ∈ {0..*; unordered} ∈ {
-        CLUSTER[id4] occurrences ∈ {1} ∈ {...}                          -- Specimen
-        CLUSTER[id11] occurrences ∈ {0..*} ∈ {...}                      -- level 1
-        ELEMENT[id79] occurrences ∈ {0..*} ∈ {                          -- panel item
-            value ∈ {*}
-        }
-        ELEMENT[id17] occurrences ∈ {0..1} ∈ {...}                      -- Overall Comment
-        ELEMENT[id37] occurrences ∈ {0..1} ∈ {...}                      -- Multimedia rep.
-        }
-    }
---------
-
-Child archetype:
-
-[source, cadl]
---------
-    /data/events[id2]/data/items ∈ {                                                
-        ELEMENT[id79.2] occurrences ∈ {0..1} ∈ {...}                    -- TSH
-        ELEMENT[id79.7] occurrences ∈ {0..1} ∈ {...}                    -- Free Triiodothyronine
-        ELEMENT[id79.8] occurrences ∈ {0..1} ∈ {...}                    -- Total Triiodothyronine
-        ELEMENT[id79.3] occurrences ∈ {0..1} ∈ {...}                    -- Free thyroxine (Free T4)
-        ELEMENT[id79.4] occurrences ∈ {0..1} ∈ {...}                    -- Total Thyroxine (Total T4)
-        ELEMENT[id79.5] occurrences ∈ {0..1} ∈ {...}                    -- T4 loaded uptake
-        ELEMENT[id79.9] occurrences ∈ {0..1} ∈ {...}                    -- Free Triiodothyronine index
-        ELEMENT[id79.6] occurrences ∈ {0..1} ∈ {...}                    -- Free thyroxine index (FTI)
-        ELEMENT[id79] occurrences ∈ {0}
-    }
---------
-
-Without the above specification, a deeper child archetype could then redefine both the original `id79` node (e.g. into `id79.0.1` , `id79.0.2`), and any of the `id79.x` nodes (e.g. `id79.1.1` , `id79.1.2`); with it, only the latter is possible. The `id79` node can thus be considered to be logically 'frozen', in a similar way to frozen class methods in some programming languages.
 
 ==== Adding Nodes
 
@@ -728,13 +681,71 @@ Exclusion by setting occurrences to `{0}` is also common in templates, and is us
 
 If the whole attribute is to be removed, this can be done by redefining existence to `{0}`, as described in <<Existence Redefinition: Mandation and Exclusion>>.
 
+=== Single and Multiple Specialisation - When does Cloning Occur?
+
+In the <<Examples,examples shown above>> there are two types of redefinition occurring. The first shows a single node in the parent archetype redefined by a single node, both identified by `[id4]`. The second shows a single node in the parent redefined by multiple children. In the first example, the result of flattening is _in-place overlaying_, while in the second, it is _cloning with overlaying_. The consequence of the second type of redefinition is that the original parent node survives in its original form in the child archetype, whereas in the first, it is replaced. The reasoning behind this is that redefinition to multiple children is taken to mean that later redefinition to multiple children may occur in deeper child archetypes, and for this to occur, the original parent needs to be left intact. Conversely, the single-parent / single-child redefinition is taken to mean a logical refinement of an existing node, which should therefore be logically replaced.
+
+The formal rule for whether cloning occurs or not is as follows:
+
+----
+    clone not needed = max effective_occurrences of object node in parent archetype = 1 OR 
+        object node in child differential archetype is sole child of its parent, and has max occurrences = 1
+----
+
+The first case corresponds to the situation where the 'effective occurrences' of any child of an attribute can be inferred to be maximum 1, i.e. either the attribute is single-valued, or it is a container with a cardinality constraint with maximum 1. The second is where the object in the child archetype has an explicit occurrences constraint of max 1. In the above, the `_effective_occurrences_` function is defined in the {openehr_am_aom2}#_occurrences_inferencing_rules[AOM2 specification].
+
+=== Exhaustive and Non-Exhaustive Redefinition
+
+In any multiple specialisation situation, there is a question of whether the original node being specialised (e.g. `id79` and `id2` in the examples above) remains available for further redefinition in subsequent child archetypes, or do the redefinition children _exhaustively_ define the instance space for the given parent node?
+
+Should these children be considered exhaustive? One point of view says so, since all subsequently discovered varieties of hepratitis (C, D, E, etc) would now become children of 'hepatitis non-A non-B'. However this is likely to be sub-optimal, since now the category 'hepatitis non-A non-B' probably exists solely because of the order in which the various hepatitis virus tests were perfected. Therefore an alternative argument would say that the categories 'hepatitis C', 'hepatitis D' etc should be defined directly below 'hepatitis', as if 'hepatitis non-A non-B' had never existed. Under this argument, the children would not be declared, even when they are theoretically exhaustive.
+
+This kind of argument comes up time and again, and the need for catch-all categories (archetype nodes) and the possibility of future discoveries cannot be predicted. Even in situations such as a lab result (e.g. cholesterol), where the list of analytes seem to be known and fixed, experience of clinical modellers has shown that there is nevertheless no guarantee of not needing another data point, perhaps for something other than an analyte.
+
+The default situation is that they do, unless explicitly stated otherwise, which is done by excluding the parent node in the normal way, i.e. using `occurrences matches {0}`. *If an exclusion node is included, it must come last* in the set of siblings that specialise the parent node, otherwise a deletion will occur, leaving no node to specialise. The first example would then become:
+
+Parent archetype:
+
+[source, cadl]
+--------
+    items cardinality ∈ {0..*; unordered} ∈ {
+        CLUSTER[id4] occurrences ∈ {1} ∈ {...}                          -- Specimen
+        CLUSTER[id11] occurrences ∈ {0..*} ∈ {...}                      -- level 1
+        ELEMENT[id79] occurrences ∈ {0..*} ∈ {                          -- panel item
+            value ∈ {*}
+        }
+        ELEMENT[id17] occurrences ∈ {0..1} ∈ {...}                      -- Overall Comment
+        ELEMENT[id37] occurrences ∈ {0..1} ∈ {...}                      -- Multimedia rep.
+        }
+    }
+--------
+
+Child archetype:
+
+[source, cadl]
+--------
+    /data/events[id2]/data/items ∈ {                                                
+        ELEMENT[id79.2] occurrences ∈ {0..1} ∈ {...}                    -- TSH
+        ELEMENT[id79.7] occurrences ∈ {0..1} ∈ {...}                    -- Free Triiodothyronine
+        ELEMENT[id79.8] occurrences ∈ {0..1} ∈ {...}                    -- Total Triiodothyronine
+        ELEMENT[id79.3] occurrences ∈ {0..1} ∈ {...}                    -- Free thyroxine (Free T4)
+        ELEMENT[id79.4] occurrences ∈ {0..1} ∈ {...}                    -- Total Thyroxine (Total T4)
+        ELEMENT[id79.5] occurrences ∈ {0..1} ∈ {...}                    -- T4 loaded uptake
+        ELEMENT[id79.9] occurrences ∈ {0..1} ∈ {...}                    -- Free Triiodothyronine index
+        ELEMENT[id79.6] occurrences ∈ {0..1} ∈ {...}                    -- Free thyroxine index (FTI)
+        ELEMENT[id79] occurrences ∈ {0}                                  -- MUST COME LAST!
+    }
+--------
+
+Without the above specification, a deeper child archetype could then redefine both the original `id79` node (e.g. into `id79.0.1` , `id79.0.2`), and any of the `id79.x` nodes (e.g. `id79.1.1` , `id79.1.2`); with it, only the latter is possible. The `id79` node can thus be considered to be logically 'frozen', in a similar way to frozen class methods in some programming languages.
+
 === Reference Model Type Refinement
 
-The type of an object may be redefined to one of its subtypes as defined by the reference model. A typical example of where this occurs in archetypes based on the openEHR reference model is when `ELEMENT`.`_value_` is constrained to `*` in a parent archetype, meaning 'no further constraint on its RM type of `DATA_VALUE`', but is then constrained in a specialised archetype to subtypes of `DATA_VALUE`, e.g. `DV_QUANTITY` or `DV_PROPORTION` (see {openehr_rm_data_types}[openEHR Data Types]). The following figure containts a simplified extract of the data values part of the openEHR reference model, and is the basis for the examples below.
+The type of an object may be redefined to one of its subtypes as defined by the reference model. A typical example of where this occurs in archetypes based on the openEHR reference model is when `ELEMENT._value_` is constrained to `*` in a parent archetype, meaning 'no further constraint on its RM type of `DATA_VALUE`, but is then constrained in a specialised archetype to subtypes of `DATA_VALUE`, e.g. `DV_QUANTITY` or `DV_PROPORTION` (see {openehr_rm_data_types}[openEHR Data Types]). The following figure containts a simplified extract of the data values part of the openEHR reference model, and is the basis for the examples below.
 
 [.text-center]
 .Example Reference Model type structure
-image::{uml_export_dir}/diagrams/RM-data_types-overview.svg[id=rm_type_structure, align="center", width=50%]
+image::diagrams/RM-data_types-overview.svg[id=rm_type_structure, align="center", width=50%]
 
 The most basic form of type refinement is shown in the following example:
 

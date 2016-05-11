@@ -312,8 +312,11 @@
 <li><a href="#_examples">9.3. Examples</a>
 <ul class="sectlevel3">
 <li><a href="#_redefinition_for_refinement">9.3.1. Redefinition for Refinement</a></li>
-<li><a href="#_redefinition_for_specialisation">9.3.2. Redefinition for Specialisation</a></li>
-<li><a href="#_specialisation_with_cloning">9.3.3. Specialisation with Cloning</a></li>
+<li><a href="#_redefinition_for_specialisation">9.3.2. Redefinition for Specialisation</a>
+<ul class="sectlevel4">
+<li><a href="#_specialisation_with_cloning">9.3.2.1. Specialisation with Cloning</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li><a href="#_attribute_redefinition">9.4. Attribute Redefinition</a>
@@ -331,24 +334,25 @@
 <ul class="sectlevel3">
 <li><a href="#_node_identifiers_3">9.5.1. Node Identifiers</a>
 <ul class="sectlevel4">
-<li><a href="#_node_redefinition_semantics">9.5.1.1. Node Redefinition Semantics</a></li>
-<li><a href="#_adding_nodes">9.5.1.2. Adding Nodes</a></li>
+<li><a href="#_adding_nodes">9.5.1.1. Adding Nodes</a></li>
 </ul>
 </li>
 <li><a href="#_occurrences_redefinition_and_exclusion">9.5.2. Occurrences Redefinition and Exclusion</a></li>
-<li><a href="#_reference_model_type_refinement">9.5.3. Reference Model Type Refinement</a></li>
-<li><a href="#_internal_reference_proxy_object_redefinition">9.5.4. Internal Reference (Proxy Object) Redefinition</a></li>
-<li><a href="#_external_reference_redefinition">9.5.5. External Reference Redefinition</a></li>
-<li><a href="#_slot_filling_and_redefinition">9.5.6. Slot Filling and Redefinition</a></li>
-<li><a href="#_unconstrained_attributes">9.5.7. Unconstrained Attributes</a></li>
-<li><a href="#_primitive_object_redefinition">9.5.8. Primitive Object Redefinition</a>
+<li><a href="#_single_and_multiple_specialisation_when_does_cloning_occur">9.5.3. Single and Multiple Specialisation - When does Cloning Occur?</a></li>
+<li><a href="#_exhaustive_and_non_exhaustive_redefinition">9.5.4. Exhaustive and Non-Exhaustive Redefinition</a></li>
+<li><a href="#_reference_model_type_refinement">9.5.5. Reference Model Type Refinement</a></li>
+<li><a href="#_internal_reference_proxy_object_redefinition">9.5.6. Internal Reference (Proxy Object) Redefinition</a></li>
+<li><a href="#_external_reference_redefinition">9.5.7. External Reference Redefinition</a></li>
+<li><a href="#_slot_filling_and_redefinition">9.5.8. Slot Filling and Redefinition</a></li>
+<li><a href="#_unconstrained_attributes">9.5.9. Unconstrained Attributes</a></li>
+<li><a href="#_primitive_object_redefinition">9.5.10. Primitive Object Redefinition</a>
 <ul class="sectlevel4">
-<li><a href="#_numeric_primitive_redefinition">9.5.8.1. Numeric Primitive Redefinition</a></li>
-<li><a href="#_terminology_internal_value_set_redefinition">9.5.8.2. Terminology Internal Value Set Redefinition</a></li>
-<li><a href="#_terminology_external_subset_redefinition">9.5.8.3. Terminology External Subset Redefinition</a></li>
+<li><a href="#_numeric_primitive_redefinition">9.5.10.1. Numeric Primitive Redefinition</a></li>
+<li><a href="#_terminology_internal_value_set_redefinition">9.5.10.2. Terminology Internal Value Set Redefinition</a></li>
+<li><a href="#_terminology_external_subset_redefinition">9.5.10.3. Terminology External Subset Redefinition</a></li>
 </ul>
 </li>
-<li><a href="#_tuple_redefinition">9.5.9. Tuple Redefinition</a></li>
+<li><a href="#_tuple_redefinition">9.5.11. Tuple Redefinition</a></li>
 </ul>
 </li>
 <li><a href="#_rules">9.6. Rules</a></li>
@@ -504,9 +508,12 @@
 <tbody>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a id="latest_issue"></a>2.0.6</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Change Rules section to document re-use of new openEHR Expression Language.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Change Rules section to document re-use of new openEHR Expression Language.<br>
+ Re-order sub-sections under 9.5 to be more logical;<br>
+ Add a new sub-section in the Specialisation section 'Single and Multiple Specialisation - When does Cloning Occur?';<br>
+ Improve explanation of cloning.</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">T Beale</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a id="latest_issue_date"></a>28 Apr 2016</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a id="latest_issue_date"></a>11 May 2016</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">2.0.5</p></td>
@@ -5870,7 +5877,7 @@ it is quite common that only <em>some</em> of the local at-codes have equivalent
 <div class="sect3">
 <h4 id="_path_congruence"><a class="anchor" href="#_path_congruence"></a>9.2.4. Path Congruence</h4>
 <div class="paragraph">
-<p>Any node in an archetype can unambiguously be located by its archetype path. For example, the text value of the 'problem' node of the <code>openEHR-EHR-EVALUATION.problem.v1</code> archetype shown at the top of <a href="#redefinition-and-extension">[redefinition-and-extension]</a> is:</p>
+<p>Any node in an archetype can unambiguously be located by its archetype path. For example, the text value of the 'problem' node of the <code>openEHR-EHR-EVALUATION.problem.v1</code> archetype shown at the top of the <a href="#_redefinition_for_specialisation">Redefinition for Specialisation</a> example is:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -5998,15 +6005,15 @@ it is quite common that only <em>some</em> of the local at-codes have equivalent
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="pygments highlight"><code data-lang="cadl">    <span class="tok-c">------ openEHR-EHR-EVALUATION.problem.v1 ------</span>
+<pre class="pygments highlight"><code data-lang="cadl">    <span class="tok-c">-- openEHR-EHR-EVALUATION.problem.v1 --</span>
 
-    <span class="tok-nc">EVALUATION</span><span class="tok-p">[</span><span class="tok-nd">id1</span><span class="tok-p">]</span> <span class="tok-o">∈</span> <span class="tok-p">{</span>                                                 <span class="tok-c">-- Problem</span>
+    <span class="tok-nc">EVALUATION</span><span class="tok-p">[</span><span class="tok-nd">id1</span><span class="tok-p">]</span> <span class="tok-o">∈</span> <span class="tok-p">{</span>                                              <span class="tok-c">-- Problem</span>
         <span class="tok-nc">data</span> <span class="tok-o">∈</span> <span class="tok-p">{</span>
             <span class="tok-nc">ITEM_TREE</span><span class="tok-p">[</span><span class="tok-nd">id2</span><span class="tok-p">]</span> <span class="tok-o">∈</span> <span class="tok-p">{</span>
                 <span class="tok-nc">items</span> <span class="tok-kt">cardinality </span><span class="tok-o">∈</span> <span class="tok-p">{</span><span class="tok-m">0..*; ordered</span><span class="tok-p">}</span> <span class="tok-o">∈</span> <span class="tok-p">{</span>
                     <span class="tok-nc">ELEMENT</span><span class="tok-p">[</span><span class="tok-nd">id3</span><span class="tok-p">]</span> <span class="tok-kt">occurrences </span><span class="tok-o">∈</span> <span class="tok-p">{</span><span class="tok-m">1</span><span class="tok-p">}</span> <span class="tok-o">∈</span> <span class="tok-p">{</span>
                         <span class="tok-nc">value</span> <span class="tok-o">∈</span> <span class="tok-p">{</span>
-                            <span class="tok-nc">DV_TEXT</span><span class="tok-p">[</span><span class="tok-nd">id4</span><span class="tok-p">]</span>                                 <span class="tok-c">-- *** NODE A</span>
+                            <span class="tok-nc">DV_TEXT</span><span class="tok-p">[</span><span class="tok-nd">id4</span><span class="tok-p">]</span>                             <span class="tok-c">-- *** NODE A</span>
                         <span class="tok-p">}</span>
                     <span class="tok-p">}</span>
                     <span class="tok-nc">ELEMENT</span><span class="tok-p">[</span><span class="tok-nd">id5</span><span class="tok-p">]</span> <span class="tok-kt">occurrences </span><span class="tok-o">∈</span> <span class="tok-p">{</span><span class="tok-m">0..1</span><span class="tok-p">}</span> <span class="tok-o">∈</span> <span class="tok-p">{...}</span>       <span class="tok-c">-- Date of initial onset</span>
@@ -6028,28 +6035,28 @@ it is quite common that only <em>some</em> of the local at-codes have equivalent
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="pygments highlight"><code data-lang="cadl">    <span class="tok-c">------ openEHR-EHR-EVALUATION.problem-diagnosis.v1 ------                 -- specialisation of openEHR-EHR-EVALUATION.problem.v1</span>
+<pre class="pygments highlight"><code data-lang="cadl">    <span class="tok-c">-- openEHR-EHR-EVALUATION.problem-diagnosis.v1 --   -- specialises openEHR-EHR-EVALUATION.problem.v1</span>
 
-    <span class="tok-nc">EVALUATION</span><span class="tok-p">[</span><span class="tok-nd">id1.1</span><span class="tok-p">]</span> <span class="tok-o">∈</span> <span class="tok-p">{</span>                                                     <span class="tok-c">-- Recording of diagnosis</span>
+    <span class="tok-nc">EVALUATION</span><span class="tok-p">[</span><span class="tok-nd">id1.1</span><span class="tok-p">]</span> <span class="tok-o">∈</span> <span class="tok-p">{</span>                               <span class="tok-c">-- Recording of diagnosis</span>
         <span class="tok-p">/</span><span class="tok-nc">data</span><span class="tok-p">[</span><span class="tok-nd">id2</span><span class="tok-p">]/</span><span class="tok-nc">items</span><span class="tok-p">[</span><span class="tok-nd">id3</span><span class="tok-p">]/</span><span class="tok-nc">value</span><span class="tok-p"> </span><span class="tok-o">∈</span> <span class="tok-p">{</span>
-            <span class="tok-nc">DV_CODED_TEXT</span><span class="tok-p">[</span><span class="tok-nd">id4</span><span class="tok-p">]</span> <span class="tok-o">∈</span> <span class="tok-p">{</span>                                            <span class="tok-c">--</span>
-                <span class="tok-nc">defining_code</span> <span class="tok-o">∈</span> <span class="tok-p">{[</span><span class="tok-nd">ac0.1</span><span class="tok-p">]}</span> <span class="tok-c">-- X &#39;is_a&#39; diagnosis               -- &lt;&lt; This node is redefined from &#39;NODE A&#39; above</span>
-            <span class="tok-p">}</span>                                                                  <span class="tok-c">--</span>
+            <span class="tok-nc">DV_CODED_TEXT</span><span class="tok-p">[</span><span class="tok-nd">id4</span><span class="tok-p">]</span> <span class="tok-o">∈</span> <span class="tok-p">{</span>                      <span class="tok-c">-- &lt;&lt; This node redefines &#39;NODE A&#39; above</span>
+                <span class="tok-nc">defining_code</span> <span class="tok-o">∈</span> <span class="tok-p">{[</span><span class="tok-nd">ac0.1</span><span class="tok-p">]}</span>
+            <span class="tok-p">}</span>
         <span class="tok-p">}</span>
         <span class="tok-p">/</span><span class="tok-nc">data</span><span class="tok-p">/</span><span class="tok-nc">items</span><span class="tok-p"> </span><span class="tok-kt">cardinality </span><span class="tok-o">∈</span> <span class="tok-p">{</span><span class="tok-m">0..*; ordered</span><span class="tok-p">}</span> <span class="tok-o">∈</span> <span class="tok-p">{</span>
             <span class="tok-kt">before </span><span class="tok-p">[</span><span class="tok-nd">id5</span><span class="tok-p">]</span>
-            <span class="tok-nc">ELEMENT</span><span class="tok-p">[</span><span class="tok-nd">id0.32</span><span class="tok-p">]</span> <span class="tok-kt">occurrences </span><span class="tok-o">∈</span> <span class="tok-p">{</span><span class="tok-m">0..1</span><span class="tok-p">}</span> <span class="tok-o">∈</span> <span class="tok-p">{</span>                         <span class="tok-c">-- Status    ++ This node added</span>
+            <span class="tok-nc">ELEMENT</span><span class="tok-p">[</span><span class="tok-nd">id0.32</span><span class="tok-p">]</span> <span class="tok-kt">occurrences </span><span class="tok-o">∈</span> <span class="tok-p">{</span><span class="tok-m">0..1</span><span class="tok-p">}</span> <span class="tok-o">∈</span> <span class="tok-p">{</span>    <span class="tok-c">-- Status    ++ This node added</span>
                 <span class="tok-nc">value</span> <span class="tok-o">∈</span> <span class="tok-p">{</span>
                     <span class="tok-nc">DV_CODED_TEXT</span><span class="tok-p">[</span><span class="tok-nd">id0.33</span><span class="tok-p">]</span> <span class="tok-o">∈</span> <span class="tok-p">{</span>
                         <span class="tok-nc">defining_code</span> <span class="tok-o">∈</span> <span class="tok-p">{</span>
-                            <span class="tok-p">[</span><span class="tok-nd">local</span><span class="tok-p">::</span><span class="tok-nd">at0</span><span class="tok-err">.</span><span class="tok-nd">33</span><span class="tok-p">,</span> <span class="tok-nd">at0</span><span class="tok-err">.</span><span class="tok-nd">34</span><span class="tok-p">]</span>                           <span class="tok-c">-- provisional</span>
+                            <span class="tok-p">[</span><span class="tok-nd">local</span><span class="tok-p">::</span><span class="tok-nd">at0</span><span class="tok-err">.</span><span class="tok-nd">33</span><span class="tok-p">,</span> <span class="tok-nd">at0</span><span class="tok-err">.</span><span class="tok-nd">34</span><span class="tok-p">]</span>      <span class="tok-c">-- provisional</span>
                         <span class="tok-p">}</span>
                     <span class="tok-p">}</span>
                 <span class="tok-p">}</span>
             <span class="tok-p">}</span>
             <span class="tok-kt">after </span><span class="tok-p">[</span><span class="tok-nd">id31</span><span class="tok-p">]</span>
-            <span class="tok-nc">CLUSTER</span><span class="tok-p">[</span><span class="tok-nd">id0.35</span><span class="tok-p">]</span> <span class="tok-kt">occurrences </span><span class="tok-o">∈</span> <span class="tok-p">{</span><span class="tok-m">0..1</span><span class="tok-p">}</span> <span class="tok-o">∈</span> <span class="tok-p">{...}</span>                    <span class="tok-c">-- Diag. criteria     -- ++ This node added</span>
-            <span class="tok-nc">CLUSTER</span><span class="tok-p">[</span><span class="tok-nd">id0.37</span><span class="tok-p">]</span> <span class="tok-kt">occurrences </span><span class="tok-o">∈</span> <span class="tok-p">{</span><span class="tok-m">0..1</span><span class="tok-p">}</span> <span class="tok-o">∈</span> <span class="tok-p">{...}</span>                    <span class="tok-c">-- Clin. staging      -- ++ This node added</span>
+            <span class="tok-nc">CLUSTER</span><span class="tok-p">[</span><span class="tok-nd">id0.35</span><span class="tok-p">]</span> <span class="tok-kt">occurrences </span><span class="tok-o">∈</span> <span class="tok-p">{</span><span class="tok-m">0..1</span><span class="tok-p">}</span> <span class="tok-o">∈</span> <span class="tok-p">{...}</span>  <span class="tok-c">-- Diag. criteria  ++ This node added</span>
+            <span class="tok-nc">CLUSTER</span><span class="tok-p">[</span><span class="tok-nd">id0.37</span><span class="tok-p">]</span> <span class="tok-kt">occurrences </span><span class="tok-o">∈</span> <span class="tok-p">{</span><span class="tok-m">0..1</span><span class="tok-p">}</span> <span class="tok-o">∈</span> <span class="tok-p">{...}</span>  <span class="tok-c">-- Clin. staging   ++ This node added</span>
         <span class="tok-p">}</span>
     <span class="tok-p">}</span></code></pre>
 </div>
@@ -6058,9 +6065,9 @@ it is quite common that only <em>some</em> of the local at-codes have equivalent
 <div class="sect3">
 <h4 id="_redefinition_for_specialisation"><a class="anchor" href="#_redefinition_for_specialisation"></a>9.3.2. Redefinition for Specialisation</h4>
 <div class="paragraph">
-<p>The example shown below illustrates redefinition in a specialised archetype. The first text is taken from the definition section of the 'laboratory result' <code>OBSERVATION</code> archetype (available at <a href="http://ckm.openehr.org">openEHR CKM</a>), and contains an <code>ELEMENT</code> node whose identifier is <code>[id79]</code> , defined as 'panel item' in the archetype terminology (sibling nodes are not shown here). The intention is that the <code>id79</code> node be specialised into particular 'panel items' or analytes according to particular types of test result. Accordingly, the <code>id79</code> node has occurrences of <code>0..*</code> and its value is not constrained with respect to the reference model, meaning that the type of the <code><em>value</em></code> attirbute can be any descendant of <code>DATA_VALUE</code> .</p>
+<p>The example shown below illustrates redefinition in a specialised archetype. The first text is taken from the definition section of the 'laboratory result' <code>OBSERVATION</code> archetype (available at <a href="http://www.openEHR.org/ckm">openEHR CKM</a>), and contains an <code>ELEMENT</code> node whose identifier is <code>[id79]</code> , defined as 'panel item' in the archetype terminology (sibling nodes are not shown here). The intention is that the <code>id79</code> node be specialised into particular 'panel items' or analytes according to particular types of test result. Accordingly, the <code>id79</code> node has occurrences of <code>0..*</code> and its value is not constrained with respect to the reference model, meaning that the type of the <code><em>value</em></code> attirbute can be any descendant of <code>DATA_VALUE</code> .</p>
 </div>
-<div id="redefinition-and-extension" class="listingblock">
+<div class="listingblock">
 <div class="content">
 <pre class="pygments highlight"><code data-lang="cadl">    <span class="tok-c">------ openEHR-EHR-OBSERVATION.laboratory.v1 ------</span>
     <span class="tok-nc">OBSERVATION</span><span class="tok-p">[</span><span class="tok-nd">id1</span><span class="tok-p">]</span> <span class="tok-o">∈</span> <span class="tok-p">{</span>                                                       <span class="tok-c">-- Laboratory Result</span>
@@ -6073,11 +6080,11 @@ it is quite common that only <em>some</em> of the local at-codes have equivalent
                                 <span class="tok-nc">items</span> <span class="tok-kt">cardinality </span><span class="tok-o">∈</span> <span class="tok-p">{</span><span class="tok-m">0..*; unordered</span><span class="tok-p">}</span> <span class="tok-o">∈</span> <span class="tok-p">{</span>
                                     <span class="tok-nc">CLUSTER</span><span class="tok-p">[</span><span class="tok-nd">id5</span><span class="tok-p">]</span> <span class="tok-kt">occurrences </span><span class="tok-o">∈</span> <span class="tok-p">{</span><span class="tok-m">1</span><span class="tok-p">}</span> <span class="tok-o">∈</span> <span class="tok-p">{...}</span>      <span class="tok-c">-- Specimen</span>
                                     <span class="tok-nc">ELEMENT</span><span class="tok-p">[</span><span class="tok-nd">id8</span><span class="tok-p">]</span> <span class="tok-kt">occurrences </span><span class="tok-o">∈</span> <span class="tok-p">{</span><span class="tok-m">0..1</span><span class="tok-p">}</span> <span class="tok-o">∈</span> <span class="tok-p">{...}</span>   <span class="tok-c">-- Diagnostic services</span>
-                                    <span class="tok-nc">CLUSTER</span><span class="tok-p">[</span><span class="tok-nd">id11</span><span class="tok-p">]</span> <span class="tok-kt">occurrences </span><span class="tok-o">∈</span> <span class="tok-p">{</span><span class="tok-m">0..*</span><span class="tok-p">}</span> <span class="tok-o">∈</span> <span class="tok-p">{...}</span> <span class="tok-c">-- level 1</span>
+                                    <span class="tok-nc">CLUSTER</span><span class="tok-p">[</span><span class="tok-nd">id11</span><span class="tok-p">]</span> <span class="tok-kt">occurrences </span><span class="tok-o">∈</span> <span class="tok-p">{</span><span class="tok-m">0..*</span><span class="tok-p">}</span> <span class="tok-o">∈</span> <span class="tok-p">{...}</span>  <span class="tok-c">-- level 1</span>
                                     <span class="tok-nc">ELEMENT</span><span class="tok-p">[</span><span class="tok-nd">id79</span><span class="tok-p">]</span> <span class="tok-kt">occurrences </span><span class="tok-o">∈</span> <span class="tok-p">{</span><span class="tok-m">0..*</span><span class="tok-p">}</span>          <span class="tok-c">-- panel item</span>
-                                    <span class="tok-nc">ELEMENT</span><span class="tok-p">[</span><span class="tok-nd">id17</span><span class="tok-p">]</span> <span class="tok-kt">occurrences </span><span class="tok-o">∈</span> <span class="tok-p">{</span><span class="tok-m">0..1</span><span class="tok-p">}</span> <span class="tok-o">∈</span> <span class="tok-p">{...}</span> <span class="tok-c">-- Overall Comment</span>
-                                    <span class="tok-nc">CLUSTER</span><span class="tok-p">[</span><span class="tok-nd">id18</span><span class="tok-p">]</span> <span class="tok-kt">occurrences </span><span class="tok-o">∈</span> <span class="tok-p">{</span><span class="tok-m">0..1</span><span class="tok-p">}</span> <span class="tok-o">∈</span> <span class="tok-p">{...}</span> <span class="tok-c">-- Quality</span>
-                                    <span class="tok-nc">ELEMENT</span><span class="tok-p">[</span><span class="tok-nd">id37</span><span class="tok-p">]</span> <span class="tok-kt">occurrences </span><span class="tok-o">∈</span> <span class="tok-p">{</span><span class="tok-m">0..1</span><span class="tok-p">}</span> <span class="tok-o">∈</span> <span class="tok-p">{...}</span> <span class="tok-c">-- Multimedia rep.</span>
+                                    <span class="tok-nc">ELEMENT</span><span class="tok-p">[</span><span class="tok-nd">id17</span><span class="tok-p">]</span> <span class="tok-kt">occurrences </span><span class="tok-o">∈</span> <span class="tok-p">{</span><span class="tok-m">0..1</span><span class="tok-p">}</span> <span class="tok-o">∈</span> <span class="tok-p">{...}</span>  <span class="tok-c">-- Overall Comment</span>
+                                    <span class="tok-nc">CLUSTER</span><span class="tok-p">[</span><span class="tok-nd">id18</span><span class="tok-p">]</span> <span class="tok-kt">occurrences </span><span class="tok-o">∈</span> <span class="tok-p">{</span><span class="tok-m">0..1</span><span class="tok-p">}</span> <span class="tok-o">∈</span> <span class="tok-p">{...}</span>  <span class="tok-c">-- Quality</span>
+                                    <span class="tok-nc">ELEMENT</span><span class="tok-p">[</span><span class="tok-nd">id37</span><span class="tok-p">]</span> <span class="tok-kt">occurrences </span><span class="tok-o">∈</span> <span class="tok-p">{</span><span class="tok-m">0..1</span><span class="tok-p">}</span> <span class="tok-o">∈</span> <span class="tok-p">{...}</span>  <span class="tok-c">-- Multimedia rep.</span>
                                 <span class="tok-p">}</span>
                             <span class="tok-p">}</span>
                         <span class="tok-p">}</span>
@@ -6096,7 +6103,7 @@ it is quite common that only <em>some</em> of the local at-codes have equivalent
 <pre class="pygments highlight"><code data-lang="cadl">    <span class="tok-c">------ openEHR-EHR-OBSERVATION.laboratory-thyroid.v1 ------</span>
     <span class="tok-nc">OBSERVATION</span><span class="tok-p">[</span><span class="tok-nd">id1.1</span><span class="tok-p">]</span> <span class="tok-c">-- Thyroid function tests</span>
         <span class="tok-p">/</span><span class="tok-nc">data</span><span class="tok-p">[</span><span class="tok-nd">id2</span><span class="tok-p">]/</span><span class="tok-nc">events</span><span class="tok-p">[</span><span class="tok-nd">id3</span><span class="tok-p">]/</span><span class="tok-nc">data</span><span class="tok-p">[</span><span class="tok-nd">id4</span><span class="tok-p">]/</span><span class="tok-nc">items</span><span class="tok-p"> </span><span class="tok-o">∈</span> <span class="tok-p">{</span>
-            <span class="tok-nc">ELEMENT</span><span class="tok-p">[</span><span class="tok-nd">id79.2</span><span class="tok-p">]</span> <span class="tok-kt">occurrences </span><span class="tok-o">∈</span> <span class="tok-p">{</span><span class="tok-m">0..1</span><span class="tok-p">}</span> <span class="tok-o">∈</span> <span class="tok-p">{</span><span class="tok-c">-- TSH</span>
+            <span class="tok-nc">ELEMENT</span><span class="tok-p">[</span><span class="tok-nd">id79.2</span><span class="tok-p">]</span> <span class="tok-kt">occurrences </span><span class="tok-o">∈</span> <span class="tok-p">{</span><span class="tok-m">0..1</span><span class="tok-p">}</span> <span class="tok-o">∈</span> <span class="tok-p">{</span>        <span class="tok-c">-- TSH</span>
                 <span class="tok-nc">value</span> <span class="tok-o">∈</span> <span class="tok-p">{</span>
                     <span class="tok-nc">DV_QUANTITY</span><span class="tok-p">[</span><span class="tok-nd">id0.7</span><span class="tok-p">]</span> <span class="tok-o">∈</span> <span class="tok-p">{</span>
                         <span class="tok-nc">property</span> <span class="tok-o">∈</span> <span class="tok-p">{[</span><span class="tok-nd">at15</span><span class="tok-p">]}</span>
@@ -6105,13 +6112,13 @@ it is quite common that only <em>some</em> of the local at-codes have equivalent
                     <span class="tok-p">}</span>
                 <span class="tok-p">}</span>
             <span class="tok-p">}</span>
-            <span class="tok-nc">ELEMENT</span><span class="tok-p">[</span><span class="tok-nd">id79.7</span><span class="tok-p">]</span> <span class="tok-kt">occurrences </span><span class="tok-o">∈</span> <span class="tok-p">{</span><span class="tok-m">0..1</span><span class="tok-p">}</span> <span class="tok-o">∈</span> <span class="tok-p">{...}</span> <span class="tok-c">-- Free Triiodothyronine (Free T3)</span>
-            <span class="tok-nc">ELEMENT</span><span class="tok-p">[</span><span class="tok-nd">id79.8</span><span class="tok-p">]</span> <span class="tok-kt">occurrences </span><span class="tok-o">∈</span> <span class="tok-p">{</span><span class="tok-m">0..1</span><span class="tok-p">}</span> <span class="tok-o">∈</span> <span class="tok-p">{...}</span> <span class="tok-c">-- Total Triiodothyronine (Total T3)</span>
-            <span class="tok-nc">ELEMENT</span><span class="tok-p">[</span><span class="tok-nd">id79.3</span><span class="tok-p">]</span> <span class="tok-kt">occurrences </span><span class="tok-o">∈</span> <span class="tok-p">{</span><span class="tok-m">0..1</span><span class="tok-p">}</span> <span class="tok-o">∈</span> <span class="tok-p">{...}</span> <span class="tok-c">-- Free thyroxine (Free T4)</span>
-            <span class="tok-nc">ELEMENT</span><span class="tok-p">[</span><span class="tok-nd">id79.4</span><span class="tok-p">]</span> <span class="tok-kt">occurrences </span><span class="tok-o">∈</span> <span class="tok-p">{</span><span class="tok-m">0..1</span><span class="tok-p">}</span> <span class="tok-o">∈</span> <span class="tok-p">{...}</span> <span class="tok-c">-- Total Thyroxine (Total T4)</span>
-            <span class="tok-nc">ELEMENT</span><span class="tok-p">[</span><span class="tok-nd">id79.5</span><span class="tok-p">]</span> <span class="tok-kt">occurrences </span><span class="tok-o">∈</span> <span class="tok-p">{</span><span class="tok-m">0..1</span><span class="tok-p">}</span> <span class="tok-o">∈</span> <span class="tok-p">{...}</span> <span class="tok-c">-- T4 loaded uptake</span>
-            <span class="tok-nc">ELEMENT</span><span class="tok-p">[</span><span class="tok-nd">id79.9</span><span class="tok-p">]</span> <span class="tok-kt">occurrences </span><span class="tok-o">∈</span> <span class="tok-p">{</span><span class="tok-m">0..1</span><span class="tok-p">}</span> <span class="tok-o">∈</span> <span class="tok-p">{...}</span> <span class="tok-c">-- Free Triiodothyronine index (Free T3 index)</span>
-            <span class="tok-nc">ELEMENT</span><span class="tok-p">[</span><span class="tok-nd">id79.6</span><span class="tok-p">]</span> <span class="tok-kt">occurrences </span><span class="tok-o">∈</span> <span class="tok-p">{</span><span class="tok-m">0..1</span><span class="tok-p">}</span> <span class="tok-o">∈</span> <span class="tok-p">{...}</span> <span class="tok-c">-- Free thyroxine index (FTI)</span>
+            <span class="tok-nc">ELEMENT</span><span class="tok-p">[</span><span class="tok-nd">id79.7</span><span class="tok-p">]</span> <span class="tok-kt">occurrences </span><span class="tok-o">∈</span> <span class="tok-p">{</span><span class="tok-m">0..1</span><span class="tok-p">}</span> <span class="tok-o">∈</span> <span class="tok-p">{...}</span>    <span class="tok-c">-- Free Triiodothyronine (Free T3)</span>
+            <span class="tok-nc">ELEMENT</span><span class="tok-p">[</span><span class="tok-nd">id79.8</span><span class="tok-p">]</span> <span class="tok-kt">occurrences </span><span class="tok-o">∈</span> <span class="tok-p">{</span><span class="tok-m">0..1</span><span class="tok-p">}</span> <span class="tok-o">∈</span> <span class="tok-p">{...}</span>    <span class="tok-c">-- Total Triiodothyronine (Total T3)</span>
+            <span class="tok-nc">ELEMENT</span><span class="tok-p">[</span><span class="tok-nd">id79.3</span><span class="tok-p">]</span> <span class="tok-kt">occurrences </span><span class="tok-o">∈</span> <span class="tok-p">{</span><span class="tok-m">0..1</span><span class="tok-p">}</span> <span class="tok-o">∈</span> <span class="tok-p">{...}</span>    <span class="tok-c">-- Free thyroxine (Free T4)</span>
+            <span class="tok-nc">ELEMENT</span><span class="tok-p">[</span><span class="tok-nd">id79.4</span><span class="tok-p">]</span> <span class="tok-kt">occurrences </span><span class="tok-o">∈</span> <span class="tok-p">{</span><span class="tok-m">0..1</span><span class="tok-p">}</span> <span class="tok-o">∈</span> <span class="tok-p">{...}</span>    <span class="tok-c">-- Total Thyroxine (Total T4)</span>
+            <span class="tok-nc">ELEMENT</span><span class="tok-p">[</span><span class="tok-nd">id79.5</span><span class="tok-p">]</span> <span class="tok-kt">occurrences </span><span class="tok-o">∈</span> <span class="tok-p">{</span><span class="tok-m">0..1</span><span class="tok-p">}</span> <span class="tok-o">∈</span> <span class="tok-p">{...}</span>    <span class="tok-c">-- T4 loaded uptake</span>
+            <span class="tok-nc">ELEMENT</span><span class="tok-p">[</span><span class="tok-nd">id79.9</span><span class="tok-p">]</span> <span class="tok-kt">occurrences </span><span class="tok-o">∈</span> <span class="tok-p">{</span><span class="tok-m">0..1</span><span class="tok-p">}</span> <span class="tok-o">∈</span> <span class="tok-p">{...}</span>    <span class="tok-c">-- Free Triiodothyronine index (Free T3 index)</span>
+            <span class="tok-nc">ELEMENT</span><span class="tok-p">[</span><span class="tok-nd">id79.6</span><span class="tok-p">]</span> <span class="tok-kt">occurrences </span><span class="tok-o">∈</span> <span class="tok-p">{</span><span class="tok-m">0..1</span><span class="tok-p">}</span> <span class="tok-o">∈</span> <span class="tok-p">{...}</span>    <span class="tok-c">-- Free thyroxine index (FTI)</span>
         <span class="tok-p">}</span>
     <span class="tok-p">}</span></code></pre>
 </div>
@@ -6138,9 +6145,8 @@ it is quite common that only <em>some</em> of the local at-codes have equivalent
 <div class="paragraph">
 <p>This archetype is typical of a class of specialisations that use only redefinition, due to the fact that all objects in the redefined part of the specialised version are semantically specific kinds of a general object, in this case, 'panel item'.</p>
 </div>
-</div>
-<div class="sect3">
-<h4 id="_specialisation_with_cloning"><a class="anchor" href="#_specialisation_with_cloning"></a>9.3.3. Specialisation with Cloning</h4>
+<div class="sect4">
+<h5 id="_specialisation_with_cloning"><a class="anchor" href="#_specialisation_with_cloning"></a>9.3.2.1. Specialisation with Cloning</h5>
 <div class="paragraph">
 <p>In the previous example, each of the nodes with identifiers of the form <code>id79.N</code> would be effectively copied to the flat output, since the node being redefined (<code>id79</code>) has no sub-structure, i.e. it is a 'matches any' node. However, the general case is that the node in the parent has its own structure, typically some boilerplate nodes that would be used by any specialisation. In that case, an archetype containing nodes that specialise a node with existing structure cause a 'clone and overlay' operation. That is, to generate the flat output of the specialised archetype, the parent node is first cloned from the flat parent to the new flat output, and then the specialised node is overlaid on the cloned structure. The following example shows a parent archetype that defines a 'laboratory result' structure as a <code>CLUSTER</code> containing a number of <code>ELEMENT</code> objects, defining things like Result value, Reference range guidance and so on. The <code>id2</code> Result value node is intended to be specialised.</p>
 </div>
@@ -6191,9 +6197,9 @@ it is quite common that only <em>some</em> of the local at-codes have equivalent
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="pygments highlight"><code data-lang="cadl">    <span class="tok-nc">CLUSTER</span><span class="tok-p">[</span><span class="tok-nd">id1.1</span><span class="tok-p">]</span> <span class="tok-o">∈</span> <span class="tok-p">{</span>                                    <span class="tok-c">-- Lipid studies panel</span>
+<pre class="pygments highlight"><code data-lang="cadl">    <span class="tok-nc">CLUSTER</span><span class="tok-p">[</span><span class="tok-nd">id1.1</span><span class="tok-p">]</span> <span class="tok-o">∈</span> <span class="tok-p">{</span>                                 <span class="tok-c">-- Lipid studies panel</span>
         <span class="tok-p">/</span><span class="tok-nc">items</span><span class="tok-p"> </span><span class="tok-o">∈</span> <span class="tok-p">{</span>
-            <span class="tok-nc">CLUSTER</span><span class="tok-p">[</span><span class="tok-nd">id3.1</span><span class="tok-p">]</span> <span class="tok-o">∈</span> <span class="tok-p">{</span>                            <span class="tok-c">-- LDL</span>
+            <span class="tok-nc">CLUSTER</span><span class="tok-p">[</span><span class="tok-nd">id3.1</span><span class="tok-p">]</span> <span class="tok-o">∈</span> <span class="tok-p">{</span>                         <span class="tok-c">-- LDL</span>
                 <span class="tok-nc">items</span> <span class="tok-o">∈</span> <span class="tok-p">{</span>
                     <span class="tok-nc">ELEMENT</span><span class="tok-p">[</span><span class="tok-nd">id2.2</span><span class="tok-p">]</span> <span class="tok-o">∈</span> <span class="tok-p">{</span>
                         <span class="tok-nc">value</span> <span class="tok-o">∈</span> <span class="tok-p">{</span>
@@ -6206,7 +6212,7 @@ it is quite common that only <em>some</em> of the local at-codes have equivalent
                     <span class="tok-p">}</span>
                 <span class="tok-p">}</span>
             <span class="tok-p">}</span>
-            <span class="tok-nc">CLUSTER</span><span class="tok-p">[</span><span class="tok-nd">id3.2</span><span class="tok-p">]</span> <span class="tok-o">∈</span> <span class="tok-p">{</span>                            <span class="tok-c">-- HDL</span>
+            <span class="tok-nc">CLUSTER</span><span class="tok-p">[</span><span class="tok-nd">id3.2</span><span class="tok-p">]</span> <span class="tok-o">∈</span> <span class="tok-p">{</span>                         <span class="tok-c">-- HDL</span>
                 <span class="tok-nc">items</span> <span class="tok-o">∈</span> <span class="tok-p">{</span>
                     <span class="tok-nc">ELEMENT</span><span class="tok-p">[</span><span class="tok-nd">id2.3</span><span class="tok-p">]</span> <span class="tok-o">∈</span> <span class="tok-p">{</span>
                         <span class="tok-nc">value</span> <span class="tok-o">matches </span><span class="tok-p">{</span>
@@ -6220,7 +6226,7 @@ it is quite common that only <em>some</em> of the local at-codes have equivalent
                 <span class="tok-p">}</span>
             <span class="tok-p">}</span>
 
-            <span class="tok-nc">CLUSTER</span><span class="tok-p">[</span><span class="tok-nd">id3.5</span><span class="tok-p">]</span> <span class="tok-o">∈</span> <span class="tok-p">{</span>                     <span class="tok-c">-- Cholesterol Result</span>
+            <span class="tok-nc">CLUSTER</span><span class="tok-p">[</span><span class="tok-nd">id3.5</span><span class="tok-p">]</span> <span class="tok-o">∈</span> <span class="tok-p">{</span>                         <span class="tok-c">-- Cholesterol Result</span>
                 <span class="tok-nc">items</span> <span class="tok-o">∈</span> <span class="tok-p">{</span>
                     <span class="tok-nc">ELEMENT</span><span class="tok-p">[</span><span class="tok-nd">id2.4</span><span class="tok-p">]</span> <span class="tok-o">∈</span> <span class="tok-p">{</span>
                         <span class="tok-nc">value</span> <span class="tok-o">matches </span><span class="tok-p">{</span>
@@ -6238,13 +6244,17 @@ it is quite common that only <em>some</em> of the local at-codes have equivalent
 </div>
 </div>
 <div class="paragraph">
-<p>The flattened result consists of a number of repetitions of the entire <code>CLUSTER[id3]</code> structure from the parent, corresponding to the specialisations in the child. The ADL source form is tool large to show here, but the ADL Workbench provides a visualisation in <a href="#specialisation_with_cloning">Specialisation with Cloning</a>. In this figure we can see that the <code>CLUSTER</code> / <code>ELEMENT</code> overlays from the child archetype have been overlaid on clones of the <code>CLUSTER[id3]</code> structure from the parent, preserving the <code>id4</code> , <code>id5</code> etc nodes.</p>
+<p>The flattened result consists of a number of repetitions of the entire <code>CLUSTER[id3]</code> structure from the parent, corresponding to the specialisations in the child. The ADL source form is too large to show here, but the <a href="http://www.openehr.org/downloads/ADLworkbench/home">ADL Workbench</a> provides a visualisation in the section <a href="#specialisation_with_cloning">Specialisation with Cloning</a>. In this figure we can see that the <code>CLUSTER</code> / <code>ELEMENT</code> overlays from the child archetype have been overlaid on clones of the <code>CLUSTER[id3]</code> structure from the parent, preserving the <code>id4</code> , <code>id5</code> etc nodes. Elements shown in light blue are inherited; where they appear under the nodes <code>[id3.1]</code>, <code>[id3.2]</code> etc, they are cloned from the corresponding nodes under <code>[id3]</code>.</p>
 </div>
 <div id="specialisation_with_cloning" class="imageblock text-center" style="text-align: center">
 <div class="content">
 <img src="images/specialisation_with_cloning.png" alt="specialisation with cloning" width="60%">
 </div>
 <div class="title">Figure 5. Specialisation with Cloning</div>
+</div>
+<div class="paragraph">
+<p>It can also be seen that the original <code>[id3]</code> sub-tree remains. This can be removed if required, as described in <a href="#Exhaustive and non-exhaustive specialisation">[Exhaustive and non-exhaustive specialisation]</a>.</p>
+</div>
 </div>
 </div>
 </div>
@@ -6336,7 +6346,7 @@ Note that in the above, the '/' is used to denote '/protocol' as a differential 
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="pygments highlight"><code data-lang="cadl">    <span class="tok-nc">ITEM_LIST</span><span class="tok-p">[</span><span class="tok-nd">id3</span><span class="tok-p">]</span> <span class="tok-o">∈</span> <span class="tok-p">{</span>                                       <span class="tok-c">-- general check list</span>
+<pre class="pygments highlight"><code data-lang="cadl">    <span class="tok-nc">ITEM_LIST</span><span class="tok-p">[</span><span class="tok-nd">id3</span><span class="tok-p">]</span> <span class="tok-o">∈</span> <span class="tok-p">{</span>                                      <span class="tok-c">-- general check list</span>
         <span class="tok-nc">items</span> <span class="tok-kt">cardinality </span><span class="tok-o">∈</span> <span class="tok-p">{</span><span class="tok-m">0..*</span><span class="tok-p">}</span> <span class="tok-o">∈</span> <span class="tok-p">{</span>                      <span class="tok-c">-- any number of items</span>
             <span class="tok-nc">ELEMENT</span><span class="tok-p">[</span><span class="tok-nd">id12</span><span class="tok-p">]</span> <span class="tok-kt">occurrences </span><span class="tok-o">∈</span> <span class="tok-p">{</span><span class="tok-m">0..*</span><span class="tok-p">}</span> <span class="tok-o">∈</span> <span class="tok-p">{...}</span>      <span class="tok-c">-- generic checklist item</span>
         <span class="tok-p">}</span>
@@ -6348,7 +6358,7 @@ Note that in the above, the '/' is used to denote '/protocol' as a differential 
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="pygments highlight"><code data-lang="cadl">    <span class="tok-nc">ITEM_LIST</span><span class="tok-p">[</span><span class="tok-nd">id3</span><span class="tok-p">]</span> <span class="tok-o">∈</span> <span class="tok-p">{</span>                                       <span class="tok-c">-- pre-operative check list</span>
+<pre class="pygments highlight"><code data-lang="cadl">    <span class="tok-nc">ITEM_LIST</span><span class="tok-p">[</span><span class="tok-nd">id3</span><span class="tok-p">]</span> <span class="tok-o">∈</span> <span class="tok-p">{</span>                                      <span class="tok-c">-- pre-operative check list</span>
         <span class="tok-p">/</span><span class="tok-nc">items</span><span class="tok-p"> </span><span class="tok-kt">cardinality </span><span class="tok-o">∈</span> <span class="tok-p">{</span><span class="tok-m">3..10</span><span class="tok-p">}</span> <span class="tok-o">∈</span> <span class="tok-p">{</span>                    <span class="tok-c">-- at least 3 mandatory items</span>
             <span class="tok-nc">ELEMENT</span><span class="tok-p">[</span><span class="tok-nd">id12.1</span><span class="tok-p">]</span> <span class="tok-kt">occurrences </span><span class="tok-o">∈</span> <span class="tok-p">{</span><span class="tok-m">1</span><span class="tok-p">}</span> <span class="tok-o">∈</span> <span class="tok-p">{...}</span>       <span class="tok-c">-- item #1</span>
             <span class="tok-nc">ELEMENT</span><span class="tok-p">[</span><span class="tok-nd">id12.2</span><span class="tok-p">]</span> <span class="tok-kt">occurrences </span><span class="tok-o">∈</span> <span class="tok-p">{</span><span class="tok-m">1</span><span class="tok-p">}</span> <span class="tok-o">∈</span> <span class="tok-p">{...}</span>       <span class="tok-c">-- item #2</span>
@@ -6369,18 +6379,18 @@ Note that in the above, the '/' is used to denote '/protocol' as a differential 
 <div class="listingblock">
 <div class="content">
 <pre class="pygments highlight"><code data-lang="cadl">    <span class="tok-nc">items</span> <span class="tok-kt">cardinality </span><span class="tok-o">∈</span> <span class="tok-p">{</span><span class="tok-m">0..*; ordered</span><span class="tok-p">}</span> <span class="tok-o">∈</span> <span class="tok-p">{</span>
-        <span class="tok-nc">ELEMENT</span><span class="tok-p">[</span><span class="tok-nd">id2</span><span class="tok-p">]</span> <span class="tok-kt">occurrences </span><span class="tok-o">∈</span> <span class="tok-p">{</span><span class="tok-m">1</span><span class="tok-p">}</span> <span class="tok-o">∈</span> <span class="tok-p">{...}</span>                         <span class="tok-c">-- Problem</span>
-        <span class="tok-nc">ELEMENT</span><span class="tok-p">[</span><span class="tok-nd">id3</span><span class="tok-p">]</span> <span class="tok-kt">occurrences </span><span class="tok-o">∈</span> <span class="tok-p">{</span><span class="tok-m">0..1</span><span class="tok-p">}</span> <span class="tok-o">∈</span> <span class="tok-p">{...}</span>                      <span class="tok-c">-- Date of initial onset</span>
-        <span class="tok-nc">ELEMENT</span><span class="tok-p">[</span><span class="tok-nd">id4</span><span class="tok-p">]</span> <span class="tok-kt">occurrences </span><span class="tok-o">∈</span> <span class="tok-p">{</span><span class="tok-m">0..1</span><span class="tok-p">}</span> <span class="tok-o">∈</span> <span class="tok-p">{...}</span>                      <span class="tok-c">-- Age at initial onset</span>
-        <span class="tok-nc">ELEMENT</span><span class="tok-p">[</span><span class="tok-nd">id5</span><span class="tok-p">]</span> <span class="tok-kt">occurrences </span><span class="tok-o">∈</span> <span class="tok-p">{</span><span class="tok-m">0..1</span><span class="tok-p">}</span> <span class="tok-o">∈</span> <span class="tok-p">{...}</span>                      <span class="tok-c">-- Severity</span>
-        <span class="tok-nc">ELEMENT</span><span class="tok-p">[</span><span class="tok-nd">id9</span><span class="tok-p">]</span> <span class="tok-kt">occurrences </span><span class="tok-o">∈</span> <span class="tok-p">{</span><span class="tok-m">0..1</span><span class="tok-p">}</span> <span class="tok-o">∈</span> <span class="tok-p">{...}</span>                      <span class="tok-c">-- Clinical description</span>
-        <span class="tok-nc">ELEMENT</span><span class="tok-p">[</span><span class="tok-nd">id10</span><span class="tok-p">]</span> <span class="tok-kt">occurrences </span><span class="tok-o">∈</span> <span class="tok-p">{</span><span class="tok-m">0..1</span><span class="tok-p">}</span> <span class="tok-o">∈</span> <span class="tok-p">{...}</span>                     <span class="tok-c">-- Date clinically received</span>
-        <span class="tok-nc">CLUSTER</span><span class="tok-p">[</span><span class="tok-nd">id11</span><span class="tok-p">]</span> <span class="tok-kt">occurrences </span><span class="tok-o">∈</span> <span class="tok-p">{</span><span class="tok-m">0..*</span><span class="tok-p">}</span> <span class="tok-o">∈</span> <span class="tok-p">{...}</span>                     <span class="tok-c">-- Location</span>
-        <span class="tok-nc">CLUSTER</span><span class="tok-p">[</span><span class="tok-nd">id14</span><span class="tok-p">]</span> <span class="tok-kt">occurrences </span><span class="tok-o">∈</span> <span class="tok-p">{</span><span class="tok-m">0..1</span><span class="tok-p">}</span> <span class="tok-o">∈</span> <span class="tok-p">{...}</span>                     <span class="tok-c">-- Aetiology</span>
-        <span class="tok-nc">CLUSTER</span><span class="tok-p">[</span><span class="tok-nd">id18</span><span class="tok-p">]</span> <span class="tok-kt">occurrences </span><span class="tok-o">∈</span> <span class="tok-p">{</span><span class="tok-m">0..1</span><span class="tok-p">}</span> <span class="tok-o">∈</span> <span class="tok-p">{...}</span>                     <span class="tok-c">-- Occurrences or exacerb&#39;ns</span>
-        <span class="tok-nc">CLUSTER</span><span class="tok-p">[</span><span class="tok-nd">id26</span><span class="tok-p">]</span> <span class="tok-kt">occurrences </span><span class="tok-o">∈</span> <span class="tok-p">{</span><span class="tok-m">0..1</span><span class="tok-p">}</span> <span class="tok-o">∈</span> <span class="tok-p">{...}</span>                     <span class="tok-c">-- Related problems</span>
-        <span class="tok-nc">ELEMENT</span><span class="tok-p">[</span><span class="tok-nd">id30</span><span class="tok-p">]</span> <span class="tok-kt">occurrences </span><span class="tok-o">∈</span> <span class="tok-p">{</span><span class="tok-m">0..1</span><span class="tok-p">}</span> <span class="tok-o">∈</span> <span class="tok-p">{...}</span>                     <span class="tok-c">-- Date of resolution</span>
-        <span class="tok-nc">ELEMENT</span><span class="tok-p">[</span><span class="tok-nd">id31</span><span class="tok-p">]</span> <span class="tok-kt">occurrences </span><span class="tok-o">∈</span> <span class="tok-p">{</span><span class="tok-m">0..1</span><span class="tok-p">}</span> <span class="tok-o">∈</span> <span class="tok-p">{...}</span>                     <span class="tok-c">-- Age at resolution</span>
+        <span class="tok-nc">ELEMENT</span><span class="tok-p">[</span><span class="tok-nd">id2</span><span class="tok-p">]</span> <span class="tok-kt">occurrences </span><span class="tok-o">∈</span> <span class="tok-p">{</span><span class="tok-m">1</span><span class="tok-p">}</span> <span class="tok-o">∈</span> <span class="tok-p">{...}</span>               <span class="tok-c">-- Problem</span>
+        <span class="tok-nc">ELEMENT</span><span class="tok-p">[</span><span class="tok-nd">id3</span><span class="tok-p">]</span> <span class="tok-kt">occurrences </span><span class="tok-o">∈</span> <span class="tok-p">{</span><span class="tok-m">0..1</span><span class="tok-p">}</span> <span class="tok-o">∈</span> <span class="tok-p">{...}</span>            <span class="tok-c">-- Date of initial onset</span>
+        <span class="tok-nc">ELEMENT</span><span class="tok-p">[</span><span class="tok-nd">id4</span><span class="tok-p">]</span> <span class="tok-kt">occurrences </span><span class="tok-o">∈</span> <span class="tok-p">{</span><span class="tok-m">0..1</span><span class="tok-p">}</span> <span class="tok-o">∈</span> <span class="tok-p">{...}</span>            <span class="tok-c">-- Age at initial onset</span>
+        <span class="tok-nc">ELEMENT</span><span class="tok-p">[</span><span class="tok-nd">id5</span><span class="tok-p">]</span> <span class="tok-kt">occurrences </span><span class="tok-o">∈</span> <span class="tok-p">{</span><span class="tok-m">0..1</span><span class="tok-p">}</span> <span class="tok-o">∈</span> <span class="tok-p">{...}</span>            <span class="tok-c">-- Severity</span>
+        <span class="tok-nc">ELEMENT</span><span class="tok-p">[</span><span class="tok-nd">id9</span><span class="tok-p">]</span> <span class="tok-kt">occurrences </span><span class="tok-o">∈</span> <span class="tok-p">{</span><span class="tok-m">0..1</span><span class="tok-p">}</span> <span class="tok-o">∈</span> <span class="tok-p">{...}</span>            <span class="tok-c">-- Clinical description</span>
+        <span class="tok-nc">ELEMENT</span><span class="tok-p">[</span><span class="tok-nd">id10</span><span class="tok-p">]</span> <span class="tok-kt">occurrences </span><span class="tok-o">∈</span> <span class="tok-p">{</span><span class="tok-m">0..1</span><span class="tok-p">}</span> <span class="tok-o">∈</span> <span class="tok-p">{...}</span>           <span class="tok-c">-- Date clinically received</span>
+        <span class="tok-nc">CLUSTER</span><span class="tok-p">[</span><span class="tok-nd">id11</span><span class="tok-p">]</span> <span class="tok-kt">occurrences </span><span class="tok-o">∈</span> <span class="tok-p">{</span><span class="tok-m">0..*</span><span class="tok-p">}</span> <span class="tok-o">∈</span> <span class="tok-p">{...}</span>           <span class="tok-c">-- Location</span>
+        <span class="tok-nc">CLUSTER</span><span class="tok-p">[</span><span class="tok-nd">id14</span><span class="tok-p">]</span> <span class="tok-kt">occurrences </span><span class="tok-o">∈</span> <span class="tok-p">{</span><span class="tok-m">0..1</span><span class="tok-p">}</span> <span class="tok-o">∈</span> <span class="tok-p">{...}</span>           <span class="tok-c">-- Aetiology</span>
+        <span class="tok-nc">CLUSTER</span><span class="tok-p">[</span><span class="tok-nd">id18</span><span class="tok-p">]</span> <span class="tok-kt">occurrences </span><span class="tok-o">∈</span> <span class="tok-p">{</span><span class="tok-m">0..1</span><span class="tok-p">}</span> <span class="tok-o">∈</span> <span class="tok-p">{...}</span>           <span class="tok-c">-- Occurrences or exacerb&#39;ns</span>
+        <span class="tok-nc">CLUSTER</span><span class="tok-p">[</span><span class="tok-nd">id26</span><span class="tok-p">]</span> <span class="tok-kt">occurrences </span><span class="tok-o">∈</span> <span class="tok-p">{</span><span class="tok-m">0..1</span><span class="tok-p">}</span> <span class="tok-o">∈</span> <span class="tok-p">{...}</span>           <span class="tok-c">-- Related problems</span>
+        <span class="tok-nc">ELEMENT</span><span class="tok-p">[</span><span class="tok-nd">id30</span><span class="tok-p">]</span> <span class="tok-kt">occurrences </span><span class="tok-o">∈</span> <span class="tok-p">{</span><span class="tok-m">0..1</span><span class="tok-p">}</span> <span class="tok-o">∈</span> <span class="tok-p">{...}</span>           <span class="tok-c">-- Date of resolution</span>
+        <span class="tok-nc">ELEMENT</span><span class="tok-p">[</span><span class="tok-nd">id31</span><span class="tok-p">]</span> <span class="tok-kt">occurrences </span><span class="tok-o">∈</span> <span class="tok-p">{</span><span class="tok-m">0..1</span><span class="tok-p">}</span> <span class="tok-o">∈</span> <span class="tok-p">{...}</span>           <span class="tok-c">-- Age at resolution</span>
     <span class="tok-p">}</span></code></pre>
 </div>
 </div>
@@ -6391,11 +6401,11 @@ Note that in the above, the '/' is used to denote '/protocol' as a differential 
 <div class="content">
 <pre class="pygments highlight"><code data-lang="cadl">    <span class="tok-p">/</span><span class="tok-nc">data</span><span class="tok-p">[</span><span class="tok-nd">id3</span><span class="tok-p">]/</span><span class="tok-nc">items</span><span class="tok-p"> </span><span class="tok-o">∈</span> <span class="tok-p">{</span>
         <span class="tok-kt">before </span><span class="tok-p">[</span><span class="tok-nd">id3</span><span class="tok-p">]</span>
-        <span class="tok-nc">ELEMENT</span><span class="tok-p">[</span><span class="tok-nd">id2.1</span><span class="tok-p">]</span> <span class="tok-o">∈</span> <span class="tok-p">{...}</span>                         <span class="tok-c">-- Diagnosis</span>
-        <span class="tok-nc">ELEMENT</span><span class="tok-p">[</span><span class="tok-nd">id0.32</span><span class="tok-p">]</span> <span class="tok-kt">occurrences </span><span class="tok-o">∈</span> <span class="tok-p">{</span><span class="tok-m">0..1</span><span class="tok-p">}</span> <span class="tok-o">∈</span> <span class="tok-p">{...}</span>  <span class="tok-c">-- Status</span>
+        <span class="tok-nc">ELEMENT</span><span class="tok-p">[</span><span class="tok-nd">id2.1</span><span class="tok-p">]</span> <span class="tok-o">∈</span> <span class="tok-p">{...}</span>                                <span class="tok-c">-- Diagnosis</span>
+        <span class="tok-nc">ELEMENT</span><span class="tok-p">[</span><span class="tok-nd">id0.32</span><span class="tok-p">]</span> <span class="tok-kt">occurrences </span><span class="tok-o">∈</span> <span class="tok-p">{</span><span class="tok-m">0..1</span><span class="tok-p">}</span> <span class="tok-o">∈</span> <span class="tok-p">{...}</span>          <span class="tok-c">-- Status</span>
         <span class="tok-kt">after </span><span class="tok-p">[</span><span class="tok-nd">id26</span><span class="tok-p">]</span>
-        <span class="tok-nc">CLUSTER</span><span class="tok-p">[</span><span class="tok-nd">id0.35</span><span class="tok-p">]</span> <span class="tok-kt">occurrences </span><span class="tok-o">∈</span> <span class="tok-p">{</span><span class="tok-m">0..1</span><span class="tok-p">}</span> <span class="tok-o">∈</span> <span class="tok-p">{...}</span>  <span class="tok-c">-- Diagnostic criteria</span>
-        <span class="tok-nc">CLUSTER</span><span class="tok-p">[</span><span class="tok-nd">id0.37</span><span class="tok-p">]</span> <span class="tok-kt">occurrences </span><span class="tok-o">∈</span> <span class="tok-p">{</span><span class="tok-m">0..1</span><span class="tok-p">}</span> <span class="tok-o">∈</span> <span class="tok-p">{...}</span>  <span class="tok-c">-- Clinical Staging</span>
+        <span class="tok-nc">CLUSTER</span><span class="tok-p">[</span><span class="tok-nd">id0.35</span><span class="tok-p">]</span> <span class="tok-kt">occurrences </span><span class="tok-o">∈</span> <span class="tok-p">{</span><span class="tok-m">0..1</span><span class="tok-p">}</span> <span class="tok-o">∈</span> <span class="tok-p">{...}</span>          <span class="tok-c">-- Diagnostic criteria</span>
+        <span class="tok-nc">CLUSTER</span><span class="tok-p">[</span><span class="tok-nd">id0.37</span><span class="tok-p">]</span> <span class="tok-kt">occurrences </span><span class="tok-o">∈</span> <span class="tok-p">{</span><span class="tok-m">0..1</span><span class="tok-p">}</span> <span class="tok-o">∈</span> <span class="tok-p">{...}</span>          <span class="tok-c">-- Clinical Staging</span>
     <span class="tok-p">}</span></code></pre>
 </div>
 </div>
@@ -6404,7 +6414,7 @@ Note that in the above, the '/' is used to denote '/protocol' as a differential 
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="pygments highlight"><code data-lang="cadl">    <span class="tok-kt">after </span><span class="tok-p">[</span><span class="tok-nd">id26</span><span class="tok-p">]</span> <span class="tok-nc">CLUSTER</span><span class="tok-p">[</span><span class="tok-nd">id0.35</span><span class="tok-p">]</span> <span class="tok-kt">occurrences </span><span class="tok-o">∈</span> <span class="tok-p">{</span><span class="tok-m">0..1</span><span class="tok-p">}</span> <span class="tok-o">∈</span> <span class="tok-p">{...}</span> <span class="tok-c">-- etc</span></code></pre>
+<pre class="pygments highlight"><code data-lang="cadl">    <span class="tok-kt">after </span><span class="tok-p">[</span><span class="tok-nd">id26</span><span class="tok-p">]</span> <span class="tok-nc">CLUSTER</span><span class="tok-p">[</span><span class="tok-nd">id0.35</span><span class="tok-p">]</span> <span class="tok-kt">occurrences </span><span class="tok-o">∈</span> <span class="tok-p">{</span><span class="tok-m">0..1</span><span class="tok-p">}</span> <span class="tok-o">∈</span> <span class="tok-p">{...}</span>  <span class="tok-c">-- etc</span></code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -6485,7 +6495,7 @@ Note that in the above, the '/' is used to denote '/protocol' as a differential 
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="pygments highlight"><code data-lang="cadl">    <span class="tok-nc">EVALUATION</span><span class="tok-p">[</span><span class="tok-nd">id1</span><span class="tok-p">]</span> <span class="tok-o">∈</span> <span class="tok-p">{</span>                             <span class="tok-c">-- Medical Certificate</span>
+<pre class="pygments highlight"><code data-lang="cadl">    <span class="tok-nc">EVALUATION</span><span class="tok-p">[</span><span class="tok-nd">id1</span><span class="tok-p">]</span> <span class="tok-o">∈</span> <span class="tok-p">{</span>                                      <span class="tok-c">-- Medical Certificate</span>
         <span class="tok-nc">data</span> <span class="tok-o">∈</span> <span class="tok-p">{</span>
             <span class="tok-nc">ITEM_TREE</span><span class="tok-p">[</span><span class="tok-nd">id2</span><span class="tok-p">]</span> <span class="tok-o">∈</span> <span class="tok-p">{</span>
                 <span class="tok-nc">items</span> <span class="tok-o">∈</span> <span class="tok-p">{</span>
@@ -6507,7 +6517,7 @@ Note that in the above, the '/' is used to denote '/protocol' as a differential 
 <div class="content">
 <pre class="pygments highlight"><code data-lang="cadl">    <span class="tok-nc">EVALUATION</span><span class="tok-p">[</span><span class="tok-nd">id1.1</span><span class="tok-p">]</span> <span class="tok-o">∈</span> <span class="tok-p">{</span>                              <span class="tok-c">-- Singapore Medical Certificate</span>
         <span class="tok-p">/</span><span class="tok-nc">data</span><span class="tok-p">[</span><span class="tok-nd">id2</span><span class="tok-p">]/</span><span class="tok-nc">items</span><span class="tok-p"> </span><span class="tok-o">∈</span> <span class="tok-p">{</span>
-            <span class="tok-nc">ELEMENT</span><span class="tok-p">[</span><span class="tok-nd">id5.1</span><span class="tok-p">]</span>                              <span class="tok-c">-- Summary</span>
+            <span class="tok-nc">ELEMENT</span><span class="tok-p">[</span><span class="tok-nd">id5.1</span><span class="tok-p">]</span>                             <span class="tok-c">-- Summary</span>
         <span class="tok-p">}</span>
     <span class="tok-p">}</span></code></pre>
 </div>
@@ -6518,8 +6528,6 @@ Note that in the above, the '/' is used to denote '/protocol' as a differential 
 <div class="paragraph">
 <p>An example of the 3rd case above of redefinition is shown in the first archetype in <a href="#Specialised archetype showing redefinition and extension">[Specialised archetype showing redefinition and extension]</a>, where the node <code>[id79]</code> is redefined into a number of more specialised nodes <code>[id79.2]</code> - <code>[id79.9]</code> , while in the second, the identifier <code>[id2]</code> is redefined to a single node <code>[id2.1]</code> .</p>
 </div>
-<div class="sect4">
-<h5 id="_node_redefinition_semantics"><a class="anchor" href="#_node_redefinition_semantics"></a>9.5.1.1. Node Redefinition Semantics</h5>
 <div class="paragraph">
 <p>The syntactic form of the identifier of a redefined node is a copy of the original followed by a dot ('.'), optionally intervening instances of the pattern '0.' and then a further non-zero number, i.e.:</p>
 </div>
@@ -6549,62 +6557,8 @@ Note that in the above, the '/' is used to denote '/protocol' as a differential 
 </li>
 </ul>
 </div>
-<div class="paragraph">
-<p>Redefined versions of nodes with no node id in the parent archetype do not require a node identifier in the child archetype.</p>
-</div>
-<div class="paragraph">
-<p>In both cases, there is a question of whether the original node being redefined (<code>id79</code> and <code>id2</code> respectively in the examples) remains available for further redefinition in subsequent child archetypes, or do the redefinition children exhaustively define the instance space for the given parent node?</p>
-</div>
-<div class="paragraph">
-<p>Should these children be considered exhaustive? One point of view says so, since all subsequently discovered varieties of hepratitis (C, D, E, etc) would now become children of 'hepatitis non-A non-B'. However this is likely to be sub-optimal, since now the category 'hepatitis non-A non-B' probably exists solely because of the order in which the various hepatitis virus tests were perfected. Therefore an alternative argument would say that the categories 'hepatitis C', 'hepatitis D' etc should be defined directly below 'hepatitis', as if 'hepatitis non-A non-B' had never existed. Under this argument, the children would not be declared, even when they are theoretically exhaustive.</p>
-</div>
-<div class="paragraph">
-<p>This kind of argument comes up time and again, and the need for catch-all categories (archetype nodes) and the possibility of future discoveries cannot be predicted. Even in situations such as a lab result (e.g. cholesterol), where the list of analytes seem to be known and fixed, experience of clinical modellers has shown that there is nevertheless no guarantee of not needing another data point, perhaps for something other than an analyte.</p>
-</div>
-<div class="paragraph">
-<p>The default situation is that they do, unless explicitly stated otherwise, by excluding the parent node in the normal way (i.e. using <code>occurrences matches {0}</code>). The first example would then become:</p>
-</div>
-<div class="paragraph">
-<p>Parent archetype:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="pygments highlight"><code data-lang="cadl">    <span class="tok-nc">items</span> <span class="tok-kt">cardinality </span><span class="tok-o">∈</span> <span class="tok-p">{</span><span class="tok-m">0..*; unordered</span><span class="tok-p">}</span> <span class="tok-o">∈</span> <span class="tok-p">{</span>
-        <span class="tok-nc">CLUSTER</span><span class="tok-p">[</span><span class="tok-nd">id4</span><span class="tok-p">]</span> <span class="tok-kt">occurrences </span><span class="tok-o">∈</span> <span class="tok-p">{</span><span class="tok-m">1</span><span class="tok-p">}</span> <span class="tok-o">∈</span> <span class="tok-p">{...}</span>                          <span class="tok-c">-- Specimen</span>
-        <span class="tok-nc">CLUSTER</span><span class="tok-p">[</span><span class="tok-nd">id11</span><span class="tok-p">]</span> <span class="tok-kt">occurrences </span><span class="tok-o">∈</span> <span class="tok-p">{</span><span class="tok-m">0..*</span><span class="tok-p">}</span> <span class="tok-o">∈</span> <span class="tok-p">{...}</span>                      <span class="tok-c">-- level 1</span>
-        <span class="tok-nc">ELEMENT</span><span class="tok-p">[</span><span class="tok-nd">id79</span><span class="tok-p">]</span> <span class="tok-kt">occurrences </span><span class="tok-o">∈</span> <span class="tok-p">{</span><span class="tok-m">0..*</span><span class="tok-p">}</span> <span class="tok-o">∈</span> <span class="tok-p">{</span>                          <span class="tok-c">-- panel item</span>
-            <span class="tok-nc">value</span> <span class="tok-o">∈</span> <span class="tok-p">{</span><span class="tok-m">*</span><span class="tok-p">}</span>
-        <span class="tok-p">}</span>
-        <span class="tok-nc">ELEMENT</span><span class="tok-p">[</span><span class="tok-nd">id17</span><span class="tok-p">]</span> <span class="tok-kt">occurrences </span><span class="tok-o">∈</span> <span class="tok-p">{</span><span class="tok-m">0..1</span><span class="tok-p">}</span> <span class="tok-o">∈</span> <span class="tok-p">{...}</span>                      <span class="tok-c">-- Overall Comment</span>
-        <span class="tok-nc">ELEMENT</span><span class="tok-p">[</span><span class="tok-nd">id37</span><span class="tok-p">]</span> <span class="tok-kt">occurrences </span><span class="tok-o">∈</span> <span class="tok-p">{</span><span class="tok-m">0..1</span><span class="tok-p">}</span> <span class="tok-o">∈</span> <span class="tok-p">{...}</span>                      <span class="tok-c">-- Multimedia rep.</span>
-        <span class="tok-p">}</span>
-    <span class="tok-p">}</span></code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>Child archetype:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="pygments highlight"><code data-lang="cadl">    <span class="tok-p">/</span><span class="tok-nc">data</span><span class="tok-p">/</span><span class="tok-nc">events</span><span class="tok-p">[</span><span class="tok-nd">id2</span><span class="tok-p">]/</span><span class="tok-nc">data</span><span class="tok-p">/</span><span class="tok-nc">items</span><span class="tok-p"> </span><span class="tok-o">∈</span> <span class="tok-p">{</span>
-        <span class="tok-nc">ELEMENT</span><span class="tok-p">[</span><span class="tok-nd">id79.2</span><span class="tok-p">]</span> <span class="tok-kt">occurrences </span><span class="tok-o">∈</span> <span class="tok-p">{</span><span class="tok-m">0..1</span><span class="tok-p">}</span> <span class="tok-o">∈</span> <span class="tok-p">{...}</span>                    <span class="tok-c">-- TSH</span>
-        <span class="tok-nc">ELEMENT</span><span class="tok-p">[</span><span class="tok-nd">id79.7</span><span class="tok-p">]</span> <span class="tok-kt">occurrences </span><span class="tok-o">∈</span> <span class="tok-p">{</span><span class="tok-m">0..1</span><span class="tok-p">}</span> <span class="tok-o">∈</span> <span class="tok-p">{...}</span>                    <span class="tok-c">-- Free Triiodothyronine</span>
-        <span class="tok-nc">ELEMENT</span><span class="tok-p">[</span><span class="tok-nd">id79.8</span><span class="tok-p">]</span> <span class="tok-kt">occurrences </span><span class="tok-o">∈</span> <span class="tok-p">{</span><span class="tok-m">0..1</span><span class="tok-p">}</span> <span class="tok-o">∈</span> <span class="tok-p">{...}</span>                    <span class="tok-c">-- Total Triiodothyronine</span>
-        <span class="tok-nc">ELEMENT</span><span class="tok-p">[</span><span class="tok-nd">id79.3</span><span class="tok-p">]</span> <span class="tok-kt">occurrences </span><span class="tok-o">∈</span> <span class="tok-p">{</span><span class="tok-m">0..1</span><span class="tok-p">}</span> <span class="tok-o">∈</span> <span class="tok-p">{...}</span>                    <span class="tok-c">-- Free thyroxine (Free T4)</span>
-        <span class="tok-nc">ELEMENT</span><span class="tok-p">[</span><span class="tok-nd">id79.4</span><span class="tok-p">]</span> <span class="tok-kt">occurrences </span><span class="tok-o">∈</span> <span class="tok-p">{</span><span class="tok-m">0..1</span><span class="tok-p">}</span> <span class="tok-o">∈</span> <span class="tok-p">{...}</span>                    <span class="tok-c">-- Total Thyroxine (Total T4)</span>
-        <span class="tok-nc">ELEMENT</span><span class="tok-p">[</span><span class="tok-nd">id79.5</span><span class="tok-p">]</span> <span class="tok-kt">occurrences </span><span class="tok-o">∈</span> <span class="tok-p">{</span><span class="tok-m">0..1</span><span class="tok-p">}</span> <span class="tok-o">∈</span> <span class="tok-p">{...}</span>                    <span class="tok-c">-- T4 loaded uptake</span>
-        <span class="tok-nc">ELEMENT</span><span class="tok-p">[</span><span class="tok-nd">id79.9</span><span class="tok-p">]</span> <span class="tok-kt">occurrences </span><span class="tok-o">∈</span> <span class="tok-p">{</span><span class="tok-m">0..1</span><span class="tok-p">}</span> <span class="tok-o">∈</span> <span class="tok-p">{...}</span>                    <span class="tok-c">-- Free Triiodothyronine index</span>
-        <span class="tok-nc">ELEMENT</span><span class="tok-p">[</span><span class="tok-nd">id79.6</span><span class="tok-p">]</span> <span class="tok-kt">occurrences </span><span class="tok-o">∈</span> <span class="tok-p">{</span><span class="tok-m">0..1</span><span class="tok-p">}</span> <span class="tok-o">∈</span> <span class="tok-p">{...}</span>                    <span class="tok-c">-- Free thyroxine index (FTI)</span>
-        <span class="tok-nc">ELEMENT</span><span class="tok-p">[</span><span class="tok-nd">id79</span><span class="tok-p">]</span> <span class="tok-kt">occurrences </span><span class="tok-o">∈</span> <span class="tok-p">{</span><span class="tok-m">0</span><span class="tok-p">}</span>
-    <span class="tok-p">}</span></code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>Without the above specification, a deeper child archetype could then redefine both the original <code>id79</code> node (e.g. into <code>id79.0.1</code> , <code>id79.0.2</code>), and any of the <code>id79.x</code> nodes (e.g. <code>id79.1.1</code> , <code>id79.1.2</code>); with it, only the latter is possible. The <code>id79</code> node can thus be considered to be logically 'frozen', in a similar way to frozen class methods in some programming languages.</p>
-</div>
-</div>
 <div class="sect4">
-<h5 id="_adding_nodes"><a class="anchor" href="#_adding_nodes"></a>9.5.1.2. Adding Nodes</h5>
+<h5 id="_adding_nodes"><a class="anchor" href="#_adding_nodes"></a>9.5.1.1. Adding Nodes</h5>
 <div class="paragraph">
 <p>Added object constraint nodes carry identifiers according to the rule mentioned above. The second example includes the new node identifiers <code>id0.32</code> , <code>id0.35</code> and <code>id0.37</code> , whose codes start with a '0'. indicating that they have no equivalent code in the parent archetype.</p>
 </div>
@@ -6706,13 +6660,84 @@ Note that in the above, the '/' is used to denote '/protocol' as a differential 
 </div>
 </div>
 <div class="sect3">
-<h4 id="_reference_model_type_refinement"><a class="anchor" href="#_reference_model_type_refinement"></a>9.5.3. Reference Model Type Refinement</h4>
+<h4 id="_single_and_multiple_specialisation_when_does_cloning_occur"><a class="anchor" href="#_single_and_multiple_specialisation_when_does_cloning_occur"></a>9.5.3. Single and Multiple Specialisation - When does Cloning Occur?</h4>
 <div class="paragraph">
-<p>The type of an object may be redefined to one of its subtypes as defined by the reference model. A typical example of where this occurs in archetypes based on the openEHR reference model is when <code>ELEMENT</code>.<code><em>value</em></code> is constrained to <code>*</code> in a parent archetype, meaning 'no further constraint on its RM type of <code>DATA_VALUE&#8217;, but is then constrained in a specialised archetype to subtypes of `DATA_VALUE</code>, e.g. <code>DV_QUANTITY</code> or <code>DV_PROPORTION</code> (see <a href="http://www.openehr.org/releases/RM/latest/data_types.html">openEHR Data Types</a>). The following figure containts a simplified extract of the data values part of the openEHR reference model, and is the basis for the examples below.</p>
+<p>In the <a href="#_examples">examples shown above</a> there are two types of redefinition occurring. The first shows a single node in the parent archetype redefined by a single node, both identified by <code>[id4]</code>. The second shows a single node in the parent redefined by multiple children. In the first example, the result of flattening is <em>in-place overlaying</em>, while in the second, it is <em>cloning with overlaying</em>. The consequence of the second type of redefinition is that the original parent node survives in its original form in the child archetype, whereas in the first, it is replaced. The reasoning behind this is that redefinition to multiple children is taken to mean that later redefinition to multiple children may occur in deeper child archetypes, and for this to occur, the original parent needs to be left intact. Conversely, the single-parent / single-child redefinition is taken to mean a logical refinement of an existing node, which should therefore be logically replaced.</p>
+</div>
+<div class="paragraph">
+<p>The formal rule for whether cloning occurs or not is as follows:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>    clone not needed = max effective_occurrences of object node in parent archetype = 1 OR
+        object node in child differential archetype is sole child of its parent, and has max occurrences = 1</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The first case corresponds to the situation where the 'effective occurrences' of any child of an attribute can be inferred to be maximum 1, i.e. either the attribute is single-valued, or it is a container with a cardinality constraint with maximum 1. The second is where the object in the child archetype has an explicit occurrences constraint of max 1. In the above, the <code><em>effective_occurrences</em></code> function is defined in the <a href="http://www.openehr.org/releases/AM/latest/AOM2.html#_occurrences_inferencing_rules">AOM2 specification</a>.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_exhaustive_and_non_exhaustive_redefinition"><a class="anchor" href="#_exhaustive_and_non_exhaustive_redefinition"></a>9.5.4. Exhaustive and Non-Exhaustive Redefinition</h4>
+<div class="paragraph">
+<p>In any multiple specialisation situation, there is a question of whether the original node being specialised (e.g. <code>id79</code> and <code>id2</code> in the examples above) remains available for further redefinition in subsequent child archetypes, or do the redefinition children <em>exhaustively</em> define the instance space for the given parent node?</p>
+</div>
+<div class="paragraph">
+<p>Should these children be considered exhaustive? One point of view says so, since all subsequently discovered varieties of hepratitis (C, D, E, etc) would now become children of 'hepatitis non-A non-B'. However this is likely to be sub-optimal, since now the category 'hepatitis non-A non-B' probably exists solely because of the order in which the various hepatitis virus tests were perfected. Therefore an alternative argument would say that the categories 'hepatitis C', 'hepatitis D' etc should be defined directly below 'hepatitis', as if 'hepatitis non-A non-B' had never existed. Under this argument, the children would not be declared, even when they are theoretically exhaustive.</p>
+</div>
+<div class="paragraph">
+<p>This kind of argument comes up time and again, and the need for catch-all categories (archetype nodes) and the possibility of future discoveries cannot be predicted. Even in situations such as a lab result (e.g. cholesterol), where the list of analytes seem to be known and fixed, experience of clinical modellers has shown that there is nevertheless no guarantee of not needing another data point, perhaps for something other than an analyte.</p>
+</div>
+<div class="paragraph">
+<p>The default situation is that they do, unless explicitly stated otherwise, which is done by excluding the parent node in the normal way, i.e. using <code>occurrences matches {0}</code>. <strong>If an exclusion node is included, it must come last</strong> in the set of siblings that specialise the parent node, otherwise a deletion will occur, leaving no node to specialise. The first example would then become:</p>
+</div>
+<div class="paragraph">
+<p>Parent archetype:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="pygments highlight"><code data-lang="cadl">    <span class="tok-nc">items</span> <span class="tok-kt">cardinality </span><span class="tok-o">∈</span> <span class="tok-p">{</span><span class="tok-m">0..*; unordered</span><span class="tok-p">}</span> <span class="tok-o">∈</span> <span class="tok-p">{</span>
+        <span class="tok-nc">CLUSTER</span><span class="tok-p">[</span><span class="tok-nd">id4</span><span class="tok-p">]</span> <span class="tok-kt">occurrences </span><span class="tok-o">∈</span> <span class="tok-p">{</span><span class="tok-m">1</span><span class="tok-p">}</span> <span class="tok-o">∈</span> <span class="tok-p">{...}</span>                          <span class="tok-c">-- Specimen</span>
+        <span class="tok-nc">CLUSTER</span><span class="tok-p">[</span><span class="tok-nd">id11</span><span class="tok-p">]</span> <span class="tok-kt">occurrences </span><span class="tok-o">∈</span> <span class="tok-p">{</span><span class="tok-m">0..*</span><span class="tok-p">}</span> <span class="tok-o">∈</span> <span class="tok-p">{...}</span>                      <span class="tok-c">-- level 1</span>
+        <span class="tok-nc">ELEMENT</span><span class="tok-p">[</span><span class="tok-nd">id79</span><span class="tok-p">]</span> <span class="tok-kt">occurrences </span><span class="tok-o">∈</span> <span class="tok-p">{</span><span class="tok-m">0..*</span><span class="tok-p">}</span> <span class="tok-o">∈</span> <span class="tok-p">{</span>                          <span class="tok-c">-- panel item</span>
+            <span class="tok-nc">value</span> <span class="tok-o">∈</span> <span class="tok-p">{</span><span class="tok-m">*</span><span class="tok-p">}</span>
+        <span class="tok-p">}</span>
+        <span class="tok-nc">ELEMENT</span><span class="tok-p">[</span><span class="tok-nd">id17</span><span class="tok-p">]</span> <span class="tok-kt">occurrences </span><span class="tok-o">∈</span> <span class="tok-p">{</span><span class="tok-m">0..1</span><span class="tok-p">}</span> <span class="tok-o">∈</span> <span class="tok-p">{...}</span>                      <span class="tok-c">-- Overall Comment</span>
+        <span class="tok-nc">ELEMENT</span><span class="tok-p">[</span><span class="tok-nd">id37</span><span class="tok-p">]</span> <span class="tok-kt">occurrences </span><span class="tok-o">∈</span> <span class="tok-p">{</span><span class="tok-m">0..1</span><span class="tok-p">}</span> <span class="tok-o">∈</span> <span class="tok-p">{...}</span>                      <span class="tok-c">-- Multimedia rep.</span>
+        <span class="tok-p">}</span>
+    <span class="tok-p">}</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Child archetype:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="pygments highlight"><code data-lang="cadl">    <span class="tok-p">/</span><span class="tok-nc">data</span><span class="tok-p">/</span><span class="tok-nc">events</span><span class="tok-p">[</span><span class="tok-nd">id2</span><span class="tok-p">]/</span><span class="tok-nc">data</span><span class="tok-p">/</span><span class="tok-nc">items</span><span class="tok-p"> </span><span class="tok-o">∈</span> <span class="tok-p">{</span>
+        <span class="tok-nc">ELEMENT</span><span class="tok-p">[</span><span class="tok-nd">id79.2</span><span class="tok-p">]</span> <span class="tok-kt">occurrences </span><span class="tok-o">∈</span> <span class="tok-p">{</span><span class="tok-m">0..1</span><span class="tok-p">}</span> <span class="tok-o">∈</span> <span class="tok-p">{...}</span>                    <span class="tok-c">-- TSH</span>
+        <span class="tok-nc">ELEMENT</span><span class="tok-p">[</span><span class="tok-nd">id79.7</span><span class="tok-p">]</span> <span class="tok-kt">occurrences </span><span class="tok-o">∈</span> <span class="tok-p">{</span><span class="tok-m">0..1</span><span class="tok-p">}</span> <span class="tok-o">∈</span> <span class="tok-p">{...}</span>                    <span class="tok-c">-- Free Triiodothyronine</span>
+        <span class="tok-nc">ELEMENT</span><span class="tok-p">[</span><span class="tok-nd">id79.8</span><span class="tok-p">]</span> <span class="tok-kt">occurrences </span><span class="tok-o">∈</span> <span class="tok-p">{</span><span class="tok-m">0..1</span><span class="tok-p">}</span> <span class="tok-o">∈</span> <span class="tok-p">{...}</span>                    <span class="tok-c">-- Total Triiodothyronine</span>
+        <span class="tok-nc">ELEMENT</span><span class="tok-p">[</span><span class="tok-nd">id79.3</span><span class="tok-p">]</span> <span class="tok-kt">occurrences </span><span class="tok-o">∈</span> <span class="tok-p">{</span><span class="tok-m">0..1</span><span class="tok-p">}</span> <span class="tok-o">∈</span> <span class="tok-p">{...}</span>                    <span class="tok-c">-- Free thyroxine (Free T4)</span>
+        <span class="tok-nc">ELEMENT</span><span class="tok-p">[</span><span class="tok-nd">id79.4</span><span class="tok-p">]</span> <span class="tok-kt">occurrences </span><span class="tok-o">∈</span> <span class="tok-p">{</span><span class="tok-m">0..1</span><span class="tok-p">}</span> <span class="tok-o">∈</span> <span class="tok-p">{...}</span>                    <span class="tok-c">-- Total Thyroxine (Total T4)</span>
+        <span class="tok-nc">ELEMENT</span><span class="tok-p">[</span><span class="tok-nd">id79.5</span><span class="tok-p">]</span> <span class="tok-kt">occurrences </span><span class="tok-o">∈</span> <span class="tok-p">{</span><span class="tok-m">0..1</span><span class="tok-p">}</span> <span class="tok-o">∈</span> <span class="tok-p">{...}</span>                    <span class="tok-c">-- T4 loaded uptake</span>
+        <span class="tok-nc">ELEMENT</span><span class="tok-p">[</span><span class="tok-nd">id79.9</span><span class="tok-p">]</span> <span class="tok-kt">occurrences </span><span class="tok-o">∈</span> <span class="tok-p">{</span><span class="tok-m">0..1</span><span class="tok-p">}</span> <span class="tok-o">∈</span> <span class="tok-p">{...}</span>                    <span class="tok-c">-- Free Triiodothyronine index</span>
+        <span class="tok-nc">ELEMENT</span><span class="tok-p">[</span><span class="tok-nd">id79.6</span><span class="tok-p">]</span> <span class="tok-kt">occurrences </span><span class="tok-o">∈</span> <span class="tok-p">{</span><span class="tok-m">0..1</span><span class="tok-p">}</span> <span class="tok-o">∈</span> <span class="tok-p">{...}</span>                    <span class="tok-c">-- Free thyroxine index (FTI)</span>
+        <span class="tok-nc">ELEMENT</span><span class="tok-p">[</span><span class="tok-nd">id79</span><span class="tok-p">]</span> <span class="tok-kt">occurrences </span><span class="tok-o">∈</span> <span class="tok-p">{</span><span class="tok-m">0</span><span class="tok-p">}</span>                                  <span class="tok-c">-- MUST COME LAST!</span>
+    <span class="tok-p">}</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Without the above specification, a deeper child archetype could then redefine both the original <code>id79</code> node (e.g. into <code>id79.0.1</code> , <code>id79.0.2</code>), and any of the <code>id79.x</code> nodes (e.g. <code>id79.1.1</code> , <code>id79.1.2</code>); with it, only the latter is possible. The <code>id79</code> node can thus be considered to be logically 'frozen', in a similar way to frozen class methods in some programming languages.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_reference_model_type_refinement"><a class="anchor" href="#_reference_model_type_refinement"></a>9.5.5. Reference Model Type Refinement</h4>
+<div class="paragraph">
+<p>The type of an object may be redefined to one of its subtypes as defined by the reference model. A typical example of where this occurs in archetypes based on the openEHR reference model is when <code>ELEMENT.<em>value</em></code> is constrained to <code>*</code> in a parent archetype, meaning 'no further constraint on its RM type of <code>DATA_VALUE</code>, but is then constrained in a specialised archetype to subtypes of <code>DATA_VALUE</code>, e.g. <code>DV_QUANTITY</code> or <code>DV_PROPORTION</code> (see <a href="http://www.openehr.org/releases/RM/latest/data_types.html">openEHR Data Types</a>). The following figure containts a simplified extract of the data values part of the openEHR reference model, and is the basis for the examples below.</p>
 </div>
 <div id="rm_type_structure" class="imageblock text-center" style="text-align: center">
 <div class="content">
-<img src="../UML/diagrams/RM-data_types-overview.svg" alt="RM data types overview" width="50%">
+<img src="diagrams/RM-data_types-overview.svg" alt="RM data types overview" width="50%">
 </div>
 <div class="title">Figure 6. Example Reference Model type structure</div>
 </div>
@@ -6852,7 +6877,7 @@ Note that in the above, the '/' is used to denote '/protocol' as a differential 
 </div>
 </div>
 <div class="sect3">
-<h4 id="_internal_reference_proxy_object_redefinition"><a class="anchor" href="#_internal_reference_proxy_object_redefinition"></a>9.5.4. Internal Reference (Proxy Object) Redefinition</h4>
+<h4 id="_internal_reference_proxy_object_redefinition"><a class="anchor" href="#_internal_reference_proxy_object_redefinition"></a>9.5.6. Internal Reference (Proxy Object) Redefinition</h4>
 <div class="paragraph">
 <p>An archetype proxy object, or <code>use_node</code> constraint is used to refer to an object constraint from a point elsewhere in the archetype. These references can be redefined in two ways, as follows.</p>
 </div>
@@ -6941,7 +6966,7 @@ Note that in the above, the '/' is used to denote '/protocol' as a differential 
 </div>
 </div>
 <div class="sect3">
-<h4 id="_external_reference_redefinition"><a class="anchor" href="#_external_reference_redefinition"></a>9.5.5. External Reference Redefinition</h4>
+<h4 id="_external_reference_redefinition"><a class="anchor" href="#_external_reference_redefinition"></a>9.5.7. External Reference Redefinition</h4>
 <div class="paragraph">
 <p>External reference nodes can be redefined by another external reference node, in the following ways:</p>
 </div>
@@ -6960,7 +6985,7 @@ Note that in the above, the '/' is used to denote '/protocol' as a differential 
 </div>
 </div>
 <div class="sect3">
-<h4 id="_slot_filling_and_redefinition"><a class="anchor" href="#_slot_filling_and_redefinition"></a>9.5.6. Slot Filling and Redefinition</h4>
+<h4 id="_slot_filling_and_redefinition"><a class="anchor" href="#_slot_filling_and_redefinition"></a>9.5.8. Slot Filling and Redefinition</h4>
 <div class="paragraph">
 <p>Slots and slot-filling is a special kind of 'redefinition' in ADL, normally only used in templates. Logically, an archetype slot constraint is understood to consist of a) its definition (what archetypes are allowed to fill it) and b) current filler list. At the point of definition, the current fillers is invariably empty. More specialised descendants can progressively add or replace fillers for a slot. Thus, the appearance of an object node whose identifier is the specialisation of a slot node in the flat parent is always understood as a partial specialisation for it.</p>
 </div>
@@ -7079,7 +7104,7 @@ Note that in the above, the '/' is used to denote '/protocol' as a differential 
 </div>
 </div>
 <div class="sect3">
-<h4 id="_unconstrained_attributes"><a class="anchor" href="#_unconstrained_attributes"></a>9.5.7. Unconstrained Attributes</h4>
+<h4 id="_unconstrained_attributes"><a class="anchor" href="#_unconstrained_attributes"></a>9.5.9. Unconstrained Attributes</h4>
 <div class="paragraph">
 <p>The <code>use_archetype</code> keyword can be used to specify child object constraints under any attribute in the reference model that is so far unconstrained by the flat parent of an archetype or template. Technically this could occur in any kind of archetype but would normally be in a specialised archetype or template. This is no more than the standard use of an 'external reference' (see <a href="#_external_references">External References</a>).</p>
 </div>
@@ -7122,7 +7147,7 @@ Note that in the above, the '/' is used to denote '/protocol' as a differential 
 </div>
 </div>
 <div class="sect3">
-<h4 id="_primitive_object_redefinition"><a class="anchor" href="#_primitive_object_redefinition"></a>9.5.8. Primitive Object Redefinition</h4>
+<h4 id="_primitive_object_redefinition"><a class="anchor" href="#_primitive_object_redefinition"></a>9.5.10. Primitive Object Redefinition</h4>
 <div class="paragraph">
 <p>For terminal objects (i.e. elements of the type <code>C_PRIMITIVE_OBJECT</code>) redefinition consists of:</p>
 </div>
@@ -7137,7 +7162,7 @@ Note that in the above, the '/' is used to denote '/protocol' as a differential 
 </ul>
 </div>
 <div class="sect4">
-<h5 id="_numeric_primitive_redefinition"><a class="anchor" href="#_numeric_primitive_redefinition"></a>9.5.8.1. Numeric Primitive Redefinition</h5>
+<h5 id="_numeric_primitive_redefinition"><a class="anchor" href="#_numeric_primitive_redefinition"></a>9.5.10.1. Numeric Primitive Redefinition</h5>
 <div class="paragraph">
 <p>The following example shows a redefined real value range.</p>
 </div>
@@ -7168,7 +7193,7 @@ Note that in the above, the '/' is used to denote '/protocol' as a differential 
 </div>
 </div>
 <div class="sect4">
-<h5 id="_terminology_internal_value_set_redefinition"><a class="anchor" href="#_terminology_internal_value_set_redefinition"></a>9.5.8.2. Terminology Internal Value Set Redefinition</h5>
+<h5 id="_terminology_internal_value_set_redefinition"><a class="anchor" href="#_terminology_internal_value_set_redefinition"></a>9.5.10.2. Terminology Internal Value Set Redefinition</h5>
 <div class="paragraph">
 <p>The following example shows a redefined internal value set.</p>
 </div>
@@ -7233,7 +7258,7 @@ Note that in the above, the '/' is used to denote '/protocol' as a differential 
 </div>
 </div>
 <div class="sect4">
-<h5 id="_terminology_external_subset_redefinition"><a class="anchor" href="#_terminology_external_subset_redefinition"></a>9.5.8.3. Terminology External Subset Redefinition</h5>
+<h5 id="_terminology_external_subset_redefinition"><a class="anchor" href="#_terminology_external_subset_redefinition"></a>9.5.10.3. Terminology External Subset Redefinition</h5>
 <div class="paragraph">
 <p>A terminology external subset constraint is used to set the value set of a coded term to be one defined externally in a terminology, specified in the <code>term_definitions</code> sub-section of the <code>terminology</code> section, as shown in the following example.</p>
 </div>
@@ -7312,7 +7337,7 @@ Note that in the above, the '/' is used to denote '/protocol' as a differential 
 </div>
 </div>
 <div class="sect3">
-<h4 id="_tuple_redefinition"><a class="anchor" href="#_tuple_redefinition"></a>9.5.9. Tuple Redefinition</h4>
+<h4 id="_tuple_redefinition"><a class="anchor" href="#_tuple_redefinition"></a>9.5.11. Tuple Redefinition</h4>
 <div class="paragraph">
 <p>Tuple constraints can be redefined by narrowing, as for other primitive constraints. A typical example is as follows.</p>
 </div>
