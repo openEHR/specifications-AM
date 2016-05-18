@@ -9,9 +9,9 @@ It is intended for software developers, technically-oriented domain specialists 
 The intended audience includes:
 
 * Standards bodies producing health informatics standards;
-* Academic groups using openEHR;
+* Research groups using openEHR, ISO 13606, and other EHR or EHR exchange architectures;
 * The open source healthcare community;
-* Solution vendors;
+* EHR solution vendors;
 * Medical informaticians and clinicians interested in health information.
 
 == Related Documents
@@ -44,7 +44,7 @@ Users are encouraged to comment on and/or advise on these paragraphs as well as 
 
 == Tools
 
-Various tools exist for creating and processing archetypes. The {openehr_awb}[ADL Workbench] is a reference compiler, visualiser and editor. The openEHR tools can be http://www.openehr.org/downloads/modellingtools[downloaded from the website] .
+Various tools exist for creating and processing archetypes. The {openehr_awb}[ADL Workbench] is a reference compiler, visualiser and editor. The openEHR ADL/AOM tools can be http://www.openehr.org/downloads/modellingtools[downloaded from the website] .
 Source projects can be found at the {openehr_git}[openEHR Github project].
 
 == Changes from Previous Versions
@@ -61,15 +61,16 @@ The changes in version 2.0 are designed to make archetypes more computable with 
 * the internal node identification system has been changed so that at-codes are no longer used to identify nodes; instead, 'id-codes' are used for that purpose;
 * all nodes now require an id-code;
 * rules for the construction of node identifier codes in specialised archetypes;
-* the `ontology` section has been renamed `terminology;
+* the `ontology` section has been renamed `terminology`;
 * value sets are now declared in their own subsection of the terminology section rather than inline in the definition section;
 
 ==== Backward Compatibility
 In its current form, the changes to the internal coding system and value set representation in ADL 2.x and the AOM with respect to ADL/AOM 1.5 constitute syntactically breaking changes, and therefore require conversion of ADL 1.4 archetypes to ADL 2 form. The changes have been carefully designed to allow this conversion to be implementable, and are implemented in the ADL Workbench tool. ADL 1.4 style paths are generatable from ADL 2 archetypes, so that AQL queries can be built for use with ADL 1.4 based data.
 
 === ADL 1.5
+
 ==== Changes
-The changes in version 1.5 are made to better facilitate the representation of specialised archetypes.  The key semantic capability for specialised archetypes is to be able to support a differential representation, i.e. to express a specialised archetype only in terms of the changed or new elements in its defnition, rather than including a copy of unchanged elements. Doing the latter is clearly unsustainable in terms of change management. ADL 1.4 already supported differential representation, but somewhat inconveniently.
+The changes in version 1.5 are made to better facilitate the representation of specialised archetypes. The key semantic capability for specialised archetypes is to be able to support a differential representation, i.e. to express a specialised archetype only in terms of the changed or new elements in its defnition, rather than including a copy of unchanged elements. Doing the latter is clearly unsustainable in terms of change management. ADL 1.4 already supported differential representation, but somewhat inconveniently.
 
 The changes for ADL 1.5 include:
 
@@ -87,6 +88,7 @@ The changes for ADL 1.5 include:
 Nearly all the changes occur in the section <<cADL - Constraint ADL>> or the new section <<Specialisation>>.
 
 === ADL 1.4
+
 A number of small changes were made in this version, along with significant tightening up of the explanatory text and examples.
 
 ==== ISO 8601 Date/Time Conformance
@@ -108,6 +110,7 @@ Occurrences can now be stated for `use_node` references, overriding the occurren
 The old quoting rules based on XML/ISO mnemonic patterns (`&ohmgr;` etc) are replaced by specifying ADL to be UTF-8 based, and any exceptions to this requiring ASCII encoding should use the `\Uhhhh` style of quoting unicode used in various programming languages.
 
 === ADL 1.3
+
 The specific changes made in version 1.3 of ADL are as follows.
 
 ==== Query syntax replaced by URI data type

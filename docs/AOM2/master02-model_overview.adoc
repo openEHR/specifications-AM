@@ -1,20 +1,26 @@
 = Model Overview
 
-The model described here is a pure object-oriented model that can be used with archetype parsers and software that manipulates archetypes and templates in memory. It is typically the output of a parser of any serialsed form of archetypes. It is dependent on the openEHR Base package classes.
+The model described here is a pure object-oriented model that can be used with archetype parsers and software that manipulates archetypes and templates in memory. It is typically the output of a parser of any serialsed form of archetypes. It is dependent on the openEHR Base package `assumed_types` package, which states the assumed primitive types for the AOM. These types are similar to those found in most programming and schema languages. This package is shown below.
+
+[.text-center]
+.base_types.assumed_types Package
+image::{uml_export_dir}/diagrams/BASE-base_types.assumed_types.svg[id=base_types_assumed_types, align="center"]
+
+NOTE: the above package does not constitute a formal part of this specification. Any implementation of the AOM will typically have to use such types within languages and/or libraries.
 
 == Package Structure
 
-The openEHR Archetype Object Model is defined as the package `am.archetype` , as illustrated in Figure [[package_overview]]. It is shown in the context of the openEHR `am.archetype` packages.
+The Archetype Object Model is defined as the package `am.archetype` , as illustrated in Figure [[aom_package_overview]]. It is shown in the context of the `am.archetype` packages.
 
 [.text-center]
 .Package Overview
-image::{uml_export_dir}/diagrams/AOM-packages.png[id=package_overview, align="center"]
+image::{uml_export_dir}/diagrams/AOM-packages.svg[id=aom_package_overview, align="center"]
 
 == Definition and Utility Classes
 
 === Overview
 
-Various definitional classes are used in the AOM. Some are defined in the `aom.definitions` package from the AM component, while others come from the openEHR `definitions` package from the BASE component. These are illustrated below.
+Various definitional classes are used in the AOM. Some are defined in the `aom.definitions` package from the AM component, while others come from the `definitions` package from the openEHR BASE component. These are illustrated below.
 
 [.text-center]
 .Definition Package

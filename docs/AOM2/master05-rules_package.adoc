@@ -1,7 +1,5 @@
 = The Rules Package
 
-NOTE: the semantics described in this part of the model should not yet be considered stable, as it depends on the openEHR Expression Language, which is still be stabilised.
-
 == Overview
 
 The AOM `rules` package builds upon a subset of the `BASE::org::openehr::expressions` package described in the {openehr_expression}[openEHR Expression Language specification], and adds a small number of classes to express leaf reference types specific to archetypes. This enables expressions to be declared within archetypes that:
@@ -27,7 +25,7 @@ Archetype assertions are expressions which may contain the following elements:
 ** _primitive values_: including the date/time types;
 ** _constraints_ operands, i.e. `C_PRIMITIVE_OBJECT` instances, used as arguments to the `matches` operator;
 ** _archetype id constraints_, i.e. `C_STRING` instances representing possible archetype identifiers, used in slot constraints.
-* any of the openEHR rules operators, i.e.:
+* any of the expression operators, i.e.:
 ** _arithmetic operators_: `+`, `*`, `-`, `/`, `^` (exponent), `%` (modulo division)
 ** _relational operators_: `>`, `<`, `>=`, `\<=`, `=`, `!=`;
 ** _boolean operators_: `not`, `and`, `or`, `xor`;
@@ -36,7 +34,7 @@ Archetype assertions are expressions which may contain the following elements:
 * the following additional semantics:
 ** _references_ to archetyped values in data, specified by archetype paths.
 
-Variables, assignments, and external queries as described in the main openEHR Rules language are not allowed.
+Variables, assignments, and external queries as described in the {openehr_expression}[openEHR Expression Language] are not allowed.
 
 == Class Descriptions
 
