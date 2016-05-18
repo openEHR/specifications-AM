@@ -6,7 +6,7 @@ h|*Class*
 2+^h|*ISO8601_DATE_TIME*
 
 h|*Description*
-2+a|Represents an absolute point in time, specified to a fraction of a second.
+2+a|Represents an absolute point in time, specified to the second.
 
 Note that this class includes 2 deviations from ISO 8601:2004:
 
@@ -83,17 +83,17 @@ a|Timezone; may be Void.
 
 h|
 |*as_string*: `String`
-a|ISO8601 string for date/time, in format `YYYYMMDDThhmmss[(,&#124;.)s+][Z &#124; ±hh[mm]]` or in extended format `YYYY-MM-DDThh:mm:ss[(,&#124;.)s+][Z &#124; ±hh[:mm]]` or a partial variant; see valid_iso8601_date_time() below.
+a|ISO8601 string for date/time, in format YYYYMMDDThhmmss[(,&#124;.)s+][Z&#124;±hh[mm]] or in extended format YYYY-MM-DDThh:mm:ss[(,&#124;.)s+][Z&#124;±hh[:mm]] or a partial variant; see valid_iso8601_date_time() below.
 
 h|
 |*valid_iso8601_date_time* (s: `String`): `Boolean`
 a|String is a valid ISO 8601 date-time, i.e. takes the form:
 
-* YYYYMMDDThhmmss[(,&#124;.)s+][Z &#124; ±hh[mm]]
+* YYYYMMDDThhmmss[(,&#124;.)s+][Z&#124;±hh[mm]]
 
 or the extended form:
 
-* YYYY-MM-DDThh:mm:ss[(,&#124;.)s+][Z &#124; ±hh[:mm]]
+* YYYY-MM-DDThh:mm:ss[(,&#124;.)s+][Z&#124;±hh[:mm]]
 
 or one of the partial forms:
 
@@ -108,12 +108,12 @@ or the equivalent extended forms:
 (meanings as in DV_DATE, DV_TIME) and the values in each field are valid.
 
 h|(effected)
-|*is_extended*: `Boolean`
-a|True if this date/time uses ‘-’, ‘:’ separators.
-
-h|(effected)
 |*is_partial*: `Boolean`
 a|True if this date time is partial, i.e. if seconds or more is missing.
+
+h|(effected)
+|*is_extended*: `Boolean`
+a|True if this date/time uses ‘-’, ‘:’ separators.
 
 h|*Invariant*
 2+a|*_Year_valid_*: valid_year (year)
