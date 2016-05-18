@@ -171,6 +171,9 @@ description
             other_details = <...>
         >
     >
+
+    other_details = <...>
+
 --------
 
 A number of details are worth noting here. Firstly, the free hierarchical structuring capability of dADL is exploited for expressing the 'deep' structure of the `details` section and its subsections. Secondly, the dADL qualified list form is used to allow multiple translations of the `purpose` and `use` to be shown. Lastly, empty items such as `misuse` (structured if there is data) are shown with just one level of empty brackets. The above example shows meta-data based on the {openehr_am_aom14}[openEHR Archetype Object Model (AOM)].
@@ -193,6 +196,12 @@ description
         >
     >
 --------
+
+==== Extending meta-data
+
+The `description` section models a specific set of meta-data items, but of course, the meta-data needs over time can never be fully predicted. To enable free extension of the `description` section, the `other_details` is used. Its structure takes the form of a Hash of strings, i.e. `Hash <String, String>`, and can be used to contain other meta-data items not explicitly modelled.
+
+The Appendix <<Extended Meta-data Guide>> describes the known uses of extended meta-data to date.
 
 == Definition Section
 
