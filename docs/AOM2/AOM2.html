@@ -476,7 +476,7 @@
 <tr>
 <td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"><div><div class="paragraph">
-<p><a href="https://openehr.atlassian.net/browse/SPECBASE-4">SPECBASE-4</a>Change order of type parameters in <code>Hash&lt;V,K&gt;</code> type to <code>Hash&lt;K,V&gt;</code>.</p>
+<p><a href="https://openehr.atlassian.net/browse/SPECBASE-4">SPECBASE-4</a> Change order of type parameters in <code>Hash&lt;V,K&gt;</code> type to <code>Hash&lt;K,V&gt;</code>.</p>
 </div></div></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">D Boscá</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">13 Apr 2016</p></td>
@@ -3064,38 +3064,38 @@ It is the parent class of all concrete types of archetype.</p>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Temporal types</strong></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>List &lt;Interval&lt;T&#8594;ISO8601_TYPE&gt;&gt;</code><br>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>List &lt;Interval&lt;T&#8594;Temporal&gt;&gt;</code><br>
                      OR<br>
                     <code>String</code> (ADL pattern)</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">As for ordered types, with T being an ISO8601-based type, with the addition of a second type constraint - <a href="http://www.openehr.org/releases/AM/latest/ADL2.html#_constraints_on_dates_times_and_durations">a pattern based on ISO8601 syntax</a>.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">As for ordered types, with T being an sub-type type of <code>Temporal</code>, an ancestor of the assumed Date/time primitive types., with the addition of a second type constraint - <a href="http://www.openehr.org/releases/AM/latest/ADL2.html#_constraints_on_dates_times_and_durations">a pattern based on ISO8601 syntax</a>.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Date</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>List &lt;Interval&lt;ISO8601_DATE&gt;&gt;</code><br>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>List &lt;Interval&lt;Date&gt;&gt;</code><br>
                      OR<br>
                      pattern</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">As for Temporal types with T = <code>ISO8601_DATE</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">As for Temporal types with T = <code>Date</code></p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Time</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>List &lt;Interval&lt;ISO8601_TIME&gt;&gt;</code><br>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>List &lt;Interval&lt;Time&gt;&gt;</code><br>
                      OR<br>
                      pattern</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">As for Temporal types with T = <code>ISO8601_TIME</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">As for Temporal types with T = <code>Time</code></p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Date_time</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>List &lt;Interval&lt;ISO8601_DATE_TIME&gt;&gt;</code><br>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>List &lt;Interval&lt;Date_time&gt;&gt;</code><br>
                      OR<br>
                      pattern</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">As for Temporal types with T = <code>ISO8601_DATE_TIME</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">As for Temporal types with T = <code>Date_time</code></p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Duration</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>List &lt;Interval&lt;ISO8601_DURATION&gt;&gt;</code><br>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>List &lt;Interval&lt;Duration&gt;&gt;</code><br>
                      OR<br>
                      pattern</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">As for Temporal types with T = <code>ISO8601_DURATION</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">As for Temporal types with T = <code>Duration</code></p></td>
 </tr>
 </tbody>
 </table>
@@ -5045,7 +5045,7 @@ For a slot-filler or a redefined external reference, the node_id is set to a spe
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Description</strong></p></th>
 <td class="tableblock halign-left valign-top" colspan="2"><div><div class="paragraph">
-<p>ISO 8601-compatible constraint on instances of Date in the form either of a set of validity values, or else date ranges based on the C_ORDERED list constraint. There is no validity flag for ‘year’, since it must always be by definition mandatory in order to have a sensible date at all. Syntax expressions of instances of this class include “YYYY-??-??” (date with optional month and day).</p>
+<p>Constraint on instances of Date in the form either of a set of validity values, or else date ranges based on the C_ORDERED list constraint. There is no validity flag for ‘year’, since it must always be by definition mandatory in order to have a sensible date at all. Syntax expressions of instances of this class include “YYYY-??-??” (date with optional month and day).</p>
 </div></div></td>
 </tr>
 <tr>
@@ -5062,7 +5062,7 @@ For a slot-filler or a redefined external reference, the node_id is set to a spe
 (redefined)</strong></p></th>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><strong>constraint</strong>: <code>List&lt;Interval&lt;Date&gt;&gt;</code></p></td>
 <td class="tableblock halign-left valign-top"><div><div class="paragraph">
-<p>Formal constraint on ISO8601_DATE, in the form of List of Interval&lt;ISO8601_DATE&gt;.</p>
+<p>Formal constraint on an assumed primitive Date type, in the form of List of Interval&lt;Date&gt;, i.e. one or more intervals of Date.</p>
 </div></div></td>
 </tr>
 <tr>
@@ -5116,7 +5116,7 @@ For a slot-filler or a redefined external reference, the node_id is set to a spe
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Description</strong></p></th>
 <td class="tableblock halign-left valign-top" colspan="2"><div><div class="paragraph">
-<p>ISO 8601-compatible constraint on instances of Time in the form either of a set of validity values, or else date ranges based on the C_ORDERED list constraint. There is no validity flag for ‘hour’, since it must always be by definition mandatory in order to have a sensible time at all. Syntax expressions of instances of this class include “HH:??:xx” (time with optional minutes and seconds not allowed).</p>
+<p>Constraint on instances of assumed primitive type Time in the form either of a set of validity values, or else date ranges based on the C_ORDERED list constraint. There is no validity flag for ‘hour’, since it must always be by definition mandatory in order to have a sensible time at all. Syntax expressions of instances of this class include “HH:??:xx” (time with optional minutes and seconds not allowed).</p>
 </div></div></td>
 </tr>
 <tr>
@@ -5133,7 +5133,7 @@ For a slot-filler or a redefined external reference, the node_id is set to a spe
 (redefined)</strong></p></th>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><strong>constraint</strong>: <code>List&lt;Interval&lt;Time&gt;&gt;</code></p></td>
 <td class="tableblock halign-left valign-top"><div><div class="paragraph">
-<p>Formal constraint on ISO8601_TIME, in the form of a List of Interval&lt;ISO8601_TIME&gt;.</p>
+<p>Formal constraint on assumed primitive type Time, in the form of a List of Interval&lt;Time&gt;, i.e. one or more intervals of Time.</p>
 </div></div></td>
 </tr>
 <tr>
@@ -5194,7 +5194,7 @@ For a slot-filler or a redefined external reference, the node_id is set to a spe
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Description</strong></p></th>
 <td class="tableblock halign-left valign-top" colspan="2"><div><div class="paragraph">
-<p>ISO 8601-compatible constraint on instances of Date_Time. There is no validity flag for ‘year’, since it must always be by definition mandatory in order to have a sensible date/time at all. Syntax expressions of instances of this class include “YYYY-MM-DDT??:??:??” (date/time with optional time) and “YYYY-MMDDTHH:MM:xx” (date/time, seconds not allowed).</p>
+<p>Constraint on instances of assumed primitive type Date_time. There is no validity flag for ‘year’, since it must always be by definition mandatory in order to have a sensible date/time at all. Syntax expressions of instances of this class include “YYYY-MM-DDT??:??:??” (date/time with optional time) and “YYYY-MMDDTHH:MM:xx” (date/time, seconds not allowed).</p>
 </div></div></td>
 </tr>
 <tr>
@@ -5211,7 +5211,7 @@ For a slot-filler or a redefined external reference, the node_id is set to a spe
 (redefined)</strong></p></th>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><strong>constraint</strong>: <code>List&lt;Interval&lt;Date_time&gt;&gt;</code></p></td>
 <td class="tableblock halign-left valign-top"><div><div class="paragraph">
-<p>Formal constraint on ISO8601_DATE_TIME, in the form of List of Interval&lt;ISO8601_DATE_TIME&gt;.</p>
+<p>Formal constraint on assumed primitive type Date_time, in the form of List of Interval&lt;Date_time&gt;, i.e. one or more intervals of Date_time.</p>
 </div></div></td>
 </tr>
 <tr>
@@ -5285,7 +5285,12 @@ For a slot-filler or a redefined external reference, the node_id is set to a spe
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Description</strong></p></th>
-<td class="tableblock halign-left valign-top" colspan="2"><div></div></td>
+<td class="tableblock halign-left valign-top" colspan="2"><div><div class="paragraph">
+<p>Constraint on instances of assumed primitive type Duration, which is assumed to have the same parts as the ISO8601 duration string. Thus, constraints are of the form “PWD” (weeks and/or days), “PDTHMS” (days, hours, minutes, seconds) and so on.</p>
+</div>
+<div class="paragraph">
+<p>In official ISO 8601:2004, the ‘W’ (week) designator cannot be mixed in; allowing it is an openEHR-wide exception. The allowed patterns are: P[Y&#124;y][M&#124;m][D&#124;d][T[H&#124;h][M&#124;m][S&#124;s]] and P[W&#124;w].</p>
+</div></div></td>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Inherit</strong></p></th>
@@ -5300,7 +5305,9 @@ For a slot-filler or a redefined external reference, the node_id is set to a spe
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1<br>
 (redefined)</strong></p></th>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><strong>constraint</strong>: <code>List&lt;Interval&lt;Duration&gt;&gt;</code></p></td>
-<td class="tableblock halign-left valign-top"><div></div></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>Formal constraint on assumed primitive type Duration, in the form of List of Interval&lt;Duration&gt;, i.e. one or more intervals of Duration.</p>
+</div></div></td>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Functions</strong></p></th>

@@ -125,21 +125,21 @@ The primitive constraint for each primitive type may itself be complex. Its type
 |*Ordered types*    |`List <Interval<T>>`       |Can represent a single value (which is a point interval), a list of values (list of point intervals), a list of intervals, which may be mixed proper and point intervals.
 |Integer            |`List <Interval<Integer>>` |As for Ordered type, with T = `Integer`
 |Real               |`List <Interval<Real>>`    |As for Ordered type, with T = `Real`
-|*Temporal types*   |`List <Interval<T->ISO8601_TYPE>>` +
+|*Temporal types*   |`List <Interval<T->Temporal>>` +
                      OR +
-                    `String` (ADL pattern)      |As for ordered types, with T being an ISO8601-based type, with the addition of a second type constraint - {openehr_am_adl2}#_constraints_on_dates_times_and_durations[a pattern based on ISO8601 syntax].
-|Date               |`List <Interval<ISO8601_DATE>>` +
+                    `String` (ADL pattern)      |As for ordered types, with T being an sub-type type of `Temporal`, an ancestor of the assumed Date/time primitive types., with the addition of a second type constraint - {openehr_am_adl2}#_constraints_on_dates_times_and_durations[a pattern based on ISO8601 syntax].
+|Date               |`List <Interval<Date>>` +
                      OR +
-                     pattern                    |As for Temporal types with T = `ISO8601_DATE`
-|Time               |`List <Interval<ISO8601_TIME>>` +
+                     pattern                    |As for Temporal types with T = `Date`
+|Time               |`List <Interval<Time>>` +
                      OR +
-                     pattern                    |As for Temporal types with T = `ISO8601_TIME`
-|Date_time          |`List <Interval<ISO8601_DATE_TIME>>` +
+                     pattern                    |As for Temporal types with T = `Time`
+|Date_time          |`List <Interval<Date_time>>` +
                      OR +
-                     pattern                    |As for Temporal types with T = `ISO8601_DATE_TIME`
-|Duration           |`List <Interval<ISO8601_DURATION>>` +
+                     pattern                    |As for Temporal types with T = `Date_time`
+|Duration           |`List <Interval<Duration>>` +
                      OR +
-                     pattern                    |As for Temporal types with T = `ISO8601_DURATION`
+                     pattern                    |As for Temporal types with T = `Duration`
 |===========
 
 ==== Assumed_value
