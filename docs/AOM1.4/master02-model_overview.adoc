@@ -4,7 +4,7 @@
 
 An underpinning principle of openEHR is the use of archetypes and templates, which are formal models of domain content, and are used to control data structure and content during creation, modification and querying. The elements of this architecture are twofold.
 
-* The openEHR Reference Model (RM), defining the structure and semantics of information in terms of information models (IMs). The RM models correspond to the ISP RM/ODP information viewpoint, and define the data of openEHR EHR systems. The information model is designed to be invariant in the long term, to minimise the need for software and schema updates.
+* The openEHR Reference Model (RM), defining the structure and semantics of information in terms of information models (IMs). The RM models correspond to the ISO RM/ODP information viewpoint, and define the data of openEHR EHR systems. The information model is designed to be invariant in the long term, to minimise the need for software and schema updates.
 * The openEHR Archetype Model (AM), defining the structure and semantics of archetypes and templates. The AM consists of the archetype language definition language (ADL), the Archetype Object Model (AOM) and the openEHR Archetype profile (oAP).
 
 The purpose of ADL is to provide an abstract syntax for textually expressing archetypes and templates. The AOM defines the object model equivalent, in terms of a UML model. It is a generic model, meaning that it can be used to express archetypes for any reference model in a standard way. ADL and the AOM are brought together in an ADL parser: a tool which can read ADL archetype texts, and whose parse-tree (resulting in-memory object representation) is instances of the AOM. The TOM defines the object model of templates, which are themselves used to put archetypes together into local information structures, usually corresponding to screen forms.
@@ -23,7 +23,7 @@ image::{uml_export_dir}/AOM1.4/diagrams/AOM-packages.svg[id=package_overview, al
 
 The model described here is a pure object-oriented model that can be used with archetype parsers and software that manipulates archetypes. It is independent of any particular linguistic expression of an archetype, such as ADL or OWL, and can therefore be used with any kind of parser. 
 
-It is dependent on the openEHR Support model (`assumed_types` and `identifiers`), as small number of the openEHR Data types IM, and the `AUTHORED_RESOURCE` classes from the openEHR Common IM <<openehr_rm_common>>.
+It is dependent on the {openehr_rm_102_support}[openEHR Release 1.0.2 Support IM] (`assumed_types` and `identifiers` packages), a small number of the openEHR Data Types ({openehr_rm_102_data_types}[openEHR Release 1.0.2 Data Types IM]), and the `resource` package from the {openehr_rm_102_common}[openEHR Release 1.0.2 Common IM]. These dependencies are shown for convenience in the <<Reference Model Dependencies>> appendix.
 
 === Archetypes as Objects
 
@@ -33,7 +33,7 @@ After initial parsing, the in-memory representation is then validated by the sem
 
 [.text-center]
 .Archetype Parsing Process
-image::diagrams/archetype_parsing_process.png[id=archetype_parsing_process, align="center"]
+image::diagrams/archetype_parsing_process.png[id=archetype_parsing_process, align="center", width="70%"]
 
 As shown in the figure, the definition part of the in-memory archetype consists of alternate layers of object and attribute constrainer nodes, each containing the next level of nodes. In this document, the word 'attribute' refers to any data property of a class, regardless of whether regarded as a 'relationship' (i.e. association, aggregation, or composition) or 'primitive' (i.e. value) attribute in an object model. At the leaves are primitive object constrainer nodes constraining primitive types such as `String`, `Integer` etc. There are also nodes that represent internal references to other nodes, constraint reference nodes that refer to a text constraint in the constraint binding part of the archetype ontology, and archetype constraint nodes, which represent constraints on other archetypes allowed to appear at a given point. The full list of concrete node types is as follows:
 

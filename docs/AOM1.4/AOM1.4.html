@@ -182,6 +182,23 @@
 </li>
 </ul>
 </li>
+<li><a href="#_reference_model_dependencies">Appendix C: Reference Model Dependencies</a>
+<ul class="sectlevel2">
+<li><a href="#_rm_1_0_2_support_assumed_types_package">C.1. RM 1.0.2 support.assumed_types package</a></li>
+<li><a href="#_rm_1_0_2_support_identification_package">C.2. RM 1.0.2 support.identification package</a></li>
+<li><a href="#_rm_1_0_2_data_types_basic_package">C.3. RM 1.0.2 data_types.basic package</a></li>
+<li><a href="#_rm_1_0_2_data_types_text_package">C.4. RM 1.0.2 data_types.text package</a></li>
+<li><a href="#_rm_1_0_2_data_types_quantity_package">C.5. RM 1.0.2 data_types.quantity package</a></li>
+<li><a href="#_rm_1_0_2_common_resource_package">C.6. RM 1.0.2 common.resource package</a>
+<ul class="sectlevel3">
+<li><a href="#_authored_resource_class">C.6.1. AUTHORED_RESOURCE Class</a></li>
+<li><a href="#_translation_details_class">C.6.2. TRANSLATION_DETAILS Class</a></li>
+<li><a href="#_resource_description_class">C.6.3. RESOURCE_DESCRIPTION Class</a></li>
+<li><a href="#_resource_description_item_class">C.6.4. RESOURCE_DESCRIPTION_ITEM Class</a></li>
+</ul>
+</li>
+</ul>
+</li>
 <li><a href="#_references">References</a>
 <ul class="sectlevel2">
 <li><a href="#_publications">Publications</a></li>
@@ -292,12 +309,20 @@
 <th class="tableblock halign-center valign-top" colspan="4"><p class="tableblock"><strong>R E L E A S E&#160;&#160;&#160;&#160;&#160;2.0.6</strong></p></th>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a id="latest_issue"></a>1.0.3</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a id="latest_issue"></a>1.4.2</p></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>Add Appendix C, containing UML diagrams for RM dependencies.</p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">D Boscá</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a id="latest_issue_date"></a>18 May 2016</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"><div><div class="paragraph">
 <p><a href="https://openehr.atlassian.net/browse/SPECBASE-4">SPECBASE-4</a>Change order of type parameters in <code>Hash&lt;V,K&gt;</code> type to <code>Hash&lt;K,V&gt;</code>.</p>
 </div></div></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">D Boscá</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a id="latest_issue_date"></a>13 Apr 2016</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">13 Apr 2016</p></td>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top" colspan="4"><p class="tableblock"><strong>R E L E A S E&#160;&#160;&#160;&#160;&#160;1.0.2</strong></p></th>
@@ -685,7 +710,7 @@ Source projects can be found at the <a href="https://github.com/openEHR">openEHR
 <div class="ulist">
 <ul>
 <li>
-<p>The openEHR Reference Model (RM), defining the structure and semantics of information in terms of information models (IMs). The RM models correspond to the ISP RM/ODP information viewpoint, and define the data of openEHR EHR systems. The information model is designed to be invariant in the long term, to minimise the need for software and schema updates.</p>
+<p>The openEHR Reference Model (RM), defining the structure and semantics of information in terms of information models (IMs). The RM models correspond to the ISO RM/ODP information viewpoint, and define the data of openEHR EHR systems. The information model is designed to be invariant in the long term, to minimise the need for software and schema updates.</p>
 </li>
 <li>
 <p>The openEHR Archetype Model (AM), defining the structure and semantics of archetypes and templates. The AM consists of the archetype language definition language (ADL), the Archetype Object Model (AOM) and the openEHR Archetype profile (oAP).</p>
@@ -717,7 +742,7 @@ Source projects can be found at the <a href="https://github.com/openEHR">openEHR
 <p>The model described here is a pure object-oriented model that can be used with archetype parsers and software that manipulates archetypes. It is independent of any particular linguistic expression of an archetype, such as ADL or OWL, and can therefore be used with any kind of parser.</p>
 </div>
 <div class="paragraph">
-<p>It is dependent on the openEHR Support model (<code>assumed_types</code> and <code>identifiers</code>), as small number of the openEHR Data types IM, and the <code>AUTHORED_RESOURCE</code> classes from the openEHR Common IM <a href="#openehr_rm_common">[openehr_rm_common]</a>.</p>
+<p>It is dependent on the <a href="http://www.openehr.org/releases/1.0.2/architecture/rm/support_im.pdf">openEHR Release 1.0.2 Support IM</a> (<code>assumed_types</code> and <code>identifiers</code> packages), a small number of the openEHR Data Types (<a href="http://www.openehr.org/releases/1.0.2/architecture/rm/data_types_im.pdf">openEHR Release 1.0.2 Data Types IM</a>), and the <code>resource</code> package from the <a href="http://www.openehr.org/releases/1.0.2/architecture/rm/common_im.pdf">openEHR Release 1.0.2 Common IM</a>. These dependencies are shown for convenience in the <a href="#_reference_model_dependencies">Reference Model Dependencies</a> appendix.</p>
 </div>
 <div class="sect3">
 <h4 id="_archetypes_as_objects"><a class="anchor" href="#_archetypes_as_objects"></a>2.3.1. Archetypes as Objects</h4>
@@ -729,7 +754,7 @@ Source projects can be found at the <a href="https://github.com/openEHR">openEHR
 </div>
 <div id="archetype_parsing_process" class="imageblock text-center" style="text-align: center">
 <div class="content">
-<img src="diagrams/archetype_parsing_process.png" alt="archetype parsing process">
+<img src="diagrams/archetype_parsing_process.png" alt="archetype parsing process" width="70%">
 </div>
 <div class="title">Figure 3. Archetype Parsing Process</div>
 </div>
@@ -3718,6 +3743,368 @@ Hash of keys ("text", "description" etc) and corresponding values.</p>
 </div>
 </div>
 <div class="sect1">
+<h2 id="_reference_model_dependencies"><a class="anchor" href="#_reference_model_dependencies"></a>Appendix C: Reference Model Dependencies</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>The following shows Reference Model extracts relevant to the AOM.</p>
+</div>
+<div class="sect2">
+<h3 id="_rm_1_0_2_support_assumed_types_package"><a class="anchor" href="#_rm_1_0_2_support_assumed_types_package"></a>C.1. RM 1.0.2 support.assumed_types package</h3>
+<div id="rm_support_iassumed_types_package" class="imageblock text-center" style="text-align: center">
+<div class="content">
+<img src="../UML/AOM1.4/diagrams/BASE-base_types.assumed_types.svg" alt="BASE base types.assumed types">
+</div>
+<div class="title">Figure 11. Release 1.0.2 RM support.assumed_types package</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_rm_1_0_2_support_identification_package"><a class="anchor" href="#_rm_1_0_2_support_identification_package"></a>C.2. RM 1.0.2 support.identification package</h3>
+<div id="rm_support_id_package" class="imageblock text-center" style="text-align: center">
+<div class="content">
+<img src="../UML/AOM1.4/diagrams/RM-support.identification.svg" alt="RM support.identification">
+</div>
+<div class="title">Figure 12. Release 1.0.2 RM support.identification package</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_rm_1_0_2_data_types_basic_package"><a class="anchor" href="#_rm_1_0_2_data_types_basic_package"></a>C.3. RM 1.0.2 data_types.basic package</h3>
+<div id="rm_data_types_basic_package" class="imageblock text-center" style="text-align: center">
+<div class="content">
+<img src="../UML/AOM1.4/diagrams/RM-data_types.basic.svg" alt="RM data types.basic">
+</div>
+<div class="title">Figure 13. Release 1.0.2 RM data_types.basic package</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_rm_1_0_2_data_types_text_package"><a class="anchor" href="#_rm_1_0_2_data_types_text_package"></a>C.4. RM 1.0.2 data_types.text package</h3>
+<div id="rm_data_types_text_package" class="imageblock text-center" style="text-align: center">
+<div class="content">
+<img src="../UML/AOM1.4/diagrams/RM-data_types.text.svg" alt="RM data types.text">
+</div>
+<div class="title">Figure 14. Release 1.0.2 RM data_types.text package</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_rm_1_0_2_data_types_quantity_package"><a class="anchor" href="#_rm_1_0_2_data_types_quantity_package"></a>C.5. RM 1.0.2 data_types.quantity package</h3>
+<div id="rm_data_types_quantity_package" class="imageblock text-center" style="text-align: center">
+<div class="content">
+<img src="../UML/AOM1.4/diagrams/RM-data_types.quantity.svg" alt="RM data types.quantity">
+</div>
+<div class="title">Figure 15. Release 1.0.2 RM data_types.quantity package</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_rm_1_0_2_common_resource_package"><a class="anchor" href="#_rm_1_0_2_common_resource_package"></a>C.6. RM 1.0.2 common.resource package</h3>
+<div id="rm_common_resource_package" class="imageblock text-center" style="text-align: center">
+<div class="content">
+<img src="../UML/AOM1.4/diagrams/RM-common.resource.svg" alt="RM common.resource">
+</div>
+<div class="title">Figure 16. Release 1.0.2 RM common.resource package</div>
+</div>
+<div class="sect3">
+<h4 id="_authored_resource_class"><a class="anchor" href="#_authored_resource_class"></a>C.6.1. AUTHORED_RESOURCE Class</h4>
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 16.6666%;">
+<col style="width: 33.3333%;">
+<col style="width: 50.0001%;">
+</colgroup>
+<tbody>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Class</strong></p></th>
+<th class="tableblock halign-center valign-top" colspan="2"><p class="tableblock"><strong>AUTHORED_RESOURCE</strong></p></th>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Description</strong></p></th>
+<td class="tableblock halign-left valign-top" colspan="2"><div></div></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect3">
+<h4 id="_translation_details_class"><a class="anchor" href="#_translation_details_class"></a>C.6.2. TRANSLATION_DETAILS Class</h4>
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 16.6666%;">
+<col style="width: 33.3333%;">
+<col style="width: 50.0001%;">
+</colgroup>
+<tbody>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Class</strong></p></th>
+<th class="tableblock halign-center valign-top" colspan="2"><p class="tableblock"><strong>TRANSLATION_DETAILS</strong></p></th>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Description</strong></p></th>
+<td class="tableblock halign-left valign-top" colspan="2"><div><div class="paragraph">
+<p>Class providing details of a natural language translation.</p>
+</div></div></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Attributes</strong></p></th>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Signature</strong></p></th>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Meaning</strong></p></th>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>1..1</strong></p></th>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>language</strong>: <code>CODE_PHRASE</code></p></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>Language of the translation.</p>
+</div></div></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>1..1</strong></p></th>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>author</strong>: <code>Hash&lt;String, String&gt;</code></p></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>Translator name and other demographic details.</p>
+</div></div></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>accreditaton</strong>: <code>String</code></p></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>Accreditation of translator, usually a national translator&#8217;s registration or association membership id.</p>
+</div></div></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>other_details</strong>: <code>Hash&lt;String, String&gt;</code></p></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>Any other meta-data.</p>
+</div></div></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Invariant</strong></p></th>
+<td class="tableblock halign-left valign-top" colspan="2"><div><div class="paragraph">
+<p><strong><em>Language_valid</em></strong>: code_set (Code_set_id_languages).has_code (language)</p>
+</div></div></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect3">
+<h4 id="_resource_description_class"><a class="anchor" href="#_resource_description_class"></a>C.6.3. RESOURCE_DESCRIPTION Class</h4>
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 16.6666%;">
+<col style="width: 33.3333%;">
+<col style="width: 50.0001%;">
+</colgroup>
+<tbody>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Class</strong></p></th>
+<th class="tableblock halign-center valign-top" colspan="2"><p class="tableblock"><strong>RESOURCE_DESCRIPTION</strong></p></th>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Description</strong></p></th>
+<td class="tableblock halign-left valign-top" colspan="2"><div><div class="paragraph">
+<p>Defines the descriptive meta-data of a resource.</p>
+</div></div></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Attributes</strong></p></th>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Signature</strong></p></th>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Meaning</strong></p></th>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>1..1</strong></p></th>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>original_author</strong>: <code>Hash&lt;String, String&gt;</code></p></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>Original author of this resource, with all relevant details, including organisation.</p>
+</div></div></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>other_contributors</strong>: <code>List&lt;String&gt;</code></p></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>Other contributors to the resource, probably listed in  name &lt;email&gt;  form.</p>
+</div></div></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>1..1</strong></p></th>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>lifecycle_state</strong>: <code>String</code></p></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>Lifecycle state of the resource, typically including states such as: initial, submitted, experimental, awaiting_approval, approved, superseded, obsolete.</p>
+</div></div></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>resource_package_uri</strong>: <code>String</code></p></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>URI of package to which this resource belongs.</p>
+</div></div></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>other_details</strong>: <code>Hash&lt;String, String&gt;</code></p></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>Additional non language-senstive resource meta-data, as a list of name/value pairs.</p>
+</div></div></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>1..1</strong></p></th>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>parent_resource</strong>: <code>AUTHORED_RESOURCE&#160;=&#160;0..1</code></p></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>Reference to owning resource.</p>
+</div></div></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>1..1</strong></p></th>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>details</strong>: <code>Hash&lt;String,RESOURCE_DESCRIPTION_ITEM&gt;</code></p></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>Details of all parts of resource description that are natural language-dependent, keyed by language code.</p>
+</div></div></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Invariant</strong></p></th>
+<td class="tableblock halign-left valign-top" colspan="2"><div><div class="paragraph">
+<p><strong><em>Original_author_valid</em></strong>: not original_author.is_empty</p>
+</div></div></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"></th>
+<td class="tableblock halign-left valign-top" colspan="2"><div><div class="paragraph">
+<p><strong><em>Lifecycle_state_valid</em></strong>: not lifecycle_state.is_empty</p>
+</div></div></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"></th>
+<td class="tableblock halign-left valign-top" colspan="2"><div><div class="paragraph">
+<p><strong><em>Details_valid</em></strong>: not details.is_empty</p>
+</div></div></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"></th>
+<td class="tableblock halign-left valign-top" colspan="2"><div><div class="paragraph">
+<p><strong><em>Language_valid</em></strong>: parent_resource /= Void implies details.for_all (d &#124; parent_resource.languages_available.has (d.language.code_string))</p>
+</div></div></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"></th>
+<td class="tableblock halign-left valign-top" colspan="2"><div><div class="paragraph">
+<p><strong><em>Parent_resource_valid</em></strong>: parent_resource /= Void implies parent_resource.description = self</p>
+</div></div></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect3">
+<h4 id="_resource_description_item_class"><a class="anchor" href="#_resource_description_item_class"></a>C.6.4. RESOURCE_DESCRIPTION_ITEM Class</h4>
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 16.6666%;">
+<col style="width: 33.3333%;">
+<col style="width: 50.0001%;">
+</colgroup>
+<tbody>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Class</strong></p></th>
+<th class="tableblock halign-center valign-top" colspan="2"><p class="tableblock"><strong>RESOURCE_DESCRIPTION_ITEM</strong></p></th>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Description</strong></p></th>
+<td class="tableblock halign-left valign-top" colspan="2"><div><div class="paragraph">
+<p>Language-specific detail of resource description. When a resource is translated for use in another language environment, each RESOURCE_DESCRIPTION_ITEM needs to be copied and translated into the new language.</p>
+</div></div></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Attributes</strong></p></th>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Signature</strong></p></th>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Meaning</strong></p></th>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>1..1</strong></p></th>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>language</strong>: <code>CODE_PHRASE</code></p></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>The localised language in which the items in this description item are written. Coded from openEHR Code Set  languages .</p>
+</div></div></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>1..1</strong></p></th>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>purpose</strong>: <code>String</code></p></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>Purpose of the resource.</p>
+</div></div></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>keywords</strong>: <code>List&lt;String&gt;</code></p></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>Keywords which characterise this resource, used e.g. for indexing and searching.</p>
+</div></div></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>use</strong>: <code>String</code></p></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>Description of the uses of the resource, i.e. contexts in which it could be used.</p>
+</div></div></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>misuse</strong>: <code>String</code></p></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>Description of any misuses of the resource, i.e. contexts in which it should not be used.</p>
+</div></div></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>copyright</strong>: <code>String</code></p></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>Optional copyright statement for the resource as a knowledge resource.</p>
+</div></div></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>original_resource_uri</strong>: <code>Hash&lt;String, String&gt;</code></p></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>URIs of original clinical document(s) or description of which resource is a formalisation, in the language of this description item; keyed by meaning.</p>
+</div></div></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>other_details</strong>: <code>Hash&lt;String, String&gt;</code></p></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>Additional language-senstive resource metadata, as a list of name/value pairs.</p>
+</div></div></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Invariant</strong></p></th>
+<td class="tableblock halign-left valign-top" colspan="2"><div><div class="paragraph">
+<p><strong><em>Language_valid</em></strong>: code_set (Code_set_id_languages).has_code (language)</p>
+</div></div></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"></th>
+<td class="tableblock halign-left valign-top" colspan="2"><div><div class="paragraph">
+<p><strong><em>Purpose_valid</em></strong>: not purpose.is_empty</p>
+</div></div></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"></th>
+<td class="tableblock halign-left valign-top" colspan="2"><div><div class="paragraph">
+<p><strong><em>Use_valid</em></strong>: use /= Void implies not use.is_empty</p>
+</div></div></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"></th>
+<td class="tableblock halign-left valign-top" colspan="2"><div><div class="paragraph">
+<p><strong><em>misuse_valid</em></strong>: misuse /= Void implies not misuse.is_empty</p>
+</div></div></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"></th>
+<td class="tableblock halign-left valign-top" colspan="2"><div><div class="paragraph">
+<p><strong><em>copyright_valid</em></strong>: copyright /= Void implies not copyright.is_empty</p>
+</div></div></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
 <h2 id="_references"><a class="anchor" href="#_references"></a>References</h2>
 <div class="sectionbody">
 <div class="sect2">
@@ -4006,7 +4393,7 @@ Hash of keys ("text", "description" etc) and corresponding values.</p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2016-03-10 14:03:27 GMT
+Last updated 2016-05-18 18:27:29 BST
 </div>
 </div>
 </body>
