@@ -51,10 +51,10 @@
 <ul class="sectlevel3">
 <li><a href="#_human_readable_identifier_hrid">3.2.1. Human-readable Identifier (HRID)</a>
 <ul class="sectlevel4">
-<li><a href="#_concept_identifier">Concept Identifier</a></li>
-<li><a href="#_legacy_adl_1_4_semantics">Legacy ADL 1.4 Semantics</a></li>
-<li><a href="#_concept_identifier_semantics">Concept Identifier Semantics</a></li>
-<li><a href="#_need_for_rm_class_name_in_identifier">Need for RM Class Name in Identifier</a></li>
+<li><a href="#_concept_identifier">3.2.1.1. Concept Identifier</a></li>
+<li><a href="#_legacy_adl_1_4_semantics">3.2.1.2. Legacy ADL 1.4 Semantics</a></li>
+<li><a href="#_concept_identifier_semantics">3.2.1.3. Concept Identifier Semantics</a></li>
+<li><a href="#_need_for_rm_class_name_in_identifier">3.2.1.4. Need for RM Class Name in Identifier</a></li>
 </ul>
 </li>
 </ul>
@@ -115,8 +115,8 @@
 <li><a href="#_formal_model_2">7.6.4. Formal Model</a></li>
 <li><a href="#_optimisations">7.6.5. Optimisations</a>
 <ul class="sectlevel4">
-<li><a href="#_identifier_aliasing">Identifier Aliasing</a></li>
-<li><a href="#_reference_compression">Reference Compression</a></li>
+<li><a href="#_identifier_aliasing">7.6.5.1. Identifier Aliasing</a></li>
+<li><a href="#_reference_compression">7.6.5.2. Reference Compression</a></li>
 </ul>
 </li>
 </ul>
@@ -775,13 +775,13 @@ the word 'archetype' as used in this specification means: any formal artefact wr
 <p>The closure part of the identifier could be used by tools to ensure for example that an 'EHR' <code>CLUSTER</code> archetype was never attached to a 'demographic' information item.</p>
 </div>
 <div class="sect4">
-<h5 id="_concept_identifier"><a class="anchor" href="#_concept_identifier"></a>Concept Identifier</h5>
+<h5 id="_concept_identifier"><a class="anchor" href="#_concept_identifier"></a>3.2.1.1. Concept Identifier</h5>
 <div class="paragraph">
 <p>The second part of the human-readable identifier is a 'short' ontological identifier (known in ADL 1.4 as the 'concept' or 'domain concept'). Such identifiers have historically been natural language words or phrases, typically in a short mnemonic form, e.g. 'bp_measurement' in the archetype identifier <code>ISO-ISO13606-ENTRY.bp_measurement.v1</code> .</p>
 </div>
 </div>
 <div class="sect4">
-<h5 id="_legacy_adl_1_4_semantics"><a class="anchor" href="#_legacy_adl_1_4_semantics"></a>Legacy ADL 1.4 Semantics</h5>
+<h5 id="_legacy_adl_1_4_semantics"><a class="anchor" href="#_legacy_adl_1_4_semantics"></a>3.2.1.2. Legacy ADL 1.4 Semantics</h5>
 <div class="paragraph">
 <p>Historically in ADL 1.4 (ISO 13606-2:2008), the 'concept' part of the identifier encoded the specialisation hierarchy of concepts as a series of hyphated segments, e.g. 'problem' and 'problem-diagnosis', with the latter identifiying a specialised form of the former.The requirement for the concept name to include specialisations is removed in this specification, as well as the ADL / AOM 1.5 specifications. This enables the domain concept of any artefact to be freely assigned according to the purpose of the artefact.</p>
 </div>
@@ -793,7 +793,7 @@ the word 'archetype' as used in this specification means: any formal artefact wr
 </div>
 </div>
 <div class="sect4">
-<h5 id="_concept_identifier_semantics"><a class="anchor" href="#_concept_identifier_semantics"></a>Concept Identifier Semantics</h5>
+<h5 id="_concept_identifier_semantics"><a class="anchor" href="#_concept_identifier_semantics"></a>3.2.1.3. Concept Identifier Semantics</h5>
 <div class="paragraph">
 <p>The more important aspect of the concept identifier, is its origin and semantics. Historically it has been part of the identifier for archetypes because it is human readable and facilitates debugging of systems where the data contain such identifiers. Clearly a purely ad hoc assignment of a human-readable identifier is not scalable or reliable. Consequently rules and mechanisms for assignment need to be identified.</p>
 </div>
@@ -826,7 +826,7 @@ the word 'archetype' as used in this specification means: any formal artefact wr
 </div>
 </div>
 <div class="sect4">
-<h5 id="_need_for_rm_class_name_in_identifier"><a class="anchor" href="#_need_for_rm_class_name_in_identifier"></a>Need for RM Class Name in Identifier</h5>
+<h5 id="_need_for_rm_class_name_in_identifier"><a class="anchor" href="#_need_for_rm_class_name_in_identifier"></a>3.2.1.4. Need for RM Class Name in Identifier</h5>
 <div class="paragraph">
 <p>Theoretically, the Reference Model class identifier part (qualified_rm_class_name above) should not be needed in a well constructed identifier, on the basis that there should never be a clash of concept identifiers, regardless of the RM class, even though they can easily be similar. For example, a reasonable <code>concept_id</code> for an <code>ENTRY</code> (ISO 13606) or <code>OBSERVATION</code> (openEHR) structure archetyped to represent a generic lab result result might be 'lab_result'. For the COMPOSITION-level archetype designed to contain any 'lab result' <code>ENTRY</code> or <code>OBSERVATION</code>, a reasonable name would typically be 'lab_report' (or the equivalent in another language).</p>
 </div>
@@ -1971,7 +1971,7 @@ There is no assumption that a change of a given technical level (i.e. as evaluat
 <p>It is therefore worth considering various simple optimisations, while retaining clarity and comprehensibility in the data. The following ideas are currently intended to be limited to serialised forms of data. They would therefore only require changes to openEHR XML-schemas rather than the abstract reference model.</p>
 </div>
 <div class="sect4">
-<h5 id="_identifier_aliasing"><a class="anchor" href="#_identifier_aliasing"></a>Identifier Aliasing</h5>
+<h5 id="_identifier_aliasing"><a class="anchor" href="#_identifier_aliasing"></a>7.6.5.1. Identifier Aliasing</h5>
 <div class="paragraph">
 <p>The most obvious optimisation is to use a set of variable references local to the data context, in this case an openEHR or ISO 13606 Extract. For example, at the top of the Extract, the following definitions could be made:</p>
 </div>
@@ -2012,7 +2012,7 @@ There is no assumption that a change of a given technical level (i.e. as evaluat
 </div>
 </div>
 <div class="sect4">
-<h5 id="_reference_compression"><a class="anchor" href="#_reference_compression"></a>Reference Compression</h5>
+<h5 id="_reference_compression"><a class="anchor" href="#_reference_compression"></a>7.6.5.2. Reference Compression</h5>
 <div class="paragraph">
 <p>Nevertheless, it would be possible to go further in terms of removing repetition in the once-only declarations. For instance, a compressed form of the archetype lineage information could be constructed, whereby repeated sections in each subsequent identifier are replaced by a special character. The example above would become:</p>
 </div>
@@ -2438,7 +2438,7 @@ There is no assumption that a change of a given technical level (i.e. as evaluat
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2016-02-06 18:02:34 GMT
+Last updated 2016-05-18 16:10:11 BST
 </div>
 </div>
 </body>
