@@ -18,11 +18,11 @@ The standard items are defined as follows:
 |revision                   |{openehr_am_id}#_version_numbering[extended version string]           |Full version identifier to compensate for only major version numbering in ADL 1.4 identifiers.
 |build_uid                  |Guid string                                                           |Changed every save. See AOM2 spec, {openehr_am_aom2}#_machine_identifiers[Machine Identifiers section]
 |original_namespace         |reverse domain name	                                               |See AOM2 spec, {openehr_am_aom2}#_governance_meta_data[Governance Meta-data section].
-|original_publisher         |org name with optional trailing `<>` section containing a domain name |See AOM2 spec, {openehr_am_aom2}#_governance_meta_data[Governance Meta-data section]
-|custodian_organisation	    |org name with optional trailing `<>` section containing a domain name |See AOM2 spec, {openehr_am_aom2}#_governance_meta_data[Governance Meta-data section]
+|original_publisher         |org name with optional trailing `<>` section containing a domain name or email address|See AOM2 spec, {openehr_am_aom2}#_governance_meta_data[Governance Meta-data section]
+|custodian_organisation	    |org name with optional trailing `<>` section containing a domain name or email address|See AOM2 spec, {openehr_am_aom2}#_governance_meta_data[Governance Meta-data section]
 |custodian_namespace        |reverse domain name	                                               |See AOM2 spec, {openehr_am_aom2}#_governance_meta_data[Governance Meta-data section]
 |licence                    |free string with optional trailing `<>` section containing a URL      |Licence under which this archetype is shared.
-|references                 |string with one LF (`\n`) terminated line for each reference. A trailing `<>` section containing a URL may be used in each reference. Intervening LFs may be added for clarity, to be stripped on conversion to ADL2                     |Online or publication references relevant to the archetype.
+|references                 |string with one LF (`\n`) terminated line for each reference. If a URL is supplied, in a reference it is _not_ `<>` delimited. Intervening LFs and leading and trailing whitespace may be added for clarity, to be stripped on conversion to ADL2.|Online or publication references relevant to the archetype.
 |==================================================================================================
 
 The following provides an example:
@@ -37,9 +37,11 @@ other_details = <
     ["custodian_namespace"] = <"org.openehr">
     ["build_uid"] = <"3076af96-e1dd-4f9b-abf2-23913fcf52b1">
     ["revision"] = <"0.0.1-alpha">
-    ["references"] = <"O'Brien E, Asmar R, Beilin L, et al. European Society of Hypertension recommendations for conventional, ambulatory and home blood pressure measurement. Journal of Hypertension [Internet]. 2003 [cited 2009 Jul 30] ; 21(5):821-848. Available from http://www.bhsoc.org/bp_monitors/ESH_BP_rec.pdf
-    
-Perloff D, Grim C, Flack J, Frohlich ED, Hill M, McDonald M, Morgenstern BZ. Human blood pressure determination by sphygmomanometry. Circulation [Internet]. 1993 [cited 2009 Jul 29] 88 (5): 2460.  Available from: http://circ.ahajournals.org/cgi/reprint/88/5/2460">
+    ["references"] = <"
+        O'Brien E, Asmar R, Beilin L, et al. European Society of Hypertension recommendations for conventional, ambulatory and home blood pressure measurement. Journal of Hypertension. 2003; 21(5):821-848. Available from: http://www.ncbi.nlm.nih.gov/pubmed/12714851
+
+        Perloff D, Grim C, Flack J, Frohlich ED, Hill M, McDonald M, Morgenstern BZ. Human blood pressure determination by sphygmomanometry. Circulation. 1993; 88(5):2460. Available from: http://circ.ahajournals.org/cgi/reprint/88/5/2460
+    ">
 >
 --------
 
@@ -54,7 +56,7 @@ The 'other' category is documented below.
 |MD5-CAM-1.0.1              |MD5 32-bit hex number string                                          |Used by CKM and openEHR template tools.
 |current_contact            |person name with optional trailing `<>` section containing email address |CKM does nothing with this, except display.
 |review_date                |ISO 8601 compliant date string                                        |Indicate the next time the archetype should be reviewed. Used by CKM in display only.
-|responsible_organisation   |org name with optional trailing `<>` section containing a domain name |Used by CKM in display only.
+|responsible_organisation   |org name with optional trailing `<>` section containing a domain name |The name of the responsible organisation may be different to the custodian organisation. Used by CKM in display only.
 	
 |==================================================================================================
 
@@ -64,8 +66,8 @@ The following provides an example:
 --------
 other_details = <
     ["review_date"] = <"2014-06-10">
-    ["current_contact"] = <"Ian McNicoll, Ocean Informatics, UK <ian.mcnicoll@freshehr.com>">
-	["responsible_organisation"] = <"Nehta">
+    ["current_contact"] = <"Ian McNicoll, FreshEHR <ian.mcnicoll@freshehr.com>">
+    ["responsible_organisation"] = <"Nehta">
     ["MD5-CAM-1.0.1"] = <"C5016B71B55DBDCBCAA8531CC1A982E3">
 >
 --------
