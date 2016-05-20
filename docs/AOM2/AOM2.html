@@ -45,14 +45,13 @@
 </li>
 <li><a href="#_model_overview">2. Model Overview</a>
 <ul class="sectlevel2">
-<li><a href="#_package_structure">2.1. Package Structure</a></li>
-<li><a href="#_definition_and_utility_classes">2.2. Definition and Utility Classes</a>
+<li><a href="#_used_base_types">2.1. Used Base Types</a></li>
+<li><a href="#_package_structure">2.2. Package Structure</a></li>
+<li><a href="#_definition_and_utility_classes">2.3. Definition and Utility Classes</a>
 <ul class="sectlevel3">
-<li><a href="#_overview">2.2.1. Overview</a></li>
-<li><a href="#_class_definitions">2.2.2. Class Definitions</a></li>
-<li><a href="#_version_status_enumeration">2.2.3. VERSION_STATUS Enumeration</a></li>
-<li><a href="#_validity_kind_enumeration">2.2.4. VALIDITY_KIND Enumeration</a></li>
-<li><a href="#_adl_code_definitions_class">2.2.5. ADL_CODE_DEFINITIONS Class</a></li>
+<li><a href="#_overview">2.3.1. Overview</a></li>
+<li><a href="#_class_definitions">2.3.2. Class Definitions</a></li>
+<li><a href="#_adl_code_definitions_class">2.3.3. ADL_CODE_DEFINITIONS Class</a></li>
 </ul>
 </li>
 </ul>
@@ -60,7 +59,7 @@
 <li><a href="#_the_archetype_package">3. The Archetype Package</a>
 <ul class="sectlevel2">
 <li><a href="#_overview_2">3.1. Overview</a></li>
-<li><a href="#_archteype_identification">3.2. Archteype Identification</a>
+<li><a href="#_archetype_identification">3.2. Archetype Identification</a>
 <ul class="sectlevel3">
 <li><a href="#_human_readable_identifier_hrid">3.2.1. Human-Readable Identifier (HRID)</a></li>
 <li><a href="#_machine_identifiers">3.2.2. Machine Identifiers</a></li>
@@ -457,11 +456,19 @@
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a id="latest_issue"></a>2.0.6</p></td>
 <td class="tableblock halign-left valign-top"><div><div class="paragraph">
-<p>Remove references to openEHR RM. Add <code>assumed_types</code> package to make spec standalone.;
+<p>Rename <code>ARCHETYPE_TERMINOLOGY.<em>parent_archetype</em></code> to <code><em>owner_archetype</em></code>. (reported in <a href="https://openehr.atlassian.net/browse/SPECPR-193">SPECPR-193</a>).</p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">B Verhees</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a id="latest_issue_date"></a>18 May 2016</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>Remove references to openEHR RM. Add <code>assumed_types</code> package to make spec standalone;<br>
  Change reference to openEHR language codes to ISO 639 codes.</p>
 </div></div></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">ISO TC215</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a id="latest_issue_date"></a>17 May 2016</p></td>
+<td class="tableblock halign-left valign-top"></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"></td>
@@ -476,7 +483,7 @@
 <tr>
 <td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"><div><div class="paragraph">
-<p><a href="https://openehr.atlassian.net/browse/SPECBASE-4">SPECBASE-4</a> Change order of type parameters in <code>Hash&lt;V,K&gt;</code> type to <code>Hash&lt;K,V&gt;</code>.</p>
+<p><a href="https://openehr.atlassian.net/browse/SPECBASE-4">SPECBASE-4</a>. Change order of type parameters in <code>Hash&lt;V,K&gt;</code> type to <code>Hash&lt;K,V&gt;</code>.</p>
 </div></div></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">D Boscá</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">13 Apr 2016</p></td>
@@ -1227,13 +1234,36 @@ Source projects can be found at the <a href="https://github.com/openEHR">openEHR
 <h2 id="_model_overview"><a class="anchor" href="#_model_overview"></a>2. Model Overview</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>The model described here is a pure object-oriented model that can be used with archetype parsers and software that manipulates archetypes and templates in memory. It is typically the output of a parser of any serialsed form of archetypes. It is dependent on the openEHR Base package <code>assumed_types</code> package, which states the assumed primitive types for the AOM. These types are similar to those found in most programming and schema languages. This package is shown below.</p>
+<p>The model described here is a pure object-oriented model that can be used with archetype parsers and software that manipulates archetypes and templates in memory. It is typically the output of a parser of any serialsed form of archetypes.</p>
 </div>
-<div id="base_types_assumed_types" class="imageblock text-center" style="text-align: center">
+<div class="sect2">
+<h3 id="_used_base_types"><a class="anchor" href="#_used_base_types"></a>2.1. Used Base Types</h3>
+<div class="paragraph">
+<p>The AOM is dependent on the openEHR BASE component <code>base_types</code> package, which states the various 'leaf' types assumed by the AOM as well as other utility types and basic data structures, such as the <code>Interval&lt;T&gt;</code> type. These types are documented in the <a href="http://www.openehr.org/releases/BASE/latest/base_types.html">openEHR Base Types specification</a> and reproduced below for convenience.</p>
+</div>
+<div id="base_types_leaf_types" class="imageblock text-center" style="text-align: center">
 <div class="content">
-<img src="../UML/diagrams/BASE-base_types.assumed_types.svg" alt="BASE base types.assumed types">
+<img src="../UML/diagrams/BASE-base_types-leaf_types.svg" alt="BASE base types leaf types">
 </div>
-<div class="title">Figure 1. base_types.assumed_types Package</div>
+<div class="title">Figure 1. base_types 'leaf' types</div>
+</div>
+<div id="base_types_structure_types" class="imageblock text-center" style="text-align: center">
+<div class="content">
+<img src="../UML/diagrams/BASE-base_types.structures.svg" alt="BASE base types.structures">
+</div>
+<div class="title">Figure 2. base_types.structures Package</div>
+</div>
+<div id="base_types_definitions" class="imageblock text-center" style="text-align: center">
+<div class="content">
+<img src="../UML/diagrams/BASE-base_types.definitions.svg" alt="BASE base types.definitions">
+</div>
+<div class="title">Figure 3. base_types.structures Package</div>
+</div>
+<div class="paragraph">
+<p>The enumeration type <code>VALIDITY_KIND</code> is provided in order to define standard values representing <code>mandatory</code>, <code>optional</code>, or <code>disallowed</code> in any model. It is used in this model in classes such as <code>C_DATE</code> , <code>C_TIME</code> and <code>C_DATE_TIME</code>. The <code>VERSION_STATUS</code> enumeration type serves a similar function within various AOM types.</p>
+</div>
+<div class="paragraph">
+<p>Other classes used from the <code>base</code> package include <code>AUTHORED_RESOURCE</code> (openEHR <code>resource</code> package) and its subordinate classes. These are shown in full within the packages that use them.</p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -1242,163 +1272,44 @@ Source projects can be found at the <a href="https://github.com/openEHR">openEHR
 <div class="title">Note</div>
 </td>
 <td class="content">
-the above package does not constitute a formal part of this specification. Any implementation of the AOM will typically have to use such types within languages and/or libraries.
+the above types do not constitute a formal part of this specification. Any implementation of the AOM will typically have to use concrete versions of these types found within languages and/or libraries.
 </td>
 </tr>
 </table>
 </div>
+</div>
 <div class="sect2">
-<h3 id="_package_structure"><a class="anchor" href="#_package_structure"></a>2.1. Package Structure</h3>
+<h3 id="_package_structure"><a class="anchor" href="#_package_structure"></a>2.2. Package Structure</h3>
 <div class="paragraph">
-<p>The Archetype Object Model is defined as the package <code>am.archetype</code> , as illustrated in Figure <a id="aom_package_overview"></a>. It is shown in the context of the <code>am.archetype</code> packages.</p>
+<p>The Archetype Object Model is defined as the package <code>am.archetype</code> , as illustrated in Figure <a href="#aom_package_overview">Package Overview</a>. It is shown in the context of the <code>am.archetype</code> packages.</p>
 </div>
 <div id="aom_package_overview" class="imageblock text-center" style="text-align: center">
 <div class="content">
 <img src="../UML/diagrams/AOM-packages.svg" alt="AOM packages">
 </div>
-<div class="title">Figure 2. Package Overview</div>
+<div class="title">Figure 4. Package Overview</div>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_definition_and_utility_classes"><a class="anchor" href="#_definition_and_utility_classes"></a>2.2. Definition and Utility Classes</h3>
+<h3 id="_definition_and_utility_classes"><a class="anchor" href="#_definition_and_utility_classes"></a>2.3. Definition and Utility Classes</h3>
 <div class="sect3">
-<h4 id="_overview"><a class="anchor" href="#_overview"></a>2.2.1. Overview</h4>
+<h4 id="_overview"><a class="anchor" href="#_overview"></a>2.3.1. Overview</h4>
 <div class="paragraph">
-<p>Various definitional classes are used in the AOM. Some are defined in the <code>aom.definitions</code> package from the AM component, while others come from the <code>definitions</code> package from the openEHR BASE component. These are illustrated below.</p>
+<p>Various definitional constants are used in the AOM. These are defined in the <code>aom.definitions</code> package from the AM component and are shown below.</p>
 </div>
 <div id="definition_package" class="imageblock text-center" style="text-align: center">
 <div class="content">
 <img src="../UML/diagrams/AOM-definitions.svg" alt="AOM definitions">
 </div>
-<div class="title">Figure 3. Definition Package</div>
-</div>
-<div class="paragraph">
-<p>The enumeration type <code>VALIDITY_KIND</code> is provided in order to define standard values representing <code>mandatory</code>, <code>optional</code>, or <code>disallowed</code> in any model. It is used in this model in classes such as <code>C_DATE</code> , <code>C_TIME</code> and <code>C_DATE_TIME</code>. The <code>VERSION_STATUS</code> enumeration type serves a similar function within various AOM types.</p>
-</div>
-<div class="paragraph">
-<p>Other classes used from the <code>base</code> package include <code>AUTHORED_RESOURCE</code> (openEHR <code>resource</code> package) and its subordinate classes. These are shown in full within the packages that use them.</p>
+<div class="title">Figure 5. Definition Package</div>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_class_definitions"><a class="anchor" href="#_class_definitions"></a>2.2.2. Class Definitions</h4>
+<h4 id="_class_definitions"><a class="anchor" href="#_class_definitions"></a>2.3.2. Class Definitions</h4>
 
 </div>
 <div class="sect3">
-<h4 id="_version_status_enumeration"><a class="anchor" href="#_version_status_enumeration"></a>2.2.3. VERSION_STATUS Enumeration</h4>
-<table class="tableblock frame-all grid-all spread">
-<colgroup>
-<col style="width: 16.6666%;">
-<col style="width: 33.3333%;">
-<col style="width: 50.0001%;">
-</colgroup>
-<tbody>
-<tr>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Enumeration</strong></p></th>
-<th class="tableblock halign-center valign-top" colspan="2"><p class="tableblock"><strong>VERSION_STATUS</strong></p></th>
-</tr>
-<tr>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Description</strong></p></th>
-<td class="tableblock halign-left valign-top" colspan="2"><div><div class="paragraph">
-<p>Status of a versioned artefact, as one of a number of possible values: uncontrolled, prerelease, release, build.</p>
-</div></div></td>
-</tr>
-<tr>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Attributes</strong></p></th>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Signature</strong></p></th>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Meaning</strong></p></th>
-</tr>
-<tr>
-<th class="tableblock halign-center valign-top"></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock">alpha</p></td>
-<td class="tableblock halign-left valign-top"><div><div class="paragraph">
-<p>Value representing a version which is ‘unstable’, i.e. contains an unknown size of change with respect to its base version. Rendered with the build number as a string in the form “N.M.P-alpha.B” e.g. “2.0.1-alpha.154”.</p>
-</div></div></td>
-</tr>
-<tr>
-<th class="tableblock halign-center valign-top"></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock">beta</p></td>
-<td class="tableblock halign-left valign-top"><div><div class="paragraph">
-<p>Value representing a version which is ‘beta’, i.e. contains an unknown but reducing size of change with respect to its base version. Rendered with the build number as a string in the form “N.M.P-beta.B” e.g. “2.0.1-beta.154”.</p>
-</div></div></td>
-</tr>
-<tr>
-<th class="tableblock halign-center valign-top"></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock">release_candidate</p></td>
-<td class="tableblock halign-left valign-top"><div><div class="paragraph">
-<p>Value representing a version which is ‘release candidate’, i.e. contains only patch-level changes on the base version. Rendered as a string as “N.M.P-rc.B” e.g. “2.0.1-rc.27”.</p>
-</div></div></td>
-</tr>
-<tr>
-<th class="tableblock halign-center valign-top"></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock">released</p></td>
-<td class="tableblock halign-left valign-top"><div><div class="paragraph">
-<p>Value representing a version which is ‘released’, i.e. is the definitive base version. Rendered with the build number as a string in the form “N.M.P” e.g. “2.0.1”.</p>
-</div></div></td>
-</tr>
-<tr>
-<th class="tableblock halign-center valign-top"></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock">build</p></td>
-<td class="tableblock halign-left valign-top"><div><div class="paragraph">
-<p>Value representing a version which is a build of the current base release. Rendered with the build number as a string in the form “N.M.P+B” e.g. “2.0.1+33”.</p>
-</div></div></td>
-</tr>
-</tbody>
-</table>
-</div>
-<div class="sect3">
-<h4 id="_validity_kind_enumeration"><a class="anchor" href="#_validity_kind_enumeration"></a>2.2.4. VALIDITY_KIND Enumeration</h4>
-<table class="tableblock frame-all grid-all spread">
-<colgroup>
-<col style="width: 16.6666%;">
-<col style="width: 33.3333%;">
-<col style="width: 50.0001%;">
-</colgroup>
-<tbody>
-<tr>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Enumeration</strong></p></th>
-<th class="tableblock halign-center valign-top" colspan="2"><p class="tableblock"><strong>VALIDITY_KIND</strong></p></th>
-</tr>
-<tr>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Description</strong></p></th>
-<td class="tableblock halign-left valign-top" colspan="2"><div><div class="paragraph">
-<p>An enumeration of three values that may commonly occur in constraint models.</p>
-</div>
-<div class="paragraph">
-<p>Use as the type of any attribute within this model, which expresses constraint on some attribute in a class in a reference model. For example to indicate validity
-of Date/Time fields.</p>
-</div></div></td>
-</tr>
-<tr>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Attributes</strong></p></th>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Signature</strong></p></th>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Meaning</strong></p></th>
-</tr>
-<tr>
-<th class="tableblock halign-center valign-top"></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock">mandatory</p></td>
-<td class="tableblock halign-left valign-top"><div><div class="paragraph">
-<p>Constant to indicate mandatory presence of something.</p>
-</div></div></td>
-</tr>
-<tr>
-<th class="tableblock halign-center valign-top"></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock">optional</p></td>
-<td class="tableblock halign-left valign-top"><div><div class="paragraph">
-<p>Constant to indicate optional presence of something.</p>
-</div></div></td>
-</tr>
-<tr>
-<th class="tableblock halign-center valign-top"></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock">prohibited</p></td>
-<td class="tableblock halign-left valign-top"><div><div class="paragraph">
-<p>Constant to indicate disallowed presence of something.</p>
-</div></div></td>
-</tr>
-</tbody>
-</table>
-</div>
-<div class="sect3">
-<h4 id="_adl_code_definitions_class"><a class="anchor" href="#_adl_code_definitions_class"></a>2.2.5. ADL_CODE_DEFINITIONS Class</h4>
+<h4 id="_adl_code_definitions_class"><a class="anchor" href="#_adl_code_definitions_class"></a>2.3.3. ADL_CODE_DEFINITIONS Class</h4>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
 <col style="width: 16.6666%;">
@@ -1491,14 +1402,14 @@ of Date/Time fields.</p>
 <div class="content">
 <img src="../UML/diagrams/AOM-archetype.svg" alt="AOM archetype">
 </div>
-<div class="title">Figure 4. Archetype Package</div>
+<div class="title">Figure 6. Archetype Package</div>
 </div>
 <div class="paragraph">
 <p>The <code>OPERATIONAL_TEMPLATE</code> class represents the fully flattened form of a template, i.e. with all fillers and references substituted and overlays processed, to form what is in practical terms, a single custom-made 'operational' artefact, ready for transformation to downstream artefacts. Because an operational template includes one or more other archetype structures inline, it also includes their terminologies, enabling it to be treated as a self-standing artefact.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_archteype_identification"><a class="anchor" href="#_archteype_identification"></a>3.2. Archteype Identification</h3>
+<h3 id="_archetype_identification"><a class="anchor" href="#_archetype_identification"></a>3.2. Archetype Identification</h3>
 <div class="sect3">
 <h4 id="_human_readable_identifier_hrid"><a class="anchor" href="#_human_readable_identifier_hrid"></a>3.2.1. Human-Readable Identifier (HRID)</h4>
 <div class="paragraph">
@@ -1508,7 +1419,7 @@ of Date/Time fields.</p>
 <div class="content">
 <img src="diagrams/archetype_hrid_structure.png" alt="archetype hrid structure" width="80%">
 </div>
-<div class="title">Figure 5. Archetype HRID Structure</div>
+<div class="title">Figure 7. Archetype HRID Structure</div>
 </div>
 <div class="paragraph">
 <p>For specialised archetypes, the <code><em>parent_archetype_id</em></code> is also required. This is a string <code><em>reference</em></code> to an archetype, and is normally the 'interface' form of the id, i.e. down to the major version only. In some circumstances, it is useful to include the minor and patch version numbers as well.</p>
@@ -1584,7 +1495,7 @@ of Date/Time fields.</p>
 <div class="content">
 <img src="images/metadata_governance.png" alt="metadata governance" width="90%">
 </div>
-<div class="title">Figure 6. Governance Meta-data</div>
+<div class="title">Figure 8. Governance Meta-data</div>
 </div>
 <div class="sect4">
 <h5 id="_package"><a class="anchor" href="#_package"></a>3.4.1.1. Package</h5>
@@ -1634,7 +1545,7 @@ of Date/Time fields.</p>
 <div class="content">
 <img src="images/metadata_authoring.png" alt="metadata authoring" width="90%">
 </div>
-<div class="title">Figure 7. Authoring Meta-data</div>
+<div class="title">Figure 9. Authoring Meta-data</div>
 </div>
 <div class="sect4">
 <h5 id="_original_author"><a class="anchor" href="#_original_author"></a>3.4.2.1. Original Author</h5>
@@ -1677,7 +1588,7 @@ first names last name, organisation &lt;organisation email address&gt;</pre>
 <div class="content">
 <img src="images/metadata_details.png" alt="metadata details" width="90%">
 </div>
-<div class="title">Figure 8. Descriptive Meta-data</div>
+<div class="title">Figure 10. Descriptive Meta-data</div>
 </div>
 <div class="sect4">
 <h5 id="_purpose_2"><a class="anchor" href="#_purpose_2"></a>3.4.3.1. Purpose</h5>
@@ -1734,7 +1645,7 @@ first names last name, organisation &lt;organisation email address&gt;</pre>
 <div class="content">
 <img src="../UML/diagrams/AOM-source_archetype_structure.svg" alt="AOM source archetype structure" width="60%">
 </div>
-<div class="title">Figure 9. Source Archetype Structure</div>
+<div class="title">Figure 11. Source Archetype Structure</div>
 </div>
 <div class="paragraph">
 <p>Source archetypes can be specialised, in which case their definition structure is a partial overlay on the flat parent, or 'top-level', in which case the definition structure is complete. <code>C_ARCHETYPE_ROOT</code> instances may only occur representing direct references to other archetypes - 'external references'.</p>
@@ -1746,7 +1657,7 @@ first names last name, organisation &lt;organisation email address&gt;</pre>
 <div class="content">
 <img src="../UML/diagrams/AOM-source_template_structure.svg" alt="AOM source template structure" width="80%">
 </div>
-<div class="title">Figure 10. Source Template Structure</div>
+<div class="title">Figure 12. Source Template Structure</div>
 </div>
 <div class="paragraph">
 <p>This form is used to represent the full 'operational' structure of a specialised archetype, and has two uses. The first is to generate backwards compatible ADL 1.4 legacy archetypes (always in flat form); the second is during the template flattening process, when the flat forms of all referenced archetypes and templates are ultimately combined into a single operational template.</p>
@@ -1764,7 +1675,7 @@ first names last name, organisation &lt;organisation email address&gt;</pre>
 <div class="content">
 <img src="../UML/diagrams/AOM-operational_template_structure.svg" alt="AOM operational template structure" width="80%">
 </div>
-<div class="title">Figure 11. Operational Template Structure</div>
+<div class="title">Figure 13. Operational Template Structure</div>
 </div>
 <div class="paragraph">
 <p>More details of template development, representation and semantics are described in the next section.</p>
@@ -2831,7 +2742,7 @@ It is the parent class of all concrete types of archetype.</p>
 <div class="content">
 <img src="../UML/diagrams/AOM-constraint_model-top.svg" alt="AOM constraint model top">
 </div>
-<div class="title">Figure 12. constraint_model Package</div>
+<div class="title">Figure 14. constraint_model Package</div>
 </div>
 <div class="paragraph">
 <p>The definition part of an archetype is an instance of a <code>C_COMPLEX_OBJECT</code> and consists of alternate layers of object and attribute constrainer nodes, each containing the next level of nodes. At the leaves are primitive object constrainer nodes constraining primitive types such as <code>String</code> , <code>Integer</code> etc. There are also nodes that represent internal references to other nodes, constraint reference nodes that refer to a text constraint in the constraint binding part of the archetype terminology, and archetype constraint nodes, which represent constraints on other archetypes allowed to appear at a given point. The full list of concrete node types is as follows:</p>
@@ -2865,7 +2776,7 @@ It is the parent class of all concrete types of archetype.</p>
 <div class="content">
 <img src="../UML/diagrams/AOM-constraint_model-bottom.svg" alt="AOM constraint model bottom">
 </div>
-<div class="title">Figure 13. constraint_model.primitive Package</div>
+<div class="title">Figure 15. constraint_model.primitive Package</div>
 </div>
 <div class="paragraph">
 <p>The type-name nomenclature <code>C_XXX</code> used here is intended to be read as "constraint on objects of type <code>XXXX</code> ", i.e. a <code>C_COMPLEX_OBJECT</code> is a "constraint on a complex object (defined by a complex reference model type)". These type names are used below in the formal model.</p>
@@ -2931,7 +2842,7 @@ It is the parent class of all concrete types of archetype.</p>
 <div class="content">
 <img src="diagrams/c_attributes.png" alt="c attributes" width="70%">
 </div>
-<div class="title">Figure 14. C_ATTRIBUTE variants</div>
+<div class="title">Figure 16. C_ATTRIBUTE variants</div>
 </div>
 </div>
 <div class="sect3">
@@ -3202,7 +3113,7 @@ Since an archetype might not contain external terminology bindings for all (or e
 <div class="content">
 <img src="diagrams/enumerated_type_constraint.png" alt="enumerated type constraint" width="70%">
 </div>
-<div class="title">Figure 15. Enumerated Constraint</div>
+<div class="title">Figure 17. Enumerated Constraint</div>
 </div>
 <div class="paragraph">
 <p>A parser that deserialises from an object dump format such as ODIN, JSON or XML will not need to do this.</p>
@@ -3232,7 +3143,7 @@ Since an archetype might not contain external terminology bindings for all (or e
 <div class="content">
 <img src="../UML/diagrams/AOM-constraint_model-tuple.svg" alt="AOM constraint model tuple">
 </div>
-<div class="title">Figure 16. Tuple Constraint Model</div>
+<div class="title">Figure 18. Tuple Constraint Model</div>
 </div>
 <div class="paragraph">
 <p>In this model, the type <code>C_ATTRIBUTE_TUPLE</code> groups the co-constrained <code>C_ATTRIBUTEs</code> under a <code>C_COMPLEX_OBJECT</code>. Currently the concrete type is limited to being <code>C_PRIMITIVE_OBJECT</code> to reduce complexity, and since it caters for all known examples of tuple constraints. In principle, any <code>C_DEFINED_OBJECT</code> could be allowed, and this may change in the future.</p>
@@ -3247,13 +3158,13 @@ Since an archetype might not contain external terminology bindings for all (or e
 <div class="content">
 <img src="../UML/diagrams/AOM-ordinal_tuple_example.svg" alt="AOM ordinal tuple example">
 </div>
-<div class="title">Figure 17. Tuple Constraint Example AOM Instances</div>
+<div class="title">Figure 19. Tuple Constraint Example AOM Instances</div>
 </div>
 <div id="tuple_constraint_example_data" class="imageblock text-center" style="text-align: center">
 <div class="content">
 <img src="diagrams/tuple_example_data.png" alt="tuple example data">
 </div>
-<div class="title">Figure 18. Tuple Constraint Example Data</div>
+<div class="title">Figure 20. Tuple Constraint Example Data</div>
 </div>
 </div>
 <div class="sect3">
@@ -3272,7 +3183,7 @@ Since an archetype might not contain external terminology bindings for all (or e
 <div class="content">
 <img src="diagrams/c_object_substitutions.png" alt="c object substitutions">
 </div>
-<div class="title">Figure 19. C_Object Substitutions</div>
+<div class="title">Figure 21. C_Object Substitutions</div>
 </div>
 <div class="paragraph">
 <p>Within a specialised archetype, nodes that redefine corresponding nodes in the parent are normally of the same <code>C_OBJECT</code> type (we can think of this as a 'meta-type', since the RM type is the 'type' in the information model sense), but in some cases may also be of different <code>C_OBJECT</code> types.</p>
@@ -4403,7 +4314,7 @@ For a slot-filler or a redefined external reference, the node_id is set to a spe
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Description</strong></p></th>
 <td class="tableblock halign-left valign-top" colspan="2"><div><div class="paragraph">
-<p>A constraint defined by proxy, using a reference to an object constraint defined elsewhere in the same archetype. Note that since this object refers to another node, there are two objects with available occurrences values. The local occurrences value on a COJMPLEX_OBJECT_PROXY should always be used; when setting this from a seri- alised form, if no occurrences is mentioned, the target occurrences should be used (not the standard default of {1..1}); otherwise the locally specified occurrences should be used as normal. When serialising out, if the occurrences is the same as that of the target, it can be left out.</p>
+<p>A constraint defined by proxy, using a reference to an object constraint defined elsewhere in the same archetype. Note that since this object refers to another node, there are two objects with available occurrences values. The local occurrences value on a COMPLEX_OBJECT_PROXY should always be used; when setting this from a seri- alised form, if no occurrences is mentioned, the target occurrences should be used (not the standard default of {1..1}); otherwise the locally specified occurrences should be used as normal. When serialising out, if the occurrences is the same as that of the target, it can be left out.</p>
 </div></div></td>
 </tr>
 <tr>
@@ -5691,7 +5602,7 @@ For a slot-filler or a redefined external reference, the node_id is set to a spe
 <div class="content">
 <img src="../UML/diagrams/AOM-rules.svg" alt="AOM rules">
 </div>
-<div class="title">Figure 20. Rules Package</div>
+<div class="title">Figure 22. Rules Package</div>
 </div>
 </div>
 <div class="sect2">
@@ -5907,7 +5818,7 @@ For a slot-filler or a redefined external reference, the node_id is set to a spe
 <div class="content">
 <img src="../UML/diagrams/AOM-terminology.svg" alt="AOM terminology">
 </div>
-<div class="title">Figure 21. Terminology Package</div>
+<div class="title">Figure 23. Terminology Package</div>
 </div>
 <div class="paragraph">
 <p>An archetype terminology consists of the following elements.</p>
@@ -5948,7 +5859,7 @@ For a slot-filler or a redefined external reference, the node_id is set to a spe
 <div class="content">
 <img src="diagrams/terminology_instance_structure.png" alt="terminology instance structure">
 </div>
-<div class="title">Figure 22. Terminology Instance Structure</div>
+<div class="title">Figure 24. Terminology Instance Structure</div>
 </div>
 </div>
 <div class="sect2">
@@ -6037,9 +5948,9 @@ For a slot-filler or a redefined external reference, the node_id is set to a spe
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>1..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>parent_archetype</strong>: <code>ARCHETYPE</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>owner_archetype</strong>: <code>ARCHETYPE</code></p></td>
 <td class="tableblock halign-left valign-top"><div><div class="paragraph">
-<p>Archetype which owns this terminology.</p>
+<p>Archetype that owns this terminology.</p>
 </div></div></td>
 </tr>
 <tr>
@@ -6717,13 +6628,13 @@ Hash of keys ("text", "description" etc) and corresponding values.</p>
 <div class="content">
 <img src="../UML/diagrams/P_AOM-upper.png" alt="P AOM upper">
 </div>
-<div class="title">Figure 23. Serialisation AOM (upper)</div>
+<div class="title">Figure 25. Serialisation AOM (upper)</div>
 </div>
 <div id="P_AOM_lower" class="imageblock text-center" style="text-align: center">
 <div class="content">
 <img src="../UML/diagrams/P_AOM-lower.png" alt="P AOM lower">
 </div>
-<div class="title">Figure 24. Serialisation AOM (lower)</div>
+<div class="title">Figure 26. Serialisation AOM (lower)</div>
 </div>
 </div>
 </div>
@@ -6819,7 +6730,7 @@ Hash of keys ("text", "description" etc) and corresponding values.</p>
 <div class="content">
 <img src="../UML/diagrams/AOM-template_example_1.png" alt="AOM template example 1">
 </div>
-<div class="title">Figure 25. Template source structure example</div>
+<div class="title">Figure 27. Template source structure example</div>
 </div>
 <div class="paragraph">
 <p>The filler object specifies in its <code><em>archetype_ref</em></code> attribute the artefact being used to fill the slot (shown on the diagram as an ellipsis, for brevity). Here it is not simply the archetype <code>org.openehr::openEHR-EHR-SECTION.vital_signs_headings.v1</code>, but a specialised form of this archetype, defined as a local template overlay, whose identifier is <code>uk.nhs.clinical::openEHR-EHR-SECTION.t_encounter_report-vital_signs_headings-0001.v1</code>.</p>
@@ -6920,7 +6831,7 @@ Hash of keys ("text", "description" etc) and corresponding values.</p>
 <div class="content">
 <img src="../UML/diagrams/AOM_PROFILE.svg" alt="AOM PROFILE">
 </div>
-<div class="title">Figure 26. aom_profile Package</div>
+<div class="title">Figure 28. aom_profile Package</div>
 </div>
 <div class="sect3">
 <h4 id="_class_definitions_3"><a class="anchor" href="#_class_definitions_3"></a>10.1.1. Class Definitions</h4>

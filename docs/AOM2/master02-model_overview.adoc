@@ -1,16 +1,32 @@
 = Model Overview
 
-The model described here is a pure object-oriented model that can be used with archetype parsers and software that manipulates archetypes and templates in memory. It is typically the output of a parser of any serialsed form of archetypes. It is dependent on the openEHR Base package `assumed_types` package, which states the assumed primitive types for the AOM. These types are similar to those found in most programming and schema languages. This package is shown below.
+The model described here is a pure object-oriented model that can be used with archetype parsers and software that manipulates archetypes and templates in memory. It is typically the output of a parser of any serialsed form of archetypes. 
+
+== Used Base Types
+
+The AOM is dependent on the openEHR BASE component `base_types` package, which states the various 'leaf' types assumed by the AOM as well as other utility types and basic data structures, such as the `Interval<T>` type. These types are documented in the {openehr_base_types}[openEHR Base Types specification] and reproduced below for convenience.
 
 [.text-center]
-.base_types.assumed_types Package
-image::{uml_export_dir}/diagrams/BASE-base_types.assumed_types.svg[id=base_types_assumed_types, align="center"]
+.base_types 'leaf' types
+image::{uml_export_dir}/diagrams/BASE-base_types-leaf_types.svg[id=base_types_leaf_types, align="center"]
 
-NOTE: the above package does not constitute a formal part of this specification. Any implementation of the AOM will typically have to use such types within languages and/or libraries.
+[.text-center]
+.base_types.structures Package
+image::{uml_export_dir}/diagrams/BASE-base_types.structures.svg[id=base_types_structure_types, align="center"]
+
+[.text-center]
+.base_types.structures Package
+image::{uml_export_dir}/diagrams/BASE-base_types.definitions.svg[id=base_types_definitions, align="center"]
+
+The enumeration type `VALIDITY_KIND` is provided in order to define standard values representing `mandatory`, `optional`, or `disallowed` in any model. It is used in this model in classes such as `C_DATE` , `C_TIME` and `C_DATE_TIME`. The `VERSION_STATUS` enumeration type serves a similar function within various AOM types.
+
+Other classes used from the `base` package include `AUTHORED_RESOURCE` (openEHR `resource` package) and its subordinate classes. These are shown in full within the packages that use them.
+
+NOTE: the above types do not constitute a formal part of this specification. Any implementation of the AOM will typically have to use concrete versions of these types found within languages and/or libraries.
 
 == Package Structure
 
-The Archetype Object Model is defined as the package `am.archetype` , as illustrated in Figure [[aom_package_overview]]. It is shown in the context of the `am.archetype` packages.
+The Archetype Object Model is defined as the package `am.archetype` , as illustrated in Figure <<aom_package_overview>>. It is shown in the context of the `am.archetype` packages.
 
 [.text-center]
 .Package Overview
@@ -20,21 +36,13 @@ image::{uml_export_dir}/diagrams/AOM-packages.svg[id=aom_package_overview, align
 
 === Overview
 
-Various definitional classes are used in the AOM. Some are defined in the `aom.definitions` package from the AM component, while others come from the `definitions` package from the openEHR BASE component. These are illustrated below.
+Various definitional constants are used in the AOM. These are defined in the `aom.definitions` package from the AM component and are shown below.
 
 [.text-center]
 .Definition Package
 image::{uml_export_dir}/diagrams/AOM-definitions.svg[id=definition_package, align="center"]
 
-The enumeration type `VALIDITY_KIND` is provided in order to define standard values representing `mandatory`, `optional`, or `disallowed` in any model. It is used in this model in classes such as `C_DATE` , `C_TIME` and `C_DATE_TIME`. The `VERSION_STATUS` enumeration type serves a similar function within various AOM types.
-
-Other classes used from the `base` package include `AUTHORED_RESOURCE` (openEHR `resource` package) and its subordinate classes. These are shown in full within the packages that use them.
-
 === Class Definitions
-
-include::{uml_export_dir}/classes/version_status.adoc[]
-
-include::{uml_export_dir}/classes/validity_kind.adoc[]
 
 include::{uml_export_dir}/classes/adl_code_definitions.adoc[]
 
