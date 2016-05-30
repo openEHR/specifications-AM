@@ -3,7 +3,7 @@
 In theory, revision information should be reliable, and no two physical knowledge artefacts should exist that are either identical but have different identifiers and/or revision information, or are different but are identified as being the same. However, in practical systems, such situations can occur due to uncontrolled artefact creation, uncontrolled copying, and errors in version management.
 
 [.tbd]
-_TBD_: hashing on source v operational artefacts? Consider templates that don’t change but referenced archetypes that do.
+_TBD_: hashing on source v operational artefacts? Consider templates that don't change but referenced archetypes that do.
 
 == Integrity Check
 
@@ -27,9 +27,9 @@ image::diagrams/signing.png[id=signing, align="center", width=80%]
 
 == Canonical Form – Archetype 'semantic view'
 
-For hashing and signing to be useful, the input artefacts need to have two characteristics. Firstly, we need to know that the artefact has been validated, since there is no use in disseminating digitally authenticated but useless artefacts. Secondly, the effects of ‘non-semantic’ changes in the artefact must be removed. This requires a syntactic canonical form.
+For hashing and signing to be useful, the input artefacts need to have two characteristics. Firstly, we need to know that the artefact has been validated, since there is no use in disseminating digitally authenticated but useless artefacts. Secondly, the effects of 'non-semantic' changes in the artefact must be removed. This requires a syntactic canonical form.
 
-Both requirements can be achieved for archetypes and templates with a canonical form based on a 'semantic view' of an archetype, analagous to the 'interface class' idea in software development. The semantic view is created from a specific serialisation of the abstract syntax tree (AST) form of the artefact, which is its computable form. The full AST form is in fact defined by the openEHR AOM, but this contains all textual meta-data from the description, ontology and other sections of the archetype. The ‘semantic’ form of this model, suitable for generating a normalised serialisation for hashing has the following reduced form:
+Both requirements can be achieved for archetypes and templates with a canonical form based on a 'semantic view' of an archetype, analagous to the 'interface class' idea in software development. The semantic view is created from a specific serialisation of the abstract syntax tree (AST) form of the artefact, which is its computable form. The full AST form is in fact defined by the openEHR AOM, but this contains all textual meta-data from the description, ontology and other sections of the archetype. The 'semantic' form of this model, suitable for generating a normalised serialisation for hashing has the following reduced form:
 
 * the identifier;
 * specialisation identifier, where present;

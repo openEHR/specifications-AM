@@ -4,7 +4,7 @@
 
 As with software, knowledge artefacts follow a lifecycle with identified states, representable by a state diagram. A traversal through the state diagram corresponds to the development of changes to an artefact leading to a release of a specific version.
 
-Although somewhat peripheral to the scope of artefact identification, we describe a ‘de facto’ lifecycle for three reasons:
+Although somewhat peripheral to the scope of artefact identification, we describe a 'de facto' lifecycle for three reasons:
 
 * to provide at least one lifecycle definition for users who have no other definition available;
 * to provide explicit terminology for states and transitions for use in this and other specifications;
@@ -16,9 +16,9 @@ The lifecycle defined here is shown below.
 .Development Lifecycle
 image::diagrams/development_lifecycle.png[id=development_lifecycle, align="center", width=80%]
 
-A multi-level model is used, where some states have ‘micro-states’, and top-level states are known as ‘macro-states’. The intention is to provide standard names for all macro-states, while suggesting and allowing micro-states where they make sense. Macro-state names are the basis for software version identification - ‘development’ corresponds to the `-unstable` variant, release_candidate to the `-rc` variant. Micro-states are useful to indicate because they define names for finer-grain states typically supported in artefact repositories.
+A multi-level model is used, where some states have 'micro-states', and top-level states are known as 'macro-states'. The intention is to provide standard names for all macro-states, while suggesting and allowing micro-states where they make sense. Macro-state names are the basis for software version identification - 'development' corresponds to the `-unstable` variant, release_candidate to the `-rc` variant. Micro-states are useful to indicate because they define names for finer-grain states typically supported in artefact repositories.
 
-This lifecycle assumes that artefacts start life either in an ‘unmanaged’ environment or directly in a managed one. In the latter case, it is assumed that there is some distinction between the developers’ view and the ‘release’ view.
+This lifecycle assumes that artefacts start life either in an 'unmanaged' environment or directly in a managed one. In the latter case, it is assumed that there is some distinction between the developers' view and the 'release' view.
 
 The key states are defined with names (dark blue) and transitions (light blue) that correspond to typical software and document development terms. Typical traversals through the lifecycle are:
 
@@ -30,7 +30,7 @@ The key states are defined with names (dark blue) and transitions (light blue) t
 A few linguistic conventions used here are worth noting:
 
 * `start_review` is the name of all actions entering the `development` macro-state;
-* `release` as an action (i.e. state transition) is taken to mean making any version of an artefact available to the public user base, including pre-releases, final releases and post-releases (‘builds’ in <<semver.org>> parlance);
+* `release` as an action (i.e. state transition) is taken to mean making any version of an artefact available to the public user base, including pre-releases, final releases and post-releases ('builds' in <<semver.org>> parlance);
 * `publish` as an action means to make a definitive release.
 
 == Lifecycle-based Versioning
@@ -56,7 +56,7 @@ The version identifier evolves according to the general rules described above, a
 ** released directly to a stable version of the form `M.N.P`.
 * An artefact may eventually be deprecated, in which case its minor version is incremented (following the <<semver.org>> rules), and the artefact lifecycle state is set to 'deprecated'. It may be classified inside the repository registry as `obsolete`, `suspended` or in some other way.
 
-According to the basic version rules and the lifecycle model above, the ‘precedence’ of version identifiers follows is exemplified by the following:
+According to the basic version rules and the lifecycle model above, the 'precedence' of version identifiers follows is exemplified by the following:
 
 --------
     1.2.3-rc.1 < 1.2.3-rc.2 < 1.2.3 < 1.2.4-unstable < 1.3.0-unstable < ... < 1.3.0
