@@ -23,6 +23,7 @@ The standard items are defined as follows:
 |custodian_namespace        |reverse domain name	                                               |See AOM2 spec, {openehr_am_aom2}#_governance_meta_data[Governance Meta-data section]
 |licence                    |free string with optional trailing `<>` section containing a URL      |Licence under which this archetype is shared.
 |references                 |string with one LF (`\n`) terminated line for each reference. If a URL is supplied, in a reference it is _not_ `<>` delimited. Intervening LFs and leading and trailing whitespace may be added for clarity, to be stripped on conversion to ADL2.|Online or publication references relevant to the archetype.
+|ip_acknowledgements        |string with one LF (`\n`) terminated line for each reference. URLs may be interpolated in `<>` delimited or non-delimited form. Intervening LFs and leading and trailing whitespace may be added for clarity, to be stripped on conversion to ADL2.|Copyright and trademark notices.
 |==================================================================================================
 
 The following provides an example:
@@ -39,8 +40,11 @@ other_details = <
     ["revision"] = <"0.0.1-alpha">
     ["references"] = <"
         O'Brien E, Asmar R, Beilin L, et al. European Society of Hypertension recommendations for conventional, ambulatory and home blood pressure measurement. Journal of Hypertension. 2003; 21(5):821-848. Available from: http://www.ncbi.nlm.nih.gov/pubmed/12714851
-
         Perloff D, Grim C, Flack J, Frohlich ED, Hill M, McDonald M, Morgenstern BZ. Human blood pressure determination by sphygmomanometry. Circulation. 1993; 88(5):2460. Available from: http://circ.ahajournals.org/cgi/reprint/88/5/2460
+    ">
+    ["ip_acknowledgements"] = <"
+        Content from LOINC® is copyright © 1995 Regenstrief Institute, Inc. and the LOINC Committee, and available at no cost under the license at http://loinc.org/terms-of-use.
+        Content from SNOMED CT® is copyright © 2007 IHTSDO <ihtsdo.org>.
     ">
 >
 --------
