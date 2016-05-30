@@ -31,8 +31,8 @@ image::diagrams/terminology_instance_structure.png[id=terminology_instance, alig
 Any given archetype occurs at some point in a lineage of archetypes related by specialisation, where the depth is reflected by the `_specialisation_depth_` function. An archetype which is not a specialisation of another has a specialisation_depth of 0. Term and constraint codes introduced in the terminology of specialised archetypes (i.e. which did not exist in the terminology of the parent archetype) are defined in a strict way, using '.' (period) markers. For example, an archetype of specialisation depth 2 will use term definition codes like the following:
 
 * `id0.0.1` - a new term introduced in this archetype, which is not a specialisation of any previous term in any of the parent archetypes;
-* `id4.0.1` - a term which specialises the 'id4' term from the top parent. An intervening '.0' is required to show that the new term is at depth 2, not depth 1;
-* `id25.1.1` - a term which specialises the term 'id25.1' from the immediate parent, which itself specialises the term 'id1' from the top parent.
+* `id4.0.1` - a term which specialises the `id4` term from the top parent. An intervening `.0` is required to show that the new term is at depth 2, not depth 1;
+* `id25.1.1` - a term which specialises the term `id25.1` from the immediate parent, which itself specialises the term `id25` from the top parent.
 
 This systematic definition of codes enables software to use the structure of the codes to more quickly and accurately make inferences about term definitions up and down specialisation hierarchies. Constraint codes on the other hand do not follow these rules, and exist in a flat code space instead.
 

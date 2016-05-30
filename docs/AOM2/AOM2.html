@@ -456,10 +456,18 @@
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a id="latest_issue"></a>2.0.6</p></td>
 <td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>Fix typo in section 6.2.1 to do with id-code redefinition in specialised archetype.</p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">C Nanjo</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a id="latest_issue_date"></a>30 May 2016</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
 <p>Rename <code>ARCHETYPE_TERMINOLOGY.<em>parent_archetype</em></code> to <code><em>owner_archetype</em></code>. (reported in <a href="https://openehr.atlassian.net/browse/SPECPR-193">SPECPR-193</a>).</p>
 </div></div></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">B Verhees</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a id="latest_issue_date"></a>18 May 2016</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">18 May 2016</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"></td>
@@ -494,7 +502,7 @@
 <p>Correct <code>ASSERTION.<em>variables</em></code> association to refer to <code>VARIABLE_DECLARATION</code>.<br>
  Add <code>RULE_ELEMENT</code> class table to specification (reported in <a href="https://openehr.atlassian.net/browse/SPECPR-160">SPECPR-160</a>)<br>
  Correct <code>CARDINALITY.<em>is_set</em></code> documentation (reported in <a href="https://openehr.atlassian.net/browse/SPECPR-147">SPECPR-147</a>).<br>
- Add missing type of <code>String</code> to <code>ARCHETYPE_TERM.<em>CODE</em></code>. (reported in <a href="https://openehr.atlassian.net/browse/SPECPR-162">SPECPR-162</a>).</p>
+ Add missing type of <code>String</code> to <code>ARCHETYPE_TERM.<em>code</em></code>. (reported in <a href="https://openehr.atlassian.net/browse/SPECPR-162">SPECPR-162</a>).</p>
 </div></div></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">B Verhees</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">05 Apr 2016</p></td>
@@ -502,7 +510,7 @@
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">2.0.5</p></td>
 <td class="tableblock halign-left valign-top"><div><div class="paragraph">
-<p>Make <code>AUTHORED_RESOURCE</code>.<code><em>uid</em></code> and <code>AUTHORED_ARCHETYPE</code>.<code><em>build_uid</em></code> <code>UUIDs</code> rather than any kind of <code>UID</code>.</p>
+<p>Make <code>AUTHORED_RESOURCE</code>.<code><em>uid</em></code> and <code>AUTHORED_ARCHETYPE.<em>build_uid</em></code> <code>UUIDs</code> rather than any kind of <code>UID</code>.</p>
 </div></div></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">T Beale</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">18 Jan 2016</p></td>
@@ -567,8 +575,8 @@
 <tr>
 <td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"><div><div class="paragraph">
-<p>Convert <code>ARCHETYPE</code>.<code><em>uid</em></code> to <code><em>urn</em></code>: <code>URN</code>.<br>
- Rename <code>ARCHETYPE</code>.<code><em>commit_number</em></code> to <code><em>build_count</em></code> .</p>
+<p>Convert <code>ARCHETYPE.<em>uid</em></code> to <code><em>urn</em></code>: <code>URN</code>.<br>
+ Rename <code>ARCHETYPE.<em>commit_number</em></code> to <code><em>build_count</em></code> .</p>
 </div></div></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">I McNicoll,<br>
  S Garde,<br>
@@ -5878,10 +5886,10 @@ For a slot-filler or a redefined external reference, the node_id is set to a spe
 <p><code>id0.0.1</code> - a new term introduced in this archetype, which is not a specialisation of any previous term in any of the parent archetypes;</p>
 </li>
 <li>
-<p><code>id4.0.1</code> - a term which specialises the 'id4' term from the top parent. An intervening '.0' is required to show that the new term is at depth 2, not depth 1;</p>
+<p><code>id4.0.1</code> - a term which specialises the <code>id4</code> term from the top parent. An intervening <code>.0</code> is required to show that the new term is at depth 2, not depth 1;</p>
 </li>
 <li>
-<p><code>id25.1.1</code> - a term which specialises the term 'id25.1' from the immediate parent, which itself specialises the term 'id1' from the top parent.</p>
+<p><code>id25.1.1</code> - a term which specialises the term <code>id25.1</code> from the immediate parent, which itself specialises the term <code>id25</code> from the top parent.</p>
 </li>
 </ul>
 </div>
