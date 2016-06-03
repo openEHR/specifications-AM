@@ -244,7 +244,7 @@ The rules for meta-type redefinition are as follows:
 ** an `ARCHETYPE_SLOT` , in order to close the slot.
 * A `C_ARCHETYPE_ROOT` node can be redefined by:
 ** A `C_ARCHETYPE_ROOT` , where the archetype_ref of the redefining node is a specialisation of that mentioned in the parent node.
-* A 'terminal' `C_COMPLEX_OBJECT` node containing no constraint other than RM type, `_node_id_` and possibly occurrences (i.e. having no substructure), can be redefined by a constraint of any other AOM type.
+* A 'terminal' `C_COMPLEX_OBJECT` node containing no constraint other than RM type, `_node_id_` and possibly occurrences (i.e. having no substructure), can be redefined by a constraint of any other AOM type other than `C_PRMITIVE_OBJECT`.
 
 The 'terminal' `C_COMPLEX_OBJECT` can be understood as a placeholder node primarily defined for the purpose of stating RM type and meaning (id-code).
 
@@ -526,7 +526,7 @@ The validity rules for all `C_OBJECTs` are as follows:
 The following validity rules govern `C_OBJECTs` in specialised archetypes.
 
 [.rule]
-*VSONT* specialised archetype object node meta-type conformance: the meta-type of a redefined object node (i.e. the AOM node type such as `C_COMPLEX_OBJECT` etc) in a specialised archetype must be the same as that of the corresponding node in the flat parent, with the following exceptions: a `C_COMPLEX_OBJECT` with no child attributes may be redefined by a node of any AOM type; a `C_COMPLEX_OBJECT_PROXY`, may be redefined by a `C_COMPLEX_OBJECT`; a `ARCHTEYPE_SLOT` may be redefined by `C_ARCHETYPE_ROOT` (i.e. 'slot-filling'). See also validity rules VDSSID and VARXID.
+*VSONT* specialised archetype object node meta-type conformance: the meta-type of a redefined object node (i.e. the AOM node type such as `C_COMPLEX_OBJECT` etc) in a specialised archetype must be the same as that of the corresponding node in the flat parent, with the following exceptions: a `C_COMPLEX_OBJECT` with no child attributes may be redefined by a node of any AOM type except `C_PRIMITIVE_OBJECT`; a `C_COMPLEX_OBJECT_PROXY`, may be redefined by a `C_COMPLEX_OBJECT`; an `ARCHTEYPE_SLOT` may be redefined by `C_ARCHETYPE_ROOT` (i.e. 'slot-filling'). See also validity rules VDSSID and VARXID.
 
 [.rule]
 *VSONCT* specialised archetype object node reference type conformance: the reference model type of a redefined object node in a specialised archetype must conform to the reference model type in the corresponding node in the flat parent archetype by either being identical, or conforming via an inheritance relationship in the relevant reference model.
@@ -550,7 +550,7 @@ _Deprecated_: *VSONI* specialised archetype redefined object node identifier val
 *VSONPT* specialised archetype prohibited object node AOM type validity: the occurrences of a redefined object node in a specialised archetype, may only be prohibited (i.e. \{0}) if the matching node in the parent is of the same AOM type.
 
 [.rule]
-*VSONPI* specialised archetype prohibited object node AOM node id validity: a redefined object node in a specialised archetype with occurrences matching \{0} must have exactly the same node id as the node in the flat parent being redefined.
+*VSONPI* specialised archetype prohibited object node AOM node id validity: a redefined object node in a specialised archetype with occurrences matching \{0} must have exactly the same `_node_id_` as the node in the flat parent being redefined.
 
 [.rule]
 *VSONPO* specialised archetype object node prohibited occurrences validity: the occurrences of a new (i.e. having no corresponding node in the parent flat) object node in a specialised archetype, if stated, may not be 'prohibited', i.e. \{0}, since prohibition only makes sense for an existing node.
@@ -575,13 +575,10 @@ include::{uml_export_dir}/classes/c_archetype_root.adoc[]
 The following validity rules apply to `C_ARCHETYPE_ROOT` objects:
 
 [.rule]
-*VARXS* external reference conforms to slot: the archetype reference must conform to the archetype slot constraint of the flat parent and be of a reference model type from the same reference model as the current archetype.
+*VARXNC* external reference node identifier validity: if the external reference object is a redefinition of either a slot node, or another external reference node, the `_node_id_` of the object must conform to (i.e. be the same or a child of) the `_node_id_` of the corresponding parent node.
 
 [.rule]
-*VARXNC* external reference node identifier validity: if the reference object is a redefinition of either a slot node, or another external reference node, the node_id of the object must conform to (i.e. be the same or a child of) the node_id of the corresponding parent node.
-
-[.rule]
-*VARXAV* external reference node archetype reference validity: if the reference object is a redefinition of another external reference node, the archetype_ref of the object must match a real archetype that has as an ancestor the archetype matched by the archetype reference mentioned in the corresponding parent node.
+*VARXAV* external reference node archetype reference validity: if the reference object is a redefinition of another external reference node, the `_archetype_ref_` of the object must match a real archetype that has as an ancestor the archetype matched by the archetype reference mentioned in the corresponding parent node.
 
 [.rule]
 *VARXTV* external reference type validity: the reference model type of the reference object archetype identifier must be identical, or conform to the type of the slot, if there is one, in the parent archetype, or else to the reference model type of the attribute in the flat parent under which the reference object appears in the child archetype.
@@ -589,7 +586,10 @@ The following validity rules apply to `C_ARCHETYPE_ROOT` objects:
 [.rule]
 *VARXR* external reference refers to resolvable artefact: the archetype reference must refer to an artefact that can be found in the current repository.
 
-The following validity rules apply to a `C_ARCHETYPE_ROOT` that specialises a `ARCHETYPE_SLOT` in the parent archetype:
+The following validity rules apply to a `C_ARCHETYPE_ROOT` that specialises a `ARCHETYPE_SLOT` in the flat parent archetype:
+
+[.rule]
+*VARXS* external reference slot conformance: where an archetype reference redefines an archetype slot in the flat parent, it must conform to the archetype slot node by being of a reference model type from the same reference model as the current archetype.
 
 [.rule]
 *VARXID* external reference slot filling id validity: an external reference node defined as a filler for a slot in the parent archetype must have a node id that is a specialisation of that of the slot.
@@ -645,10 +645,10 @@ include::{uml_export_dir}/classes/c_complex_object_proxy.adoc[]
 The following validity rules applies to internal references:
 
 [.rule]
-*VUNT* use_node reference model type validity: the reference model type mentioned in an `C_COMPLEX_OBJECT_PROXY` node must be the same as or a super-type (according to the reference model) of the reference model type of the node referred to.
+*VUNT* `use_node` reference model type validity: the reference model type mentioned in an `C_COMPLEX_OBJECT_PROXY` node must be the same as or a super-type (according to the reference model) of the reference model type of the node referred to.
 
 [.rule]
-*VUNP* use_node path validity: the path mentioned in a use_node statement must refer to an object node defined elsewhere in the same archetype or any of its specialisation parent archetypes, that is not itself an internal reference node, and which carries a node identifier if one is needed at the reference point.
+*VUNP* `use_node` path validity: the path mentioned in a use_node statement must refer to an object node defined elsewhere in the same archetype or any of its specialisation parent archetypes, that is not itself an internal reference node, and which carries a node identifier if one is needed at the reference point.
 
 The following validity rule applies to the redefinition of an internal reference in a specialised archetype:
 

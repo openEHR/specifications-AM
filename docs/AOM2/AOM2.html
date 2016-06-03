@@ -456,10 +456,18 @@
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a id="latest_issue"></a>2.0.6</p></td>
 <td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p><a href="https://openehr.atlassian.net/browse/SPECAM-40">SPECAM-40</a>. Correct VSONT validity rule to say that <code>C_COMPLEX_OBJECT</code> redefinition by <code>C_PRIMITIVE_OBJECT</code> is not valid.</p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">T Beale</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a id="latest_issue_date"></a>02 Jun 2016</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
 <p>Fix typo in section 6.2.1 to do with id-code redefinition in specialised archetype.</p>
 </div></div></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">C Nanjo</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a id="latest_issue_date"></a>30 May 2016</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">30 May 2016</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"></td>
@@ -3231,7 +3239,7 @@ Since an archetype might not contain external terminology bindings for all (or e
 </div>
 </li>
 <li>
-<p>A 'terminal' <code>C_COMPLEX_OBJECT</code> node containing no constraint other than RM type, <code><em>node_id</em></code> and possibly occurrences (i.e. having no substructure), can be redefined by a constraint of any other AOM type.</p>
+<p>A 'terminal' <code>C_COMPLEX_OBJECT</code> node containing no constraint other than RM type, <code><em>node_id</em></code> and possibly occurrences (i.e. having no substructure), can be redefined by a constraint of any other AOM type other than <code>C_PRMITIVE_OBJECT</code>.</p>
 </li>
 </ul>
 </div>
@@ -3959,7 +3967,7 @@ For C_PRIMITIVE_OBJECTs, it will have the special value Primitive_node_id.</p>
 <p>The following validity rules govern <code>C_OBJECTs</code> in specialised archetypes.</p>
 </div>
 <div class="paragraph rule">
-<p><strong>VSONT</strong> specialised archetype object node meta-type conformance: the meta-type of a redefined object node (i.e. the AOM node type such as <code>C_COMPLEX_OBJECT</code> etc) in a specialised archetype must be the same as that of the corresponding node in the flat parent, with the following exceptions: a <code>C_COMPLEX_OBJECT</code> with no child attributes may be redefined by a node of any AOM type; a <code>C_COMPLEX_OBJECT_PROXY</code>, may be redefined by a <code>C_COMPLEX_OBJECT</code>; a <code>ARCHTEYPE_SLOT</code> may be redefined by <code>C_ARCHETYPE_ROOT</code> (i.e. 'slot-filling'). See also validity rules VDSSID and VARXID.</p>
+<p><strong>VSONT</strong> specialised archetype object node meta-type conformance: the meta-type of a redefined object node (i.e. the AOM node type such as <code>C_COMPLEX_OBJECT</code> etc) in a specialised archetype must be the same as that of the corresponding node in the flat parent, with the following exceptions: a <code>C_COMPLEX_OBJECT</code> with no child attributes may be redefined by a node of any AOM type except <code>C_PRIMITIVE_OBJECT</code>; a <code>C_COMPLEX_OBJECT_PROXY</code>, may be redefined by a <code>C_COMPLEX_OBJECT</code>; an <code>ARCHTEYPE_SLOT</code> may be redefined by <code>C_ARCHETYPE_ROOT</code> (i.e. 'slot-filling'). See also validity rules VDSSID and VARXID.</p>
 </div>
 <div class="paragraph rule">
 <p><strong>VSONCT</strong> specialised archetype object node reference type conformance: the reference model type of a redefined object node in a specialised archetype must conform to the reference model type in the corresponding node in the flat parent archetype by either being identical, or conforming via an inheritance relationship in the relevant reference model.</p>
@@ -3983,7 +3991,7 @@ For C_PRIMITIVE_OBJECTs, it will have the special value Primitive_node_id.</p>
 <p><strong>VSONPT</strong> specialised archetype prohibited object node AOM type validity: the occurrences of a redefined object node in a specialised archetype, may only be prohibited (i.e. {0}) if the matching node in the parent is of the same AOM type.</p>
 </div>
 <div class="paragraph rule">
-<p><strong>VSONPI</strong> specialised archetype prohibited object node AOM node id validity: a redefined object node in a specialised archetype with occurrences matching {0} must have exactly the same node id as the node in the flat parent being redefined.</p>
+<p><strong>VSONPI</strong> specialised archetype prohibited object node AOM node id validity: a redefined object node in a specialised archetype with occurrences matching {0} must have exactly the same <code><em>node_id</em></code> as the node in the flat parent being redefined.</p>
 </div>
 <div class="paragraph rule">
 <p><strong>VSONPO</strong> specialised archetype object node prohibited occurrences validity: the occurrences of a new (i.e. having no corresponding node in the parent flat) object node in a specialised archetype, if stated, may not be 'prohibited', i.e. {0}, since prohibition only makes sense for an existing node.</p>
@@ -4177,13 +4185,10 @@ For a slot-filler or a redefined external reference, the node_id is set to a spe
 <p>The following validity rules apply to <code>C_ARCHETYPE_ROOT</code> objects:</p>
 </div>
 <div class="paragraph rule">
-<p><strong>VARXS</strong> external reference conforms to slot: the archetype reference must conform to the archetype slot constraint of the flat parent and be of a reference model type from the same reference model as the current archetype.</p>
+<p><strong>VARXNC</strong> external reference node identifier validity: if the external reference object is a redefinition of either a slot node, or another external reference node, the <code><em>node_id</em></code> of the object must conform to (i.e. be the same or a child of) the <code><em>node_id</em></code> of the corresponding parent node.</p>
 </div>
 <div class="paragraph rule">
-<p><strong>VARXNC</strong> external reference node identifier validity: if the reference object is a redefinition of either a slot node, or another external reference node, the node_id of the object must conform to (i.e. be the same or a child of) the node_id of the corresponding parent node.</p>
-</div>
-<div class="paragraph rule">
-<p><strong>VARXAV</strong> external reference node archetype reference validity: if the reference object is a redefinition of another external reference node, the archetype_ref of the object must match a real archetype that has as an ancestor the archetype matched by the archetype reference mentioned in the corresponding parent node.</p>
+<p><strong>VARXAV</strong> external reference node archetype reference validity: if the reference object is a redefinition of another external reference node, the <code><em>archetype_ref</em></code> of the object must match a real archetype that has as an ancestor the archetype matched by the archetype reference mentioned in the corresponding parent node.</p>
 </div>
 <div class="paragraph rule">
 <p><strong>VARXTV</strong> external reference type validity: the reference model type of the reference object archetype identifier must be identical, or conform to the type of the slot, if there is one, in the parent archetype, or else to the reference model type of the attribute in the flat parent under which the reference object appears in the child archetype.</p>
@@ -4192,7 +4197,10 @@ For a slot-filler or a redefined external reference, the node_id is set to a spe
 <p><strong>VARXR</strong> external reference refers to resolvable artefact: the archetype reference must refer to an artefact that can be found in the current repository.</p>
 </div>
 <div class="paragraph">
-<p>The following validity rules apply to a <code>C_ARCHETYPE_ROOT</code> that specialises a <code>ARCHETYPE_SLOT</code> in the parent archetype:</p>
+<p>The following validity rules apply to a <code>C_ARCHETYPE_ROOT</code> that specialises a <code>ARCHETYPE_SLOT</code> in the flat parent archetype:</p>
+</div>
+<div class="paragraph rule">
+<p><strong>VARXS</strong> external reference slot conformance: where an archetype reference redefines an archetype slot in the flat parent, it must conform to the archetype slot node by being of a reference model type from the same reference model as the current archetype.</p>
 </div>
 <div class="paragraph rule">
 <p><strong>VARXID</strong> external reference slot filling id validity: an external reference node defined as a filler for a slot in the parent archetype must have a node id that is a specialisation of that of the slot.</p>
@@ -4365,10 +4373,10 @@ For a slot-filler or a redefined external reference, the node_id is set to a spe
 <p>The following validity rules applies to internal references:</p>
 </div>
 <div class="paragraph rule">
-<p><strong>VUNT</strong> use_node reference model type validity: the reference model type mentioned in an <code>C_COMPLEX_OBJECT_PROXY</code> node must be the same as or a super-type (according to the reference model) of the reference model type of the node referred to.</p>
+<p><strong>VUNT</strong> <code>use_node</code> reference model type validity: the reference model type mentioned in an <code>C_COMPLEX_OBJECT_PROXY</code> node must be the same as or a super-type (according to the reference model) of the reference model type of the node referred to.</p>
 </div>
 <div class="paragraph rule">
-<p><strong>VUNP</strong> use_node path validity: the path mentioned in a use_node statement must refer to an object node defined elsewhere in the same archetype or any of its specialisation parent archetypes, that is not itself an internal reference node, and which carries a node identifier if one is needed at the reference point.</p>
+<p><strong>VUNP</strong> <code>use_node</code> path validity: the path mentioned in a use_node statement must refer to an object node defined elsewhere in the same archetype or any of its specialisation parent archetypes, that is not itself an internal reference node, and which carries a node identifier if one is needed at the reference point.</p>
 </div>
 <div class="paragraph">
 <p>The following validity rule applies to the redefinition of an internal reference in a specialised archetype:</p>
