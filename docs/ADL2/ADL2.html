@@ -508,9 +508,15 @@
 <tbody>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a id="latest_issue"></a>2.0.6</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Rename 'archetype' rule in grammar to 'authored_archetype' to match AOM2 class (<a href="https://openehr.atlassian.net/browse/SPECPR-190">SPECPR-190</a>).</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Fix typos in ADL grammar: <code>meta_data_tag_is_controlled</code> value corrected to <code>'controlled'</code> and <code>meta_data_tag_is_generated</code> corrected to <code>'generated'</code>; adjust <code>meta_data_item</code> rule slightly for clarity.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">C Nanjo</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a id="latest_issue_date"></a>01 Jun 2016</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Rename <code>archetype</code> rule in grammar to <code>authored_archetype</code> to match AOM2 class (<a href="https://openehr.atlassian.net/browse/SPECPR-190">SPECPR-190</a>).</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">B Verhees</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a id="latest_issue_date"></a>18 May 2016</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">18 May 2016</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"></td>
@@ -691,13 +697,13 @@
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://openehr.atlassian.net/browse/SPEC-213">SPEC-213</a>: Correct ADL grammar for date/times to be properly ISO8601-compliant. Include 'T' in cADL patterns and dADL and cADL Date/time, Time and Duration values.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://openehr.atlassian.net/browse/SPEC-213">SPEC-213</a>: Correct ADL grammar for date/times to be properly ISO 8601-compliant. Include 'T' in cADL patterns and dADL and cADL Date/time, Time and Duration values.</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">T Beale</p></td>
 <td class="tableblock halign-left valign-top"></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://openehr.atlassian.net/browse/SPEC-216">SPEC-216</a>: Allow mixture of W, D etc in ISO8601 Duration (deviation from standard).</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://openehr.atlassian.net/browse/SPEC-216">SPEC-216</a>: Allow mixture of W, D etc in ISO 8601 Duration (deviation from standard).</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">S Heard</p></td>
 <td class="tableblock halign-left valign-top"></td>
 </tr>
@@ -3769,7 +3775,7 @@ date_time_pattern:      date_constraint time_in_date_pattern</pre>
 <div class="sect5">
 <h6 id="_patterns_2"><a class="anchor" href="#_patterns_2"></a>Patterns</h6>
 <div class="paragraph">
-<p>Patterns based on ISO 8601 can be used to constraint durations in the same way as for Date/time types. The general form of a pattern is:</p>
+<p>Patterns based on ISO 8601 can be used to constrain durations in the same way as for Date/time types. The general form of a pattern is:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -8190,8 +8196,10 @@ Note that in the above, the '/' is used to denote '/protocol' as a differential 
 <span class="tok-w">    </span><span class="tok-o">|</span><span class="tok-w"> </span><span class="tok-nv">meta_data_tag_rm_release</span><span class="tok-w"> </span><span class="tok-s">&#39;=&#39;</span><span class="tok-w"> </span><span class="tok-no">VERSION_ID</span><span class="tok-w"></span>
 <span class="tok-w">    </span><span class="tok-o">|</span><span class="tok-w"> </span><span class="tok-nv">meta_data_tag_is_controlled</span><span class="tok-w"></span>
 <span class="tok-w">    </span><span class="tok-o">|</span><span class="tok-w"> </span><span class="tok-nv">meta_data_tag_is_generated</span><span class="tok-w"></span>
-<span class="tok-w">    </span><span class="tok-o">|</span><span class="tok-w"> </span><span class="tok-nv">identifier</span><span class="tok-w"> </span><span class="tok-o">(</span><span class="tok-w"> </span><span class="tok-s">&#39;=&#39;</span><span class="tok-w"> </span><span class="tok-nv">meta_data_value</span><span class="tok-w"> </span><span class="tok-o">)?</span><span class="tok-w"></span>
+<span class="tok-w">    </span><span class="tok-o">|</span><span class="tok-w"> </span><span class="tok-nv">meta_data_tag_other</span><span class="tok-w"></span>
 <span class="tok-w">    </span><span class="tok-p">;</span><span class="tok-w"></span>
+
+<span class="tok-nl">meta_data_tag_other</span><span class="tok-p">:</span><span class="tok-w"> </span><span class="tok-nv">identifier</span><span class="tok-w"> </span><span class="tok-o">(</span><span class="tok-w"> </span><span class="tok-s">&#39;=&#39;</span><span class="tok-w"> </span><span class="tok-nv">meta_data_value</span><span class="tok-w"> </span><span class="tok-o">)?</span><span class="tok-w"> </span><span class="tok-p">;</span><span class="tok-w"></span>
 
 <span class="tok-nl">meta_data_value</span><span class="tok-p">:</span><span class="tok-w"></span>
 <span class="tok-w">      </span><span class="tok-nv">primitive_value</span><span class="tok-w"></span>
@@ -8203,8 +8211,8 @@ Note that in the above, the '/' is used to denote '/protocol' as a differential 
 <span class="tok-nl">meta_data_tag_uid</span><span class="tok-w">           </span><span class="tok-p">:</span><span class="tok-w"> </span><span class="tok-s">&#39;uid&#39;</span><span class="tok-w"> </span><span class="tok-p">;</span><span class="tok-w"></span>
 <span class="tok-nl">meta_data_tag_build_uid</span><span class="tok-w">     </span><span class="tok-p">:</span><span class="tok-w"> </span><span class="tok-s">&#39;build_uid&#39;</span><span class="tok-w"> </span><span class="tok-p">;</span><span class="tok-w"></span>
 <span class="tok-nl">meta_data_tag_rm_release</span><span class="tok-w">    </span><span class="tok-p">:</span><span class="tok-w"> </span><span class="tok-s">&#39;rm_release&#39;</span><span class="tok-w"> </span><span class="tok-p">;</span><span class="tok-w"></span>
-<span class="tok-nl">meta_data_tag_is_controlled</span><span class="tok-w"> </span><span class="tok-p">:</span><span class="tok-w"> </span><span class="tok-s">&#39;is_controlled&#39;</span><span class="tok-w"> </span><span class="tok-p">;</span><span class="tok-w"></span>
-<span class="tok-nl">meta_data_tag_is_generated</span><span class="tok-w">  </span><span class="tok-p">:</span><span class="tok-w"> </span><span class="tok-s">&#39;is_generated&#39;</span><span class="tok-w"> </span><span class="tok-p">;</span><span class="tok-w"></span></code></pre>
+<span class="tok-nl">meta_data_tag_is_controlled</span><span class="tok-w"> </span><span class="tok-p">:</span><span class="tok-w"> </span><span class="tok-s">&#39;controlled&#39;</span><span class="tok-w"> </span><span class="tok-p">;</span><span class="tok-w"></span>
+<span class="tok-nl">meta_data_tag_is_generated</span><span class="tok-w">  </span><span class="tok-p">:</span><span class="tok-w"> </span><span class="tok-s">&#39;generated&#39;</span><span class="tok-w"> </span><span class="tok-p">;</span><span class="tok-w"></span></code></pre>
 </div>
 </div>
 </div>
