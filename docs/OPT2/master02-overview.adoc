@@ -1,6 +1,18 @@
 = Overview
 
-The Operational Template (OPT) is a family of technical artefacts that is generated from source templates and archetypes expressed in ADL2, as described in the http://www.openehr.org/releases/AM/latest/docs/Overview/Overview.html#_artefacts[Archetype Technology Overview document]. 
+The Operational Template (OPT) is a family of technical artefacts that is generated from source templates and archetypes expressed in ADL2, as described in the http://www.openehr.org/releases/AM/latest/docs/Overview/Overview.html#_artefacts[Archetype Technology Overview document].
+
+== Purpose of the OPT
+
+The Operational Template as an artefact is a compiled form of source archteypes and templates and is useful for a number of reasons, as follows.
+
+. A production EHR or other archetype-driven system can safely run only using guaranteed _validated_ templates and archetypes. No direct use of source artefacts should ever be made for reasons of safety. (Clearly, experimental / research systems may operate somewhat differently).
+. The specialisation relationship between archetypes has to be evaluated in order to produce usable artefacts, because the usable form of such artefacts is the 'inheritance-flattened' form. This is exactly analagous to the situation with class inheritance in object-oriented programming: the executable form of any class is the inheritance-flattened form. Accordingly, a deployable form of archetypes and templates must be _compiled_ in some fashion from the sources.
+. In general, there is always a possible need for further adjustments to the source artefacts to obtain a deployable artefact. For example, the original archetypes may be in numerous languages, and with bindings to say three terminologies, while the final artefact usually only requires one or two languages (e.g. the national language and English), and only a subset of the terminology bindings is typically required. The OPT provides a target artefact in which these choices can be made.
+. The concrete format of the final artefact (the OPT) is intended to be the convenient for implementation rather than human use or modelling tools; normally this implies the use of machine formats such as XML, JSON, or even binary formats. In the ADL2 tools, OPTs can be generated in ADL, ODIN, JSON, XML and YAML, and other formats may be added in the future.
+. The OPT is intended for use not only in production systems, but also as the basis for other types of transformations that generate new kinds of artefacts. E.g. Template Data Schema (TDS, a kind of XSD), Template Data Object (TDO, a partial class), APIs and so on. The OPT provides a single standard input artefact for these kinds of transformations.
+
+== Types of OPT
 
 There are two types of OPT: 'raw' and 'profiled'.  The raw form can informally be understood as being the single large archetype structure corresponding to many source archetypes and templates, flattened and expanded into a single artefact. A raw OPT contains all possible content in terms of languages and terminology bindings. The following diagram shows the progressive generation of these artefacts from original archetypes and templates.
 

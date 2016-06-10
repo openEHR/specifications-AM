@@ -507,10 +507,20 @@
 </thead>
 <tbody>
 <tr>
+<th class="tableblock halign-center valign-top" colspan="4"><p class="tableblock"><strong>AM Release-2.0.6</strong></p></th>
+</tr>
+<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a id="latest_issue"></a>2.0.6</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Fix typos in ADL grammar: <code>meta_data_tag_is_controlled</code> value corrected to <code>'controlled'</code> and <code>meta_data_tag_is_generated</code> corrected to <code>'generated'</code>; adjust <code>meta_data_item</code> rule slightly for clarity.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Correct ambiguity between ADL and AOM specs concerning duration fractional seconds - add comment in 'Duration Constraints' section to cover fractional seconds. (<a href="https://openehr.atlassian.net/browse/SPECPR-188">SPECPR-188</a>).</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">B Verhees</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a id="latest_issue_date"></a>10 Jun 2016</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Fix typos in ADL grammar: <code>meta_data_tag_is_controlled</code> value corrected to <code>'controlled'</code> and <code>meta_data_tag_is_generated</code> corrected to <code>'generated'</code>; adjust <code>meta_data_item</code> rule slightly for clarity.<br>
+ Add reference in section `Reference Model Type Matching' to more precise specification of type matching in AOM2 spec.</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">C Nanjo</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a id="latest_issue_date"></a>01 Jun 2016</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">08 Jun 2016</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"></td>
@@ -2178,8 +2188,28 @@ the structure, as shown in the following example:</p>
 <div class="sect3">
 <h4 id="_reference_model_type_matching"><a class="anchor" href="#_reference_model_type_matching"></a>4.3.6. Reference Model Type Matching</h4>
 <div class="paragraph">
-<p>All cADL object constraints state a type from an underlying reference model. This may be an abstract type or a concrete type. The part of the data conforming to the constraint can be of any concrete type from the reference model that conforms to the type mentioned in the constraint, i.e. the same type if it is concrete, or any subtype. Correctly evaluating data/archetype conformance is up to tools to implement, and requires access to a formal description of the reference model.</p>
+<p>All cADL object constraints state a type name from an underlying reference model. Lexically speaking, this may be an abstract class name, a concrete class name or a generic type name, if the RM in question supports generic (template) types. In the latter case, the type name is constructed from RM class names, according to the standard generic type name syntax used in UML and mainstream languages such as C++, Java, C# and so on, i.e. using the characters <code>&lt;&gt;</code>, <code>,</code> and space(s). Additionally, matching of type names is case-insensitive, and whitespace is ignored. Thus, <code>"SECTION"</code> in the archetype is assumed to match a data instance whose type is <code>SECTION</code> or <code>Section</code>; <code>"Interval&lt;Quantity&gt;"</code> in the archetype is assumed to match a data instance whose RM type is <code>INTERVAL &lt;QUANTITY&gt;</code>.</p>
 </div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Note</div>
+</td>
+<td class="content">
+direct matching of so-called CamelCase by Snake_case or SCREAMING_SNAKE_CASE and vice-versa is not assumed, but could be enabled by a switch in tools.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>In semantic terms, the data item conforming to the archetype constraint can be of any concrete type from the reference model (i.e. class name or derived generic type as above) that <em>conforms</em> to the type mentioned in the constraint, i.e. the same type if it is concrete, or any subtype. Correctly evaluating data/archetype conformance is up to tools to implement, and requires access to a formal description of the reference model.</p>
+</div>
+<div class="paragraph">
+<p>The precise specification of RM type matching is given in the section <a href="http://www.openehr.org/releases/AM/latest/AOM2.html#_rm_type_name_and_reference_model_type_matching">Rm_type_name and reference model type matching</a> of the AOM2 specification.</p>
+</div>
+<div class="sect4">
+<h5 id="_narrowed_subtype_constraints"><a class="anchor" href="#_narrowed_subtype_constraints"></a>4.3.6.1. Narrowed Subtype Constraints</h5>
 <div class="paragraph">
 <p>One of the consequences of subtype-based type matching is that semantics are needed for when more than one reference model subtype is declared under the same attribute node in cADL. Consider the reference model inheritance structure shown below, in which the abstract <code>PARTY</code> class has abstract and concrete descendants including <code>ACTOR</code>, <code>ROLE</code>, and so on.</p>
 </div>
@@ -2189,8 +2219,6 @@ the structure, as shown in the following example:</p>
 </div>
 <div class="title">Figure 3. Reference Model Sub-type Hierarchy</div>
 </div>
-<div class="sect4">
-<h5 id="_narrowed_subtype_constraints"><a class="anchor" href="#_narrowed_subtype_constraints"></a>4.3.6.1. Narrowed Subtype Constraints</h5>
 <div class="paragraph">
 <p>The following cADL statement defines an instance space that includes instances of any of the concrete subtypes of the <code>PARTY</code> class within an instance of the class <code>XXXX</code> in the figure (the ellipsis indicates particular constrraints not shown here).</p>
 </div>
@@ -3782,15 +3810,18 @@ date_time_pattern:      date_constraint time_in_date_pattern</pre>
 <pre class="pygments highlight"><code data-lang="regex">    P[Y|y][M|m][W|w][D|d][T[H|h][M|m][S|s]]</code></pre>
 </div>
 </div>
-<div class="ulist">
-<ul>
-<li>
-<p>Note that allowing the 'W' designator to be used with the other designators corresponds to a deviation from the published ISO 8601 standard used in openEHR, namely:</p>
-</li>
-<li>
-<p>durations are supposed to take the form of PnnW or PnnYnnMnnDTnnHnnMnnS, but in openEHR, the W (week) designator can be used with the other designators, since it is very common to state durations of pregnancy as some combination of weeks and days.</p>
-</li>
-</ul>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Note</div>
+</td>
+<td class="content">
+that allowing the <code>W</code> designator to be used with the other designators corresponds to a deviation from the published ISO 8601 standard used in openEHR, namely:
+* durations are supposed to take the form of <code>PnnW</code> or <code>PnnYnnMnnDTnnHnnMnnS</code>, but in openEHR, the <code>W</code> (week) designator can be used with the other designators, since it is very common to state durations of pregnancy as some combination of weeks and days.
+</td>
+</tr>
+</table>
 </div>
 <div class="paragraph">
 <p>The use of this pattern indicates which 'slots' in an ISO duration string may be filled. Where multiple letters are supplied in a given pattern, the meaning is 'or', i.e. any one or more of the slots may be supplied in the data. This syntax allows specifications like the following to be made:</p>
@@ -3803,6 +3834,9 @@ date_time_pattern:      date_constraint time_in_date_pattern</pre>
     <span class="tok-ld">Pwd</span>           <span class="tok-c">-- a duration containing weeks and/or days only, e.g. P4w</span>
     <span class="tok-ld">PThm</span>          <span class="tok-c">-- a duration containing hours and/or minutes only, e.g. PT2h30m</span></code></pre>
 </div>
+</div>
+<div class="paragraph">
+<p>Note that the 's' (seconds) slot covers fractional seconds as well as whole seconds.</p>
 </div>
 </div>
 <div class="sect5">
@@ -8340,8 +8374,7 @@ Note that in the above, the '/' is used to denote '/protocol' as a differential 
 <span class="tok-nl">c_time</span><span class="tok-p">:</span><span class="tok-w"> </span><span class="tok-o">(</span><span class="tok-w"> </span><span class="tok-no">TIME_CONSTRAINT_PATTERN</span><span class="tok-w"> </span><span class="tok-o">|</span><span class="tok-w"> </span><span class="tok-nv">time_value</span><span class="tok-w"> </span><span class="tok-o">|</span><span class="tok-w"> </span><span class="tok-nv">time_list_value</span><span class="tok-w"> </span><span class="tok-o">|</span><span class="tok-w"> </span><span class="tok-nv">time_interval_value</span><span class="tok-w"> </span><span class="tok-o">|</span><span class="tok-w"> </span><span class="tok-nv">time_interval_list_value</span><span class="tok-w"> </span><span class="tok-o">)</span><span class="tok-w"> </span><span class="tok-nv">assumed_time_value</span><span class="tok-o">?</span><span class="tok-w"> </span><span class="tok-p">;</span><span class="tok-w"></span>
 <span class="tok-nl">assumed_time_value</span><span class="tok-p">:</span><span class="tok-w"> </span><span class="tok-s">&#39;;&#39;</span><span class="tok-w"> </span><span class="tok-nv">time_value</span><span class="tok-w"> </span><span class="tok-p">;</span><span class="tok-w"></span>
 
-<span class="tok-nl">c_duration</span><span class="tok-p">:</span><span class="tok-w"> </span><span class="tok-o">(</span><span class="tok-w"></span>
-<span class="tok-w">      </span><span class="tok-no">DURATION_CONSTRAINT_PATTERN</span><span class="tok-w"> </span><span class="tok-o">(</span><span class="tok-w"> </span><span class="tok-s">&#39;/&#39;</span><span class="tok-w"> </span><span class="tok-o">(</span><span class="tok-w"> </span><span class="tok-nv">duration_interval_value</span><span class="tok-w"> </span><span class="tok-o">|</span><span class="tok-w"> </span><span class="tok-nv">duration_value</span><span class="tok-w"> </span><span class="tok-o">))?</span><span class="tok-w"></span>
+<span class="tok-nl">c_duration</span><span class="tok-p">:</span><span class="tok-w"> </span><span class="tok-o">(</span><span class="tok-w"> </span><span class="tok-no">DURATION_CONSTRAINT_PATTERN</span><span class="tok-w"> </span><span class="tok-o">(</span><span class="tok-w"> </span><span class="tok-s">&#39;/&#39;</span><span class="tok-w"> </span><span class="tok-o">(</span><span class="tok-w"> </span><span class="tok-nv">duration_interval_value</span><span class="tok-w"> </span><span class="tok-o">|</span><span class="tok-w"> </span><span class="tok-nv">duration_value</span><span class="tok-w"> </span><span class="tok-o">))?</span><span class="tok-w"></span>
 <span class="tok-w">    </span><span class="tok-o">|</span><span class="tok-w"> </span><span class="tok-nv">duration_value</span><span class="tok-w"> </span><span class="tok-o">|</span><span class="tok-w"> </span><span class="tok-nv">duration_list_value</span><span class="tok-w"> </span><span class="tok-o">|</span><span class="tok-w"> </span><span class="tok-nv">duration_interval_value</span><span class="tok-w"> </span><span class="tok-o">|</span><span class="tok-w"> </span><span class="tok-nv">duration_interval_list_value</span><span class="tok-w"> </span><span class="tok-o">)</span><span class="tok-w"> </span><span class="tok-nv">assumed_duration_value</span><span class="tok-o">?</span><span class="tok-w"></span>
 <span class="tok-w">    </span><span class="tok-p">;</span><span class="tok-w"></span>
 <span class="tok-nl">assumed_duration_value</span><span class="tok-p">:</span><span class="tok-w"> </span><span class="tok-s">&#39;;&#39;</span><span class="tok-w"> </span><span class="tok-nv">duration_value</span><span class="tok-w"> </span><span class="tok-p">;</span><span class="tok-w"></span>

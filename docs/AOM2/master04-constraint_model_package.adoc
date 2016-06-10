@@ -27,13 +27,15 @@ The type-name nomenclature `C_XXX` used here is intended to be read as "constrai
 
 == Semantics
 
-The effect of the model is to create archetype description structures that are a hierarchical alternation of object and attribute constraints. This structure can be seen by inspecting an ADL archetype, or by viewing an archetype in an AOM-based tool such as the openEHR {openehr_awb}[ADL workbench], and is a direct consequence of the object-oriented principle that classes consist of properties, which in turn have types that are classes. (To be completely correct, types do not always correspond to classes in an object model, but it does not make any difference here). The repeated object/attribute hierarchical structure of an archetype provides the basis for using paths to reference any node in an archetype. Archetype paths follow a syntax that is a directly convertible in and out of the W3C Xpath syntax.
+The effect of the model is to create archetype definition structures that are a hierarchical alternation of object and attribute constraints. This structure can be seen by inspecting an ADL archetype, or by viewing an archetype in an AOM-based tool such as the openEHR {openehr_awb}[ADL workbench], and is a direct consequence of the object-oriented principle that classes consist of properties, which in turn have types that are classes. (To be completely correct, types do not always correspond to classes in an object model, but it does not make any difference here). The repeated object/attribute hierarchical structure of an archetype provides the basis for using paths to reference any node in an archetype. Archetype paths follow a syntax that is a directly convertible in and out of the W3C Xpath syntax.
 
 === All Node Types
 
+Some properties are defined for all node types, described in the following sections.
+
 ==== Path Functions
 
-A small number of properties are defined for all node types. The path feature computes the path to the current node from the root of the archetype, while the has_path function indicates whether a given path can be found in an archetype.
+The path feature computes the path to the current node from the root of the archetype, while the has_path function indicates whether a given path can be found in an archetype.
 
 ==== Conformance Functions
 
@@ -64,6 +66,19 @@ The appearance of both `_existence_` and `_cardinality_` constraints in `C_ATTRI
 image::diagrams/c_attributes.png[id=c_attributes, align="center", width="70%"]
 
 === Object Node Types
+
+The following sections apply to all object nodes in an archetype, i.e. instances of any descendant of `C_OBJECT`.
+
+==== Rm_type_name and Reference Model Type Matching
+
+Every object node has an `_rm_type_name_` attribute that states the RM type to be matched by that node in the archetype. The value of `_rm_type_name_` is understood as a constraint on the dynamic type of data _instances_ of the stated Reference Model type. It is either a class name from the RM, or a generic type constructed from RM class names, as described in the {openehr_am_adl2}#_reference_model_type_matching[Reference model type matching] section of the ADL2 specification.
+
+The RM type stated in an archetype object node is understood to be a _static_ type constraint. Accordingly, it will match an instance of any RM _subtype_ of the stated type, as long as the inheritance relationship is stated in the RM definition. This holds both for sub-classes, and subtypes of generic types, in a covariant fashion. The following matching will thus succeed:
+
+* `_rm_type_name_` = `"PARTY"` matches `PERSON`, where `PERSON` inherits from `PARTY` in the relevant RM;
+* `_rm_type_name_` = `"Interval<Ordered>"` matches a dynamic type of data items of `Interval<Quantity>`, `SimpleInterval<Ordered>` and `SimpleInterval<Quantity>` where `Quantity` inherits from `Ordered` and `SimpleInterval` inherits from `Interval` in the relevant RM.
+
+There are some special rules that apply to primitive type matching that enable 'logical' primitive type names in archetypes to match multiple 'concrete' variants that occur in some reference models and programming type systems. These are described in detail below.
 
 ==== Node_id and Paths
 
@@ -114,33 +129,55 @@ Constraints on primitive types are defined by the classes inheriting from `C_PRI
 
 `C_PRIMITIVE_OBJECT` instances are created with a fixed id-code `ADL_CODE_DEFINITIONS._primitive_node_id_` as the value of `_node_id_` (see <<ADL_CODE_DEFINITIONS Class>>). For this reason, no node identifier needs to be supplied in a syntax or serialised form of an archetype, including ADL.
 
-The primitive constraint for each primitive type may itself be complex. Its type is given by the type of the constraint accessor in each `C_PRIMITIVE_OBJECT` descendant and is summarised in the following table.
+The primitive constraint for each primitive type may itself be complex. Its RM type is given by the type of the `_constraint_` accessor in each `C_PRIMITIVE_OBJECT` descendant and is summarised in the following table.
 
-[width="100%",cols="1,2,3",options="header",]
+[width="100%",cols="1,1,2,3",options="header",]
 |===========
-|Primitive type     |Primitive constrainer type |Explanation
-|Boolean            |`List <Boolean>`           |Can represent one or two Boolean values, enabling the logical constraints 'true', 'false' and 'true or false' to be expressed.
-|String             |`List <String>`            |A list of possible string values, which may include regular expressions, which are delimited by '/' characters.
-|Terminology_code   |`String` - `[acN]` or `[atN]`` |A string containing either a single at-code or a single ac-code. In the latter case, the constraint refers to either a locally defined value set or (via a binding) an external value set.
-|*Ordered types*    |`List <Interval<T>>`       |Can represent a single value (which is a point interval), a list of values (list of point intervals), a list of intervals, which may be mixed proper and point intervals.
-|Integer            |`List <Interval<Integer>>` |As for Ordered type, with T = `Integer`
-|Real               |`List <Interval<Real>>`    |As for Ordered type, with T = `Real`
-|*Temporal types*   |`List <Interval<T->Temporal>>` +
-                     OR +
-                    `String` (ADL pattern)      |As for ordered types, with T being an sub-type type of `Temporal`, an ancestor of the assumed Date/time primitive types., with the addition of a second type constraint - {openehr_am_adl2}#_constraints_on_dates_times_and_durations[a pattern based on ISO8601 syntax].
-|Date               |`List <Interval<Date>>` +
-                     OR +
-                     pattern                    |As for Temporal types with T = `Date`
-|Time               |`List <Interval<Time>>` +
-                     OR +
-                     pattern                    |As for Temporal types with T = `Time`
-|Date_time          |`List <Interval<Date_time>>` +
-                     OR +
-                     pattern                    |As for Temporal types with T = `Date_time`
-|Duration           |`List <Interval<Duration>>` +
-                     OR +
-                     pattern                    |As for Temporal types with T = `Duration`
+|AOM type             |RM Primitive type       |AOM Primitive constrainer type |Explanation
+|`C_BOOLEAN`          |`Boolean`               |`List <Boolean>`               |Can represent one or two Boolean values, enabling the logical constraints 
+                                                                                'true', 'false' and 'true or false' to be expressed.
+|`C_STRING`           |`String`                |`List <String>`                |A list of possible string values, which may include regular expressions, 
+                                                                                which are delimited by '/' characters.
+|`C_TERMINOLOGY_CODE` |`Terminology_code`      |Terminology constraint - +
+                                                `[acN]` or `[atN]`             |A string containing either a single at-code or a single ac-code. In the 
+                                                                                latter case, the constraint refers to either a locally defined value set 
+                                                                                or (via a binding) an external value set.
+|`C_ORDERED`          |Descendants of +
+                       `Ordered`               |`List <Interval<T>>`           |Can represent a single value (which is a point interval), a list of values 
+                                                                                (list of point intervals), a list of intervals, which may be mixed proper 
+                                                                                and point intervals.
+|`C_INTEGER`          |`Integer`               |`List <Interval<Integer>>`     |As for Ordered type, with T = `Integer`
+|`C_REAL`             |`Real`                  |`List <Interval<Real>>`        |As for Ordered type, with T = `Real`
+|`C_TEMPORAL`         |Descendants of +
+                       `Temporal`              |`List <Interval<T->Temporal>>` +
+                                                OR +
+                                                String (ADL pattern)           |As for ordered types, with T being an sub-type type of `Temporal`, an 
+                                                                                ancestor of the assumed Date/time primitive types., with the addition of a 
+                                                                                second type constraint -                                                                                                                             {openehr_am_adl2}#_constraints_on_dates_times_and_durations[a pattern based on ISO8601 syntax].
+
+|`C_DATE`             |`Date`                  |`List <Interval<Date>>` +
+                                                OR +
+                                                String (ADL pattern)           |As for Temporal types with T = `Date`
+|`C_TIME`             |`Time`                  |`List <Interval<Time>>` +
+                                                OR +
+                                                String (ADL pattern)           |As for Temporal types with T = `Time`
+|`C_DATE_TIME`        |`Date_time` OR `DateTime` |`List <Interval<Date_time>>` +
+                                                OR +
+                                                 String (ADL pattern)          |As for Temporal types with T = `Date_time`
+|`C_DURATION`         |`Duration`              |`List <Interval<Duration>>` +
+                                                OR +
+                                                String (ADL pattern)           |As for Temporal types with T = `Duration`
 |===========
+
+Note in the above that the `C_DATE_TIME` AOM type is assumed by default to apply to data items of the RM types `DateTime` and `Date_time`, including any variations in case.
+
+In order to accommodate concrete type variants that are used in common type systems, the following RM type matching should be considered to occur by default:
+
+* `String` variants: in addition to matching `String`, `C_STRING` should match `StringN` and `String_N` instances, to accommodate RM types such as `String8`, `String_32` etc;
+* `Integer` variants: in addition to matching `Integer`, `C_INTEGER` should match `IntegerN` and `Integer_N`, to accommodate RM types such as `Integer_16`, `Integer64` etc;
+* `Real` variants: in addition to matching `Real`, `C_REAL` should match `RealN` and `Real_N` and `Double`, to accommodate RM types such as `Real_32`, `Real64` and `Double`.
+
+This may be implemented by automatic means, or alternatively via tools that enable some configuration of which type names are considered equivalent in Refeence Models in general, or even on a per-RM basis.
 
 ==== Assumed_value
 

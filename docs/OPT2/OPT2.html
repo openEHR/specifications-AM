@@ -35,7 +35,12 @@
 <li><a href="#_relationship_to_opt_1_4">1.6. Relationship to OPT '1.4'</a></li>
 </ul>
 </li>
-<li><a href="#_overview">2. Overview</a></li>
+<li><a href="#_overview">2. Overview</a>
+<ul class="sectlevel2">
+<li><a href="#_purpose_of_the_opt">2.1. Purpose of the OPT</a></li>
+<li><a href="#_types_of_opt">2.2. Types of OPT</a></li>
+</ul>
+</li>
 <li><a href="#_the_raw_operational_template">3. The Raw Operational Template</a>
 <ul class="sectlevel2">
 <li><a href="#_artefact_structure">3.1. Artefact Structure</a></li>
@@ -153,10 +158,19 @@
 </thead>
 <tbody>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a id="latest_issue"></a>2.0.6</p></td>
+<th class="tableblock halign-center valign-top" colspan="4"><p class="tableblock"><strong>AM Release-2.0.6</strong></p></th>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a id="latest_issue"></a>0.5.1</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Added 'Purpose' section.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">T Beale</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a id="latest_issue_date"></a>08 Jun 2016</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">0.5.0</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Initial Writing</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">T Beale</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a id="latest_issue_date"></a>28 Oct 2015</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">28 Oct 2015</p></td>
 </tr>
 </tbody>
 </table>
@@ -279,6 +293,33 @@ Source projects can be found at the <a href="https://github.com/openEHR">openEHR
 <div class="paragraph">
 <p>The Operational Template (OPT) is a family of technical artefacts that is generated from source templates and archetypes expressed in ADL2, as described in the <a href="http://www.openehr.org/releases/AM/latest/docs/Overview/Overview.html#_artefacts">Archetype Technology Overview document</a>.</p>
 </div>
+<div class="sect2">
+<h3 id="_purpose_of_the_opt"><a class="anchor" href="#_purpose_of_the_opt"></a>2.1. Purpose of the OPT</h3>
+<div class="paragraph">
+<p>The Operational Template as an artefact is a compiled form of source archteypes and templates and is useful for a number of reasons, as follows.</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>A production EHR or other archetype-driven system can safely run only using guaranteed <em>validated</em> templates and archetypes. No direct use of source artefacts should ever be made for reasons of safety. (Clearly, experimental / research systems may operate somewhat differently).</p>
+</li>
+<li>
+<p>The specialisation relationship between archetypes has to be evaluated in order to produce usable artefacts, because the usable form of such artefacts is the 'inheritance-flattened' form. This is exactly analagous to the situation with class inheritance in object-oriented programming: the executable form of any class is the inheritance-flattened form. Accordingly, a deployable form of archetypes and templates must be <em>compiled</em> in some fashion from the sources.</p>
+</li>
+<li>
+<p>In general, there is always a possible need for further adjustments to the source artefacts to obtain a deployable artefact. For example, the original archetypes may be in numerous languages, and with bindings to say three terminologies, while the final artefact usually only requires one or two languages (e.g. the national language and English), and only a subset of the terminology bindings is typically required. The OPT provides a target artefact in which these choices can be made.</p>
+</li>
+<li>
+<p>The concrete format of the final artefact (the OPT) is intended to be the convenient for implementation rather than human use or modelling tools; normally this implies the use of machine formats such as XML, JSON, or even binary formats. In the ADL2 tools, OPTs can be generated in ADL, ODIN, JSON, XML and YAML, and other formats may be added in the future.</p>
+</li>
+<li>
+<p>The OPT is intended for use not only in production systems, but also as the basis for other types of transformations that generate new kinds of artefacts. E.g. Template Data Schema (TDS, a kind of XSD), Template Data Object (TDO, a partial class), APIs and so on. The OPT provides a single standard input artefact for these kinds of transformations.</p>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_types_of_opt"><a class="anchor" href="#_types_of_opt"></a>2.2. Types of OPT</h3>
 <div class="paragraph">
 <p>There are two types of OPT: 'raw' and 'profiled'.  The raw form can informally be understood as being the single large archetype structure corresponding to many source archetypes and templates, flattened and expanded into a single artefact. A raw OPT contains all possible content in terms of languages and terminology bindings. The following diagram shows the progressive generation of these artefacts from original archetypes and templates.</p>
 </div>
@@ -333,6 +374,7 @@ Source projects can be found at the <a href="https://github.com/openEHR">openEHR
 </div>
 <div class="paragraph">
 <p>An OPT can be serialised in more than one form, including ADL, XML and JSON. To facilitate tooling and reduce confusion, distinct filename extensions are used, of the form <code>.opt</code> (ADL), <code>.optx</code> (XML), <code>.optj</code> and so on.</p>
+</div>
 </div>
 </div>
 </div>
