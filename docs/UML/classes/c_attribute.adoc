@@ -43,8 +43,9 @@ h|*Functions*
 ^h|*Meaning*
 
 h|
-|*any_allowed*: `Boolean`
-a|
+|*any_allowed*: `Boolean` +
+*_Post_*: Result := children.is_empty
+a|True if there is no effective constraint on the children of the RM attribute to which this C_ATTRIBUTE refers.
 
 h|
 |*is_mandatory*: `Boolean`
@@ -69,4 +70,9 @@ h|(effected)
 *_Post_*: Result = existence_conforms_to (other) and ((is_single and other.is_single) or else (is_multiple and cardinality_conforms_to (other)))
 a|True if constraints represented by this node, ignoring any sub-parts, are narrower or the same as other.
 Typically used during validation of special-ised archetype nodes.
+
+h|(effected)
+|*is_prohibited*: `Boolean` +
+*_Post_*: Result = existence /= Void and then and then existence.is_prohibited
+a|True if this node (and all its sub-nodes) is a valid archetype node for its type. This function should be implemented by each subtype to perform semantic validation of itself, and then call the is_valid function in any subparts, and generate the result appropriately.
 |===

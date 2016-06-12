@@ -1417,6 +1417,74 @@ the above types do not constitute a formal part of this specification. Any imple
 <p>Code id used for C_PRIMITIVE_OBJECT nodes on creation.</p>
 </div></div></td>
 </tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Functions</strong></p></th>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Signature</strong></p></th>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Meaning</strong></p></th>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"></th>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>codes_conformant</strong> (a_child_code: <code>String</code>, a_parent_code: <code>String</code>): <code>Boolean</code></p></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>True if a_child_code conforms to a_parent_code in the sense of specialisation, i.e. is a_child_code the same as or more specialised than a_parent_code.</p>
+</div></div></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"></th>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>is_adl_code</strong> (a_code: <code>String</code>): <code>Boolean</code><br>
+<strong><em>Post</em></strong>: Result = is_id_code (a_code) or else is_value_code (a_code) or else is_value_set_code (a_code)</p></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>True if a_code is any kind of ADL archetype local code.</p>
+</div></div></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"></th>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>is_id_code</strong> (a_code: <code>String</code>): <code>Boolean</code><br>
+<strong><em>Post</em></strong>: Result = a_code.starts_with (Id_code_leader)</p></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>True if a_code is an 'id' code.</p>
+</div></div></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"></th>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>is_value_code</strong> (a_code: <code>String</code>): <code>Boolean</code><br>
+<strong><em>Post</em></strong>: Result = a_code.starts_with (Value_code_leader)</p></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>True if a_code is an 'at' code, i.e. a code representing a single terminology item.</p>
+</div></div></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"></th>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>is_value_set_code</strong> (a_code: <code>String</code>): <code>Boolean</code><br>
+<strong><em>Post</em></strong>: Result = a_code.starts_with (Value_set_code_leader)</p></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>True if a_code is an 'ac' code, i.e. a code referring to a terminologyvalue set.</p>
+</div></div></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"></th>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>is_redefined_code</strong> (a_code: <code>String</code>): <code>Boolean</code></p></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>A code has been specialised if there is a non-zero code index anywhere above the last index e.g.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>at0.0.1 &#8594; False</p>
+</li>
+<li>
+<p>at1.0.1 &#8594; True</p>
+</li>
+</ul>
+</div></div></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"></th>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>code_exists_at_level</strong> (a-code: <code>String</code>, a_level: <code>Integer</code>): <code>Boolean</code></p></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>Is `a_code' valid at level `a_level' or less, i.e. if we remove its trailing specialised part corresponding to specialisation below `a_level', and then any trailing '.0' pieces, do we end up with a valid code? If so it means that the code corresponds to a real node from `a_level' or higher.</p>
+</div></div></td>
+</tr>
 </tbody>
 </table>
 </div>
@@ -3361,7 +3429,7 @@ Since an archetype might not contain external terminology bindings for all (or e
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Inherit</strong></p></th>
-<td class="tableblock halign-left valign-top" colspan="2"><p class="tableblock">Any</p></td>
+<td class="tableblock halign-left valign-top" colspan="2"><p class="tableblock">ADL_CODE_DEFINITIONS</p></td>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Attributes</strong></p></th>
@@ -3435,12 +3503,16 @@ Typically used to test if an inherited node locally contains any constraints.</p
 <tr>
 <th class="tableblock halign-center valign-top"></th>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><strong>is_root</strong>: <code>Boolean</code></p></td>
-<td class="tableblock halign-left valign-top"><div></div></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>True if this node is the root of the tree.</p>
+</div></div></td>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"></th>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><strong>is_leaf</strong>: <code>Boolean</code></p></td>
-<td class="tableblock halign-left valign-top"><div></div></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>True if this node is a terminal node in the tree structure, i.e. having no child nodes.</p>
+</div></div></td>
 </tr>
 </tbody>
 </table>
@@ -3522,8 +3594,11 @@ Typically used to test if an inherited node locally contains any constraints.</p
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>any_allowed</strong>: <code>Boolean</code></p></td>
-<td class="tableblock halign-left valign-top"><div></div></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>any_allowed</strong>: <code>Boolean</code><br>
+<strong><em>Post</em></strong>: Result := children.is_empty</p></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>True if there is no effective constraint on the children of the RM attribute to which this C_ATTRIBUTE refers.</p>
+</div></div></td>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"></th>
@@ -3560,6 +3635,14 @@ Typically used to test if an inherited node locally contains any constraints.</p
 <td class="tableblock halign-left valign-top"><div><div class="paragraph">
 <p>True if constraints represented by this node, ignoring any sub-parts, are narrower or the same as other.
 Typically used during validation of special-ised archetype nodes.</p>
+</div></div></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock">(effected)</p></th>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>is_prohibited</strong>: <code>Boolean</code><br>
+<strong><em>Post</em></strong>: Result = existence /= Void and then and then existence.is_prohibited</p></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>True if this node (and all its sub-nodes) is a valid archetype node for its type. This function should be implemented by each subtype to perform semantic validation of itself, and then call the is_valid function in any subparts, and generate the result appropriately.</p>
 </div></div></td>
 </tr>
 </tbody>
@@ -3801,7 +3884,7 @@ Only set if it overrides the parent archetype in the case of specialised archety
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>1..1</strong></p></th>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><strong>node_id</strong>: <code>String</code></p></td>
 <td class="tableblock halign-left valign-top"><div><div class="paragraph">
-<p>Semantic identifier of this node, used to dis-tinguish sibling nodes. All nodes must have a node_id; for nodes under a container C_ATTRIBUTE, the id must be an id-code must be defined in the archetype terminolo-gy. For valid structures, all node ids are id-codes.
+<p>Semantic identifier of this node, used to dis-tinguish sibling nodes. All nodes must have a node_id; for nodes under a container C_ATTRIBUTE, the id must be an id-code must be defined in the archetype terminology. For valid structures, all node ids are id-codes.
 For C_PRIMITIVE_OBJECTs, it will have the special value Primitive_node_id.</p>
 </div></div></td>
 </tr>
@@ -3829,6 +3912,42 @@ For C_PRIMITIVE_OBJECTs, it will have the special value Primitive_node_id.</p>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><strong>specialisation_depth</strong>: <code>Integer</code></p></td>
 <td class="tableblock halign-left valign-top"><div><div class="paragraph">
 <p>Level of specialisation of this archetype node, based on its node_id. The value 0 corresponds to non-specialised, 1 to first-level specialisation and so on. The level is the same as the number of ‘.’ characters in the node_id code. If node_id is not set, the return value is -1, signifying that the specialisation level should be determined from the nearest parent C_OBJECT node having a node_id.</p>
+</div></div></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"></th>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>effective_occurrences</strong>: <code>MULTIPLICITY_INTERVAL</code></p></td>
+<td class="tableblock halign-left valign-top"><div></div></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"></th>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>occurrences_conforms_to</strong> (other: <code>C_OBJECT</code>): <code>Boolean</code></p></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>True if this node occurrences conforms to other.occurrences; `other' is assumed to be in a flat archetype.</p>
+</div></div></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"></th>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>node_id_conforms_to</strong> (other: <code>C_OBJECT</code>): <code>Boolean</code><br>
+<strong><em>Post</em></strong>: Result = codes_conformant (node_id, other.node_id)</p></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>True if this node id conforms to other.node_id, which includes the ids being identical; other is assumed to be in a flat archetype.</p>
+</div></div></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock">(effected)</p></th>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>c_conforms_to</strong> (other: <code>ARCHETYPE_CONSTRAINT</code>): <code>Boolean</code></p></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>True if constraints represented by this node, ignoring any sub-parts, are narrower or the same as other.
+Typically used during validation of special-ised archetype nodes.</p>
+</div></div></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock">(effected)</p></th>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>c_congruent_to</strong> (other: <code>ARCHETYPE_CONSTRAINT</code>): <code>Boolean</code></p></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>True if constraints represented by this node contain no further redefinitions with respect to the node other, with the exception of node_id redefnition in C_OBJECT nodes.
+Typically used to test if an inherited node locally contains any constraints.</p>
 </div></div></td>
 </tr>
 </tbody>
@@ -4454,6 +4573,16 @@ For a slot-filler or a redefined external reference, the node_id is set to a spe
 <strong><em>Post</em></strong>: Result = (occurrences = Void)</p></td>
 <td class="tableblock halign-left valign-top"><div><div class="paragraph">
 <p>True if target occurrences are to be used as the value of occurrences in this object; by the time of runtime use, the target occurrences value has to be set into this object.</p>
+</div></div></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock">(effected)</p></th>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>occurrences_conforms_to</strong> (other: <code>C_OBJECT</code>): <code>Boolean</code></p></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>True if this node occurrences conforms to other.occurrences; `other' is assumed to be in a flat archetype.</p>
+</div>
+<div class="paragraph">
+<p>If `other' is a C_COMPLEX_OBJECT, then always True, since if occurrences defined on proxy node, it is an override of  the occurrences on the target, and it doesn&#8217;t have to conform to anything except the containing attribute&#8217;s cardinality. However, if `other' is also a C_COMPLEX_OBJECT then the override is of another use_node, and normal occurrences apply</p>
 </div></div></td>
 </tr>
 </tbody>
@@ -5622,6 +5751,25 @@ For a slot-filler or a redefined external reference, the node_id is set to a spe
 <p>Object constraint members of this tuple group.</p>
 </div></div></td>
 </tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Functions</strong></p></th>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Signature</strong></p></th>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Meaning</strong></p></th>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock">(effected)</p></th>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>c_conforms_to</strong> (other: <code>C_SECOND_ORDER</code>): <code>Boolean</code></p></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>True if constraints represented by this node, ignoring any sub-parts, are narrower or the same as other. Typically used during validation of specialised archetype nodes.</p>
+</div></div></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock">(effected)</p></th>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>c_congruent_to</strong> (other: <code>C_SECOND_ORDER</code>): <code>Boolean</code></p></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>True if constraints represented by this node contain no further redefinitions with respect to the node other. Typically used to test if an inherited node locally contains any constraints.</p>
+</div></div></td>
+</tr>
 </tbody>
 </table>
 </div>
@@ -5666,6 +5814,25 @@ For a slot-filler or a redefined external reference, the node_id is set to a spe
 <td class="tableblock halign-left valign-top"><p class="tableblock"><strong>members</strong>: <code>List&lt;C_ATTRIBUTE&gt;</code></p></td>
 <td class="tableblock halign-left valign-top"><div><div class="paragraph">
 <p>List of C_ATTRIBUTEs forming the definition of the tuple.</p>
+</div></div></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Functions</strong></p></th>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Signature</strong></p></th>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Meaning</strong></p></th>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock">(effected)</p></th>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>c_conforms_to</strong> (other: <code>C_SECOND_ORDER</code>): <code>Boolean</code></p></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>True if constraints represented by this node, ignoring any sub-parts, are narrower or the same as other. Typically used during validation of specialised archetype nodes.</p>
+</div></div></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock">(effected)</p></th>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>c_congruent_to</strong> (other: <code>C_SECOND_ORDER</code>): <code>Boolean</code></p></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>True if constraints represented by this node contain no further redefinitions with respect to the node other. Typically used to test if an inherited node locally contains any constraints.</p>
 </div></div></td>
 </tr>
 </tbody>

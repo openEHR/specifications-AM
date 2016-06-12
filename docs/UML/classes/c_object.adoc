@@ -26,7 +26,7 @@ Only set if it overrides the parent archetype in the case of specialised archety
 
 h|*1..1*
 |*node_id*: `String`
-a|Semantic identifier of this node, used to dis-tinguish sibling nodes. All nodes must have a node_id; for nodes under a container C_ATTRIBUTE, the id must be an id-code must be defined in the archetype terminolo-gy. For valid structures, all node ids are id-codes.
+a|Semantic identifier of this node, used to dis-tinguish sibling nodes. All nodes must have a node_id; for nodes under a container C_ATTRIBUTE, the id must be an id-code must be defined in the archetype terminology. For valid structures, all node ids are id-codes.
 For C_PRIMITIVE_OBJECTs, it will have the special value Primitive_node_id.
 
 h|*0..1*
@@ -43,4 +43,27 @@ h|*Functions*
 h|
 |*specialisation_depth*: `Integer`
 a|Level of specialisation of this archetype node, based on its node_id. The value 0 corresponds to non-specialised, 1 to first-level specialisation and so on. The level is the same as the number of ‘.’ characters in the node_id code. If node_id is not set, the return value is -1, signifying that the specialisation level should be determined from the nearest parent C_OBJECT node having a node_id.
+
+h|
+|*effective_occurrences*: `MULTIPLICITY_INTERVAL`
+a|
+
+h|
+|*occurrences_conforms_to* (other: `C_OBJECT`): `Boolean`
+a|True if this node occurrences conforms to other.occurrences; `other' is assumed to be in a flat archetype.
+
+h|
+|*node_id_conforms_to* (other: `C_OBJECT`): `Boolean` +
+*_Post_*: Result = codes_conformant (node_id, other.node_id)
+a|True if this node id conforms to other.node_id, which includes the ids being identical; other is assumed to be in a flat archetype.
+
+h|(effected)
+|*c_conforms_to* (other: `ARCHETYPE_CONSTRAINT`): `Boolean`
+a|True if constraints represented by this node, ignoring any sub-parts, are narrower or the same as other.
+Typically used during validation of special-ised archetype nodes.
+
+h|(effected)
+|*c_congruent_to* (other: `ARCHETYPE_CONSTRAINT`): `Boolean`
+a|True if constraints represented by this node contain no further redefinitions with respect to the node other, with the exception of node_id redefnition in C_OBJECT nodes.
+Typically used to test if an inherited node locally contains any constraints.
 |===

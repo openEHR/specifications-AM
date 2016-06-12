@@ -19,4 +19,15 @@ h|*1..1 +
 (redefined)*
 |*members*: `List<C_PRIMITIVE_OBJECT>`
 a|Object constraint members of this tuple group.
+h|*Functions*
+^h|*Signature*
+^h|*Meaning*
+
+h|(effected)
+|*c_conforms_to* (other: `C_SECOND_ORDER`): `Boolean`
+a|True if constraints represented by this node, ignoring any sub-parts, are narrower or the same as other. Typically used during validation of specialised archetype nodes.
+
+h|(effected)
+|*c_congruent_to* (other: `C_SECOND_ORDER`): `Boolean`
+a|True if constraints represented by this node contain no further redefinitions with respect to the node other. Typically used to test if an inherited node locally contains any constraints.
 |===
