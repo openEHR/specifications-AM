@@ -8276,9 +8276,11 @@ Note that in the above, the '/' is used to denote '/protocol' as a differential 
 
 <span class="tok-c">// ======================== Components =======================</span><span class="tok-w"></span>
 
-<span class="tok-nl">c_objects</span><span class="tok-p">:</span><span class="tok-w"> </span><span class="tok-o">(</span><span class="tok-w"> </span><span class="tok-nv">sibling_order</span><span class="tok-o">?</span><span class="tok-w"> </span><span class="tok-nv">c_non_primitive_object</span><span class="tok-w"> </span><span class="tok-o">)+</span><span class="tok-w"> </span><span class="tok-o">|</span><span class="tok-w"> </span><span class="tok-nv">c_primitive_object</span><span class="tok-w"> </span><span class="tok-p">;</span><span class="tok-w"></span>
+<span class="tok-nl">c_objects</span><span class="tok-p">:</span><span class="tok-w"> </span><span class="tok-nv">c_non_primitive_object_ordered</span><span class="tok-o">+</span><span class="tok-w"> </span><span class="tok-o">|</span><span class="tok-w"> </span><span class="tok-nv">c_primitive_object</span><span class="tok-w"> </span><span class="tok-p">;</span><span class="tok-w"></span>
 
 <span class="tok-nl">sibling_order</span><span class="tok-p">:</span><span class="tok-w"> </span><span class="tok-o">(</span><span class="tok-w"> </span><span class="tok-no">SYM_AFTER</span><span class="tok-w"> </span><span class="tok-o">|</span><span class="tok-w"> </span><span class="tok-no">SYM_BEFORE</span><span class="tok-w"> </span><span class="tok-o">)</span><span class="tok-w"> </span><span class="tok-s">&#39;[&#39;</span><span class="tok-w"> </span><span class="tok-no">ID_CODE</span><span class="tok-w"> </span><span class="tok-s">&#39;]&#39;</span><span class="tok-w"> </span><span class="tok-p">;</span><span class="tok-w"></span>
+
+<span class="tok-nl">c_non_primitive_object_ordered</span><span class="tok-p">:</span><span class="tok-w"> </span><span class="tok-nv">sibling_order</span><span class="tok-o">?</span><span class="tok-w"> </span><span class="tok-nv">c_non_primitive_object</span><span class="tok-w"> </span><span class="tok-p">;</span><span class="tok-w"></span>
 
 <span class="tok-nl">c_non_primitive_object</span><span class="tok-p">:</span><span class="tok-w"></span>
 <span class="tok-w">      </span><span class="tok-nv">c_complex_object</span><span class="tok-w"></span>
