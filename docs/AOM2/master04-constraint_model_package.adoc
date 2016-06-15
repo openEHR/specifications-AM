@@ -131,6 +131,7 @@ Constraints on primitive types are defined by the classes inheriting from `C_PRI
 
 The primitive constraint for each primitive type may itself be complex. Its RM type is given by the type of the `_constraint_` accessor in each `C_PRIMITIVE_OBJECT` descendant and is summarised in the following table.
 
+[[primitive-types,Primitive Types]]
 [width="100%",cols="1,1,2,3",options="header",]
 |===========
 |AOM type             |RM Primitive type       |AOM Primitive constrainer type |Explanation
@@ -177,7 +178,7 @@ In order to accommodate concrete type variants that are used in common type syst
 * `Integer` variants: in addition to matching `Integer`, `C_INTEGER` should match `IntegerN` and `Integer_N`, to accommodate RM types such as `Integer_16`, `Integer64` etc;
 * `Real` variants: in addition to matching `Real`, `C_REAL` should match `RealN` and `Real_N` and `Double`, to accommodate RM types such as `Real_32`, `Real64` and `Double`.
 
-This may be implemented by automatic means, or alternatively via tools that enable some configuration of which type names are considered equivalent in Refeence Models in general, or even on a per-RM basis.
+A way of configuring this on a per-RM basis is described in the section <<RM Primitive Type Equivalences>> below.
 
 ==== Assumed_value
 

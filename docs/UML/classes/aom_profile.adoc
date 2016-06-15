@@ -27,4 +27,12 @@ a|Name of this profile, usually based on the publisher it pertains to e.g. "open
 h|*0..1*
 |*aom_rm_type_mappings*: `Hash<String,AOM_TYPE_MAPPING>`
 a|Mappings from AOM built-in types to actual types in RM: whenever the type name is encountered in an archetype, it is mapped to a specific RM type.
+
+h|*0..1*
+|*rm_primitive_type_equivalences*: `Hash<String, String>`
+a|Equivalences of RM primitive types to in-built set of primitive types. Used to determine which AOM C_PRIMITIVE_OBJECT descendant is used for a primitive type. Typical entries:
+
+* value	key
+* "Real"	"Double"
+* "Integer"	"Integer64"
 |===

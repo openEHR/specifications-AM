@@ -341,8 +341,9 @@
 </ul>
 </li>
 <li><a href="#_mapping_rm_entities_to_aom_entities">10.2. Mapping RM Entities to AOM Entities</a></li>
-<li><a href="#_rm_primitive_type_equivalence">10.3. RM Primitive Type Equivalence</a></li>
-<li><a href="#_aom_lifecycle_state_mappings">10.4. AOM Lifecycle State Mappings</a></li>
+<li><a href="#_rm_primitive_type_equivalences">10.3. RM Primitive Type Equivalences</a></li>
+<li><a href="#_rm_type_substitutions">10.4. RM Type Substitutions</a></li>
+<li><a href="#_aom_lifecycle_state_mappings">10.5. AOM Lifecycle State Mappings</a></li>
 </ul>
 </li>
 <li><a href="#_references">References</a>
@@ -457,15 +458,23 @@
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a id="latest_issue"></a>2.0.6</p></td>
 <td class="tableblock halign-left valign-top"><div><div class="paragraph">
-<p>Correct ambiguity between ADL and AOM specs concerning duration fractional seconds - remove <code>C_DURATION.<em>fractional_seconds_allowed</em></code> (<a href="https://openehr.atlassian.net/browse/SPECPR-188">SPECPR-188</a>).</p>
+<p>Adjust <code>C_ATTRIBUTE.<em>any_allowed</em></code> to have the post-condition <code>Result = children.is_empty and not is_prohibited</code>.</p>
 </div></div></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">B Verhees</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a id="latest_issue_date"></a>10 Jun 2016</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">T Beale</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a id="latest_issue_date"></a>15 Jun 2016</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"><div><div class="paragraph">
-<p>Add more precise specification of type matching under the 'Object Node Types' section.</p>
+<p>Correct ambiguity between ADL and AOM specs concerning duration fractional seconds - remove <code>C_DURATION.<em>fractional_seconds_allowed</em></code> (<a href="https://openehr.atlassian.net/browse/SPECPR-188">SPECPR-188</a>).</p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">B Verhees</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">10 Jun 2016</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>Add more precise specification of type matching under the 'Object Node Types' section, including for primitive types. Add <code><em>rm_primitive_type_equivalences</em></code> property to <code>AOM_PROFILE</code> to accommodate primitive type matching rules.</p>
 </div></div></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">T Beale</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">08 Jun 2016</p></td>
@@ -3061,7 +3070,7 @@ It is the parent class of all concrete types of archetype.</p>
 <div class="paragraph">
 <p>The primitive constraint for each primitive type may itself be complex. Its RM type is given by the type of the <code><em>constraint</em></code> accessor in each <code>C_PRIMITIVE_OBJECT</code> descendant and is summarised in the following table.</p>
 </div>
-<table class="tableblock frame-all grid-all spread">
+<table id="primitive-types" class="tableblock frame-all grid-all spread">
 <colgroup>
 <col style="width: 14.2857%;">
 <col style="width: 14.2857%;">
@@ -3186,7 +3195,7 @@ It is the parent class of all concrete types of archetype.</p>
 </ul>
 </div>
 <div class="paragraph">
-<p>This may be implemented by automatic means, or alternatively via tools that enable some configuration of which type names are considered equivalent in Refeence Models in general, or even on a per-RM basis.</p>
+<p>A way of configuring this on a per-RM basis is described in the section <a href="#_rm_primitive_type_equivalences">RM Primitive Type Equivalences</a> below.</p>
 </div>
 <div class="sect4">
 <h5 id="_assumed_value"><a class="anchor" href="#_assumed_value"></a>4.2.7.1. Assumed_value</h5>
@@ -3595,15 +3604,18 @@ Typically used to test if an inherited node locally contains any constraints.</p
 <tr>
 <th class="tableblock halign-center valign-top"></th>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><strong>any_allowed</strong>: <code>Boolean</code><br>
-<strong><em>Post</em></strong>: Result := children.is_empty</p></td>
+<strong><em>Post</em></strong>: Result := children.is_empty and not is_prohibited</p></td>
 <td class="tableblock halign-left valign-top"><div><div class="paragraph">
 <p>True if there is no effective constraint on the children of the RM attribute to which this C_ATTRIBUTE refers.</p>
 </div></div></td>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>is_mandatory</strong>: <code>Boolean</code></p></td>
-<td class="tableblock halign-left valign-top"><div></div></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>is_mandatory</strong>: <code>Boolean</code><br>
+<strong><em>Post</em></strong>: Result = existence /= Void and then existence.is_mandatory</p></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>True if this C_ATTRIBUTE has an existence constraint of 1..1, i..e. mandation.</p>
+</div></div></td>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"></th>
@@ -3640,9 +3652,9 @@ Typically used during validation of special-ised archetype nodes.</p>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock">(effected)</p></th>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><strong>is_prohibited</strong>: <code>Boolean</code><br>
-<strong><em>Post</em></strong>: Result = existence /= Void and then and then existence.is_prohibited</p></td>
+<strong><em>Post</em></strong>: Result = existence /= Void and then existence.is_prohibited</p></td>
 <td class="tableblock halign-left valign-top"><div><div class="paragraph">
-<p>True if this node (and all its sub-nodes) is a valid archetype node for its type. This function should be implemented by each subtype to perform semantic validation of itself, and then call the is_valid function in any subparts, and generate the result appropriately.</p>
+<p>True if this C_ATTRIBUTE has an existence constraint of 0..0, i.e. prohibition.</p>
 </div></div></td>
 </tr>
 </tbody>
@@ -7159,6 +7171,26 @@ Hash of keys ("text", "description" etc) and corresponding values.</p>
 <p>Mappings from AOM built-in types to actual types in RM: whenever the type name is encountered in an archetype, it is mapped to a specific RM type.</p>
 </div></div></td>
 </tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>rm_primitive_type_equivalences</strong>: <code>Hash&lt;String, String&gt;</code></p></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>Equivalences of RM primitive types to in-built set of primitive types. Used to determine which AOM C_PRIMITIVE_OBJECT descendant is used for a primitive type. Typical entries:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>value	key</p>
+</li>
+<li>
+<p>"Real"	"Double"</p>
+</li>
+<li>
+<p>"Integer"	"Integer64"</p>
+</li>
+</ul>
+</div></div></td>
+</tr>
 </tbody>
 </table>
 </div>
@@ -7327,19 +7359,50 @@ Hash of keys ("text", "description" etc) and corresponding values.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_rm_primitive_type_equivalence"><a class="anchor" href="#_rm_primitive_type_equivalence"></a>10.3. RM Primitive Type Equivalence</h3>
+<h3 id="_rm_primitive_type_equivalences"><a class="anchor" href="#_rm_primitive_type_equivalences"></a>10.3. RM Primitive Type Equivalences</h3>
 <div class="paragraph">
-<p>In some cases, primitive types as parsed in an archetype do not quite match those in the reference model. Typical examples of benign mismatches that can be silently corrected by defining mappings in the AOM profile are:</p>
+<p>The primitive constrainer types of the AOM, i.e. descendants of <code>C_PRIMITIVE_OBJECT</code> correspond to a small abstract set of primitive types, as shown in the table <a href="#primitive-types">Primitive Types</a>. The implied list of RM abstract primitive types is <code>Boolean</code>, <code>Integer</code>, <code>Real</code>, <code>Date</code>, <code>Date_time</code>, <code>Time</code>, <code>Duration</code>, <code>String</code>, and <code>Terminology_code</code>. However, real reference models may be based on typical programming languages, and therefore include types like <code>Double</code>, <code>Integer64</code>, and even numerous variants on <code>String</code>, <code>Integer</code> etc, such as <code>String_8</code>, <code>String32</code> and so on.</p>
 </div>
-<div class="ulist">
-<ul>
-<li>
-<p>numeric values that parse as native AOM REAL or INTEGER, but are defined as Double in the RM;</p>
-</li>
-<li>
-<p>ISO 8601 date/time values that are defined as String fields in the RM (due to the fact that ISO 8601 values are represented as strings).</p>
-</li>
-</ul>
+<div class="paragraph">
+<p>In order to prevent a similar explosion of AOM primitive types, the AOM profile enables equivalences between these latter types (which typically differ for each RM) and the abstract set to be stated, using the <code><em>rm_primitive_type_equivalences</em></code> property of <code>AOM_PROFILE</code>. An example is shown below.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="pygments highlight"><code data-lang="odin"><span class="tok-nc">rm_primitive_type_equivalences</span> <span class="tok-o">=</span> <span class="tok-p">&lt;</span>
+	<span class="tok-p">[</span><span class="tok-s">&quot;Double&quot;</span><span class="tok-p">]</span> <span class="tok-o">=</span> <span class="tok-p">&lt;</span><span class="tok-s">&quot;Real&quot;</span><span class="tok-p">&gt;</span>                      <span class="tok-c">-- treat RM type Double as if it where Real</span>
+	<span class="tok-p">[</span><span class="tok-s">&quot;Integer64&quot;</span><span class="tok-p">]</span> <span class="tok-o">=</span> <span class="tok-p">&lt;</span><span class="tok-s">&quot;Integer&quot;</span><span class="tok-p">&gt;</span>                <span class="tok-c">-- treat RM type Integer64 as if it were Integer</span>
+	<span class="tok-p">[</span><span class="tok-s">&quot;ISO8601_DATE&quot;</span><span class="tok-p">]</span> <span class="tok-o">=</span> <span class="tok-p">&lt;</span><span class="tok-s">&quot;Date&quot;</span><span class="tok-p">&gt;</span>                <span class="tok-c">-- treat RM type ISO8601_Date as if it were Date</span>
+	<span class="tok-p">[</span><span class="tok-s">&quot;ISO8601_DATE_TIME&quot;</span><span class="tok-p">]</span> <span class="tok-o">=</span> <span class="tok-p">&lt;</span><span class="tok-s">&quot;Date_time&quot;</span><span class="tok-p">&gt;</span>
+	<span class="tok-p">[</span><span class="tok-s">&quot;ISO8601_TIME&quot;</span><span class="tok-p">]</span> <span class="tok-o">=</span> <span class="tok-p">&lt;</span><span class="tok-s">&quot;Time&quot;</span><span class="tok-p">&gt;</span>
+	<span class="tok-p">[</span><span class="tok-s">&quot;ISO8601_DURATION&quot;</span><span class="tok-p">]</span> <span class="tok-o">=</span> <span class="tok-p">&lt;</span><span class="tok-s">&quot;Duration&quot;</span><span class="tok-p">&gt;</span>
+<span class="tok-p">&gt;</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The following CADL fragment provides an example.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="pygments highlight"><code data-lang="cadl">    <span class="tok-nc">ELEMENT</span><span class="tok-p">[</span><span class="tok-nd">id5</span><span class="tok-p">]</span> <span class="tok-kt">occurrences </span><span class="tok-o">matches </span><span class="tok-p">{</span><span class="tok-m">0..1</span><span class="tok-p">}</span> <span class="tok-o">matches </span><span class="tok-p">{</span>	<span class="tok-c">-- Systolic</span>
+        <span class="tok-nc">value</span> <span class="tok-o">matches </span><span class="tok-p">{</span>
+            <span class="tok-nc">DV_QUANTITY</span><span class="tok-p">[</span><span class="tok-nd">id1054</span><span class="tok-p">]</span> <span class="tok-o">matches </span><span class="tok-p">{</span>
+                <span class="tok-nc">property</span> <span class="tok-o">matches </span><span class="tok-p">{[</span><span class="tok-nd">at1055</span><span class="tok-p">]}</span>
+                <span class="tok-nc">magnitude</span> <span class="tok-o">matches </span><span class="tok-p">{|</span><span class="tok-mf">0.0</span><span class="tok-p">..&lt;</span><span class="tok-mf">1000.0</span><span class="tok-p">|}</span>  <span class="tok-c">-- **** parses as AOM C_REAL, but is Double in RM</span>
+                <span class="tok-nc">precision</span> <span class="tok-o">matches </span><span class="tok-p">{</span><span class="tok-m">0</span><span class="tok-p">}</span>
+                <span class="tok-nc">units</span> <span class="tok-o">matches </span><span class="tok-p">{</span><span class="tok-s">&quot;mm[Hg]&quot;</span><span class="tok-p">}</span>
+            <span class="tok-p">}</span>
+        <span class="tok-p">}</span>
+    <span class="tok-p">}</span></code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_rm_type_substitutions"><a class="anchor" href="#_rm_type_substitutions"></a>10.4. RM Type Substitutions</h3>
+<div class="paragraph">
+<p>Occasionally there are type mismatches between the RM type and the AOM type we would like to use, or has been used in an archetype. For example, the RM may have a <code>String</code> attribute in some class that represents an ISO 8601 date. It is possible to use the AOM constrainer type <code>C_DATE</code> instead of <code>C_STRING</code>, to obtain more a meaningful constraint.</p>
+</div>
+<div class="paragraph">
+<p>Another use is where the archetype has been written with an integer constrant (i.e. a <code>C_INTEGER</code>) but the RM has a <code>Real</code> or <code>Double</code> type in the corresponding place. This can also be accommodated.</p>
 </div>
 <div class="paragraph">
 <p>These differences can be corrected by using the <code><em>aom_type_substitutions</em></code> configuration table defined in the <code>AOM_PROFILE</code> class. The following is an example of using this facility to enable primitive type matching for openEHR archetypes.</p>
@@ -7355,30 +7418,12 @@ Hash of keys ("text", "description" etc) and corresponding values.</p>
 	<span class="tok-p">[</span><span class="tok-s">&quot;ISO8601_DATE_TIME&quot;</span><span class="tok-p">]</span> <span class="tok-o">=</span> <span class="tok-p">&lt;</span><span class="tok-s">&quot;String&quot;</span><span class="tok-p">&gt;</span>
 	<span class="tok-p">[</span><span class="tok-s">&quot;ISO8601_TIME&quot;</span><span class="tok-p">]</span> <span class="tok-o">=</span> <span class="tok-p">&lt;</span><span class="tok-s">&quot;String&quot;</span><span class="tok-p">&gt;</span>
 	<span class="tok-p">[</span><span class="tok-s">&quot;ISO8601_DURATION&quot;</span><span class="tok-p">]</span> <span class="tok-o">=</span> <span class="tok-p">&lt;</span><span class="tok-s">&quot;String&quot;</span><span class="tok-p">&gt;</span>
-	<span class="tok-p">[</span><span class="tok-s">&quot;REAL&quot;</span><span class="tok-p">]</span> <span class="tok-o">=</span> <span class="tok-p">&lt;</span><span class="tok-s">&quot;Double&quot;</span><span class="tok-p">&gt;</span>
 	<span class="tok-p">[</span><span class="tok-s">&quot;INTEGER&quot;</span><span class="tok-p">]</span> <span class="tok-o">=</span> <span class="tok-p">&lt;</span><span class="tok-s">&quot;Double&quot;</span><span class="tok-p">&gt;</span>
 <span class="tok-p">&gt;</span></code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>The effect of these mappings is that literal values in an archetype that parse as the left hand side type (<code>ISO8601_DATE</code> etc) etc will be silently mapped to the right hand RM type (<code>String</code> etc). The following CADL fragment provide an example.</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="pygments highlight"><code data-lang="cadl">    <span class="tok-nc">ELEMENT</span><span class="tok-p">[</span><span class="tok-nd">id5</span><span class="tok-p">]</span> <span class="tok-kt">occurrences </span><span class="tok-o">matches </span><span class="tok-p">{</span><span class="tok-m">0..1</span><span class="tok-p">}</span> <span class="tok-o">matches </span><span class="tok-p">{</span>	<span class="tok-c">-- Systolic</span>
-        <span class="tok-nc">value</span> <span class="tok-o">matches </span><span class="tok-p">{</span>
-            <span class="tok-nc">DV_QUANTITY</span><span class="tok-p">[</span><span class="tok-nd">id1054</span><span class="tok-p">]</span> <span class="tok-o">matches </span><span class="tok-p">{</span>
-                <span class="tok-nc">property</span> <span class="tok-o">matches </span><span class="tok-p">{[</span><span class="tok-nd">at1055</span><span class="tok-p">]}</span>
-                <span class="tok-nc">magnitude</span> <span class="tok-o">matches </span><span class="tok-p">{|</span><span class="tok-mf">0.0</span><span class="tok-p">..&lt;</span><span class="tok-mf">1000.0</span><span class="tok-p">|}</span>  <span class="tok-c">-- **** parses as AOM REAL, but is Double in RM</span>
-                <span class="tok-nc">precision</span> <span class="tok-o">matches </span><span class="tok-p">{</span><span class="tok-m">0</span><span class="tok-p">}</span>
-                <span class="tok-nc">units</span> <span class="tok-o">matches </span><span class="tok-p">{</span><span class="tok-s">&quot;mm[Hg]&quot;</span><span class="tok-p">}</span>
-            <span class="tok-p">}</span>
-        <span class="tok-p">}</span>
-    <span class="tok-p">}</span></code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>The following example shows a native ISO Duration field that is mapped to a String value.</p>
+<p>The effect of these mappings is that literal values in an archetype that parse as the left hand side type (<code>ISO8601_DATE</code> etc) etc will be silently mapped to the right hand RM type (<code>String</code> etc). The following example shows a native ISO Duration field that is mapped to an RM String value.</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -7393,7 +7438,7 @@ Hash of keys ("text", "description" etc) and corresponding values.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_aom_lifecycle_state_mappings"><a class="anchor" href="#_aom_lifecycle_state_mappings"></a>10.4. AOM Lifecycle State Mappings</h3>
+<h3 id="_aom_lifecycle_state_mappings"><a class="anchor" href="#_aom_lifecycle_state_mappings"></a>10.5. AOM Lifecycle State Mappings</h3>
 <div class="paragraph">
 <p>Another kind of useful mapping adjustment that can help to make tools process archetypes in a more homogeneous way is to do with the AOM life-cycle states, which are standardised in the <a href="http://www.openehr.org/releases/AM/latest/Identification.html">openEHR Archetype Identification specification</a>. These states denote the state of a whole archetype in its authoring life cycle. Historically however there were no standard names, with the consequence that various archetype tools implement their own local lifecycle state names. To adjust for this the <code><em>aom_lifecycle_mappings</em></code> property in the <code>AOM_PROFILE</code> class can be used. These mappings have the effect of replacing the current value of the <code><em>lifecycle_state</em></code> property of the <code>RESOURCE_DESCRIPTION</code> instance of a parsed archetype with an openEHR standard state name. A typical example of the <code>description</code> section of an archetype with a local lifecycle state name is below.</p>
 </div>

@@ -89,12 +89,45 @@ The value of creating these mappings is that they inform tooling that constraint
 
 Using class and property mappings can enable more sophisticated archetype comparison and potentially even harmonisation, as well as more intelligent data comparison.
 
-== RM Primitive Type Equivalence
+== RM Primitive Type Equivalences
 
-In some cases, primitive types as parsed in an archetype do not quite match those in the reference model. Typical examples of benign mismatches that can be silently corrected by defining mappings in the AOM profile are:
+The primitive constrainer types of the AOM, i.e. descendants of `C_PRIMITIVE_OBJECT` correspond to a small abstract set of primitive types, as shown in the table <<Primitive Types>>. The implied list of RM abstract primitive types is `Boolean`, `Integer`, `Real`, `Date`, `Date_time`, `Time`, `Duration`, `String`, and `Terminology_code`. However, real reference models may be based on typical programming languages, and therefore include types like `Double`, `Integer64`, and even numerous variants on `String`, `Integer` etc, such as `String_8`, `String32` and so on. 
 
-* numeric values that parse as native AOM REAL or INTEGER, but are defined as Double in the RM;
-* ISO 8601 date/time values that are defined as String fields in the RM (due to the fact that ISO 8601 values are represented as strings).
+In order to prevent a similar explosion of AOM primitive types, the AOM profile enables equivalences between these latter types (which typically differ for each RM) and the abstract set to be stated, using the `_rm_primitive_type_equivalences_` property of `AOM_PROFILE`. An example is shown below.
+
+[source, odin]
+--------
+rm_primitive_type_equivalences = <
+	["Double"] = <"Real">                      -- treat RM type Double as if it where Real
+	["Integer64"] = <"Integer">                -- treat RM type Integer64 as if it were Integer
+	["ISO8601_DATE"] = <"Date">                -- treat RM type ISO8601_Date as if it were Date
+	["ISO8601_DATE_TIME"] = <"Date_time">
+	["ISO8601_TIME"] = <"Time">
+	["ISO8601_DURATION"] = <"Duration">
+>
+--------
+
+The following CADL fragment provides an example.
+
+[source, cadl]
+--------
+    ELEMENT[id5] occurrences matches {0..1} matches {	-- Systolic
+        value matches {
+            DV_QUANTITY[id1054] matches {
+                property matches {[at1055]}
+                magnitude matches {|0.0..<1000.0|}  -- **** parses as AOM C_REAL, but is Double in RM
+                precision matches {0}
+                units matches {"mm[Hg]"}
+            }
+        }
+    }
+--------
+
+== RM Type Substitutions
+
+Occasionally there are type mismatches between the RM type and the AOM type we would like to use, or has been used in an archetype. For example, the RM may have a `String` attribute in some class that represents an ISO 8601 date. It is possible to use the AOM constrainer type `C_DATE` instead of `C_STRING`, to obtain more a meaningful constraint.
+ 
+Another use is where the archetype has been written with an integer constrant (i.e. a `C_INTEGER`) but the RM has a `Real` or `Double` type in the corresponding place. This can also be accommodated.
 
 These differences can be corrected by using the `_aom_type_substitutions_` configuration table defined in the `AOM_PROFILE` class. The following is an example of using this facility to enable primitive type matching for openEHR archetypes.
 
@@ -109,28 +142,11 @@ aom_rm_type_substitutions = <
 	["ISO8601_DATE_TIME"] = <"String">
 	["ISO8601_TIME"] = <"String">
 	["ISO8601_DURATION"] = <"String">
-	["REAL"] = <"Double">
 	["INTEGER"] = <"Double">
 >
 --------
 
-The effect of these mappings is that literal values in an archetype that parse as the left hand side type (`ISO8601_DATE` etc) etc will be silently mapped to the right hand RM type (`String` etc). The following CADL fragment provide an example.
-
-[source, cadl]
---------
-    ELEMENT[id5] occurrences matches {0..1} matches {	-- Systolic
-        value matches {
-            DV_QUANTITY[id1054] matches {
-                property matches {[at1055]}
-                magnitude matches {|0.0..<1000.0|}  -- **** parses as AOM REAL, but is Double in RM
-                precision matches {0}
-                units matches {"mm[Hg]"}
-            }
-        }
-    }
---------
-
-The following example shows a native ISO Duration field that is mapped to a String value.
+The effect of these mappings is that literal values in an archetype that parse as the left hand side type (`ISO8601_DATE` etc) etc will be silently mapped to the right hand RM type (`String` etc). The following example shows a native ISO Duration field that is mapped to an RM String value.
 
 [source, cadl]
 --------
