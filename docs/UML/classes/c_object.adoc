@@ -66,4 +66,9 @@ h|(effected)
 |*c_congruent_to* (other: `ARCHETYPE_CONSTRAINT`): `Boolean`
 a|True if constraints represented by this node contain no further redefinitions with respect to the node other, with the exception of node_id redefnition in C_OBJECT nodes.
 Typically used to test if an inherited node locally contains any constraints.
+
+h|(effected)
+|*is_prohibited*: `Boolean` +
+*_Post_*: Result = occurrences /= Void and then occurrences.is_prohibited
+a|True if this C_OBJECT node is prohibited, i.e. if its occurrences is 0..0.
 |===

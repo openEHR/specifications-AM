@@ -3468,7 +3468,7 @@ Since an archetype might not contain external terminology bindings for all (or e
 <th class="tableblock halign-center valign-top"></th>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><strong>is_prohibited</strong>: <code>Boolean</code></p></td>
 <td class="tableblock halign-left valign-top"><div><div class="paragraph">
-<p>True if this node (and all its sub-nodes) is a valid archetype node for its type. This function should be implemented by each subtype to perform semantic validation of itself, and then call the is_valid function in any subparts, and generate the result appropriately.</p>
+<p>True if this node is prohibited. Implemented in subtypes.</p>
 </div></div></td>
 </tr>
 <tr>
@@ -3960,6 +3960,14 @@ Typically used during validation of special-ised archetype nodes.</p>
 <td class="tableblock halign-left valign-top"><div><div class="paragraph">
 <p>True if constraints represented by this node contain no further redefinitions with respect to the node other, with the exception of node_id redefnition in C_OBJECT nodes.
 Typically used to test if an inherited node locally contains any constraints.</p>
+</div></div></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock">(effected)</p></th>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>is_prohibited</strong>: <code>Boolean</code><br>
+<strong><em>Post</em></strong>: Result = occurrences /= Void and then occurrences.is_prohibited</p></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>True if this C_OBJECT node is prohibited, i.e. if its occurrences is 0..0.</p>
 </div></div></td>
 </tr>
 </tbody>
