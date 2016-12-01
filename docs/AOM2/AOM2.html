@@ -1682,13 +1682,13 @@ first names last name, organisation &lt;organisation email address&gt;</pre>
 <div class="sect4">
 <h5 id="_languages_and_translation"><a class="anchor" href="#_languages_and_translation"></a>3.4.2.3. Languages and Translation</h5>
 <div class="paragraph">
-<p>The <code>AUTHORED_RESOURCE</code>.<code><em>original_language</em></code> and <code>TRANSLATION_DETAILS</code> class enable the original language of authoring and information relating to subsequent translations to be expressed. <code>TRANSLATION_DETAILS</code>.<code><em>author</em></code> allows each translator to be represented in the same way as the <code><em>original_author</em></code> , i.e. a list of name/values. The <code><em>version_last_translated</em></code> property is used to record a copy of the archetype_id.physical_id for each language, when the translation was carried out. This enables maintainers to know when new translations are needed for some or all languages.</p>
+<p>The <code>AUTHORED_RESOURCE.<em>original_language</em></code> and <code>TRANSLATION_DETAILS</code> class enable the original language of authoring and information relating to subsequent translations to be expressed. <code>TRANSLATION_DETAILS.<em>author</em></code> allows each translator to be represented in the same way as the <code><em>original_author</em></code> , i.e. a list of name/values.</p>
 </div>
 </div>
 <div class="sect4">
 <h5 id="_version_last_translated"><a class="anchor" href="#_version_last_translated"></a>3.4.2.4. Version_last_translated</h5>
 <div class="paragraph">
-<p>This String property records the full version identifier (i.e. <code>ARCHETYPE</code>.<code><em>archetype_id</em></code>.<code><em>version_id</em></code>) at the time of last translation, enabling tools to determine if and when translations may be out of date.</p>
+<p>The <code><em>version_last_translated</em></code> property is used to record a copy of the <code><em>archetype_id.physical_id</em></code> for each language, when the translation was carried out. This enables maintainers to know when new translations are needed for some or all languages. This String property records the full version identifier (i.e. <code>ARCHETYPE</code>.<code><em>archetype_id</em></code>.<code><em>version_id</em></code>) at the time of last translation, enabling tools to determine if and when translations may be out of date.</p>
 </div>
 </div>
 </div>
@@ -2855,7 +2855,7 @@ It is the parent class of all concrete types of archetype.</p>
 <div class="sect2">
 <h3 id="_overview_3"><a class="anchor" href="#_overview_3"></a>4.1. Overview</h3>
 <div class="paragraph">
-<p>Figure <a id="constraint_model_top"></a> and Figure <a id="constraint_model_bottom"></a> illustrate the object model of constraints used in an archetype definition. This model is completely generic, and is designed to express the semantics of constraints on instances of classes which are themselves described in any orthodox object-oriented formalism, such as UML. Accordingly, the major abstractions in this model correspond to major abstractions in object-oriented formalisms, including several variations of the notion of 'object' and the notion of 'attribute'. The notion of 'object' rather than 'class' or 'type' is used because archetypes are about constraints on data (i.e. 'instances', or 'objects') rather than models, which are constructed from 'classes'. In this document, the word 'attribute' refers to any data property of a class, regardless of whether regarded as a 'relationship' (i.e. association, aggregation, or composition) or 'primitive' (i.e. value) attribute in an object model.</p>
+<p>Figure <a href="#constraint_model_top">constraint_model Package</a> and Figure <a href="#constraint_model_bottom">constraint_model.primitive Package</a> illustrate the object model of constraints used in an archetype definition. This model is completely generic, and is designed to express the semantics of constraints on instances of classes which are themselves described in any orthodox object-oriented formalism, such as UML. Accordingly, the major abstractions in this model correspond to major abstractions in object-oriented formalisms, including several variations of the notion of 'object' and the notion of 'attribute'. The notion of 'object' rather than 'class' or 'type' is used because archetypes are about constraints on data (i.e. 'instances', or 'objects') rather than models, which are constructed from 'classes'. In this document, the word 'attribute' refers to any data property of a class, regardless of whether regarded as a 'relationship' (i.e. association, aggregation, or composition) or 'primitive' (i.e. value) attribute in an object model.</p>
 </div>
 <div id="constraint_model_top" class="imageblock text-center" style="text-align: center">
 <div class="content">
@@ -3019,7 +3019,7 @@ It is the parent class of all concrete types of archetype.</p>
 <div class="sect4">
 <h5 id="_sibling_ordering"><a class="anchor" href="#_sibling_ordering"></a>4.2.3.3. Sibling Ordering</h5>
 <div class="paragraph">
-<p>Within a specialised archetype, redefined or added object nodes may be defined under a container attribute. Since specialised archetypes are in differential form, i.e. only redefined or added nodes are expressed, not nodes inherited unchanged, the relative ordering of siblings can&#8217;t be stated simply by the ordering of such items within the relevant list within the differential form of the archetype. An explicit ordering indicator is required if indeed order is specific. The <code>C_OBJECT</code>.<code><em>sibling_order</em></code> attribute provides this possibility. It can only be set on a <code>C_OBJECT</code> descendant within a multiply-valued attribute, i.e. an instance of <code>C_ATTRIBUTE</code> for which the <code><em>cardinality</em></code> is ordered.</p>
+<p>Within a specialised archetype, redefined or added object nodes may be defined under a container attribute. Since specialised archetypes are in differential form, i.e. only redefined or added nodes are expressed, not nodes inherited unchanged, the relative ordering of siblings can&#8217;t be stated simply by the ordering of such items within the relevant list within the differential form of the archetype. An explicit ordering indicator is required if indeed order is specific. The <code>C_OBJECT.<em>sibling_order</em></code> attribute provides this possibility. It can only be set on a <code>C_OBJECT</code> descendant within a multiply-valued attribute, i.e. an instance of <code>C_ATTRIBUTE</code> for which the <code><em>cardinality</em></code> is ordered.</p>
 </div>
 </div>
 <div class="sect4">
@@ -3370,7 +3370,7 @@ Since an archetype might not contain external terminology bindings for all (or e
 <div class="sect2">
 <h3 id="_aom_type_substitutions"><a class="anchor" href="#_aom_type_substitutions"></a>4.4. AOM Type Substitutions</h3>
 <div class="paragraph">
-<p>The <code>C_OBJECT</code> types defined in Figure <a href="#constraint_model_top">[constraint_model_top]</a> are reproduced below, with concrete types that may actually occur in archetypes shown in dark yellow / non-italic.</p>
+<p>The <code>C_OBJECT</code> types defined in Figure <a href="#constraint_model_top">constraint_model Package</a> are reproduced below, with concrete types that may actually occur in archetypes shown in dark yellow / non-italic.</p>
 </div>
 <div id="c_object_substitutions" class="imageblock text-center" style="text-align: center">
 <div class="content">
@@ -6669,7 +6669,7 @@ Hash of keys ("text", "description" etc) and corresponding values.</p>
 <p>validate terminology languages - check all at-codes and ac-codes found in all languages (VTLC);</p>
 </li>
 <li>
-<p>validate terminology bindings - check that all terms and paths mentioned in bindings exist in terminology and definition (VTBK, VETDF);</p>
+<p>validate terminology bindings - check that all terms and paths mentioned in bindings exist in terminology and definition (VTTBK, VTCBK, VETDF);</p>
 </li>
 <li>
 <p>validate terminology value_sets - check that every code in terminology value set definitions is in the terminology, with no duplications (VTVSID, VTVSMD, VTVSUQ);</p>
@@ -7805,7 +7805,7 @@ Hash of keys ("text", "description" etc) and corresponding values.</p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2016-03-10 07:03:38 MST
+Last updated 2016-03-10 14:03:38 GMT
 </div>
 </div>
 </body>
