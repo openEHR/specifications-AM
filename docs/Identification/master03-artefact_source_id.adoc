@@ -13,7 +13,7 @@ Three distinct groups of properties shown in the `ARCHETYPE_HRID` class that und
 * properties supporting versioning:
 * `release_version`, expressing a 3-part version identifier, e.g. '1.3.0';
 * `build_count` , incremented at every commit, supporting non-release version ids, such as '1.3.0-rc.28' and '1.3.0-alpha', where the build count is 28;
-* `description`.`lifecycle_state`, expressing the development state of the artefact, and used to derive the 'rc' (release candidate) and 'unstable' (development) parts of non-release version ids.
+* `description`.`lifecycle_state`, expressing the development state of the artefact, and used to derive the 'rc' (release candidate) and 'alpha' (development) parts of non-release version ids.
 
 Functions such as `interface_id`, `physical_id` and `version_id` are defined to return respectively the 'interface' and 'physical' archetype HRIDs (described below) as strings, and the full version string (computed from `release_version` , `build_count` and `description.lifecycle_state` ). The functions `major_version` , `minor_version` and `patch_version` extract the various parts of the 3-part `release_version` property.
 
