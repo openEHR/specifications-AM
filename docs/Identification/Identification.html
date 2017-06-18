@@ -247,9 +247,9 @@
 <tbody>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a id="latest_issue"></a>0.7.6</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://openehr.atlassian.net/browse/SPECAM-41">SPECAM-41</a>. Correct 'unstable' to 'alpha'; correct version-related typo.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://openehr.atlassian.net/browse/SPECAM-41">SPECAM-41</a>. Correct 'unstable' to 'alpha'; correct version-related typo; update versioning incrementing rules.</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">S Garde</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a id="latest_issue_date"></a>13 Jun 2017</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a id="latest_issue_date"></a>18 Jun 2017</p></td>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top" colspan="4"><p class="tableblock"><strong>AM Release-2.0.6</strong></p></th>
@@ -878,7 +878,7 @@ the word 'archetype' as used in this specification means: any formal artefact wr
 <div class="sect2">
 <h3 id="_version_numbering"><a class="anchor" href="#_version_numbering"></a>4.2. Version Numbering</h3>
 <div class="paragraph">
-<p>Despite the above differences, the numbering of versions of knowledge artefacts follows the rules for identifying software releases described by {semver}[semver.org].</p>
+<p>Despite the above differences, the numbering of versions of knowledge artefacts follows the rules for identifying software releases described by <a href="http://semver.org">semver.org</a>.</p>
 </div>
 <div class="paragraph">
 <p>Accordingly, version identifiers are based on three levels of 'versioning', identified by dot-separated numeric parts, with an optional extension related to the artefact lifecycle, described below. The numeric parts are:</p>
@@ -983,7 +983,7 @@ the word 'archetype' as used in this specification means: any formal artefact wr
 <div class="sect2">
 <h3 id="_change_semantics"><a class="anchor" href="#_change_semantics"></a>4.3. Change Semantics</h3>
 <div class="paragraph">
-<p>As a consequence of the 3-part {semver}[semver.org] version identification scheme, three levels of change to an artefact can be distinguished. The main question for archetype authors and tool developers is: what level of version change is <em>required</em> for a given kind of concrete change to the artefact? Is this change a patch, a minor version or a breaking change (i.e. major version)?</p>
+<p>As a consequence of the 3-part <a href="http://semver.org">semver.org</a> version identification scheme, three levels of change to an artefact can be distinguished. The main question for archetype authors and tool developers is: what level of version change is <em>required</em> for a given kind of concrete change to the artefact? Is this change a patch, a minor version or a breaking change (i.e. major version)?</p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -1233,7 +1233,7 @@ There is no assumption that a change of a given technical level (i.e. as evaluat
 <p><code>start_review</code> is the name of all actions entering the <code>development</code> macro-state;</p>
 </li>
 <li>
-<p><code>release</code> as an action (i.e. state transition) is taken to mean making any version of an artefact available to the public user base, including pre-releases, final releases and post-releases ('builds' in {semver}[semver.org] parlance);</p>
+<p><code>release</code> as an action (i.e. state transition) is taken to mean making any version of an artefact available to the public user base, including pre-releases, final releases and post-releases ('builds' in <a href="http://semver.org">semver.org</a> parlance);</p>
 </li>
 <li>
 <p><code>publish</code> as an action means to make a definitive release.</p>
@@ -1261,16 +1261,17 @@ There is no assumption that a change of a given technical level (i.e. as evaluat
 <p>An artefact normally starts life at <code>0.0.1</code>, although it is acceptable practice to start at some other v0 version e.g. <code>0.5.0</code> to indicate approximately how mature the artefact is. It remains as a <code>v0.x</code> version for a period of unstable early development leading to an initial releasable <code>1.x</code> version.</p>
 </li>
 <li>
-<p>At some point, the artefact will be uploaded to a managed repository, at which point its identifier will be prepended with the management organisation namespace (and may change in other ways).</p>
+<p>At some point, the artefact will be uploaded to a managed repository, at which point its identifier will be prepended with the management organisation namespace (and may change in other ways) and will have <code>-alpha</code> appended.</p>
 </li>
 <li>
-<p>During active development, an artefact is considered to be unstable, i.e. any kind of changes may be made, reversed, redone and so on; due to this, the version id is formed from the next version number that corresponds to the magnitude of the changes currently in the artefact, and appended with <code>-alpha</code>;</p>
+<p>During initial 'v0' development, an artefact is considered to be unstable, i.e. any kind of changes may be made, reversed, redone and so on; due to this, the minor and patch version numbers are updated freely, and typically less often than the rules dictate for post-v0 development.
+is formed from the next version number that corresponds to the magnitude of the changes currently in the artefact, and appended with <code>-alpha</code>.</p>
 </li>
 <li>
-<p>An artefact may be rejected, in which case its patch version is incremented, and the artefact lifecycle state is set to <code>rejected</code>.</p>
+<p>An artefact may be rejected, in which case the artefact lifecycle state is set to <code>rejected</code> (the version identifier is not changed).</p>
 </li>
 <li>
-<p>At some point, the authoring team of an artefact will decide the artefact is ready for release. Its release version id is then calculated as a function of the difference between the current form and the base version on which it is based.</p>
+<p>At some point, the authoring team of an artefact will decide the artefact is ready for release. Its release version id is either <code>v1.0.0</code>, or else calculated as a function of the difference between the current form and the base version on which it is based.</p>
 </li>
 <li>
 <p>It is then either:</p>
@@ -1299,7 +1300,7 @@ There is no assumption that a change of a given technical level (i.e. as evaluat
 </div>
 </li>
 <li>
-<p>An artefact may eventually be deprecated, in which case its minor version is incremented (following the {semver}[semver.org] rules), and the artefact lifecycle state is set to 'deprecated'. It may be classified inside the repository registry as <code>obsolete</code>, <code>suspended</code> or in some other way.</p>
+<p>An artefact may eventually be deprecated, in which case the artefact lifecycle state is set to 'deprecated' (the version identifier is unchanged). It may be classified inside the repository registry as <code>obsolete</code>, <code>suspended</code> or in some other way.</p>
 </li>
 </ul>
 </div>
@@ -1332,7 +1333,7 @@ There is no assumption that a change of a given technical level (i.e. as evaluat
 <p>The first step to making an artefact widely visible, and usable to the outside world is to bring it under management of an organisation that follows rules of governance and quality assurance on which the outside world can rely. This specification does not describe all these rules, just the rules for identification and meta-data of artefacts coming under management.</p>
 </div>
 <div class="paragraph">
-<p>When an artefact is first created, its lifecycle state is 'unmanaged' and its version identifier is <code>v0.N.P</code>, i.e. a 'pre- v1' version, generally recognised (e.g. by the Github {semver}[Semantic Versioning guidelines] as being an unstable form of the artefact that makes no promises with respect to the normal major/minor/patch versioning rules. The artefact may be given a Guid by tooling, although this will be ignored by a management organisation due to the fact that Guids assigned by ad hoc tools or direct human authoring are often copies of existing Guids (due to cut and paste) or are unreliable in some other way (improper Guid algorithm implementation).</p>
+<p>When an artefact is first created, its lifecycle state is 'unmanaged' and its version identifier is <code>v0.N.P</code>, i.e. a 'pre- v1' version, generally recognised (e.g. by the Github <a href="http://semver.org">Semantic Versioning guidelines</a> as being an unstable form of the artefact that makes no promises with respect to the normal major/minor/patch versioning rules. The artefact may be given a Guid by tooling, although this will be ignored by a management organisation due to the fact that Guids assigned by ad hoc tools or direct human authoring are often copies of existing Guids (due to cut and paste) or are unreliable in some other way (improper Guid algorithm implementation).</p>
 </div>
 <div class="paragraph">
 <p>When an artefact is accepted by a Custodian Organisation, the following things happen:</p>
