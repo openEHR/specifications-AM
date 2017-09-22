@@ -1,12 +1,12 @@
 === ARCHETYPE Class
 
-[cols="^1,2,3"]
+[cols="^1,3,5"]
 |===
 h|*Class*
 2+^h|*_ARCHETYPE (abstract)_*
 
 h|*Description*
-2+a|The ARCHETYPE class defines the core formal model of the root object of any archetype or template. It includes only basic identification information, and otherwise provides the structural connections from the Archetype to its constituent parts, i.e. definition (a C_COMPLEX_OBJECT), terminology (ARCHEYTPE_TERMINOLOGY) and so on.
+2+a|The `ARCHETYPE` class defines the core formal model of the root object of any archetype or template. It includes only basic identification information, and otherwise provides the structural connections from the Archetype to its constituent parts, i.e. definition (a `C_COMPLEX_OBJECT`), terminology (`ARCHEYTPE_TERMINOLOGY`) and so on.
 It is the parent class of all concrete types of archetype.
 
 h|*Attributes*
@@ -41,31 +41,33 @@ h|*Functions*
 ^h|*Meaning*
 
 h|
-|*concept_code*: `String` +
-*_post-condition_*: Result.is_equal (definition.node_id)
+|*concept_code* (): `String` +
+*_post-condition_*: `Result.is_equal (definition.node_id)`
 a|The concept code of the root object of the archetype, also standing for the concept of the archetype as a whole.
 
 h|
-|*physical_paths*: `List<String>`
-a|Set of language-independent paths extracted from archetype. Paths obey Xpath-like syntax and are formed from alternations of C_OBJECT.node_id and C_ATTRIBUTE.rm_attribute_name values.
+|*physical_paths* (): `List<String>`
+a|Set of language-independent paths extracted from archetype. Paths obey Xpath-like syntax and are formed from alternations of `C_OBJECT._node_id_` and `C_ATTRIBUTE._rm_attribute_name_` values.
 
 h|
-|*logical_paths* (lang: `String`): `List<String>`
+|*logical_paths* ( +
+lang: `String[1]` +
+): `List<String>`
 a|Set of language-dependent paths extracted from archetype. Paths obey the same syntax as physical_paths, but with node_ids replaced by their meanings from the ontology.
 
 h|
-|*specialisation_depth*: `Integer` +
-*_post-condition_*: Result = terminology.specialisation_depth
+|*specialisation_depth* (): `Integer` +
+*_post-condition_*: `Result = terminology.specialisation_depth`
 a|Specialisation depth of this archetype; larger than 0 if this archetype has a parent. Derived from terminology.specialisation_depth.
 
 h|
-|*is_specialised*: `Boolean` +
-*_post-condition_*: Result implies parent_archetype_hrid /= Void
+|*is_specialised* (): `Boolean` +
+*_post-condition_*: `Result implies parent_archetype_hrid /= Void`
 a|True if this archetype is a specialisation of another.
 
-h|*Invariant*
-2+a|*_Invariant_concept_valid_*: terminology.has_term_code (concept_code)
+h|*Invariants*
+2+a|*_Invariant_concept_valid_*: `terminology.has_term_code (concept_code)`
 
 h|
-2+a|*_Invariant_specialisation_validity_*: is_specialised implies specialisation_depth > 0
+2+a|*_Invariant_specialisation_validity_*: `is_specialised implies specialisation_depth > 0`
 |===

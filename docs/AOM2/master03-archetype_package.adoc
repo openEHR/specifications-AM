@@ -2,13 +2,13 @@
 
 == Overview
 
-The top-level model of archetypes and templates (all variant forms) is illustrated in Figure <<archetype_package>>. The model defines a standard structural representation of an archetype. Archetypes authored as independent entities are instances of the class `AUTHORED_ARCHETYPE` which is a descendant of `AUTHORED_RESOURCE` and `ARCHETYPE`. The former provides a standardised model of descriptive meta-data, language information, annotations and revision history for any resource. The latter class defines the core structure of any kind of archetype, including definition, terminology, optional rules part, along with a 'semantic identifier' (`ARCHETYPE`.`_archetype_id_`).
-
-The `AUTHORED_ARCHETYPE` class adds identifying attributes, flags and descriptive meta-data, and is the ancestor type for two further specialisations - `TEMPLATE` and `OPERATIONAL_TEMPLATE` . The `TEMPLATE` class defines the notion of a 'templated' archetype, i.e. an archetype containing fillers/references (ADL's `use_archetype` statements), typically designed to represent a data set. To enable this, it may contain 'overlays', private archetypes that specialise one or more of the referenced / filler archetypes it uses. Overlays are instances of the `TEMPLATE_OVERLAY` class, have no meta-data of their own, but are otherwise computationally just like any other archetype. 
+The top-level model of archetypes and templates (all variant forms) is illustrated in the Figure <<archetype_package,below>>. The model defines a standard structural representation of an archetype. Archetypes authored as independent entities are instances of the class `AUTHORED_ARCHETYPE` which is a descendant of `AUTHORED_RESOURCE` and `ARCHETYPE`. The first of the two parent classes provides a standardised model of descriptive meta-data, language information, annotations and revision history for any resource, and is documented in the {openehr_resource}[openEHR Resource Model]. The resource classes are shown included in the diagram below. The second parent class defines the core structure of any kind of archetype, including definition, terminology, optional rules part, along with a 'semantic identifier' (`ARCHETYPE._archetype_id_`).
 
 [.text-center]
 .Archetype Package
 image::{uml_export_dir}/diagrams/AOM-archetype.svg[id=archetype_package, align="center"]
+
+The `AUTHORED_ARCHETYPE` class adds identifying attributes, flags and descriptive meta-data, and is the ancestor type for two further specialisations - `TEMPLATE` and `OPERATIONAL_TEMPLATE` . The `TEMPLATE` class defines the notion of a 'templated' archetype, i.e. an archetype containing fillers/references (ADL's `use_archetype` statements), typically designed to represent a data set. To enable this, it may contain 'overlays', private archetypes that specialise one or more of the referenced / filler archetypes it uses. Overlays are instances of the `TEMPLATE_OVERLAY` class, have no meta-data of their own, but are otherwise computationally just like any other archetype. 
 
 The `OPERATIONAL_TEMPLATE` class represents the fully flattened form of a template, i.e. with all fillers and references substituted and overlays processed, to form what is in practical terms, a single custom-made 'operational' artefact, ready for transformation to downstream artefacts. Because an operational template includes one or more other archetype structures inline, it also includes their terminologies, enabling it to be treated as a self-standing artefact.
 
@@ -24,17 +24,17 @@ image::diagrams/archetype_hrid_structure.png[id=archetype_hrid_structure, align=
 
 For specialised archetypes, the `_parent_archetype_id_` is also required. This is a string `_reference_` to an archetype, and is normally the 'interface' form of the id, i.e. down to the major version only. In some circumstances, it is useful to include the minor and patch version numbers as well.
 
-An important aspect of identification relates to the rules governing when when the HRID namespace changes or is retained, with respect to when 'moves' or 'forks' occur. Its value is always the same as one of the `_original_namespace_` and `_custodian_namespace_` properties inherited from `AUTHORED_RESOURCE`.`_description_` (or both, in the case where they are the same). A full explanation of the identification system and rules is given in the openEHR {openehr_am_id}[Archetype Identification specification].
+An important aspect of identification relates to the rules governing when when the HRID namespace changes or is retained, with respect to when 'moves' or 'forks' occur. Its value is always the same as one of the `_original_namespace_` and `_custodian_namespace_` properties inherited from `AUTHORED_RESOURCE._description_` (or both, in the case where they are the same). A full explanation of the identification system and rules is given in the openEHR {openehr_am_id}[Archetype Identification specification].
 
 === Machine Identifiers
 
-Two machine identifiers are defined for archetypes. The `ARCHETYPE`.`_uid_` attribute defines a machine identifier equivalent to the human readable `ARCHETYPE`.`_archetype_id_`.`_semantic_id_` , i.e. `ARCHETYPE_HRID` up to its major version, and changes whenever the latter does. It is defined as optional but to be practically useful would need to be mandatory for all archetypes within a custodian organisation where this identifier was in use. It could in principle be synthesised at any time for a custodian that decided to implement it.
+Two machine identifiers are defined for archetypes. The `ARCHETYPE._uid_` attribute defines a machine identifier equivalent to the human readable `ARCHETYPE._archetype_id_._semantic_id_` , i.e. `ARCHETYPE_HRID` up to its major version, and changes whenever the latter does. It is defined as optional but to be practically useful would need to be mandatory for all archetypes within a custodian organisation where this identifier was in use. It could in principle be synthesised at any time for a custodian that decided to implement it.
 
-The `ARCHETYPE`.`_build_uid_` attribute is also optional, and if used, is intended to provide a unique identifier that corresponds to any change in version of the artefact. At a minimum, this means generating a new UUID for each change to:
+The `ARCHETYPE._build_uid_` attribute is also optional, and if used, is intended to provide a unique identifier that corresponds to any change in version of the artefact. At a minimum, this means generating a new UUID for each change to:
 
-* `ARCHETYPE`.`_archetype_id_`.`_release_version_`;
-* `ARCHETYPE`.`_archetype_id_`.`_build_count_`;
-* `ARCHETYPE`.`_description_`.`_lifecycle_state_`.
+* `ARCHETYPE._archetype_id_._release_version_`;
+* `ARCHETYPE._archetype_id_._build_count_`;
+* `ARCHETYPE._description_._lifecycle_state_`.
 
 For every change made to an archetype inside a controlled repository (for example, addition or update of meta-data fields), this field should be updated with a new UUID value, generated in the normal way.
 
@@ -44,17 +44,17 @@ The following items correspond to syntax elements that may appear in parentheses
 
 === ADL Version
 
-The `ARCHETYPE`.`_adl_version_` attribute in ADL 1.4 was used to indicate the ADL release used in the archetype source file from which the AOM structure was created (the version number comes from the revision history of the {openehr_am_adl2}[ADL specification]. In the current and future AOM and ADL specifications, the meaning of this attribute is generalised to mean 'the version of the archetype formalism' in which the current archetype is expressed. For reasons of convenience, the version number is still taken from the ADL specification, but now refers to all archetype-related specifications together, since they are always updated in a synchronised fashion.
+The `ARCHETYPE._adl_version_` attribute in ADL 1.4 was used to indicate the ADL release used in the archetype source file from which the AOM structure was created (the version number comes from the revision history of the {openehr_am_adl2}[ADL specification]. In the current and future AOM and ADL specifications, the meaning of this attribute is generalised to mean 'the version of the archetype formalism' in which the current archetype is expressed. For reasons of convenience, the version number is still taken from the ADL specification, but now refers to all archetype-related specifications together, since they are always updated in a synchronised fashion.
 
 === Reference Model Release
 
-The `ARCHETYPE`.`_rm_release_` attribute designates the release of the reference model on which the archetype is based, in the archetype's current version. This means `_rm_release_` can change with new versions of the archetype, where re-versioning includes upgrading the archetype to a later RM release. However, such upgrading still has to obey the basic rule of archetype compatibility: later minor, patch versions and builds cannot create data that is not valid with respect to the prior version.
+The `ARCHETYPE._rm_release_` attribute designates the release of the reference model on which the archetype is based, in the archetype's current version. This means `_rm_release_` can change with new versions of the archetype, where re-versioning includes upgrading the archetype to a later RM release. However, such upgrading still has to obey the basic rule of archetype compatibility: later minor, patch versions and builds cannot create data that is not valid with respect to the prior version.
 
-This should be in the same semver.org 3-part form as the `ARCHETYPE_HRID`.`_release_version_` property, e.g. "1.0.2". This property does not indicate conformance to any particular reference model version(s) other than the named one, since most archetypes can easily conform to more than one. More minimal archetypes are likely to technically conform to more old and future releases than more complex archteypes.
+This should be in the same semver.org 3-part form as the `ARCHETYPE_HRID._release_version_` property, e.g. "1.0.2". This property does not indicate conformance to any particular reference model version(s) other than the named one, since most archetypes can easily conform to more than one. More minimal archetypes are likely to technically conform to more old and future releases than more complex archteypes.
 
 === Generated Flag
 
-The `ARCHETYPE`.`_is_generated_` flag is used to indicate that an archetype has been machine-generated from another artefact, e.g. an older ADL version (say 1.4), or a non-archetype artefact. If true, it indicates to tools that the current archetype can potentially be overwritten, and that some other artefact is considered the primary source. If manual authoring occurs, this attribute should be set to False.
+The `ARCHETYPE._is_generated_` flag is used to indicate that an archetype has been machine-generated from another artefact, e.g. an older ADL version (say 1.4), or a non-archetype artefact. If true, it indicates to tools that the current archetype can potentially be overwritten, and that some other artefact is considered the primary source. If manual authoring occurs, this attribute should be set to False.
 
 == Governance Meta-data
 
@@ -66,19 +66,19 @@ Governance meta-data is visible primarily in the `RESOURCE_DESCRIPTION` class, i
 
 [.text-center]
 .Governance Meta-data
-image::images/metadata_governance.png[id=metadata_governance, align="center", width="90%"]
+image::images/metadata_governance.png[id=metadata_governance, align="center", width="80%"]
 
 ==== Package
 
-The optional `_resource_package_uri_` property enables the recording of a reference to a package of archetypes or other resources, to which this archetype is considered to below. It may be in the form of 'text <URL>'.
+The optional `_resource_package_uri_` property enables the recording of a reference to a package of archetypes or other resources, to which this archetype is considered to below. Its value may be in the form of `"text <URL>"`.
 
 ==== Lifecycle_state
 
-The `_description_`.`_lifecycle_state_` is an important property of an archetype, which is used to record its state in a defined lifecycle. The lifecycle state machine and versioning rules are explained fully in the openEHR {openehr_am_id}[Archetype Identification specification]. Here we simply note that the value of the property is a coded term corresponding to one of the macro-state names on the diagram, i.e. 'unmanaged', 'in_development', and so on.
+The `_description_._lifecycle_state_` is an important property of an archetype, which is used to record its state in a defined lifecycle. The lifecycle state machine and versioning rules are explained fully in the openEHR {openehr_am_id}[Archetype Identification specification]. Here we simply note that the value of the property is a coded term corresponding to one of the macro-state names on the diagram, i.e. 'unmanaged', 'in_development', and so on.
 
 ==== Original_namespace and Original_publisher
 
-These two optional properties indicate the original publishing organisation, and its namespace, i.e. the original publishing environment where the artefact was first imported or created. The `_original_namespace_` property is normally the same value as `_archetype_id_`.`_namespace_`,unless the artefact has been forked into its current custodian, in which case `_archetype_id_`.`_namespace_` will be the same as `_custodian_namespace_`.
+These two optional properties indicate the original publishing organisation, and its namespace, i.e. the original publishing environment where the artefact was first imported or created. The `_original_namespace_` property is normally the same value as `_archetype_id_._namespace_`,unless the artefact has been forked into its current custodian, in which case `_archetype_id_._namespace_` will be the same as `_custodian_namespace_`.
 
 ==== Custodian_namespace and Custodian_organisation
 
@@ -86,7 +86,7 @@ These two optional properties state a formal namespace, and a human-readable org
 
 ==== Intellectual Property Items
 
-There are three properties in the class that `RESOURCE_DESCRIPTION` relate to intellectual property (IP). Licence is a String field for recording of the licence (US: 'license') under which the artefact can be used. The recommended format is 
+There are three properties in the class that `RESOURCE_DESCRIPTION` relate to intellectual property (IP). Licence is a String field for recording of the licence (US: 'license') under which the artefact can be used. The recommended format is as follows:
 
 ----
 licence name <reliable URL to licence statement>
@@ -96,7 +96,7 @@ The copyright property records the copyright applying to the artefact, and is no
 
 === Authorship Meta-data
 
-Authorship meta-data consists of items such as author name, contributors, and translator information, and is visualised in Figure <<metadata_authoring>>.
+Authorship meta-data consists of items such as author name, contributors, and translator information, and is visualised in the figure below.
 
 [.text-center]
 .Authoring Meta-data
@@ -104,11 +104,11 @@ image::images/metadata_authoring.png[id=metadata_authoring, align="center", widt
 
 ==== Original Author
 
-The `RESOURCE_DESCRIPTION`.`_original_author_` property defines a simple list of name/value pairs via which the original author can be documented. Typical key values include 'name', 'organi[zs]ation', 'email' and 'date'.
+The `RESOURCE_DESCRIPTION._original_author_` property defines a simple list of name/value pairs via which the original author can be documented. Typical key values include `"name"`, `"organi[zs]ation"`, `"email"` and `"date"`".
 
 ==== Contributors
 
-The `RESOURCE_DESCRIPTION`.`_other_contributors_` property is a simple list of strings, one for each contributor. The recommended format of the string is one of:
+The `RESOURCE_DESCRIPTION._other_contributors_` property is a simple list of strings, one for each contributor. The recommended format of the string is one of:
 
 ----
 first names last name, organisation
@@ -122,15 +122,15 @@ The `AUTHORED_RESOURCE._original_language_` and `TRANSLATION_DETAILS` class enab
 
 ==== Version_last_translated
 
-The `_version_last_translated_` property is used to record a copy of the `_archetype_id.physical_id_` for each language, when the translation was carried out. This enables maintainers to know when new translations are needed for some or all languages. This String property records the full version identifier (i.e. `ARCHETYPE`.`_archetype_id_`.`_version_id_`) at the time of last translation, enabling tools to determine if and when translations may be out of date.
+The `_version_last_translated_` property is used to record a copy of the `_archetype_id.physical_id_` for each language, when the translation was carried out. This enables maintainers to know when new translations are needed for some or all languages. This String property records the full version identifier (i.e. `ARCHETYPE._archetype_id_._version_id_`) at the time of last translation, enabling tools to determine if and when translations may be out of date.
 
 === Descriptive Meta-data
 
-Various descriptive meta-data may be provided for an archetype in multiple translations in the `RESOURCE_DESCRIPTION_ITEM` class, using one instance for each translation language, as shown in Figure <<metadata_descriptive>>.
+Various descriptive meta-data may be provided for an archetype in multiple translations in the `RESOURCE_DESCRIPTION_ITEM` class, using one instance for each translation language, as shown in the figure below.
 
 [.text-center]
 .Descriptive Meta-data
-image::images/metadata_details.png[id=metadata_descriptive, align="center", width="90%"]
+image::images/metadata_details.png[id=metadata_descriptive, align="center"]
 
 ==== Purpose
 
@@ -195,11 +195,6 @@ More details of template development, representation and semantics are described
 
 == Class Descriptions
 
-include::{uml_export_dir}/classes/authored_resource.adoc[]
-include::{uml_export_dir}/classes/resource_description.adoc[]
-include::{uml_export_dir}/classes/resource_description_item.adoc[]
-include::{uml_export_dir}/classes/resource_annotations.adoc[]
-include::{uml_export_dir}/classes/translation_details.adoc[]
 include::{uml_export_dir}/classes/archetype.adoc[]
 include::{uml_export_dir}/classes/authored_archetype.adoc[]
 include::{uml_export_dir}/classes/archetype_hrid.adoc[]
@@ -258,7 +253,7 @@ The following validity rules apply to instances of `ARCHETYPE` and subtypes othe
 [.rule]
 *VARD*: description specified. A `description` section containing the main meta-data of the archetype must exist.
 
-The following rules apply to specialised archetypes, for which `ARCHETYPE`.`_is_specialised_` returns `True`.
+The following rules apply to specialised archetypes, for which `ARCHETYPE._is_specialised_` returns `True`.
 
 [.rule]
 *VASID*: archetype specialisation parent identifier validity. The archetype identifier stated in the `specialise` clause must be the identifier of the immediate specialisation parent archetype.

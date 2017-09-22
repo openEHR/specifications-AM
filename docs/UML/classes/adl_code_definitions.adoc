@@ -1,6 +1,6 @@
 === ADL_CODE_DEFINITIONS Class
 
-[cols="^1,2,3"]
+[cols="^1,3,5"]
 |===
 h|*Class*
 2+^h|*ADL_CODE_DEFINITIONS*
@@ -44,37 +44,53 @@ h|*Functions*
 ^h|*Meaning*
 
 h|
-|*codes_conformant* (a_child_code: `String`, a_parent_code: `String`): `Boolean`
+|*codes_conformant* ( +
+a_child_code: `String[1]`, +
+a_parent_code: `String[1]` +
+): `Boolean`
 a|True if a_child_code conforms to a_parent_code in the sense of specialisation, i.e. is a_child_code the same as or more specialised than a_parent_code.
 
 h|
-|*is_adl_code* (a_code: `String`): `Boolean` +
-*_Post_*: Result = is_id_code (a_code) or else is_value_code (a_code) or else is_value_set_code (a_code)
+|*is_adl_code* ( +
+a_code: `String[1]` +
+): `Boolean` +
+*_Post_*: `Result = is_id_code (a_code) or else is_value_code (a_code) or else is_value_set_code (a_code)`
 a|True if a_code is any kind of ADL archetype local code.
 
 h|
-|*is_id_code* (a_code: `String`): `Boolean` +
-*_Post_*: Result = a_code.starts_with (Id_code_leader)
+|*is_id_code* ( +
+a_code: `String[1]` +
+): `Boolean` +
+*_Post_*: `Result = a_code.starts_with (Id_code_leader)`
 a|True if a_code is an 'id' code.
 
 h|
-|*is_value_code* (a_code: `String`): `Boolean` +
-*_Post_*: Result = a_code.starts_with (Value_code_leader)
+|*is_value_code* ( +
+a_code: `String[1]` +
+): `Boolean` +
+*_Post_*: `Result = a_code.starts_with (Value_code_leader)`
 a|True if a_code is an 'at' code, i.e. a code representing a single terminology item.
 
 h|
-|*is_value_set_code* (a_code: `String`): `Boolean` +
-*_Post_*: Result = a_code.starts_with (Value_set_code_leader)
+|*is_value_set_code* ( +
+a_code: `String[1]` +
+): `Boolean` +
+*_Post_*: `Result = a_code.starts_with (Value_set_code_leader)`
 a|True if a_code is an 'ac' code, i.e. a code referring to a terminologyvalue set.
 
 h|
-|*is_redefined_code* (a_code: `String`): `Boolean`
+|*is_redefined_code* ( +
+a_code: `String[1]` +
+): `Boolean`
 a|A code has been specialised if there is a non-zero code index anywhere above the last index e.g.
 
 * at0.0.1 -> False
 * at1.0.1 -> True
 
 h|
-|*code_exists_at_level* (a-code: `String`, a_level: `Integer`): `Boolean`
+|*code_exists_at_level* ( +
+a-code: `String[1]`, +
+a_level: `Integer[1]` +
+): `Boolean`
 a|Is `a_code' valid at level `a_level' or less, i.e. if we remove its trailing specialised part corresponding to specialisation below `a_level', and then any trailing '.0' pieces, do we end up with a valid code? If so it means that the code corresponds to a real node from `a_level' or higher.
 |===

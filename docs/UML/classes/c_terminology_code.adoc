@@ -1,12 +1,12 @@
 === C_TERMINOLOGY_CODE Class
 
-[cols="^1,2,3"]
+[cols="^1,3,5"]
 |===
 h|*Class*
 2+^h|*C_TERMINOLOGY_CODE*
 
 h|*Description*
-2+a|Constrainer type for instances of TERMINOLOGY_CODE. The constraint attribute can contain:
+2+a|Constrainer type for instances of `Terminology_code`. The constraint attribute can contain:
 
 * a single at-code
 * a single ac-code, representing a value-set that is defined in the archetype terminology
@@ -14,7 +14,7 @@ h|*Description*
 If there is an assumed value for the ac-code case above, the assumed_value attribute contains a single at-code, which must come from the list of at-codes defined as the internal value set for the ac-code.
 
 h|*Inherit*
-2+|C_PRIMITIVE_OBJECT
+2+|`C_PRIMITIVE_OBJECT`
 
 h|*Attributes*
 ^h|*Signature*
@@ -27,34 +27,36 @@ a|Type of individual constraint - a single string that can either be a local at-
 
 h|*0..1 +
 (redefined)*
-|*assumed_value*: `TERMINOLOGY_CODE`
-a|
+|*assumed_value*: `Terminology_code`
+a|Assumed Terminology code value.
 
 h|*1..1 +
 (redefined)*
-|*default_value*: `TERMINOLOGY_CODE`
+|*default_value*: `Terminology_code`
 a|
 h|*Functions*
 ^h|*Signature*
 ^h|*Meaning*
 
 h|
-|*value_set_expanded*: `List<String>`
+|*value_set_expanded* (): `List<String>`
 a|Effective set of at-code values corresponding to an ac-code for a locally defined value set. Not defined for ac-codes that have no local value set.
 
 h|
-|*value_set_substituted*: `List<Uri>`
-a|For locally defined value sets within individual code bindings: return the term URI(s) substituted from bindings for local at-codes in value_set_expanded.
+|*value_set_substituted* (): `List<Uri>`
+a|For locally defined value sets within individual code bindings: return the term URI(s) substituted from bindings for local at-codes in `_value_set_expanded_`.
 
 h|
-|*value_set_resolved*: `List<TERMINOLOGY_CODE>`
+|*value_set_resolved* (): `List<Terminology_code>`
 a|For locally defined value sets within individual code bindings: final set of external codes to which value set is resolved.
 
 h|(effected)
-|*valid_value* (a_value: `TERMINOLOGY_CODE`): `Boolean`
-a|True if a_value is valid with respect to constraint expressed in concrete instance of this type.
+|*valid_value* ( +
+a_value: `Terminology_code[1]` +
+): `Boolean`
+a|True if a `_value_` is valid with respect to constraint expressed in concrete instance of this type.
 
 h|(effected)
-|*prototype_value*: `TERMINOLOGY_CODE`
+|*prototype_value* (): `Terminology_code`
 a|A generated prototype value from this constraint object.
 |===

@@ -1,6 +1,6 @@
 === C_OBJECT Class
 
-[cols="^1,2,3"]
+[cols="^1,3,5"]
 |===
 h|*Class*
 2+^h|*_C_OBJECT (abstract)_*
@@ -9,7 +9,7 @@ h|*Description*
 2+a|Abstract model of constraint on any kind of object node.
 
 h|*Inherit*
-2+|ARCHETYPE_CONSTRAINT
+2+|`ARCHETYPE_CONSTRAINT`
 
 h|*Attributes*
 ^h|*Signature*
@@ -20,14 +20,14 @@ h|*1..1*
 a|Reference model type that this node corresponds to.
 
 h|*0..1*
-|*occurrences*: `MULTIPLICITY_INTERVAL`
+|*occurrences*: `Multiplicity_interval`
 a|Occurrences of this object node in the data, under the owning attribute. Upper limit can only be greater than 1 if owning attribute has a cardinality of more than 1.
 Only set if it overrides the parent archetype in the case of specialised archetypes, or else the occurrences inferred from the underlying reference model existence and/or cardinality of the containing attribute.
 
 h|*1..1*
 |*node_id*: `String`
-a|Semantic identifier of this node, used to dis-tinguish sibling nodes. All nodes must have a node_id; for nodes under a container C_ATTRIBUTE, the id must be an id-code must be defined in the archetype terminology. For valid structures, all node ids are id-codes.
-For C_PRIMITIVE_OBJECTs, it will have the special value Primitive_node_id.
+a|Semantic identifier of this node, used to dis-tinguish sibling nodes. All nodes must have a node_id; for nodes under a container `C_ATTRIBUTE`, the id must be an id-code must be defined in the archetype terminology. For valid structures, all node ids are id-codes.
+For `C_PRIMITIVE_OBJECTs`, it will have the special value `Primitive_node_id`.
 
 h|*0..1*
 |*is_deprecated*: `Boolean`
@@ -35,40 +35,51 @@ a|True if this node and by implication all sub-nodes are deprecated for use.
 
 h|*0..1*
 |*sibling_order*: `SIBLING_ORDER`
-a|Optional indicator of order of this node with respect to another sibling. Only meaningful in a specialised archetype for a C_OBJECT within a C_ATTRIBUTE with is_multiple = True.
+a|Optional indicator of order of this node with respect to another sibling. Only meaningful in a specialised archetype for a `C_OBJECT` within a `C_ATTRIBUTE` with `_is_multiple_` = True.
 h|*Functions*
 ^h|*Signature*
 ^h|*Meaning*
 
 h|
-|*specialisation_depth*: `Integer`
-a|Level of specialisation of this archetype node, based on its node_id. The value 0 corresponds to non-specialised, 1 to first-level specialisation and so on. The level is the same as the number of ‘.’ characters in the node_id code. If node_id is not set, the return value is -1, signifying that the specialisation level should be determined from the nearest parent C_OBJECT node having a node_id.
+|*specialisation_depth* (): `Integer`
+a|Level of specialisation of this archetype node, based on its node_id. The value 0 corresponds to non-specialised, 1 to first-level specialisation and so on. The level is the same as the number of ‘.’ characters in the node_id code. If node_id is not set, the return value is -1, signifying that the specialisation level should be determined from the nearest parent `C_OBJECT` node having a node_id.
 
 h|
-|*effective_occurrences*: `MULTIPLICITY_INTERVAL`
+|*effective_occurrences* (): `Multiplicity_interval`
 a|
 
 h|
-|*occurrences_conforms_to* (other: `C_OBJECT`): `Boolean`
-a|True if this node occurrences conforms to other.occurrences; `other' is assumed to be in a flat archetype.
+|*occurrences_conforms_to* ( +
+other: `C_OBJECT[1]` +
+): `Boolean`
+a|True if this node `_occurrences_` conforms to `_other.occurrences_`; `other' is assumed to be in a flat archetype. +
+[horizontal]
+`_other_`:: C_OBJECT from a flat parent archetype.
 
 h|
-|*node_id_conforms_to* (other: `C_OBJECT`): `Boolean` +
-*_Post_*: Result = codes_conformant (node_id, other.node_id)
+|*node_id_conforms_to* ( +
+other: `C_OBJECT[1]` +
+): `Boolean` +
+*_Post_*: `Result = codes_conformant (node_id, other.node_id)`
 a|True if this node id conforms to other.node_id, which includes the ids being identical; other is assumed to be in a flat archetype.
 
 h|(effected)
-|*c_conforms_to* (other: `ARCHETYPE_CONSTRAINT`): `Boolean`
+|*c_conforms_to* ( +
+other: `ARCHETYPE_CONSTRAINT[1]` +
+): `Boolean`
 a|True if constraints represented by this node, ignoring any sub-parts, are narrower or the same as other.
 Typically used during validation of special-ised archetype nodes.
 
 h|(effected)
-|*c_congruent_to* (other: `ARCHETYPE_CONSTRAINT`): `Boolean`
-a|True if constraints represented by this node contain no further redefinitions with respect to the node other, with the exception of node_id redefnition in C_OBJECT nodes.
+|*c_congruent_to* ( +
+other: `ARCHETYPE_CONSTRAINT[1]` +
+): `Boolean`
+a|True if constraints represented by this node contain no further redefinitions with respect to the node `_other_`, with the exception of node_id redefnition in `C_OBJECT` nodes.
+
 Typically used to test if an inherited node locally contains any constraints.
 
 h|(effected)
-|*is_prohibited*: `Boolean` +
-*_Post_*: Result = occurrences /= Void and then occurrences.is_prohibited
-a|True if this C_OBJECT node is prohibited, i.e. if its occurrences is 0..0.
+|*is_prohibited* (): `Boolean` +
+*_Post_*: `Result = occurrences /= Void and then occurrences.is_prohibited`
+a|True if this `C_OBJECT` node is prohibited, i.e. if its occurrences is 0..0.
 |===

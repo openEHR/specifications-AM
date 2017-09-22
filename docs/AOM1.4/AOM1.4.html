@@ -189,14 +189,7 @@
 <li><a href="#_rm_1_0_2_data_types_basic_package">C.3. RM 1.0.2 data_types.basic package</a></li>
 <li><a href="#_rm_1_0_2_data_types_text_package">C.4. RM 1.0.2 data_types.text package</a></li>
 <li><a href="#_rm_1_0_2_data_types_quantity_package">C.5. RM 1.0.2 data_types.quantity package</a></li>
-<li><a href="#_rm_1_0_2_common_resource_package">C.6. RM 1.0.2 common.resource package</a>
-<ul class="sectlevel3">
-<li><a href="#_authored_resource_class">C.6.1. AUTHORED_RESOURCE Class</a></li>
-<li><a href="#_translation_details_class">C.6.2. TRANSLATION_DETAILS Class</a></li>
-<li><a href="#_resource_description_class">C.6.3. RESOURCE_DESCRIPTION Class</a></li>
-<li><a href="#_resource_description_item_class">C.6.4. RESOURCE_DESCRIPTION_ITEM Class</a></li>
-</ul>
-</li>
+<li><a href="#_rm_1_0_2_common_resource_package">C.6. RM 1.0.2 common.resource package</a></li>
 </ul>
 </li>
 <li><a href="#_references">References</a>
@@ -242,7 +235,7 @@
 </thead>
 <tbody>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Release</strong>: Release-2.0.6</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Release</strong>: latest</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Status</strong>: STABLE</p></td>
 </tr>
 <tr>
@@ -306,15 +299,23 @@
 </thead>
 <tbody>
 <tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a id="latest_issue"></a>1.4.3</p></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p><a href="https://openehr.atlassian.net/browse/SPECAM-42">SPECAM-42</a>Adjust references to BASE packages foundation_types, base_types and resource types.</p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">T Beale</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a id="latest_issue_date"></a>22 Sep 2017</p></td>
+</tr>
+<tr>
 <th class="tableblock halign-center valign-top" colspan="4"><p class="tableblock"><strong>R E L E A S E&#160;&#160;&#160;&#160;&#160;2.0.6</strong></p></th>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a id="latest_issue"></a>1.4.2</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1.4.2</p></td>
 <td class="tableblock halign-left valign-top"><div><div class="paragraph">
 <p>Add Appendix C, containing UML diagrams for RM dependencies.</p>
 </div></div></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">D Boscá</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a id="latest_issue_date"></a>18 May 2016</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">18 May 2016</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"></td>
@@ -570,10 +571,10 @@ Includes detailed input and review from:</p>
 <div class="sect2">
 <h3 id="_purpose"><a class="anchor" href="#_purpose"></a>1.1. Purpose</h3>
 <div class="paragraph">
-<p>This document contains the definitive statement of archetype semantics, in the form of an object model for archetypes. The model presented here can be used as a basis for building software that processes archetypes, independent of their persistent representation; equally, it can be used to develop the output side of parsers that process archetypes in a linguistic format, such as the <a href="http://www.openehr.org/releases/AM/Release-2.0.6/ADL1.4.html">openEHR Archetype Definition Language (ADL)</a>, XML-instance and so on. As a specification, it can be treated as an API for archetypes.</p>
+<p>This document contains the definitive statement of archetype semantics, in the form of an object model for archetypes. The model presented here can be used as a basis for building software that processes archetypes, independent of their persistent representation; equally, it can be used to develop the output side of parsers that process archetypes in a linguistic format, such as the <a href="http://www.openehr.org/releases/AM/latest/ADL1.4.html">openEHR Archetype Definition Language (ADL)</a>, XML-instance and so on. As a specification, it can be treated as an API for archetypes.</p>
 </div>
 <div class="paragraph">
-<p>It is recommended that the <a href="http://www.openehr.org/releases/AM/Release-2.0.6/ADL1.4.html">openEHR ADL document</a> be read in conjunction with this document, since it contains a detailed explanation of the semantics of archetypes, and many of the examples are more obvious in ADL, regardless of whether ADL is actually used with the object model presented here or not.</p>
+<p>It is recommended that the <a href="http://www.openehr.org/releases/AM/latest/ADL1.4.html">openEHR ADL document</a> be read in conjunction with this document, since it contains a detailed explanation of the semantics of archetypes, and many of the examples are more obvious in ADL, regardless of whether ADL is actually used with the object model presented here or not.</p>
 </div>
 </div>
 <div class="sect2">
@@ -587,7 +588,7 @@ Includes detailed input and review from:</p>
 <p>The <a href="http://www.openehr.org/releases/BASE/latest/architecture_overview.html">openEHR Architecture Overview</a>;</p>
 </li>
 <li>
-<p>The <a href="http://www.openehr.org/releases/AM/Release-2.0.6/Overview.html">openEHR Archetypes Technical Overview</a>.</p>
+<p>The <a href="http://www.openehr.org/releases/AM/latest/Overview.html">openEHR Archetypes Technical Overview</a>.</p>
 </li>
 </ul>
 </div>
@@ -597,7 +598,7 @@ Includes detailed input and review from:</p>
 <div class="ulist">
 <ul>
 <li>
-<p>The <a href="http://www.openehr.org/releases/AM/Release-2.0.6/ADL1.4.html">openEHR Definition Language</a>;</p>
+<p>The <a href="http://www.openehr.org/releases/AM/latest/ADL1.4.html">openEHR Definition Language</a>;</p>
 </li>
 <li>
 <p>The <a href="http://www.openehr.org/releases/1.0.2/architecture/am/openehr_archetype_profile.pdf">openEHR Archetype Profile</a>.</p>
@@ -614,7 +615,7 @@ Includes detailed input and review from:</p>
 <div class="sect2">
 <h3 id="_status"><a class="anchor" href="#_status"></a>1.4. Status</h3>
 <div class="paragraph">
-<p>This specification is in the STABLE state. The development version of this document can be found at <a href="http://www.openehr.org/releases/AM/Release-2.0.6/AOM1.4.html" class="bare">http://www.openehr.org/releases/AM/Release-2.0.6/AOM1.4.html</a>.</p>
+<p>This specification is in the STABLE state. The development version of this document can be found at <a href="http://www.openehr.org/releases/AM/latest/AOM1.4.html" class="bare">http://www.openehr.org/releases/AM/latest/AOM1.4.html</a>.</p>
 </div>
 <div class="paragraph">
 <p>Known omissions or questions are indicated in the text with a 'to be determined' paragraph, as follows:</p>
@@ -644,7 +645,7 @@ this specification is a re-formatted issue of the <a href="http://www.openehr.or
 <div class="title">Note</div>
 </td>
 <td class="content">
-for users requiring the most recent form of ADL and archteype technology in general, the <a href="http://www.openehr.org/releases/AM/Release-2.0.6/AOM2.html">Archetype Definition Language 2 (ADL2) specifications should be used</a>. In particular, the <a href="http://www.openehr.org/releases/AM/Release-2.0.6/Overview.html">Archetype Technology Overview</a> should be referred to for the most current state of Archetype Technology.
+for users requiring the most recent form of ADL and archteype technology in general, the <a href="http://www.openehr.org/releases/AM/latest/AOM2.html">Archetype Definition Language 2 (ADL2) specifications should be used</a>. In particular, the <a href="http://www.openehr.org/releases/AM/latest/Overview.html">Archetype Technology Overview</a> should be referred to for the most current state of Archetype Technology.
 </td>
 </tr>
 </table>
@@ -655,7 +656,7 @@ for users requiring the most recent form of ADL and archteype technology in gene
 <div class="sect3">
 <h4 id="_what_is_an_archetype"><a class="anchor" href="#_what_is_an_archetype"></a>1.5.1. What is an Archetype?</h4>
 <div class="paragraph">
-<p>Archetypes are constraint-based models of domain entities, or what some might call "structured business rules". Each archetype describes configurations of data instances whose classes are described in a reference model; the instance configurations are considered to be valid exemplars of a particular domain concept. Thus, in medicine, an archetype might be designed to constrain configurations of instances of a simple node/arc information model, that express a "microbiology test result" or a "physical examination". Archetypes can be composed, specialised, and templated for local use. The archetype concept has been described in detail by Beale <a href="#Beale_2000">[Beale_2000]</a>, <a href="#Beale_2002">[Beale_2002]</a>. Most of the detailed formal semantics are described in the <a href="http://www.openehr.org/releases/AM/Release-2.0.6/ADL1.4.html">openEHR Archetype Definition Language</a>. The openEHR archetype framework is described in terms of <a href="http://www.openehr.org/releases/1.0.2/architecture/am/archetype_principles.pdf">Archetype Definitions and Principles</a> and an <a href="http://www.openehr.org/releases/1.0.2/architecture/am/archetype_system.pdf">Archetype System</a>.</p>
+<p>Archetypes are constraint-based models of domain entities, or what some might call "structured business rules". Each archetype describes configurations of data instances whose classes are described in a reference model; the instance configurations are considered to be valid exemplars of a particular domain concept. Thus, in medicine, an archetype might be designed to constrain configurations of instances of a simple node/arc information model, that express a "microbiology test result" or a "physical examination". Archetypes can be composed, specialised, and templated for local use. The archetype concept has been described in detail by Beale <a href="#Beale_2000">[Beale_2000]</a>, <a href="#Beale_2002">[Beale_2002]</a>. Most of the detailed formal semantics are described in the <a href="http://www.openehr.org/releases/AM/latest/ADL1.4.html">openEHR Archetype Definition Language</a>. The openEHR archetype framework is described in terms of <a href="http://www.openehr.org/releases/1.0.2/architecture/am/archetype_principles.pdf">Archetype Definitions and Principles</a> and an <a href="http://www.openehr.org/releases/1.0.2/architecture/am/archetype_system.pdf">Archetype System</a>.</p>
 </div>
 </div>
 <div class="sect3">
@@ -731,7 +732,7 @@ Source projects can be found at the <a href="https://github.com/openEHR">openEHR
 </div>
 <div id="package_overview" class="imageblock text-center" style="text-align: center">
 <div class="content">
-<img src="../UML/AOM1.4/diagrams/AOM-packages.svg" alt="AOM packages" width="70%">
+<img src="../UML/AOM1.4/diagrams/AOM-packages.svg" alt="AOM packages" width="40%">
 </div>
 <div class="title">Figure 2. Package Overview</div>
 </div>
@@ -796,7 +797,7 @@ Source projects can be found at the <a href="https://github.com/openEHR">openEHR
 <div class="sect3">
 <h4 id="_the_archetype_ontology"><a class="anchor" href="#_the_archetype_ontology"></a>2.3.2. The Archetype Ontology</h4>
 <div class="paragraph">
-<p>There are no linguistic entities at all in the <code>definition</code> part of an archetype, with the possible exception of constraints on text items which might have been defined in terms of regular expression patterns or fixed strings. All linguistic entities are defined in the <code>ontology</code> part of the archetype, in such a way as to allow them to be translated into other languages in convenient blocks. As described in the openEHR ADL document, there are four major parts in an archetype <code>ontology</code> section: term definitions, constraint definitions, term bindings and constraint bindings. The former two define the meanings of various terms and textual constraints which occur in the archetype; they are indexed with unique identifiers which are used within the archetype definition body. The latter two ontology sections describe the mappings of terms used internally to external terminologies. Due to the well-known problems with terminologies (described in some detail in the <a href="http://www.openehr.org/releases/AM/Release-2.0.6/ADL1.4.html">openEHR ADL 1.4 specification</a>, and also by e.g. <a href="#Rector_1999">[Rector_1999]</a> and others), mappings may be partial, incomplete, approximate, and occasionally, exact.</p>
+<p>There are no linguistic entities at all in the <code>definition</code> part of an archetype, with the possible exception of constraints on text items which might have been defined in terms of regular expression patterns or fixed strings. All linguistic entities are defined in the <code>ontology</code> part of the archetype, in such a way as to allow them to be translated into other languages in convenient blocks. As described in the openEHR ADL document, there are four major parts in an archetype <code>ontology</code> section: term definitions, constraint definitions, term bindings and constraint bindings. The former two define the meanings of various terms and textual constraints which occur in the archetype; they are indexed with unique identifiers which are used within the archetype definition body. The latter two ontology sections describe the mappings of terms used internally to external terminologies. Due to the well-known problems with terminologies (described in some detail in the <a href="http://www.openehr.org/releases/AM/latest/ADL1.4.html">openEHR ADL 1.4 specification</a>, and also by e.g. <a href="#Rector_1999">[Rector_1999]</a> and others), mappings may be partial, incomplete, approximate, and occasionally, exact.</p>
 </div>
 </div>
 <div class="sect3">
@@ -841,9 +842,9 @@ Source projects can be found at the <a href="https://github.com/openEHR">openEHR
 <h4 id="_archetype_class"><a class="anchor" href="#_archetype_class"></a>3.2.1. ARCHETYPE Class</h4>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
-<col style="width: 16.6666%;">
+<col style="width: 11.1111%;">
 <col style="width: 33.3333%;">
-<col style="width: 50.0001%;">
+<col style="width: 55.5556%;">
 </colgroup>
 <tbody>
 <tr>
@@ -858,7 +859,7 @@ Source projects can be found at the <a href="https://github.com/openEHR">openEHR
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Inherit</strong></p></th>
-<td class="tableblock halign-left valign-top" colspan="2"><p class="tableblock">AUTHORED_RESOURCE</p></td>
+<td class="tableblock halign-left valign-top" colspan="2"><p class="tableblock"><code>AUTHORED_RESOURCE</code></p></td>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Attributes</strong></p></th>
@@ -928,130 +929,134 @@ Source projects can be found at the <a href="https://github.com/openEHR">openEHR
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>concept_name</strong> (a_lang: <code>String</code>): <code>String</code><br>
-<strong><em>post-condition</em></strong>: Result.is_equal (definition.node_id)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>concept_name</strong> (<br>
+a_lang: <code>String[1]</code><br>
+): <code>String</code><br>
+<strong><em>post-condition</em></strong>: <code>Result.is_equal (definition.node_id)</code></p></td>
 <td class="tableblock halign-left valign-top"><div><div class="paragraph">
 <p>The concept name of the archetype in language a_lang; corresponds to the term definition of the concept attribute in the archetype ontology.</p>
 </div></div></td>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>physical_paths</strong>: <code>List&lt;String&gt;</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>physical_paths</strong> (): <code>List&lt;String&gt;</code></p></td>
 <td class="tableblock halign-left valign-top"><div><div class="paragraph">
 <p>Set of language-independent paths extracted from archetype. Paths obey Xpath-like syntax and are formed from alternations of C_OBJECT.node_id and C_ATTRIBUTE.rm_attribute_name values.</p>
 </div></div></td>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>logical_paths</strong> (lang: <code>String</code>): <code>List&lt;String&gt;</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>logical_paths</strong> (<br>
+lang: <code>String[1]</code><br>
+): <code>List&lt;String&gt;</code></p></td>
 <td class="tableblock halign-left valign-top"><div><div class="paragraph">
 <p>Set of language-dependent paths extracted from archetype. Paths obey the same syntax as physical_paths, but with node_ids replaced by their meanings from the ontology.</p>
 </div></div></td>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>specialisation_depth</strong>: <code>Integer</code><br>
-<strong><em>post-condition</em></strong>: Result = terminology.specialisation_depth</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>specialisation_depth</strong> (): <code>Integer</code><br>
+<strong><em>post-condition</em></strong>: <code>Result = terminology.specialisation_depth</code></p></td>
 <td class="tableblock halign-left valign-top"><div><div class="paragraph">
 <p>Specialisation depth of this archetype; larger than 0 if this archetype has a parent. Derived from terminology.specialisation_depth.</p>
 </div></div></td>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>is_specialised</strong>: <code>Boolean</code><br>
-<strong><em>post-condition</em></strong>: Result implies parent_archetype_id /= Void</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>is_specialised</strong> (): <code>Boolean</code><br>
+<strong><em>post-condition</em></strong>: <code>Result implies parent_archetype_id /= Void</code></p></td>
 <td class="tableblock halign-left valign-top"><div><div class="paragraph">
 <p>True if this archetype is a specialisation of another.</p>
 </div></div></td>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>is_valid</strong>: <code>Boolean</code><br>
-<strong><em>Post</em></strong>: not (node_ids_valid and internal_references_valid and constraint_references_valid) implies not Result</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>is_valid</strong> (): <code>Boolean</code><br>
+<strong><em>Post</em></strong>: <code>not (node_ids_valid and internal_references_valid and constraint_references_valid) implies not Result</code></p></td>
 <td class="tableblock halign-left valign-top"><div><div class="paragraph">
 <p>True if the archetype is valid overall; various tests should be used, including checks on node_ids, internal references, and constraint references.</p>
 </div></div></td>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>node_ids_valid</strong>: <code>Boolean</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>node_ids_valid</strong> (): <code>Boolean</code></p></td>
 <td class="tableblock halign-left valign-top"><div><div class="paragraph">
 <p>True if every node_id found on a C_OBJECT node is found in ontology.term_codes.</p>
 </div></div></td>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>previous_version</strong>: <code>String</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>previous_version</strong> (): <code>String</code></p></td>
 <td class="tableblock halign-left valign-top"><div><div class="paragraph">
 <p>Version of predecessor archetype of this archetype, if any.</p>
 </div></div></td>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>internal_references_valid</strong>: <code>Boolean</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>internal_references_valid</strong> (): <code>Boolean</code></p></td>
 <td class="tableblock halign-left valign-top"><div><div class="paragraph">
 <p>True if every ARCHETYPE_INTERNAL_REF. target_path refers to a legitimate node in the archetype definition.</p>
 </div></div></td>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>constraint_references_valid</strong>: <code>Boolean</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>constraint_references_valid</strong> (): <code>Boolean</code></p></td>
 <td class="tableblock halign-left valign-top"><div><div class="paragraph">
 <p>True if every CONSTRAINT_REF.reference found on a C_OBJECT node in the archetype definition is found in ontology.constraint_codes.</p>
 </div></div></td>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>short_concept_name</strong>: <code>String</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>short_concept_name</strong> (): <code>String</code></p></td>
 <td class="tableblock halign-left valign-top"><div><div class="paragraph">
 <p>The short concept name of the archetype extracted from the archetype_id.</p>
 </div></div></td>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>version</strong>: <code>String</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>version</strong> (): <code>String</code></p></td>
 <td class="tableblock halign-left valign-top"><div></div></td>
 </tr>
 <tr>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Invariant</strong></p></th>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Invariants</strong></p></th>
 <td class="tableblock halign-left valign-top" colspan="2"><div><div class="paragraph">
-<p><strong><em>Inv_concept_valid</em></strong>: ontology.has_term_code (concept_code)</p>
+<p><strong><em>Inv_concept_valid</em></strong>: <code>ontology.has_term_code (concept_code)</code></p>
 </div></div></td>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"></th>
 <td class="tableblock halign-left valign-top" colspan="2"><div><div class="paragraph">
-<p><strong><em>Inv_specialisation_validity</em></strong>: is_specialised implies specialisation_depth &gt; 0</p>
+<p><strong><em>Inv_specialisation_validity</em></strong>: <code>is_specialised implies specialisation_depth &gt; 0</code></p>
 </div></div></td>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"></th>
 <td class="tableblock halign-left valign-top" colspan="2"><div><div class="paragraph">
-<p><strong><em>Inv_invariants_valid</em></strong>: invariants /= Void implies not invariants.is_empty</p>
+<p><strong><em>Inv_invariants_valid</em></strong>: <code>invariants /= Void implies not invariants.is_empty</code></p>
 </div></div></td>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"></th>
 <td class="tableblock halign-left valign-top" colspan="2"><div><div class="paragraph">
-<p><strong><em>Inv_uid_validity</em></strong>: uid /= Void implies not uid.is_empty</p>
+<p><strong><em>Inv_uid_validity</em></strong>: <code>uid /= Void implies not uid.is_empty</code></p>
 </div></div></td>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"></th>
 <td class="tableblock halign-left valign-top" colspan="2"><div><div class="paragraph">
-<p><strong><em>Inv_version_validity</em></strong>: version /= Void and then version.is_equal(archetype_id.version_id)</p>
+<p><strong><em>Inv_version_validity</em></strong>: <code>version /= Void and then version.is_equal(archetype_id.version_id)</code></p>
 </div></div></td>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"></th>
 <td class="tableblock halign-left valign-top" colspan="2"><div><div class="paragraph">
-<p><strong><em>Inv_description_valid</em></strong>: description /= Void</p>
+<p><strong><em>Inv_description_valid</em></strong>: <code>description /= Void</code></p>
 </div></div></td>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"></th>
 <td class="tableblock halign-left valign-top" colspan="2"><div><div class="paragraph">
-<p><strong><em>Inv_original_language_valid</em></strong>: original_language /= void and then language /= Void</p>
+<p><strong><em>Inv_original_language_valid</em></strong>: <code>original_language /= void and then language /= Void</code></p>
 </div></div></td>
 </tr>
 </tbody>
@@ -1061,9 +1066,9 @@ Source projects can be found at the <a href="https://github.com/openEHR">openEHR
 <h4 id="_validity_kind_enumeration"><a class="anchor" href="#_validity_kind_enumeration"></a>3.2.2. VALIDITY_KIND Enumeration</h4>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
-<col style="width: 16.6666%;">
+<col style="width: 11.1111%;">
 <col style="width: 33.3333%;">
-<col style="width: 50.0001%;">
+<col style="width: 55.5556%;">
 </colgroup>
 <tbody>
 <tr>
@@ -1257,7 +1262,7 @@ of Date/Time fields.</p>
 </ul>
 </div>
 <div class="paragraph">
-<p>See <a href="http://www.openehr.org/releases/AM/Release-2.0.6/ADL1.4.html#_placeholder_constraints">Placeholder constraints</a> in the ADL specification for a fuller explanation.</p>
+<p>See <a href="http://www.openehr.org/releases/AM/latest/ADL1.4.html#_placeholder_constraints">Placeholder constraints</a> in the ADL specification for a fuller explanation.</p>
 </div>
 </div>
 </div>
@@ -1277,9 +1282,9 @@ of Date/Time fields.</p>
 <h4 id="_archetype_constraint_class"><a class="anchor" href="#_archetype_constraint_class"></a>4.3.1. ARCHETYPE_CONSTRAINT Class</h4>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
-<col style="width: 16.6666%;">
+<col style="width: 11.1111%;">
 <col style="width: 33.3333%;">
-<col style="width: 50.0001%;">
+<col style="width: 55.5556%;">
 </colgroup>
 <tbody>
 <tr>
@@ -1299,7 +1304,9 @@ of Date/Time fields.</p>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>is_subset_of</strong> (other: <code>ARCHETYPE_CONSTRAINT</code>): <code>Boolean</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>is_subset_of</strong> (<br>
+other: <code>ARCHETYPE_CONSTRAINT[1]</code><br>
+): <code>Boolean</code></p></td>
 <td class="tableblock halign-left valign-top"><div><div class="paragraph">
 <p>True if constraints represented by this node, ignoring any sub-parts, are narrower or the same as other.
 Typically used during validation of special-ised archetype nodes.</p>
@@ -1307,19 +1314,21 @@ Typically used during validation of special-ised archetype nodes.</p>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>is_valid</strong>: <code>Boolean</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>is_valid</strong> (): <code>Boolean</code></p></td>
 <td class="tableblock halign-left valign-top"><div></div></td>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>path</strong>: <code>String</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>path</strong> (): <code>String</code></p></td>
 <td class="tableblock halign-left valign-top"><div><div class="paragraph">
 <p>Path of this node relative to root of archetype.</p>
 </div></div></td>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>has_path</strong> (a_path: <code>String</code>): <code>Boolean</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>has_path</strong> (<br>
+a_path: <code>String[1]</code><br>
+): <code>Boolean</code></p></td>
 <td class="tableblock halign-left valign-top"><div><div class="paragraph">
 <p>True if the relative path a_path exists at this node.</p>
 </div></div></td>
@@ -1331,9 +1340,9 @@ Typically used during validation of special-ised archetype nodes.</p>
 <h4 id="_c_attribute_class"><a class="anchor" href="#_c_attribute_class"></a>4.3.2. C_ATTRIBUTE Class</h4>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
-<col style="width: 16.6666%;">
+<col style="width: 11.1111%;">
 <col style="width: 33.3333%;">
-<col style="width: 50.0001%;">
+<col style="width: 55.5556%;">
 </colgroup>
 <tbody>
 <tr>
@@ -1348,7 +1357,7 @@ Typically used during validation of special-ised archetype nodes.</p>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Inherit</strong></p></th>
-<td class="tableblock halign-left valign-top" colspan="2"><p class="tableblock">ARCHETYPE_CONSTRAINT</p></td>
+<td class="tableblock halign-left valign-top" colspan="2"><p class="tableblock"><code>ARCHETYPE_CONSTRAINT</code></p></td>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Attributes</strong></p></th>
@@ -1383,28 +1392,28 @@ Typically used during validation of special-ised archetype nodes.</p>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>any_allowed</strong>: <code>Boolean</code><br>
-<strong><em>Post</em></strong>: Result := children = Void or else children.is_empty</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>any_allowed</strong> (): <code>Boolean</code><br>
+<strong><em>Post</em></strong>: <code>Result := children = Void or else children.is_empty</code></p></td>
 <td class="tableblock halign-left valign-top"><div><div class="paragraph">
 <p>True if any value (i.e. instance) of the reference model attribute represented by this C_ATTIRBUTE is allowed.</p>
 </div></div></td>
 </tr>
 <tr>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Invariant</strong></p></th>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Invariants</strong></p></th>
 <td class="tableblock halign-left valign-top" colspan="2"><div><div class="paragraph">
-<p><strong><em>Rm_attribute_name_valid</em></strong>: not rm_attribute_name.is_empty</p>
+<p><strong><em>Rm_attribute_name_valid</em></strong>: <code>not rm_attribute_name.is_empty</code></p>
 </div></div></td>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"></th>
 <td class="tableblock halign-left valign-top" colspan="2"><div><div class="paragraph">
-<p><strong><em>Existence_set</em></strong>: existence.lower &gt;= 0 and existence.upper &lt;= 1</p>
+<p><strong><em>Existence_set</em></strong>: <code>existence.lower &gt;= 0 and existence.upper &lt;= 1</code></p>
 </div></div></td>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"></th>
 <td class="tableblock halign-left valign-top" colspan="2"><div><div class="paragraph">
-<p><strong><em>Children_validity</em></strong>: any_allowed xor children /= Void</p>
+<p><strong><em>Children_validity</em></strong>: <code>any_allowed xor children /= Void</code></p>
 </div></div></td>
 </tr>
 </tbody>
@@ -1414,9 +1423,9 @@ Typically used during validation of special-ised archetype nodes.</p>
 <h4 id="_c_single_attribute_class"><a class="anchor" href="#_c_single_attribute_class"></a>4.3.3. C_SINGLE_ATTRIBUTE Class</h4>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
-<col style="width: 16.6666%;">
+<col style="width: 11.1111%;">
 <col style="width: 33.3333%;">
-<col style="width: 50.0001%;">
+<col style="width: 55.5556%;">
 </colgroup>
 <tbody>
 <tr>
@@ -1431,7 +1440,7 @@ Typically used during validation of special-ised archetype nodes.</p>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Inherit</strong></p></th>
-<td class="tableblock halign-left valign-top" colspan="2"><p class="tableblock">C_ATTRIBUTE</p></td>
+<td class="tableblock halign-left valign-top" colspan="2"><p class="tableblock"><code>C_ATTRIBUTE</code></p></td>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Functions</strong></p></th>
@@ -1440,7 +1449,7 @@ Typically used during validation of special-ised archetype nodes.</p>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>alternatives</strong>: <code>List&lt;C_OBJECT&gt;</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>alternatives</strong> (): <code>List&lt;C_OBJECT&gt;</code></p></td>
 <td class="tableblock halign-left valign-top"><div><div class="paragraph">
 <p>List of alternative constraints for the single child of this attribute within the data.</p>
 </div></div></td>
@@ -1452,9 +1461,9 @@ Typically used during validation of special-ised archetype nodes.</p>
 <h4 id="_c_multiple_attribute_class"><a class="anchor" href="#_c_multiple_attribute_class"></a>4.3.4. C_MULTIPLE_ATTRIBUTE Class</h4>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
-<col style="width: 16.6666%;">
+<col style="width: 11.1111%;">
 <col style="width: 33.3333%;">
-<col style="width: 50.0001%;">
+<col style="width: 55.5556%;">
 </colgroup>
 <tbody>
 <tr>
@@ -1469,7 +1478,7 @@ Typically used during validation of special-ised archetype nodes.</p>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Inherit</strong></p></th>
-<td class="tableblock halign-left valign-top" colspan="2"><p class="tableblock">C_ATTRIBUTE</p></td>
+<td class="tableblock halign-left valign-top" colspan="2"><p class="tableblock"><code>C_ATTRIBUTE</code></p></td>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Attributes</strong></p></th>
@@ -1490,15 +1499,15 @@ Typically used during validation of special-ised archetype nodes.</p>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>members</strong>: <code>List&lt;C_OBJECT&gt;</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>members</strong> (): <code>List&lt;C_OBJECT&gt;</code></p></td>
 <td class="tableblock halign-left valign-top"><div><div class="paragraph">
 <p>List of constraints representing members of the container value of this attribute within the data. Semantics of the uniqueness and ordering of items in the container are given by the cardinality.</p>
 </div></div></td>
 </tr>
 <tr>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Invariant</strong></p></th>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Invariants</strong></p></th>
 <td class="tableblock halign-left valign-top" colspan="2"><div><div class="paragraph">
-<p><strong><em>Members_valid</em></strong>: members /= Void and then members.for_all(co: C_OBJECT &#124; co.occurrences.upper &lt;= 1)</p>
+<p><strong><em>Members_valid</em></strong>: <code>members /= Void and then members.for_all(co: C_OBJECT &#124; co.occurrences.upper &lt;= 1)</code></p>
 </div></div></td>
 </tr>
 </tbody>
@@ -1508,9 +1517,9 @@ Typically used during validation of special-ised archetype nodes.</p>
 <h4 id="_cardinality_class"><a class="anchor" href="#_cardinality_class"></a>4.3.5. CARDINALITY Class</h4>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
-<col style="width: 16.6666%;">
+<col style="width: 11.1111%;">
 <col style="width: 33.3333%;">
-<col style="width: 50.0001%;">
+<col style="width: 55.5556%;">
 </colgroup>
 <tbody>
 <tr>
@@ -1556,21 +1565,21 @@ Typically used during validation of special-ised archetype nodes.</p>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>is_bag</strong>: <code>Boolean</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>is_bag</strong> (): <code>Boolean</code></p></td>
 <td class="tableblock halign-left valign-top"><div><div class="paragraph">
 <p>True if the semantics of this cardinality represent a bag, i.e. unordered, non-unique membership.</p>
 </div></div></td>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>is_list</strong>: <code>Boolean</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>is_list</strong> (): <code>Boolean</code></p></td>
 <td class="tableblock halign-left valign-top"><div><div class="paragraph">
 <p>True if the semantics of this cardinality represent a list, i.e. ordered, non-unique membership.</p>
 </div></div></td>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>is_set</strong>: <code>Boolean</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>is_set</strong> (): <code>Boolean</code></p></td>
 <td class="tableblock halign-left valign-top"><div><div class="paragraph">
 <p>True if the semantics of this cardinality represent a bag, i.e. unordered, non-unique membership.</p>
 </div></div></td>
@@ -1582,9 +1591,9 @@ Typically used during validation of special-ised archetype nodes.</p>
 <h4 id="_c_object_class"><a class="anchor" href="#_c_object_class"></a>4.3.6. C_OBJECT Class</h4>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
-<col style="width: 16.6666%;">
+<col style="width: 11.1111%;">
 <col style="width: 33.3333%;">
-<col style="width: 50.0001%;">
+<col style="width: 55.5556%;">
 </colgroup>
 <tbody>
 <tr>
@@ -1599,7 +1608,7 @@ Typically used during validation of special-ised archetype nodes.</p>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Inherit</strong></p></th>
-<td class="tableblock halign-left valign-top" colspan="2"><p class="tableblock">ARCHETYPE_CONSTRAINT</p></td>
+<td class="tableblock halign-left valign-top" colspan="2"><p class="tableblock"><code>ARCHETYPE_CONSTRAINT</code></p></td>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Attributes</strong></p></th>
@@ -1635,9 +1644,9 @@ For C_PRIMITIVE_OBJECTs, it will have the special value Primitive_node_id.</p>
 <h4 id="_c_defined_object_class"><a class="anchor" href="#_c_defined_object_class"></a>4.3.7. C_DEFINED_OBJECT Class</h4>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
-<col style="width: 16.6666%;">
+<col style="width: 11.1111%;">
 <col style="width: 33.3333%;">
-<col style="width: 50.0001%;">
+<col style="width: 55.5556%;">
 </colgroup>
 <tbody>
 <tr>
@@ -1652,7 +1661,7 @@ For C_PRIMITIVE_OBJECTs, it will have the special value Primitive_node_id.</p>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Inherit</strong></p></th>
-<td class="tableblock halign-left valign-top" colspan="2"><p class="tableblock">C_OBJECT</p></td>
+<td class="tableblock halign-left valign-top" colspan="2"><p class="tableblock"><code>C_OBJECT</code></p></td>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Attributes</strong></p></th>
@@ -1673,44 +1682,46 @@ For C_PRIMITIVE_OBJECTs, it will have the special value Primitive_node_id.</p>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>valid_value</strong> (a_value: <code>Any</code>): <code>Boolean</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>valid_value</strong> (<br>
+a_value: <code>Any[1]</code><br>
+): <code>Boolean</code></p></td>
 <td class="tableblock halign-left valign-top"><div><div class="paragraph">
 <p>True if a_value is valid with respect to constraint expressed in concrete instance of this type.</p>
 </div></div></td>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>prototype_value</strong>: <code>Any</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>prototype_value</strong> (): <code>Any</code></p></td>
 <td class="tableblock halign-left valign-top"><div><div class="paragraph">
 <p>Generate a prototype value from this constraint object.</p>
 </div></div></td>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>has_assumed_value</strong>: <code>Boolean</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>has_assumed_value</strong> (): <code>Boolean</code></p></td>
 <td class="tableblock halign-left valign-top"><div><div class="paragraph">
 <p>True if there is an assumed value.</p>
 </div></div></td>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>default_value</strong>: <code>Any</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>default_value</strong> (): <code>Any</code></p></td>
 <td class="tableblock halign-left valign-top"><div><div class="paragraph">
 <p>Generate a default value from this constraint object.</p>
 </div></div></td>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>any_allowed</strong>: <code>Boolean</code><br>
-<strong><em>Post</em></strong>: Result = attributes.is_empty</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>any_allowed</strong> (): <code>Boolean</code><br>
+<strong><em>Post</em></strong>: <code>Result = attributes.is_empty</code></p></td>
 <td class="tableblock halign-left valign-top"><div><div class="paragraph">
 <p>True if any value of the reference model type being constrained is allowed. Redefine in descendants.</p>
 </div></div></td>
 </tr>
 <tr>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Invariant</strong></p></th>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Invariants</strong></p></th>
 <td class="tableblock halign-left valign-top" colspan="2"><div><div class="paragraph">
-<p><strong><em>Assumed_value_valid</em></strong>: has_assumed_value implies valid_value(assumed_value)</p>
+<p><strong><em>Assumed_value_valid</em></strong>: <code>has_assumed_value implies valid_value(assumed_value)</code></p>
 </div></div></td>
 </tr>
 </tbody>
@@ -1720,9 +1731,9 @@ For C_PRIMITIVE_OBJECTs, it will have the special value Primitive_node_id.</p>
 <h4 id="_c_complex_object_class"><a class="anchor" href="#_c_complex_object_class"></a>4.3.8. C_COMPLEX_OBJECT Class</h4>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
-<col style="width: 16.6666%;">
+<col style="width: 11.1111%;">
 <col style="width: 33.3333%;">
-<col style="width: 50.0001%;">
+<col style="width: 55.5556%;">
 </colgroup>
 <tbody>
 <tr>
@@ -1737,7 +1748,7 @@ For C_PRIMITIVE_OBJECTs, it will have the special value Primitive_node_id.</p>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Inherit</strong></p></th>
-<td class="tableblock halign-left valign-top" colspan="2"><p class="tableblock">C_DEFINED_OBJECT</p></td>
+<td class="tableblock halign-left valign-top" colspan="2"><p class="tableblock"><code>C_DEFINED_OBJECT</code></p></td>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Attributes</strong></p></th>
@@ -1758,16 +1769,16 @@ For C_PRIMITIVE_OBJECTs, it will have the special value Primitive_node_id.</p>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock">(effected)</p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>any_allowed</strong>: <code>Boolean</code><br>
-<strong><em>Post</em></strong>: Result = attributes.is_empty</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>any_allowed</strong> (): <code>Boolean</code><br>
+<strong><em>Post</em></strong>: <code>Result = attributes.is_empty</code></p></td>
 <td class="tableblock halign-left valign-top"><div><div class="paragraph">
 <p>True if any value of the reference model type being constrained is allowed.</p>
 </div></div></td>
 </tr>
 <tr>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Invariant</strong></p></th>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Invariants</strong></p></th>
 <td class="tableblock halign-left valign-top" colspan="2"><div><div class="paragraph">
-<p><strong><em>Attributes_valid</em></strong>:  any_allowed xor (attributes /= Void and not attributes.is_empty)</p>
+<p><strong><em>Attributes_valid</em></strong>: ` any_allowed xor (attributes /= Void and not attributes.is_empty)`</p>
 </div></div></td>
 </tr>
 </tbody>
@@ -1777,9 +1788,9 @@ For C_PRIMITIVE_OBJECTs, it will have the special value Primitive_node_id.</p>
 <h4 id="_c_primitive_object_class"><a class="anchor" href="#_c_primitive_object_class"></a>4.3.9. C_PRIMITIVE_OBJECT Class</h4>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
-<col style="width: 16.6666%;">
+<col style="width: 11.1111%;">
 <col style="width: 33.3333%;">
-<col style="width: 50.0001%;">
+<col style="width: 55.5556%;">
 </colgroup>
 <tbody>
 <tr>
@@ -1794,7 +1805,7 @@ For C_PRIMITIVE_OBJECTs, it will have the special value Primitive_node_id.</p>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Inherit</strong></p></th>
-<td class="tableblock halign-left valign-top" colspan="2"><p class="tableblock">C_DEFINED_OBJECT</p></td>
+<td class="tableblock halign-left valign-top" colspan="2"><p class="tableblock"><code>C_DEFINED_OBJECT</code></p></td>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Attributes</strong></p></th>
@@ -1815,16 +1826,16 @@ For C_PRIMITIVE_OBJECTs, it will have the special value Primitive_node_id.</p>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock">(effected)</p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>any_allowed</strong>: <code>Boolean</code><br>
-<strong><em>Post</em></strong>: Result = item = Void</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>any_allowed</strong> (): <code>Boolean</code><br>
+<strong><em>Post</em></strong>: <code>Result = item = Void</code></p></td>
 <td class="tableblock halign-left valign-top"><div><div class="paragraph">
 <p>True if any value of the type being constrained in item is allowed.</p>
 </div></div></td>
 </tr>
 <tr>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Invariant</strong></p></th>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Invariants</strong></p></th>
 <td class="tableblock halign-left valign-top" colspan="2"><div><div class="paragraph">
-<p><strong><em>Item_valid</em></strong>: any_allowed xor item /= Void</p>
+<p><strong><em>Item_valid</em></strong>: <code>any_allowed xor item /= Void</code></p>
 </div></div></td>
 </tr>
 </tbody>
@@ -1834,9 +1845,9 @@ For C_PRIMITIVE_OBJECTs, it will have the special value Primitive_node_id.</p>
 <h4 id="_c_domain_type_class"><a class="anchor" href="#_c_domain_type_class"></a>4.3.10. C_DOMAIN_TYPE Class</h4>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
-<col style="width: 16.6666%;">
+<col style="width: 11.1111%;">
 <col style="width: 33.3333%;">
-<col style="width: 50.0001%;">
+<col style="width: 55.5556%;">
 </colgroup>
 <tbody>
 <tr>
@@ -1851,7 +1862,7 @@ For C_PRIMITIVE_OBJECTs, it will have the special value Primitive_node_id.</p>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Inherit</strong></p></th>
-<td class="tableblock halign-left valign-top" colspan="2"><p class="tableblock">C_DEFINED_OBJECT</p></td>
+<td class="tableblock halign-left valign-top" colspan="2"><p class="tableblock"><code>C_DEFINED_OBJECT</code></p></td>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Functions</strong></p></th>
@@ -1860,7 +1871,7 @@ For C_PRIMITIVE_OBJECTs, it will have the special value Primitive_node_id.</p>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>standard_equivalent</strong>: <code>C_COMPLEX_OBJECT</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>standard_equivalent</strong> (): <code>C_COMPLEX_OBJECT</code></p></td>
 <td class="tableblock halign-left valign-top"><div><div class="paragraph">
 <p>Standard (i.e. C_OBJECT) form of constraint.</p>
 </div></div></td>
@@ -1872,9 +1883,9 @@ For C_PRIMITIVE_OBJECTs, it will have the special value Primitive_node_id.</p>
 <h4 id="_c_reference_object_class"><a class="anchor" href="#_c_reference_object_class"></a>4.3.11. C_REFERENCE_OBJECT Class</h4>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
-<col style="width: 16.6666%;">
+<col style="width: 11.1111%;">
 <col style="width: 33.3333%;">
-<col style="width: 50.0001%;">
+<col style="width: 55.5556%;">
 </colgroup>
 <tbody>
 <tr>
@@ -1889,7 +1900,7 @@ For C_PRIMITIVE_OBJECTs, it will have the special value Primitive_node_id.</p>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Inherit</strong></p></th>
-<td class="tableblock halign-left valign-top" colspan="2"><p class="tableblock">C_OBJECT</p></td>
+<td class="tableblock halign-left valign-top" colspan="2"><p class="tableblock"><code>C_OBJECT</code></p></td>
 </tr>
 </tbody>
 </table>
@@ -1898,9 +1909,9 @@ For C_PRIMITIVE_OBJECTs, it will have the special value Primitive_node_id.</p>
 <h4 id="_archetype_slot_class"><a class="anchor" href="#_archetype_slot_class"></a>4.3.12. ARCHETYPE_SLOT Class</h4>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
-<col style="width: 16.6666%;">
+<col style="width: 11.1111%;">
 <col style="width: 33.3333%;">
-<col style="width: 50.0001%;">
+<col style="width: 55.5556%;">
 </colgroup>
 <tbody>
 <tr>
@@ -1915,7 +1926,7 @@ For C_PRIMITIVE_OBJECTs, it will have the special value Primitive_node_id.</p>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Inherit</strong></p></th>
-<td class="tableblock halign-left valign-top" colspan="2"><p class="tableblock">C_REFERENCE_OBJECT</p></td>
+<td class="tableblock halign-left valign-top" colspan="2"><p class="tableblock"><code>C_REFERENCE_OBJECT</code></p></td>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Attributes</strong></p></th>
@@ -1937,21 +1948,21 @@ For C_PRIMITIVE_OBJECTs, it will have the special value Primitive_node_id.</p>
 </div></div></td>
 </tr>
 <tr>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Invariant</strong></p></th>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Invariants</strong></p></th>
 <td class="tableblock halign-left valign-top" colspan="2"><div><div class="paragraph">
-<p><strong><em>Includes_valid</em></strong>: includes /= Void implies not includes.is_empty</p>
+<p><strong><em>Includes_valid</em></strong>: <code>includes /= Void implies not includes.is_empty</code></p>
 </div></div></td>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"></th>
 <td class="tableblock halign-left valign-top" colspan="2"><div><div class="paragraph">
-<p><strong><em>Excludes_valid</em></strong>: excludes /= Void implies not excludes.is_empty</p>
+<p><strong><em>Excludes_valid</em></strong>: <code>excludes /= Void implies not excludes.is_empty</code></p>
 </div></div></td>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"></th>
 <td class="tableblock halign-left valign-top" colspan="2"><div><div class="paragraph">
-<p><strong><em>Validity</em></strong>: any_allowed xor (includes /= Void or excludes /= Void)</p>
+<p><strong><em>Validity</em></strong>: <code>any_allowed xor (includes /= Void or excludes /= Void)</code></p>
 </div></div></td>
 </tr>
 </tbody>
@@ -1961,9 +1972,9 @@ For C_PRIMITIVE_OBJECTs, it will have the special value Primitive_node_id.</p>
 <h4 id="_archetype_internal_ref_class"><a class="anchor" href="#_archetype_internal_ref_class"></a>4.3.13. ARCHETYPE_INTERNAL_REF Class</h4>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
-<col style="width: 16.6666%;">
+<col style="width: 11.1111%;">
 <col style="width: 33.3333%;">
-<col style="width: 50.0001%;">
+<col style="width: 55.5556%;">
 </colgroup>
 <tbody>
 <tr>
@@ -1982,7 +1993,7 @@ archetype.</p>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Inherit</strong></p></th>
-<td class="tableblock halign-left valign-top" colspan="2"><p class="tableblock">C_REFERENCE_OBJECT</p></td>
+<td class="tableblock halign-left valign-top" colspan="2"><p class="tableblock"><code>C_REFERENCE_OBJECT</code></p></td>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Attributes</strong></p></th>
@@ -1997,15 +2008,15 @@ archetype.</p>
 </div></div></td>
 </tr>
 <tr>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Invariant</strong></p></th>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Invariants</strong></p></th>
 <td class="tableblock halign-left valign-top" colspan="2"><div><div class="paragraph">
-<p><strong><em>Consistency</em></strong>: not any_allowed</p>
+<p><strong><em>Consistency</em></strong>: <code>not any_allowed</code></p>
 </div></div></td>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"></th>
 <td class="tableblock halign-left valign-top" colspan="2"><div><div class="paragraph">
-<p><strong><em>Target_path_valid</em></strong>: target_path /= Void and then not target_path.is_empty</p>
+<p><strong><em>Target_path_valid</em></strong>: <code>target_path /= Void and then not target_path.is_empty</code></p>
 </div></div></td>
 </tr>
 </tbody>
@@ -2015,9 +2026,9 @@ archetype.</p>
 <h4 id="_constraint_ref_class"><a class="anchor" href="#_constraint_ref_class"></a>4.3.14. CONSTRAINT_REF Class</h4>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
-<col style="width: 16.6666%;">
+<col style="width: 11.1111%;">
 <col style="width: 33.3333%;">
-<col style="width: 50.0001%;">
+<col style="width: 55.5556%;">
 </colgroup>
 <tbody>
 <tr>
@@ -2032,7 +2043,7 @@ archetype.</p>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Inherit</strong></p></th>
-<td class="tableblock halign-left valign-top" colspan="2"><p class="tableblock">C_REFERENCE_OBJECT</p></td>
+<td class="tableblock halign-left valign-top" colspan="2"><p class="tableblock"><code>C_REFERENCE_OBJECT</code></p></td>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Attributes</strong></p></th>
@@ -2047,9 +2058,9 @@ archetype.</p>
 </div></div></td>
 </tr>
 <tr>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Invariant</strong></p></th>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Invariants</strong></p></th>
 <td class="tableblock halign-left valign-top" colspan="2"><div><div class="paragraph">
-<p><strong><em>Consistency</em></strong>: not any_allowed</p>
+<p><strong><em>Consistency</em></strong>: <code>not any_allowed</code></p>
 </div></div></td>
 </tr>
 </tbody>
@@ -2113,9 +2124,9 @@ archetype.</p>
 <h4 id="_assertion_class"><a class="anchor" href="#_assertion_class"></a>5.3.1. ASSERTION Class</h4>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
-<col style="width: 16.6666%;">
+<col style="width: 11.1111%;">
 <col style="width: 33.3333%;">
-<col style="width: 50.0001%;">
+<col style="width: 55.5556%;">
 </colgroup>
 <tbody>
 <tr>
@@ -2162,15 +2173,15 @@ archetype.</p>
 </div></div></td>
 </tr>
 <tr>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Invariant</strong></p></th>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Invariants</strong></p></th>
 <td class="tableblock halign-left valign-top" colspan="2"><div><div class="paragraph">
-<p><strong><em>Tag_valid</em></strong>: tag /= Void implies not tag.is_empty</p>
+<p><strong><em>Tag_valid</em></strong>: <code>tag /= Void implies not tag.is_empty</code></p>
 </div></div></td>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"></th>
 <td class="tableblock halign-left valign-top" colspan="2"><div><div class="paragraph">
-<p><strong><em>Expression_valid</em></strong>: expression /= Void and then expression.type.is_equal(“BOOLEAN”)</p>
+<p><strong><em>Expression_valid</em></strong>: <code>expression /= Void and then expression.type.is_equal(“BOOLEAN”)</code></p>
 </div></div></td>
 </tr>
 </tbody>
@@ -2180,9 +2191,9 @@ archetype.</p>
 <h4 id="_expr_item_class"><a class="anchor" href="#_expr_item_class"></a>5.3.2. EXPR_ITEM Class</h4>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
-<col style="width: 16.6666%;">
+<col style="width: 11.1111%;">
 <col style="width: 33.3333%;">
-<col style="width: 50.0001%;">
+<col style="width: 55.5556%;">
 </colgroup>
 <tbody>
 <tr>
@@ -2214,9 +2225,9 @@ archetype.</p>
 <h4 id="_expr_leaf_class"><a class="anchor" href="#_expr_leaf_class"></a>5.3.3. EXPR_LEAF Class</h4>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
-<col style="width: 16.6666%;">
+<col style="width: 11.1111%;">
 <col style="width: 33.3333%;">
-<col style="width: 50.0001%;">
+<col style="width: 55.5556%;">
 </colgroup>
 <tbody>
 <tr>
@@ -2247,7 +2258,7 @@ archetype.</p>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Inherit</strong></p></th>
-<td class="tableblock halign-left valign-top" colspan="2"><p class="tableblock">EXPR_ITEM</p></td>
+<td class="tableblock halign-left valign-top" colspan="2"><p class="tableblock"><code>EXPR_ITEM</code></p></td>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Attributes</strong></p></th>
@@ -2275,9 +2286,9 @@ archetype.</p>
 <h4 id="_expr_operator_class"><a class="anchor" href="#_expr_operator_class"></a>5.3.4. EXPR_OPERATOR Class</h4>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
-<col style="width: 16.6666%;">
+<col style="width: 11.1111%;">
 <col style="width: 33.3333%;">
-<col style="width: 50.0001%;">
+<col style="width: 55.5556%;">
 </colgroup>
 <tbody>
 <tr>
@@ -2292,7 +2303,7 @@ archetype.</p>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Inherit</strong></p></th>
-<td class="tableblock halign-left valign-top" colspan="2"><p class="tableblock">EXPR_ITEM</p></td>
+<td class="tableblock halign-left valign-top" colspan="2"><p class="tableblock"><code>EXPR_ITEM</code></p></td>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Attributes</strong></p></th>
@@ -2320,9 +2331,9 @@ archetype.</p>
 <h4 id="_expr_unary_operator_class"><a class="anchor" href="#_expr_unary_operator_class"></a>5.3.5. EXPR_UNARY_OPERATOR Class</h4>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
-<col style="width: 16.6666%;">
+<col style="width: 11.1111%;">
 <col style="width: 33.3333%;">
-<col style="width: 50.0001%;">
+<col style="width: 55.5556%;">
 </colgroup>
 <tbody>
 <tr>
@@ -2337,7 +2348,7 @@ archetype.</p>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Inherit</strong></p></th>
-<td class="tableblock halign-left valign-top" colspan="2"><p class="tableblock">EXPR_OPERATOR</p></td>
+<td class="tableblock halign-left valign-top" colspan="2"><p class="tableblock"><code>EXPR_OPERATOR</code></p></td>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Attributes</strong></p></th>
@@ -2358,9 +2369,9 @@ archetype.</p>
 <h4 id="_expr_binary_operator_class"><a class="anchor" href="#_expr_binary_operator_class"></a>5.3.6. EXPR_BINARY_OPERATOR Class</h4>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
-<col style="width: 16.6666%;">
+<col style="width: 11.1111%;">
 <col style="width: 33.3333%;">
-<col style="width: 50.0001%;">
+<col style="width: 55.5556%;">
 </colgroup>
 <tbody>
 <tr>
@@ -2375,7 +2386,7 @@ archetype.</p>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Inherit</strong></p></th>
-<td class="tableblock halign-left valign-top" colspan="2"><p class="tableblock">EXPR_OPERATOR</p></td>
+<td class="tableblock halign-left valign-top" colspan="2"><p class="tableblock"><code>EXPR_OPERATOR</code></p></td>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Attributes</strong></p></th>
@@ -2403,9 +2414,9 @@ archetype.</p>
 <h4 id="_assertion_variable_class"><a class="anchor" href="#_assertion_variable_class"></a>5.3.7. ASSERTION_VARIABLE Class</h4>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
-<col style="width: 16.6666%;">
+<col style="width: 11.1111%;">
 <col style="width: 33.3333%;">
-<col style="width: 50.0001%;">
+<col style="width: 55.5556%;">
 </colgroup>
 <tbody>
 <tr>
@@ -2444,9 +2455,9 @@ archetype.</p>
 <h4 id="_operator_kind_enumeration"><a class="anchor" href="#_operator_kind_enumeration"></a>5.3.8. OPERATOR_KIND Enumeration</h4>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
-<col style="width: 16.6666%;">
+<col style="width: 11.1111%;">
 <col style="width: 33.3333%;">
-<col style="width: 50.0001%;">
+<col style="width: 55.5556%;">
 </colgroup>
 <tbody>
 <tr>
@@ -2627,9 +2638,9 @@ archetype.</p>
 <h4 id="_c_primitive_class"><a class="anchor" href="#_c_primitive_class"></a>6.2.1. C_PRIMITIVE Class</h4>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
-<col style="width: 16.6666%;">
+<col style="width: 11.1111%;">
 <col style="width: 33.3333%;">
-<col style="width: 50.0001%;">
+<col style="width: 55.5556%;">
 </colgroup>
 <tbody>
 <tr>
@@ -2661,29 +2672,31 @@ archetype.</p>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>default_value</strong>: <code>Any</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>default_value</strong> (): <code>Any</code></p></td>
 <td class="tableblock halign-left valign-top"><div><div class="paragraph">
 <p>Generate a default value from this constraint object.</p>
 </div></div></td>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>has_assumed_value</strong>: <code>Boolean</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>has_assumed_value</strong> (): <code>Boolean</code></p></td>
 <td class="tableblock halign-left valign-top"><div><div class="paragraph">
 <p>True if there is an assumed value.</p>
 </div></div></td>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>valid_value</strong> (a_value: <code>Any</code>): <code>Boolean</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>valid_value</strong> (<br>
+a_value: <code>Any[1]</code><br>
+): <code>Boolean</code></p></td>
 <td class="tableblock halign-left valign-top"><div><div class="paragraph">
 <p>True if a_value is valid with respect to constraint expressed in concrete instance of this type.</p>
 </div></div></td>
 </tr>
 <tr>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Invariant</strong></p></th>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Invariants</strong></p></th>
 <td class="tableblock halign-left valign-top" colspan="2"><div><div class="paragraph">
-<p><strong><em>Assumed_value_valid</em></strong>: has_assumed_value implies valid_value(assumed_value)</p>
+<p><strong><em>Assumed_value_valid</em></strong>: <code>has_assumed_value implies valid_value(assumed_value)</code></p>
 </div></div></td>
 </tr>
 </tbody>
@@ -2693,9 +2706,9 @@ archetype.</p>
 <h4 id="_c_boolean_class"><a class="anchor" href="#_c_boolean_class"></a>6.2.2. C_BOOLEAN Class</h4>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
-<col style="width: 16.6666%;">
+<col style="width: 11.1111%;">
 <col style="width: 33.3333%;">
-<col style="width: 50.0001%;">
+<col style="width: 55.5556%;">
 </colgroup>
 <tbody>
 <tr>
@@ -2710,7 +2723,7 @@ archetype.</p>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Inherit</strong></p></th>
-<td class="tableblock halign-left valign-top" colspan="2"><p class="tableblock">C_PRIMITIVE</p></td>
+<td class="tableblock halign-left valign-top" colspan="2"><p class="tableblock"><code>C_PRIMITIVE</code></p></td>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Attributes</strong></p></th>
@@ -2746,9 +2759,9 @@ archetype.</p>
 <h4 id="_c_string_class"><a class="anchor" href="#_c_string_class"></a>6.2.3. C_STRING Class</h4>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
-<col style="width: 16.6666%;">
+<col style="width: 11.1111%;">
 <col style="width: 33.3333%;">
-<col style="width: 50.0001%;">
+<col style="width: 55.5556%;">
 </colgroup>
 <tbody>
 <tr>
@@ -2763,7 +2776,7 @@ archetype.</p>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Inherit</strong></p></th>
-<td class="tableblock halign-left valign-top" colspan="2"><p class="tableblock">C_PRIMITIVE</p></td>
+<td class="tableblock halign-left valign-top" colspan="2"><p class="tableblock"><code>C_PRIMITIVE</code></p></td>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Attributes</strong></p></th>
@@ -2806,7 +2819,9 @@ archetype.</p>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock">(effected)</p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>valid_value</strong> (a_value: <code>String</code>): <code>Boolean</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>valid_value</strong> (<br>
+a_value: <code>String[1]</code><br>
+): <code>Boolean</code></p></td>
 <td class="tableblock halign-left valign-top"><div><div class="paragraph">
 <p>True if a_value is valid with respect to constraint expressed in concrete instance of this type.</p>
 </div></div></td>
@@ -2818,9 +2833,9 @@ archetype.</p>
 <h4 id="_c_integer_class"><a class="anchor" href="#_c_integer_class"></a>6.2.4. C_INTEGER Class</h4>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
-<col style="width: 16.6666%;">
+<col style="width: 11.1111%;">
 <col style="width: 33.3333%;">
-<col style="width: 50.0001%;">
+<col style="width: 55.5556%;">
 </colgroup>
 <tbody>
 <tr>
@@ -2835,7 +2850,7 @@ archetype.</p>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Inherit</strong></p></th>
-<td class="tableblock halign-left valign-top" colspan="2"><p class="tableblock">C_PRIMITIVE</p></td>
+<td class="tableblock halign-left valign-top" colspan="2"><p class="tableblock"><code>C_PRIMITIVE</code></p></td>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Attributes</strong></p></th>
@@ -2871,9 +2886,9 @@ archetype.</p>
 <h4 id="_c_real_class"><a class="anchor" href="#_c_real_class"></a>6.2.5. C_REAL Class</h4>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
-<col style="width: 16.6666%;">
+<col style="width: 11.1111%;">
 <col style="width: 33.3333%;">
-<col style="width: 50.0001%;">
+<col style="width: 55.5556%;">
 </colgroup>
 <tbody>
 <tr>
@@ -2888,7 +2903,7 @@ archetype.</p>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Inherit</strong></p></th>
-<td class="tableblock halign-left valign-top" colspan="2"><p class="tableblock">C_PRIMITIVE</p></td>
+<td class="tableblock halign-left valign-top" colspan="2"><p class="tableblock"><code>C_PRIMITIVE</code></p></td>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Attributes</strong></p></th>
@@ -2924,9 +2939,9 @@ archetype.</p>
 <h4 id="_c_date_class"><a class="anchor" href="#_c_date_class"></a>6.2.6. C_DATE Class</h4>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
-<col style="width: 16.6666%;">
+<col style="width: 11.1111%;">
 <col style="width: 33.3333%;">
-<col style="width: 50.0001%;">
+<col style="width: 55.5556%;">
 </colgroup>
 <tbody>
 <tr>
@@ -2941,7 +2956,7 @@ archetype.</p>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Inherit</strong></p></th>
-<td class="tableblock halign-left valign-top" colspan="2"><p class="tableblock">C_PRIMITIVE</p></td>
+<td class="tableblock halign-left valign-top" colspan="2"><p class="tableblock"><code>C_PRIMITIVE</code></p></td>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Attributes</strong></p></th>
@@ -2985,21 +3000,21 @@ archetype.</p>
 </div></div></td>
 </tr>
 <tr>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Invariant</strong></p></th>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Invariants</strong></p></th>
 <td class="tableblock halign-left valign-top" colspan="2"><div><div class="paragraph">
-<p><strong><em>Month_validity_optional</em></strong>: month_validity = {VALIDITY_KIND}.optional implies (day_validity = {VALIDITY_KIND}.optional or day_validity = {VALIDITY_KIND}.disallowed)</p>
+<p><strong><em>Month_validity_optional</em></strong>: <code>month_validity = {VALIDITY_KIND}.optional implies (day_validity = {VALIDITY_KIND}.optional or day_validity = {VALIDITY_KIND}.disallowed)</code></p>
 </div></div></td>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"></th>
 <td class="tableblock halign-left valign-top" colspan="2"><div><div class="paragraph">
-<p><strong><em>Month_validity_disallowed</em></strong>: month_validity = {VALIDITY_KIND}.disallowed implies day_validity = {VALIDITY_KIND}.disallowed</p>
+<p><strong><em>Month_validity_disallowed</em></strong>: <code>month_validity = {VALIDITY_KIND}.disallowed implies day_validity = {VALIDITY_KIND}.disallowed</code></p>
 </div></div></td>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"></th>
 <td class="tableblock halign-left valign-top" colspan="2"><div><div class="paragraph">
-<p><strong><em>Validity_is_range</em></strong>: validity_is_range = (range /= Void)</p>
+<p><strong><em>Validity_is_range</em></strong>: <code>validity_is_range = (range /= Void)</code></p>
 </div></div></td>
 </tr>
 </tbody>
@@ -3009,9 +3024,9 @@ archetype.</p>
 <h4 id="_c_time_class"><a class="anchor" href="#_c_time_class"></a>6.2.7. C_TIME Class</h4>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
-<col style="width: 16.6666%;">
+<col style="width: 11.1111%;">
 <col style="width: 33.3333%;">
-<col style="width: 50.0001%;">
+<col style="width: 55.5556%;">
 </colgroup>
 <tbody>
 <tr>
@@ -3026,7 +3041,7 @@ archetype.</p>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Inherit</strong></p></th>
-<td class="tableblock halign-left valign-top" colspan="2"><p class="tableblock">C_PRIMITIVE</p></td>
+<td class="tableblock halign-left valign-top" colspan="2"><p class="tableblock"><code>C_PRIMITIVE</code></p></td>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Attributes</strong></p></th>
@@ -3083,33 +3098,33 @@ archetype.</p>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>validity_is_range</strong>: <code>Boolean</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>validity_is_range</strong> (): <code>Boolean</code></p></td>
 <td class="tableblock halign-left valign-top"><div><div class="paragraph">
 <p>True if validity is in the form of a range; useful for developers to check which kind of constraint has been set.</p>
 </div></div></td>
 </tr>
 <tr>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Invariant</strong></p></th>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Invariants</strong></p></th>
 <td class="tableblock halign-left valign-top" colspan="2"><div><div class="paragraph">
-<p><strong><em>Minute_validity_optional</em></strong>: minute_validity = {VALIDITY_KIND}.optional implies (second_validity = {VALIDITY_KIND}.optional or second_validity = {VALIDITY_KIND}.disallowed)</p>
+<p><strong><em>Minute_validity_optional</em></strong>: <code>minute_validity = {VALIDITY_KIND}.optional implies (second_validity = {VALIDITY_KIND}.optional or second_validity = {VALIDITY_KIND}.disallowed)</code></p>
 </div></div></td>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"></th>
 <td class="tableblock halign-left valign-top" colspan="2"><div><div class="paragraph">
-<p><strong><em>Minute_validity_disallowed</em></strong>: minute_validity = {VALIDITY_KIND}.disallowed implies second_validity = {VALIDITY_KIND}.disallowed</p>
+<p><strong><em>Minute_validity_disallowed</em></strong>: <code>minute_validity = {VALIDITY_KIND}.disallowed implies second_validity = {VALIDITY_KIND}.disallowed</code></p>
 </div></div></td>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"></th>
 <td class="tableblock halign-left valign-top" colspan="2"><div><div class="paragraph">
-<p><strong><em>Second_validity_optional</em></strong>: second_validity = {VALIDITY_KIND}.optional implies (millisecond_validity = {VALIDITY_KIND}.optional or millisecond_validity = {VALIDITY_KIND}.disallowed)</p>
+<p><strong><em>Second_validity_optional</em></strong>: <code>second_validity = {VALIDITY_KIND}.optional implies (millisecond_validity = {VALIDITY_KIND}.optional or millisecond_validity = {VALIDITY_KIND}.disallowed)</code></p>
 </div></div></td>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"></th>
 <td class="tableblock halign-left valign-top" colspan="2"><div><div class="paragraph">
-<p><strong><em>Second_validity_disallowed</em></strong>: second_validity = {VALIDITY_KIND}.disallowed implies millisecond_validity = {VALIDITY_KIND}.disallowed Validity_is_range: validity_is_range = (range /= Void)</p>
+<p><strong><em>Second_validity_disallowed</em></strong>: <code>second_validity = {VALIDITY_KIND}.disallowed implies millisecond_validity = {VALIDITY_KIND}.disallowed Validity_is_range: validity_is_range = (range /= Void)</code></p>
 </div></div></td>
 </tr>
 </tbody>
@@ -3119,9 +3134,9 @@ archetype.</p>
 <h4 id="_c_date_time_class"><a class="anchor" href="#_c_date_time_class"></a>6.2.8. C_DATE_TIME Class</h4>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
-<col style="width: 16.6666%;">
+<col style="width: 11.1111%;">
 <col style="width: 33.3333%;">
-<col style="width: 50.0001%;">
+<col style="width: 55.5556%;">
 </colgroup>
 <tbody>
 <tr>
@@ -3136,7 +3151,7 @@ archetype.</p>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Inherit</strong></p></th>
-<td class="tableblock halign-left valign-top" colspan="2"><p class="tableblock">C_PRIMITIVE</p></td>
+<td class="tableblock halign-left valign-top" colspan="2"><p class="tableblock"><code>C_PRIMITIVE</code></p></td>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Attributes</strong></p></th>
@@ -3214,75 +3229,75 @@ archetype.</p>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>validity_is_range</strong>: <code>Boolean</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>validity_is_range</strong> (): <code>Boolean</code></p></td>
 <td class="tableblock halign-left valign-top"><div><div class="paragraph">
 <p>True if validity is in the form of a range; useful for developers to check which kind of constraint has been set.</p>
 </div></div></td>
 </tr>
 <tr>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Invariant</strong></p></th>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Invariants</strong></p></th>
 <td class="tableblock halign-left valign-top" colspan="2"><div><div class="paragraph">
-<p><strong><em>Month_validity_optional:</em></strong>: month_validity = {VALIDITY_KIND}.optional implies (day_validity = {VALIDITY_KIND}.optional or day_validity = {VALIDITY_KIND}.disallowed)</p>
+<p><strong><em>Month_validity_optional:</em></strong>: <code>month_validity = {VALIDITY_KIND}.optional implies (day_validity = {VALIDITY_KIND}.optional or day_validity = {VALIDITY_KIND}.disallowed)</code></p>
 </div></div></td>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"></th>
 <td class="tableblock halign-left valign-top" colspan="2"><div><div class="paragraph">
-<p><strong><em>Month_validity_disallowed</em></strong>: month_validity = {VALIDITY_KIND}.disallowed implies day_validity = {VALIDITY_KIND}.disallowed</p>
+<p><strong><em>Month_validity_disallowed</em></strong>: <code>month_validity = {VALIDITY_KIND}.disallowed implies day_validity = {VALIDITY_KIND}.disallowed</code></p>
 </div></div></td>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"></th>
 <td class="tableblock halign-left valign-top" colspan="2"><div><div class="paragraph">
-<p><strong><em>Day_validity_optional</em></strong>: day_validity = {VALIDITY_KIND}.optional implies (hour_validity = {VALIDITY_KIND}.optional or hour_validity = {VALIDITY_KIND}.disallowed)</p>
+<p><strong><em>Day_validity_optional</em></strong>: <code>day_validity = {VALIDITY_KIND}.optional implies (hour_validity = {VALIDITY_KIND}.optional or hour_validity = {VALIDITY_KIND}.disallowed)</code></p>
 </div></div></td>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"></th>
 <td class="tableblock halign-left valign-top" colspan="2"><div><div class="paragraph">
-<p><strong><em>Day_validity_disallowed</em></strong>: day_validity = {VALIDITY_KIND}.disallowed implies hour_validity = {VALIDITY_KIND}.disallowed</p>
+<p><strong><em>Day_validity_disallowed</em></strong>: <code>day_validity = {VALIDITY_KIND}.disallowed implies hour_validity = {VALIDITY_KIND}.disallowed</code></p>
 </div></div></td>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"></th>
 <td class="tableblock halign-left valign-top" colspan="2"><div><div class="paragraph">
-<p><strong><em>Hour_validity_optional</em></strong>: hour_validity = {VALIDITY_KIND}.optional implies (minute_validity = {VALIDITY_KIND}.optional or minute_validity = {VALIDITY_KIND}.disallowed)</p>
+<p><strong><em>Hour_validity_optional</em></strong>: <code>hour_validity = {VALIDITY_KIND}.optional implies (minute_validity = {VALIDITY_KIND}.optional or minute_validity = {VALIDITY_KIND}.disallowed)</code></p>
 </div></div></td>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"></th>
 <td class="tableblock halign-left valign-top" colspan="2"><div><div class="paragraph">
-<p><strong><em>Hour_validity_disallowed</em></strong>: hour_validity = {VALIDITY_KIND}.disallowed implies minute_validity = {VALIDITY_KIND}.disallowed</p>
+<p><strong><em>Hour_validity_disallowed</em></strong>: <code>hour_validity = {VALIDITY_KIND}.disallowed implies minute_validity = {VALIDITY_KIND}.disallowed</code></p>
 </div></div></td>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"></th>
 <td class="tableblock halign-left valign-top" colspan="2"><div><div class="paragraph">
-<p><strong><em>Minute_validity_optional</em></strong>: minute_validity = {VALIDITY_KIND}.optional implies (second_validity = {VALIDITY_KIND}.optional or second_validity = {VALIDITY_KIND}.disallowed)</p>
+<p><strong><em>Minute_validity_optional</em></strong>: <code>minute_validity = {VALIDITY_KIND}.optional implies (second_validity = {VALIDITY_KIND}.optional or second_validity = {VALIDITY_KIND}.disallowed)</code></p>
 </div></div></td>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"></th>
 <td class="tableblock halign-left valign-top" colspan="2"><div><div class="paragraph">
-<p><strong><em>Minute_validity_disallowed</em></strong>: minute_validity = {VALIDITY_KIND}.disallowed implies second_validity = {VALIDITY_KIND}.disallowed</p>
+<p><strong><em>Minute_validity_disallowed</em></strong>: <code>minute_validity = {VALIDITY_KIND}.disallowed implies second_validity = {VALIDITY_KIND}.disallowed</code></p>
 </div></div></td>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"></th>
 <td class="tableblock halign-left valign-top" colspan="2"><div><div class="paragraph">
-<p><strong><em>Second_validity_optional</em></strong>: second_validity = {VALIDITY_KIND}.optional implies (millisecond_validity = {VALIDITY_KIND}.optional or millisecond_validity = {VALIDITY_KIND}.disallowed)</p>
+<p><strong><em>Second_validity_optional</em></strong>: <code>second_validity = {VALIDITY_KIND}.optional implies (millisecond_validity = {VALIDITY_KIND}.optional or millisecond_validity = {VALIDITY_KIND}.disallowed)</code></p>
 </div></div></td>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"></th>
 <td class="tableblock halign-left valign-top" colspan="2"><div><div class="paragraph">
-<p><strong><em>Second_validity_disallowed</em></strong>: second_validity = {VALIDITY_KIND}.disallowed implies millisecond_validity = {VALIDITY_KIND}.disallowed</p>
+<p><strong><em>Second_validity_disallowed</em></strong>: <code>second_validity = {VALIDITY_KIND}.disallowed implies millisecond_validity = {VALIDITY_KIND}.disallowed</code></p>
 </div></div></td>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"></th>
 <td class="tableblock halign-left valign-top" colspan="2"><div><div class="paragraph">
-<p><strong><em>Validity_is_range</em></strong>: validity_is_range = (range /= Void)</p>
+<p><strong><em>Validity_is_range</em></strong>: <code>validity_is_range = (range /= Void)</code></p>
 </div></div></td>
 </tr>
 </tbody>
@@ -3292,9 +3307,9 @@ archetype.</p>
 <h4 id="_c_duration_class"><a class="anchor" href="#_c_duration_class"></a>6.2.9. C_DURATION Class</h4>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
-<col style="width: 16.6666%;">
+<col style="width: 11.1111%;">
 <col style="width: 33.3333%;">
-<col style="width: 50.0001%;">
+<col style="width: 55.5556%;">
 </colgroup>
 <tbody>
 <tr>
@@ -3309,7 +3324,7 @@ archetype.</p>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Inherit</strong></p></th>
-<td class="tableblock halign-left valign-top" colspan="2"><p class="tableblock">C_PRIMITIVE</p></td>
+<td class="tableblock halign-left valign-top" colspan="2"><p class="tableblock"><code>C_PRIMITIVE</code></p></td>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Attributes</strong></p></th>
@@ -3458,9 +3473,9 @@ archetype.</p>
 <h4 id="_archetype_ontology_class"><a class="anchor" href="#_archetype_ontology_class"></a>7.3.1. ARCHETYPE_ONTOLOGY Class</h4>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
-<col style="width: 16.6666%;">
+<col style="width: 11.1111%;">
 <col style="width: 33.3333%;">
-<col style="width: 50.0001%;">
+<col style="width: 55.5556%;">
 </colgroup>
 <tbody>
 <tr>
@@ -3525,87 +3540,107 @@ archetype.</p>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>has_language</strong> (a_lang: <code>String</code>): <code>Boolean</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>has_language</strong> (<br>
+a_lang: <code>String[1]</code><br>
+): <code>Boolean</code></p></td>
 <td class="tableblock halign-left valign-top"><div><div class="paragraph">
 <p>True if terminology ‘a_terminology’ is present in archetype ontology.</p>
 </div></div></td>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>has_terminology</strong> (a_terminology_id: <code>String</code>): <code>Boolean</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>has_terminology</strong> (<br>
+a_terminology_id: <code>String[1]</code><br>
+): <code>Boolean</code></p></td>
 <td class="tableblock halign-left valign-top"><div><div class="paragraph">
 <p>True if terminology `a_terminology' is present in archetype ontology.</p>
 </div></div></td>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>has_term_code</strong> (a_code: <code>String</code>): <code>Boolean</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>has_term_code</strong> (<br>
+a_code: <code>String[1]</code><br>
+): <code>Boolean</code></p></td>
 <td class="tableblock halign-left valign-top"><div><div class="paragraph">
 <p>True if term_codes has a_code.</p>
 </div></div></td>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>has_constraint_code</strong> (a_code: <code>String</code>): <code>Boolean</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>has_constraint_code</strong> (<br>
+a_code: <code>String[1]</code><br>
+): <code>Boolean</code></p></td>
 <td class="tableblock halign-left valign-top"><div><div class="paragraph">
 <p>True if constraint_codes has a_code.</p>
 </div></div></td>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>term_definition</strong> (a_lang: <code>String</code>, a_code: <code>String</code>): <code>ARCHETYPE_TERM</code><br>
-<strong><em>Pre</em></strong>: has_language (a_lang)<br>
-<strong><em>Pre2</em></strong>: has_term_code (a_code)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>term_definition</strong> (<br>
+a_lang: <code>String[1]</code>,<br>
+a_code: <code>String[1]</code><br>
+): <code>ARCHETYPE_TERM</code><br>
+<strong><em>Pre</em></strong>: <code>has_language (a_lang)</code><br>
+<strong><em>Pre2</em></strong>: <code>has_term_code (a_code)</code></p></td>
 <td class="tableblock halign-left valign-top"><div><div class="paragraph">
 <p>Term definition for a code, in a specified language.</p>
 </div></div></td>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>constraint_definition</strong> (a_code: <code>String</code>, a_lang: <code>String</code>): <code>ARCHETYPE_TERM</code><br>
-<strong><em>Pre</em></strong>: has_language (a_lang)<br>
-<strong><em>Pre_2</em></strong>: has_constraint_code (a_code)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>constraint_definition</strong> (<br>
+a_code: <code>String[1]</code>,<br>
+a_lang: <code>String[1]</code><br>
+): <code>ARCHETYPE_TERM</code><br>
+<strong><em>Pre</em></strong>: <code>has_language (a_lang)</code><br>
+<strong><em>Pre_2</em></strong>: <code>has_constraint_code (a_code)</code></p></td>
 <td class="tableblock halign-left valign-top"><div><div class="paragraph">
 <p>Constraint definition for a code, in a specified language.</p>
 </div></div></td>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>term_binding</strong> (a_terminology: <code>String</code>, a_code: <code>String</code>): <code>CODE_PHRASE</code><br>
-<strong><em>Pre</em></strong>: has_term_binding (a_terminology_id, a_code)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>term_binding</strong> (<br>
+a_terminology: <code>String[1]</code>,<br>
+a_code: <code>String[1]</code><br>
+): <code>CODE_PHRASE</code><br>
+<strong><em>Pre</em></strong>: <code>has_term_binding (a_terminology_id, a_code)</code></p></td>
 <td class="tableblock halign-left valign-top"><div><div class="paragraph">
 <p>Binding of constraint corresponding to a_code in target external terminology a_terminology_id, as a string, which is usually a formal query expression.</p>
 </div></div></td>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>constraint_binding</strong> (a_terminology_id: <code>String</code>, a_code: <code>String</code>): <code>String</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>constraint_binding</strong> (<br>
+a_terminology_id: <code>String[1]</code>,<br>
+a_code: <code>String[1]</code><br>
+): <code>String</code></p></td>
 <td class="tableblock halign-left valign-top"><div><div class="paragraph">
 <p>Binding of constraint corresponding to a_code in target external terminology a_terminology_id, as a string, which is usually a formal query expression.</p>
 </div></div></td>
 </tr>
 <tr>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Invariant</strong></p></th>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Invariants</strong></p></th>
 <td class="tableblock halign-left valign-top" colspan="2"><div><div class="paragraph">
-<p><strong><em>Original_language_validity</em></strong>: code_set (Code_set_id_languages).has_concept_id (original_language)</p>
+<p><strong><em>Original_language_validity</em></strong>: <code>code_set (Code_set_id_languages).has_concept_id (original_language)</code></p>
 </div></div></td>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"></th>
 <td class="tableblock halign-left valign-top" colspan="2"><div><div class="paragraph">
-<p><strong><em>concept_code_validity</em></strong>: id_codes.has (concept_code)</p>
+<p><strong><em>concept_code_validity</em></strong>: <code>id_codes.has (concept_code)</code></p>
 </div></div></td>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"></th>
 <td class="tableblock halign-left valign-top" colspan="2"><div><div class="paragraph">
-<p><strong><em>Term_bindings_validity</em></strong>: bindings /= void implies not bindings.is_empty</p>
+<p><strong><em>Term_bindings_validity</em></strong>: <code>bindings /= void implies not bindings.is_empty</code></p>
 </div></div></td>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"></th>
 <td class="tableblock halign-left valign-top" colspan="2"><div><div class="paragraph">
-<p><strong><em>Parent_archetype_valid</em></strong>: parent_archetype.ontology = Current</p>
+<p><strong><em>Parent_archetype_valid</em></strong>: <code>parent_archetype.ontology = Current</code></p>
 </div></div></td>
 </tr>
 </tbody>
@@ -3615,9 +3650,9 @@ archetype.</p>
 <h4 id="_archetype_term_class"><a class="anchor" href="#_archetype_term_class"></a>7.3.2. ARCHETYPE_TERM Class</h4>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
-<col style="width: 16.6666%;">
+<col style="width: 11.1111%;">
 <col style="width: 33.3333%;">
-<col style="width: 50.0001%;">
+<col style="width: 55.5556%;">
 </colgroup>
 <tbody>
 <tr>
@@ -3657,15 +3692,15 @@ Hash of keys ("text", "description" etc) and corresponding values.</p>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>keys</strong>: <code>List&lt;String&gt;</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>keys</strong> (): <code>List&lt;String&gt;</code></p></td>
 <td class="tableblock halign-left valign-top"><div><div class="paragraph">
 <p>List of all keys used in this term.</p>
 </div></div></td>
 </tr>
 <tr>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Invariant</strong></p></th>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Invariants</strong></p></th>
 <td class="tableblock halign-left valign-top" colspan="2"><div><div class="paragraph">
-<p><strong><em>Code_valid</em></strong>: not code.is_empty</p>
+<p><strong><em>Code_valid</em></strong>: <code>not code.is_empty</code></p>
 </div></div></td>
 </tr>
 </tbody>
@@ -3752,7 +3787,7 @@ Hash of keys ("text", "description" etc) and corresponding values.</p>
 <h3 id="_rm_1_0_2_support_assumed_types_package"><a class="anchor" href="#_rm_1_0_2_support_assumed_types_package"></a>C.1. RM 1.0.2 support.assumed_types package</h3>
 <div id="rm_support_iassumed_types_package" class="imageblock text-center" style="text-align: center">
 <div class="content">
-<img src="../UML/AOM1.4/diagrams/BASE-base_types.assumed_types.svg" alt="BASE base types.assumed types">
+<img src="http://www.openehr.org/releases/RM/Release-1.0.2/docs/UML/diagrams/BASE-base_types.assumed_types.svg" alt="BASE base types.assumed types">
 </div>
 <div class="title">Figure 11. Release 1.0.2 RM support.assumed_types package</div>
 </div>
@@ -3761,7 +3796,7 @@ Hash of keys ("text", "description" etc) and corresponding values.</p>
 <h3 id="_rm_1_0_2_support_identification_package"><a class="anchor" href="#_rm_1_0_2_support_identification_package"></a>C.2. RM 1.0.2 support.identification package</h3>
 <div id="rm_support_id_package" class="imageblock text-center" style="text-align: center">
 <div class="content">
-<img src="../UML/AOM1.4/diagrams/RM-support.identification.svg" alt="RM support.identification">
+<img src="http://www.openehr.org/releases/RM/Release-1.0.2/docs/UML/diagrams/RM-support.identification.svg" alt="RM support.identification">
 </div>
 <div class="title">Figure 12. Release 1.0.2 RM support.identification package</div>
 </div>
@@ -3770,7 +3805,7 @@ Hash of keys ("text", "description" etc) and corresponding values.</p>
 <h3 id="_rm_1_0_2_data_types_basic_package"><a class="anchor" href="#_rm_1_0_2_data_types_basic_package"></a>C.3. RM 1.0.2 data_types.basic package</h3>
 <div id="rm_data_types_basic_package" class="imageblock text-center" style="text-align: center">
 <div class="content">
-<img src="../UML/AOM1.4/diagrams/RM-data_types.basic.svg" alt="RM data types.basic">
+<img src="http://www.openehr.org/releases/RM/Release-1.0.2/docs/UML/diagrams/RM-data_types.basic.svg" alt="RM data types.basic">
 </div>
 <div class="title">Figure 13. Release 1.0.2 RM data_types.basic package</div>
 </div>
@@ -3779,7 +3814,7 @@ Hash of keys ("text", "description" etc) and corresponding values.</p>
 <h3 id="_rm_1_0_2_data_types_text_package"><a class="anchor" href="#_rm_1_0_2_data_types_text_package"></a>C.4. RM 1.0.2 data_types.text package</h3>
 <div id="rm_data_types_text_package" class="imageblock text-center" style="text-align: center">
 <div class="content">
-<img src="../UML/AOM1.4/diagrams/RM-data_types.text.svg" alt="RM data types.text">
+<img src="http://www.openehr.org/releases/RM/Release-1.0.2/docs/UML/diagrams/RM-data_types.text.svg" alt="RM data types.text">
 </div>
 <div class="title">Figure 14. Release 1.0.2 RM data_types.text package</div>
 </div>
@@ -3788,7 +3823,7 @@ Hash of keys ("text", "description" etc) and corresponding values.</p>
 <h3 id="_rm_1_0_2_data_types_quantity_package"><a class="anchor" href="#_rm_1_0_2_data_types_quantity_package"></a>C.5. RM 1.0.2 data_types.quantity package</h3>
 <div id="rm_data_types_quantity_package" class="imageblock text-center" style="text-align: center">
 <div class="content">
-<img src="../UML/AOM1.4/diagrams/RM-data_types.quantity.svg" alt="RM data types.quantity">
+<img src="http://www.openehr.org/releases/RM/Release-1.0.2/docs/UML/diagrams/RM-data_types.quantity.svg" alt="RM data types.quantity">
 </div>
 <div class="title">Figure 15. Release 1.0.2 RM data_types.quantity package</div>
 </div>
@@ -3797,309 +3832,12 @@ Hash of keys ("text", "description" etc) and corresponding values.</p>
 <h3 id="_rm_1_0_2_common_resource_package"><a class="anchor" href="#_rm_1_0_2_common_resource_package"></a>C.6. RM 1.0.2 common.resource package</h3>
 <div id="rm_common_resource_package" class="imageblock text-center" style="text-align: center">
 <div class="content">
-<img src="../UML/AOM1.4/diagrams/RM-common.resource.svg" alt="RM common.resource">
+<img src="http://www.openehr.org/releases/RM/Release-1.0.2/docs/UML/diagrams/RM-common.resource.svg" alt="RM common.resource">
 </div>
 <div class="title">Figure 16. Release 1.0.2 RM common.resource package</div>
 </div>
-<div class="sect3">
-<h4 id="_authored_resource_class"><a class="anchor" href="#_authored_resource_class"></a>C.6.1. AUTHORED_RESOURCE Class</h4>
-<table class="tableblock frame-all grid-all spread">
-<colgroup>
-<col style="width: 16.6666%;">
-<col style="width: 33.3333%;">
-<col style="width: 50.0001%;">
-</colgroup>
-<tbody>
-<tr>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Class</strong></p></th>
-<th class="tableblock halign-center valign-top" colspan="2"><p class="tableblock"><strong>AUTHORED_RESOURCE</strong></p></th>
-</tr>
-<tr>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Description</strong></p></th>
-<td class="tableblock halign-left valign-top" colspan="2"><div></div></td>
-</tr>
-</tbody>
-</table>
-</div>
-<div class="sect3">
-<h4 id="_translation_details_class"><a class="anchor" href="#_translation_details_class"></a>C.6.2. TRANSLATION_DETAILS Class</h4>
-<table class="tableblock frame-all grid-all spread">
-<colgroup>
-<col style="width: 16.6666%;">
-<col style="width: 33.3333%;">
-<col style="width: 50.0001%;">
-</colgroup>
-<tbody>
-<tr>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Class</strong></p></th>
-<th class="tableblock halign-center valign-top" colspan="2"><p class="tableblock"><strong>TRANSLATION_DETAILS</strong></p></th>
-</tr>
-<tr>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Description</strong></p></th>
-<td class="tableblock halign-left valign-top" colspan="2"><div><div class="paragraph">
-<p>Class providing details of a natural language translation.</p>
-</div></div></td>
-</tr>
-<tr>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Attributes</strong></p></th>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Signature</strong></p></th>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Meaning</strong></p></th>
-</tr>
-<tr>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>1..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>language</strong>: <code>CODE_PHRASE</code></p></td>
-<td class="tableblock halign-left valign-top"><div><div class="paragraph">
-<p>Language of the translation.</p>
-</div></div></td>
-</tr>
-<tr>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>1..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>author</strong>: <code>Hash&lt;String, String&gt;</code></p></td>
-<td class="tableblock halign-left valign-top"><div><div class="paragraph">
-<p>Translator name and other demographic details.</p>
-</div></div></td>
-</tr>
-<tr>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>accreditaton</strong>: <code>String</code></p></td>
-<td class="tableblock halign-left valign-top"><div><div class="paragraph">
-<p>Accreditation of translator, usually a national translator&#8217;s registration or association membership id.</p>
-</div></div></td>
-</tr>
-<tr>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>other_details</strong>: <code>Hash&lt;String, String&gt;</code></p></td>
-<td class="tableblock halign-left valign-top"><div><div class="paragraph">
-<p>Any other meta-data.</p>
-</div></div></td>
-</tr>
-<tr>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Invariant</strong></p></th>
-<td class="tableblock halign-left valign-top" colspan="2"><div><div class="paragraph">
-<p><strong><em>Language_valid</em></strong>: code_set (Code_set_id_languages).has_code (language)</p>
-</div></div></td>
-</tr>
-</tbody>
-</table>
-</div>
-<div class="sect3">
-<h4 id="_resource_description_class"><a class="anchor" href="#_resource_description_class"></a>C.6.3. RESOURCE_DESCRIPTION Class</h4>
-<table class="tableblock frame-all grid-all spread">
-<colgroup>
-<col style="width: 16.6666%;">
-<col style="width: 33.3333%;">
-<col style="width: 50.0001%;">
-</colgroup>
-<tbody>
-<tr>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Class</strong></p></th>
-<th class="tableblock halign-center valign-top" colspan="2"><p class="tableblock"><strong>RESOURCE_DESCRIPTION</strong></p></th>
-</tr>
-<tr>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Description</strong></p></th>
-<td class="tableblock halign-left valign-top" colspan="2"><div><div class="paragraph">
-<p>Defines the descriptive meta-data of a resource.</p>
-</div></div></td>
-</tr>
-<tr>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Attributes</strong></p></th>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Signature</strong></p></th>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Meaning</strong></p></th>
-</tr>
-<tr>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>1..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>original_author</strong>: <code>Hash&lt;String, String&gt;</code></p></td>
-<td class="tableblock halign-left valign-top"><div><div class="paragraph">
-<p>Original author of this resource, with all relevant details, including organisation.</p>
-</div></div></td>
-</tr>
-<tr>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>other_contributors</strong>: <code>List&lt;String&gt;</code></p></td>
-<td class="tableblock halign-left valign-top"><div><div class="paragraph">
-<p>Other contributors to the resource, probably listed in  name &lt;email&gt;  form.</p>
-</div></div></td>
-</tr>
-<tr>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>1..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>lifecycle_state</strong>: <code>String</code></p></td>
-<td class="tableblock halign-left valign-top"><div><div class="paragraph">
-<p>Lifecycle state of the resource, typically including states such as: initial, submitted, experimental, awaiting_approval, approved, superseded, obsolete.</p>
-</div></div></td>
-</tr>
-<tr>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>resource_package_uri</strong>: <code>String</code></p></td>
-<td class="tableblock halign-left valign-top"><div><div class="paragraph">
-<p>URI of package to which this resource belongs.</p>
-</div></div></td>
-</tr>
-<tr>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>other_details</strong>: <code>Hash&lt;String, String&gt;</code></p></td>
-<td class="tableblock halign-left valign-top"><div><div class="paragraph">
-<p>Additional non language-senstive resource meta-data, as a list of name/value pairs.</p>
-</div></div></td>
-</tr>
-<tr>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>1..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>parent_resource</strong>: <code>AUTHORED_RESOURCE&#160;=&#160;0..1</code></p></td>
-<td class="tableblock halign-left valign-top"><div><div class="paragraph">
-<p>Reference to owning resource.</p>
-</div></div></td>
-</tr>
-<tr>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>1..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>details</strong>: <code>Hash&lt;String,RESOURCE_DESCRIPTION_ITEM&gt;</code></p></td>
-<td class="tableblock halign-left valign-top"><div><div class="paragraph">
-<p>Details of all parts of resource description that are natural language-dependent, keyed by language code.</p>
-</div></div></td>
-</tr>
-<tr>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Invariant</strong></p></th>
-<td class="tableblock halign-left valign-top" colspan="2"><div><div class="paragraph">
-<p><strong><em>Original_author_valid</em></strong>: not original_author.is_empty</p>
-</div></div></td>
-</tr>
-<tr>
-<th class="tableblock halign-center valign-top"></th>
-<td class="tableblock halign-left valign-top" colspan="2"><div><div class="paragraph">
-<p><strong><em>Lifecycle_state_valid</em></strong>: not lifecycle_state.is_empty</p>
-</div></div></td>
-</tr>
-<tr>
-<th class="tableblock halign-center valign-top"></th>
-<td class="tableblock halign-left valign-top" colspan="2"><div><div class="paragraph">
-<p><strong><em>Details_valid</em></strong>: not details.is_empty</p>
-</div></div></td>
-</tr>
-<tr>
-<th class="tableblock halign-center valign-top"></th>
-<td class="tableblock halign-left valign-top" colspan="2"><div><div class="paragraph">
-<p><strong><em>Language_valid</em></strong>: parent_resource /= Void implies details.for_all (d &#124; parent_resource.languages_available.has (d.language.code_string))</p>
-</div></div></td>
-</tr>
-<tr>
-<th class="tableblock halign-center valign-top"></th>
-<td class="tableblock halign-left valign-top" colspan="2"><div><div class="paragraph">
-<p><strong><em>Parent_resource_valid</em></strong>: parent_resource /= Void implies parent_resource.description = self</p>
-</div></div></td>
-</tr>
-</tbody>
-</table>
-</div>
-<div class="sect3">
-<h4 id="_resource_description_item_class"><a class="anchor" href="#_resource_description_item_class"></a>C.6.4. RESOURCE_DESCRIPTION_ITEM Class</h4>
-<table class="tableblock frame-all grid-all spread">
-<colgroup>
-<col style="width: 16.6666%;">
-<col style="width: 33.3333%;">
-<col style="width: 50.0001%;">
-</colgroup>
-<tbody>
-<tr>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Class</strong></p></th>
-<th class="tableblock halign-center valign-top" colspan="2"><p class="tableblock"><strong>RESOURCE_DESCRIPTION_ITEM</strong></p></th>
-</tr>
-<tr>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Description</strong></p></th>
-<td class="tableblock halign-left valign-top" colspan="2"><div><div class="paragraph">
-<p>Language-specific detail of resource description. When a resource is translated for use in another language environment, each RESOURCE_DESCRIPTION_ITEM needs to be copied and translated into the new language.</p>
-</div></div></td>
-</tr>
-<tr>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Attributes</strong></p></th>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Signature</strong></p></th>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Meaning</strong></p></th>
-</tr>
-<tr>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>1..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>language</strong>: <code>CODE_PHRASE</code></p></td>
-<td class="tableblock halign-left valign-top"><div><div class="paragraph">
-<p>The localised language in which the items in this description item are written. Coded from openEHR Code Set  languages .</p>
-</div></div></td>
-</tr>
-<tr>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>1..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>purpose</strong>: <code>String</code></p></td>
-<td class="tableblock halign-left valign-top"><div><div class="paragraph">
-<p>Purpose of the resource.</p>
-</div></div></td>
-</tr>
-<tr>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>keywords</strong>: <code>List&lt;String&gt;</code></p></td>
-<td class="tableblock halign-left valign-top"><div><div class="paragraph">
-<p>Keywords which characterise this resource, used e.g. for indexing and searching.</p>
-</div></div></td>
-</tr>
-<tr>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>use</strong>: <code>String</code></p></td>
-<td class="tableblock halign-left valign-top"><div><div class="paragraph">
-<p>Description of the uses of the resource, i.e. contexts in which it could be used.</p>
-</div></div></td>
-</tr>
-<tr>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>misuse</strong>: <code>String</code></p></td>
-<td class="tableblock halign-left valign-top"><div><div class="paragraph">
-<p>Description of any misuses of the resource, i.e. contexts in which it should not be used.</p>
-</div></div></td>
-</tr>
-<tr>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>copyright</strong>: <code>String</code></p></td>
-<td class="tableblock halign-left valign-top"><div><div class="paragraph">
-<p>Optional copyright statement for the resource as a knowledge resource.</p>
-</div></div></td>
-</tr>
-<tr>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>original_resource_uri</strong>: <code>Hash&lt;String, String&gt;</code></p></td>
-<td class="tableblock halign-left valign-top"><div><div class="paragraph">
-<p>URIs of original clinical document(s) or description of which resource is a formalisation, in the language of this description item; keyed by meaning.</p>
-</div></div></td>
-</tr>
-<tr>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>other_details</strong>: <code>Hash&lt;String, String&gt;</code></p></td>
-<td class="tableblock halign-left valign-top"><div><div class="paragraph">
-<p>Additional language-senstive resource metadata, as a list of name/value pairs.</p>
-</div></div></td>
-</tr>
-<tr>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Invariant</strong></p></th>
-<td class="tableblock halign-left valign-top" colspan="2"><div><div class="paragraph">
-<p><strong><em>Language_valid</em></strong>: code_set (Code_set_id_languages).has_code (language)</p>
-</div></div></td>
-</tr>
-<tr>
-<th class="tableblock halign-center valign-top"></th>
-<td class="tableblock halign-left valign-top" colspan="2"><div><div class="paragraph">
-<p><strong><em>Purpose_valid</em></strong>: not purpose.is_empty</p>
-</div></div></td>
-</tr>
-<tr>
-<th class="tableblock halign-center valign-top"></th>
-<td class="tableblock halign-left valign-top" colspan="2"><div><div class="paragraph">
-<p><strong><em>Use_valid</em></strong>: use /= Void implies not use.is_empty</p>
-</div></div></td>
-</tr>
-<tr>
-<th class="tableblock halign-center valign-top"></th>
-<td class="tableblock halign-left valign-top" colspan="2"><div><div class="paragraph">
-<p><strong><em>misuse_valid</em></strong>: misuse /= Void implies not misuse.is_empty</p>
-</div></div></td>
-</tr>
-<tr>
-<th class="tableblock halign-center valign-top"></th>
-<td class="tableblock halign-left valign-top" colspan="2"><div><div class="paragraph">
-<p><strong><em>copyright_valid</em></strong>: copyright /= Void implies not copyright.is_empty</p>
-</div></div></td>
-</tr>
-</tbody>
-</table>
+<div class="paragraph">
+<p>The full class definitions may be found within <a href="http://www.openehr.org/releases/RM/Release-1.0.2/docs/common/common.html#" class="bare">http://www.openehr.org/releases/RM/Release-1.0.2/docs/common/common.html#</a><em>resource_package</em>[the specification].</p>
 </div>
 </div>
 </div>
@@ -4257,22 +3995,28 @@ Hash of keys ("text", "description" etc) and corresponding values.</p>
 <p><a id="NLM_UML_list"></a>[NLM_UML_list] National Library of Medicine. UMLS Terminologies List. <a href="http://www.nlm.nih.gov/research/umls/metaa1.html" class="bare">http://www.nlm.nih.gov/research/umls/metaa1.html</a>.</p>
 </li>
 <li>
-<p><a id="ISO_13606-1"></a>[ISO_13606-1] <strong>ISO 13606-1 - Electronic healthcare record communication - Part 1: Extended architecture.</strong> CEN TC251 Health Informatics Technical Committee. Available at <a href="http://www.iso.org/iso/catalogue_detail.htm?csnumber=40784" class="bare">http://www.iso.org/iso/catalogue_detail.htm?csnumber=40784</a> .</p>
+<p><a id="ISO_13606-1"></a>[ISO_13606-1] <strong>ISO 13606-1 - Electronic healthcare record communication - Part 1: Extended architecture.</strong> See <a href="https://www.iso.org/standard/40784.html" class="bare">https://www.iso.org/standard/40784.html</a>.</p>
 </li>
 <li>
-<p><a id="ISO_13606-2"></a>[ISO_13606-2] <strong>ISO 13606-2 - Electronic healthcare record communication - Part 2: Domain term list.</strong> CEN TC251 Health Informatics Technical Committee. Available at <a href="http://www.iso.org/iso/iso_catalogue/catalogue_tc/catalogue_detail.htm?csnumber=50119" class="bare">http://www.iso.org/iso/iso_catalogue/catalogue_tc/catalogue_detail.htm?csnumber=50119</a> .</p>
+<p><a id="ISO_13606-2"></a>[ISO_13606-2] <strong>ISO 13606-2 - Electronic healthcare record communication - Part 2: Domain term list.</strong> See <a href="https://www.iso.org/standard/50119.html" class="bare">https://www.iso.org/standard/50119.html</a>.</p>
 </li>
 <li>
-<p><a id="ISO_13606-3"></a>[ISO_13606-3] <strong>ISO 13606-3 - Electronic healthcare record communication - Part 3: Distribution rules.</strong> CEN TC251 Health Informatics Technical Committee.</p>
+<p><a id="ISO_13606-3"></a>[ISO_13606-3] <strong>ISO 13606-3 - Electronic healthcare record communication - Part 3: Distribution rules.</strong> See <a href="https://www.iso.org/standard/50120.html" class="bare">https://www.iso.org/standard/50120.html</a>.</p>
 </li>
 <li>
-<p><a id="ISO_13606-4"></a>[ISO_13606-4] <strong>ISO 13606-4 - Electronic Healthcare Record Communication standard Part 4: Messages for the exchange of information.</strong> CEN TC251 Health Informatics Technical Committee.</p>
+<p><a id="ISO_13606-4"></a>[ISO_13606-4] <strong>ISO 13606-4 - Electronic Healthcare Record Communication standard Part 4: Messages for the exchange of information.</strong> See <a href="https://www.iso.org/standard/50121.html" class="bare">https://www.iso.org/standard/50121.html</a>.</p>
 </li>
 <li>
-<p><a id="ISO_18308"></a>[ISO_18308] Schloeffel P. (Editor). <strong>Requirements for an Electronic Health Record Reference Architecture.</strong> (ISO TC 215/SC N; ISO/WD 18308). International Standards Organisation, Australia, 2002.</p>
+<p><a id="ISO_18308"></a>[ISO_18308] Schloeffel P. (Editor). <strong>Requirements for an Electronic Health Record Reference Architecture.</strong> See <a href="https://www.iso.org/standard/52823.html" class="bare">https://www.iso.org/standard/52823.html</a>.</p>
 </li>
 <li>
-<p><a id="ISO_20514"></a>[ISO_20514] ISO. <strong>The Integrated Care EHR.</strong> See <a href="http://www.iso.org/iso/iso_catalogue/catalogue_tc/catalogue_detail.htm?csnumber=39525" class="bare">http://www.iso.org/iso/iso_catalogue/catalogue_tc/catalogue_detail.htm?csnumber=39525</a> .</p>
+<p><a id="ISO_20514"></a>[ISO_20514] ISO. <strong>The Integrated Care EHR.</strong> See <a href="https://www.iso.org/standard/39525.html" class="bare">https://www.iso.org/standard/39525.html</a> .</p>
+</li>
+<li>
+<p><a id="ISO_13940"></a>[ISO_13940] ISO. <strong>Health informatics - System of concepts to support continuity of care.</strong> See <a href="https://www.iso.org/standard/58102.html" class="bare">https://www.iso.org/standard/58102.html</a>.</p>
+</li>
+<li>
+<p><a id="ISO_22600"></a>[ISO_22600] ISO. <strong>Health informatics - Privilege management and access control.</strong> See <a href="https://www.iso.org/standard/62653.html" class="bare">https://www.iso.org/standard/62653.html</a>.</p>
 </li>
 </ol>
 </div>

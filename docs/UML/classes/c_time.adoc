@@ -1,15 +1,15 @@
 === C_TIME Class
 
-[cols="^1,2,3"]
+[cols="^1,3,5"]
 |===
 h|*Class*
 2+^h|*C_TIME*
 
 h|*Description*
-2+a|Constraint on instances of assumed primitive type Time in the form either of a set of validity values, or else date ranges based on the C_ORDERED list constraint. There is no validity flag for ‘hour’, since it must always be by definition mandatory in order to have a sensible time at all. Syntax expressions of instances of this class include “HH:??:xx” (time with optional minutes and seconds not allowed).
+2+a|Constraint on instances of assumed primitive type Time in the form either of a set of validity values, or else date ranges based on the `C_ORDERED` list constraint. There is no validity flag for `_hour_`, since it must always be by definition mandatory in order to have a sensible time at all. Syntax expressions of instances of this class include `“HH:??:xx”` (time with optional minutes and seconds not allowed).
 
 h|*Inherit*
-2+|C_TEMPORAL
+2+|`C_TEMPORAL`
 
 h|*Attributes*
 ^h|*Signature*
@@ -17,28 +17,28 @@ h|*Attributes*
 
 h|*0..1 +
 (redefined)*
-|*constraint*: `List<Interval<Time>>`
+|*constraint*: `List<Interval<ITime>>`
 a|Formal constraint on assumed primitive type Time, in the form of a List of Interval<Time>, i.e. one or more intervals of Time.
 h|*Functions*
 ^h|*Signature*
 ^h|*Meaning*
 
 h|
-|*minute_validity*: `VALIDITY_KIND`
+|*minute_validity* (): `VALIDITY_KIND`
 a|Validity of minute in constrained time.
 
 h|
-|*second_validity*: `VALIDITY_KIND`
+|*second_validity* (): `VALIDITY_KIND`
 a|Validity of second in constrained time.
 
 h|
-|*millisecond_validity*: `VALIDITY_KIND`
+|*millisecond_validity* (): `VALIDITY_KIND`
 a|Validity of millisecond in constrained time.
 
 h|
-|*timezone_validity*: `VALIDITY_KIND`
+|*timezone_validity* (): `VALIDITY_KIND`
 a|Validity of timezone in constrained date.
 
-h|*Invariant*
-2+a|*_Pattern_validity_*: pattern /= Void implies valid_iso8601_time_constraint_pattern (pattern)
+h|*Invariants*
+2+a|*_Pattern_validity_*: `pattern /= Void implies valid_iso8601_time_constraint_pattern (pattern)`
 |===

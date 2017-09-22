@@ -1,6 +1,6 @@
 === C_ATTRIBUTE Class
 
-[cols="^1,2,3"]
+[cols="^1,3,5"]
 |===
 h|*Class*
 2+^h|*C_ATTRIBUTE*
@@ -9,7 +9,7 @@ h|*Description*
 2+a|Abstract model of constraint on any kind of attribute in a class model.
 
 h|*Inherit*
-2+|ARCHETYPE_CONSTRAINT
+2+|`ARCHETYPE_CONSTRAINT`
 
 h|*Attributes*
 ^h|*Signature*
@@ -17,22 +17,22 @@ h|*Attributes*
 
 h|*1..1*
 |*rm_attribute_name*: `String`
-a|Reference model attribute within the enclosing type represented by a C_OBJECT.
+a|Reference model attribute within the enclosing type represented by a `C_OBJECT`.
 
 h|*0..1*
-|*existence*: `MULTIPLICITY_INTERVAL`
+|*existence*: `Multiplicity_interval`
 a|Constraint settable on every attribute, regardless of whether it is singular or of a container type, which indicates whether its target object exists or not (i.e. is mandatory or not). Only set if it overrides the underlying reference model or parent archetype in the case of specialised archetypes.
 
 h|*0..1*
 |*children*: `List<C_OBJECT>`
-a|Child C_OBJECT nodes. Each such node represents a constraint on the type of this attribute in its reference model. Multiples occur both for multiple items in the case of container attributes, and alternatives in the case of singular attributes.
+a|Child `C_OBJECT` nodes. Each such node represents a constraint on the type of this attribute in its reference model. Multiples occur both for multiple items in the case of container attributes, and alternatives in the case of singular attributes.
 
 h|*0..1*
 |*differential_path*: `String`
 a|Path to the parent object of this attribute (i.e. doesn’t include the name of this attribute). Used only for attributes in differential form, specialised archetypes. Enables only the re-defined parts of a specialised archetype to be expressed, at the path where they occur.
 
 h|*0..1*
-|*cardinality*: `CARDINALITY`
+|*cardinality*: `Cardinality`
 a|Cardinality constraint of attribute, if a container attribute.
 
 h|*1..1*
@@ -43,37 +43,42 @@ h|*Functions*
 ^h|*Meaning*
 
 h|
-|*any_allowed*: `Boolean` +
-*_Post_*: Result := children.is_empty and not is_prohibited
-a|True if there is no effective constraint on the children of the RM attribute to which this C_ATTRIBUTE refers.
+|*any_allowed* (): `Boolean` +
+*_Post_*: `Result := children.is_empty and not is_prohibited`
+a|True if there is no effective constraint on the children of the RM attribute to which this `C_ATTRIBUTE` refers.
 
 h|
-|*is_mandatory*: `Boolean` +
-*_Post_*: Result = existence /= Void and then existence.is_mandatory
-a|True if this C_ATTRIBUTE has an existence constraint of 1..1, i..e. mandation.
+|*is_mandatory* (): `Boolean` +
+*_Post_*: `Result = existence /= Void and then existence.is_mandatory`
+a|True if this `C_ATTRIBUTE` has an existence constraint of 1..1, i..e. mandation.
 
 h|
-|*rm_attribute_path*: `String`
-a|Path of this attribute with respect to owning C_OBJECT, including differential path where applicable.
+|*rm_attribute_path* (): `String`
+a|Path of this attribute with respect to owning `C_OBJECT`, including differential path where applicable.
 
 h|
-|*is_single*: `Boolean`
+|*is_single* (): `Boolean`
 a|True if this node logically represents a single-valued attribute. Evaluated as not is_multiple.
 
 h|(effected)
-|*c_congruent_to* (other: `ARCHETYPE_CONSTRAINT`): `Boolean` +
-*_Post_*: Result = existence = Void and ((is_single and other.is_single) or (is_multiple and other.is_multiple and cardinality = Void))
-a|True if constraints represented by this node contain no further redefinitions with respect to the node other, with the exception of node_id redefnition in C_OBJECT nodes.
+|*c_congruent_to* ( +
+other: `ARCHETYPE_CONSTRAINT[1]` +
+): `Boolean` +
+*_Post_*: `Result = existence = Void and ((is_single and other.is_single) or (is_multiple and other.is_multiple and cardinality = Void))`
+a|True if constraints represented by this node contain no further redefinitions with respect to the node other, with the exception of node_id redefnition in `C_OBJECT` nodes.
+
 Typically used to test if an inherited node locally contains any constraints.
 
 h|(effected)
-|*c_conforms_to* (other: `ARCHETYPE_CONSTRAINT`): `Boolean` +
-*_Post_*: Result = existence_conforms_to (other) and ((is_single and other.is_single) or else (is_multiple and cardinality_conforms_to (other)))
+|*c_conforms_to* ( +
+other: `ARCHETYPE_CONSTRAINT[1]` +
+): `Boolean` +
+*_Post_*: `Result = existence_conforms_to (other) and ((is_single and other.is_single) or else (is_multiple and cardinality_conforms_to (other)))`
 a|True if constraints represented by this node, ignoring any sub-parts, are narrower or the same as other.
 Typically used during validation of special-ised archetype nodes.
 
 h|(effected)
-|*is_prohibited*: `Boolean` +
-*_Post_*: Result = existence /= Void and then existence.is_prohibited
-a|True if this C_ATTRIBUTE has an existence constraint of 0..0, i.e. prohibition.
+|*is_prohibited* (): `Boolean` +
+*_Post_*: `Result = existence /= Void and then existence.is_prohibited`
+a|True if this `C_ATTRIBUTE` has an existence constraint of 0..0, i.e. prohibition.
 |===

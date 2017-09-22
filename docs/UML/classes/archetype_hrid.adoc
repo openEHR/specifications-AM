@@ -1,6 +1,6 @@
 === ARCHETYPE_HRID Class
 
-[cols="^1,2,3"]
+[cols="^1,3,5"]
 |===
 h|*Class*
 2+^h|*ARCHETYPE_HRID*
@@ -34,7 +34,7 @@ a|The short concept name of the archetype as used in the multi-axial archetype_h
 
 h|*1..1*
 |*release_version*: `String`
-a|The full numeric version of this archetype consisting of 3 parts, e.g. 1.8.2. The archetype_hrid feature includes only the major version.
+a|The full numeric version of this archetype consisting of 3 parts, e.g. `"1.8.2"`. The archetype_hrid feature includes only the major version.
 
 h|*1..1*
 |*version_status*: `VERSION_STATUS`
@@ -48,41 +48,41 @@ h|*Functions*
 ^h|*Meaning*
 
 h|
-|*semantic_id*: `String`
+|*semantic_id* (): `String`
 a|The ‘interface’ form of the HRID, i.e. down to the major version.
 
 h|
-|*physical_id*: `String`
+|*physical_id* (): `String`
 a|The ‘physical’ form of the HRID, i.e. with complete version information.
 
 h|
-|*version_id*: `String`
-a|Full version identifier string, based on release_version and lifecycle, e.g. 1.8.2-rc.4.
+|*version_id* (): `String`
+a|Full version identifier string, based on release_version and lifecycle, e.g. `"1.8.2-rc.4"`.
 
 h|
-|*major_version*: `String`
+|*major_version* (): `String`
 a|Major version of this archetype, extracted from release_version.
 
 h|
-|*minor_version*: `String`
+|*minor_version* (): `String`
 a|Minor version of this archetype, extracted from release_version.
 
 h|
-|*patch_version*: `String`
+|*patch_version* (): `String`
 a|Patch version of this archetype, extracted from release_version. Equivalent to patch version in patch version in semver.org sytem.
 
-h|*Invariant*
-2+a|*_Inv_rm_publisher_validity_*: not rm_publisher.is_empty
+h|*Invariants*
+2+a|*_Inv_rm_publisher_validity_*: `not rm_publisher.is_empty`
 
 h|
-2+a|*_Inv_rm_package_validity_*: not rm_package.is_empty
+2+a|*_Inv_rm_package_validity_*: `not rm_package.is_empty`
 
 h|
-2+a|*_Inv_class_name_validity_*: not rm_class.is_empty
+2+a|*_Inv_class_name_validity_*: `not rm_class.is_empty`
 
 h|
-2+a|*_Inv_concept_id_validity_*: not concept_id.is_empty
+2+a|*_Inv_concept_id_validity_*: `not concept_id.is_empty`
 
 h|
-2+a|*_Inv_release_version_validity_*: valid_version (release_version)
+2+a|*_Inv_release_version_validity_*: `valid_version (release_version)`
 |===

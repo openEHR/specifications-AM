@@ -2,29 +2,33 @@
 
 The model described here is a pure object-oriented model that can be used with archetype parsers and software that manipulates archetypes and templates in memory. It is typically the output of a parser of any serialsed form of archetypes. 
 
-== Used Base Types
+== Used BASE Component Packages
 
-The AOM is dependent on the openEHR BASE component `base_types` package, which states the various 'leaf' types assumed by the AOM as well as other utility types and basic data structures, such as the `Interval<T>` type. These types are documented in the {openehr_base_types}[openEHR Base Types specification] and reproduced below for convenience.
-
-[.text-center]
-.base_types 'leaf' types
-image::{uml_export_dir}/diagrams/BASE-base_types-leaf_types.svg[id=base_types_leaf_types, align="center"]
+The AOM is dependent on various packages from the the openEHR BASE component. The first of these is the `base.foundation_types` package, which defines the various 'leaf' types assumed by the AOM as well as other utility types and basic data structures, such as the `Interval<T>` type. These types are documented in the {openehr_foundation_types}[openEHR Foundation Types specification] and reproduced below for convenience.
 
 [.text-center]
-.base_types.structures Package
-image::{uml_export_dir}/diagrams/BASE-base_types.structures.svg[id=base_types_structure_types, align="center"]
+.`base.foundation_types` - 'leaf' types
+image::{openehr_base_releases}/docs/UML/diagrams/BASE-foundation_types-leaf_types.svg[id=base_types_leaf_types, align="center"]
 
 [.text-center]
-.base_types.structures Package
-image::{uml_export_dir}/diagrams/BASE-base_types.definitions.svg[id=base_types_definitions, align="center"]
-
-The enumeration type `VALIDITY_KIND` is provided in order to define standard values representing `mandatory`, `optional`, or `disallowed` in any model. It is used in this model in classes such as `C_DATE` , `C_TIME` and `C_DATE_TIME`. The `VERSION_STATUS` enumeration type serves a similar function within various AOM types.
-
-Other classes used from the `base` package include `AUTHORED_RESOURCE` (openEHR `resource` package) and its subordinate classes. These are shown in full within the packages that use them.
+.`base.foundation_types.interval` Package
+image::{openehr_base_releases}/docs/UML/diagrams/BASE-foundation_types.interval.svg[id=base_types_structure_types, align="center"]
 
 NOTE: the above types do not constitute a formal part of this specification. Any implementation of the AOM will typically have to use concrete versions of these types found within languages and/or libraries.
 
-== Package Structure
+In addition, various definitions from the `base.base_types.definitions` package are reused, which are shown below.
+
+[.text-center]
+.`base.base_types.definitions` Package
+image::{openehr_base_releases}/docs/UML/diagrams/BASE-base_types.definitions.svg[id=base_types_definitions, align="center"]
+
+The enumeration type `VALIDITY_KIND` is provided in order to define standard values representing `mandatory`, `optional`, or `disallowed` in any model. It is used in this model in classes such as `C_DATE` , `C_TIME` and `C_DATE_TIME`. The `VERSION_STATUS` enumeration type serves a similar function within various AOM types.
+
+Other classes used from the BASE Component include the `base.resource` package, which includes the class `AUTHORED_RESOURCE` and subordinate classes. These are shown by inclusion in the AOM Archetype package diagram below.
+
+Finally, classes from the BASE Component `base.expressions` package is used by the rules part of the AOM. This is documented in the relevant section below.
+
+== AOM Package Structure
 
 The Archetype Object Model is defined as the package `am.archetype` , as illustrated in Figure <<aom_package_overview>>. It is shown in the context of the `am.archetype` packages.
 
