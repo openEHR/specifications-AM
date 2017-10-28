@@ -200,7 +200,7 @@ The second text below is from the 'problem-diagnosis' archetype, i.e. a 'diagnos
     -- openEHR-EHR-EVALUATION.problem-diagnosis.v1 --   -- specialises openEHR-EHR-EVALUATION.problem.v1
     
     EVALUATION[id1.1] ∈ {                               -- Recording of diagnosis
-        /data[id2]/items[id3]/value ∈ {
+        /data[id2.1]/items[id3]/value ∈ {               -- redefine id2 to id2.1 (in terminology section)
             DV_CODED_TEXT[id4] ∈ {                      -- << This node redefines 'NODE A' above
                 defining_code ∈ {[ac0.1]}
             }
@@ -344,7 +344,7 @@ Specialised child archetype:
         /items ∈ {
             CLUSTER[id3.1] ∈ {                         -- LDL
                 items ∈ {
-                    ELEMENT[id2.2] ∈ {  
+                    ELEMENT[id2.1] ∈ {  
                         value ∈ {
                             DV_QUANTITY[id0.1] ∈ {
                                 property ∈ {[at0.1]}
@@ -357,7 +357,7 @@ Specialised child archetype:
             }
             CLUSTER[id3.2] ∈ {                         -- HDL
                 items ∈ {
-                    ELEMENT[id2.3] ∈ {
+                    ELEMENT[id2.2] ∈ {
                         value matches {
                             DV_QUANTITY[id0.2] ∈ {
                                 property ∈ {[at0.1]}
@@ -369,9 +369,13 @@ Specialised child archetype:
                 }
             }
     
+            CLUSTER[id3.3] ∈ {...}                     -- Ratio Result
+
+            CLUSTER[id3.4] ∈ {...}                     -- Triglyceride Result
+
             CLUSTER[id3.5] ∈ {                         -- Cholesterol Result
                 items ∈ {
-                    ELEMENT[id2.4] ∈ {  
+                    ELEMENT[id2.5] ∈ {  
                         value matches {
                             DV_QUANTITY[id0.5] ∈ {
                                 property ∈ {[at0.1]}
@@ -797,13 +801,13 @@ In the same manner, an object node can be specialised into more than one subtype
 [source, cadl]
 --------
     .../value ∈ {
-        DV_QUANTITY[id4] ∈ {
+        DV_QUANTITY[id4.1] ∈ {
             magnitude ∈ {|2.0..10.0|}
             units ∈ {"mmol/ml"}
         }
-        DV_PROPORTION[id5] ∈ {
+        DV_PROPORTION[id4.2] ∈ {
             numerator ∈ {|2.0..10.0|}
-            type ∈ {pk_unitary}
+            type ∈ {1} -- pk_unitary
         }
     }
 --------
