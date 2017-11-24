@@ -511,10 +511,17 @@
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a id="latest_issue"></a>2.0.7</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://openehr.atlassian.net/browse/SPECAM-45">SPECAM-45</a>Correct specification details to do with sibling_order anchor node id. (Corrects <a href="https://openehr.atlassian.net/browse/SPECPR-245">SPECPR-245</a>)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">P Bos,<br>
+ T Beale</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a id="latest_issue_date"></a>21 Nov 2017</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Fix types in identifiers in redefinition example (section 9.5.5). (<a href="https://openehr.atlassian.net/browse/SPECPR-238">SPECPR-238</a>);<br>
  Minor inconsistencies in ADL2 spec specialisation section (section 9.2.5, 9.3.1, 9.3.2)(<a href="https://openehr.atlassian.net/browse/SPECPR-239">SPECPR-239</a>).</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">P Bos</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a id="latest_issue_date"></a>04 Oct 2017</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">04 Oct 2017</p></td>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top" colspan="4"><p class="tableblock"><strong>AM Release-2.0.6</strong></p></th>
@@ -5831,12 +5838,16 @@ it is quite common that only <em>some</em> of the local at-codes have equivalent
 </li>
 <li>
 <p>A specialised archetype specifies an instance space defined by the following elements:</p>
-</li>
+<div class="ulist">
+<ul>
 <li>
 <p>unchanged object and attribute constraints inherited from the parent archetype;</p>
 </li>
 <li>
 <p>and one or more redefinitions, additions and removals.</p>
+</li>
+</ul>
+</div>
 </li>
 <li>
 <p>All elements defined in a parent archetype are either inherited unchanged or redefined in a specialised child.</p>
@@ -6476,7 +6487,7 @@ Note that in the above, the '/' is used to denote '/protocol' as a differential 
 </div>
 </div>
 <div class="paragraph">
-<p>These keywords are followed by a node identifier reference, and act to modify the node definition immediately following. Technically the following visual rendition would be more faithful, but it is less readable, and makes no difference to a parser:</p>
+<p>These keywords are followed by a node identifier reference, and act to anchor the location of the node definitions immediately following until the next sibling order marker or the end of the list. The following visual rendition is equivalent, but arguably less readable:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -6492,19 +6503,10 @@ Note that in the above, the '/' is used to denote '/protocol' as a differential 
 <p>Ordering is only applicable to object nodes defined within a multiply-valued (i.e. container) attribute whose cardinality includes the <code>ordered</code> constraint;</p>
 </li>
 <li>
-<p>Any <code>before</code> or <code>after</code> statement can refer to the node identifier of any sibling node known in the flat form of the archetype, i.e.:</p>
+<p>Any <code>before</code> or <code>after</code> statement can use as its anchor the node identifier of any sibling node from the same container attribute in the flat form of the parent archetype, or a redefined version of the same, local to the current archetype;</p>
 </li>
 <li>
-<p>the identifier of any redefined node;</p>
-</li>
-<li>
-<p>the identifier of any new node;</p>
-</li>
-<li>
-<p>the identifier of any inherited node that is not redefined amongst the sibling nodes.</p>
-</li>
-<li>
-<p>If no ordering indications are given, redefined nodes should appear in the same position as the nodes they replace, while extension nodes should appear at the end.</p>
+<p>If no sibling order markers are used, redefined nodes should appear in the same position as the nodes they replace, while extension nodes appear at the end.</p>
 </li>
 </ul>
 </div>
@@ -6517,7 +6519,7 @@ Note that in the above, the '/' is used to denote '/protocol' as a differential 
 <p>If the referenced identifier becomes unavailable due to being redefined in the new archetype, it must be redefined to refer to an available sibling identifier as per the rules above.</p>
 </li>
 <li>
-<p>If this does not occur, a <code>before</code> reference will default to the first sibling node identifier currently available conforming to the original identifier, while an after reference will default to the <em>last</em> such identifier available in the current flat archetype.</p>
+<p>If this does not occur, a <code>before</code> reference will default to the first sibling node identifier currently available conforming to the original identifier, while an <code>after</code> reference will default to the <em>last</em> such identifier available in the current flat archetype.</p>
 </li>
 </ul>
 </div>
@@ -9152,7 +9154,7 @@ Note that in the above, the '/' is used to denote '/protocol' as a differential 
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2017-10-15 09:12:44 -02
+Last updated 2017-10-15 12:12:44 BST
 </div>
 </div>
 </body>

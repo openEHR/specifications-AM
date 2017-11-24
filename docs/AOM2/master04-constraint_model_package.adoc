@@ -93,7 +93,7 @@ Note that instances of `C_PRIMITIVE_OBJECT` have a constant `_node_id_` (see bel
 
 ==== Sibling Ordering
 
-Within a specialised archetype, redefined or added object nodes may be defined under a container attribute. Since specialised archetypes are in differential form, i.e. only redefined or added nodes are expressed, not nodes inherited unchanged, the relative ordering of siblings can't be stated simply by the ordering of such items within the relevant list within the differential form of the archetype. An explicit ordering indicator is required if indeed order is specific. The `C_OBJECT._sibling_order_` attribute provides this possibility. It can only be set on a `C_OBJECT` descendant within a multiply-valued attribute, i.e. an instance of `C_ATTRIBUTE` for which the `_cardinality_` is ordered.
+Within a specialised archetype, redefined or added object nodes may be defined under a container attribute. Since specialised archetypes are in differential form, i.e. only redefined or added nodes are expressed, not nodes inherited unchanged, the relative ordering of siblings can't be stated simply by the ordering of such items within the relevant list within the differential form of the archetype. An explicit ordering indicator is required if indeed order is specific. The `C_OBJECT._sibling_order_` attribute provides this capability. It can only be set on a `C_OBJECT` descendant within a multiply-valued attribute, i.e. an instance of `C_ATTRIBUTE` for which the `_cardinality_` is ordered.
 
 ==== Node Deprecation
 
@@ -592,7 +592,7 @@ _Deprecated_: *VSONI* specialised archetype redefined object node identifier val
 *VSONPO* specialised archetype object node prohibited occurrences validity: the occurrences of a new (i.e. having no corresponding node in the parent flat) object node in a specialised archetype, if stated, may not be 'prohibited', i.e. \{0}, since prohibition only makes sense for an existing node.
 
 [.rule]
-*VSSM* specialised archetype sibling order validity: the sibling order node id code used in a sibling marker in a specialised archetype must refer to a node found within the same container in the flat parent archetype.
+*VSSM* specialised archetype sibling order validity: the sibling order node id-code used in a sibling marker in a specialised archetype must refer to a node found within the same container in the flat parent archetype, or a specialised version of any such node, redefined in the current archetype.
 
 include::{uml_export_dir}/classes/c_defined_object.adoc[]
 include::{uml_export_dir}/classes/c_complex_object.adoc[]

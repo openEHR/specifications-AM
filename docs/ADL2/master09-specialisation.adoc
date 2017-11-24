@@ -15,8 +15,8 @@ The semantics that allow this are similar to the 'covariant redefinition' <<cov_
 * A non-specialised (i.e. top-level) archetype defines an instance space that is a subset of the space defined by the class in the reference information model on which the archetype is based.
 * A specialised archetype can specialise only one parent archetype, i.e. single inheritance.
 * A specialised archetype specifies an instance space defined by the following elements:
-* unchanged object and attribute constraints inherited from the parent archetype;
-* and one or more redefinitions, additions and removals.
+** unchanged object and attribute constraints inherited from the parent archetype;
+** and one or more redefinitions, additions and removals.
 * All elements defined in a parent archetype are either inherited unchanged or redefined in a specialised child.
 * Specialised archetypes are expressed differentially with respect to the parent, i.e. they do not mention purely inherited elements, only redefinitions and extensions.
 * Extensions always define an additional subset of the instance space defined by the reference model element being extended (i.e. to which the 'new' objects belong). The extension capability allows archetypes to remain extensible without having to know in advance how or if they will be extended.
@@ -519,7 +519,7 @@ To indicate significant ordering in the specialised problem-diagnosis archetype,
     }
 --------
 
-These keywords are followed by a node identifier reference, and act to modify the node definition immediately following. Technically the following visual rendition would be more faithful, but it is less readable, and makes no difference to a parser:
+These keywords are followed by a node identifier reference, and act to anchor the location of the node definitions immediately following until the next sibling order marker or the end of the list. The following visual rendition is equivalent, but arguably less readable:
 
 [source, cadl]
 --------
@@ -529,16 +529,13 @@ These keywords are followed by a node identifier reference, and act to modify th
 The rules for specifying ordering are as follows.
 
 * Ordering is only applicable to object nodes defined within a multiply-valued (i.e. container) attribute whose cardinality includes the `ordered` constraint;
-* Any `before` or `after` statement can refer to the node identifier of any sibling node known in the flat form of the archetype, i.e.:
-* the identifier of any redefined node;
-* the identifier of any new node;
-* the identifier of any inherited node that is not redefined amongst the sibling nodes.
-* If no ordering indications are given, redefined nodes should appear in the same position as the nodes they replace, while extension nodes should appear at the end.
+* Any `before` or `after` statement can use as its anchor the node identifier of any sibling node from the same container attribute in the flat form of the parent archetype, or a redefined version of the same, local to the current archetype;
+* If no sibling order markers are used, redefined nodes should appear in the same position as the nodes they replace, while extension nodes appear at the end.
 
 If ordering indicators are used in an archetype that is itself further specialised, the following rules apply:
 
 * If the referenced identifier becomes unavailable due to being redefined in the new archetype, it must be redefined to refer to an available sibling identifier as per the rules above.
-* If this does not occur, a `before` reference will default to the first sibling node identifier currently available conforming to the original identifier, while an after reference will default to the _last_ such identifier available in the current flat archetype.
+* If this does not occur, a `before` reference will default to the first sibling node identifier currently available conforming to the original identifier, while an `after` reference will default to the _last_ such identifier available in the current flat archetype.
 
 If, due to multiple levels of redefinition, there is more than one candidate to go before (or after) a given node, the compiler should output a warning. The problem would be resolved by the choice of one of the candidates being changed to indicate that it is to be ordered before (after) another of the candidates rather than the originally stated node.
 

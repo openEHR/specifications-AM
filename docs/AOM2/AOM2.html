@@ -449,10 +449,19 @@
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a id="latest_issue"></a>2.0.7</p></td>
 <td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p><a href="https://openehr.atlassian.net/browse/SPECAM-45">SPECAM-45</a>Correct specification details to do with sibling_order anchor node id. (Corrects <a href="https://openehr.atlassian.net/browse/SPECPR-245">SPECPR-245</a>)</p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">P Bos,<br>
+ T Beale</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a id="latest_issue_date"></a>21 Nov 2017</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
 <p><a href="https://openehr.atlassian.net/browse/SPECAM-43">SPECAM-43</a>Correct <code>C_TERMINOLOGY_CODE.<em>c_conforms_to</em></code> to handle no parent value-set (Corrects <a href="https://openehr.atlassian.net/browse/SPECPR-243">SPECPR-243</a>)</p>
 </div></div></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">P Bos</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a id="latest_issue_date"></a>02 Nov 2017</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">02 Nov 2017</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"></td>
@@ -2600,7 +2609,7 @@ an_id: <code>String[1]</code><br>
 <div class="sect4">
 <h5 id="_sibling_ordering"><a class="anchor" href="#_sibling_ordering"></a>4.2.3.3. Sibling Ordering</h5>
 <div class="paragraph">
-<p>Within a specialised archetype, redefined or added object nodes may be defined under a container attribute. Since specialised archetypes are in differential form, i.e. only redefined or added nodes are expressed, not nodes inherited unchanged, the relative ordering of siblings can&#8217;t be stated simply by the ordering of such items within the relevant list within the differential form of the archetype. An explicit ordering indicator is required if indeed order is specific. The <code>C_OBJECT.<em>sibling_order</em></code> attribute provides this possibility. It can only be set on a <code>C_OBJECT</code> descendant within a multiply-valued attribute, i.e. an instance of <code>C_ATTRIBUTE</code> for which the <code><em>cardinality</em></code> is ordered.</p>
+<p>Within a specialised archetype, redefined or added object nodes may be defined under a container attribute. Since specialised archetypes are in differential form, i.e. only redefined or added nodes are expressed, not nodes inherited unchanged, the relative ordering of siblings can&#8217;t be stated simply by the ordering of such items within the relevant list within the differential form of the archetype. An explicit ordering indicator is required if indeed order is specific. The <code>C_OBJECT.<em>sibling_order</em></code> attribute provides this capability. It can only be set on a <code>C_OBJECT</code> descendant within a multiply-valued attribute, i.e. an instance of <code>C_ATTRIBUTE</code> for which the <code><em>cardinality</em></code> is ordered.</p>
 </div>
 </div>
 <div class="sect4">
@@ -3777,7 +3786,7 @@ other: <code>ARCHETYPE_CONSTRAINT[1]</code><br>
 <p><strong>VSONPO</strong> specialised archetype object node prohibited occurrences validity: the occurrences of a new (i.e. having no corresponding node in the parent flat) object node in a specialised archetype, if stated, may not be 'prohibited', i.e. {0}, since prohibition only makes sense for an existing node.</p>
 </div>
 <div class="paragraph rule">
-<p><strong>VSSM</strong> specialised archetype sibling order validity: the sibling order node id code used in a sibling marker in a specialised archetype must refer to a node found within the same container in the flat parent archetype.</p>
+<p><strong>VSSM</strong> specialised archetype sibling order validity: the sibling order node id-code used in a sibling marker in a specialised archetype must refer to a node found within the same container in the flat parent archetype, or a specialised version of any such node, redefined in the current archetype.</p>
 </div>
 </div>
 </div>
@@ -7433,7 +7442,7 @@ Hash of keys ("text", "description" etc) and corresponding values.</p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2017-11-02 11:16:15 -02
+Last updated 2017-11-02 13:16:15 GMT
 </div>
 </div>
 </body>
