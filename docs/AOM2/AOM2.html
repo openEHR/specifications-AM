@@ -46,7 +46,7 @@
 <li><a href="#_model_overview">2. Model Overview</a>
 <ul class="sectlevel2">
 <li><a href="#_used_base_component_packages">2.1. Used BASE Component Packages</a></li>
-<li><a href="#_aom_package_structure">2.2. AOM Package Structure</a></li>
+<li><a href="#_aom2_package_structure">2.2. AOM2 Package Structure</a></li>
 <li><a href="#_definition_and_utility_classes">2.3. Definition and Utility Classes</a>
 <ul class="sectlevel3">
 <li><a href="#_overview">2.3.1. Overview</a></li>
@@ -449,16 +449,24 @@
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a id="latest_issue"></a>2.0.7</p></td>
 <td class="tableblock halign-left valign-top"><div><div class="paragraph">
-<p><a href="https://openehr.atlassian.net/browse/SPECAM-45">SPECAM-45</a>Correct specification details to do with sibling_order anchor node id. (Corrects <a href="https://openehr.atlassian.net/browse/SPECPR-245">SPECPR-245</a>)</p>
+<p><a href="https://openehr.atlassian.net/browse/SPECPUB-6">SPECPUB-6</a>. Correct UML package nesting and paths in documents; rename <code>aom</code> package to <code>aom2</code>; <code>aom_profile</code> to <code>aom2_profile</code> and <code>p_aom</code> to <code>p_aom2</code>.</p>
 </div></div></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">P Bos,<br>
- T Beale</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a id="latest_issue_date"></a>21 Nov 2017</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">T Beale</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a id="latest_issue_date"></a>27 Nov 2017</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"><div><div class="paragraph">
-<p><a href="https://openehr.atlassian.net/browse/SPECAM-43">SPECAM-43</a>Correct <code>C_TERMINOLOGY_CODE.<em>c_conforms_to</em></code> to handle no parent value-set (Corrects <a href="https://openehr.atlassian.net/browse/SPECPR-243">SPECPR-243</a>)</p>
+<p><a href="https://openehr.atlassian.net/browse/SPECAM-45">SPECAM-45</a>. Correct specification details to do with <code><em>sibling_order</em></code> anchor node id. (Corrects <a href="https://openehr.atlassian.net/browse/SPECPR-245">SPECPR-245</a>)</p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">P Bos,<br>
+ T Beale</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">21 Nov 2017</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p><a href="https://openehr.atlassian.net/browse/SPECAM-43">SPECAM-43</a>. Correct <code>C_TERMINOLOGY_CODE.<em>c_conforms_to</em></code> to handle no parent value-set (Corrects <a href="https://openehr.atlassian.net/browse/SPECPR-243">SPECPR-243</a>)</p>
 </div></div></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">P Bos</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">02 Nov 2017</p></td>
@@ -466,7 +474,7 @@
 <tr>
 <td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"><div><div class="paragraph">
-<p><a href="https://openehr.atlassian.net/browse/SPECAM-42">SPECAM-42</a>Adjust references to BASE packages <code>foundation_types</code>, <code>base_types</code> and <code>resource</code> types.</p>
+<p><a href="https://openehr.atlassian.net/browse/SPECAM-42">SPECAM-42</a>. Adjust references to BASE packages <code>foundation_types</code>, <code>base_types</code> and <code>resource</code> types.</p>
 </div></div></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">T Beale</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">21 Sep 2017</p></td>
@@ -1367,13 +1375,13 @@ the above types do not constitute a formal part of this specification. Any imple
 </div>
 </div>
 <div class="sect2">
-<h3 id="_aom_package_structure"><a class="anchor" href="#_aom_package_structure"></a>2.2. AOM Package Structure</h3>
+<h3 id="_aom2_package_structure"><a class="anchor" href="#_aom2_package_structure"></a>2.2. AOM2 Package Structure</h3>
 <div class="paragraph">
-<p>The Archetype Object Model is defined as the package <code>am.archetype</code> , as illustrated in Figure <a href="#aom_package_overview">Package Overview</a>. It is shown in the context of the <code>am.archetype</code> packages.</p>
+<p>The Archetype Object Model is defined by the package <code>am.aom2</code> and subordinate packages, as illustrated in Figure <a href="#aom_package_overview">Package Overview</a>.</p>
 </div>
 <div id="aom_package_overview" class="imageblock text-center" style="text-align: center">
 <div class="content">
-<img src="../UML/diagrams/AOM-packages.svg" alt="AOM packages">
+<img src="../UML/diagrams/AM-packages.svg" alt="AM packages">
 </div>
 <div class="title">Figure 4. Package Overview</div>
 </div>
@@ -1383,11 +1391,11 @@ the above types do not constitute a formal part of this specification. Any imple
 <div class="sect3">
 <h4 id="_overview"><a class="anchor" href="#_overview"></a>2.3.1. Overview</h4>
 <div class="paragraph">
-<p>Various definitional constants are used in the AOM. These are defined in the <code>aom.definitions</code> package from the AM component and are shown below.</p>
+<p>Various definitional constants are used in the AOM. These are defined in the <code>aom2.definitions</code> package from the AM component and are shown below.</p>
 </div>
 <div id="definition_package" class="imageblock text-center" style="text-align: center">
 <div class="content">
-<img src="../UML/diagrams/AOM-definitions.svg" alt="AOM definitions">
+<img src="../UML/diagrams/AM-aom2.definitions.svg" alt="AM aom2.definitions">
 </div>
 <div class="title">Figure 5. Definition Package</div>
 </div>
@@ -1569,9 +1577,9 @@ a_level: <code>Integer[1]</code><br>
 </div>
 <div id="archetype_package" class="imageblock text-center" style="text-align: center">
 <div class="content">
-<img src="../UML/diagrams/AOM-archetype.svg" alt="AOM archetype">
+<img src="../UML/diagrams/AM-aom2.archetype.svg" alt="AM aom2.archetype">
 </div>
-<div class="title">Figure 6. Archetype Package</div>
+<div class="title">Figure 6. am.aom2.archetype Package</div>
 </div>
 <div class="paragraph">
 <p>The <code>AUTHORED_ARCHETYPE</code> class adds identifying attributes, flags and descriptive meta-data, and is the ancestor type for two further specialisations - <code>TEMPLATE</code> and <code>OPERATIONAL_TEMPLATE</code> . The <code>TEMPLATE</code> class defines the notion of a 'templated' archetype, i.e. an archetype containing fillers/references (ADL&#8217;s <code>use_archetype</code> statements), typically designed to represent a data set. To enable this, it may contain 'overlays', private archetypes that specialise one or more of the referenced / filler archetypes it uses. Overlays are instances of the <code>TEMPLATE_OVERLAY</code> class, have no meta-data of their own, but are otherwise computationally just like any other archetype.</p>
@@ -1799,7 +1807,7 @@ first names last name, organisation &lt;organisation email address&gt;</pre>
 <p>The archetype definition is the main definitional part of an archetype and is an instance of a <code>C_COMPLEX_OBJECT</code> . This means that the root of the constraint structure of an archetype always takes the form of a constraint on a non-primitive object type.</p>
 </div>
 <div class="paragraph">
-<p>The terminology section of an archetype is represented by its own classes, and is what allows archetypes to be natural language- and terminology-neutral. It is described in detail in the <a href="#terminology_package">Terminology Package</a>.</p>
+<p>The terminology section of an archetype is represented by its own classes, and is what allows archetypes to be natural language- and terminology-neutral. It is described in detail in the <a href="#terminology_package">am.aom2.terminology Package</a>.</p>
 </div>
 <div class="paragraph">
 <p>An archetype may include one or more rules. Rules are statements expressed in a subset of predicate logic, which can be used to state constraints on multiple parts of an object. They are not needed to constrain single attributes or objects (since this can be done with an appopriate <code>C_ATTRIBUTE</code> or <code>C_OBJECT</code> ), but are necessary for constraints referring to more than one attribute, such as a constraint that 'systolic pressure should be &gt;= diastolic pressure' in a blood pressure measurement archetype. They can also be used to declare variables, including external data query results, and make other constraints dependent on a variable value, e.g. the gender of the record subject.</p>
@@ -1811,11 +1819,11 @@ first names last name, organisation &lt;organisation email address&gt;</pre>
 <div class="sect3">
 <h4 id="_structural_variants"><a class="anchor" href="#_structural_variants"></a>3.5.2. Structural Variants</h4>
 <div class="paragraph">
-<p>The model in Figure <a href="#archetype_package">Archetype Package</a> defines the structures of a number of variants of the 'archetype' idea. All concrete instances are instances of one of the concrete descendants of <code>ARCHETYPE</code>. Figure <a href="#source_archetype_structure">Source Archetype Structure</a> illustrates the typical object structure of a source archetype - the form of archetype created by an authoring tool - represented by a <code>DIFFERENTIAL_ARCHETYPE</code> instance. Mandatory parts are shown in bold.</p>
+<p>The model in Figure <a href="#archetype_package">am.aom2.archetype Package</a> defines the structures of a number of variants of the 'archetype' idea. All concrete instances are instances of one of the concrete descendants of <code>ARCHETYPE</code>. Figure <a href="#source_archetype_structure">Source Archetype Structure</a> illustrates the typical object structure of a source archetype - the form of archetype created by an authoring tool - represented by a <code>DIFFERENTIAL_ARCHETYPE</code> instance. Mandatory parts are shown in bold.</p>
 </div>
 <div id="source_archetype_structure" class="imageblock text-center" style="text-align: center">
 <div class="content">
-<img src="../UML/diagrams/AOM-source_archetype_structure.svg" alt="AOM source archetype structure" width="60%">
+<img src="../UML/diagrams/AM-source_archetype_structure.svg" alt="AM source archetype structure" width="60%">
 </div>
 <div class="title">Figure 11. Source Archetype Structure</div>
 </div>
@@ -1827,7 +1835,7 @@ first names last name, organisation &lt;organisation email address&gt;</pre>
 </div>
 <div id="source_template_structure" class="imageblock text-center" style="text-align: center">
 <div class="content">
-<img src="../UML/diagrams/AOM-source_template_structure.svg" alt="AOM source template structure" width="80%">
+<img src="../UML/diagrams/AM-source_template_structure.svg" alt="AM source template structure" width="80%">
 </div>
 <div class="title">Figure 12. Source Template Structure</div>
 </div>
@@ -1845,7 +1853,7 @@ first names last name, organisation &lt;organisation email address&gt;</pre>
 </div>
 <div id="operational_template_structure" class="imageblock text-center" style="text-align: center">
 <div class="content">
-<img src="../UML/diagrams/AOM-operational_template_structure.svg" alt="AOM operational template structure" width="80%">
+<img src="../UML/diagrams/AM-operational_template_structure.svg" alt="AM operational template structure" width="80%">
 </div>
 <div class="title">Figure 13. Operational Template Structure</div>
 </div>
@@ -2445,13 +2453,13 @@ an_id: <code>String[1]</code><br>
 <div class="sect2">
 <h3 id="_overview_3"><a class="anchor" href="#_overview_3"></a>4.1. Overview</h3>
 <div class="paragraph">
-<p>Figure <a href="#constraint_model_top">constraint_model Package</a> and Figure <a href="#constraint_model_bottom">constraint_model.primitive Package</a> illustrate the object model of constraints used in an archetype definition. This model is completely generic, and is designed to express the semantics of constraints on instances of classes which are themselves described in any orthodox object-oriented formalism, such as UML. Accordingly, the major abstractions in this model correspond to major abstractions in object-oriented formalisms, including several variations of the notion of 'object' and the notion of 'attribute'. The notion of 'object' rather than 'class' or 'type' is used because archetypes are about constraints on data (i.e. 'instances', or 'objects') rather than models, which are constructed from 'classes'. In this document, the word 'attribute' refers to any data property of a class, regardless of whether regarded as a 'relationship' (i.e. association, aggregation, or composition) or 'primitive' (i.e. value) attribute in an object model.</p>
+<p>Figure <a href="#constraint_model_top">am.aom2.constraint_model Package</a> and Figure <a href="#constraint_model_bottom">am.aom2.primitive Package</a> illustrate the object model of constraints used in an archetype definition. This model is completely generic, and is designed to express the semantics of constraints on instances of classes which are themselves described in any orthodox object-oriented formalism, such as UML. Accordingly, the major abstractions in this model correspond to major abstractions in object-oriented formalisms, including several variations of the notion of 'object' and the notion of 'attribute'. The notion of 'object' rather than 'class' or 'type' is used because archetypes are about constraints on data (i.e. 'instances', or 'objects') rather than models, which are constructed from 'classes'. In this document, the word 'attribute' refers to any data property of a class, regardless of whether regarded as a 'relationship' (i.e. association, aggregation, or composition) or 'primitive' (i.e. value) attribute in an object model.</p>
 </div>
 <div id="constraint_model_top" class="imageblock text-center" style="text-align: center">
 <div class="content">
-<img src="../UML/diagrams/AOM-constraint_model-top.svg" alt="AOM constraint model top">
+<img src="../UML/diagrams/AM-aom2.constraint_model-top.svg" alt="AM aom2.constraint model top">
 </div>
-<div class="title">Figure 14. constraint_model Package</div>
+<div class="title">Figure 14. am.aom2.constraint_model Package</div>
 </div>
 <div class="paragraph">
 <p>The definition part of an archetype is an instance of a <code>C_COMPLEX_OBJECT</code> and consists of alternate layers of object and attribute constrainer nodes, each containing the next level of nodes. At the leaves are primitive object constrainer nodes constraining primitive types such as <code>String</code> , <code>Integer</code> etc. There are also nodes that represent internal references to other nodes, constraint reference nodes that refer to a text constraint in the constraint binding part of the archetype terminology, and archetype constraint nodes, which represent constraints on other archetypes allowed to appear at a given point. The full list of concrete node types is as follows:</p>
@@ -2483,9 +2491,9 @@ an_id: <code>String[1]</code><br>
 </div>
 <div id="constraint_model_bottom" class="imageblock text-center" style="text-align: center">
 <div class="content">
-<img src="../UML/diagrams/AOM-constraint_model-bottom.svg" alt="AOM constraint model bottom">
+<img src="../UML/diagrams/AM-aom2.constraint_model-bottom.svg" alt="AM aom2.constraint model bottom">
 </div>
-<div class="title">Figure 15. constraint_model.primitive Package</div>
+<div class="title">Figure 15. am.aom2.primitive Package</div>
 </div>
 <div class="paragraph">
 <p>The type-name nomenclature <code>C_XXX</code> used here is intended to be read as "constraint on objects of type <code>XXXX</code> ", i.e. a <code>C_COMPLEX_OBJECT</code> is a "constraint on a complex object (defined by a complex reference model type)". These type names are used below in the formal model.</p>
@@ -2912,7 +2920,7 @@ Since an archetype might not contain external terminology bindings for all (or e
 <p>All of the constraint semantics described above can be considered 'first order' in the sense that they define how specific object/attribute/object hierarchies are defined in the instance possibility space of some part of a reference model.</p>
 </div>
 <div class="paragraph">
-<p>Some constraints however do not fit directly within the object/attribute/object hierarchy scheme, and are considered 'second order constraints' in the archetype formalism. The 'rule' constraints ('invariants' in ADL/AOM 1.4) constitute one such group. These constraints are defined in terms of first order predicate logic statements that can refer to any number of constraint nodes within the main hierarchy. These are described in Figure <a href="#rules_package">Rules Package</a>.</p>
+<p>Some constraints however do not fit directly within the object/attribute/object hierarchy scheme, and are considered 'second order constraints' in the archetype formalism. The 'rule' constraints ('invariants' in ADL/AOM 1.4) constitute one such group. These constraints are defined in terms of first order predicate logic statements that can refer to any number of constraint nodes within the main hierarchy. These are described in Figure <a href="#rules_package">am.aom2.rules Package</a>.</p>
 </div>
 <div class="paragraph">
 <p>Another type of second order constraint can be 'attached' to the object/attribute/object hierarchy in order to further limit structural possibilities. Although these constraints could also theoretically be expressed as rules, they are supported by direct additions to the main constraint model since they can be easily and intuitively represented inline in ADL and corresponding AOM structures.</p>
@@ -2924,7 +2932,7 @@ Since an archetype might not contain external terminology bindings for all (or e
 </div>
 <div id="tuple_constraint_model" class="imageblock text-center" style="text-align: center">
 <div class="content">
-<img src="../UML/diagrams/AOM-constraint_model-tuple.svg" alt="AOM constraint model tuple">
+<img src="../UML/diagrams/AM-aom2.constraint_model-tuple.svg" alt="AM aom2.constraint model tuple">
 </div>
 <div class="title">Figure 18. Tuple Constraint Model</div>
 </div>
@@ -2939,7 +2947,7 @@ Since an archetype might not contain external terminology bindings for all (or e
 </div>
 <div id="ordinal_tuple_example" class="imageblock text-center" style="text-align: center">
 <div class="content">
-<img src="../UML/diagrams/AOM-ordinal_tuple_example.svg" alt="AOM ordinal tuple example">
+<img src="../UML/diagrams/AM-ordinal_tuple_example.svg" alt="AM ordinal tuple example">
 </div>
 <div class="title">Figure 19. Tuple Constraint Example AOM Instances</div>
 </div>
@@ -2960,7 +2968,7 @@ Since an archetype might not contain external terminology bindings for all (or e
 <div class="sect2">
 <h3 id="_aom_type_substitutions"><a class="anchor" href="#_aom_type_substitutions"></a>4.4. AOM Type Substitutions</h3>
 <div class="paragraph">
-<p>The <code>C_OBJECT</code> types defined in Figure <a href="#constraint_model_top">constraint_model Package</a> are reproduced below, with concrete types that may actually occur in archetypes shown in dark yellow / non-italic.</p>
+<p>The <code>C_OBJECT</code> types defined in Figure <a href="#constraint_model_top">am.aom2.constraint_model Package</a> are reproduced below, with concrete types that may actually occur in archetypes shown in dark yellow / non-italic.</p>
 </div>
 <div id="c_object_substitutions" class="imageblock text-center" style="text-align: center">
 <div class="content">
@@ -5515,9 +5523,9 @@ other: <code>C_SECOND_ORDER[1]</code><br>
 </div>
 <div id="rules_package" class="imageblock text-center" style="text-align: center">
 <div class="content">
-<img src="../UML/diagrams/AOM-rules.svg" alt="AOM rules">
+<img src="../UML/diagrams/AM-aom2.rules.svg" alt="AM aom2.rules">
 </div>
-<div class="title">Figure 22. Rules Package</div>
+<div class="title">Figure 22. am.aom2.rules Package</div>
 </div>
 </div>
 <div class="sect2">
@@ -5731,9 +5739,9 @@ other: <code>C_SECOND_ORDER[1]</code><br>
 </div>
 <div id="terminology_package" class="imageblock text-center" style="text-align: center">
 <div class="content">
-<img src="../UML/diagrams/AOM-terminology.svg" alt="AOM terminology">
+<img src="../UML/diagrams/AM-aom2.terminology.svg" alt="AM aom2.terminology">
 </div>
-<div class="title">Figure 23. Terminology Package</div>
+<div class="title">Figure 23. am.aom2.terminology Package</div>
 </div>
 <div class="paragraph">
 <p>An archetype terminology consists of the following elements.</p>
@@ -6541,7 +6549,7 @@ Hash of keys ("text", "description" etc) and corresponding values.</p>
 <p>Size reduction and readability is achieved mainly by mapping repetitive structural items to shorter string forms that are more readable, but still machine-processible.</p>
 </div>
 <div class="paragraph">
-<p>The &#8216;P_&#8217; model is shown below in two parts.</p>
+<p>The <code>am.p_aom2</code> package is shown below, in two parts.</p>
 </div>
 <div class="paragraph">
 <p>The translations from the AOM effected by the <code>P_</code> classes are as follows:</p>
@@ -6561,15 +6569,15 @@ Hash of keys ("text", "description" etc) and corresponding values.</p>
 </div>
 <div id="P_AOM_upper" class="imageblock text-center" style="text-align: center">
 <div class="content">
-<img src="../UML/diagrams/P_AOM-upper.png" alt="P AOM upper">
+<img src="../UML/diagrams/AM-p_aom2-upper.png" alt="AM p aom2 upper">
 </div>
-<div class="title">Figure 25. Serialisation AOM (upper)</div>
+<div class="title">Figure 25. am.p_aom2 Package - Serialisation AOM (upper)</div>
 </div>
 <div id="P_AOM_lower" class="imageblock text-center" style="text-align: center">
 <div class="content">
-<img src="../UML/diagrams/P_AOM-lower.png" alt="P AOM lower">
+<img src="../UML/diagrams/AM-p_aom2-lower.png" alt="AM p aom2 lower">
 </div>
-<div class="title">Figure 26. Serialisation AOM (lower)</div>
+<div class="title">Figure 26. am.p_aom2 Package - Serialisation AOM (lower)</div>
 </div>
 </div>
 </div>
@@ -6580,7 +6588,7 @@ Hash of keys ("text", "description" etc) and corresponding values.</p>
 <p>Within the Archetype formalism, a template is used to aggregate and refine archetypes, to produce a structure corresponding to a particular data set. Templates thus provide a way to use archetypes for specific purposes, while the archetypes contain <em>possible</em> data items, not linked to specific purposes. See the <a href="http://www.openehr.org/releases/AM/latest/ADL2.html#_templates">ADL2 specification, Templates section</a> for a detailed description of template semantics.</p>
 </div>
 <div class="paragraph">
-<p>Templates are formally defined as specialised archetypes, via the <code>TEMPLATE</code> and <code>TEMPLATE_OVERLAY</code> classes shown in <a href="#archetype_package">Archetype Package</a>. This means that all the formal characteristics of a template are defined by the openEHR Archetype Object Model (AOM) and Archetype Definition Language (ADL) specifications apply to templates. This includes the meta-data (inherited from the <code>AUTHORED_RESOURCE</code> class), specialisation semantics (templates can be specialised into other templates), <code>terminology</code> section (allowing multi-lingual local term definitions and external terminology bindings) as well as the <code>rules</code> and <code>annotations</code> sections.</p>
+<p>Templates are formally defined as specialised archetypes, via the <code>TEMPLATE</code> and <code>TEMPLATE_OVERLAY</code> classes shown in <a href="#archetype_package">am.aom2.archetype Package</a>. This means that all the formal characteristics of a template are defined by the openEHR Archetype Object Model (AOM) and Archetype Definition Language (ADL) specifications apply to templates. This includes the meta-data (inherited from the <code>AUTHORED_RESOURCE</code> class), specialisation semantics (templates can be specialised into other templates), <code>terminology</code> section (allowing multi-lingual local term definitions and external terminology bindings) as well as the <code>rules</code> and <code>annotations</code> sections.</p>
 </div>
 <div class="paragraph">
 <p>Since a template is a specialised archetype, it cannot change the semantics of archetypes it specialises, since it obeys the same rules as any other specialised archetype. Accordingly, all data created due to the use of templates are guaranteed to conform to the referenced archetypes, as well as the underlying reference model.</p>
@@ -6663,7 +6671,7 @@ Hash of keys ("text", "description" etc) and corresponding values.</p>
 </div>
 <div id="AOM-template_example_1" class="imageblock text-center" style="text-align: center">
 <div class="content">
-<img src="../UML/diagrams/AOM-template_example_1.png" alt="AOM template example 1">
+<img src="../UML/diagrams/AM-template_example_1.png" alt="AM template example 1">
 </div>
 <div class="title">Figure 27. Template source structure example</div>
 </div>
@@ -6764,7 +6772,7 @@ Hash of keys ("text", "description" etc) and corresponding values.</p>
 </div>
 <div id="aom_profile" class="imageblock text-center" style="text-align: center">
 <div class="content">
-<img src="../UML/diagrams/AOM_PROFILE.svg" alt="AOM PROFILE">
+<img src="../UML/diagrams/AM-aom2_profile.svg" alt="AM aom2 profile">
 </div>
 <div class="title">Figure 28. aom_profile Package</div>
 </div>
