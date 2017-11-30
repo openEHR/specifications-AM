@@ -34,28 +34,31 @@ We also use the word 'archetype' in a broad sense to designate what are commonly
 
 == Status
 
-This specification is in the {spec_status} state. The development version of this document can be found at {openehr_am_adl2}.
+This specification is in the {spec_status} state. The development version of this document can be found at {openehr_am_adl2}[{openehr_domain}/releases/AM/latest/ADL2.html].
 
 Known omissions or questions are indicated in the text with a 'to be determined' paragraph, as follows:
 [.tbd]
 *TBD*: (example To Be Determined paragraph)
 
-Users are encouraged to comment on and/or advise on these paragraphs as well as the main content.  Feedback should be provided either on the {openehr_technical_list}[technical mailing list], or on the {openehr_jira}/SPECPR/?selectedTab=com.atlassian.jira.jira-projects-plugin:issues-panel[specifications issue tracker].
+Users are encouraged to comment on and/or advise on these paragraphs as well as the main content.  Feedback should be provided either on the {openehr_technical_list}[technical mailing list], or on the {openehr_jira_prs_am}[specifications issue tracker].
 
 == Tools
 
-Various tools exist for creating and processing archetypes. The {openehr_awb}[ADL Workbench] is a reference compiler, visualiser and editor. The openEHR ADL/AOM tools can be http://www.openehr.org/downloads/modellingtools[downloaded from the website] .
+Various tools exist for creating and processing archetypes. The {openehr_awb}[ADL Workbench] is a reference compiler, visualiser and editor. The openEHR ADL/AOM tools can be {modelling_tools}[downloaded from the website] .
 Source projects can be found at the {openehr_git}[openEHR Github project].
 
 == Changes from Previous Versions
+
 For existing users of ADL or archetype development tools, the following provides a guide to the changes in the syntax.
 
 === dADL (ODIN)
+
 The object syntax used to represent the description, terminology and annotations sections of an ADL archetype has been historically known as 'dADL' (i.e. 'data ADL'). Since this syntax is completely generic and has no specific dependency on either ADL or openEHR, it has been separated out into its own specification known as Object Data Instance Notation (ODIN).
 
 === ADL 2.0
 
 ==== Changes
+
 The changes in version 2.0 are designed to make archetypes more computable with respect to terminology. The changes with respect to 1.x versions include:
 
 * the internal node identification system has been changed so that at-codes are no longer used to identify nodes; instead, 'id-codes' are used for that purpose;
@@ -70,6 +73,7 @@ In its current form, the changes to the internal coding system and value set rep
 === ADL 1.5
 
 ==== Changes
+
 The changes in version 1.5 are made to better facilitate the representation of specialised archetypes. The key semantic capability for specialised archetypes is to be able to support a differential representation, i.e. to express a specialised archetype only in terms of the changed or new elements in its defnition, rather than including a copy of unchanged elements. Doing the latter is clearly unsustainable in terms of change management. ADL 1.4 already supported differential representation, but somewhat inconveniently.
 
 The changes for ADL 1.5 include:
