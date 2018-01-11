@@ -23,4 +23,24 @@ h|*0..1 +
 (redefined)*
 |*constraint*: `List<Interval>`
 a|Constraint in the form of a List of Intervals of the parameter type T. Concrete types generated in descendants via template binding.
+h|*Functions*
+^h|*Signature*
+^h|*Meaning*
+
+h|(effected)
+|*any_allowed* (): `Boolean` +
+*_Post_*: `Result = constraint.is_empty`
+a|True if any value (i.e. instance) of the reference model type would be allowed. Redefined in descendants.
+
+h|(effected)
+|*c_value_conforms_to* ( +
+other: `C_ORDERED[1]` +
+): `Boolean`
+a|True if `_other.any_allowed_` or else for every constraint in the `_constraint_` list there is a constraint in `_other.constraint_` that contains it.
+
+h|(effected)
+|*c_value_congruent_to* ( +
+other: `C_ORDERED[1]` +
+): `Boolean`
+a|True if the items in `_constraint_` are equal in number and identical pair-wise with those in `_other.constraint_`.
 |===

@@ -34,4 +34,21 @@ a_pattern: `String[1]`, +
 an_other_pattern: `String[1]` +
 ): `Boolean`
 a|Return True if `_a_pattern_` can be replaced by `_an_other_pattern_` in a specialised constraint. Define in concrete subtypes.
+
+h|(effected)
+|*any_allowed* (): `Boolean` +
+*_Post_*: `Result = precursor and pattern_constraint.is_empty`
+a|True if any value (i.e. instance) of the reference model type would be allowed. Redefined in descendants.
+
+h|(effected)
+|*c_value_conforms_to* ( +
+other: `C_ORDERED[1]` +
+): `Boolean`
+a|True if precursor() or else `_other.pattern_constraint_` is empty, or else `_pattern_constraint_` is a valid (narrower) replacement for `_other.pattern_constraint_`.
+
+h|(effected)
+|*c_value_congruent_to* ( +
+other: `C_ORDERED[1]` +
+): `Boolean`
+a|True if `precursor (other)` and `_pattern_constraint_ ~ _other.pattern_constraint_`, i.e. either both `Void` or else both non-`Void` and identical.
 |===

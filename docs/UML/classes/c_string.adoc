@@ -42,4 +42,21 @@ h|(effected)
 a_value: `String[1]` +
 ): `Boolean`
 a|True if a_value is valid with respect to constraint expressed in concrete instance of this type.
+
+h|(effected)
+|*any_allowed* (): `Boolean` +
+*_Post_*: `Result = constraint.is_empty or else constraint.count = 1 and constraint.first.is_equal (Regex_any_string)`
+a|True if any value (i.e. instance) of the reference model type would be allowed. Redefined in descendants.
+
+h|(effected)
+|*c_value_conforms_to* ( +
+other: `C_STRING[1]` +
+): `Boolean`
+a|True if `_other.any_allowed_` or else every constraint in the `_constraint_` list exists in the `_other.constraint_`.
+
+h|(effected)
+|*c_value_congruent_to* ( +
+other: `C_STRING[1]` +
+): `Boolean`
+a|True if the items in `_constraint_` are equal in number and identical pair-wise with those in `_other.constraint_`.
 |===

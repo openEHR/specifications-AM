@@ -409,7 +409,7 @@ There are various circumstances where it is useful to know the effective occurre
 
 [source,eiffel]
 ---------
-effective_occurrences (rm_prop_mult: FUNCTION [args: TUPLE[rm_type_name: STRING, rm_property_path: STRING], result: MULTIPLICITY_INTERVAL]): MULTIPLICITY_INTERVAL
+effective_occurrences (agent rm_prop_mult (rm_type_name, rm_property_path: String): MULTIPLICITY_INTERVAL): MULTIPLICITY_INTERVAL
         -- evaluate effective occurrences, using the RM when no occurrences constraint or parent node 
         -- cardinality exists.
         -- In this case, the upper limit of the RM's owning attribute is used to provide a value.
@@ -446,11 +446,11 @@ In the above, `_rm_prop_mult_` is a reference to a function within an RM schema 
 
 [source, eiffel]
 ---------
-object_multiplicity (rm_type_name: STRING, rm_property_path: STRING): MULTIPLICITY_INTERVAL
+object_multiplicity (rm_type_name, rm_property_path: String): MULTIPLICITY_INTERVAL
         -- compute the effective object multiplicity of objects at rm_property_path within type rm_type_name
         -- from the Reference Model
     do
-        rm_property_def := get_rm_property_def (rm_type_name: STRING, rm_property_path: STRING)
+        rm_property_def := get_rm_property_def (rm_type_name, rm_property_path)
         if rm_property_def.is_container then
             if rm_property_def.cardinality.upper_unbounded then
                 create Result.make_upper_unbounded (0)
@@ -463,7 +463,7 @@ object_multiplicity (rm_type_name: STRING, rm_property_path: STRING): MULTIPLICI
     end
 ---------
 
-How this is concretely implemented depends on the modelling environment. Once possible RM model implementation is described in the {openehr_base_bmm}[openEHR Basic meta-model (BMM) specification].
+How this is concretely implemented depends on the modelling environment. One possible RM model implementation is described in the {openehr_base_bmm}[openEHR Basic meta-model (BMM) specification].
 
 ==== Conformance semantics
 
@@ -471,8 +471,8 @@ The following functions formally define the conformance of a `C_OBJECT` node in 
 
 [source,eiffel]
 ---------
-c_conforms_to (other: like Current; agent rm_types_conformant (a_type, other_type: String)): Boolean
-        -- True if this node on its own (ignoring any subparts) expresses the same or narrower constraints 
+c_conforms_to (other: like Current; agent rm_types_conformant (a_type, other_type: String): Boolean): Boolean
+        -- True if this node on its own (ignoring any subparts) expresses strictly narrower constraints 
         -- as `other'. 
         -- `other' is typically from the flat parent archetype.
         -- Returns True only when the following is True:
@@ -530,7 +530,7 @@ node_id_conforms_to (other: like Current): Boolean
         Result := codes_conformant (node_id, other.node_id)
     end
 
-node_reuse_congruent (other: like Current): BOOLEAN
+node_reuse_congruent (other: like Current): Boolean
         -- True if this node is the sole re-using node of the corresponding node in the flat
     do
         Result := node_id_conforms_to (other) and
@@ -706,7 +706,7 @@ The following functions formally define the conformance of a node of a `C_PRIMIT
 
 [source,eiffel]
 ---------
-c_conforms_to (other: like Current; agent rm_types_conformant (a_type, other_type: String)): Boolean
+c_conforms_to (other: like Current; agent rm_types_conformant (a_type, other_type: String): Boolean): Boolean
         -- True if this node on its own (ignoring any subparts) expresses the same or narrower constraints 
         -- as `other'. Returns True only when the following is True:
         --   * occurrences conforms
@@ -716,7 +716,12 @@ c_conforms_to (other: like Current; agent rm_types_conformant (a_type, other_typ
         other /= Void
         rm_types_conformant /= Void
     do
-        Result := occurrences_conforms_to (other) and rm_type_name.is_case_insensitive_equal (other.rm_type_name)
+        precursor (other, rm_type_conformance_checker) and c_value_conforms_to (other)
+    end
+
+c_value_conforms_to (other: like Current): Boolean
+        -- True if this node expresses a value constraint that conforms to that of `other'
+    deferred
     end
 
 c_congruent_to (other: like Current): Boolean
@@ -724,7 +729,13 @@ c_congruent_to (other: like Current): Boolean
     require
         other /= Void
     do
-		Result := rm_typename.is_case_insensitive_equal (other.rm_typename)
+		Result := constrained_typename.is_case_insensitive_equal (other.constrained_typename) and
+            c_value_congruent_to (other)
+    end
+
+c_value_congruent_to (other: like Current): Boolean
+        -- True if this node's value constraint is the same as that of `other'
+    deferred
     end
 
 ---------
@@ -737,28 +748,18 @@ The following functions formally define the conformance of a `C_BOOLEAN` node in
 
 [source,eiffel]
 ---------
-c_conforms_to (other: like Current; agent rm_types_conformant (a_type, other_type: String)): Boolean
-        -- True if this node on its own (ignoring any subparts) expresses the same or narrower constraints 
-        -- as `other'. Returns True only when the following is True:
-        --   * C_PRIMITIVE_OBJECT conditions are met and
-        --   * every `constraint' value is in `other.constraint'
-        -- `rm_types_conformant' is an agent (lambda) that can test an RM type's conformance to another RM type
-    require
-        other /= Void
-        rm_types_conformant /= Void
+c_value_conforms_to (other: like Current): Boolean
+        -- True if this node is a strict subset of `other'
     do
-        Result := precursor (other, rm_type_conformance_checker) and  -- precursor is from C_PRIMITIVE_OBJECT
+        Result := other.any_allowed or
             constraint.count < other.constraint.count and
             across constraint as val_csr all other.constraint.has (val_csr.item) end
     end
 
-c_congruent_to (other: like Current): Boolean
-        -- True if this node on its own (ignoring any subparts) expresses no constraints in addition to `other'
-    require
-        other /= Void
+c_value_congruent_to (other: like Current): Boolean
+        -- True if this node's value constraint is the same as that of `other'
     do
-        Result := precursor (other) and   -- precursor is from C_PRIMITIVE_OBJECT
-            constraint.count = other.constraint.count and
+        Result := constraint.count = other.constraint.count and
             across constraint as val_csr all other.constraint.has (val_csr.item) end
     end
 
@@ -766,42 +767,30 @@ c_congruent_to (other: like Current): Boolean
 
 include::{uml_export_dir}/classes/c_string.adoc[]
 
-[.tbd]
-TBD: there is an argument for only allowing a single String value rather than a list, where the value is aways a regex since `{"platypus", "kangaroo", "wombat"}` can be expressed as `{/platypus|kangaroo|wombat/}`. See also ADL spec.
-
 ==== Conformance semantics
 
 The following functions formally define the conformance of a `C_STRING` node in a specialised archetype to a corresponding node in a parent archetype, where 'corresponding' means a node found at the same or a congruent path and of the same AOM type.
 
 [source,eiffel]
 ---------
-c_conforms_to (other: like Current; agent rm_types_conformant (a_type, other_type: String)): Boolean
-        -- True if this node on its own (ignoring any subparts) expresses the same or narrower constraints 
-        -- as `other'. Returns True only when the following is True:
-        --   * C_PRIMITIVE_OBJECT conditions are met and
-        --   * every `constraint' string or pattern is in `other.constraint'
-        -- `rm_types_conformant' is an agent (lambda) that can test an RM type's conformance to another RM type
-    require
-        other /= Void
-        rm_types_conformant /= Void
+c_value_conforms_to (other: like Current): Boolean
+        -- True if `constraint' is a strict subset of other.constraint
     do
-        Result := precursor (other, rm_type_conformance_checker) and -- precursor is from C_PRIMITIVE_OBJECT
+        Result := other.any_allowed or
             constraint.count < other.constraint.count and
-            across constraint as constraint_csr all other.constraint.has (constraint_csr.item) end
-end
-
-c_congruent_to (other: like Current): Boolean
-        -- True if this node on its own (ignoring any subparts) expresses no constraints in addition to `other'
-    require
-        other /= Void
-    do
-        Result := precursor (other) and -- precursor is from C_PRIMITIVE_OBJECT
-            constraint.count = other.constraint.count and then
-            across constraint as str_csr all 
-                other.constraint.i_th (str_csr.cursor_index).is_equal (str_csr.item) 
+            across constraint as constraint_csr all
+                other.constraint.has (constraint_csr.item)
             end
     end
 
+c_value_congruent_to (other: like Current): Boolean
+        -- True if this node's value constraint is the same as that of `other'
+    do
+        Result := constraint.count = other.constraint.count and then
+            across constraint as str_csr all
+                other.constraint.i_th (str_csr.cursor_index).is_equal (str_csr.item)
+            end
+    end
 ---------
 
 include::{uml_export_dir}/classes/c_ordered.adoc[]
@@ -812,35 +801,23 @@ The following functions formally define the conformance of a node of a `C_ORDERE
 
 [source,eiffel]
 ---------
-c_conforms_to (other: like Current; agent rm_types_conformant (a_type, other_type: String)): Boolean
-        -- True if this node on its own (ignoring any subparts) expresses the same or narrower constraints 
-        -- as `other'. Returns True only when the following is True:
-        --   * C_PRIMITIVE_OBJECT conditions are met and
-        --   * every interval constraint (if amy exist) is inside at least one interval in other.constraint
-        -- `rm_types_conformant' is an agent (lambda) that can test an RM type's conformance to another RM type
-    require
-        other /= Void
-        rm_types_conformant /= Void
+c_value_conforms_to (other: like Current): Boolean
+        -- True if this node is a strict subset of `other'
     do
-        if precursor (other, rm_types_conformant) and -- precursor is from C_PRIMITIVE_OBJECT
+        Result := other.any_allowed or
             across constraint as ivl_csr all
                 across other.constraint as other_ivl_csr some other_ivl_csr.item.contains (ivl_csr.item) end
             end
-        end
     end
 
-c_congruent_to (other: like Current): Boolean
-        -- True if this node on its own (ignoring any subparts) expresses no constraints in addition to `other'
-    require
-        other /= Void
+c_value_congruent_to (other: like Current): Boolean
+        -- True if this node is the same as `other'
     do
-        Result := precursor (other) and  -- precursor is from C_PRIMITIVE_OBJECT
-            constraint.count = other.constraint.count and
+        Result := constraint.count = other.constraint.count and
             across constraint as ivl_csr all
                 ivl_csr.item.is_equal (other.constraint.i_th (ivl_csr.cursor_index))
             end
     end
-
 ---------
 
 include::{uml_export_dir}/classes/c_integer.adoc[]
@@ -853,38 +830,20 @@ The following functions formally define the conformance of a node of a `C_TEMPOR
 
 [source,eiffel]
 ---------
-c_conforms_to (other: like Current; agent rm_types_conformant (a_type, other_type: String)): Boolean
-        -- True if this node on its own (ignoring any subparts) expresses the same or narrower constraints 
-        -- as `other'. Returns True only when the following is True:
-        --   * C_ORDERED conditions are met and
-        --   * every interval in `constraint' (if amy exist) is inside an interval in `other.constraint'
-        --   * if `pattern_constraint' exists, it is the same or a valid replacement of that in `other'.
-        -- `rm_types_conformant' is an agent (lambda) that can test an RM type's conformance to another RM type
-    require
-        other /= Void
-        rm_types_conformant /= Void
+c_value_conforms_to (other: like Current): Boolean
+        -- True if this node is a strict subset of `other'
     do
-        if precursor (other, rm_types_conformant) then -- precursor is from C_ORDERED
-            if not pattern_constraint.is_empty and not other.pattern_constraint.is_empty then
-                Result := valid_pattern_constraint_replacement (pattern_constraint, other.pattern_constraint)
-            else
-                Result := pattern_constraint.is_empty and other.pattern_constraint.is_empty
-            end
-        end
+        Result := precursor (other) and
+            other.pattern_constraint.is_empty or
+                not pattern_constraint.is_empty and then
+                valid_pattern_constraint_replacement (pattern_constraint, other.pattern_constraint)
     end
 
-c_congruent_to (other: like Current): Boolean
-        -- True if this node on its own (ignoring any subparts) expresses no constraints in addition to `other'
-    require
-        other /= Void
+c_value_congruent_to (other: like Current): Boolean
+        -- True if this node's value constraint is the same as that of `other'
     do
-        if precursor (other) then -- precursor is from C_ORDERED
-            if not pattern_constraint.is_empty and not other.pattern_constraint.is_empty then
-                Result := pattern_constraint.is_equal (other.pattern_constraint)
-            else
-                Result := pattern_constraint.is_empty and other.pattern_constraint.is_empty
-            end
-        end
+        Result := precursor (other) and
+            pattern_constraint ~ other.pattern_constraint
     end
 
 ---------
@@ -901,50 +860,42 @@ The following functions formally define the conformance of a `C_TERMINOLOGY_CODE
 
 [source,eiffel]
 ---------
-c_conforms_to (other: like Current; agent rm_types_conformant (a_type, other_type: String)): Boolean
-        -- True if this node on its own (ignoring any subparts) expresses the same or narrower constraints 
-        -- as `other'. Returns True only when the following is True:
-        --   * C_PRIMITIVE_OBJECT conditions are met and
-        --   * the value set represented by `constraint' is subsumed under that of `other.constraint'
-        -- `rm_types_conformant' is an agent (lambda) that can test an RM type's conformance to another RM type
-    require
-        other /= Void
-        rm_types_conformant /= Void
+c_value_conforms_to (other: like Current): Boolean
+        -- True if this node expresses a value constraint that conforms to that of `other'
+    local
+        this_vset, other_vset: like value_set_expanded
     do
-        if precursor (other, rm_type_conformance_checker) then  -- precursor is from C_PRIMITIVE_OBJECT
-            if is_valid_value_set_code (constraint) and is_valid_value_set_code (other.constraint) then
-                -- firstly, check if the other value-set is empty, which means there is no value-set, 
-                -- i.e. no constraint, which means that this object's value set automatically conforms.
-                other_vset := other.value_set_expanded
-                if not other_vset.is_empty then
-                    this_vset := value_set_expanded
-                    Result := codes_conformant (constraint, other.constraint) and then
-                        across this_vset as vset_csr all other_vset.has (vset_csr.item) end
-                else
-                    Result := True
-                end
+        if other.any_allowed then
+            Result := True
+        elseif is_valid_value_set_code (constraint) and is_valid_value_set_code (other.constraint) then
+            -- firstly, check if the other value-set is empty, which means there is no value-set, i.e. no constraint
+            -- which means that this object's value set automatically conforms.
+            other_vset := other.value_set_expanded
+            if not other_vset.is_empty then
+                this_vset := value_set_expanded
+                Result := codes_conformant (constraint, other.constraint) and then
+                    across this_vset as vset_csr all other_vset.has (vset_csr.item) end
             else
-                Result := codes_conformant (constraint, other.constraint)
+                Result := True
             end
+        else
+            Result := codes_conformant (constraint, other.constraint)
         end
     end
 
-c_congruent_to (other: like Current): Boolean
-        -- True if this node on its own (ignoring any subparts) expresses no constraints in addition 
-        -- to `other'
-    require
-        other /= Void
+c_value_congruent_to (other: like Current): Boolean
+        -- True if this node's value constraint is the same as that of `other'
+    local
+        this_vset, other_vset: like value_set_expanded
     do
-        if precursor (other) then  -- precursor is from C_PRIMITIVE_OBJECT
-            if is_valid_value_set_code (constraint) and is_valid_value_set_code (other.constraint) then
-                this_vset := value_set_expanded
-                other_vset := other.value_set_expanded
-                Result := constraint.is_equal (other.constraint) and then
-                    this_vset.count = other_vset.count and then
-                        across this_vset as vset_csr all other_vset.has (vset_csr.item) end
-            else
-                Result := constraint.is_equal (other.constraint)
-            end
+        if is_valid_value_set_code (constraint) and is_valid_value_set_code (other.constraint) then
+            this_vset := value_set_expanded
+            other_vset := other.value_set_expanded
+            Result := constraint.is_equal (other.constraint) and then
+                this_vset.count = other_vset.count and then
+                    across this_vset as vset_csr all other_vset.has (vset_csr.item) end
+        else
+            Result := constraint.is_equal (other.constraint)
         end
     end
 

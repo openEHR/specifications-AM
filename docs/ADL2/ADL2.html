@@ -4,12 +4,12 @@
 <meta charset="UTF-8">
 <!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge"><![endif]-->
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="generator" content="Asciidoctor 1.5.4">
+<meta name="generator" content="Asciidoctor 1.5.6.1">
 <meta name="description" content="openEHR ADL 2 specification">
 <meta name="keywords" content="EHR, ADL, AOM, health records, archetypes, constraint language, 13606">
 <title>Archetype Definition Language 2 (ADL2) Specification</title>
-<link rel="stylesheet" href="/releases/BASE/latest/resources/css/openehr.css">
-<link rel="stylesheet" href="/releases/BASE/latest/resources/css/pygments-default.css">
+<link rel="stylesheet" href="https://www.openehr.org/releases/BASE/latest/resources/css/openehr.css">
+<link rel="stylesheet" href="https://www.openehr.org/releases/BASE/latest/resources/css/pygments-default.css">
 </head>
 <body class="book toc2 toc-left">
 <div id="header">
@@ -122,7 +122,7 @@
 <li><a href="#_occurrences">4.3.4.2. Occurrences</a></li>
 </ul>
 </li>
-<li><a href="#__any_constraints">4.3.5. "Any" Constraints</a></li>
+<li><a href="#_any_constraints">4.3.5. "Any" Constraints</a></li>
 <li><a href="#_reference_model_type_matching">4.3.6. Reference Model Type Matching</a>
 <ul class="sectlevel4">
 <li><a href="#_narrowed_subtype_constraints">4.3.6.1. Narrowed Subtype Constraints</a></li>
@@ -171,7 +171,7 @@
 </li>
 </ul>
 </li>
-<li><a href="#_constraints_on_primitive_types">4.5. Constraints on Primitive Types</a>
+<li><a href="#cADL_Constraints_Primitive_Types">4.5. Constraints on Primitive Types</a>
 <ul class="sectlevel3">
 <li><a href="#_assumed_values">4.5.1. Assumed Values</a></li>
 <li><a href="#_constraints_on_string">4.5.2. Constraints on String</a>
@@ -184,6 +184,7 @@
 <ul class="sectlevel4">
 <li><a href="#_list_of_integers">4.5.3.1. List of Integers</a></li>
 <li><a href="#_interval_of_integer">4.5.3.2. Interval of Integer</a></li>
+<li><a href="#_more_complex_integer_constraints">4.5.3.3. More Complex Integer Constraints</a></li>
 </ul>
 </li>
 <li><a href="#_constraints_on_real">4.5.4. Constraints on Real</a></li>
@@ -467,7 +468,7 @@
 </colgroup>
 <thead>
 <tr>
-<th class="tableblock halign-center valign-top" colspan="2">&#169; 2003 - 2017 The openEHR Foundation</th>
+<th class="tableblock halign-center valign-top" colspan="2">&#169; 2003 - 2018 The openEHR Foundation</th>
 </tr>
 </thead>
 <tbody>
@@ -510,11 +511,18 @@
 <th class="tableblock halign-center valign-top" colspan="4"><p class="tableblock"><strong>AM Release-2.?.?</strong></p></th>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a id="latest_issue"></a>2.0.7</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://openehr.atlassian.net/browse/SPECAM-45">SPECAM-45</a>. Correct specification details to do with sibling_order anchor node id. (Corrects <a href="https://openehr.atlassian.net/browse/SPECPR-245">SPECPR-245</a>)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a id="latest_issue"></a>2.1.0</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://openehr.atlassian.net/browse/SPECAM-47">SPECAM-47</a>. Allow regularly structured primitive objects.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">J Coyle,<br>
+ T Beale</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a id="latest_issue_date"></a>07 Jan 2018</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://openehr.atlassian.net/browse/SPECAM-45">SPECAM-45</a>. Correct specification details to do with <code><em>sibling_order</em></code> anchor node id. (Corrects <a href="https://openehr.atlassian.net/browse/SPECPR-245">SPECPR-245</a>)</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">P Bos,<br>
  T Beale</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a id="latest_issue_date"></a>21 Nov 2017</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">21 Nov 2017</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"></td>
@@ -1003,13 +1011,16 @@
 <p>Rong Chen MD, PhD, Cambio Heath Systems, Sweden</p>
 </li>
 <li>
+<p>Joey Coyle MD, PhD, Intermountain Healthcare, New York</p>
+</li>
+<li>
 <p>Adam Flinton, NHS Connecting for Health, UK</p>
 </li>
 <li>
-<p>Matias Forss MSc, Institute of Technology at Linköping University</p>
+<p>Matias Forss MSc, Institute of Technology, Linköping University, Sweden</p>
 </li>
 <li>
-<p>Sebastian Garde, PhD, Ocean Informatics</p>
+<p>Sebastian Garde, PhD, Ocean Informatics, Germany</p>
 </li>
 <li>
 <p>Andrew Goodchild PhD, Distributed Systems Technology Centre, Australia</p>
@@ -2177,7 +2188,7 @@ the structure, as shown in the following example:</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="__any_constraints"><a class="anchor" href="#__any_constraints"></a>4.3.5. "Any" Constraints</h4>
+<h4 id="_any_constraints"><a class="anchor" href="#_any_constraints"></a>4.3.5. "Any" Constraints</h4>
 <div class="paragraph">
 <p>There are two cases where it is useful to state a completely open, or 'any', constraint. The first is when it is desired to override the existence or cardinality of a property, such as in the following:</p>
 </div>
@@ -3309,26 +3320,26 @@ direct matching of so-called CamelCase by Snake_case or SCREAMING_SNAKE_CASE and
 </div>
 </div>
 <div class="sect2">
-<h3 id="_constraints_on_primitive_types"><a class="anchor" href="#_constraints_on_primitive_types"></a>4.5. Constraints on Primitive Types</h3>
+<h3 id="cADL_Constraints_Primitive_Types"><a class="anchor" href="#cADL_Constraints_Primitive_Types"></a>4.5. Constraints on Primitive Types</h3>
 <div class="paragraph">
 <p>At the leaf nodes in a cADL text, constraints can be expressed on the following primitive types:</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p>Boolean;</p>
+<p><code>Boolean</code>;</p>
 </li>
 <li>
-<p>Character, String;</p>
+<p><code>Character</code>, <code>String</code>;</p>
 </li>
 <li>
-<p>Integer, Real;</p>
+<p><code>Integer</code>, <code>Real</code>;</p>
 </li>
 <li>
-<p>Date, Time, Date_time, Duration;</p>
+<p><code>Date</code>, <code>Time</code>, <code>Date_time</code>, <code>Duration</code>;</p>
 </li>
 <li>
-<p>Terminology_code;</p>
+<p><code>Terminology_code</code>;</p>
 </li>
 <li>
 <p>lists and intervals of some of the above.</p>
@@ -3336,11 +3347,14 @@ direct matching of so-called CamelCase by Snake_case or SCREAMING_SNAKE_CASE and
 </ul>
 </div>
 <div class="paragraph">
-<p>While constraints on complex types follow the rules described so far, constraints on attributes of primitive types in cADL are expressed without type names, and omitting one level of braces, as follows:</p>
+<p>Since primitive objects constitute the terminal nodes in an archetype, constraints may constrain type, occurrences (rare), and value.</p>
+</div>
+<div class="paragraph">
+<p>While constraints on complex types follow the rules described so far, constraints on attributes of primitive types in cADL may be expressed in a shorter form, without type names, and omitting one level of braces, as follows:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="pygments highlight"><code>    some_attr matches {&lt;some_pattern&gt;}</code></pre>
+<pre>    some_attr matches {&lt;some_pattern&gt;}</pre>
 </div>
 </div>
 <div class="paragraph">
@@ -3354,7 +3368,47 @@ direct matching of so-called CamelCase by Snake_case or SCREAMING_SNAKE_CASE and
 </div>
 </div>
 <div class="paragraph">
-<p>This is made possible because the syntax patterns of all primitive type constraints are mutually distinguishable, i.e. the type can always be inferred from the syntax alone. Since all leaf attributes of all object models are of primitive types, or lists or sets of them, cADL archetypes using the brief form for primitive types are significantly less verbose overall, as well as being more directly comprehensible to human readers. Currently the cADL grammar only supports the brief form used in this specification since no practical reason has been identified for supporting the more verbose version. Theoretically however, there is nothing to prevent it being used in the future, or in some specialist application.</p>
+<p>This is possible because the syntax patterns of all primitive type constraints are mutually distinguishable, i.e. the type can always be inferred from the syntax alone. Since all leaf attributes of all object models are of primitive types, or lists or sets of them, cADL archetypes using the brief form for primitive types are significantly less verbose overall, as well as being more directly comprehensible to human readers. Because the brief form omits an id-code, the id-code for primitive object nodes is automatically set to a fixed value, defined in the <a href="/releases/AM/latest/AOM2.html#_overview">AOM specification</a> as <code>Primitive_node_id</code>.</p>
+</div>
+<div class="paragraph">
+<p>Although for the majority of primitive type constraints, the shortened form is the most convenient, there is one circumstance in which the regular syntax form is needed, which is when only the type is to be constrained, but not the value. This leads to a constraint of the following form:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>    some_attr matches {
+        PRIMITIVE_TYPE[id3]
+    }</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>This may occur because the attribute <code><em>some_attr</em></code> in the reference model is of a more general type, e.g. <code>Any</code>. The constraint may thus be to simply require a <code>String</code>, <code>Terminology_code</code> or other primitive type. In the regular form a valid id-code must be supplied; this may be either a standard id-code (e.g. <code>id9</code>) or the <code>Primitive_node_id</code> value. If the former is used, any specialised that adds a value constraint must use the regular form, as in the following example.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>    -- in parent archetype
+    some_attr matches {
+        String[id3]
+    }
+
+    -- in specialisation child
+    some_attr matches {
+        String[id3] matches {"match me"}
+    }</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>If the <code>Primitive_node_id</code> is used, a specialisation may use the brief form, as in the following.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>    -- in parent archetype
+    some_attr matches {
+        String[id9999]
+    }
+
+    -- in specialisation child
+    some_attr matches {"match me"}</pre>
+</div>
 </div>
 <div class="sect3">
 <h4 id="_assumed_values"><a class="anchor" href="#_assumed_values"></a>4.5.1. Assumed Values</h4>
@@ -3371,7 +3425,10 @@ direct matching of so-called CamelCase by Snake_case or SCREAMING_SNAKE_CASE and
 <div class="sect3">
 <h4 id="_constraints_on_string"><a class="anchor" href="#_constraints_on_string"></a>4.5.2. Constraints on String</h4>
 <div class="paragraph">
-<p>Strings can be constrained in two ways: using a list of fixed strings, and using using a regular expression. All constraints on strings are case-sensitive.</p>
+<p>String values are constrained using a list of one or more Strings, each of which may be a fixed String, or a regular expression. In both cases, comparison to the constraint values is case-sensitive.</p>
+</div>
+<div class="paragraph">
+<p>Although any mixture of fixed Strings and regular expressions may be used, the most common possibilities are a list of fixed Strings and a single regular expression.</p>
 </div>
 <div class="sect4">
 <h5 id="_list_of_strings"><a class="anchor" href="#_list_of_strings"></a>4.5.2.1. List of Strings</h5>
@@ -3396,8 +3453,8 @@ direct matching of so-called CamelCase by Snake_case or SCREAMING_SNAKE_CASE and
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="pygments highlight"><code>    string_attr matches {/regular expression/}
-    string_attr matches {^regular expression^}</code></pre>
+<pre>    string_attr matches {/regular expression/}
+    string_attr matches {^regular expression^}</pre>
 </div>
 </div>
 <div class="paragraph">
@@ -3527,7 +3584,7 @@ direct matching of so-called CamelCase by Snake_case or SCREAMING_SNAKE_CASE and
 <div class="sect3">
 <h4 id="_constraints_on_integer"><a class="anchor" href="#_constraints_on_integer"></a>4.5.3. Constraints on Integer</h4>
 <div class="paragraph">
-<p>Integers can be constrained using a list of integer values, and using an integer interval.</p>
+<p>Integer values are constrained using a list of one or more integer values or intervals. The most common possibilities are a list of single integers, and a single interval, but multiple intervals and or single values are possible as well.</p>
 </div>
 <div class="sect4">
 <h5 id="_list_of_integers"><a class="anchor" href="#_list_of_integers"></a>4.5.3.1. List of Integers</h5>
@@ -3575,6 +3632,20 @@ direct matching of so-called CamelCase by Snake_case or SCREAMING_SNAKE_CASE and
     <span class="tok-nc">length</span> <span class="tok-o">matches </span><span class="tok-p">{|&gt;=</span><span class="tok-mi">10</span><span class="tok-p">|}</span>                       <span class="tok-c">-- allow 10 or more</span>
     <span class="tok-nc">length</span> <span class="tok-o">matches </span><span class="tok-p">{|&gt;=</span><span class="tok-mi">10</span><span class="tok-p">|;</span><span class="tok-mi">5</span><span class="tok-p">}</span>                     <span class="tok-c">-- allow 10 or more; assumed value = 5</span></code></pre>
 </div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_more_complex_integer_constraints"><a class="anchor" href="#_more_complex_integer_constraints"></a>4.5.3.3. More Complex Integer Constraints</h5>
+<div class="paragraph">
+<p>There may be applications for which the full possibilities of the Integer value constraint need to be exploited. The following provides an example.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>    length matches {5, |10..100|, 150, |200..400|, 1000}</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>In such cases, all of the values and ranges should be mutually exclusive.</p>
 </div>
 </div>
 </div>
@@ -3661,7 +3732,20 @@ direct matching of so-called CamelCase by Snake_case or SCREAMING_SNAKE_CASE and
 <div class="sect3">
 <h4 id="_constraints_on_dates_times_and_durations"><a class="anchor" href="#_constraints_on_dates_times_and_durations"></a>4.5.7. Constraints on Dates, Times and Durations</h4>
 <div class="paragraph">
-<p>Dates, times, date/times and durations may all be constrained in three ways: using a list of values, using intervals, and using patterns. The first two ways allow values to be constrained to actual date, time etc values, while the last allows values to be constrained on the basis of which parts of the date, time etc are present or missing, regardless of value. The pattern method is described first, since patterns can also be used in lists and intervals.</p>
+<p>Dates, times, date/times and durations may all be constrained in either of two ways:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>in terms of values, using a list of ISO 8601 values or value intervals, in the same manner as for <code>Integer</code> and <code>Real</code>; and</p>
+</li>
+<li>
+<p>using patterns based on the ISO 8601 value syntax.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>The first method allows temporal values to be constrained to actual date, time etc values, while the second allows values to be constrained on the basis of which parts of the date, time etc are present or missing, regardless of value. The pattern method is described first, since patterns can also be used in lists and intervals.</p>
 </div>
 <div class="sect4">
 <h5 id="_date_time_and_date_time"><a class="anchor" href="#_date_time_and_date_time"></a>4.5.7.1. Date, Time and Date/Time</h5>
@@ -3736,7 +3820,7 @@ date_time_pattern:      date_constraint time_in_date_pattern</pre>
 <td class="tableblock halign-left valign-top"><p class="tableblock">optional month, no day</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"> </p></td>
 <td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"> </p></td>
 </tr>
@@ -3764,8 +3848,8 @@ date_time_pattern:      date_constraint time_in_date_pattern</pre>
  i.e. any time allowed</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"></td>
-<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"> </p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"> </p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"> </p></td>
 </tr>
 <tr>
@@ -6379,11 +6463,9 @@ it is quite common that only <em>some</em> of the local at-codes have equivalent
     <span class="tok-p">}</span></code></pre>
 </div>
 </div>
-<div class="literalblock">
-<div class="content">
-<pre> 
-Note that in the above, the '/' is used to denote '/protocol' as a differential path. Without the slash, the 'protocol' attribute would be considered to be trying to constrain a hitherto unconstrained attribute called 'protocol', rather than redefine a constraint already present in a parent archetype.</pre>
-</div>
+<div class="paragraph">
+<p> 
+Note that in the above, the '/' is used to denote '/protocol' as a differential path. Without the slash, the 'protocol' attribute would be considered to be trying to constrain a hitherto unconstrained attribute called 'protocol', rather than redefine a constraint already present in a parent archetype.</p>
 </div>
 </div>
 <div class="sect3">
@@ -7221,6 +7303,9 @@ Note that in the above, the '/' is used to denote '/protocol' as a differential 
 </div>
 <div class="ulist">
 <ul>
+<li>
+<p>addition of value constraints for nodes which in the parent are constrained solely to a primitive type (described in <a href="#cADL_Constraints_Primitive_Types">Constraints on Primitive Types</a>);</p>
+</li>
 <li>
 <p>redefined value ranges or sets using a narrower value range or set;</p>
 </li>
@@ -8301,17 +8386,18 @@ Note that in the above, the '/' is used to denote '/protocol' as a differential 
 
 <span class="tok-c">// ======================== Components =======================</span><span class="tok-w"></span>
 
-<span class="tok-nl">c_objects</span><span class="tok-p">:</span><span class="tok-w"> </span><span class="tok-nv">c_non_primitive_object_ordered</span><span class="tok-o">+</span><span class="tok-w"> </span><span class="tok-o">|</span><span class="tok-w"> </span><span class="tok-nv">c_primitive_object</span><span class="tok-w"> </span><span class="tok-p">;</span><span class="tok-w"></span>
+<span class="tok-nl">c_objects</span><span class="tok-p">:</span><span class="tok-w"> </span><span class="tok-nv">c_regular_object_ordered</span><span class="tok-o">+</span><span class="tok-w"> </span><span class="tok-o">|</span><span class="tok-w"> </span><span class="tok-nv">c_inline_primitive_object</span><span class="tok-w"> </span><span class="tok-p">;</span><span class="tok-w"></span>
 
 <span class="tok-nl">sibling_order</span><span class="tok-p">:</span><span class="tok-w"> </span><span class="tok-o">(</span><span class="tok-w"> </span><span class="tok-no">SYM_AFTER</span><span class="tok-w"> </span><span class="tok-o">|</span><span class="tok-w"> </span><span class="tok-no">SYM_BEFORE</span><span class="tok-w"> </span><span class="tok-o">)</span><span class="tok-w"> </span><span class="tok-s">&#39;[&#39;</span><span class="tok-w"> </span><span class="tok-no">ID_CODE</span><span class="tok-w"> </span><span class="tok-s">&#39;]&#39;</span><span class="tok-w"> </span><span class="tok-p">;</span><span class="tok-w"></span>
 
-<span class="tok-nl">c_non_primitive_object_ordered</span><span class="tok-p">:</span><span class="tok-w"> </span><span class="tok-nv">sibling_order</span><span class="tok-o">?</span><span class="tok-w"> </span><span class="tok-nv">c_non_primitive_object</span><span class="tok-w"> </span><span class="tok-p">;</span><span class="tok-w"></span>
+<span class="tok-nl">c_regular_object_ordered</span><span class="tok-p">:</span><span class="tok-w"> </span><span class="tok-nv">sibling_order</span><span class="tok-o">?</span><span class="tok-w"> </span><span class="tok-nv">c_regular_object</span><span class="tok-w"> </span><span class="tok-p">;</span><span class="tok-w"></span>
 
-<span class="tok-nl">c_non_primitive_object</span><span class="tok-p">:</span><span class="tok-w"></span>
+<span class="tok-nl">c_regular_object</span><span class="tok-p">:</span><span class="tok-w"></span>
 <span class="tok-w">      </span><span class="tok-nv">c_complex_object</span><span class="tok-w"></span>
 <span class="tok-w">    </span><span class="tok-o">|</span><span class="tok-w"> </span><span class="tok-nv">c_archetype_root</span><span class="tok-w"></span>
 <span class="tok-w">    </span><span class="tok-o">|</span><span class="tok-w"> </span><span class="tok-nv">c_complex_object_proxy</span><span class="tok-w"></span>
 <span class="tok-w">    </span><span class="tok-o">|</span><span class="tok-w"> </span><span class="tok-nv">archetype_slot</span><span class="tok-w"></span>
+<span class="tok-w">    </span><span class="tok-o">|</span><span class="tok-w"> </span><span class="tok-nv">c_regular_primitive_object</span><span class="tok-w"></span>
 <span class="tok-w">    </span><span class="tok-p">;</span><span class="tok-w"></span>
 
 <span class="tok-nl">c_archetype_root</span><span class="tok-p">:</span><span class="tok-w"> </span><span class="tok-no">SYM_USE_ARCHETYPE</span><span class="tok-w"> </span><span class="tok-nv">rm_type_id</span><span class="tok-w"> </span><span class="tok-s">&#39;[&#39;</span><span class="tok-w"> </span><span class="tok-no">ID_CODE</span><span class="tok-w"> </span><span class="tok-s">&#39;,&#39;</span><span class="tok-w"> </span><span class="tok-nv">archetype_ref</span><span class="tok-w"> </span><span class="tok-s">&#39;]&#39;</span><span class="tok-w"> </span><span class="tok-nv">c_occurrences</span><span class="tok-o">?</span><span class="tok-w"> </span><span class="tok-p">;</span><span class="tok-w"></span>
@@ -8324,6 +8410,8 @@ Note that in the above, the '/' is used to denote '/protocol' as a differential 
 <span class="tok-w">      </span><span class="tok-nv">c_attribute</span><span class="tok-w"></span>
 <span class="tok-w">    </span><span class="tok-o">|</span><span class="tok-w"> </span><span class="tok-nv">c_attribute_tuple</span><span class="tok-w"></span>
 <span class="tok-w">    </span><span class="tok-p">;</span><span class="tok-w"></span>
+
+<span class="tok-nl">c_regular_primitive_object</span><span class="tok-p">:</span><span class="tok-w"> </span><span class="tok-nv">rm_type_id</span><span class="tok-w"> </span><span class="tok-s">&#39;[&#39;</span><span class="tok-w"> </span><span class="tok-no">ID_CODE</span><span class="tok-w"> </span><span class="tok-s">&#39;]&#39;</span><span class="tok-w"> </span><span class="tok-nv">c_occurrences</span><span class="tok-o">?</span><span class="tok-w"> </span><span class="tok-o">(</span><span class="tok-w"> </span><span class="tok-no">SYM_MATCHES</span><span class="tok-w"> </span><span class="tok-s">&#39;{&#39;</span><span class="tok-w"> </span><span class="tok-nv">c_inline_primitive_object</span><span class="tok-w"> </span><span class="tok-s">&#39;}&#39;</span><span class="tok-w"> </span><span class="tok-o">)?</span><span class="tok-w"> </span><span class="tok-p">;</span><span class="tok-w"></span>
 
 <span class="tok-c">// We match regexes here, even though technically they are C_STRING instances. This is because the only</span><span class="tok-w"></span>
 <span class="tok-c">// workable solution to match a regex unambiguously appears to be to match with enclosing {}, which means</span><span class="tok-w"></span>
@@ -8338,7 +8426,7 @@ Note that in the above, the '/' is used to denote '/protocol' as a differential 
 
 <span class="tok-nl">c_attribute_tuple</span><span class="tok-w"> </span><span class="tok-p">:</span><span class="tok-w"> </span><span class="tok-s">&#39;[&#39;</span><span class="tok-w"> </span><span class="tok-nv">rm_attribute_id</span><span class="tok-w"> </span><span class="tok-o">(</span><span class="tok-w"> </span><span class="tok-s">&#39;,&#39;</span><span class="tok-w"> </span><span class="tok-nv">rm_attribute_id</span><span class="tok-w"> </span><span class="tok-o">)*</span><span class="tok-w"> </span><span class="tok-s">&#39;]&#39;</span><span class="tok-w"> </span><span class="tok-no">SYM_MATCHES</span><span class="tok-w"> </span><span class="tok-s">&#39;{&#39;</span><span class="tok-w"> </span><span class="tok-nv">c_primitive_tuple</span><span class="tok-w"> </span><span class="tok-o">(</span><span class="tok-w"> </span><span class="tok-s">&#39;,&#39;</span><span class="tok-w"> </span><span class="tok-nv">c_primitive_tuple</span><span class="tok-w"> </span><span class="tok-o">)*</span><span class="tok-w"> </span><span class="tok-s">&#39;}&#39;</span><span class="tok-w"> </span><span class="tok-p">;</span><span class="tok-w"></span>
 
-<span class="tok-nl">c_primitive_tuple</span><span class="tok-w"> </span><span class="tok-p">:</span><span class="tok-w"> </span><span class="tok-s">&#39;[&#39;</span><span class="tok-w"> </span><span class="tok-s">&#39;{&#39;</span><span class="tok-w"> </span><span class="tok-nv">c_primitive_object</span><span class="tok-w"> </span><span class="tok-s">&#39;}&#39;</span><span class="tok-w"> </span><span class="tok-o">(</span><span class="tok-w"> </span><span class="tok-s">&#39;,&#39;</span><span class="tok-w"> </span><span class="tok-s">&#39;{&#39;</span><span class="tok-w"> </span><span class="tok-nv">c_primitive_object</span><span class="tok-w"> </span><span class="tok-s">&#39;}&#39;</span><span class="tok-w"> </span><span class="tok-o">)*</span><span class="tok-w"> </span><span class="tok-s">&#39;]&#39;</span><span class="tok-w"> </span><span class="tok-p">;</span><span class="tok-w"></span>
+<span class="tok-nl">c_primitive_tuple</span><span class="tok-w"> </span><span class="tok-p">:</span><span class="tok-w"> </span><span class="tok-s">&#39;[&#39;</span><span class="tok-w"> </span><span class="tok-s">&#39;{&#39;</span><span class="tok-w"> </span><span class="tok-nv">c_inline_primitive_object</span><span class="tok-w"> </span><span class="tok-s">&#39;}&#39;</span><span class="tok-w"> </span><span class="tok-o">(</span><span class="tok-w"> </span><span class="tok-s">&#39;,&#39;</span><span class="tok-w"> </span><span class="tok-s">&#39;{&#39;</span><span class="tok-w"> </span><span class="tok-nv">c_inline_primitive_object</span><span class="tok-w"> </span><span class="tok-s">&#39;}&#39;</span><span class="tok-w"> </span><span class="tok-o">)*</span><span class="tok-w"> </span><span class="tok-s">&#39;]&#39;</span><span class="tok-w"> </span><span class="tok-p">;</span><span class="tok-w"></span>
 
 <span class="tok-nl">c_includes</span><span class="tok-w"> </span><span class="tok-p">:</span><span class="tok-w"> </span><span class="tok-no">SYM_INCLUDE</span><span class="tok-w"> </span><span class="tok-nv">assertion</span><span class="tok-o">+</span><span class="tok-w"> </span><span class="tok-p">;</span><span class="tok-w"></span>
 <span class="tok-nl">c_excludes</span><span class="tok-w"> </span><span class="tok-p">:</span><span class="tok-w"> </span><span class="tok-no">SYM_EXCLUDE</span><span class="tok-w"> </span><span class="tok-nv">assertion</span><span class="tok-o">+</span><span class="tok-w"> </span><span class="tok-p">;</span><span class="tok-w"></span>
@@ -8379,7 +8467,7 @@ Note that in the above, the '/' is used to denote '/protocol' as a differential 
 <span class="tok-c">//  ======================= Parser rules ========================</span><span class="tok-w"></span>
 <span class="tok-c">//</span><span class="tok-w"></span>
 
-<span class="tok-err">c_primitive_object</span><span class="tok-p">:</span><span class="tok-w"></span>
+<span class="tok-err">c_inline_primitive_object</span><span class="tok-p">:</span><span class="tok-w"></span>
 <span class="tok-w">      </span><span class="tok-nv">c_integer</span><span class="tok-w"></span>
 <span class="tok-w">    </span><span class="tok-o">|</span><span class="tok-w"> </span><span class="tok-nv">c_real</span><span class="tok-w"></span>
 <span class="tok-w">    </span><span class="tok-o">|</span><span class="tok-w"> </span><span class="tok-nv">c_date</span><span class="tok-w"></span>
@@ -9154,7 +9242,7 @@ Note that in the above, the '/' is used to denote '/protocol' as a differential 
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2017-11-29 23:52:51 GMT
+Last updated 2018-01-07 17:31:42 CET
 </div>
 </div>
 </body>

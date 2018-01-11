@@ -1278,32 +1278,70 @@ The above says that the `SECTION`.`_items_` attribute is an ordered list, and th
 
 The above has the desired result in data: a group of any number of problems and diagnoses, followed by a plan, followed by one or more Interventions.
 
+[[cADL_Constraints_Primitive_Types]]
 == Constraints on Primitive Types
 
 At the leaf nodes in a cADL text, constraints can be expressed on the following primitive types:
 
-* Boolean;
-* Character, String;
-* Integer, Real;
-* Date, Time, Date_time, Duration;
-* Terminology_code;
+* `Boolean`;
+* `Character`, `String`;
+* `Integer`, `Real`;
+* `Date`, `Time`, `Date_time`, `Duration`;
+* `Terminology_code`;
 * lists and intervals of some of the above.
 
-While constraints on complex types follow the rules described so far, constraints on attributes of primitive types in cADL are expressed without type names, and omitting one level of braces, as follows:
+Since primitive objects constitute the terminal nodes in an archetype, constraints may constrain type, occurrences (rare), and value.
 
-```
+While constraints on complex types follow the rules described so far, constraints on attributes of primitive types in cADL may be expressed in a shorter form, without type names, and omitting one level of braces, as follows:
+
+----
     some_attr matches {<some_pattern>}
-```
+----
 
 rather than:
 
---------
+----
     some_attr matches {
         PRIMITIVE_TYPE[id3] matches {<some_pattern>}
     }
---------
+----
 
-This is made possible because the syntax patterns of all primitive type constraints are mutually distinguishable, i.e. the type can always be inferred from the syntax alone. Since all leaf attributes of all object models are of primitive types, or lists or sets of them, cADL archetypes using the brief form for primitive types are significantly less verbose overall, as well as being more directly comprehensible to human readers. Currently the cADL grammar only supports the brief form used in this specification since no practical reason has been identified for supporting the more verbose version. Theoretically however, there is nothing to prevent it being used in the future, or in some specialist application.
+This is possible because the syntax patterns of all primitive type constraints are mutually distinguishable, i.e. the type can always be inferred from the syntax alone. Since all leaf attributes of all object models are of primitive types, or lists or sets of them, cADL archetypes using the brief form for primitive types are significantly less verbose overall, as well as being more directly comprehensible to human readers. Because the brief form omits an id-code, the id-code for primitive object nodes is automatically set to a fixed value, defined in the {openehr_am_aom2}#_overview[AOM specification] as `Primitive_node_id`.
+
+Although for the majority of primitive type constraints, the shortened form is the most convenient, there is one circumstance in which the regular syntax form is needed, which is when only the type is to be constrained, but not the value. This leads to a constraint of the following form:
+
+----
+    some_attr matches {
+        PRIMITIVE_TYPE[id3]
+    }
+----
+
+This may occur because the attribute `_some_attr_` in the reference model is of a more general type, e.g. `Any`. The constraint may thus be to simply require a `String`, `Terminology_code` or other primitive type. In the regular form a valid id-code must be supplied; this may be either a standard id-code (e.g. `id9`) or the `Primitive_node_id` value. If the former is used, any specialised that adds a value constraint must use the regular form, as in the following example.
+
+----
+    -- in parent archetype
+    some_attr matches {
+        String[id3]
+    }
+
+    -- in specialisation child
+    some_attr matches {
+        String[id3] matches {"match me"}
+    }
+----
+
+If the `Primitive_node_id` is used, a specialisation may use the brief form, as in the following.
+
+----
+    -- in parent archetype
+    some_attr matches {
+        String[id9999]
+    }
+
+    -- in specialisation child
+    some_attr matches {"match me"}
+
+----
 
 === Assumed Values
 
@@ -1315,7 +1353,9 @@ If no assumed value is stated, no reliable assumption can be made by the receive
 
 === Constraints on String
 
-Strings can be constrained in two ways: using a list of fixed strings, and using using a regular expression. All constraints on strings are case-sensitive.
+String values are constrained using a list of one or more Strings, each of which may be a fixed String, or a regular expression. In both cases, comparison to the constraint values is case-sensitive.
+
+Although any mixture of fixed Strings and regular expressions may be used, the most common possibilities are a list of fixed Strings and a single regular expression.
 
 ==== List of Strings
 
@@ -1334,10 +1374,10 @@ The first example constrains the runtime value of the `_species_` attribute of s
 
 The second way of constraining strings is with regular expressions, a widely used syntax for expressing patterns for matching strings. The regular expression syntax used in cADL is a proper subset of that used in the Perl language (see <<Perl_regex>> for a full specification of the regular expression language of Perl). It is specified as a constraint using either `//` or `^^` delimiters:
 
-```
+----
     string_attr matches {/regular expression/} 
     string_attr matches {^regular expression^}
-```
+----
 
 For example, the following two patterns are equivalent:
 
@@ -1391,7 +1431,7 @@ A similar warning should be noted for the use of regular expressions to constrai
 
 === Constraints on Integer
 
-Integers can be constrained using a list of integer values, and using an integer interval.
+Integer values are constrained using a list of one or more integer values or intervals. The most common possibilities are a list of single integers, and a single interval, but multiple intervals and or single values are possible as well.
 
 ==== List of Integers
 
@@ -1434,6 +1474,16 @@ Examples of one-sided intervals include:
     length matches {|>=10|}                       -- allow 10 or more
     length matches {|>=10|;5}                     -- allow 10 or more; assumed value = 5
 --------
+
+==== More Complex Integer Constraints
+
+There may be applications for which the full possibilities of the Integer value constraint need to be exploited. The following provides an example.
+
+--------
+    length matches {5, |10..100|, 150, |200..400|, 1000}
+--------
+
+In such cases, all of the values and ranges should be mutually exclusive.
 
 === Constraints on Real
 
@@ -1497,7 +1547,12 @@ The only allowed elements of the regular expression syntax in character expressi
 
 === Constraints on Dates, Times and Durations
 
-Dates, times, date/times and durations may all be constrained in three ways: using a list of values, using intervals, and using patterns. The first two ways allow values to be constrained to actual date, time etc values, while the last allows values to be constrained on the basis of which parts of the date, time etc are present or missing, regardless of value. The pattern method is described first, since patterns can also be used in lists and intervals.
+Dates, times, date/times and durations may all be constrained in either of two ways: 
+
+* in terms of values, using a list of ISO 8601 values or value intervals, in the same manner as for `Integer` and `Real`; and 
+* using patterns based on the ISO 8601 value syntax. 
+
+The first method allows temporal values to be constrained to actual date, time etc values, while the second allows values to be constrained on the basis of which parts of the date, time etc are present or missing, regardless of value. The pattern method is described first, since patterns can also be used in lists and intervals.
 
 ==== Date, Time and Date/Time
 
@@ -1505,12 +1560,12 @@ Dates, times, date/times and durations may all be constrained in three ways: usi
 
 Dates, times, and date/times (i.e. timestamps), can be constrained using patterns based on the ISO 8601 date/time syntax, which indicate which parts of the date or time must be supplied. A constraint pattern is formed from the abstract pattern `yyyy-mm-ddThh:mm:ss` (itself formed by translating each field of an ISO 8601 date/time into a letter representing its type), with either `?` (meaning optional) or `X` (not allowed) characters substituted in appropriate places. The syntax of legal patterns is shown by the following regular expressions:
 
-----
+--------
 date_pattern:           yyyy-(mm|??|XX)-(dd|??|XX)
 time_pattern:           hh:(mm|??|XX):(ss|??|XX)
 time_in_date_pattern:   T(hh|??|XX):(mm|??|XX):(ss|??|XX)
 date_time_pattern:      date_constraint time_in_date_pattern
-----
+--------
 
 All expressions generated by these patterns must also satisfy the validity rules:
 

@@ -37,4 +37,32 @@ a|True if there is an assumed value.
 h|
 |*constrained_typename* (): `String`
 a|Generate name of native type that is constrained by this `C_XXX` type. For most types, it is the `C_XXX` typename without the `C_`, i.e. `XXX`. E.g. `C_INTEGER` -> `Integer`. For the date/time types the mapping is different.
+
+h|
+|*c_value_conforms_to* ( +
+other: `C_PRIMITIVE_OBJECT[1]` +
+): `Boolean`
+a|True if this node expresses a value constraint that conforms to that of `other`. Effected in descendants.
+
+h|
+|*c_value_congruent_to* ( +
+other: `C_PRIMITIVE_OBJECT[1]` +
+): `Boolean`
+a|True if this node expresses the same value constraint as `other`. Effected in descendants.
+
+h|(effected)
+|*c_conforms_to* ( +
+other: `C_PRIMITIVE_OBJECT[1]`, +
+rmcc: `FUNCTION<<String,String>,Boolean>[1]` +
+): `Boolean`
+a|True if constraints represented by this node, ignoring any sub-parts, are narrower or the same as other.
+Typically used during validation of special-ised archetype nodes.
+
+h|(effected)
+|*c_congruent_to* ( +
+other: `C_PRIMITIVE_OBJECT[1]` +
+): `Boolean`
+a|True if constraints represented by this node contain no further redefinitions with respect to the node `_other_`, with the exception of node_id redefnition in `C_OBJECT` nodes.
+
+Typically used to test if an inherited node locally contains any constraints.
 |===
