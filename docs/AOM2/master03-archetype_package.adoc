@@ -267,3 +267,8 @@ The following rules apply to specialised archetypes, for which `ARCHETYPE._is_sp
 [.rule]
 *VATCD*: archetype code specialisation level validity. Each archetype term ('at' code) and constraint code ('ac' code) used in the archetype `definition` section must have a specialisation level no greater than the specialisation level of the archetype.
 
+The following validity rules apply to instances of `TEMPLATE`:
+
+[.rule]
+*VTPL*: template and filler language consistency. All fillers of slots and external reference archetypes (i.e. 'use_archetype' inclusions) must contain the `_original_language_` of the root template in their languages, in order for template flattening to be successful.
+

@@ -449,10 +449,18 @@
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a id="latest_issue"></a>2.1.0</p></td>
 <td class="tableblock halign-left valign-top"><div><div class="paragraph">
-<p><a href="https://openehr.atlassian.net/browse/SPECAM-48">SPECAM-48</a>. Improve <code><em>c_conforms_to</em>()<em></code> and <code>_c_congruent_to</em>()</code> algorithms.</p>
+<p><a href="https://openehr.atlassian.net/browse/SPECAM-48">SPECAM-48</a>. Add VTPL validity rule for templates - consistency of languages for flattening.</p>
 </div></div></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">T Beale</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a id="latest_issue_date"></a>10 Jan 2018</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a id="latest_issue_date"></a>24 Jan 2018</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p><a href="https://openehr.atlassian.net/browse/SPECAM-49">SPECAM-49</a>. Improve <code><em>c_conforms_to</em>()<em></code> and <code>_c_congruent_to</em>()</code> algorithms.</p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">T Beale</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">10 Jan 2018</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"></td>
@@ -2472,6 +2480,12 @@ an_id: <code>String[1]</code><br>
 </div>
 <div class="paragraph rule">
 <p><strong>VATCD</strong>: archetype code specialisation level validity. Each archetype term ('at' code) and constraint code ('ac' code) used in the archetype <code>definition</code> section must have a specialisation level no greater than the specialisation level of the archetype.</p>
+</div>
+<div class="paragraph">
+<p>The following validity rules apply to instances of <code>TEMPLATE</code>:</p>
+</div>
+<div class="paragraph rule">
+<p><strong>VTPL</strong>: template and filler language consistency. All fillers of slots and external reference archetypes (i.e. 'use_archetype' inclusions) must contain the <code><em>original_language</em></code> of the root template in their languages, in order for template flattening to be successful.</p>
 </div>
 </div>
 </div>
