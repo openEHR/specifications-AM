@@ -512,10 +512,16 @@
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a id="latest_issue"></a>2.1.0</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://openehr.atlassian.net/browse/SPECAM-50">SPECAM-50</a>. Improve documentation of ADL2 templates (section 10).</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">T Beale</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a id="latest_issue_date"></a>31 Jan 2018</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://openehr.atlassian.net/browse/SPECAM-47">SPECAM-47</a>. Allow regularly structured primitive objects.</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">J Coyle,<br>
  T Beale</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a id="latest_issue_date"></a>07 Jan 2018</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">07 Jan 2018</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"></td>
@@ -7790,7 +7796,7 @@ Note that in the above, the '/' is used to denote '/protocol' as a differential 
 </div>
 </div>
 <div class="paragraph">
-<p>Below is the template. The root artefact is a self-standing template <code>openEHR-EHR-COMPOSITION.t_clinical_info_ds_sf.v1.0.0</code> that specialises the archetype . The declaration of being a 'template' is primarily to signal to tools the intended use of the artefact - it doesn&#8217;t have any formal implications. The job of the template is to define the specific clinical information required in a discharge summary (note that not all the usual items are included, in order to reduce the size of the template as shown here - clinical synopsis and medications list are left out).</p>
+<p>Below is the template definition. The root artefact is a self-standing template <code>openEHR-EHR-COMPOSITION.t_clinical_info_ds_sf.v1.0.0</code> that specialises the archetype . The declaration of being a 'template' is primarily to signal to tools the intended use of the artefact - it doesn&#8217;t have any formal implications. The job of the template is to define the specific clinical information required in a discharge summary (note that not all the usual items are included, in order to reduce the size of the template as shown here - clinical synopsis and medications list are left out).</p>
 </div>
 <div class="paragraph">
 <p>In the root template, the <code>definition</code> section contains a number of <code>use_archetype</code> statements that specify archetypes to be used as fillers for the <code>id2</code> slot of the parent archetype. Each of the slot-fillers is a template_overlay, rather than being an independent archetype or template. As a result, each overlay includes no descriptive meta-data of its own, and appears within the template artefact, separated by a long comment line. This simple mechanism enables the overlays, which are in all other respects formal archetypes, to be treated as local additions to the template, not visible externally. The template, if saved as a file, contains all its overlays in one file.</p>
@@ -7819,8 +7825,8 @@ Note that in the above, the '/' is used to denote '/protocol' as a differential 
     <span class="tok-nc">lifecycle_state</span> <span class="tok-o">=</span> <span class="tok-p">&lt;</span><span class="tok-s">&quot;unmanaged&quot;</span><span class="tok-p">&gt;</span>
     <span class="tok-nc">original_author</span> <span class="tok-o">=</span> <span class="tok-p">&lt;</span>
         <span class="tok-p">[</span><span class="tok-s">&quot;name&quot;</span><span class="tok-p">]</span> <span class="tok-o">=</span> <span class="tok-p">&lt;</span><span class="tok-s">&quot;Ian McNicoll&quot;</span><span class="tok-p">&gt;</span>
-        <span class="tok-p">[</span><span class="tok-s">&quot;organisation&quot;</span><span class="tok-p">]</span> <span class="tok-o">=</span> <span class="tok-p">&lt;</span><span class="tok-s">&quot;Ocean Informatics&quot;</span><span class="tok-p">&gt;</span>
-        <span class="tok-p">[</span><span class="tok-s">&quot;email&quot;</span><span class="tok-p">]</span> <span class="tok-o">=</span> <span class="tok-p">&lt;</span><span class="tok-s">&quot;ian.mcnicoll@oceaninformatics.com&quot;</span><span class="tok-p">&gt;</span>
+        <span class="tok-p">[</span><span class="tok-s">&quot;organisation&quot;</span><span class="tok-p">]</span> <span class="tok-o">=</span> <span class="tok-p">&lt;</span><span class="tok-s">&quot;openEHR Foundation&quot;</span><span class="tok-p">&gt;</span>
+        <span class="tok-p">[</span><span class="tok-s">&quot;email&quot;</span><span class="tok-p">]</span> <span class="tok-o">=</span> <span class="tok-p">&lt;</span><span class="tok-s">&quot;ian.mcnicoll@openehr.org&quot;</span><span class="tok-p">&gt;</span>
         <span class="tok-p">[</span><span class="tok-s">&quot;date&quot;</span><span class="tok-p">]</span> <span class="tok-o">=</span> <span class="tok-p">&lt;</span><span class="tok-s">&quot;01/04/2011&quot;</span><span class="tok-p">&gt;</span>
     <span class="tok-p">&gt;</span>
     <span class="tok-nc">copyright</span> <span class="tok-o">=</span> <span class="tok-p">&lt;</span><span class="tok-s">&quot;copyright (c) 2011 openEHR Foundation&quot;</span><span class="tok-p">&gt;</span>
@@ -7911,134 +7917,8 @@ Note that in the above, the '/' is used to denote '/protocol' as a differential 
             <span class="tok-p">&gt;</span>
         <span class="tok-p">&gt;</span>
     <span class="tok-p">&gt;</span>
--------------------------------------------------------------
-<span class="tok-gh">template_overlay</span>
-<span class="tok-nd">    openEHR-EHR-EVALUATION.t_clinical_info_ds_sf-2.v1.0.0</span>
+<span class="tok-s">-------------- etc ------------------------------------------</span>
 
-<span class="tok-gh">specialize</span>
-<span class="tok-nd">    openEHR-EHR-EVALUATION.alert.v1</span>
-
-<span class="tok-gh">definition</span>
-    <span class="tok-nc">EVALUATION</span><span class="tok-p">[</span><span class="tok-nd">id1.1</span><span class="tok-p">]</span> <span class="tok-o">∈</span> <span class="tok-p">{</span>    <span class="tok-c">-- Alerts</span>
-        <span class="tok-p">/</span><span class="tok-nc">data</span><span class="tok-p">[</span><span class="tok-nd">id2</span><span class="tok-p">]/</span><span class="tok-nc">items</span><span class="tok-p"> </span><span class="tok-o">∈</span> <span class="tok-p">{</span>
-            <span class="tok-nc">ELEMENT</span><span class="tok-p">[</span><span class="tok-nd">id3</span><span class="tok-p">]</span> <span class="tok-kt">occurrences </span><span class="tok-o">∈</span> <span class="tok-p">{</span><span class="tok-m">0</span><span class="tok-p">}</span>
-            <span class="tok-nc">ELEMENT</span><span class="tok-p">[</span><span class="tok-nd">id6</span><span class="tok-p">]</span> <span class="tok-kt">occurrences </span><span class="tok-o">∈</span> <span class="tok-p">{</span><span class="tok-m">0</span><span class="tok-p">}</span>
-            <span class="tok-nc">ELEMENT</span><span class="tok-p">[</span><span class="tok-nd">id10</span><span class="tok-p">]</span> <span class="tok-kt">occurrences </span><span class="tok-o">∈</span> <span class="tok-p">{</span><span class="tok-m">0</span><span class="tok-p">}</span>
-            <span class="tok-nc">ELEMENT</span><span class="tok-p">[</span><span class="tok-nd">id15</span><span class="tok-p">]</span> <span class="tok-kt">occurrences </span><span class="tok-o">∈</span> <span class="tok-p">{</span><span class="tok-m">0</span><span class="tok-p">}</span>
-        <span class="tok-p">}</span>
-    <span class="tok-p">}</span>
-
-<span class="tok-gh">terminology</span>
-    <span class="tok-nc">term_definitions</span> <span class="tok-o">=</span> <span class="tok-p">&lt;</span>
-        <span class="tok-p">[</span><span class="tok-s">&quot;en&quot;</span><span class="tok-p">]</span> <span class="tok-o">=</span> <span class="tok-p">&lt;</span>
-            <span class="tok-p">[</span><span class="tok-s">&quot;id1.1&quot;</span><span class="tok-p">]</span> <span class="tok-o">=</span> <span class="tok-p">&lt;</span>
-                <span class="tok-nc">text</span> <span class="tok-o">=</span> <span class="tok-p">&lt;</span><span class="tok-s">&quot;Alerts&quot;</span><span class="tok-p">&gt;</span>
-                <span class="tok-nc">description</span> <span class="tok-o">=</span> <span class="tok-p">&lt;</span><span class="tok-s">&quot;Alert details&quot;</span><span class="tok-p">&gt;</span>
-            <span class="tok-p">&gt;</span>
-        <span class="tok-p">&gt;</span>
-    <span class="tok-p">&gt;</span>
--------------------------------------------------------------
-<span class="tok-gh">template_overlay</span>
-<span class="tok-nd">    openEHR-EHR-EVALUATION.t_clinical_info_ds_sf-4.v1.0.0</span>
-
-<span class="tok-gh">specialize</span>
-<span class="tok-nd">    openEHR-EHR-EVALUATION.problem-diagnosis-simple.v1</span>
-
-<span class="tok-gh">definition</span>
-    <span class="tok-nc">EVALUATION</span><span class="tok-p">[</span><span class="tok-nd">id1.1.1.1</span><span class="tok-p">]</span> <span class="tok-o">∈</span> <span class="tok-p">{</span>    <span class="tok-c">-- Simple problem / diagnosis summary</span>
-        <span class="tok-p">/</span><span class="tok-nc">data</span><span class="tok-p">[</span><span class="tok-nd">id2</span><span class="tok-p">]/</span><span class="tok-nc">items</span><span class="tok-p"> </span><span class="tok-o">∈</span> <span class="tok-p">{</span>
-            <span class="tok-nc">ELEMENT</span><span class="tok-p">[</span><span class="tok-nd">id3.1.0.1</span><span class="tok-p">]</span> <span class="tok-kt">occurrences </span><span class="tok-o">∈</span> <span class="tok-p">{</span><span class="tok-m">1</span><span class="tok-p">}</span>     <span class="tok-c">-- Diagnosis</span>
-            <span class="tok-nc">ELEMENT</span><span class="tok-p">[</span><span class="tok-nd">id0.32</span><span class="tok-p">]</span> <span class="tok-kt">occurrences </span><span class="tok-o">∈</span> <span class="tok-p">{</span><span class="tok-m">0</span><span class="tok-p">}</span>
-            <span class="tok-nc">ELEMENT</span><span class="tok-p">[</span><span class="tok-nd">id4</span><span class="tok-p">]</span> <span class="tok-kt">occurrences </span><span class="tok-o">∈</span> <span class="tok-p">{</span><span class="tok-m">0</span><span class="tok-p">}</span>
-            <span class="tok-nc">ELEMENT</span><span class="tok-p">[</span><span class="tok-nd">id5</span><span class="tok-p">]</span> <span class="tok-kt">occurrences </span><span class="tok-o">∈</span> <span class="tok-p">{</span><span class="tok-m">0</span><span class="tok-p">}</span>
-            <span class="tok-nc">ELEMENT</span><span class="tok-p">[</span><span class="tok-nd">id6</span><span class="tok-p">]</span> <span class="tok-kt">occurrences </span><span class="tok-o">∈</span> <span class="tok-p">{</span><span class="tok-m">0</span><span class="tok-p">}</span>
-            <span class="tok-nc">ELEMENT</span><span class="tok-p">[</span><span class="tok-nd">id10.0.0.1</span><span class="tok-p">]</span>     <span class="tok-c">-- Additional remarks</span>
-            <span class="tok-nc">ELEMENT</span><span class="tok-p">[</span><span class="tok-nd">id39</span><span class="tok-p">]</span> <span class="tok-kt">occurrences </span><span class="tok-o">∈</span> <span class="tok-p">{</span><span class="tok-m">0</span><span class="tok-p">}</span>
-            <span class="tok-nc">ELEMENT</span><span class="tok-p">[</span><span class="tok-nd">id11</span><span class="tok-p">]</span> <span class="tok-kt">occurrences </span><span class="tok-o">∈</span> <span class="tok-p">{</span><span class="tok-m">0</span><span class="tok-p">}</span>
-            <span class="tok-nc">ELEMENT</span><span class="tok-p">[</span><span class="tok-nd">id38</span><span class="tok-p">]</span> <span class="tok-kt">occurrences </span><span class="tok-o">∈</span> <span class="tok-p">{</span><span class="tok-m">0</span><span class="tok-p">}</span>
-            <span class="tok-nc">CLUSTER</span><span class="tok-p">[</span><span class="tok-nd">id12</span><span class="tok-p">]</span> <span class="tok-kt">occurrences </span><span class="tok-o">∈</span> <span class="tok-p">{</span><span class="tok-m">0</span><span class="tok-p">}</span>
-            <span class="tok-nc">ELEMENT</span><span class="tok-p">[</span><span class="tok-nd">id32</span><span class="tok-p">]</span> <span class="tok-kt">occurrences </span><span class="tok-o">∈</span> <span class="tok-p">{</span><span class="tok-m">0</span><span class="tok-p">}</span>
-            <span class="tok-nc">CLUSTER</span><span class="tok-p">[</span><span class="tok-nd">id0.35</span><span class="tok-p">]</span> <span class="tok-kt">occurrences </span><span class="tok-o">∈</span> <span class="tok-p">{</span><span class="tok-m">0</span><span class="tok-p">}</span>
-            <span class="tok-nc">ELEMENT</span><span class="tok-p">[</span><span class="tok-nd">id0.0.55.1</span><span class="tok-p">]</span> <span class="tok-kt">occurrences </span><span class="tok-o">∈</span> <span class="tok-p">{</span><span class="tok-m">1</span><span class="tok-p">}</span>     <span class="tok-c">-- Diagnosis type</span>
-        <span class="tok-p">}</span>
-        <span class="tok-p">/</span><span class="tok-nc">protocol</span><span class="tok-p"> </span><span class="tok-kt">existence </span><span class="tok-o">∈</span> <span class="tok-p">{</span><span class="tok-m">0</span><span class="tok-p">}</span>
-    <span class="tok-p">}</span>
-
-<span class="tok-gh">terminology</span>
-    <span class="tok-nc">term_definitions</span> <span class="tok-o">=</span> <span class="tok-p">&lt;</span>
-        <span class="tok-p">[</span><span class="tok-s">&quot;en&quot;</span><span class="tok-p">]</span> <span class="tok-o">=</span> <span class="tok-p">&lt;</span>
-            <span class="tok-p">[</span><span class="tok-s">&quot;id1.1.1.1&quot;</span><span class="tok-p">]</span> <span class="tok-o">=</span> <span class="tok-p">&lt;</span>
-                <span class="tok-nc">text</span> <span class="tok-o">=</span> <span class="tok-p">&lt;</span><span class="tok-s">&quot;Simple problem / diagnosis summary&quot;</span><span class="tok-p">&gt;</span>
-                <span class="tok-nc">description</span> <span class="tok-o">=</span> <span class="tok-p">&lt;</span><span class="tok-s">&quot;Simple problem / diagnosis summary&quot;</span><span class="tok-p">&gt;</span>
-            <span class="tok-p">&gt;</span>
-            <span class="tok-p">[</span><span class="tok-s">&quot;id3.1.0.1&quot;</span><span class="tok-p">]</span> <span class="tok-o">=</span> <span class="tok-p">&lt;</span>
-                <span class="tok-nc">text</span> <span class="tok-o">=</span> <span class="tok-p">&lt;</span><span class="tok-s">&quot;Diagnosis&quot;</span><span class="tok-p">&gt;</span>
-                <span class="tok-nc">description</span> <span class="tok-o">=</span> <span class="tok-p">&lt;</span><span class="tok-s">&quot;Diagnosis&quot;</span><span class="tok-p">&gt;</span>
-            <span class="tok-p">&gt;</span>
-            <span class="tok-p">[</span><span class="tok-s">&quot;id10.0.0.1&quot;</span><span class="tok-p">]</span> <span class="tok-o">=</span> <span class="tok-p">&lt;</span>
-                <span class="tok-nc">text</span> <span class="tok-o">=</span> <span class="tok-p">&lt;</span><span class="tok-s">&quot;Additional remarks&quot;</span><span class="tok-p">&gt;</span>
-                <span class="tok-nc">description</span> <span class="tok-o">=</span> <span class="tok-p">&lt;</span><span class="tok-s">&quot;Diagnosis/problem additional remarks&quot;</span><span class="tok-p">&gt;</span>
-            <span class="tok-p">&gt;</span>
-            <span class="tok-p">[</span><span class="tok-s">&quot;id0.0.55.1&quot;</span><span class="tok-p">]</span> <span class="tok-o">=</span> <span class="tok-p">&lt;</span>
-                <span class="tok-nc">text</span> <span class="tok-o">=</span> <span class="tok-p">&lt;</span><span class="tok-s">&quot;Diagnosis type&quot;</span><span class="tok-p">&gt;</span>
-                <span class="tok-nc">description</span> <span class="tok-o">=</span> <span class="tok-p">&lt;</span><span class="tok-s">&quot;Diagnosis type&quot;</span><span class="tok-p">&gt;</span>
-            <span class="tok-p">&gt;</span>
-        <span class="tok-p">&gt;</span>
-    <span class="tok-p">&gt;</span>
--------------------------------------------------------------
-<span class="tok-gh">template_overlay</span>
-<span class="tok-nd">    openEHR-EHR-EVALUATION.t_clinical_info_ds_sf-5.v1.0.0</span>
-
-<span class="tok-gh">specialize</span>
-<span class="tok-nd">    openEHR-EHR-EVALUATION.clinical_synopsis.v1</span>
-
-<span class="tok-gh">definition</span>
-    <span class="tok-nc">EVALUATION</span><span class="tok-p">[</span><span class="tok-nd">id1.1</span><span class="tok-p">]</span> <span class="tok-o">∈</span> <span class="tok-p">{</span>    <span class="tok-c">-- Investigations summary</span>
-        <span class="tok-p">/</span><span class="tok-nc">data</span><span class="tok-p">[</span><span class="tok-nd">id2</span><span class="tok-p">]/</span><span class="tok-nc">items</span><span class="tok-p"> </span><span class="tok-o">∈</span> <span class="tok-p">{</span>
-            <span class="tok-nc">ELEMENT</span><span class="tok-p">[</span><span class="tok-nd">id3.1</span><span class="tok-p">]</span>     <span class="tok-c">-- Description</span>
-        <span class="tok-p">}</span>
-    <span class="tok-p">}</span>
-
-<span class="tok-gh">terminology</span>
-    <span class="tok-nc">term_definitions</span> <span class="tok-o">=</span> <span class="tok-p">&lt;</span>
-        <span class="tok-p">[</span><span class="tok-s">&quot;en&quot;</span><span class="tok-p">]</span> <span class="tok-o">=</span> <span class="tok-p">&lt;</span>
-            <span class="tok-p">[</span><span class="tok-s">&quot;id1.1&quot;</span><span class="tok-p">]</span> <span class="tok-o">=</span> <span class="tok-p">&lt;</span>
-                <span class="tok-nc">text</span> <span class="tok-o">=</span> <span class="tok-p">&lt;</span><span class="tok-s">&quot;Investigations summary&quot;</span><span class="tok-p">&gt;</span>
-                <span class="tok-nc">description</span> <span class="tok-o">=</span> <span class="tok-p">&lt;</span><span class="tok-s">&quot;Summary of investigations undertaken during stay&quot;</span><span class="tok-p">&gt;</span>
-            <span class="tok-p">&gt;</span>
-            <span class="tok-p">[</span><span class="tok-s">&quot;id3.1&quot;</span><span class="tok-p">]</span> <span class="tok-o">=</span> <span class="tok-p">&lt;</span>
-                <span class="tok-nc">text</span> <span class="tok-o">=</span> <span class="tok-p">&lt;</span><span class="tok-s">&quot;Description&quot;</span><span class="tok-p">&gt;</span>
-                <span class="tok-nc">description</span> <span class="tok-o">=</span> <span class="tok-p">&lt;</span><span class="tok-s">&quot;Summary of investigations description&quot;</span><span class="tok-p">&gt;</span>
-            <span class="tok-p">&gt;</span>
-        <span class="tok-p">&gt;</span>
-    <span class="tok-p">&gt;</span>
--------------------------------------------------------------
-<span class="tok-gh">template_overlay</span>
-<span class="tok-nd">    openEHR-EHR-EVALUATION.t_clinical_info_ds_sf-7.v1.0.0</span>
-
-<span class="tok-gh">specialize</span>
-<span class="tok-nd">    openEHR-EHR-EVALUATION.clinical_synopsis.v1</span>
-
-<span class="tok-gh">definition</span>
-    <span class="tok-nc">EVALUATION</span><span class="tok-p">[</span><span class="tok-nd">id1.1</span><span class="tok-p">]</span> <span class="tok-o">∈</span> <span class="tok-p">{</span>    <span class="tok-c">-- Procedures summary</span>
-        <span class="tok-p">/</span><span class="tok-nc">data</span><span class="tok-p">[</span><span class="tok-nd">id2</span><span class="tok-p">]/</span><span class="tok-nc">items</span><span class="tok-p"> </span><span class="tok-o">∈</span> <span class="tok-p">{</span>
-            <span class="tok-nc">ELEMENT</span><span class="tok-p">[</span><span class="tok-nd">id3.1</span><span class="tok-p">]</span>     <span class="tok-c">-- Description</span>
-        <span class="tok-p">}</span>
-    <span class="tok-p">}</span>
-
-<span class="tok-gh">terminology</span>
-    <span class="tok-nc">term_definitions</span> <span class="tok-o">=</span> <span class="tok-p">&lt;</span>
-        <span class="tok-p">[</span><span class="tok-s">&quot;en&quot;</span><span class="tok-p">]</span> <span class="tok-o">=</span> <span class="tok-p">&lt;</span>
-            <span class="tok-p">[</span><span class="tok-s">&quot;id1.1&quot;</span><span class="tok-p">]</span> <span class="tok-o">=</span> <span class="tok-p">&lt;</span>
-                <span class="tok-nc">text</span> <span class="tok-o">=</span> <span class="tok-p">&lt;</span><span class="tok-s">&quot;Procedures summary&quot;</span><span class="tok-p">&gt;</span>
-                <span class="tok-nc">description</span> <span class="tok-o">=</span> <span class="tok-p">&lt;</span><span class="tok-s">&quot;Summary of procedures&quot;</span><span class="tok-p">&gt;</span>
-            <span class="tok-p">&gt;</span>
-            <span class="tok-p">[</span><span class="tok-s">&quot;id3.1&quot;</span><span class="tok-p">]</span> <span class="tok-o">=</span> <span class="tok-p">&lt;</span>
-                <span class="tok-nc">text</span> <span class="tok-o">=</span> <span class="tok-p">&lt;</span><span class="tok-s">&quot;Description&quot;</span><span class="tok-p">&gt;</span>
-                <span class="tok-nc">description</span> <span class="tok-o">=</span> <span class="tok-p">&lt;</span><span class="tok-s">&quot;Summary of procedures undertaken during episode of care&quot;</span><span class="tok-p">&gt;</span>
-            <span class="tok-p">&gt;</span>
-        <span class="tok-p">&gt;</span>
-    <span class="tok-p">&gt;</span>
 -------------------------------------------------------------
 <span class="tok-gh">template_overlay</span>
 <span class="tok-nd">    openEHR-EHR-EVALUATION.t_clinical_info_ds_sf-8.v1.0.0</span>
@@ -8065,6 +7945,108 @@ Note that in the above, the '/' is used to denote '/protocol' as a differential 
             <span class="tok-p">&gt;</span>
         <span class="tok-p">&gt;</span>
     <span class="tok-p">&gt;</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>When the above is flattened, with all overlays, slot fillers and external references being inlined, a single operational template results, as shown below. Note the <code>component_terminologies</code> section at the end, which contains the terminology of every constitituent overlay and archetype.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="pygments highlight"><code data-lang="adl"><span class="tok-gh">operational_template</span><span class="tok-p"> (</span><span class="tok-nc">adl_version</span><span class="tok-o">=</span><span class="tok-l">2.0.6</span><span class="tok-p">;</span> <span class="tok-nc">rm_release</span><span class="tok-o">=</span><span class="tok-l">1.0.2</span><span class="tok-p">;</span> <span class="tok-nc">generated</span><span class="tok-p">)</span>
+<span class="tok-nd">	openEHR-EHR-COMPOSITION.t_clinical_info_ds_sf.v1.0.0</span>
+
+<span class="tok-gh">specialize</span>
+<span class="tok-nd">	openEHR-EHR-COMPOSITION.discharge.v1</span>
+
+<span class="tok-gh">language</span>
+	<span class="tok-nc">original_language</span> <span class="tok-o">=</span> <span class="tok-p">&lt;[</span><span class="tok-nd">ISO_639-1</span><span class="tok-p">::</span><span class="tok-nd">en</span><span class="tok-p">]&gt;</span>
+
+<span class="tok-gh">description</span>
+	<span class="tok-nc">lifecycle_state</span> <span class="tok-o">=</span> <span class="tok-p">&lt;</span><span class="tok-s">&quot;unmanaged&quot;</span><span class="tok-p">&gt;</span>
+	<span class="tok-nc">original_author</span> <span class="tok-o">=</span> <span class="tok-p">&lt;</span>
+		<span class="tok-p">[</span><span class="tok-s">&quot;name&quot;</span><span class="tok-p">]</span> <span class="tok-o">=</span> <span class="tok-p">&lt;</span><span class="tok-s">&quot;Ian McNicoll&quot;</span><span class="tok-p">&gt;</span>
+		<span class="tok-p">[</span><span class="tok-s">&quot;organisation&quot;</span><span class="tok-p">]</span> <span class="tok-o">=</span> <span class="tok-p">&lt;</span><span class="tok-s">&quot;Ocean Informatics&quot;</span><span class="tok-p">&gt;</span>
+		<span class="tok-p">[</span><span class="tok-s">&quot;email&quot;</span><span class="tok-p">]</span> <span class="tok-o">=</span> <span class="tok-p">&lt;</span><span class="tok-s">&quot;ian.mcnicoll@oceaninformatics.com&quot;</span><span class="tok-p">&gt;</span>
+		<span class="tok-p">[</span><span class="tok-s">&quot;date&quot;</span><span class="tok-p">]</span> <span class="tok-o">=</span> <span class="tok-p">&lt;</span><span class="tok-s">&quot;01/04/2011&quot;</span><span class="tok-p">&gt;</span>
+	<span class="tok-p">&gt;</span>
+	<span class="tok-nc">copyright</span> <span class="tok-o">=</span> <span class="tok-p">&lt;</span><span class="tok-s">&quot;copyright (c) 2011 openEHR Foundation&quot;</span><span class="tok-p">&gt;</span>
+	<span class="tok-nc">details</span> <span class="tok-o">=</span> <span class="tok-p">&lt;</span>
+		<span class="tok-p">[</span><span class="tok-s">&quot;en&quot;</span><span class="tok-p">]</span> <span class="tok-o">=</span> <span class="tok-p">&lt;</span>
+			<span class="tok-nc">language</span> <span class="tok-o">=</span> <span class="tok-p">&lt;[</span><span class="tok-nd">ISO_639-1</span><span class="tok-p">::</span><span class="tok-nd">en</span><span class="tok-p">]&gt;</span>
+			<span class="tok-nc">purpose</span> <span class="tok-o">=</span> <span class="tok-p">&lt;</span><span class="tok-s">&quot;Templated clinical COMPOSITION for Simple discharge summary&quot;</span><span class="tok-p">&gt;</span>
+		<span class="tok-p">&gt;</span>
+	<span class="tok-p">&gt;</span>
+
+<span class="tok-gh">definition</span>
+	<span class="tok-nc">COMPOSITION</span><span class="tok-p">[</span><span class="tok-nd">id1.1</span><span class="tok-p">]</span> <span class="tok-o">matches </span><span class="tok-p">{</span>	<span class="tok-c">-- Clinical detail</span>
+		<span class="tok-nc">category</span> <span class="tok-o">matches </span><span class="tok-p">{</span>
+			<span class="tok-nc">DV_CODED_TEXT</span><span class="tok-p">[</span><span class="tok-nd">id29</span><span class="tok-p">]</span> <span class="tok-o">matches </span><span class="tok-p">{</span>
+				<span class="tok-nc">defining_code</span> <span class="tok-o">matches </span><span class="tok-p">{[</span><span class="tok-nd">at10</span><span class="tok-p">]}</span>
+			<span class="tok-p">}</span>
+		<span class="tok-p">}</span>
+		<span class="tok-nc">context</span> <span class="tok-kt">existence </span><span class="tok-o">matches </span><span class="tok-p">{</span><span class="tok-m">0</span><span class="tok-p">}</span>
+		<span class="tok-nc">content</span> <span class="tok-o">matches </span><span class="tok-p">{</span>
+			<span class="tok-nc">SECTION</span><span class="tok-p">[</span><span class="tok-nd">id0.1</span><span class="tok-p">, </span><span class="tok-nd">openEHR-EHR-SECTION.t_patient_event_info_ds_sf.v1.0.0</span><span class="tok-p">]</span> <span class="tok-kt">occurrences </span><span class="tok-o">matches </span><span class="tok-p">{</span><span class="tok-m">1</span><span class="tok-p">}</span> <span class="tok-o">matches </span><span class="tok-p">{</span>	<span class="tok-c">-- Event start</span>
+				<span class="tok-nc">items</span> <span class="tok-o">matches </span><span class="tok-p">{</span>
+					<span class="tok-nc">ADMIN_ENTRY</span><span class="tok-p">[</span><span class="tok-nd">id0.1</span><span class="tok-p">, </span><span class="tok-nd">openEHR-EHR-ADMIN_ENTRY.t_patient_event_info_ds_sf-1.v1.0.0</span><span class="tok-p">]</span> <span class="tok-kt">occurrences </span><span class="tok-o">matches </span><span class="tok-p">{</span><span class="tok-m">1</span><span class="tok-p">}</span> <span class="tok-o">matches </span><span class="tok-p">{</span>
+						<span class="tok-nc">other_participations</span> <span class="tok-kt">existence </span><span class="tok-o">matches </span><span class="tok-p">{</span><span class="tok-m">0</span><span class="tok-p">}</span>
+                    <span class="tok-p">}</span>
+                    <span class="tok-c">--- etc ---</span>
+                <span class="tok-p">}</span>
+            <span class="tok-p">}</span>
+            <span class="tok-c">--- etc ---</span>
+        <span class="tok-p">}</span>
+    <span class="tok-p">}</span>
+
+<span class="tok-gh">terminology</span>
+	<span class="tok-nc">term_definitions</span> <span class="tok-o">=</span> <span class="tok-p">&lt;</span>
+		<span class="tok-p">[</span><span class="tok-s">&quot;en&quot;</span><span class="tok-p">]</span> <span class="tok-o">=</span> <span class="tok-p">&lt;</span>
+			<span class="tok-p">[</span><span class="tok-s">&quot;id1&quot;</span><span class="tok-p">]</span> <span class="tok-o">=</span> <span class="tok-p">&lt;</span>
+				<span class="tok-nc">text</span> <span class="tok-o">=</span> <span class="tok-p">&lt;</span><span class="tok-s">&quot;Discharge&quot;</span><span class="tok-p">&gt;</span>
+				<span class="tok-nc">description</span> <span class="tok-o">=</span> <span class="tok-p">&lt;</span><span class="tok-s">&quot;A summarising communication about at the time of discharge from an institution or an episode of care&quot;</span><span class="tok-p">&gt;</span>
+			<span class="tok-p">&gt;</span>
+			<span class="tok-p">[</span><span class="tok-s">&quot;id4&quot;</span><span class="tok-p">]</span> <span class="tok-o">=</span> <span class="tok-p">&lt;</span>
+				<span class="tok-nc">text</span> <span class="tok-o">=</span> <span class="tok-p">&lt;</span><span class="tok-s">&quot;Report identifier&quot;</span><span class="tok-p">&gt;</span>
+				<span class="tok-nc">description</span> <span class="tok-o">=</span> <span class="tok-p">&lt;</span><span class="tok-s">&quot;Identification information about the report&quot;</span><span class="tok-p">&gt;</span>
+			<span class="tok-p">&gt;</span>
+            <span class="tok-c">------- etc ---------</span>
+        <span class="tok-p">&gt;</span>
+    <span class="tok-p">&gt;</span>
+	<span class="tok-nc">term_bindings</span> <span class="tok-o">=</span> <span class="tok-p">&lt;</span>
+		<span class="tok-p">[</span><span class="tok-s">&quot;openehr&quot;</span><span class="tok-p">]</span> <span class="tok-o">=</span> <span class="tok-p">&lt;</span>
+			<span class="tok-p">[</span><span class="tok-s">&quot;at10&quot;</span><span class="tok-p">]</span> <span class="tok-o">=</span> <span class="tok-p">&lt;</span><span class="tok-l">http://openehr.org/id/433</span><span class="tok-p">&gt;</span>
+		<span class="tok-p">&gt;</span>
+	<span class="tok-p">&gt;</span>
+	<span class="tok-nc">value_sets</span> <span class="tok-o">=</span> <span class="tok-p">&lt;</span>
+		<span class="tok-p">[</span><span class="tok-s">&quot;ac1&quot;</span><span class="tok-p">]</span> <span class="tok-o">=</span> <span class="tok-p">&lt;</span>
+			<span class="tok-nc">id</span> <span class="tok-o">=</span> <span class="tok-p">&lt;</span><span class="tok-s">&quot;ac1&quot;</span><span class="tok-p">&gt;</span>
+			<span class="tok-nc">members</span> <span class="tok-o">=</span> <span class="tok-p">&lt;</span><span class="tok-s">&quot;at6&quot;</span><span class="tok-p">,</span> <span class="tok-s">&quot;at7&quot;</span><span class="tok-p">,</span> <span class="tok-s">&quot;at8&quot;</span><span class="tok-p">,</span> <span class="tok-s">&quot;at9&quot;</span><span class="tok-p">&gt;</span>
+		<span class="tok-p">&gt;</span>
+	<span class="tok-p">&gt;</span>
+
+<span class="tok-gh">component_terminologies</span>
+	<span class="tok-p">[</span><span class="tok-s">&quot;openEHR-EHR-SECTION.t_patient_event_info_ds_sf.v1.0.0&quot;</span><span class="tok-p">]</span> <span class="tok-o">=</span> <span class="tok-p">&lt;</span>
+		<span class="tok-nc">term_definitions</span> <span class="tok-o">=</span> <span class="tok-p">&lt;</span>
+			<span class="tok-p">[</span><span class="tok-s">&quot;en&quot;</span><span class="tok-p">]</span> <span class="tok-o">=</span> <span class="tok-p">&lt;</span>
+				<span class="tok-p">[</span><span class="tok-s">&quot;id1&quot;</span><span class="tok-p">]</span> <span class="tok-o">=</span> <span class="tok-p">&lt;</span>
+					<span class="tok-nc">text</span> <span class="tok-o">=</span> <span class="tok-p">&lt;</span><span class="tok-s">&quot;Adhoc heading&quot;</span><span class="tok-p">&gt;</span>
+					<span class="tok-nc">description</span> <span class="tok-o">=</span> <span class="tok-p">&lt;</span><span class="tok-s">&quot;A generic section header.&quot;</span><span class="tok-p">&gt;</span>
+				<span class="tok-p">&gt;</span>
+                <span class="tok-c">------- etc ---------</span>
+			<span class="tok-p">&gt;</span>
+		<span class="tok-p">&gt;</span>
+	<span class="tok-p">&gt;</span>
+	<span class="tok-p">[</span><span class="tok-s">&quot;openEHR-EHR-ADMIN_ENTRY.t_patient_event_info_ds_sf-1.v1.0.0&quot;</span><span class="tok-p">]</span> <span class="tok-o">=</span> <span class="tok-p">&lt;</span>
+		<span class="tok-nc">term_definitions</span> <span class="tok-o">=</span> <span class="tok-p">&lt;</span>
+			<span class="tok-p">[</span><span class="tok-s">&quot;en&quot;</span><span class="tok-p">]</span> <span class="tok-o">=</span> <span class="tok-p">&lt;</span>
+				<span class="tok-p">[</span><span class="tok-s">&quot;id1&quot;</span><span class="tok-p">]</span> <span class="tok-o">=</span> <span class="tok-p">&lt;</span>
+					<span class="tok-nc">text</span> <span class="tok-o">=</span> <span class="tok-p">&lt;</span><span class="tok-s">&quot;Admission Short Singapore&quot;</span><span class="tok-p">&gt;</span>
+					<span class="tok-nc">description</span> <span class="tok-o">=</span> <span class="tok-p">&lt;</span><span class="tok-s">&quot;Administrative information for the admission of a patient to the care of a hospital/institution&quot;</span><span class="tok-p">&gt;</span>
+				<span class="tok-p">&gt;</span>
+                <span class="tok-c">------- etc ---------</span>
+			<span class="tok-p">&gt;</span>
+		<span class="tok-p">&gt;</span>
+	<span class="tok-p">&gt;</span></code></pre>
 </div>
 </div>
 </div>
@@ -9242,7 +9224,7 @@ Note that in the above, the '/' is used to denote '/protocol' as a differential 
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2018-01-07 17:31:42 CET
+Last updated 2018-01-07 16:31:42 GMT
 </div>
 </div>
 </body>
