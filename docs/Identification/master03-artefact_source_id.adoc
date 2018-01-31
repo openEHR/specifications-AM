@@ -2,7 +2,11 @@
 
 == Overview
 
-The basis for identifying source (i.e. authored) artefacts is to define a number of separate logically identifying properties, as well as a machine identifier. One or more human-readable identifier(s) can be generated from the non-uid identifying properties. For archetypes and templates, the relevant properties are defined on the `ARCHETYPE_HRID` class from the openEHR Archetype Object Model. Related properties are inherited from the `AUTHORED_RESOURCE` classe into `ARCHETYPE` are shown, including the `lifecycle_state` property, as well as all other descriptive meta-data.
+The basis for identifying source (i.e. authored) artefacts is to define a number of separate logically identifying properties, as well as a machine identifier. One or more human-readable identifier(s) can be generated from the non-uid identifying properties. For archetypes and templates, the relevant properties are described in the link:/releases/AM/latest/AOM2.html#_the_archetype_package[AOM Archetype package], including the `ARCHETYPE_HRID` class. Related properties are inherited from the `AUTHORED_RESOURCE` class into `ARCHETYPE` are shown, including the `lifecycle_state` property, as well as all other descriptive meta-data.
+
+[.text-center]
+.am.aom2.archetype Package
+image::{uml_export_dir}/diagrams/AM-aom2.archetype.svg[id=archetype_package, align="center"]
 
 For other types of artefacts the detailed model will differ, but the principles are the same.
 
@@ -11,9 +15,9 @@ Three distinct groups of properties shown in the `ARCHETYPE_HRID` class that und
 * `namespace` provides a way of distinguishing logical identifiers created by different organisations that would otherwise compete in a single semantic identifier space;
 * `rm_publisher`, `rm_closure`, `rm_class`, `concept_id` form the basis of the main part of a human-readable identifier, e.g. `openEHR-EHR-OBSERVATION.bp_measurement`;
 * properties supporting versioning:
-* `release_version`, expressing a 3-part version identifier, e.g. '1.3.0';
-* `build_count` , incremented at every commit, supporting non-release version ids, such as '1.3.0-rc.28' and '1.3.0-alpha', where the build count is 28;
-* `description`.`lifecycle_state`, expressing the development state of the artefact, and used to derive the 'rc' (release candidate) and 'alpha' (development) parts of non-release version ids.
+** `release_version`, expressing a 3-part version identifier, e.g. '1.3.0';
+** `build_count` , incremented at every commit, supporting non-release version ids, such as '1.3.0-rc.28' and '1.3.0-alpha', where the build count is 28;
+** `description`.`lifecycle_state`, expressing the development state of the artefact, and used to derive the 'rc' (release candidate) and 'alpha' (development) parts of non-release version ids.
 
 Functions such as `interface_id`, `physical_id` and `version_id` are defined to return respectively the 'interface' and 'physical' archetype HRIDs (described below) as strings, and the full version string (computed from `release_version` , `build_count` and `description.lifecycle_state` ). The functions `major_version` , `minor_version` and `patch_version` extract the various parts of the 3-part `release_version` property.
 
