@@ -26,7 +26,7 @@ h|*Functions*
 ^h|*Signature*
 ^h|*Meaning*
 
-h|
+h|(abstract)
 |*is_prohibited* (): `Boolean`
 a|True if this node is prohibited. Implemented in subtypes.
 
@@ -40,7 +40,7 @@ h|
 |*path* (): `String`
 a|Path of this node relative to root of archetype.
 
-h|
+h|(abstract)
 |*c_conforms_to* ( +
 other: `ARCHETYPE_CONSTRAINT[1]`, +
 rmcc: `FUNCTION<<String,String>,Boolean>[1]` +
@@ -52,7 +52,7 @@ Typically used during validation of special-ised archetype nodes.
 [horizontal]
 `_rmcc_`:: RM conformance checker - a lambda (i.e. function object) that can compute conformance of type-names within the  Reference Model on which the current archetype is based. The signature provides two arguments representing respectively, the `_rm_type_name_` of the current node and the `_rm_type_name_` of the node being redefined in a specialisation parent archetype.
 
-h|
+h|(abstract)
 |*c_congruent_to* ( +
 other: `ARCHETYPE_CONSTRAINT[1]` +
 ): `Boolean`

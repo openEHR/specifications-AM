@@ -457,7 +457,7 @@
 <tr>
 <td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"><div><div class="paragraph">
-<p><a href="https://openehr.atlassian.net/browse/SPECAM-49">SPECAM-49</a>. Improve <code><em>c_conforms_to</em>()<em></code> and <code>_c_congruent_to</em>()</code> algorithms.</p>
+<p><a href="https://openehr.atlassian.net/browse/SPECAM-49">SPECAM-49</a>. Improve <code><em>c_conforms_to()</em></code> and <code><em>c_congruent_to()</em></code> algorithms; added <code><em>c_value_conforms_to()</em></code> and <code><em>c_value_congruent_to()</em></code> to <code>C_PRIMITIVE_OBJECT</code>.</p>
 </div></div></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">T Beale</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">10 Jan 2018</p></td>
@@ -465,7 +465,7 @@
 <tr>
 <td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"><div><div class="paragraph">
-<p><a href="https://openehr.atlassian.net/browse/SPECAM-46">SPECAM-46</a>. <code>c_conforms_to()</code> should have lambda parameter for model checking.</p>
+<p><a href="https://openehr.atlassian.net/browse/SPECAM-46">SPECAM-46</a>. <code><em>c_conforms_to()</em></code> should have lambda parameter for model checking.</p>
 </div></div></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">P Bos,<br>
  T Beale</p></td>
@@ -3112,7 +3112,7 @@ Since an archetype might not contain external terminology bindings for all (or e
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Meaning</strong></p></th>
 </tr>
 <tr>
-<th class="tableblock halign-center valign-top"></th>
+<th class="tableblock halign-center valign-top"><p class="tableblock">(abstract)</p></th>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><strong>is_prohibited</strong> (): <code>Boolean</code></p></td>
 <td class="tableblock halign-left valign-top"><div><div class="paragraph">
 <p>True if this node is prohibited. Implemented in subtypes.</p>
@@ -3135,7 +3135,7 @@ a_path: <code>String[1]</code><br>
 </div></div></td>
 </tr>
 <tr>
-<th class="tableblock halign-center valign-top"></th>
+<th class="tableblock halign-center valign-top"><p class="tableblock">(abstract)</p></th>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><strong>c_conforms_to</strong> (<br>
 other: <code>ARCHETYPE_CONSTRAINT[1]</code>,<br>
 rmcc: <code>FUNCTION&lt;&lt;String,String&gt;,Boolean&gt;[1]</code><br>
@@ -3159,7 +3159,7 @@ Typically used during validation of special-ised archetype nodes.</p>
 </div></div></td>
 </tr>
 <tr>
-<th class="tableblock halign-center valign-top"></th>
+<th class="tableblock halign-center valign-top"><p class="tableblock">(abstract)</p></th>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><strong>c_congruent_to</strong> (<br>
 other: <code>ARCHETYPE_CONSTRAINT[1]</code><br>
 ): <code>Boolean</code></p></td>
@@ -3316,7 +3316,8 @@ other: <code>ARCHETYPE_CONSTRAINT[1]</code><br>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock">(effected)</p></th>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><strong>c_conforms_to</strong> (<br>
-other: <code>ARCHETYPE_CONSTRAINT[1]</code><br>
+other: <code>ARCHETYPE_CONSTRAINT[1]</code>,<br>
+rmcc: <code>FUNCTION&lt;&lt;String,String&gt;,Boolean&gt;[1]</code><br>
 ): <code>Boolean</code><br>
 <strong><em>Post</em></strong>: <code>Result = existence_conforms_to (other) and is_single and other.is_single) or else (is_multiple and cardinality_conforms_to (other)</code></p></td>
 <td class="tableblock halign-left valign-top"><div><div class="paragraph">
@@ -3533,6 +3534,42 @@ For <code>C_PRIMITIVE_OBJECTs</code>, it will have the special value <code>Primi
 <td class="tableblock halign-left valign-top"><div></div></td>
 </tr>
 <tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock">(effected)</p></th>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>c_conforms_to</strong> (<br>
+other: <code>ARCHETYPE_CONSTRAINT[1]</code>,<br>
+rmcc: <code>FUNCTION&lt;&lt;String,String&gt;,Boolean&gt;[1]</code><br>
+): <code>Boolean</code></p></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>True if constraints represented by this node, ignoring any sub-parts, are narrower or the same as other.
+Typically used during validation of special-ised archetype nodes.</p>
+</div>
+<div class="hdlist">
+<div class="title">Parameters<br></div>
+<table>
+<tr>
+<td class="hdlist1">
+<code><em>rmcc</em></code>
+</td>
+<td class="hdlist2">
+<p>Reference Model conformance checker lambda.</p>
+</td>
+</tr>
+</table>
+</div></div></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock">(effected)</p></th>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>c_congruent_to</strong> (<br>
+other: <code>ARCHETYPE_CONSTRAINT[1]</code><br>
+): <code>Boolean</code></p></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>True if constraints represented by this node contain no further redefinitions with respect to the node <code><em>other</em></code>, with the exception of node_id redefnition in <code>C_OBJECT</code> nodes.</p>
+</div>
+<div class="paragraph">
+<p>Typically used to test if an inherited node locally contains any constraints.</p>
+</div></div></td>
+</tr>
+<tr>
 <th class="tableblock halign-center valign-top"></th>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><strong>occurrences_conforms_to</strong> (<br>
 other: <code>C_OBJECT[1]</code><br>
@@ -3562,28 +3599,6 @@ other: <code>C_OBJECT[1]</code><br>
 <strong><em>Post</em></strong>: <code>Result = codes_conformant (node_id, other.node_id)</code></p></td>
 <td class="tableblock halign-left valign-top"><div><div class="paragraph">
 <p>True if this node id conforms to other.node_id, which includes the ids being identical; other is assumed to be in a flat archetype.</p>
-</div></div></td>
-</tr>
-<tr>
-<th class="tableblock halign-center valign-top"><p class="tableblock">(effected)</p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>c_conforms_to</strong> (<br>
-other: <code>ARCHETYPE_CONSTRAINT[1]</code><br>
-): <code>Boolean</code></p></td>
-<td class="tableblock halign-left valign-top"><div><div class="paragraph">
-<p>True if constraints represented by this node, ignoring any sub-parts, are narrower or the same as other.
-Typically used during validation of special-ised archetype nodes.</p>
-</div></div></td>
-</tr>
-<tr>
-<th class="tableblock halign-center valign-top"><p class="tableblock">(effected)</p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>c_congruent_to</strong> (<br>
-other: <code>ARCHETYPE_CONSTRAINT[1]</code><br>
-): <code>Boolean</code></p></td>
-<td class="tableblock halign-left valign-top"><div><div class="paragraph">
-<p>True if constraints represented by this node contain no further redefinitions with respect to the node <code><em>other</em></code>, with the exception of node_id redefnition in <code>C_OBJECT</code> nodes.</p>
-</div>
-<div class="paragraph">
-<p>Typically used to test if an inherited node locally contains any constraints.</p>
 </div></div></td>
 </tr>
 <tr>
@@ -3896,14 +3911,14 @@ other: <code>ARCHETYPE_CONSTRAINT[1]</code><br>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Meaning</strong></p></th>
 </tr>
 <tr>
-<th class="tableblock halign-center valign-top"></th>
+<th class="tableblock halign-center valign-top"><p class="tableblock">(abstract)</p></th>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><strong>any_allowed</strong> (): <code>Boolean</code></p></td>
 <td class="tableblock halign-left valign-top"><div><div class="paragraph">
 <p>True if any value (i.e. instance) of the reference model type would be allowed. Redefined in descendants.</p>
 </div></div></td>
 </tr>
 <tr>
-<th class="tableblock halign-center valign-top"></th>
+<th class="tableblock halign-center valign-top"><p class="tableblock">(abstract)</p></th>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><strong>valid_value</strong> (<br>
 a_value: <code>Any[1]</code><br>
 ): <code>Boolean</code></p></td>
@@ -3912,7 +3927,7 @@ a_value: <code>Any[1]</code><br>
 </div></div></td>
 </tr>
 <tr>
-<th class="tableblock halign-center valign-top"></th>
+<th class="tableblock halign-center valign-top"><p class="tableblock">(abstract)</p></th>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><strong>prototype_value</strong> (): <code>Any</code></p></td>
 <td class="tableblock halign-left valign-top"><div><div class="paragraph">
 <p>Generate a prototype value from this constraint object.</p>
@@ -4232,7 +4247,7 @@ For a slot-filler or a redefined external reference, the node_id is set to a spe
 </div></div></td>
 </tr>
 <tr>
-<th class="tableblock halign-center valign-top"><p class="tableblock">(effected)</p></th>
+<th class="tableblock halign-center valign-top"><p class="tableblock">(redefined)</p></th>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><strong>occurrences_conforms_to</strong> (<br>
 other: <code>C_OBJECT[1]</code><br>
 ): <code>Boolean</code></p></td>
@@ -4346,24 +4361,6 @@ other: <code>C_OBJECT[1]</code><br>
 </div></div></td>
 </tr>
 <tr>
-<th class="tableblock halign-center valign-top"></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>c_value_conforms_to</strong> (<br>
-other: <code>C_PRIMITIVE_OBJECT[1]</code><br>
-): <code>Boolean</code></p></td>
-<td class="tableblock halign-left valign-top"><div><div class="paragraph">
-<p>True if this node expresses a value constraint that conforms to that of <code>other</code>. Effected in descendants.</p>
-</div></div></td>
-</tr>
-<tr>
-<th class="tableblock halign-center valign-top"></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>c_value_congruent_to</strong> (<br>
-other: <code>C_PRIMITIVE_OBJECT[1]</code><br>
-): <code>Boolean</code></p></td>
-<td class="tableblock halign-left valign-top"><div><div class="paragraph">
-<p>True if this node expresses the same value constraint as <code>other</code>. Effected in descendants.</p>
-</div></div></td>
-</tr>
-<tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock">(effected)</p></th>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><strong>c_conforms_to</strong> (<br>
 other: <code>C_PRIMITIVE_OBJECT[1]</code>,<br>
@@ -4372,6 +4369,28 @@ rmcc: <code>FUNCTION&lt;&lt;String,String&gt;,Boolean&gt;[1]</code><br>
 <td class="tableblock halign-left valign-top"><div><div class="paragraph">
 <p>True if constraints represented by this node, ignoring any sub-parts, are narrower or the same as other.
 Typically used during validation of special-ised archetype nodes.</p>
+</div>
+<div class="hdlist">
+<div class="title">Parameters<br></div>
+<table>
+<tr>
+<td class="hdlist1">
+<code><em>rmcc</em></code>
+</td>
+<td class="hdlist2">
+<p>Reference Model conformance checker lambda.</p>
+</td>
+</tr>
+</table>
+</div></div></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock">(abstract)</p></th>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>c_value_conforms_to</strong> (<br>
+other: <code>C_PRIMITIVE_OBJECT[1]</code><br>
+): <code>Boolean</code></p></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>True if this node expresses a value constraint that conforms to that of <code>other</code>. Effected in descendants.</p>
 </div></div></td>
 </tr>
 <tr>
@@ -4384,6 +4403,15 @@ other: <code>C_PRIMITIVE_OBJECT[1]</code><br>
 </div>
 <div class="paragraph">
 <p>Typically used to test if an inherited node locally contains any constraints.</p>
+</div></div></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock">(abstract)</p></th>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>c_value_congruent_to</strong> (<br>
+other: <code>C_PRIMITIVE_OBJECT[1]</code><br>
+): <code>Boolean</code></p></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>True if this node expresses the same value constraint as <code>other</code>. Effected in descendants.</p>
 </div></div></td>
 </tr>
 </tbody>
@@ -4906,7 +4934,7 @@ other: <code>C_ORDERED[1]</code><br>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Meaning</strong></p></th>
 </tr>
 <tr>
-<th class="tableblock halign-center valign-top"></th>
+<th class="tableblock halign-center valign-top"><p class="tableblock">(abstract)</p></th>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><strong>valid_pattern_constraint</strong> (<br>
 a_pattern: <code>String[1]</code><br>
 ): <code>Boolean</code></p></td>
@@ -4915,7 +4943,7 @@ a_pattern: <code>String[1]</code><br>
 </div></div></td>
 </tr>
 <tr>
-<th class="tableblock halign-center valign-top"></th>
+<th class="tableblock halign-center valign-top"><p class="tableblock">(abstract)</p></th>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><strong>valid_pattern_constraint_replacement</strong> (<br>
 a_pattern: <code>String[1]</code>,<br>
 an_other_pattern: <code>String[1]</code><br>
@@ -5534,7 +5562,7 @@ other: <code>C_TERMINOLOGY_CODE[1]</code><br>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Meaning</strong></p></th>
 </tr>
 <tr>
-<th class="tableblock halign-center valign-top"></th>
+<th class="tableblock halign-center valign-top"><p class="tableblock">(abstract)</p></th>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><strong>c_conforms_to</strong> (<br>
 other: <code>C_SECOND_ORDER[1]</code>,<br>
 rmcc: <code>FUNCTION&lt;&lt;String,String&gt;,Boolean&gt;[1]</code><br>
@@ -5557,7 +5585,7 @@ rmcc: <code>FUNCTION&lt;&lt;String,String&gt;,Boolean&gt;[1]</code><br>
 </div></div></td>
 </tr>
 <tr>
-<th class="tableblock halign-center valign-top"></th>
+<th class="tableblock halign-center valign-top"><p class="tableblock">(abstract)</p></th>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><strong>c_congruent_to</strong> (<br>
 other: <code>C_SECOND_ORDER[1]</code><br>
 ): <code>Boolean</code></p></td>
@@ -7658,7 +7686,7 @@ Hash of keys ("text", "description" etc) and corresponding values.</p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2018-01-07 17:32:23 CET
+Last updated 2018-01-07 16:32:23 GMT
 </div>
 </div>
 </body>
