@@ -2,7 +2,7 @@
 
 So far ADL has been presented as an abstract formal language that defines legal information structures based on a reference model (RM). In real world applications, we need to consider where reference models come from, and the question of harmonising or otherwise integrating archetypes based on different but related RMs.
 
-One of the common problems in most domains is that competing reference models exist, typically defined by standards bodies such as ISO, CEN, ASTM, and/or other open standards bodies such as W3C and OASIS. For a given topic, e.g. 'cancer study trials' or 'Electronic Health Record' there can often be multiple information models that could be used as a basis for archetyping. Due to political pressures, national requiremenents or preferences and  variety of other non-technical factors, it is quite likely that archetypes will be authored within a domain based on multiple competing reference models that are reasonably similar without being easily machine inter-convertible.
+One of the common problems in most domains is that competing reference models exist, typically defined by standards bodies such as ISO, CEN, ASTM, and/or other open standards bodies such as W3C and OASIS. For a given topic, e.g. 'cancer study trials' or 'Electronic Health Record' there can often be multiple information models that could be used as a basis for archetyping. Due to political pressures, national requiremenents or preferences and variety of other non-technical factors, it is quite likely that archetypes will be authored within a domain based on multiple competing reference models that are reasonably similar without being easily machine inter-convertible.
 
 Since archetypes are generally authored by domain experts, the entities they represent tend to come from a homogeneous model space, with reference models being a technical detail that may not even be visible to the archetype author. Nevertheless, due to the above-mentioned factors, authors in different localities or jurisdictions may have no choice but to model the same entity, for example 'complete blood count' based on two or more different reference models.
 
@@ -115,7 +115,7 @@ The following CADL fragment provides an example.
         value matches {
             DV_QUANTITY[id1054] matches {
                 property matches {[at1055]}
-                magnitude matches {|0.0..<1000.0|}  -- **** parses as AOM C_REAL, but is Double in RM
+                magnitude matches {|0.0..<1000.0|}  --  parses as AOM C_REAL, but is Double in RM
                 precision matches {0}
                 units matches {"mm[Hg]"}
             }
@@ -153,7 +153,7 @@ The effect of these mappings is that literal values in an archetype that parse a
     INTERVAL_EVENT[id1043] occurrences matches {0..1} matches {	-- 24 hour average 
         width matches {
             DV_DURATION[id1064] matches {
-                value matches {PT24H}  -- **** parses as AOM ISO8601_DURATION, but is String in RM
+                value matches {PT24H}  --  parses as AOM ISO8601_DURATION, but is String in RM
             }
         }
     }
@@ -171,7 +171,7 @@ description
         ["organisation"] = <"NT Health Service">
         ["date"] = <2003-08-03>
     >
-    lifecycle_state =  <"AuthorDraft"> -- **** should be 'unmanaged'
+    lifecycle_state =  <"AuthorDraft"> --  should be 'unmanaged'
     resource_package_uri =  <".....">
 --------
 
@@ -209,4 +209,49 @@ aom_lifecycle_mappings = <
 --------
 
 Normally this kind of change should be written into the archetype, so that it is upgraded to the standard form. Tools should offer this possibility, including in batch/bulk mode.
+
+== Facilities for RM Visualisation
+
+Various meta-attributes may be added to an AOM profile in order to affect the behaviour of archetyping tools and processing. These are not required for correct functioning of tools, but are typically needed to make models comprehensible. Without them, there will no difference between primitive types such as `Any`, `Integer` etc, business types (e.g. things like `Person`, etc), and business-level data types (e.g. `CodedText`, `Quantity` etc).
+
+[source, odin]
+--------
+------------------------------------------------------
+-- archetyping
+-- override archetype parent class from included schema
+------------------------------------------------------
+archetype_parent_class = <"CLASS_NAME">
+archetype_data_value_parent_class = <"CLASS_NAME">
+archetype_visualise_descendants_of = <"CLASS_NAME">
+--------
+
+=== archetype_parent_class
+
+The `archetype_parent_class` attribute defines a base class from the Reference Model that provides archetyping capability in RM data structures. It is optional, and there need be no such class in the RM. In the openEHR and 13606 RMs, this class exists, (`LOCATABLE`, and `RECORD_COMPONENT` respectively). Defining it here has the effect in tools that the class tree under which archetypes are arranged contains only RM classes inheriting from this class, e.g. `LOCATABLE` classes in the case of openEHR. If nothing is set here, all classes in the RM are assumed as candidates for archetypes.
+
+This attribute, if defined, must be defined in the same schema that defines the referenced class.
+
+=== archetype_data_value_parent_class
+
+The `archetype_data_value_parent_class` attribute defines a base class from the Reference Model whose descendants are considered to be 'logical data types' (i.e. of some higher level than the built-in primitive types `String`, `Integer` etc). This attribute is optional, even if the RM does have such a class, and is only used to help tooling provide more intelligent display, e.g. in statistical reports.
+
+This attribute, if defined, must be defined in the same schema that defines the referenced class.
+
+=== archetype_visualise_descendants_of
+
+If `archetype_parent_class` is not set, designate a class whose descendants should be made visible in tree and grid renderings of the archetype definition. For openEHR and CEN this class is normally the same as the `archetype_parent_class`, i.e. `LOCATABLE` and `RECORD_COMPONENT` respectively. It is typically set for CEN, because `archetype_parent_class` may not be stated, due to demographic types not inheriting from it.
+
+The effect of this attribute in visualisation is to generate the most natural tree or grid-based view of an archetype definition, from the semantic viewpoint.
+
+=== archetype_namespace
+
+The attribute `archetype_namespace` defines the package or packages that are considered the archetyping namespace used in archetype multi-axial ids. For example, in openEHR, an archetype is identified by an id of the form:
+
+----
+  openEHR-EHR-OBSERVATION.some_obs.vN
+----
+
+The 'EHR' in the above is an 'RM package closure', i.e. the name of an RM package whose class closure by reachability provides the set of classes that may be archetyped in the 'EHR' namespace. The reason for this is somewhat subtle: consider that if you want archetypes based on classes defined directly within a package P, and you also define these archetypes that re-use other archetypes based on more basic types like openEHR's `CLUSTER` or similar (typically not defined in the head package), then you will inevitably have archetypes based on `CLUSTER` only for use with EHR archetypes e.g. archetypes based on `OBSERVATION`. However, you may well create archetypes based on `CLUSTER` only for use with e.g. top-level archetypes from the demographic package. The archetype_namespace setting is used to define the root id namespaces  for archetypes, allowing low-level archetypes to be designated for use with one or other high-level archetype. E.g. `openEHR-EHR-CLUSTER.bp_position.v1` would be used only with `openEHR-EHR-OBSERVATION.bp_measurement.vX`, or similar, and most likely not with any `openEHR-DEMOGRAPHIC-XXXX.yyyy.vN` archetype. Note that in openEHR, there is nothing to prevent such cross-namespace reuse - it is just a design guideline.
+
+This attribute, must be defined in the same schema that defines the referenced package(s).
 

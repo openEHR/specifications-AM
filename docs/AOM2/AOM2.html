@@ -338,6 +338,14 @@
 <li><a href="#_rm_primitive_type_equivalences">10.3. RM Primitive Type Equivalences</a></li>
 <li><a href="#_rm_type_substitutions">10.4. RM Type Substitutions</a></li>
 <li><a href="#_aom_lifecycle_state_mappings">10.5. AOM Lifecycle State Mappings</a></li>
+<li><a href="#_facilities_for_rm_visualisation">10.6. Facilities for RM Visualisation</a>
+<ul class="sectlevel3">
+<li><a href="#_archetype_parent_class">10.6.1. archetype_parent_class</a></li>
+<li><a href="#_archetype_data_value_parent_class">10.6.2. archetype_data_value_parent_class</a></li>
+<li><a href="#_archetype_visualise_descendants_of">10.6.3. archetype_visualise_descendants_of</a></li>
+<li><a href="#_archetype_namespace">10.6.4. archetype_namespace</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li><a href="#_references">References</a>
@@ -447,12 +455,20 @@
 </thead>
 <tbody>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a id="latest_issue"></a>2.1.0</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a id="latest_issue"></a>2.1.1</p></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p><a href="https://openehr.atlassian.net/browse/SPECAM-51">SPECAM-51</a>. Move RM adaptation attributes from BMM to AOM profile. Add to section 10 the new meta-attributes <code>archetype_parent_class</code>, <code>archetype_data_value_parent_class</code>, <code>archetype_visualise_descendants_of</code>.</p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">T Beale</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a id="latest_issue_date"></a>10 Apr 2018</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">2.1.0</p></td>
 <td class="tableblock halign-left valign-top"><div><div class="paragraph">
 <p><a href="https://openehr.atlassian.net/browse/SPECAM-48">SPECAM-48</a>. Add VTPL validity rule for templates - consistency of languages for flattening.</p>
 </div></div></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">T Beale</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a id="latest_issue_date"></a>24 Jan 2018</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">24 Jan 2018</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"></td>
@@ -6990,7 +7006,7 @@ Hash of keys ("text", "description" etc) and corresponding values.</p>
 <p>So far ADL has been presented as an abstract formal language that defines legal information structures based on a reference model (RM). In real world applications, we need to consider where reference models come from, and the question of harmonising or otherwise integrating archetypes based on different but related RMs.</p>
 </div>
 <div class="paragraph">
-<p>One of the common problems in most domains is that competing reference models exist, typically defined by standards bodies such as ISO, CEN, ASTM, and/or other open standards bodies such as W3C and OASIS. For a given topic, e.g. 'cancer study trials' or 'Electronic Health Record' there can often be multiple information models that could be used as a basis for archetyping. Due to political pressures, national requiremenents or preferences and  variety of other non-technical factors, it is quite likely that archetypes will be authored within a domain based on multiple competing reference models that are reasonably similar without being easily machine inter-convertible.</p>
+<p>One of the common problems in most domains is that competing reference models exist, typically defined by standards bodies such as ISO, CEN, ASTM, and/or other open standards bodies such as W3C and OASIS. For a given topic, e.g. 'cancer study trials' or 'Electronic Health Record' there can often be multiple information models that could be used as a basis for archetyping. Due to political pressures, national requiremenents or preferences and variety of other non-technical factors, it is quite likely that archetypes will be authored within a domain based on multiple competing reference models that are reasonably similar without being easily machine inter-convertible.</p>
 </div>
 <div class="paragraph">
 <p>Since archetypes are generally authored by domain experts, the entities they represent tend to come from a homogeneous model space, with reference models being a technical detail that may not even be visible to the archetype author. Nevertheless, due to the above-mentioned factors, authors in different localities or jurisdictions may have no choice but to model the same entity, for example 'complete blood count' based on two or more different reference models.</p>
@@ -7284,7 +7300,7 @@ Hash of keys ("text", "description" etc) and corresponding values.</p>
         <span class="tok-nc">value</span> <span class="tok-o">matches </span><span class="tok-p">{</span>
             <span class="tok-nc">DV_QUANTITY</span><span class="tok-p">[</span><span class="tok-nd">id1054</span><span class="tok-p">]</span> <span class="tok-o">matches </span><span class="tok-p">{</span>
                 <span class="tok-nc">property</span> <span class="tok-o">matches </span><span class="tok-p">{[</span><span class="tok-nd">at1055</span><span class="tok-p">]}</span>
-                <span class="tok-nc">magnitude</span> <span class="tok-o">matches </span><span class="tok-p">{|</span><span class="tok-mf">0.0</span><span class="tok-p">..&lt;</span><span class="tok-mf">1000.0</span><span class="tok-p">|}</span>  <span class="tok-c">-- **** parses as AOM C_REAL, but is Double in RM</span>
+                <span class="tok-nc">magnitude</span> <span class="tok-o">matches </span><span class="tok-p">{|</span><span class="tok-mf">0.0</span><span class="tok-p">..&lt;</span><span class="tok-mf">1000.0</span><span class="tok-p">|}</span>  <span class="tok-c">--  parses as AOM C_REAL, but is Double in RM</span>
                 <span class="tok-nc">precision</span> <span class="tok-o">matches </span><span class="tok-p">{</span><span class="tok-m">0</span><span class="tok-p">}</span>
                 <span class="tok-nc">units</span> <span class="tok-o">matches </span><span class="tok-p">{</span><span class="tok-s">&quot;mm[Hg]&quot;</span><span class="tok-p">}</span>
             <span class="tok-p">}</span>
@@ -7327,7 +7343,7 @@ Hash of keys ("text", "description" etc) and corresponding values.</p>
 <pre class="pygments highlight"><code data-lang="cadl">    <span class="tok-nc">INTERVAL_EVENT</span><span class="tok-p">[</span><span class="tok-nd">id1043</span><span class="tok-p">]</span> <span class="tok-kt">occurrences </span><span class="tok-o">matches </span><span class="tok-p">{</span><span class="tok-m">0..1</span><span class="tok-p">}</span> <span class="tok-o">matches </span><span class="tok-p">{</span>	<span class="tok-c">-- 24 hour average</span>
         <span class="tok-nc">width</span> <span class="tok-o">matches </span><span class="tok-p">{</span>
             <span class="tok-nc">DV_DURATION</span><span class="tok-p">[</span><span class="tok-nd">id1064</span><span class="tok-p">]</span> <span class="tok-o">matches </span><span class="tok-p">{</span>
-                <span class="tok-nc">value</span> <span class="tok-o">matches </span><span class="tok-p">{</span><span class="tok-ld">PT24H</span><span class="tok-p">}</span>  <span class="tok-c">-- **** parses as AOM ISO8601_DURATION, but is String in RM</span>
+                <span class="tok-nc">value</span> <span class="tok-o">matches </span><span class="tok-p">{</span><span class="tok-ld">PT24H</span><span class="tok-p">}</span>  <span class="tok-c">--  parses as AOM ISO8601_DURATION, but is String in RM</span>
             <span class="tok-p">}</span>
         <span class="tok-p">}</span>
     <span class="tok-p">}</span></code></pre>
@@ -7347,7 +7363,7 @@ Hash of keys ("text", "description" etc) and corresponding values.</p>
         <span class="tok-p">[</span><span class="tok-s">&quot;organisation&quot;</span><span class="tok-p">]</span> <span class="tok-o">=</span> <span class="tok-p">&lt;</span><span class="tok-s">&quot;NT Health Service&quot;</span><span class="tok-p">&gt;</span>
         <span class="tok-p">[</span><span class="tok-s">&quot;date&quot;</span><span class="tok-p">]</span> <span class="tok-o">=</span> <span class="tok-p">&lt;</span><span class="tok-ld">2003-08-03</span><span class="tok-p">&gt;</span>
     <span class="tok-p">&gt;</span>
-    <span class="tok-nc">lifecycle_state</span> <span class="tok-o">=</span>  <span class="tok-p">&lt;</span><span class="tok-s">&quot;AuthorDraft&quot;</span><span class="tok-p">&gt;</span> <span class="tok-c">-- **** should be &#39;unmanaged&#39;</span>
+    <span class="tok-nc">lifecycle_state</span> <span class="tok-o">=</span>  <span class="tok-p">&lt;</span><span class="tok-s">&quot;AuthorDraft&quot;</span><span class="tok-p">&gt;</span> <span class="tok-c">--  should be &#39;unmanaged&#39;</span>
     <span class="tok-nc">resource_package_uri</span> <span class="tok-o">=</span>  <span class="tok-p">&lt;</span><span class="tok-s">&quot;.....&quot;</span><span class="tok-p">&gt;</span></code></pre>
 </div>
 </div>
@@ -7387,6 +7403,67 @@ Hash of keys ("text", "description" etc) and corresponding values.</p>
 </div>
 <div class="paragraph">
 <p>Normally this kind of change should be written into the archetype, so that it is upgraded to the standard form. Tools should offer this possibility, including in batch/bulk mode.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_facilities_for_rm_visualisation"><a class="anchor" href="#_facilities_for_rm_visualisation"></a>10.6. Facilities for RM Visualisation</h3>
+<div class="paragraph">
+<p>Various meta-attributes may be added to an AOM profile in order to affect the behaviour of archetyping tools and processing. These are not required for correct functioning of tools, but are typically needed to make models comprehensible. Without them, there will no difference between primitive types such as <code>Any</code>, <code>Integer</code> etc, business types (e.g. things like <code>Person</code>, etc), and business-level data types (e.g. <code>CodedText</code>, <code>Quantity</code> etc).</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="pygments highlight"><code data-lang="odin"><span class="tok-c">------------------------------------------------------</span>
+<span class="tok-c">-- archetyping</span>
+<span class="tok-c">-- override archetype parent class from included schema</span>
+<span class="tok-c">------------------------------------------------------</span>
+<span class="tok-nc">archetype_parent_class</span> <span class="tok-o">=</span> <span class="tok-p">&lt;</span><span class="tok-s">&quot;CLASS_NAME&quot;</span><span class="tok-p">&gt;</span>
+<span class="tok-nc">archetype_data_value_parent_class</span> <span class="tok-o">=</span> <span class="tok-p">&lt;</span><span class="tok-s">&quot;CLASS_NAME&quot;</span><span class="tok-p">&gt;</span>
+<span class="tok-nc">archetype_visualise_descendants_of</span> <span class="tok-o">=</span> <span class="tok-p">&lt;</span><span class="tok-s">&quot;CLASS_NAME&quot;</span><span class="tok-p">&gt;</span></code></pre>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_archetype_parent_class"><a class="anchor" href="#_archetype_parent_class"></a>10.6.1. archetype_parent_class</h4>
+<div class="paragraph">
+<p>The <code>archetype_parent_class</code> attribute defines a base class from the Reference Model that provides archetyping capability in RM data structures. It is optional, and there need be no such class in the RM. In the openEHR and 13606 RMs, this class exists, (<code>LOCATABLE</code>, and <code>RECORD_COMPONENT</code> respectively). Defining it here has the effect in tools that the class tree under which archetypes are arranged contains only RM classes inheriting from this class, e.g. <code>LOCATABLE</code> classes in the case of openEHR. If nothing is set here, all classes in the RM are assumed as candidates for archetypes.</p>
+</div>
+<div class="paragraph">
+<p>This attribute, if defined, must be defined in the same schema that defines the referenced class.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_archetype_data_value_parent_class"><a class="anchor" href="#_archetype_data_value_parent_class"></a>10.6.2. archetype_data_value_parent_class</h4>
+<div class="paragraph">
+<p>The <code>archetype_data_value_parent_class</code> attribute defines a base class from the Reference Model whose descendants are considered to be 'logical data types' (i.e. of some higher level than the built-in primitive types <code>String</code>, <code>Integer</code> etc). This attribute is optional, even if the RM does have such a class, and is only used to help tooling provide more intelligent display, e.g. in statistical reports.</p>
+</div>
+<div class="paragraph">
+<p>This attribute, if defined, must be defined in the same schema that defines the referenced class.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_archetype_visualise_descendants_of"><a class="anchor" href="#_archetype_visualise_descendants_of"></a>10.6.3. archetype_visualise_descendants_of</h4>
+<div class="paragraph">
+<p>If <code>archetype_parent_class</code> is not set, designate a class whose descendants should be made visible in tree and grid renderings of the archetype definition. For openEHR and CEN this class is normally the same as the <code>archetype_parent_class</code>, i.e. <code>LOCATABLE</code> and <code>RECORD_COMPONENT</code> respectively. It is typically set for CEN, because <code>archetype_parent_class</code> may not be stated, due to demographic types not inheriting from it.</p>
+</div>
+<div class="paragraph">
+<p>The effect of this attribute in visualisation is to generate the most natural tree or grid-based view of an archetype definition, from the semantic viewpoint.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_archetype_namespace"><a class="anchor" href="#_archetype_namespace"></a>10.6.4. archetype_namespace</h4>
+<div class="paragraph">
+<p>The attribute <code>archetype_namespace</code> defines the package or packages that are considered the archetyping namespace used in archetype multi-axial ids. For example, in openEHR, an archetype is identified by an id of the form:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>  openEHR-EHR-OBSERVATION.some_obs.vN</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The 'EHR' in the above is an 'RM package closure', i.e. the name of an RM package whose class closure by reachability provides the set of classes that may be archetyped in the 'EHR' namespace. The reason for this is somewhat subtle: consider that if you want archetypes based on classes defined directly within a package P, and you also define these archetypes that re-use other archetypes based on more basic types like openEHR&#8217;s <code>CLUSTER</code> or similar (typically not defined in the head package), then you will inevitably have archetypes based on <code>CLUSTER</code> only for use with EHR archetypes e.g. archetypes based on <code>OBSERVATION</code>. However, you may well create archetypes based on <code>CLUSTER</code> only for use with e.g. top-level archetypes from the demographic package. The archetype_namespace setting is used to define the root id namespaces  for archetypes, allowing low-level archetypes to be designated for use with one or other high-level archetype. E.g. <code>openEHR-EHR-CLUSTER.bp_position.v1</code> would be used only with <code>openEHR-EHR-OBSERVATION.bp_measurement.vX</code>, or similar, and most likely not with any <code>openEHR-DEMOGRAPHIC-XXXX.yyyy.vN</code> archetype. Note that in openEHR, there is nothing to prevent such cross-namespace reuse - it is just a design guideline.</p>
+</div>
+<div class="paragraph">
+<p>This attribute, must be defined in the same schema that defines the referenced package(s).</p>
+</div>
 </div>
 </div>
 </div>
@@ -7648,7 +7725,7 @@ Hash of keys ("text", "description" etc) and corresponding values.</p>
 <p><a id="rfc_2396"></a>[rfc_2396] Berners-Lee T. <strong>Universal Resource Identifiers in WWW</strong>. Available at <a href="http://www.ietf.org/rfc/rfc2396.txt" class="bare">http://www.ietf.org/rfc/rfc2396.txt</a>. This is a World-Wide Web RFC for global identification of resources. In current use on the web, e.g. by Mosaic, Netscape and similar tools. See <a href="http://www.w3.org/Addressing" class="bare">http://www.w3.org/Addressing</a> for a starting point on URIs.</p>
 </li>
 <li>
-<p><a id="rfc_2440"></a>[rfc_2440] <strong>RFC 2440: OpenPGP Message Format</strong>. See <a href="http://www.ietf.org/rfc/rfc2440.txt" class="bare">http://www.ietf.org/rfc/rfc2440.txt</a> and <a href="http://www.ietf.org/internet-drafts/draft-ietf-openpgp-rfc2440bis-18.txt" class="bare">http://www.ietf.org/internet-drafts/draft-ietf-openpgp-rfc2440bis-18.txt</a></p>
+<p><a id="rfc_4880"></a>[rfc_4880] <strong>RFC 4880: OpenPGP Message Format</strong>. See <a href="http://www.ietf.org/rfc/rfc4880" class="bare">http://www.ietf.org/rfc/rfc4880</a> .</p>
 </li>
 <li>
 <p><a id="rfc_3986"></a>[rfc_3986] <strong>RFC 3986: Uniform Resource Identifier (URI): Generic Syntax</strong>. IETF. See <a href="http://www.ietf.org/rfc/rfc3986.txt" class="bare">http://www.ietf.org/rfc/rfc3986.txt</a> .</p>
