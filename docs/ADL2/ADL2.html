@@ -2074,7 +2074,7 @@ the structure, as shown in the following example:</p>
 <p>A <strong>cardinality constraint</strong> must be used after any Reference Model container attribute name (or after its existence constraint, if there is one) in order to designate it as a container attribute. Additionally, it may constrain the number of member items it may have in the data, and whether it has "list", "set", or "bag" semantics, via the use of the keywords 'ordered', 'unordered', 'unique' and 'non-unique'.</p>
 </div>
 <div class="paragraph">
-<p>The numeric part of the cardinality contraint can take the values <code>{0}</code>, <code>{0..0}</code>, <code>{0..n}</code>, <code>{m..n}</code>, <code>{0..<strong>}</code>, or <code>{</strong>}</code>, or a syntactic equivalent. The first two of these constraints are unlikely to be useful, but there is no reason to prevent them. There is no default cardinality, since if none is shown, the relevant attribute is assumed to be single-valued (in the interests of uniformity in archetypes, this holds even for smarter parsers that can access the reference model and determine that the attribute is in fact a container).</p>
+<p>The numeric part of the cardinality contraint can take the values <code>{0}</code>, <code>{0..0}</code>, <code>{0..n}</code>, <code>{m..n}</code>, <code>{0..*}</code>, or <code>{*}</code>, or a syntactic equivalent. The first two of these constraints are unlikely to be useful, but there is no reason to prevent them. There is no default cardinality, since if none is shown, the relevant attribute is assumed to be single-valued (in the interests of uniformity in archetypes, this holds even for smarter parsers that can access the reference model and determine that the attribute is in fact a container).</p>
 </div>
 <div class="paragraph">
 <p>Cardinality and existence constraints can co-occur, in order to indicate various combinations on a container type property, e.g. that it is optional, but if present, is a container that may be empty, as in the following:</p>
@@ -2163,7 +2163,7 @@ the structure, as shown in the following example:</p>
 </div>
 </div>
 <div class="paragraph">
-<p>The first <code>occurrences</code> constraint indicates that a <code>PERSON</code> with the title <code>"head"</code> is mandatory in the <code>GROUP</code> , while the second indicates that at runtime, instances of <code>PERSON</code> with the title <code>"member"</code> can number from none to many. Occurrences may take the value of any range including <code>{0..<strong>}</code>, meaning that any number of instances of the given type may appear in data, each conforming to the one constraint block in the archetype. A single positive integer, or the infinity indicator, may also be used on its own, thus: <code>{2}</code> , <code>{</strong>}</code> . A range of <code>{0..0}</code> or <code>{0}</code> indicates that no occurrences of this object are allowed in this archetype. If no occurrences constraint is stated, the occurrences of the object is define by the underlying reference model.</p>
+<p>The first <code>occurrences</code> constraint indicates that a <code>PERSON</code> with the title <code>"head"</code> is mandatory in the <code>GROUP</code> , while the second indicates that at runtime, instances of <code>PERSON</code> with the title <code>"member"</code> can number from none to many. Occurrences may take the value of any range including <code>{0..*}</code>, meaning that any number of instances of the given type may appear in data, each conforming to the one constraint block in the archetype. A single positive integer, or the infinity indicator, may also be used on its own, thus: <code>{2}</code> , <code>{*}</code> . A range of <code>{0..0}</code> or <code>{0}</code> indicates that no occurrences of this object are allowed in this archetype. If no occurrences constraint is stated, the occurrences of the object is define by the underlying reference model.</p>
 </div>
 <div class="paragraph principle">
 <p>An <strong>occurrences constraint</strong> may appear directly after the type name of any object constraint within a container attribute, in order to indicate how many times data objects conforming to the block may occur in the data.</p>
@@ -2178,7 +2178,7 @@ the structure, as shown in the following example:</p>
 <div class="ulist">
 <ul>
 <li>
-<p>any child object with either stated occurrences with an open upper bound (typically <code>0..<strong></code> or <code>1..</strong></code>) or else inferred occurrences (<code>0..*</code>) is legal, since the occurrences open upper bound is interpreted to mean the maximum value allowed by the cardinality upper bound.</p>
+<p>any child object with either stated occurrences with an open upper bound (typically <code>0..*</code> or <code>1..*</code>) or else inferred occurrences (<code>0..*</code>) is legal, since the occurrences open upper bound is interpreted to mean the maximum value allowed by the cardinality upper bound.</p>
 </li>
 <li>
 <p>the sum of all child object occurrences lower bounds must be less than the cardinality upper bound;</p>
@@ -9186,7 +9186,7 @@ Note that in the above, the '/' is used to denote '/protocol' as a differential 
 <p><a id="rfc_2396"></a>[rfc_2396] Berners-Lee T. <strong>Universal Resource Identifiers in WWW</strong>. Available at <a href="http://www.ietf.org/rfc/rfc2396.txt" class="bare">http://www.ietf.org/rfc/rfc2396.txt</a>. This is a World-Wide Web RFC for global identification of resources. In current use on the web, e.g. by Mosaic, Netscape and similar tools. See <a href="http://www.w3.org/Addressing" class="bare">http://www.w3.org/Addressing</a> for a starting point on URIs.</p>
 </li>
 <li>
-<p><a id="rfc_2440"></a>[rfc_2440] <strong>RFC 2440: OpenPGP Message Format</strong>. See <a href="http://www.ietf.org/rfc/rfc2440.txt" class="bare">http://www.ietf.org/rfc/rfc2440.txt</a> and <a href="http://www.ietf.org/internet-drafts/draft-ietf-openpgp-rfc2440bis-18.txt" class="bare">http://www.ietf.org/internet-drafts/draft-ietf-openpgp-rfc2440bis-18.txt</a></p>
+<p><a id="rfc_4880"></a>[rfc_4880] <strong>RFC 4880: OpenPGP Message Format</strong>. See <a href="http://www.ietf.org/rfc/rfc4880" class="bare">http://www.ietf.org/rfc/rfc4880</a> .</p>
 </li>
 <li>
 <p><a id="rfc_3986"></a>[rfc_3986] <strong>RFC 3986: Uniform Resource Identifier (URI): Generic Syntax</strong>. IETF. See <a href="http://www.ietf.org/rfc/rfc3986.txt" class="bare">http://www.ietf.org/rfc/rfc3986.txt</a> .</p>

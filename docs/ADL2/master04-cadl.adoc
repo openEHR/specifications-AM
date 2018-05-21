@@ -310,7 +310,7 @@ In theory, no cardinality constraint can be stronger than the semantics of the c
 [.principle]
 A *cardinality constraint* must be used after any Reference Model container attribute name (or after its existence constraint, if there is one) in order to designate it as a container attribute. Additionally, it may constrain the number of member items it may have in the data, and whether it has "list", "set", or "bag" semantics, via the use of the keywords 'ordered', 'unordered', 'unique' and 'non-unique'.
 
-The numeric part of the cardinality contraint can take the values `{0}`, `{0..0}`, `{0..n}`, `{m..n}`, `{0..*}`, or `{*}`, or a syntactic equivalent. The first two of these constraints are unlikely to be useful, but there is no reason to prevent them. There is no default cardinality, since if none is shown, the relevant attribute is assumed to be single-valued (in the interests of uniformity in archetypes, this holds even for smarter parsers that can access the reference model and determine that the attribute is in fact a container).
+The numeric part of the cardinality contraint can take the values `{0}`, `{0..0}`, `{0..n}`, `{m..n}`, `{0..\*}`, or `{*}`, or a syntactic equivalent. The first two of these constraints are unlikely to be useful, but there is no reason to prevent them. There is no default cardinality, since if none is shown, the relevant attribute is assumed to be single-valued (in the interests of uniformity in archetypes, this holds even for smarter parsers that can access the reference model and determine that the attribute is in fact a container).
 
 Cardinality and existence constraints can co-occur, in order to indicate various combinations on a container type property, e.g. that it is optional, but if present, is a container that may be empty, as in the following:
 
@@ -375,7 +375,7 @@ The following example expresses a constraint on instances of `GROUP` such that f
     }
 --------
 
-The first `occurrences` constraint indicates that a `PERSON` with the title `"head"` is mandatory in the `GROUP` , while the second indicates that at runtime, instances of `PERSON` with the title `"member"` can number from none to many. Occurrences may take the value of any range including `{0..*}`, meaning that any number of instances of the given type may appear in data, each conforming to the one constraint block in the archetype. A single positive integer, or the infinity indicator, may also be used on its own, thus: `{2}` , `{*}` . A range of `{0..0}` or `{0}` indicates that no occurrences of this object are allowed in this archetype. If no occurrences constraint is stated, the occurrences of the object is define by the underlying reference model.
+The first `occurrences` constraint indicates that a `PERSON` with the title `"head"` is mandatory in the `GROUP` , while the second indicates that at runtime, instances of `PERSON` with the title `"member"` can number from none to many. Occurrences may take the value of any range including `{0..\*}`, meaning that any number of instances of the given type may appear in data, each conforming to the one constraint block in the archetype. A single positive integer, or the infinity indicator, may also be used on its own, thus: `{2}` , `{*}` . A range of `{0..0}` or `{0}` indicates that no occurrences of this object are allowed in this archetype. If no occurrences constraint is stated, the occurrences of the object is define by the underlying reference model.
 
 [.principle]
 An *occurrences constraint* may appear directly after the type name of any object constraint within a container attribute, in order to indicate how many times data objects conforming to the block may occur in the data.
@@ -383,7 +383,7 @@ An *occurrences constraint* may appear directly after the type name of any objec
 Where cardinality constraints are used (remembering that occurrences is always there by default, if not explicitly specified), cardinality and occurrences must always be compatible. The rules for this are formally stated in the Archetype Object Model specification. The key elements of these rules are as follows:
 
 * where a cardinality constraint is stated with a finite upper bound:
-** any child object with either stated occurrences with an open upper bound (typically `0..*` or `1..*`) or else inferred occurrences (`0..*`) is legal, since the occurrences open upper bound is interpreted to mean the maximum value allowed by the cardinality upper bound.
+** any child object with either stated occurrences with an open upper bound (typically `0..\*` or `1..*`) or else inferred occurrences (`0..*`) is legal, since the occurrences open upper bound is interpreted to mean the maximum value allowed by the cardinality upper bound.
 ** the sum of all child object occurrences lower bounds must be less than the cardinality upper bound;
 * no 'orphans': at least instance of one optional child object (occurrences lower bound = 0), and one instance of every mandatory child object (occurrences lower bound > 0) must be includable within the cardinality range.
 
