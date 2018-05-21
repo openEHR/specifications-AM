@@ -247,9 +247,15 @@
 <tbody>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a id="latest_issue"></a>0.7.7</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://openehr.atlassian.net/browse/SPECAM-52">SPECAM-52</a>Improve explanation of version number progression in section 4.2; correct version identifier grammar (addresses <a href="https://openehr.atlassian.net/browse/SPECPR-254">SPECPR-254</a>).</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">E Sundvall</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a id="latest_issue_date"></a>13 Feb 2018</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Correct formatting, re-instate Archetype model diagram at start of section 3.</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">T Beale</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a id="latest_issue_date"></a>28 Jan 2018</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">28 Jan 2018</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">0.7.6</p></td>
@@ -262,13 +268,13 @@
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">0.7.5</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Replace '-unstable' with '-alpha' to be compatible with typical tools.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Replace <code>'-unstable'</code> with <code>'-alpha'</code> to be compatible with typical tools.</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">I McNicoll</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">01 Feb 2015</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">0.7.4</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Replace '+uNNN' with '-unstable'; simplify the number after 'rc' to an integer build count.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Replace <code>'+uNNN'</code> with <code>'-unstable'</code>; simplify the number after <code>'rc'</code> to an integer build count.</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">S Garde,<br>
  I McNicoll,<br>
  H Leslie</p></td>
@@ -283,7 +289,7 @@
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">0.7.2</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Change <code>ARCHEYTPE_HRID</code>.<code><em>commit_number</em></code> to <code><em>build_count</em></code>. Build_count reset to 1 on each version change. Adjust diagrams and explanations.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Change <code>ARCHEYTPE_HRID.<em>commit_number</em></code> to <code><em>build_count</em></code>. Build_count reset to 1 on each version change. Adjust diagrams and explanations.</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">S Garde<br>
  I McNicoll<br>
  T Beale</p></td>
@@ -343,7 +349,7 @@
 <div class="ulist">
 <ul>
 <li>
-<p>Thomas Beale, Ocean Informatics UK; openEHR Foundation Management Board</p>
+<p>Thomas Beale, Ars Semantica, UK; openEHR Foundation Management Board</p>
 </li>
 </ul>
 </div>
@@ -370,6 +376,9 @@
 <li>
 <p>David Moner PhD, Universitat Politècnica de València, Spain</p>
 </li>
+<li>
+<p>Erik Sundvall PhD, Linkoping University, Sweden</p>
+</li>
 </ul>
 </div>
 </div>
@@ -394,7 +403,10 @@
 <div class="ulist">
 <ul>
 <li>
-<p>Ocean Informatics.</p>
+<p>Marand d.o.o, Slovenia</p>
+</li>
+<li>
+<p>Ocean Informatics, UK</p>
 </li>
 </ul>
 </div>
@@ -948,16 +960,16 @@ the word 'archetype' as used in this specification means: any formal artefact wr
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="pygments highlight"><code data-lang="ebnf">    <span class="tok-k">version_id          </span><span class="tok-o">=</span>   <span class="tok-k">release_version </span><span class="tok-p">[</span> <span class="tok-k">extension </span><span class="tok-p">]</span> <span class="tok-p">;</span>
-    <span class="tok-k">release_version     </span><span class="tok-o">=</span>   <span class="tok-k">major_version </span><span class="tok-s1">&#39;.&#39;</span> <span class="tok-k">minor_version </span><span class="tok-s1">&#39;.&#39;</span> <span class="tok-k">patch_version </span><span class="tok-p">;</span>
-    <span class="tok-k">major_version       </span><span class="tok-o">=</span>   <span class="tok-p">{</span> <span class="tok-k">V_NUMBER </span><span class="tok-p">}</span> <span class="tok-p">;</span>
-    <span class="tok-k">minor_version       </span><span class="tok-o">=</span>   <span class="tok-p">{</span> <span class="tok-k">V_NUMBER </span><span class="tok-p">}</span> <span class="tok-p">;</span>
-    <span class="tok-k">patch_version       </span><span class="tok-o">=</span>   <span class="tok-p">{</span> <span class="tok-k">V_NUMBER </span><span class="tok-p">}</span> <span class="tok-p">;</span>
-    <span class="tok-k">extension           </span><span class="tok-o">=</span>   <span class="tok-k">version_modifier instance_uid_slice </span><span class="tok-p">;</span>
-    <span class="tok-k">version_modifier    </span><span class="tok-o">=</span>   <span class="tok-s1">&#39;-rc&#39;</span> <span class="tok-p">|</span> <span class="tok-s1">&#39;-alpha&#39;</span> <span class="tok-p">;</span>
-    <span class="tok-k">instance_uid_slice  </span><span class="tok-o">=</span>   <span class="tok-k">V_UID_DIGIT V_UID_DIGIT V_UID_DIGIT V_UID_DIGIT V_UID_DIGIT </span><span class="tok-p">{</span> <span class="tok-k">V_UID_DIGIT </span><span class="tok-p">}</span> <span class="tok-p">;</span> <span class="tok-cm">(* 5 or more digits from instance_uid *)</span>
-    <span class="tok-k">V_NUMBER            </span><span class="tok-o">=</span>   <span class="tok-s1">&#39;0&#39;</span> <span class="tok-p">|</span> <span class="tok-s1">&#39;1&#39;</span> <span class="tok-p">|</span> <span class="tok-s1">&#39;2&#39;</span> <span class="tok-p">|</span> <span class="tok-s1">&#39;3&#39;</span> <span class="tok-p">|</span> <span class="tok-s1">&#39;4&#39;</span> <span class="tok-p">|</span> <span class="tok-s1">&#39;5&#39;</span> <span class="tok-p">|</span> <span class="tok-s1">&#39;6&#39;</span> <span class="tok-p">|</span> <span class="tok-s1">&#39;7&#39;</span> <span class="tok-p">|</span> <span class="tok-s1">&#39;8&#39;</span> <span class="tok-p">|</span> <span class="tok-s1">&#39;9&#39;</span> <span class="tok-p">;</span>
-    <span class="tok-k">V_UID_DIGIT         </span><span class="tok-o">=</span>   <span class="tok-k">V_NUMBER </span><span class="tok-p">|</span> <span class="tok-s1">&#39;a&#39;</span> <span class="tok-p">|</span> <span class="tok-s1">&#39;b&#39;</span> <span class="tok-p">|</span> <span class="tok-s1">&#39;c&#39;</span> <span class="tok-p">|</span> <span class="tok-s1">&#39;d&#39;</span> <span class="tok-p">|</span> <span class="tok-s1">&#39;e&#39;</span> <span class="tok-p">|</span> <span class="tok-s1">&#39;f&#39;</span> <span class="tok-p">|</span> <span class="tok-s1">&#39;A&#39;</span> <span class="tok-p">|</span> <span class="tok-s1">&#39;B&#39;</span> <span class="tok-p">|</span> <span class="tok-s1">&#39;C&#39;</span> <span class="tok-p">|</span> <span class="tok-s1">&#39;D&#39;</span> <span class="tok-p">|</span> <span class="tok-s1">&#39;E&#39;</span> <span class="tok-p">|</span> <span class="tok-s1">&#39;F&#39;</span> <span class="tok-p">;</span></code></pre>
+<pre class="pygments highlight"><code data-lang="ebnf">    <span class="tok-k">version_id        </span><span class="tok-o">=</span>   <span class="tok-k">release_version </span><span class="tok-p">[</span> <span class="tok-k">extension </span><span class="tok-p">]</span> <span class="tok-p">;</span>
+    <span class="tok-k">release_version   </span><span class="tok-o">=</span>   <span class="tok-k">major_version </span><span class="tok-s1">&#39;.&#39;</span> <span class="tok-k">minor_version </span><span class="tok-s1">&#39;.&#39;</span> <span class="tok-k">patch_version </span><span class="tok-p">;</span>
+    <span class="tok-k">major_version     </span><span class="tok-o">=</span>   <span class="tok-p">{</span> <span class="tok-k">V_NUMBER </span><span class="tok-p">}</span> <span class="tok-p">;</span>
+    <span class="tok-k">minor_version     </span><span class="tok-o">=</span>   <span class="tok-p">{</span> <span class="tok-k">V_NUMBER </span><span class="tok-p">}</span> <span class="tok-p">;</span>
+    <span class="tok-k">patch_version     </span><span class="tok-o">=</span>   <span class="tok-p">{</span> <span class="tok-k">V_NUMBER </span><span class="tok-p">}</span> <span class="tok-p">;</span>
+    <span class="tok-k">extension         </span><span class="tok-o">=</span>   <span class="tok-k">version_modifier </span><span class="tok-s1">&#39;.&#39;</span> <span class="tok-k">issue_number </span><span class="tok-p">;</span>
+    <span class="tok-k">version_modifier  </span><span class="tok-o">=</span>   <span class="tok-s1">&#39;-rc&#39;</span> <span class="tok-p">|</span> <span class="tok-s1">&#39;-alpha&#39;</span> <span class="tok-p">;</span>
+    <span class="tok-k">issue_number      </span><span class="tok-o">=</span>   <span class="tok-k">V_NUMBER </span><span class="tok-p">;</span>
+    <span class="tok-k">V_NUMBER          </span><span class="tok-o">=</span>   <span class="tok-p">{</span> <span class="tok-k">V_DIGIT </span><span class="tok-p">}</span><span class="tok-err">+</span> <span class="tok-p">;</span>
+    <span class="tok-k">V_DIGIT           </span><span class="tok-o">=</span>   <span class="tok-s1">&#39;0&#39;</span> <span class="tok-p">|</span> <span class="tok-s1">&#39;1&#39;</span> <span class="tok-p">|</span> <span class="tok-s1">&#39;2&#39;</span> <span class="tok-p">|</span> <span class="tok-s1">&#39;3&#39;</span> <span class="tok-p">|</span> <span class="tok-s1">&#39;4&#39;</span> <span class="tok-p">|</span> <span class="tok-s1">&#39;5&#39;</span> <span class="tok-p">|</span> <span class="tok-s1">&#39;6&#39;</span> <span class="tok-p">|</span> <span class="tok-s1">&#39;7&#39;</span> <span class="tok-p">|</span> <span class="tok-s1">&#39;8&#39;</span> <span class="tok-p">|</span> <span class="tok-s1">&#39;9&#39;</span> <span class="tok-p">;</span></code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -965,9 +977,9 @@ the word 'archetype' as used in this specification means: any formal artefact wr
 </div>
 <div class="listingblock">
 <div class="content">
-<pre>    1.3.5
-    1.3.5-rc.3          # release candidate for version 1.3.5, build id 3
-    1.3.5-alpha         # alpha development version based on version 1.3.5</pre>
+<pre>    1.3.5-alpha         # alpha development version based on version 1.3.4
+    1.3.5-rc.3          # release candidate for version 1.3.5, issue 3
+    1.3.5               # release 1.3.5</pre>
 </div>
 </div>
 <div class="paragraph">
@@ -987,13 +999,13 @@ the word 'archetype' as used in this specification means: any formal artefact wr
 <p>More specific rules relating to specific lifecycle states are described below.</p>
 </div>
 <div class="paragraph">
-<p>Two 'variant' versions are defined in the above syntax: 'release candidate' and 'alpha'. The first is a standard software classification, syntactically indicated with the tag <code>rc</code>. Version numbers including <code>rc</code> are always of the form <code>M.N.P-rc.B</code>, e.g. <code>1.3.5-rc.1</code>, where the minus sign (<code>-</code>) is understood as indicating a version that is 'less than' the target version <code>1.3.5</code>, i.e. <code>1.3.5-rc.1</code> is an interim version leading to the stable version 1.3.5.</p>
+<p>Two 'variant' versions are defined in the above syntax: 'release candidate' and 'alpha'. The first is a standard software classification, syntactically indicated with the tag <code>rc</code>. Version numbers including <code>rc</code> are always of the form <code>M.N.P-rc.B</code>, e.g. <code>1.3.5-rc.1</code>, where the minus sign (<code>-</code>) is understood as indicating a version that is 'prior to' the target version <code>1.3.5</code>, i.e. <code>1.3.5-rc.1</code> is an interim version leading to the stable version <code>1.3.5</code>.</p>
 </div>
 <div class="paragraph">
-<p>The other variant is indicated with the modifier <code>-alpha</code>, where <code>-</code> indicates a version 'before' the version identified by the preceding numeric identifier, and <code>alpha</code> indicates an 'alpha' development version. The magnitude of the differences a <code>-alpha</code> version are indicated by the difference between the 3-part version identifiers of the current artefact and the previously published one on which it is based.</p>
+<p>The other variant is indicated with the modifier <code>-alpha</code>, where <code>-</code> has the same meaning as above (i.e. indicates a version prior to the version identified by the preceding numeric identifier), and <code>alpha</code> indicates an 'alpha' development version. The magnitude of the differences in a <code>-alpha</code> version are indicated by the difference between the 3-part version identifiers of the current artefact and the previously published one on which it is based.</p>
 </div>
 <div class="paragraph">
-<p>Note that only the major version forms part of the source artefact human-readable identifier. The intention of that is that a breaking change causes a new artefact from the point of view of deployment. This is analagous to breaking changes in software interfaces, web service defintions etc, being seen as a distinct entity, typically deployed alongside the old version.</p>
+<p>Note that only the major version forms part of the source artefact human-readable identifier. The intention of that is that a breaking change causes a new artefact from the point of view of deployment. This is analagous to breaking changes in software interfaces, web service defintions etc, being seen as a distinct entity, typically deployed alongside the previous version(s).</p>
 </div>
 </div>
 <div class="sect2">
@@ -2435,7 +2447,7 @@ is formed from the next version number that corresponds to the magnitude of the 
 <p><a id="rfc_2396"></a>[rfc_2396] Berners-Lee T. <strong>Universal Resource Identifiers in WWW</strong>. Available at <a href="http://www.ietf.org/rfc/rfc2396.txt" class="bare">http://www.ietf.org/rfc/rfc2396.txt</a>. This is a World-Wide Web RFC for global identification of resources. In current use on the web, e.g. by Mosaic, Netscape and similar tools. See <a href="http://www.w3.org/Addressing" class="bare">http://www.w3.org/Addressing</a> for a starting point on URIs.</p>
 </li>
 <li>
-<p><a id="rfc_2440"></a>[rfc_2440] <strong>RFC 2440: OpenPGP Message Format</strong>. See <a href="http://www.ietf.org/rfc/rfc2440.txt" class="bare">http://www.ietf.org/rfc/rfc2440.txt</a> and <a href="http://www.ietf.org/internet-drafts/draft-ietf-openpgp-rfc2440bis-18.txt" class="bare">http://www.ietf.org/internet-drafts/draft-ietf-openpgp-rfc2440bis-18.txt</a></p>
+<p><a id="rfc_4880"></a>[rfc_4880] <strong>RFC 4880: OpenPGP Message Format</strong>. See <a href="http://www.ietf.org/rfc/rfc4880" class="bare">http://www.ietf.org/rfc/rfc4880</a> .</p>
 </li>
 <li>
 <p><a id="rfc_3986"></a>[rfc_3986] <strong>RFC 3986: Uniform Resource Identifier (URI): Generic Syntax</strong>. IETF. See <a href="http://www.ietf.org/rfc/rfc3986.txt" class="bare">http://www.ietf.org/rfc/rfc3986.txt</a> .</p>
@@ -2473,7 +2485,7 @@ is formed from the next version number that corresponds to the magnitude of the 
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2017-11-29 23:53:28 GMT
+Last updated 2018-02-13 20:13:20 GMT
 </div>
 </div>
 </body>

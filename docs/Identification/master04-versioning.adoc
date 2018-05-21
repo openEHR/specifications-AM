@@ -35,24 +35,24 @@ Lexically, the version identifier is defined as follows:
 
 [source, ebnf]
 --------
-    version_id          =   release_version [ extension ] ;
-    release_version     =   major_version '.' minor_version '.' patch_version ;
-    major_version       =   { V_NUMBER } ;
-    minor_version       =   { V_NUMBER } ;
-    patch_version       =   { V_NUMBER } ;
-    extension           =   version_modifier instance_uid_slice ;
-    version_modifier    =   '-rc' | '-alpha' ;
-    instance_uid_slice  =   V_UID_DIGIT V_UID_DIGIT V_UID_DIGIT V_UID_DIGIT V_UID_DIGIT { V_UID_DIGIT } ; (* 5 or more digits from instance_uid *)
-    V_NUMBER            =   '0' | '1' | '2' | '3' | '4' | '5' | '6' | '7' | '8' | '9' ;
-    V_UID_DIGIT         =   V_NUMBER | 'a' | 'b' | 'c' | 'd' | 'e' | 'f' | 'A' | 'B' | 'C' | 'D' | 'E' | 'F' ;
+    version_id        =   release_version [ extension ] ;
+    release_version   =   major_version '.' minor_version '.' patch_version ;
+    major_version     =   { V_NUMBER } ;
+    minor_version     =   { V_NUMBER } ;
+    patch_version     =   { V_NUMBER } ;
+    extension         =   version_modifier '.' issue_number ;
+    version_modifier  =   '-rc' | '-alpha' ;
+    issue_number      =   V_NUMBER ;
+    V_NUMBER          =   { V_DIGIT }+ ;
+    V_DIGIT           =   '0' | '1' | '2' | '3' | '4' | '5' | '6' | '7' | '8' | '9' ;
 --------
 
 This leads to identifiers such as:
 
 --------
-    1.3.5           
-    1.3.5-rc.3          # release candidate for version 1.3.5, build id 3
-    1.3.5-alpha         # alpha development version based on version 1.3.5
+    1.3.5-alpha         # alpha development version based on version 1.3.4
+    1.3.5-rc.3          # release candidate for version 1.3.5, issue 3
+    1.3.5               # release 1.3.5
 --------
 
 The following general rules are required for using version identifiers.
@@ -62,11 +62,11 @@ The following general rules are required for using version identifiers.
 
 More specific rules relating to specific lifecycle states are described below.
 
-Two 'variant' versions are defined in the above syntax: 'release candidate' and 'alpha'. The first is a standard software classification, syntactically indicated with the tag `rc`. Version numbers including `rc` are always of the form `M.N.P-rc.B`, e.g. `1.3.5-rc.1`, where the minus sign (`-`) is understood as indicating a version that is 'less than' the target version `1.3.5`, i.e. `1.3.5-rc.1` is an interim version leading to the stable version 1.3.5.
+Two 'variant' versions are defined in the above syntax: 'release candidate' and 'alpha'. The first is a standard software classification, syntactically indicated with the tag `rc`. Version numbers including `rc` are always of the form `M.N.P-rc.B`, e.g. `1.3.5-rc.1`, where the minus sign (`-`) is understood as indicating a version that is 'prior to' the target version `1.3.5`, i.e. `1.3.5-rc.1` is an interim version leading to the stable version `1.3.5`.
 
-The other variant is indicated with the modifier `-alpha`, where `-` indicates a version 'before' the version identified by the preceding numeric identifier, and `alpha` indicates an 'alpha' development version. The magnitude of the differences a `-alpha` version are indicated by the difference between the 3-part version identifiers of the current artefact and the previously published one on which it is based.
+The other variant is indicated with the modifier `-alpha`, where `-` has the same meaning as above (i.e. indicates a version prior to the version identified by the preceding numeric identifier), and `alpha` indicates an 'alpha' development version. The magnitude of the differences in a `-alpha` version are indicated by the difference between the 3-part version identifiers of the current artefact and the previously published one on which it is based.
 
-Note that only the major version forms part of the source artefact human-readable identifier. The intention of that is that a breaking change causes a new artefact from the point of view of deployment. This is analagous to breaking changes in software interfaces, web service defintions etc, being seen as a distinct entity, typically deployed alongside the old version.
+Note that only the major version forms part of the source artefact human-readable identifier. The intention of that is that a breaking change causes a new artefact from the point of view of deployment. This is analagous to breaking changes in software interfaces, web service defintions etc, being seen as a distinct entity, typically deployed alongside the previous version(s).
 
 == Change Semantics
 
