@@ -512,9 +512,15 @@
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a id="latest_issue"></a>2.1.0</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://openehr.atlassian.net/browse/SPECAM-53">SPECAM-53</a>. Remove statement requiring node-id redefinition in case of occurrences redefinition (corrects <a href="https://openehr.atlassian.net/browse/SPECPR-269">SPECPR-269</a>)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">P Bos</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a id="latest_issue_date"></a>26 May 2018</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://openehr.atlassian.net/browse/SPECAM-50">SPECAM-50</a>. Improve documentation of ADL2 templates (section 10).</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">T Beale</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a id="latest_issue_date"></a>31 Jan 2018</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">31 Jan 2018</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"></td>
@@ -1009,6 +1015,9 @@
 </li>
 <li>
 <p>Tony Austin PhD, Centre for Health Informatics and Multi-professional Education (CHIME), UCL, UK</p>
+</li>
+<li>
+<p>Pieter Bos, Software Engineer, Nedap, Netherlands</p>
 </li>
 <li>
 <p>Eric Browne PhD, HealthBase Australia</p>
@@ -6742,7 +6751,7 @@ Note that in the above, the '/' is used to denote '/protocol' as a differential 
 <div class="sect3">
 <h4 id="_occurrences_redefinition_and_exclusion"><a class="anchor" href="#_occurrences_redefinition_and_exclusion"></a>9.5.2. Occurrences Redefinition and Exclusion</h4>
 <div class="paragraph">
-<p>The <code>occurrences</code> constraint on an object node indicates how many instances within the data may conform to that constraint (see <a href="#_container_attributes">Container Attributes</a>). If occurrences is redefined on an identified node, the node identifier must be specialised. Within container attributes, <code>occurrences</code> is usually redefined in order to make a given object mandatory rather than optional; it can also be used to exclude an object constraint. In the following example, the occurrences of the <code>id3</code> node is redefined from <code>{0..1}</code> i.e. optional, to <code>{1}</code> , i.e. mandatory.</p>
+<p>The <code>occurrences</code> constraint on an object node indicates how many instances within the data may conform to that constraint (see <a href="#_container_attributes">Container Attributes</a>). Within container attributes, <code>occurrences</code> is usually redefined in order to make a given object mandatory rather than optional; it can also be used to exclude an object constraint. In the following example, the occurrences of the <code>id4</code> node is redefined from <code>{0..1}</code> i.e. optional, to <code>{1}</code> , i.e. mandatory.</p>
 </div>
 <div class="paragraph">
 <p>Parent (<code>openEHR-EHR-EVALUATION.problem.v1.0.3</code>):</p>
@@ -6818,7 +6827,7 @@ Note that in the above, the '/' is used to denote '/protocol' as a differential 
 <div class="sect3">
 <h4 id="_single_and_multiple_specialisation_when_does_cloning_occur"><a class="anchor" href="#_single_and_multiple_specialisation_when_does_cloning_occur"></a>9.5.3. Single and Multiple Specialisation - When does Cloning Occur?</h4>
 <div class="paragraph">
-<p>In the <a href="#_examples">examples shown above</a> there are two types of redefinition occurring. The first shows a single node in the parent archetype redefined by a single node, both identified by <code>[id4]</code>. The second shows a single node in the parent redefined by multiple children. In the first example, the result of flattening is <em>in-place overlaying</em>, while in the second, it is <em>cloning with overlaying</em>. The consequence of the second type of redefinition is that the original parent node survives in its original form in the child archetype, whereas in the first, it is replaced. The reasoning behind this is that redefinition to multiple children is taken to mean that later redefinition to multiple children may occur in deeper child archetypes, and for this to occur, the original parent needs to be left intact. Conversely, the single-parent / single-child redefinition is taken to mean a logical refinement of an existing node, which should therefore be logically replaced.</p>
+<p>In the <a href="#_examples">examples shown above</a> there are two types of redefinition occurring. The first shows a single node in the parent archetype redefined by a single node, both identified by <code>id4</code>. The second shows a single node in the parent redefined by multiple children. In the first example, the result of flattening is <em>in-place overlaying</em>, while in the second, it is <em>cloning with overlaying</em>. The consequence of the second type of redefinition is that the original parent node survives in its original form in the child archetype, whereas in the first, it is replaced. The reasoning behind this is that redefinition to multiple children is taken to mean that later redefinition to multiple children may occur in deeper child archetypes, and for this to occur, the original parent needs to be left intact. Conversely, the single-parent / single-child redefinition is taken to mean a logical refinement of an existing node, which should therefore be logically replaced.</p>
 </div>
 <div class="paragraph">
 <p>The formal rule for whether cloning occurs or not is as follows:</p>
@@ -9224,7 +9233,7 @@ Note that in the above, the '/' is used to denote '/protocol' as a differential 
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2018-01-07 16:31:42 GMT
+Last updated 2018-05-26 12:20:57 BST
 </div>
 </div>
 </body>

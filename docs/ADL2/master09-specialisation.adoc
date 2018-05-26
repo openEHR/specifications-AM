@@ -616,7 +616,7 @@ When a flat form is created, the level at which any given node was introduced or
 
 === Occurrences Redefinition and Exclusion
 
-The `occurrences` constraint on an object node indicates how many instances within the data may conform to that constraint (see <<Container Attributes>>). If occurrences is redefined on an identified node, the node identifier must be specialised. Within container attributes, `occurrences` is usually redefined in order to make a given object mandatory rather than optional; it can also be used to exclude an object constraint. In the following example, the occurrences of the `id3` node is redefined from `{0..1}` i.e. optional, to `{1}` , i.e. mandatory.
+The `occurrences` constraint on an object node indicates how many instances within the data may conform to that constraint (see <<Container Attributes>>). Within container attributes, `occurrences` is usually redefined in order to make a given object mandatory rather than optional; it can also be used to exclude an object constraint. In the following example, the occurrences of the `id4` node is redefined from `{0..1}` i.e. optional, to `{1}` , i.e. mandatory.
 
 Parent (`openEHR-EHR-EVALUATION.problem.v1.0.3`):
 
@@ -684,7 +684,7 @@ If the whole attribute is to be removed, this can be done by redefining existenc
 
 === Single and Multiple Specialisation - When does Cloning Occur?
 
-In the <<Examples,examples shown above>> there are two types of redefinition occurring. The first shows a single node in the parent archetype redefined by a single node, both identified by `[id4]`. The second shows a single node in the parent redefined by multiple children. In the first example, the result of flattening is _in-place overlaying_, while in the second, it is _cloning with overlaying_. The consequence of the second type of redefinition is that the original parent node survives in its original form in the child archetype, whereas in the first, it is replaced. The reasoning behind this is that redefinition to multiple children is taken to mean that later redefinition to multiple children may occur in deeper child archetypes, and for this to occur, the original parent needs to be left intact. Conversely, the single-parent / single-child redefinition is taken to mean a logical refinement of an existing node, which should therefore be logically replaced.
+In the <<Examples,examples shown above>> there are two types of redefinition occurring. The first shows a single node in the parent archetype redefined by a single node, both identified by `id4`. The second shows a single node in the parent redefined by multiple children. In the first example, the result of flattening is _in-place overlaying_, while in the second, it is _cloning with overlaying_. The consequence of the second type of redefinition is that the original parent node survives in its original form in the child archetype, whereas in the first, it is replaced. The reasoning behind this is that redefinition to multiple children is taken to mean that later redefinition to multiple children may occur in deeper child archetypes, and for this to occur, the original parent needs to be left intact. Conversely, the single-parent / single-child redefinition is taken to mean a logical refinement of an existing node, which should therefore be logically replaced.
 
 The formal rule for whether cloning occurs or not is as follows:
 
