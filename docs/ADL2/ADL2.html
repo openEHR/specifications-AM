@@ -512,9 +512,15 @@
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a id="latest_issue"></a>2.1.0</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://openehr.atlassian.net/browse/SPECAM-56">SPECAM-56</a>. Correct ordering in flattening example in section 9.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">P Bos</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a id="latest_issue_date"></a>24 Aug 2018</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://openehr.atlassian.net/browse/SPECAM-53">SPECAM-53</a>. Remove statement requiring node-id redefinition in case of occurrences redefinition (corrects <a href="https://openehr.atlassian.net/browse/SPECPR-269">SPECPR-269</a>)</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">P Bos</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a id="latest_issue_date"></a>26 May 2018</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">26 May 2018</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"></td>
@@ -6369,11 +6375,11 @@ it is quite common that only <em>some</em> of the local at-codes have equivalent
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="pygments highlight"><code data-lang="cadl">    <span class="tok-nc">CLUSTER</span><span class="tok-p">[</span><span class="tok-nd">id1.1</span><span class="tok-p">]</span> <span class="tok-o">∈</span> <span class="tok-p">{</span>                                 <span class="tok-c">-- Lipid studies panel</span>
+<pre class="pygments highlight"><code data-lang="cadl">    <span class="tok-nc">CLUSTER</span><span class="tok-p">[</span><span class="tok-nd">id1.1</span><span class="tok-p">]</span> <span class="tok-o">∈</span> <span class="tok-p">{</span>    <span class="tok-c">-- Lipid studies panel</span>
         <span class="tok-p">/</span><span class="tok-nc">items</span><span class="tok-p"> </span><span class="tok-o">∈</span> <span class="tok-p">{</span>
-            <span class="tok-nc">CLUSTER</span><span class="tok-p">[</span><span class="tok-nd">id3.1</span><span class="tok-p">]</span> <span class="tok-o">∈</span> <span class="tok-p">{</span>                         <span class="tok-c">-- LDL</span>
+            <span class="tok-nc">CLUSTER</span><span class="tok-p">[</span><span class="tok-nd">id3.1</span><span class="tok-p">]</span> <span class="tok-o">∈</span> <span class="tok-p">{</span>    <span class="tok-c">-- LDL Cholesterol Result</span>
                 <span class="tok-nc">items</span> <span class="tok-o">∈</span> <span class="tok-p">{</span>
-                    <span class="tok-nc">ELEMENT</span><span class="tok-p">[</span><span class="tok-nd">id2.1</span><span class="tok-p">]</span> <span class="tok-o">∈</span> <span class="tok-p">{</span>
+                    <span class="tok-nc">ELEMENT</span><span class="tok-p">[</span><span class="tok-nd">id2.1</span><span class="tok-p">]</span> <span class="tok-o">∈</span> <span class="tok-p">{</span>    <span class="tok-c">-- LDL Cholesterol</span>
                         <span class="tok-nc">value</span> <span class="tok-o">∈</span> <span class="tok-p">{</span>
                             <span class="tok-nc">DV_QUANTITY</span><span class="tok-p">[</span><span class="tok-nd">id0.1</span><span class="tok-p">]</span> <span class="tok-o">∈</span> <span class="tok-p">{</span>
                                 <span class="tok-nc">property</span> <span class="tok-o">∈</span> <span class="tok-p">{[</span><span class="tok-nd">at0.1</span><span class="tok-p">]}</span>
@@ -6384,10 +6390,10 @@ it is quite common that only <em>some</em> of the local at-codes have equivalent
                     <span class="tok-p">}</span>
                 <span class="tok-p">}</span>
             <span class="tok-p">}</span>
-            <span class="tok-nc">CLUSTER</span><span class="tok-p">[</span><span class="tok-nd">id3.2</span><span class="tok-p">]</span> <span class="tok-o">∈</span> <span class="tok-p">{</span>                         <span class="tok-c">-- HDL</span>
+            <span class="tok-nc">CLUSTER</span><span class="tok-p">[</span><span class="tok-nd">id3.2</span><span class="tok-p">]</span> <span class="tok-o">∈</span> <span class="tok-p">{</span>    <span class="tok-c">-- HDL Cholesterol Result</span>
                 <span class="tok-nc">items</span> <span class="tok-o">∈</span> <span class="tok-p">{</span>
-                    <span class="tok-nc">ELEMENT</span><span class="tok-p">[</span><span class="tok-nd">id2.2</span><span class="tok-p">]</span> <span class="tok-o">∈</span> <span class="tok-p">{</span>
-                        <span class="tok-nc">value</span> <span class="tok-o">matches </span><span class="tok-p">{</span>
+                    <span class="tok-nc">ELEMENT</span><span class="tok-p">[</span><span class="tok-nd">id2.2</span><span class="tok-p">]</span> <span class="tok-o">∈</span> <span class="tok-p">{</span>    <span class="tok-c">-- HDL Cholesterol</span>
+                        <span class="tok-nc">value</span> <span class="tok-o">∈</span> <span class="tok-p">{</span>
                             <span class="tok-nc">DV_QUANTITY</span><span class="tok-p">[</span><span class="tok-nd">id0.2</span><span class="tok-p">]</span> <span class="tok-o">∈</span> <span class="tok-p">{</span>
                                 <span class="tok-nc">property</span> <span class="tok-o">∈</span> <span class="tok-p">{[</span><span class="tok-nd">at0.1</span><span class="tok-p">]}</span>
                                 <span class="tok-nc">magnitude</span> <span class="tok-o">∈</span> <span class="tok-p">{|&gt;=</span><span class="tok-mf">0.0</span><span class="tok-p">|}</span>
@@ -6397,15 +6403,12 @@ it is quite common that only <em>some</em> of the local at-codes have equivalent
                     <span class="tok-p">}</span>
                 <span class="tok-p">}</span>
             <span class="tok-p">}</span>
-
-            <span class="tok-nc">CLUSTER</span><span class="tok-p">[</span><span class="tok-nd">id3.3</span><span class="tok-p">]</span> <span class="tok-o">∈</span> <span class="tok-p">{...}</span>                     <span class="tok-c">-- Ratio Result</span>
-
-            <span class="tok-nc">CLUSTER</span><span class="tok-p">[</span><span class="tok-nd">id3.4</span><span class="tok-p">]</span> <span class="tok-o">∈</span> <span class="tok-p">{...}</span>                     <span class="tok-c">-- Triglyceride Result</span>
-
-            <span class="tok-nc">CLUSTER</span><span class="tok-p">[</span><span class="tok-nd">id3.5</span><span class="tok-p">]</span> <span class="tok-o">∈</span> <span class="tok-p">{</span>                         <span class="tok-c">-- Cholesterol Result</span>
+            <span class="tok-nc">CLUSTER</span><span class="tok-p">[</span><span class="tok-nd">id3.3</span><span class="tok-p">]</span> <span class="tok-o">∈</span> <span class="tok-p">{...}</span>    <span class="tok-c">-- Ratio Result</span>
+            <span class="tok-nc">CLUSTER</span><span class="tok-p">[</span><span class="tok-nd">id3.4</span><span class="tok-p">]</span> <span class="tok-o">∈</span> <span class="tok-p">{...}</span>    <span class="tok-c">-- Triglyceride Result</span>
+            <span class="tok-nc">CLUSTER</span><span class="tok-p">[</span><span class="tok-nd">id3.5</span><span class="tok-p">]</span> <span class="tok-o">∈</span> <span class="tok-p">{</span>        <span class="tok-c">-- Total Result</span>
                 <span class="tok-nc">items</span> <span class="tok-o">∈</span> <span class="tok-p">{</span>
-                    <span class="tok-nc">ELEMENT</span><span class="tok-p">[</span><span class="tok-nd">id2.5</span><span class="tok-p">]</span> <span class="tok-o">∈</span> <span class="tok-p">{</span>
-                        <span class="tok-nc">value</span> <span class="tok-o">matches </span><span class="tok-p">{</span>
+                    <span class="tok-nc">ELEMENT</span><span class="tok-p">[</span><span class="tok-nd">id2.5</span><span class="tok-p">]</span> <span class="tok-o">∈</span> <span class="tok-p">{</span>    <span class="tok-c">-- Total cholesterol</span>
+                        <span class="tok-nc">value</span> <span class="tok-o">∈</span> <span class="tok-p">{</span>
                             <span class="tok-nc">DV_QUANTITY</span><span class="tok-p">[</span><span class="tok-nd">id0.5</span><span class="tok-p">]</span> <span class="tok-o">∈</span> <span class="tok-p">{</span>
                                 <span class="tok-nc">property</span> <span class="tok-o">∈</span> <span class="tok-p">{[</span><span class="tok-nd">at0.1</span><span class="tok-p">]}</span>
                                 <span class="tok-nc">magnitude</span> <span class="tok-o">∈</span> <span class="tok-p">{|&gt;=</span><span class="tok-mf">0.0</span><span class="tok-p">|}</span>
@@ -6415,6 +6418,7 @@ it is quite common that only <em>some</em> of the local at-codes have equivalent
                     <span class="tok-p">}</span>
                 <span class="tok-p">}</span>
             <span class="tok-p">}</span>
+            <span class="tok-nc">CLUSTER</span><span class="tok-p">[</span><span class="tok-nd">id3.6</span><span class="tok-p">]</span>     <span class="tok-c">-- ! - Laboratory Result</span>
         <span class="tok-p">}</span>
     <span class="tok-p">}</span></code></pre>
 </div>
@@ -6424,7 +6428,7 @@ it is quite common that only <em>some</em> of the local at-codes have equivalent
 </div>
 <div id="specialisation_with_cloning" class="imageblock text-center" style="text-align: center">
 <div class="content">
-<img src="images/specialisation_with_cloning.png" alt="specialisation with cloning" width="60%">
+<img src="images/specialisation_with_cloning.png" alt="specialisation with cloning" width="75%">
 </div>
 <div class="title">Figure 5. Specialisation with Cloning</div>
 </div>

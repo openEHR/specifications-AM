@@ -340,11 +340,11 @@ Specialised child archetype:
 
 [source, cadl]
 --------
-    CLUSTER[id1.1] ∈ {                                 -- Lipid studies panel
+    CLUSTER[id1.1] ∈ {    -- Lipid studies panel
         /items ∈ {
-            CLUSTER[id3.1] ∈ {                         -- LDL
+            CLUSTER[id3.1] ∈ {    -- LDL Cholesterol Result
                 items ∈ {
-                    ELEMENT[id2.1] ∈ {  
+                    ELEMENT[id2.1] ∈ {    -- LDL Cholesterol
                         value ∈ {
                             DV_QUANTITY[id0.1] ∈ {
                                 property ∈ {[at0.1]}
@@ -355,10 +355,10 @@ Specialised child archetype:
                     }
                 }
             }
-            CLUSTER[id3.2] ∈ {                         -- HDL
+            CLUSTER[id3.2] ∈ {    -- HDL Cholesterol Result
                 items ∈ {
-                    ELEMENT[id2.2] ∈ {
-                        value matches {
+                    ELEMENT[id2.2] ∈ {    -- HDL Cholesterol
+                        value ∈ {
                             DV_QUANTITY[id0.2] ∈ {
                                 property ∈ {[at0.1]}
                                 magnitude ∈ {|>=0.0|}
@@ -368,15 +368,12 @@ Specialised child archetype:
                     }
                 }
             }
-    
-            CLUSTER[id3.3] ∈ {...}                     -- Ratio Result
-
-            CLUSTER[id3.4] ∈ {...}                     -- Triglyceride Result
-
-            CLUSTER[id3.5] ∈ {                         -- Cholesterol Result
+            CLUSTER[id3.3] ∈ {...}    -- Ratio Result
+            CLUSTER[id3.4] ∈ {...}    -- Triglyceride Result
+            CLUSTER[id3.5] ∈ {        -- Total Result
                 items ∈ {
-                    ELEMENT[id2.5] ∈ {  
-                        value matches {
+                    ELEMENT[id2.5] ∈ {    -- Total cholesterol
+                        value ∈ {
                             DV_QUANTITY[id0.5] ∈ {
                                 property ∈ {[at0.1]}
                                 magnitude ∈ {|>=0.0|}
@@ -386,6 +383,7 @@ Specialised child archetype:
                     }
                 }
             }
+            CLUSTER[id3.6]     -- ! - Laboratory Result
         }
     }
 --------
@@ -394,7 +392,7 @@ The flattened result consists of a number of repetitions of the entire `CLUSTER[
 
 [.text-center]
 .Specialisation with Cloning
-image::images/specialisation_with_cloning.png[id=specialisation_with_cloning, align="center", width="60%"]
+image::images/specialisation_with_cloning.png[id=specialisation_with_cloning, align="center", width="75%"]
 
 It can also be seen that the original `[id3]` sub-tree remains. This can be removed if required, as described in <<Exhaustive and non-exhaustive specialisation>>.
 
