@@ -313,7 +313,7 @@
 <li><a href="#_examples">9.3. Examples</a>
 <ul class="sectlevel3">
 <li><a href="#_redefinition_for_refinement">9.3.1. Redefinition for Refinement</a></li>
-<li><a href="#_redefinition_for_specialisation">9.3.2. Redefinition for Specialisation</a>
+<li><a href="#redefinition_for_specialisation">9.3.2. Redefinition for Specialisation</a>
 <ul class="sectlevel4">
 <li><a href="#_specialisation_with_cloning">9.3.2.1. Specialisation with Cloning</a></li>
 </ul>
@@ -6055,7 +6055,7 @@ it is quite common that only <em>some</em> of the local at-codes have equivalent
 <div class="sect3">
 <h4 id="_path_congruence"><a class="anchor" href="#_path_congruence"></a>9.2.4. Path Congruence</h4>
 <div class="paragraph">
-<p>Any node in an archetype can unambiguously be located by its archetype path. For example, the text value of the 'problem' node of the <code>openEHR-EHR-EVALUATION.problem.v1</code> archetype shown at the top of the <a href="#_redefinition_for_specialisation">Redefinition for Specialisation</a> example is:</p>
+<p>Any node in an archetype can unambiguously be located by its archetype path. For example, the text value of the 'problem' node of the <code>openEHR-EHR-EVALUATION.problem.v1</code> archetype shown at the top of the <a href="#redefinition_for_specialisation">Redefinition for Specialisation</a> example is:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -6241,7 +6241,7 @@ it is quite common that only <em>some</em> of the local at-codes have equivalent
 </div>
 </div>
 <div class="sect3">
-<h4 id="_redefinition_for_specialisation"><a class="anchor" href="#_redefinition_for_specialisation"></a>9.3.2. Redefinition for Specialisation</h4>
+<h4 id="redefinition_for_specialisation"><a class="anchor" href="#redefinition_for_specialisation"></a>9.3.2. Redefinition for Specialisation</h4>
 <div class="paragraph">
 <p>The example shown below illustrates redefinition in a specialised archetype. The first text is taken from the definition section of the 'laboratory result' <code>OBSERVATION</code> archetype (available at <a href="/ckm">openEHR CKM</a>), and contains an <code>ELEMENT</code> node whose identifier is <code>[id79]</code> , defined as 'panel item' in the archetype terminology (sibling nodes are not shown here). The intention is that the <code>id79</code> node be specialised into particular 'panel items' or analytes according to particular types of test result. Accordingly, the <code>id79</code> node has occurrences of <code>0..*</code> and its value is not constrained with respect to the reference model, meaning that the type of the <code><em>value</em></code> attirbute can be any descendant of <code>DATA_VALUE</code> .</p>
 </div>
@@ -6552,7 +6552,7 @@ Note that in the above, the '/' is used to denote '/protocol' as a differential 
 <div class="sect4">
 <h5 id="_ordering_of_sibling_nodes"><a class="anchor" href="#_ordering_of_sibling_nodes"></a>9.4.2.2. Ordering of Sibling Nodes</h5>
 <div class="paragraph">
-<p>Within container attributes, the order of objects may be significant from the point of view of domain users, i.e. the container may be considered as an ordered list. This is easy to achieve in top-level archetype, using the 'ordered' qualifier on a cardinality constraint. However when particular node(s) are redefined into multiple specialised nodes, or new nodes added by extension, the desired order of the new nodes may be such that they should occur interspersed at particular locations among nodes defined in the parent archetype. The following text is a slightly summarised view of the items attribute from the problem archetype shown in <a href="#Specialised archetype showing redefinition and extension">[Specialised archetype showing redefinition and extension]</a>:</p>
+<p>Within container attributes, the order of objects may be significant from the point of view of domain users, i.e. the container may be considered as an ordered list. This is easy to achieve in top-level archetype, using the 'ordered' qualifier on a cardinality constraint. However when particular node(s) are redefined into multiple specialised nodes, or new nodes added by extension, the desired order of the new nodes may be such that they should occur interspersed at particular locations among nodes defined in the parent archetype. The following text is a slightly summarised view of the items attribute from the problem archetype shown in <a href="#redefinition_for_specialisation">Redefinition for Specialisation</a>:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -6695,7 +6695,7 @@ Note that in the above, the '/' is used to denote '/protocol' as a differential 
 <p>Here the <code>id5</code> ('Description') node is refined in meaning to <code>id5.1</code> ('Summary'). Since there is no other constraint to be stated, no further <code>matches</code> block is required.</p>
 </div>
 <div class="paragraph">
-<p>An example of the 3rd case above of redefinition is shown in the first archetype in <a href="#Specialised archetype showing redefinition and extension">[Specialised archetype showing redefinition and extension]</a>, where the node <code>[id79]</code> is redefined into a number of more specialised nodes <code>[id79.2]</code> - <code>[id79.9]</code> , while in the second, the identifier <code>[id2]</code> is redefined to a single node <code>[id2.1]</code> .</p>
+<p>An example of the 3rd case above of redefinition is shown in the first archetype in <a href="#redefinition_for_specialisation">Redefinition for Specialisation</a>, where the node <code>[id79]</code> is redefined into a number of more specialised nodes <code>[id79.2]</code> - <code>[id79.9]</code>, while in the second, the identifier <code>[id2]</code> is redefined to a single node <code>[id2.1]</code> .</p>
 </div>
 <div class="paragraph">
 <p>The syntactic form of the identifier of a redefined node is a copy of the original followed by a dot ('.'), optionally intervening instances of the pattern '0.' and then a further non-zero number, i.e.:</p>
@@ -6735,7 +6735,7 @@ Note that in the above, the '/' is used to denote '/protocol' as a differential 
 <p>The node identifier syntax of an extension node commences with at least one instance of the pattern '0.'. The structure of node identifiers for both kinds of node thus always indicates at what level the identifier was introduced, given by the number of dots.</p>
 </div>
 <div class="paragraph">
-<p>Examples of redefined node identifiers:</p>
+<p>Examples of added node identifiers:</p>
 </div>
 <div class="ulist">
 <ul>

@@ -223,6 +223,7 @@ The second text below is from the 'problem-diagnosis' archetype, i.e. a 'diagnos
     }
 --------
 
+[[redefinition_for_specialisation]]
 === Redefinition for Specialisation
 
 The example shown below illustrates redefinition in a specialised archetype. The first text is taken from the definition section of the 'laboratory result' `OBSERVATION` archetype (available at {openehr_CKM}[openEHR CKM]), and contains an `ELEMENT` node whose identifier is `[id79]` , defined as 'panel item' in the archetype terminology (sibling nodes are not shown here). The intention is that the `id79` node be specialised into particular 'panel items' or analytes according to particular types of test result. Accordingly, the `id79` node has occurrences of `0..*` and its value is not constrained with respect to the reference model, meaning that the type of the `_value_` attirbute can be any descendant of `DATA_VALUE` .
@@ -483,7 +484,7 @@ Child archetype:
 
 ==== Ordering of Sibling Nodes
 
-Within container attributes, the order of objects may be significant from the point of view of domain users, i.e. the container may be considered as an ordered list. This is easy to achieve in top-level archetype, using the 'ordered' qualifier on a cardinality constraint. However when particular node(s) are redefined into multiple specialised nodes, or new nodes added by extension, the desired order of the new nodes may be such that they should occur interspersed at particular locations among nodes defined in the parent archetype. The following text is a slightly summarised view of the items attribute from the problem archetype shown in <<Specialised archetype showing redefinition and extension>>:
+Within container attributes, the order of objects may be significant from the point of view of domain users, i.e. the container may be considered as an ordered list. This is easy to achieve in top-level archetype, using the 'ordered' qualifier on a cardinality constraint. However when particular node(s) are redefined into multiple specialised nodes, or new nodes added by extension, the desired order of the new nodes may be such that they should occur interspersed at particular locations among nodes defined in the parent archetype. The following text is a slightly summarised view of the items attribute from the problem archetype shown in <<redefinition_for_specialisation>>:
 
 [source, cadl]
 --------
@@ -585,7 +586,7 @@ Child archetype:
 
 Here the `id5` ('Description') node is refined in meaning to `id5.1` ('Summary'). Since there is no other constraint to be stated, no further `matches` block is required.
 
-An example of the 3rd case above of redefinition is shown in the first archetype in <<Specialised archetype showing redefinition and extension>>, where the node `[id79]` is redefined into a number of more specialised nodes `[id79.2]` - `[id79.9]` , while in the second, the identifier `[id2]` is redefined to a single node `[id2.1]` .
+An example of the 3rd case above of redefinition is shown in the first archetype in <<redefinition_for_specialisation>>, where the node `[id79]` is redefined into a number of more specialised nodes `[id79.2]` - `[id79.9]`, while in the second, the identifier `[id2]` is redefined to a single node `[id2.1]` .
 
 The syntactic form of the identifier of a redefined node is a copy of the original followed by a dot ('.'), optionally intervening instances of the pattern '0.' and then a further non-zero number, i.e.:
 
@@ -605,7 +606,7 @@ Added object constraint nodes carry identifiers according to the rule mentioned 
 
 The node identifier syntax of an extension node commences with at least one instance of the pattern '0.'. The structure of node identifiers for both kinds of node thus always indicates at what level the identifier was introduced, given by the number of dots.
 
-Examples of redefined node identifiers:
+Examples of added node identifiers:
 
 * `id0.1`   -- identifier of extension node introduced at level 1
 * `id0.0.1` -- identifier of extension node introduced at level 2
