@@ -1,14 +1,14 @@
 [appendix]
 = Syntax Specification
 
-The normative specification of the ADL syntax is expressed in Antlr4 as a series of component grammars, shown below. This has been tested with the Antlr4.5 implementation available from http://www.antlr.org[Antlr.org]. The source files are available in two locations on Github - https://github.com/openEHR/specifications-AM/tree/master/computable/grammar[ADL Antlr files]; https://github.com/openEHR/specifications-BASE/tree/master/computable/grammar[Common Antlr files]. Note that the ODIN grammar used in parts of an ADL archetype is not shown below, it can be found in the ODIN specification <<openehr_odin>>.
+The normative specification of the ADL syntax is expressed in Antlr4 as a series of component grammars, shown below. This has been tested with the Antlr4.5 implementation available from http://www.antlr.org[Antlr.org]. The source files are available in two locations on Github - https://github.com/openEHR/specifications-AM/tree/master/computable/grammar[ADL Antlr files]; https://github.com/openEHR/specifications-BASE/tree/master/computable/grammar[Common Antlr files]. Note that the ODIN grammar used in parts of an ADL archetype is not shown below, it can be found in the {openehr_odin}[openEHR ODIN specification].
 
 There are various other syntax specifications in existence.
 
 The http://www.openehr.org/downloads/ADLworkbench/home[ADL Workbench] currently implements a version of the ADL2 language and syntax expressed in traditional yacc/lex specifications, with the `.y` and `.l` files are found in the following locations:
 
-* https://github.com/openEHR/adl-tools/tree/master/components/adl_compiler/src/syntax/adl/parser[ADL outer syntax]
-* https://github.com/openEHR/adl-tools/tree/master/components/adl_compiler/src/syntax/cadl/parser[cADL and rules syntax]
+* link:{openehr_awb_github}/tree/master/components/adl_compiler/src/syntax/adl/parser[ADL outer syntax]
+* link:{openehr_awb_github}/tree/master/components/adl_compiler/src/syntax/cadl/parser[cADL and rules syntax]
 * https://github.com/wolandscat/EOMF/tree/master/library/odin/parser[ODIN]
 
 The above grammars are complete and more heavily tested, but due to being in an older technology, not easily re-usable by other languages, or by LL(*) parser generators like Antlr, since they contain various LR (left recursive) constructs.

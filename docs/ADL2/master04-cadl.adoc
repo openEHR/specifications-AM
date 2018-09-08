@@ -213,7 +213,7 @@ In any information model, attributes are either single-valued or multiply-valued
 
 ==== Existence
 
-The existence constraint may be used with any attribute to further constrain the existence defined by the underlying reference model. An existence constraint indicates whether an attribute value is mandatory or optional, and is indicated by "0..1" or "1" markers at line ends in UML diagrams (and often mistakenly referred to as a "cardinality of 1..1"). Attributes defined in the reference model have an effective existence constraint, defined by the invariants (or lack thereof) of the relevant class. For example, the `_protocol_` attribute in the openEHR `OBSERVATION` class <<EHR_IM>> is defined in the reference model as being optional, i.e. `0..1`. An archetype may redefine this to `{1..1}`, making the attribute mandatory. Existence constraints are expressed in cADL as follows:
+The existence constraint may be used with any attribute to further constrain the existence defined by the underlying reference model. An existence constraint indicates whether an attribute value is mandatory or optional, and is indicated by "0..1" or "1" markers at line ends in UML diagrams (and often mistakenly referred to as a "cardinality of 1..1"). Attributes defined in the reference model have an effective existence constraint, defined by the invariants (or lack thereof) of the relevant class. For example, the `_protocol_` attribute in the {openehr_rm_ehr}[openEHR EHR IM] `OBSERVATION` class is defined in the reference model as being optional, i.e. `0..1`. An archetype may redefine this to `{1..1}`, making the attribute mandatory. Existence constraints are expressed in cADL as follows:
 
 [source, cadl]
 --------
@@ -1368,7 +1368,7 @@ A String-valued attribute can be constrained by a list of strings (using the ODI
     species ∈ {"platypus", "kangaroo", "wombat"}
 --------
 
-The first example constrains the runtime value of the `_species_` attribute of some object to take the value "platypus"; the second constrains it be either "platypus" or "kangaroo", and so on. *In almost all cases, this kind of string constraint should be avoided*, since it usually renders the body of the archetype language-dependent. Exceptions are proper names (e.g. "NHS", "Apgar"), product tradenames (but note even these are typically different in different language locales, even if the different names are not literally translations of each other). The preferred way of constraining string attributes in a language independent way is with value sets of terminology codes. See Section <<Terminology Constraints>>.
+The first example constrains the runtime value of the `_species_` attribute of some object to take the value "platypus"; the second constrains it be either "platypus" or "kangaroo", and so on. *In almost all cases, this kind of string constraint should be avoided*, since it usually renders the body of the archetype language-dependent. Exceptions are proper names (e.g. "NHS", "Apgar"), product tradenames (but note even these are typically different in different language locales, even if the different names are not literally translations of each other). The preferred way of constraining string attributes in a language independent way is with value sets of terminology codes. See the <<Terminology Constraints>> section.
 
 ==== Regular Expression
 
@@ -1387,7 +1387,7 @@ For example, the following two patterns are equivalent:
     units ∈ {^km/h|mi/h^}
 --------
 
-The rules for including special characters within strings are described in section <<File Encoding and Character Quoting>>.
+The rules for including special characters within strings are described in the <<File Encoding and Character Quoting>> section.
 
 [.tbd]
 TBD: there is an argument for only allowing a single String value rather than a list, where the value is aways a regex since `{"platypus", "kangaroo", "wombat"}` can be expressed as `{/platypus|kangaroo|wombat/}`. See also AOM spec.
@@ -1452,7 +1452,7 @@ The first constraint requires the attribute `_length_` to be 1000, while the sec
 
 ==== Interval of Integer
 
-Integer intervals are expressed using the interval syntax from ODIN (described in the ODIN specification <<openehr_odin>>). Examples of 2-sided intervals include:
+Integer intervals are expressed using the interval syntax from ODIN (described in the {openehr_odin}[openEHR ODIN specification]. Examples of 2-sided intervals include:
 
 [source, cadl]
 --------

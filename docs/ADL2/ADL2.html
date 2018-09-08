@@ -403,13 +403,18 @@
 </li>
 <li><a href="#_references">References</a>
 <ul class="sectlevel2">
-<li><a href="#_publications">Publications</a></li>
-<li><a href="#_resources">Resources</a>
+<li><a href="#_general_it_publications">General IT Publications</a>
 <ul class="sectlevel3">
-<li><a href="#_general">General</a></li>
-<li><a href="#_e_health_standards">e-Health Standards</a></li>
-<li><a href="#_e_health_projects">e-Health Projects</a></li>
-<li><a href="#_general_standards">General Standards</a></li>
+<li><a href="#_articles_books">Articles, Books</a></li>
+<li><a href="#_online_resources">Online Resources</a></li>
+<li><a href="#_standards">Standards</a></li>
+</ul>
+</li>
+<li><a href="#_publications_e_health">Publications - e-Health</a>
+<ul class="sectlevel3">
+<li><a href="#_articles_books_2">Articles, Books</a></li>
+<li><a href="#_standards_2">Standards</a></li>
+<li><a href="#_projects">Projects</a></li>
 </ul>
 </li>
 </ul>
@@ -1601,7 +1606,7 @@ the structure, as shown in the following example:</p>
 </ul>
 </div>
 <div class="paragraph">
-<p>URIs (a data type in ODIN) are assumed to be 'percent-encoded' according to RFC 39861 <a href="#uri_syntax">[uri_syntax]</a>, which applies to all characters outside the 'unreserved set'. The unreserved set is:</p>
+<p>URIs (a data type in ODIN) are assumed to be 'percent-encoded' according to <a href="http://www.ietf.org/rfc/rfc3986">IETF RFC 39861</a> URI syntax, which applies to all characters outside the 'unreserved set'. The unreserved set is:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -1633,7 +1638,7 @@ the structure, as shown in the following example:</p>
 <p><code>\uHHHH</code> - 4 hex digits which will be the same (possibly 0-filled on the left) as the unicode code-point number expressed in hexadecimal; this applies to unicode codepoints in the range <code>U+0000</code> - <code>U+FFFF</code> (the 'base multi-lingual plane', BMP);</p>
 </li>
 <li>
-<p><code>\uHHHHHHHH</code> - 8 hex digits to encode unicode code-points in the range <code>U+10000</code> through <code>U+10FFFF</code> (non-BMP planes); the algorithm is described in IETF <a href="#rfc2781">[rfc2781]</a>.</p>
+<p><code>\uHHHHHHHH</code> - 8 hex digits to encode unicode code-points in the range <code>U+10000</code> through <code>U+10FFFF</code> (non-BMP planes); the algorithm is described in <a href="http://www.ietf.org/html/rfc2781">IETF RFC 2781</a>.</p>
 </li>
 </ul>
 </div>
@@ -1978,7 +1983,7 @@ the structure, as shown in the following example:</p>
 <div class="sect4">
 <h5 id="_existence"><a class="anchor" href="#_existence"></a>4.3.1.1. Existence</h5>
 <div class="paragraph">
-<p>The existence constraint may be used with any attribute to further constrain the existence defined by the underlying reference model. An existence constraint indicates whether an attribute value is mandatory or optional, and is indicated by "0..1" or "1" markers at line ends in UML diagrams (and often mistakenly referred to as a "cardinality of 1..1"). Attributes defined in the reference model have an effective existence constraint, defined by the invariants (or lack thereof) of the relevant class. For example, the <code><em>protocol</em></code> attribute in the openEHR <code>OBSERVATION</code> class <a href="#EHR_IM">[EHR_IM]</a> is defined in the reference model as being optional, i.e. <code>0..1</code>. An archetype may redefine this to <code>{1..1}</code>, making the attribute mandatory. Existence constraints are expressed in cADL as follows:</p>
+<p>The existence constraint may be used with any attribute to further constrain the existence defined by the underlying reference model. An existence constraint indicates whether an attribute value is mandatory or optional, and is indicated by "0..1" or "1" markers at line ends in UML diagrams (and often mistakenly referred to as a "cardinality of 1..1"). Attributes defined in the reference model have an effective existence constraint, defined by the invariants (or lack thereof) of the relevant class. For example, the <code><em>protocol</em></code> attribute in the <a href="/releases/RM/latest/ehr.html">openEHR EHR IM</a> <code>OBSERVATION</code> class is defined in the reference model as being optional, i.e. <code>0..1</code>. An archetype may redefine this to <code>{1..1}</code>, making the attribute mandatory. Existence constraints are expressed in cADL as follows:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -3464,7 +3469,7 @@ direct matching of so-called CamelCase by Snake_case or SCREAMING_SNAKE_CASE and
 </div>
 </div>
 <div class="paragraph">
-<p>The first example constrains the runtime value of the <code><em>species</em></code> attribute of some object to take the value "platypus"; the second constrains it be either "platypus" or "kangaroo", and so on. <strong>In almost all cases, this kind of string constraint should be avoided</strong>, since it usually renders the body of the archetype language-dependent. Exceptions are proper names (e.g. "NHS", "Apgar"), product tradenames (but note even these are typically different in different language locales, even if the different names are not literally translations of each other). The preferred way of constraining string attributes in a language independent way is with value sets of terminology codes. See Section <a href="#cADL_Terminology_Constraints">Terminology Constraints</a>.</p>
+<p>The first example constrains the runtime value of the <code><em>species</em></code> attribute of some object to take the value "platypus"; the second constrains it be either "platypus" or "kangaroo", and so on. <strong>In almost all cases, this kind of string constraint should be avoided</strong>, since it usually renders the body of the archetype language-dependent. Exceptions are proper names (e.g. "NHS", "Apgar"), product tradenames (but note even these are typically different in different language locales, even if the different names are not literally translations of each other). The preferred way of constraining string attributes in a language independent way is with value sets of terminology codes. See the <a href="#cADL_Terminology_Constraints">Terminology Constraints</a> section.</p>
 </div>
 </div>
 <div class="sect4">
@@ -3488,7 +3493,7 @@ direct matching of so-called CamelCase by Snake_case or SCREAMING_SNAKE_CASE and
 </div>
 </div>
 <div class="paragraph">
-<p>The rules for including special characters within strings are described in section <a href="#_file_encoding_and_character_quoting">File Encoding and Character Quoting</a>.</p>
+<p>The rules for including special characters within strings are described in the <a href="#_file_encoding_and_character_quoting">File Encoding and Character Quoting</a> section.</p>
 </div>
 <div class="paragraph tbd">
 <p>TBD: there is an argument for only allowing a single String value rather than a list, where the value is aways a regex since <code>{"platypus", "kangaroo", "wombat"}</code> can be expressed as <code>{/platypus|kangaroo|wombat/}</code>. See also AOM spec.</p>
@@ -3630,7 +3635,7 @@ direct matching of so-called CamelCase by Snake_case or SCREAMING_SNAKE_CASE and
 <div class="sect4">
 <h5 id="_interval_of_integer"><a class="anchor" href="#_interval_of_integer"></a>4.5.3.2. Interval of Integer</h5>
 <div class="paragraph">
-<p>Integer intervals are expressed using the interval syntax from ODIN (described in the ODIN specification <a href="#openehr_odin">[openehr_odin]</a>). Examples of 2-sided intervals include:</p>
+<p>Integer intervals are expressed using the interval syntax from ODIN (described in the <a href="/releases/BASE/latest/odin.html">openEHR ODIN specification</a>. Examples of 2-sided intervals include:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -5097,7 +5102,7 @@ the syntax of this section should not yet be considered stable, as it depends on
     <span class="tok-err">$</span><span class="tok-nc">substance_use_status</span><span class="tok-err">:</span> <span class="tok-nc">Boolean</span> <span class="tok-err">:</span><span class="tok-o">=</span> <span class="tok-p">/</span><span class="tok-nc">data</span><span class="tok-p">[</span><span class="tok-nd">id2</span><span class="tok-p">]/</span><span class="tok-nc">items</span><span class="tok-p">[</span><span class="tok-nd">id3</span><span class="tok-p">]/</span><span class="tok-nc">value</span><span class="tok-p">[</span><span class="tok-nd">id18</span><span class="tok-p">]</span>
     <span class="tok-err">$</span><span class="tok-nc">substance_use_data</span><span class="tok-err">:</span> <span class="tok-nc">Object_ref</span> <span class="tok-err">:</span><span class="tok-o">=</span> <span class="tok-p">/</span><span class="tok-nc">data</span><span class="tok-p">[</span><span class="tok-nd">id2</span><span class="tok-p">]/</span><span class="tok-nc">items</span><span class="tok-p">[</span><span class="tok-nd">id8</span><span class="tok-p">]</span>
 
-<span class="tok-err">	Substance_use: $substance_use_status /= [at17] implies exists /data[id2]/items[id8]  -- [at17] = &#39;never used&#39;</span></code></pre>
+<span class="tok-err">	Substance_use: $substance_use_status != [at17] implies exists /data[id2]/items[id8]  -- [at17] = &#39;never used&#39;</span></code></pre>
 </div>
 </div>
 </div>
@@ -7563,7 +7568,7 @@ Note that in the above, the '/' is used to denote '/protocol' as a differential 
 <p>The languages present in the flat output will therefore be those languages available in both the flat parent (implying all previous archetypes / templates in the specialisation lineage) and the new specialisation. Any new languages introduced in the latter not available in the flat parent will be discarded.</p>
 </div>
 <div class="paragraph">
-<p>Locale-specific overrides can be introduced for any linguistic element in an archetype, including the terminology. Such an override has a language code conforming to a subset of the IETF RFC 5646 language tag standard (see <a href="#rfc5646">[rfc5646]</a>), namely the common 2-part language-region tag exemplified by 'en-GB' (British English), 'pt-BR' (Brazilian Portuguese), and so on. The tags are case-insensitive, but tools that create tags should follow the recommendation from the standard, which is that:</p>
+<p>Locale-specific overrides can be introduced for any linguistic element in an archetype, including the terminology. Such an override has a language code conforming to a subset of the <a href="http://tools.ietf.org/html/rfc5646">IETF RFC 5646 language tag standard</a>, namely the common 2-part language-region tag exemplified by 'en-GB' (British English), 'pt-BR' (Brazilian Portuguese), and so on. The tags are case-insensitive, but tools that create tags should follow the recommendation from the standard, which is that:</p>
 </div>
 <div class="ulist">
 <ul>
@@ -8088,7 +8093,7 @@ Note that in the above, the '/' is used to denote '/protocol' as a differential 
 <div class="sect3">
 <h4 id="_owl_web_ontology_language"><a class="anchor" href="#_owl_web_ontology_language"></a>A.3.1. OWL (Web Ontology Language)</h4>
 <div class="paragraph">
-<p>The Web Ontology Language (OWL) <a href="#w3c_xpath">[w3c_xpath]</a> is a W3C initiative for defining Web-enabled ontologies which aim to allow the building of the "Semantic Web". OWL has an abstract syntax <a href="#w3c_owl">[w3c_owl]</a>, developed at the University of Manchester, UK, and an exchange syntax, which is an extension of the XML-based syntax known as RDF (Resource Description Framework). We discuss OWL only in terms of its abstract syntax, since this is a semantic representation of the language unencumbered by XML or RDF details (there are tools which convert between abstract OWL and various exchange syntaxes).</p>
+<p>The <a href="https://www.w3.org/TR/2003/CR-owl-ref-20030818/">W3C Web Ontology Language (OWL)</a> is a W3C initiative for defining Web-enabled ontologies which aim to allow the building of the "Semantic Web". OWL has an abstract syntax, developed at the University of Manchester, UK, and an exchange syntax, which is an extension of the XML-based syntax known as RDF (Resource Description Framework). We discuss OWL only in terms of its abstract syntax, since this is a semantic representation of the language unencumbered by XML or RDF details (there are tools which convert between abstract OWL and various exchange syntaxes).</p>
 </div>
 <div class="paragraph">
 <p>OWL is a general purpose description logic (DL), and is primarily used to describe 'classes' of things in such a way as to support subsumptive inferencing within the ontology, and by extension, on data which are instances of ontology classes. There is no general assumption that the data itself were built based on any particular class model - they might be audio-visual objects in an archive, technical documentation for an aircraft or the Web pages of a company. OWL&#8217;s class definitions are therefore usually constraint statements on an <em>implied</em> model on which data <em>appear</em> to be based. However, the semantics of an information model can themselves be represented in OWL. Restrictions are the primary way of defining subclasses.</p>
@@ -8221,7 +8226,7 @@ Note that in the above, the '/' is used to denote '/protocol' as a differential 
 <h2 id="_syntax_specification"><a class="anchor" href="#_syntax_specification"></a>Appendix B: Syntax Specification</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>The normative specification of the ADL syntax is expressed in Antlr4 as a series of component grammars, shown below. This has been tested with the Antlr4.5 implementation available from <a href="http://www.antlr.org">Antlr.org</a>. The source files are available in two locations on Github - <a href="https://github.com/openEHR/specifications-AM/tree/master/computable/grammar">ADL Antlr files</a>; <a href="https://github.com/openEHR/specifications-BASE/tree/master/computable/grammar">Common Antlr files</a>. Note that the ODIN grammar used in parts of an ADL archetype is not shown below, it can be found in the ODIN specification <a href="#openehr_odin">[openehr_odin]</a>.</p>
+<p>The normative specification of the ADL syntax is expressed in Antlr4 as a series of component grammars, shown below. This has been tested with the Antlr4.5 implementation available from <a href="http://www.antlr.org">Antlr.org</a>. The source files are available in two locations on Github - <a href="https://github.com/openEHR/specifications-AM/tree/master/computable/grammar">ADL Antlr files</a>; <a href="https://github.com/openEHR/specifications-BASE/tree/master/computable/grammar">Common Antlr files</a>. Note that the ODIN grammar used in parts of an ADL archetype is not shown below, it can be found in the <a href="/releases/BASE/latest/odin.html">openEHR ODIN specification</a>.</p>
 </div>
 <div class="paragraph">
 <p>There are various other syntax specifications in existence.</p>
@@ -8846,9 +8851,9 @@ Note that in the above, the '/' is used to denote '/protocol' as a differential 
 <span class="tok-n">ISO8601_TIME</span>      <span class="tok-o">:</span> <span class="tok-o">(</span> <span class="tok-n">HOUR</span> <span class="tok-sc">&#39;:&#39;</span> <span class="tok-n">MINUTE</span> <span class="tok-o">(</span> <span class="tok-sc">&#39;:&#39;</span> <span class="tok-n">SECOND</span> <span class="tok-o">(</span> <span class="tok-o">[,.]</span> <span class="tok-n">DIGIT</span><span class="tok-o">+</span> <span class="tok-o">)?)?</span> <span class="tok-o">|</span> <span class="tok-n">HOUR</span> <span class="tok-sc">&#39;:&#39;</span> <span class="tok-n">MINUTE</span> <span class="tok-sc">&#39;:&#39;</span> <span class="tok-n">UNKNOWN_DT</span> <span class="tok-o">|</span> <span class="tok-n">HOUR</span> <span class="tok-sc">&#39;:&#39;</span> <span class="tok-n">UNKNOWN_DT</span> <span class="tok-sc">&#39;:&#39;</span> <span class="tok-n">UNKNOWN_DT</span> <span class="tok-o">)</span> <span class="tok-n">TIMEZONE</span><span class="tok-o">?</span> <span class="tok-o">;</span>
 <span class="tok-n">ISO8601_DATE_TIME</span> <span class="tok-o">:</span> <span class="tok-o">(</span> <span class="tok-n">YEAR</span> <span class="tok-sc">&#39;-&#39;</span> <span class="tok-n">MONTH</span> <span class="tok-sc">&#39;-&#39;</span> <span class="tok-n">DAY</span> <span class="tok-sc">&#39;T&#39;</span> <span class="tok-n">HOUR</span> <span class="tok-o">(</span><span class="tok-sc">&#39;:&#39;</span> <span class="tok-n">MINUTE</span> <span class="tok-o">(</span><span class="tok-sc">&#39;:&#39;</span> <span class="tok-n">SECOND</span> <span class="tok-o">(</span> <span class="tok-o">[,.]</span> <span class="tok-n">DIGIT</span><span class="tok-o">+</span> <span class="tok-o">)?)?)?</span> <span class="tok-o">|</span> <span class="tok-n">YEAR</span> <span class="tok-sc">&#39;-&#39;</span> <span class="tok-n">MONTH</span> <span class="tok-sc">&#39;-&#39;</span> <span class="tok-n">DAY</span> <span class="tok-sc">&#39;T&#39;</span> <span class="tok-n">HOUR</span> <span class="tok-sc">&#39;:&#39;</span> <span class="tok-n">MINUTE</span> <span class="tok-sc">&#39;:&#39;</span> <span class="tok-n">UNKNOWN_DT</span> <span class="tok-o">|</span> <span class="tok-n">YEAR</span> <span class="tok-sc">&#39;-&#39;</span> <span class="tok-n">MONTH</span> <span class="tok-sc">&#39;-&#39;</span> <span class="tok-n">DAY</span> <span class="tok-sc">&#39;T&#39;</span> <span class="tok-n">HOUR</span> <span class="tok-sc">&#39;:&#39;</span> <span class="tok-n">UNKNOWN_DT</span> <span class="tok-sc">&#39;:&#39;</span> <span class="tok-n">UNKNOWN_DT</span> <span class="tok-o">)</span> <span class="tok-n">TIMEZONE</span><span class="tok-o">?</span> <span class="tok-o">;</span>
 <span class="tok-n">fragment</span> <span class="tok-n">TIMEZONE</span> <span class="tok-o">:</span> <span class="tok-sc">&#39;Z&#39;</span> <span class="tok-o">|</span> <span class="tok-o">[+-]</span> <span class="tok-n">HOUR</span> <span class="tok-o">(</span> <span class="tok-sc">&#39;:&#39;</span> <span class="tok-n">MINUTE</span> <span class="tok-o">)?</span> <span class="tok-o">;</span>   <span class="tok-c1">// hour offset, e.g. `+09:30`, or else literal `Z` indicating +0000.</span>
-<span class="tok-n">fragment</span> <span class="tok-n">YEAR</span>     <span class="tok-o">:</span> <span class="tok-o">[</span><span class="tok-mi">1</span><span class="tok-o">-</span><span class="tok-mi">9</span><span class="tok-o">][</span><span class="tok-mi">0</span><span class="tok-o">-</span><span class="tok-mi">9</span><span class="tok-o">]*</span> <span class="tok-o">;</span>
-<span class="tok-n">fragment</span> <span class="tok-n">MONTH</span>    <span class="tok-o">:</span> <span class="tok-o">(</span> <span class="tok-o">[</span><span class="tok-mi">0</span><span class="tok-o">][</span><span class="tok-mi">0</span><span class="tok-o">-</span><span class="tok-mi">9</span><span class="tok-o">]</span> <span class="tok-o">|</span> <span class="tok-o">[</span><span class="tok-mi">1</span><span class="tok-o">][</span><span class="tok-mi">0</span><span class="tok-o">-</span><span class="tok-mi">2</span><span class="tok-o">]</span> <span class="tok-o">)</span> <span class="tok-o">;</span>    <span class="tok-c1">// month in year</span>
-<span class="tok-n">fragment</span> <span class="tok-n">DAY</span>      <span class="tok-o">:</span> <span class="tok-o">(</span> <span class="tok-o">[</span><span class="tok-mi">012</span><span class="tok-o">][</span><span class="tok-mi">0</span><span class="tok-o">-</span><span class="tok-mi">9</span><span class="tok-o">]</span> <span class="tok-o">|</span> <span class="tok-o">[</span><span class="tok-mi">3</span><span class="tok-o">][</span><span class="tok-mi">0</span><span class="tok-o">-</span><span class="tok-mi">2</span><span class="tok-o">]</span> <span class="tok-o">)</span> <span class="tok-o">;</span>  <span class="tok-c1">// day in month</span>
+<span class="tok-n">fragment</span> <span class="tok-n">YEAR</span>     <span class="tok-o">:</span> <span class="tok-o">[</span><span class="tok-mi">0</span><span class="tok-o">-</span><span class="tok-mi">9</span><span class="tok-o">]{</span><span class="tok-mi">4</span><span class="tok-o">}</span> <span class="tok-o">;</span>					 <span class="tok-c1">// Year in ISO8601:2004 is 4 digits with 0-filling as needed</span>
+<span class="tok-n">fragment</span> <span class="tok-n">MONTH</span>    <span class="tok-o">:</span> <span class="tok-o">(</span> <span class="tok-o">[</span><span class="tok-mi">0</span><span class="tok-o">][</span><span class="tok-mi">1</span><span class="tok-o">-</span><span class="tok-mi">9</span><span class="tok-o">]</span> <span class="tok-o">|</span> <span class="tok-o">[</span><span class="tok-mi">1</span><span class="tok-o">][</span><span class="tok-mi">0</span><span class="tok-o">-</span><span class="tok-mi">2</span><span class="tok-o">]</span> <span class="tok-o">)</span> <span class="tok-o">;</span>    <span class="tok-c1">// month in year</span>
+<span class="tok-n">fragment</span> <span class="tok-n">DAY</span>      <span class="tok-o">:</span> <span class="tok-o">(</span> <span class="tok-o">[</span><span class="tok-mi">0</span><span class="tok-o">][</span><span class="tok-mi">1</span><span class="tok-o">-</span><span class="tok-mi">9</span><span class="tok-o">]</span> <span class="tok-o">|</span> <span class="tok-o">[</span><span class="tok-mi">12</span><span class="tok-o">][</span><span class="tok-mi">0</span><span class="tok-o">-</span><span class="tok-mi">9</span><span class="tok-o">]</span> <span class="tok-o">|</span> <span class="tok-o">[</span><span class="tok-mi">3</span><span class="tok-o">][</span><span class="tok-mi">0</span><span class="tok-o">-</span><span class="tok-mi">1</span><span class="tok-o">]</span> <span class="tok-o">)</span> <span class="tok-o">;</span>  <span class="tok-c1">// day in month</span>
 <span class="tok-n">fragment</span> <span class="tok-n">HOUR</span>     <span class="tok-o">:</span> <span class="tok-o">(</span> <span class="tok-o">[</span><span class="tok-mi">01</span><span class="tok-o">]?[</span><span class="tok-mi">0</span><span class="tok-o">-</span><span class="tok-mi">9</span><span class="tok-o">]</span> <span class="tok-o">|</span> <span class="tok-o">[</span><span class="tok-mi">2</span><span class="tok-o">][</span><span class="tok-mi">0</span><span class="tok-o">-</span><span class="tok-mi">3</span><span class="tok-o">]</span> <span class="tok-o">)</span> <span class="tok-o">;</span>  <span class="tok-c1">// hour in 24 hour clock</span>
 <span class="tok-n">fragment</span> <span class="tok-n">MINUTE</span>   <span class="tok-o">:</span> <span class="tok-o">[</span><span class="tok-mi">0</span><span class="tok-o">-</span><span class="tok-mi">5</span><span class="tok-o">][</span><span class="tok-mi">0</span><span class="tok-o">-</span><span class="tok-mi">9</span><span class="tok-o">]</span> <span class="tok-o">;</span>                 <span class="tok-c1">// minutes</span>
 <span class="tok-n">fragment</span> <span class="tok-n">SECOND</span>   <span class="tok-o">:</span> <span class="tok-o">[</span><span class="tok-mi">0</span><span class="tok-o">-</span><span class="tok-mi">5</span><span class="tok-o">][</span><span class="tok-mi">0</span><span class="tok-o">-</span><span class="tok-mi">9</span><span class="tok-o">]</span> <span class="tok-o">;</span>                 <span class="tok-c1">// seconds</span>
@@ -8946,41 +8951,19 @@ Note that in the above, the '/' is used to denote '/protocol' as a differential 
 <h2 id="_references"><a class="anchor" href="#_references"></a>References</h2>
 <div class="sectionbody">
 <div class="sect2">
-<h3 id="_publications"><a class="anchor" href="#_publications"></a>Publications</h3>
+<h3 id="_general_it_publications"><a class="anchor" href="#_general_it_publications"></a>General IT Publications</h3>
+<div class="sect3">
+<h4 id="_articles_books"><a class="anchor" href="#_articles_books"></a>Articles, Books</h4>
 <div class="olist bibliography">
 <ol class="bibliography">
 <li>
 <p><a id="Anderson_1996"></a>[Anderson_1996] Ross Anderson. <strong>Security in Clinical Information Systems</strong>. Available at <a href="http://www.cl.cam.ac.uk/users/rja14/policy11/policy11.html" class="bare">http://www.cl.cam.ac.uk/users/rja14/policy11/policy11.html</a>.</p>
 </li>
 <li>
-<p><a id="Baretto_2005"></a>[Baretto_2005] Barretto S A. <strong>Designing Guideline-based Workflow-Integrated Electronic Health Records.</strong> 2005. PhD dissertation, University of South Australia. Available at <a href="http://www.cis.unisa.edu.au/~cissab/Barretto_PhD_Thesis_Revised_FINAL.pdf" class="bare">http://www.cis.unisa.edu.au/~cissab/Barretto_PhD_Thesis_Revised_FINAL.pdf</a>.</p>
-</li>
-<li>
-<p><a id="Beale_2000"></a>[Beale_2000] Beale T. <strong>Archetypes: Constraint-based Domain Models for Future-proof Information Systems.</strong> 2000.  Available at <a href="http://www.openehr.org/files/resources/publications/archetypes/archetypes_beale_web_2000.pdf" class="bare">http://www.openehr.org/files/resources/publications/archetypes/archetypes_beale_web_2000.pdf</a> .</p>
-</li>
-<li>
-<p><a id="Beale_2002"></a>[Beale_2002] Beale T. <strong>Archetypes: Constraint-based Domain Models for Future-proof Information Systems.</strong> Eleventh OOPSLA Workshop on Behavioral Semantics: Serving the Customer (Seattle, Washington, USA, November 4, 2002). Edited by Kenneth Baclawski and Haim Kilov. Northeastern University, Boston, 2002, pp. 16-32. Available at <a href="http://www.openehr.org/files/resources/publications/archetypes/archetypes_beale_oopsla_2002.pdf" class="bare">http://www.openehr.org/files/resources/publications/archetypes/archetypes_beale_oopsla_2002.pdf</a> .</p>
-</li>
-<li>
-<p><a id="Beale_Heard_2007"></a>[Beale_Heard_2007] Beale T, Heard S. <strong>An Ontology-based Model of Clinical Information.</strong> 2007. pp760-764 Proceedings MedInfo 2007, K. Kuhn et al. (Eds), IOS Publishing 2007. See <a href="http://www.openehr.org/publications/health_ict/MedInfo2007-BealeHeard.pdf" class="bare">http://www.openehr.org/publications/health_ict/MedInfo2007-BealeHeard.pdf</a>.</p>
-</li>
-<li>
 <p><a id="Booch_1994"></a>[Booch_1994] Booch G. <strong>Object-Oriented Analysis and Design with applications. 2nd ed.</strong> Benjamin/Cummings 1994.</p>
 </li>
 <li>
-<p><a id="Browne_2005"></a>[Browne_2005] Browne E D. <strong>Workflow Modelling of Coordinated Inter-Health-Provider Care Plans.</strong> 2005. PhD dissertation, University of South Australia. Available at <a href="http://www.openehr.org/publications/workflow/t_browne_thesis_abstract.htm" class="bare">http://www.openehr.org/publications/workflow/t_browne_thesis_abstract.htm</a>.</p>
-</li>
-<li>
-<p><a id="Cimino_1997"></a>[Cimino_1997] Cimino J J. <strong>Desiderata for Controlled Medical vocabularies in the Twenty-First Century.</strong> IMIA WG6 Conference, Jacksonville, Florida, Jan 19-22, 1997.</p>
-</li>
-<li>
 <p><a id="Eiffel"></a>[Eiffel] Meyer B. <strong>Eiffel the Language (2nd Ed).</strong> Prentice Hall, 1992.</p>
-</li>
-<li>
-<p><a id="Elstein_1987"></a>[Elstein_1987] Elstein AS, Shulman LS, Sprafka SA. <strong>Medical problem solving: an analysis of clinical reasoning.</strong> Cambridge, MA: Harvard University Press 1987.</p>
-</li>
-<li>
-<p><a id="Elstein_Schwarz_2002"></a>[Elstein_Schwarz_2002] Elstein AS, Schwarz A. <strong>Evidence base of clinical diagnosis: Clinical problem solving and diagnostic decision making: selective review of the cognitive literature.</strong> BMJ 2002;324;729-732.</p>
 </li>
 <li>
 <p><a id="Fowler_1997"></a>[Fowler_1997] Fowler M. <strong>Analysis Patterns: Reusable Object Models.</strong> Addison Wesley 1997</p>
@@ -8998,9 +8981,6 @@ Note that in the above, the '/' is used to denote '/protocol' as a differential 
 <p><a id="Hnìtynka_2004"></a>[Hnìtynka_2004] Hnìtynka P, Plášil F. <strong>Distributed Versioning Model for MOF.</strong> Proceedings of WISICT 2004, Cancun, Mexico, A volume in the ACM international conference proceedings series, published by Computer Science Press, Trinity College Dublin Ireland, 2004.</p>
 </li>
 <li>
-<p><a id="Ingram_1995"></a>[Ingram_1995] Ingram D. <strong>The Good European Health Record Project.</strong> Laires, Laderia Christensen, Eds. Health in the New Communications Age. Amsterdam: IOS Press; 1995; pp. 66-74.</p>
-</li>
-<li>
 <p><a id="Kifer_Lausen_Wu_1995"></a>[Kifer_Lausen_Wu_1995] Kifer M, Lausen G, Wu J. <strong>Logical Foundations of Object-Oriented and FrameBased Languages.</strong> JACM May 1995. See See <a href="ftp://ftp.cs.sunysb.edu/pub/TechReports/kifer/flogic.pdf" class="bare">ftp://ftp.cs.sunysb.edu/pub/TechReports/kifer/flogic.pdf</a>.</p>
 </li>
 <li>
@@ -9016,7 +8996,79 @@ Note that in the above, the '/' is used to denote '/protocol' as a differential 
 <p><a id="Meyer_OOSC2"></a>[Meyer_OOSC2] Meyer B. <strong>Object-oriented Software Construction, 2nd Ed.</strong> Prentice Hall 1997</p>
 </li>
 <li>
-<p><a id="Müller_2003"></a>[Müller_2003] Müller R. <strong>Event-oriented Dnamic Adaptation of Workflows: Model, Architecture, and Implementation.</strong> 2003. PhD dissertation, University of Leipzig. Available at <a href="http://www.openehr.org/publications/workflow/t_mueller_thesis_abstract.htm" class="bare">http://www.openehr.org/publications/workflow/t_mueller_thesis_abstract.htm</a>.</p>
+<p><a id="Object_Z"></a>[Object_Z] Smith G. <strong>The Object Z Specification Language</strong>. Kluwer Academic Publishers 2000. See <a href="http://www.itee.uq.edu.au/~smith/objectz.html" class="bare">http://www.itee.uq.edu.au/~smith/objectz.html</a> .</p>
+</li>
+<li>
+<p><a id="Richards_1998"></a>[Richards_1998] Richards E G. <strong>Mapping Time - The Calendar and its History.</strong> Oxford University Press 1998.</p>
+</li>
+<li>
+<p><a id="Sowa_2000"></a>[Sowa_2000] Sowa J F. <strong>Knowledge Representation: Logical, philosophical and Computational Foundations.</strong> 2000, Brooks/Cole, California.</p>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_online_resources"><a class="anchor" href="#_online_resources"></a>Online Resources</h4>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>[<a id="cov_contra"></a>] Wikipedia. <strong>Covariance and contravariance.</strong> See <a href="https://en.wikipedia.org/wiki/Covariance_and_contravariance_(computer_science" class="bare">https://en.wikipedia.org/wiki/Covariance_and_contravariance_(computer_science</a>) .</p>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_standards"><a class="anchor" href="#_standards"></a>Standards</h4>
+<div class="olist bibliography">
+<ol class="bibliography">
+<li>
+<p><a id="OCL"></a>[OCL] <strong>The Object Constraint Language 2.0.</strong> Object Management Group (OMG). Available at <a href="http://www.omg.org/cgi-bin/doc?ptc/2003-10-14" class="bare">http://www.omg.org/cgi-bin/doc?ptc/2003-10-14</a> .</p>
+</li>
+<li>
+<p><a id="IEEE_828"></a>[IEEE_828] IEEE. <strong>IEEE 828-2005: standard for Software Configuration Management Plans.</strong></p>
+</li>
+<li>
+<p><a id="ISO_8601"></a>[ISO_8601] <strong>ISO 8601 standard describing formats for representing times, dates, and durations.</strong> See <a href="https://en.wikipedia.org/wiki/ISO_8601" class="bare">https://en.wikipedia.org/wiki/ISO_8601</a>.</p>
+</li>
+<li>
+<p><a id="ISO_2788"></a>[ISO_2788] ISO. ISO 2788 <strong>Guide to Establishment and development of monolingual thesauri</strong>.</p>
+</li>
+<li>
+<p><a id="ISO_5964"></a>[ISO_5964] ISO. ISO 5964 <strong>Guide to Establishment and development of multilingual thesauri</strong>.</p>
+</li>
+<li>
+<p><a id="Perl_regex"></a>[Perl_regex] Perl.org. <strong>Perl Regular Expressions</strong>. Available at <a href="http://perldoc.perl.org/perlre.html" class="bare">http://perldoc.perl.org/perlre.html</a> .</p>
+</li>
+</ol>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_publications_e_health"><a class="anchor" href="#_publications_e_health"></a>Publications - e-Health</h3>
+<div class="sect3">
+<h4 id="_articles_books_2"><a class="anchor" href="#_articles_books_2"></a>Articles, Books</h4>
+<div class="olist bibliography">
+<ol class="bibliography">
+<li>
+<p><a id="Beale_2000"></a>[Beale_2000] Beale T. <strong>Archetypes: Constraint-based Domain Models for Future-proof Information Systems.</strong> 2000.  Available at <a href="http://www.openehr.org/files/resources/publications/archetypes/archetypes_beale_web_2000.pdf" class="bare">http://www.openehr.org/files/resources/publications/archetypes/archetypes_beale_web_2000.pdf</a> .</p>
+</li>
+<li>
+<p><a id="Beale_2002"></a>[Beale_2002] Beale T. <strong>Archetypes: Constraint-based Domain Models for Future-proof Information Systems.</strong> Eleventh OOPSLA Workshop on Behavioral Semantics: Serving the Customer (Seattle, Washington, USA, November 4, 2002). Edited by Kenneth Baclawski and Haim Kilov. Northeastern University, Boston, 2002, pp. 16-32. Available at <a href="http://www.openehr.org/files/resources/publications/archetypes/archetypes_beale_oopsla_2002.pdf" class="bare">http://www.openehr.org/files/resources/publications/archetypes/archetypes_beale_oopsla_2002.pdf</a> .</p>
+</li>
+<li>
+<p><a id="Beale_Heard_2007"></a>[Beale_Heard_2007] Beale T, Heard S. <strong>An Ontology-based Model of Clinical Information.</strong> 2007. pp760-764 Proceedings MedInfo 2007, K. Kuhn et al. (Eds), IOS Publishing 2007. See <a href="http://www.openehr.org/publications/health_ict/MedInfo2007-BealeHeard.pdf" class="bare">http://www.openehr.org/publications/health_ict/MedInfo2007-BealeHeard.pdf</a>.</p>
+</li>
+<li>
+<p><a id="Cimino_1997"></a>[Cimino_1997] Cimino J J. <strong>Desiderata for Controlled Medical vocabularies in the Twenty-First Century.</strong> IMIA WG6 Conference, Jacksonville, Florida, Jan 19-22, 1997.</p>
+</li>
+<li>
+<p><a id="Elstein_1987"></a>[Elstein_1987] Elstein AS, Shulman LS, Sprafka SA. <strong>Medical problem solving: an analysis of clinical reasoning.</strong> Cambridge, MA: Harvard University Press 1987.</p>
+</li>
+<li>
+<p><a id="Elstein_Schwarz_2002"></a>[Elstein_Schwarz_2002] Elstein AS, Schwarz A. <strong>Evidence base of clinical diagnosis: Clinical problem solving and diagnostic decision making: selective review of the cognitive literature.</strong> BMJ 2002;324;729-732.</p>
+</li>
+<li>
+<p><a id="Ingram_1995"></a>[Ingram_1995] Ingram D. <strong>The Good European Health Record Project.</strong> Laires, Laderia Christensen, Eds. Health in the New Communications Age. Amsterdam: IOS Press; 1995; pp. 66-74.</p>
 </li>
 <li>
 <p><a id="Object_Z"></a>[Object_Z] Smith G. <strong>The Object Z Specification Language</strong>. Kluwer Academic Publishers 2000. See <a href="http://www.itee.uq.edu.au/~smith/objectz.html" class="bare">http://www.itee.uq.edu.au/~smith/objectz.html</a> .</p>
@@ -9031,12 +9083,6 @@ Note that in the above, the '/' is used to denote '/protocol' as a differential 
 <p><a id="Rector_1999"></a>[Rector_1999] Rector A L. <strong>Clinical terminology: why is it so hard?</strong> Methods Inf Med. 1999 Dec;38(4-5):239-52. Available at <a href="http://www.cs.man.ac.uk/~rector/papers/Why-is-terminology-hard-single-r2.pdf" class="bare">http://www.cs.man.ac.uk/~rector/papers/Why-is-terminology-hard-single-r2.pdf</a> .</p>
 </li>
 <li>
-<p><a id="Richards_1998"></a>[Richards_1998] Richards E G. <strong>Mapping Time - The Calendar and its History.</strong> Oxford University Press 1998.</p>
-</li>
-<li>
-<p><a id="Sowa_2000"></a>[Sowa_2000] Sowa J F. <strong>Knowledge Representation: Logical, philosophical and Computational Foundations.</strong> 2000, Brooks/Cole, California.</p>
-</li>
-<li>
 <p><a id="Sottile_1999"></a>[Sottile_1999] Sottile P.A., Ferrara F.M., Grimson W., Kalra D., and Scherrer J.R. <strong>The holistic healthcare information system. Toward an Electronic Health Record Europe.</strong> 1999. Nov 1999; 259-266.</p>
 </li>
 <li>
@@ -9048,20 +9094,8 @@ Note that in the above, the '/' is used to denote '/protocol' as a differential 
 </ol>
 </div>
 </div>
-<div class="sect2">
-<h3 id="_resources"><a class="anchor" href="#_resources"></a>Resources</h3>
 <div class="sect3">
-<h4 id="_general"><a class="anchor" href="#_general"></a>General</h4>
-<div class="olist bibliography">
-<ol class="bibliography">
-<li>
-<p><a id="cov_contra"></a>[cov_contra] Wikipedia. <strong>Covariance and contravariance.</strong> See <a href="https://en.wikipedia.org/wiki/Covariance_and_contravariance_(computer_science" class="bare">https://en.wikipedia.org/wiki/Covariance_and_contravariance_(computer_science</a>) .</p>
-</li>
-</ol>
-</div>
-</div>
-<div class="sect3">
-<h4 id="_e_health_standards"><a class="anchor" href="#_e_health_standards"></a>e-Health Standards</h4>
+<h4 id="_standards_2"><a class="anchor" href="#_standards_2"></a>Standards</h4>
 <div class="olist bibliography">
 <ol class="bibliography">
 <li>
@@ -9122,7 +9156,7 @@ Note that in the above, the '/' is used to denote '/protocol' as a differential 
 </div>
 </div>
 <div class="sect3">
-<h4 id="_e_health_projects"><a class="anchor" href="#_e_health_projects"></a>e-Health Projects</h4>
+<h4 id="_projects"><a class="anchor" href="#_projects"></a>Projects</h4>
 <div class="olist bibliography">
 <ol class="bibliography">
 <li>
@@ -9173,71 +9207,13 @@ Note that in the above, the '/' is used to denote '/protocol' as a differential 
 </ol>
 </div>
 </div>
-<div class="sect3">
-<h4 id="_general_standards"><a class="anchor" href="#_general_standards"></a>General Standards</h4>
-<div class="olist bibliography">
-<ol class="bibliography">
-<li>
-<p><a id="OCL"></a>[OCL] <strong>The Object Constraint Language 2.0.</strong> Object Management Group (OMG). Available at <a href="http://www.omg.org/cgi-bin/doc?ptc/2003-10-14" class="bare">http://www.omg.org/cgi-bin/doc?ptc/2003-10-14</a> .</p>
-</li>
-<li>
-<p><a id="IEEE_828"></a>[IEEE_828] IEEE. <strong>IEEE 828-2005: standard for Software Configuration Management Plans.</strong></p>
-</li>
-<li>
-<p><a id="ISO_8601"></a>[ISO_8601] <strong>ISO 8601 standard describing formats for representing times, dates, and durations.</strong> See <a href="https://en.wikipedia.org/wiki/ISO_8601" class="bare">https://en.wikipedia.org/wiki/ISO_8601</a>.</p>
-</li>
-<li>
-<p><a id="ISO_2788"></a>[ISO_2788] ISO. ISO 2788 <strong>Guide to Establishment and development of monolingual thesauri</strong>.</p>
-</li>
-<li>
-<p><a id="ISO_5964"></a>[ISO_5964] ISO. ISO 5964 <strong>Guide to Establishment and development of multilingual thesauri</strong>.</p>
-</li>
-<li>
-<p><a id="Perl_regex"></a>[Perl_regex] Perl.org. <strong>Perl Regular Expressions</strong>. Available at <a href="http://perldoc.perl.org/perlre.html" class="bare">http://perldoc.perl.org/perlre.html</a> .</p>
-</li>
-<li>
-<p><a id="rfc_2396"></a>[rfc_2396] Berners-Lee T. <strong>Universal Resource Identifiers in WWW</strong>. Available at <a href="http://www.ietf.org/rfc/rfc2396.txt" class="bare">http://www.ietf.org/rfc/rfc2396.txt</a>. This is a World-Wide Web RFC for global identification of resources. In current use on the web, e.g. by Mosaic, Netscape and similar tools. See <a href="http://www.w3.org/Addressing" class="bare">http://www.w3.org/Addressing</a> for a starting point on URIs.</p>
-</li>
-<li>
-<p><a id="rfc_4880"></a>[rfc_4880] <strong>RFC 4880: OpenPGP Message Format</strong>. See <a href="http://www.ietf.org/rfc/rfc4880" class="bare">http://www.ietf.org/rfc/rfc4880</a> .</p>
-</li>
-<li>
-<p><a id="rfc_3986"></a>[rfc_3986] <strong>RFC 3986: Uniform Resource Identifier (URI): Generic Syntax</strong>. IETF. See <a href="http://www.ietf.org/rfc/rfc3986.txt" class="bare">http://www.ietf.org/rfc/rfc3986.txt</a> .</p>
-</li>
-<li>
-<p><a id="rfc_4122"></a>[rfc_4122] <strong>RFC 4122: A Universally Unique IDentifier (UUID) URN Namespace</strong>. IETF. See <a href="http://www.ietf.org/rfc/rfc4122.txt" class="bare">http://www.ietf.org/rfc/rfc4122.txt</a> .</p>
-</li>
-<li>
-<p><a id="rfc_2781"></a>[rfc_2781] IETF. <strong>RFC 2781: UTF-16, an encoding of ISO 10646</strong> See <a href="http://tools.ietf.org/html/rfc2781" class="bare">http://tools.ietf.org/html/rfc2781</a>.</p>
-</li>
-<li>
-<p><a id="rfc_5646"></a>[rfc_5646] IETF. <strong>RFC 5646.</strong> Available at <a href="http://tools.ietf.org/html/rfc5646" class="bare">http://tools.ietf.org/html/rfc5646</a>.</p>
-</li>
-<li>
-<p><a id="sem_ver"></a>[sem_ver] <strong>Semantic Versioning</strong>. <a href="http://semver.org" class="bare">http://semver.org</a> .</p>
-</li>
-<li>
-<p><a id="Xpath"></a>[Xpath] W3C <strong>Xpath 1.0 specification</strong>. 1999. Available at <a href="http://www.w3.org/TR/xpath" class="bare">http://www.w3.org/TR/xpath</a>.</p>
-</li>
-<li>
-<p><a id="uri_syntax"></a>[uri_syntax] <strong>Uniform Resource Identifier (URI): Generic Syntax, Internet proposed standard</strong>. January 2005. see <a href="http://www.ietf.org/rfc/rfc3986.txt" class="bare">http://www.ietf.org/rfc/rfc3986.txt</a> .</p>
-</li>
-<li>
-<p><a id="w3c_owl"></a>[w3c_owl] W3C. <strong>OWL - the Web Ontology Language</strong>. See <a href="http://www.w3.org/TR/2003/CR-owl-ref-20030818/" class="bare">http://www.w3.org/TR/2003/CR-owl-ref-20030818/</a> .</p>
-</li>
-<li>
-<p><a id="w3c_xpath"></a>[w3c_xpath] W3C. <strong>XML Path Language</strong>. See <a href="http://w3c.org/TR/xpath" class="bare">http://w3c.org/TR/xpath</a> .</p>
-</li>
-</ol>
-</div>
-</div>
 </div>
 </div>
 </div>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2018-05-26 12:20:57 BST
+Last updated 2018-09-08 14:26:27 BST
 </div>
 </div>
 </body>
