@@ -10,12 +10,13 @@ h|*Description*
 
 Used in two situations. The first is to represent an 'external reference' to an archetype from within another archetype or template. This supports re-use. The second use is within a template, where it is used as a slot-filler.
 
-For a new external reference, the node_id is set in the normal way, i.e. with a new code at the specialisation level of the archetype.
-For a slot-filler or a redefined external reference, the node_id is set to a specialised version of the node_id of the node being specialised, allowing matching to occur during flattening.
+For a new external reference, the `_node_id_` is set in the normal way, i.e. with a new code at the specialisation level of the archetype.
+
+For a slot-filler or a redefined external reference, the `_node_id_` is set to a specialised version of the `_node_id_` of the node being specialised, allowing matching to occur during flattening.
 
 In all uses within source archetypes and templates, the `_children_` attribute is `Void`.
 
-In an operational template, the node_id is converted to the `_archetype_ref_`, and the structure contains the result of flattening any template overlay structure and the underlying flat archetype.
+In an operational template, the `_node_id_` is converted to the `_archetype_ref_`, and the structure contains the result of flattening any template overlay structure and the underlying flat archetype.
 
 h|*Inherit*
 2+|`C_COMPLEX_OBJECT`
