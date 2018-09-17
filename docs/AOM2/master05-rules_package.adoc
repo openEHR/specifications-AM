@@ -2,45 +2,43 @@
 
 == Overview
 
-The AOM `rules` package builds upon a subset of the `BASE::org::openehr::expressions` package described in the {openehr_expression}[openEHR Expression Language specification], and adds a small number of classes to express leaf reference types specific to archetypes. This enables expressions to be declared within archetypes that:
-
-* use archetype paths as value references, and;
-* include `C_PRIMITIVE_OBJECT` constraints as Boolean-valued sub-expressions.
-
-A special case of the latter is the `C_STRING` leaf constraint type, which is used to represent archetype slot constraints in instances of the `ARCHETYPE_SLOT` class (`_includes_` and `_excludes_` attributes).
-
-The general use of expressions in an archetype is in the `rules` section, where both variable declarataions and assertions are used to express object constraints ranging across multiple nodes, i.e. constraints that can't be expressed 'inline' within the main `definition` section structure. In both of these places, their role is to constrain something _inside_ the current archetype. 
-
-Constraints on external resources such as terminologies are expressed in the constraint binding part in the archetype `terminology`, described in the <<Terminology Package>> section. The AOM `rules` package is illustrated below.
+The AOM `rules` package adds two classes based on classes in the `BASE::org::openehr::expressions` package described in the {openehr_expression}[openEHR Expression Language Object Model (ELOM)]. The package is shown below.
 
 [.text-center]
 .am.aom2.rules Package
 image::{uml_export_dir}/diagrams/AM-aom2.rules.svg[id=rules_package, align="center"]
 
-== Semantics
+== AOM Constraint Expressions
 
-Archetype assertions are expressions which may contain the following elements:
+The class `AOM_CONSTRAINT_EXPRESSION` specialises the class `EL_CONSTRAINT_EXPRESSION`, which is a hook within the ELOM for adding 'match' expressions of the form:
 
-* _constants_:
-** _primitive values_: including the date/time types;
-** _constraints_ operands, i.e. `C_PRIMITIVE_OBJECT` instances, used as arguments to the `matches` operator;
-** _archetype id constraints_, i.e. `C_STRING` instances representing possible archetype identifiers, used in slot constraints.
-* any of the expression operators, i.e.:
-** _arithmetic operators_: `+`, `*`, `-`, `/`, `^` (exponent), `%` (modulo division)
-** _relational operators_: `>`, `<`, `>=`, `\<=`, `=`, `!=`;
-** _boolean operators_: `not`, `and`, `or`, `xor`;
-** _quantifiers_ applied to container variables: `for_all`, `exists`;
-* _functions_ e.g. basic arithmetic, trigonometric and other functions;
-* the following additional semantics:
-** _references_ to archetyped values in data, specified by archetype paths.
+----
+    <expr> matches <constraint>
+----
 
-Variables, assignments, and external queries as described in the {openehr_expression}[openEHR Expression Language] are not allowed.
+Here the `matches` operator has the same abstract semantics as in the AOM. In the `EL_CONSTRAINT_EXPRESSION` class, the `_constraint_` attribute is of type `Any`; in `AOM_CONSTRAINT_EXPRESSION` it is specialised to type `C_DEFINED_OBJECT`, enabling expressions of the form `<expr> matches <C_DEFINED_OBJECT>`, for example:
+
+----
+    -- match the systolic pressure real value
+    $systolic_pressure_value matches {|0.0..500.0|}
+    
+    -- match systolic pressure DV_Quantity
+    $systolic_pressure_quantity matches {
+        DV_QUANTITY matches {
+            magnitude matches {|0.0..500.0|}
+            units matches {"mmol/L"}
+        }
+    }
+----
+
+In the above, the variables `$systolic_pressure_value` and `$systolic_pressure_quantity` are instances of the `EL_TERMINAL` descendant `EL_VARIABLE_REF`.
+
+== Expression Slot Assertions
+
+The second class in the `rules` package is `ARCHETYPE_ID_CONSTRAINT`, a specialisation of ; in `AOM_CONSTRAINT_EXPRESSION` whose constraint is a `C_STRING`. This is used to represent constraints on archetype identifiers in the `ARCHETYPE_SLOT` attributes `_includes_` and `_excludes_`. 
 
 == Class Descriptions
 
-The following classes augment the core model described in the {openehr_expression}[openEHR Expression Language specification].
-
-include::{uml_export_dir}/classes/expr_constraint.adoc[]
-include::{uml_export_dir}/classes/expr_archetype_id_constraint.adoc[]
-include::{uml_export_dir}/classes/expr_archetype_ref.adoc[]
+include::{uml_export_dir}/classes/aom_constraint_expression.adoc[]
+include::{uml_export_dir}/classes/archetype_id_constraint.adoc[]
 

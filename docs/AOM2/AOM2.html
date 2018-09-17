@@ -141,14 +141,14 @@
 <li><a href="#_node_deprecation">4.2.3.4. Node Deprecation</a></li>
 </ul>
 </li>
-<li><a href="#_defined_object_nodes_c_defined_object">4.2.4. Defined Object Nodes (C_DEFINED_OBJECT)</a>
+<li><a href="#_reference_objects">4.2.4. Reference Objects</a></li>
+<li><a href="#_defined_object_nodes_c_defined_object">4.2.5. Defined Object Nodes (C_DEFINED_OBJECT)</a>
 <ul class="sectlevel4">
-<li><a href="#_valid_value">4.2.4.1. Valid_value</a></li>
-<li><a href="#_prototype_value">4.2.4.2. Prototype_value</a></li>
-<li><a href="#_default_value">4.2.4.3. Default_value</a></li>
+<li><a href="#_valid_value">4.2.5.1. Valid_value</a></li>
+<li><a href="#_prototype_value">4.2.5.2. Prototype_value</a></li>
+<li><a href="#_default_value">4.2.5.3. Default_value</a></li>
 </ul>
 </li>
-<li><a href="#_reference_objects">4.2.5. Reference Objects</a></li>
 <li><a href="#_complex_objects_c_complex_object">4.2.6. Complex Objects (C_COMPLEX_OBJECT)</a></li>
 <li><a href="#_primitive_types_c_primitive_object_descendants">4.2.7. Primitive Types (C_PRIMITIVE_OBJECT descendants)</a>
 <ul class="sectlevel4">
@@ -255,12 +255,12 @@
 <li><a href="#_the_rules_package">5. The Rules Package</a>
 <ul class="sectlevel2">
 <li><a href="#_overview_4">5.1. Overview</a></li>
-<li><a href="#_semantics_2">5.2. Semantics</a></li>
-<li><a href="#_class_descriptions_2">5.3. Class Descriptions</a>
+<li><a href="#_aom_constraint_expressions">5.2. AOM Constraint Expressions</a></li>
+<li><a href="#_expression_slot_assertions">5.3. Expression Slot Assertions</a></li>
+<li><a href="#_class_descriptions_2">5.4. Class Descriptions</a>
 <ul class="sectlevel3">
-<li><a href="#_expr_constraint_class">5.3.1. EXPR_CONSTRAINT Class</a></li>
-<li><a href="#_expr_archetype_id_constraint_class">5.3.2. EXPR_ARCHETYPE_ID_CONSTRAINT Class</a></li>
-<li><a href="#_expr_archetype_ref_class">5.3.3. EXPR_ARCHETYPE_REF Class</a></li>
+<li><a href="#_aom_constraint_expression_class">5.4.1. AOM_CONSTRAINT_EXPRESSION Class</a></li>
+<li><a href="#_archetype_id_constraint_class">5.4.2. ARCHETYPE_ID_CONSTRAINT Class</a></li>
 </ul>
 </li>
 </ul>
@@ -268,7 +268,7 @@
 <li><a href="#_terminology_package">6. Terminology Package</a>
 <ul class="sectlevel2">
 <li><a href="#_overview_5">6.1. Overview</a></li>
-<li><a href="#_semantics_3">6.2. Semantics</a>
+<li><a href="#_semantics_2">6.2. Semantics</a>
 <ul class="sectlevel3">
 <li><a href="#_specialisation_depth">6.2.1. Specialisation Depth</a></li>
 </ul>
@@ -350,13 +350,11 @@
 </li>
 <li><a href="#_references">References</a>
 <ul class="sectlevel2">
-<li><a href="#_publications">Publications</a></li>
-<li><a href="#_resources_2">Resources</a>
+<li><a href="#_publications_e_health">Publications - e-Health</a>
 <ul class="sectlevel3">
-<li><a href="#_general">General</a></li>
-<li><a href="#_e_health_standards">e-Health Standards</a></li>
-<li><a href="#_e_health_projects">e-Health Projects</a></li>
-<li><a href="#_general_standards">General Standards</a></li>
+<li><a href="#_articles_books">Articles, Books</a></li>
+<li><a href="#_standards">Standards</a></li>
+<li><a href="#_projects">Projects</a></li>
 </ul>
 </li>
 </ul>
@@ -455,12 +453,20 @@
 </thead>
 <tbody>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a id="latest_issue"></a>2.1.1</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a id="latest_issue"></a>2.1.2</p></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p><a href="https://openehr.atlassian.net/browse/SPECAM-57">SPECAM-57</a>. Adjust model of <code>ASSERTIONs</code> and rules to use Expression Language Object Model (ELOM).</p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">T Beale</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a id="latest_issue_date"></a>16 Sep 2018</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">2.1.1</p></td>
 <td class="tableblock halign-left valign-top"><div><div class="paragraph">
 <p><a href="https://openehr.atlassian.net/browse/SPECAM-51">SPECAM-51</a>. Move RM adaptation attributes from BMM to AOM profile. Add to section 10 the new meta-attributes <code>archetype_parent_class</code>, <code>archetype_data_value_parent_class</code>, <code>archetype_visualise_descendants_of</code>.</p>
 </div></div></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">T Beale</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a id="latest_issue_date"></a>10 Apr 2018</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">10 Apr 2018</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">2.1.0</p></td>
@@ -1979,7 +1985,7 @@ It is the parent class of all concrete types of archetype.</p>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>rules</strong>: <code>List&lt;STATEMENT&gt;</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>rules</strong>: <code>List&lt;EL_ASSERTION&gt;</code></p></td>
 <td class="tableblock halign-left valign-top"><div><div class="paragraph">
 <p>Rules relating to this archetype. Statements are expressed in first order predicate logic, and usually refer to at least two attributes.</p>
 </div></div></td>
@@ -2687,33 +2693,39 @@ an_id: <code>String[1]</code><br>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_defined_object_nodes_c_defined_object"><a class="anchor" href="#_defined_object_nodes_c_defined_object"></a>4.2.4. Defined Object Nodes (C_DEFINED_OBJECT)</h4>
+<h4 id="_reference_objects"><a class="anchor" href="#_reference_objects"></a>4.2.4. Reference Objects</h4>
+<div class="paragraph">
+<p>Two subtypes of <code>C_OBJECT</code>, namely <code>ARCHETYPE_SLOT</code> and <code>C_COMPLEX_OBJECT_PROXY</code> are used to express constraints in the form of references to other constraints, rather than directly.</p>
+</div>
+<div class="paragraph">
+<p>An <code>ARCHETYPE_SLOT</code> defines a 'slot' specifying other archetypes that can be plugged in at that point, in terms of constraints on archetype identifiers. These are expressed as instances of the <code>ARCHETYPE_ID_CONSTRAINT</code> class, a specialised version of the ELOM <code>EL_CONSTRAINT_EXPRESSION</code> class.</p>
+</div>
+<div class="paragraph">
+<p>The type <code>C_COMPLEX_OBJECT_PROXY</code> represents a reference to another part of the current archetype that expresses exactly the same constraints needed at the  point where the proxy appears.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_defined_object_nodes_c_defined_object"><a class="anchor" href="#_defined_object_nodes_c_defined_object"></a>4.2.5. Defined Object Nodes (C_DEFINED_OBJECT)</h4>
 <div class="paragraph">
 <p>The <code>C_DEFINED_OBJECT</code> subtype corresponds to the category of <code>C_OBJECTs</code> that are defined in an archetype by value, i.e. by inline definition. Four properties characterise <code>C_DEFINED_OBJECT</code> s as follows.</p>
 </div>
 <div class="sect4">
-<h5 id="_valid_value"><a class="anchor" href="#_valid_value"></a>4.2.4.1. Valid_value</h5>
+<h5 id="_valid_value"><a class="anchor" href="#_valid_value"></a>4.2.5.1. Valid_value</h5>
 <div class="paragraph">
 <p>The <code><em>valid_value</em></code> function tests a reference model object for conformance to the archetype. It is designed for recursive implementation in which a call to the function at the top of the archetype definition would cause a cascade of calls down the tree. This function is the key function of an 'archetype-enabled kernel' component that can perform runtime data validation based on an archetype definition.</p>
 </div>
 </div>
 <div class="sect4">
-<h5 id="_prototype_value"><a class="anchor" href="#_prototype_value"></a>4.2.4.2. Prototype_value</h5>
+<h5 id="_prototype_value"><a class="anchor" href="#_prototype_value"></a>4.2.5.2. Prototype_value</h5>
 <div class="paragraph">
 <p>This function is used to generate a reasonable default value of the reference object being constrained by a given node. This allows archteype-based software to build a 'prototype' object from an archetype which can serve as the initial version of the object being constrained, assuming it is being created new by user activity (e.g. via a GUI application). Implementation of this function will usually involve use of reflection libraries or similar.</p>
 </div>
 </div>
 <div class="sect4">
-<h5 id="_default_value"><a class="anchor" href="#_default_value"></a>4.2.4.3. Default_value</h5>
+<h5 id="_default_value"><a class="anchor" href="#_default_value"></a>4.2.5.3. Default_value</h5>
 <div class="paragraph">
 <p>This attribute allows a user-specified default value to be defined within an archetype. The <code><em>default_value</em></code> object must be of the same type as defined by the <code><em>prototype_value</em></code> function, pass the <code><em>valid_value</em></code> test. Where defined, the <code><em>prototype_value</em></code> function would return this value instead of a synthesised value.</p>
 </div>
-</div>
-</div>
-<div class="sect3">
-<h4 id="_reference_objects"><a class="anchor" href="#_reference_objects"></a>4.2.5. Reference Objects</h4>
-<div class="paragraph">
-<p>The types <code>ARCHETYPE_SLOT</code> and <code>C_COMPLEX_OBJECT_PROXY</code> are used to express, respectively, a 'slot' where further archetypes can be used to continue describing constraints; a reference to a part of the current archetype that expresses exactly the same constraints needed at another point.</p>
 </div>
 </div>
 <div class="sect3">
@@ -3020,7 +3032,7 @@ Since an archetype might not contain external terminology bindings for all (or e
 <div class="sect3">
 <h4 id="_assertions"><a class="anchor" href="#_assertions"></a>4.3.2. Assertions</h4>
 <div class="paragraph">
-<p>Assertions are also used in <code>ARCHETYPE_SLOTs</code> , in order to express the 'included' and 'excluded' archetypes for the slot. In this case, each assertion is an expression that refers to parts of other archetypes, such as its identifier (e.g. 'include archetypes with <code><em>short_concept_name</em></code> matching <code>xxxx</code> '). Assertions are modelled here as a generic expression tree of unary prefix and binary infix operators. Examples of archetype slots in ADL syntax are given in the openEHR <a href="/releases/AM/latest/ADL2.html">ADL specification</a>.</p>
+<p>Assertions are used in <code>ARCHETYPE_SLOTs</code>, in order to express the 'included' and 'excluded' archetypes for the slot. In this case, each assertion is an expression that refers to parts of other archetypes, such as its identifier (e.g. 'include archetypes with <code><em>short_concept_name</em></code> matching <code>xxxx</code> '). Assertions are modelled here as a generic expression tree of unary prefix and binary infix operators. Examples of archetype slots in ADL syntax are given in the openEHR <a href="/releases/AM/latest/ADL2.html">ADL specification</a>.</p>
 </div>
 </div>
 </div>
@@ -3118,9 +3130,7 @@ Since an archetype might not contain external terminology bindings for all (or e
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><strong>soc_parent</strong>: <code>C_SECOND_ORDER</code></p></td>
-<td class="tableblock halign-left valign-top"><div><div class="paragraph">
-<p>Inverse relationship for <code>ARCHETYPE_CONSTRAINT</code> node owned by <code>C_SECOND_ORDER.<em>members</em></code> attribute.</p>
-</div></div></td>
+<td class="tableblock halign-left valign-top"><div></div></td>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Functions</strong></p></th>
@@ -4048,14 +4058,16 @@ a_value: <code>Any[1]</code><br>
 <p>Used in two situations. The first is to represent an 'external reference' to an archetype from within another archetype or template. This supports re-use. The second use is within a template, where it is used as a slot-filler.</p>
 </div>
 <div class="paragraph">
-<p>For a new external reference, the node_id is set in the normal way, i.e. with a new code at the specialisation level of the archetype.
-For a slot-filler or a redefined external reference, the node_id is set to a specialised version of the node_id of the node being specialised, allowing matching to occur during flattening.</p>
+<p>For a new external reference, the <code><em>node_id</em></code> is set in the normal way, i.e. with a new code at the specialisation level of the archetype.</p>
+</div>
+<div class="paragraph">
+<p>For a slot-filler or a redefined external reference, the <code><em>node_id</em></code> is set to a specialised version of the <code><em>node_id</em></code> of the node being specialised, allowing matching to occur during flattening.</p>
 </div>
 <div class="paragraph">
 <p>In all uses within source archetypes and templates, the <code><em>children</em></code> attribute is <code>Void</code>.</p>
 </div>
 <div class="paragraph">
-<p>In an operational template, the node_id is converted to the <code><em>archetype_ref</em></code>, and the structure contains the result of flattening any template overlay structure and the underlying flat archetype.</p>
+<p>In an operational template, the <code><em>node_id</em></code> is converted to the <code><em>archetype_ref</em></code>, and the structure contains the result of flattening any template overlay structure and the underlying flat archetype.</p>
 </div></div></td>
 </tr>
 <tr>
@@ -4134,14 +4146,14 @@ For a slot-filler or a redefined external reference, the node_id is set to a spe
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>includes</strong>: <code>List&lt;ASSERTION&gt;</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>includes</strong>: <code>List&lt;ARCHETYPE_ID_CONSTRAINT&gt;</code></p></td>
 <td class="tableblock halign-left valign-top"><div><div class="paragraph">
 <p>List of constraints defining other archetypes that could be included at this point.</p>
 </div></div></td>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>excludes</strong>: <code>List&lt;ASSERTION&gt;</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>excludes</strong>: <code>List&lt;ARCHETYPE_ID_CONSTRAINT&gt;</code></p></td>
 <td class="tableblock halign-left valign-top"><div><div class="paragraph">
 <p>List of constraints defining other archetypes that cannot be included at this point.</p>
 </div></div></td>
@@ -5038,7 +5050,10 @@ other: <code>C_ORDERED[1]</code><br>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Description</strong></p></th>
 <td class="tableblock halign-left valign-top" colspan="2"><div><div class="paragraph">
-<p>Constraint on instances of <code>Date</code> in the form either of a set of validity values, or else date ranges based on the <code>C_ORDERED</code> list constraint. There is no validity flag for <code><em>year</em></code>, since it must always be by definition mandatory in order to have a sensible date at all. Syntax expressions of instances of this class include <code>"YYYY-??-??"</code> (date with optional month and day).</p>
+<p>Constraint on instances representing dates in the form either of a set of validity values, or else date ranges based on the <code>C_ORDERED</code> list constraint.</p>
+</div>
+<div class="paragraph">
+<p>There is no validity flag for <code><em>year</em></code>, since it must always be by definition mandatory in order to have a sensible date at all. Syntax expressions of instances of this class include <code>"YYYY-??-??"</code> (date with optional month and day).</p>
 </div></div></td>
 </tr>
 <tr>
@@ -5053,9 +5068,9 @@ other: <code>C_ORDERED[1]</code><br>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1<br>
 (redefined)</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>constraint</strong>: <code>List&lt;Interval&lt;IDate&gt;&gt;</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>constraint</strong>: <code>List&lt;Interval&lt;Iso8601_date&gt;&gt;</code></p></td>
 <td class="tableblock halign-left valign-top"><div><div class="paragraph">
-<p>Formal constraint on an assumed primitive <code>Date</code> type, in the form of List of <code>Interval&lt;Date&gt;</code>, i.e. one or more intervals of Date.</p>
+<p>Formal constraint on the assumed primitive <code>Iso8601_date</code> type, in the form of List of <code>Interval&lt;Iso8601_date&gt;</code>, i.e. one or more intervals of <code>Iso8601_date</code>.</p>
 </div></div></td>
 </tr>
 <tr>
@@ -5109,7 +5124,10 @@ other: <code>C_ORDERED[1]</code><br>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Description</strong></p></th>
 <td class="tableblock halign-left valign-top" colspan="2"><div><div class="paragraph">
-<p>Constraint on instances of assumed primitive type Time in the form either of a set of validity values, or else date ranges based on the <code>C_ORDERED</code> list constraint. There is no validity flag for <code><em>hour</em></code>, since it must always be by definition mandatory in order to have a sensible time at all. Syntax expressions of instances of this class include <code>“HH:??:xx”</code> (time with optional minutes and seconds not allowed).</p>
+<p>Constraint on instances representing times in the form either of a set of validity values, or else time ranges based on the <code>C_ORDERED</code> list constraint.</p>
+</div>
+<div class="paragraph">
+<p>There is no validity flag for <code><em>hour</em></code>, since it must always be by definition mandatory in order to have a sensible time at all. Syntax expressions of instances of this class include <code>“HH:??:xx”</code> (time with optional minutes and seconds not allowed).</p>
 </div></div></td>
 </tr>
 <tr>
@@ -5124,9 +5142,9 @@ other: <code>C_ORDERED[1]</code><br>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1<br>
 (redefined)</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>constraint</strong>: <code>List&lt;Interval&lt;ITime&gt;&gt;</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>constraint</strong>: <code>List&lt;Interval&lt;Iso8601_time&gt;&gt;</code></p></td>
 <td class="tableblock halign-left valign-top"><div><div class="paragraph">
-<p>Formal constraint on assumed primitive type Time, in the form of a List of Interval&lt;Time&gt;, i.e. one or more intervals of Time.</p>
+<p>Formal constraint on the assumed primitive <code>Iso8601_time</code> type, in the form of List of <code>Interval&lt;Iso8601_time&gt;</code>, i.e. one or more intervals of <code>Iso8601_time</code>.</p>
 </div></div></td>
 </tr>
 <tr>
@@ -5187,7 +5205,10 @@ other: <code>C_ORDERED[1]</code><br>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Description</strong></p></th>
 <td class="tableblock halign-left valign-top" colspan="2"><div><div class="paragraph">
-<p>Constraint on instances of assumed primitive type <code>Date_time</code>. There is no validity flag for <code><em>year</em></code>, since it must always be by definition mandatory in order to have a sensible date/time at all. Syntax expressions of instances of this class include <code>"YYYY-MM-DDT??:??:??"</code> (date/time with optional time) and <code>"YYYY-MMDDTHH:MM:xx"</code> (date/time, seconds not allowed).</p>
+<p>Constraint on instances representing date/times, i.e. instants in time.</p>
+</div>
+<div class="paragraph">
+<p>There is no validity flag for <code><em>year</em></code>, since it must always be by definition mandatory in order to have a sensible date/time at all. Syntax expressions of instances of this class include <code>"YYYY-MM-DDT??:??:??"</code> (date/time with optional time) and <code>"YYYY-MMDDTHH:MM:xx"</code> (date/time, seconds not allowed).</p>
 </div></div></td>
 </tr>
 <tr>
@@ -5202,9 +5223,9 @@ other: <code>C_ORDERED[1]</code><br>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1<br>
 (redefined)</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>constraint</strong>: <code>List&lt;Interval&lt;IDate_time&gt;&gt;</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>constraint</strong>: <code>List&lt;Interval&lt;Iso8601_date_time&gt;&gt;</code></p></td>
 <td class="tableblock halign-left valign-top"><div><div class="paragraph">
-<p>Formal constraint on assumed primitive type <code>Date_time</code>, in the form of List of <code>Interval&lt;Date_time&gt;</code>, i.e. one or more intervals of Date_time.</p>
+<p>Formal constraint on the assumed primitive <code>Iso8601_date_time</code> type, in the form of List of <code>Interval&lt;Iso8601_date_time&gt;</code>, i.e. one or more intervals of <code>Iso8601_date_time</code>.</p>
 </div></div></td>
 </tr>
 <tr>
@@ -5279,7 +5300,7 @@ other: <code>C_ORDERED[1]</code><br>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Description</strong></p></th>
 <td class="tableblock halign-left valign-top" colspan="2"><div><div class="paragraph">
-<p>Constraint on instances of assumed primitive type <code>Duration</code>, which is assumed to have the same parts as the ISO8601 duration string. Thus, constraints are of the form <code>"PWD"</code> (weeks and/or days), <code>"PDTHMS"</code> (days, hours, minutes, seconds) and so on.</p>
+<p>Constraint on instances representing duration, which is assumed to have the same parts as the ISO8601 duration string. Thus, constraints are of the form <code>"PWD"</code> (weeks and/or days), <code>"PDTHMS"</code> (days, hours, minutes, seconds) and so on.</p>
 </div>
 <div class="paragraph">
 <p>In official ISO 8601:2004, the ‘W’ (week) designator cannot be mixed in; allowing it is an openEHR-wide exception. The allowed patterns are: <code>P[Y&#124;y][M&#124;m][D&#124;d][T[H&#124;h][M&#124;m][S&#124;s]] and P[W&#124;w]</code>.</p>
@@ -5297,9 +5318,9 @@ other: <code>C_ORDERED[1]</code><br>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1<br>
 (redefined)</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>constraint</strong>: <code>List&lt;Interval&lt;IDuration&gt;&gt;</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>constraint</strong>: <code>List&lt;Interval&lt;Iso8601_duration&gt;&gt;</code></p></td>
 <td class="tableblock halign-left valign-top"><div><div class="paragraph">
-<p>Formal constraint on assumed primitive type <code>Duration</code>, in the form of List of <code>Interval&lt;Duration&gt;</code>, i.e. one or more intervals of <code>Duration</code>.</p>
+<p>Formal constraint on the assumed primitive <code>Iso8601_duration</code> type, in the form of List of <code>Interval&lt;Iso8601_duration&gt;</code>, i.e. one or more intervals of <code>Iso8601_duration</code>.</p>
 </div></div></td>
 </tr>
 <tr>
@@ -5752,26 +5773,7 @@ other: <code>C_SECOND_ORDER[1]</code><br>
 <div class="sect2">
 <h3 id="_overview_4"><a class="anchor" href="#_overview_4"></a>5.1. Overview</h3>
 <div class="paragraph">
-<p>The AOM <code>rules</code> package builds upon a subset of the <code>BASE::org::openehr::expressions</code> package described in the <a href="/releases/BASE/latest/expression.html">openEHR Expression Language specification</a>, and adds a small number of classes to express leaf reference types specific to archetypes. This enables expressions to be declared within archetypes that:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>use archetype paths as value references, and;</p>
-</li>
-<li>
-<p>include <code>C_PRIMITIVE_OBJECT</code> constraints as Boolean-valued sub-expressions.</p>
-</li>
-</ul>
-</div>
-<div class="paragraph">
-<p>A special case of the latter is the <code>C_STRING</code> leaf constraint type, which is used to represent archetype slot constraints in instances of the <code>ARCHETYPE_SLOT</code> class (<code><em>includes</em></code> and <code><em>excludes</em></code> attributes).</p>
-</div>
-<div class="paragraph">
-<p>The general use of expressions in an archetype is in the <code>rules</code> section, where both variable declarataions and assertions are used to express object constraints ranging across multiple nodes, i.e. constraints that can&#8217;t be expressed 'inline' within the main <code>definition</code> section structure. In both of these places, their role is to constrain something <em>inside</em> the current archetype.</p>
-</div>
-<div class="paragraph">
-<p>Constraints on external resources such as terminologies are expressed in the constraint binding part in the archetype <code>terminology</code>, described in the <a href="#_terminology_package">Terminology Package</a> section. The AOM <code>rules</code> package is illustrated below.</p>
+<p>The AOM <code>rules</code> package adds two classes based on classes in the <code>BASE::org::openehr::expressions</code> package described in the <a href="/releases/BASE/latest/expression.html">openEHR Expression Language Object Model (ELOM)</a>. The package is shown below.</p>
 </div>
 <div id="rules_package" class="imageblock text-center" style="text-align: center">
 <div class="content">
@@ -5781,73 +5783,46 @@ other: <code>C_SECOND_ORDER[1]</code><br>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_semantics_2"><a class="anchor" href="#_semantics_2"></a>5.2. Semantics</h3>
+<h3 id="_aom_constraint_expressions"><a class="anchor" href="#_aom_constraint_expressions"></a>5.2. AOM Constraint Expressions</h3>
 <div class="paragraph">
-<p>Archetype assertions are expressions which may contain the following elements:</p>
+<p>The class <code>AOM_CONSTRAINT_EXPRESSION</code> specialises the class <code>EL_CONSTRAINT_EXPRESSION</code>, which is a hook within the ELOM for adding 'match' expressions of the form:</p>
 </div>
-<div class="ulist">
-<ul>
-<li>
-<p><em>constants</em>:</p>
-<div class="ulist">
-<ul>
-<li>
-<p><em>primitive values</em>: including the date/time types;</p>
-</li>
-<li>
-<p><em>constraints</em> operands, i.e. <code>C_PRIMITIVE_OBJECT</code> instances, used as arguments to the <code>matches</code> operator;</p>
-</li>
-<li>
-<p><em>archetype id constraints</em>, i.e. <code>C_STRING</code> instances representing possible archetype identifiers, used in slot constraints.</p>
-</li>
-</ul>
+<div class="listingblock">
+<div class="content">
+<pre>    &lt;expr&gt; matches &lt;constraint&gt;</pre>
 </div>
-</li>
-<li>
-<p>any of the expression operators, i.e.:</p>
-<div class="ulist">
-<ul>
-<li>
-<p><em>arithmetic operators</em>: <code>+</code>, <code>*</code>, <code>-</code>, <code>/</code>, <code>^</code> (exponent), <code>%</code> (modulo division)</p>
-</li>
-<li>
-<p><em>relational operators</em>: <code>&gt;</code>, <code>&lt;</code>, <code>&gt;=</code>, <code>&lt;=</code>, <code>=</code>, <code>!=</code>;</p>
-</li>
-<li>
-<p><em>boolean operators</em>: <code>not</code>, <code>and</code>, <code>or</code>, <code>xor</code>;</p>
-</li>
-<li>
-<p><em>quantifiers</em> applied to container variables: <code>for_all</code>, <code>exists</code>;</p>
-</li>
-</ul>
-</div>
-</li>
-<li>
-<p><em>functions</em> e.g. basic arithmetic, trigonometric and other functions;</p>
-</li>
-<li>
-<p>the following additional semantics:</p>
-<div class="ulist">
-<ul>
-<li>
-<p><em>references</em> to archetyped values in data, specified by archetype paths.</p>
-</li>
-</ul>
-</div>
-</li>
-</ul>
 </div>
 <div class="paragraph">
-<p>Variables, assignments, and external queries as described in the <a href="/releases/BASE/latest/expression.html">openEHR Expression Language</a> are not allowed.</p>
+<p>Here the <code>matches</code> operator has the same abstract semantics as in the AOM. In the <code>EL_CONSTRAINT_EXPRESSION</code> class, the <code><em>constraint</em></code> attribute is of type <code>Any</code>; in <code>AOM_CONSTRAINT_EXPRESSION</code> it is specialised to type <code>C_DEFINED_OBJECT</code>, enabling expressions of the form <code>&lt;expr&gt; matches &lt;C_DEFINED_OBJECT&gt;</code>, for example:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>    -- match the systolic pressure real value
+    $systolic_pressure_value matches {|0.0..500.0|}
+
+    -- match systolic pressure DV_Quantity
+    $systolic_pressure_quantity matches {
+        DV_QUANTITY matches {
+            magnitude matches {|0.0..500.0|}
+            units matches {"mmol/L"}
+        }
+    }</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>In the above, the variables <code>$systolic_pressure_value</code> and <code>$systolic_pressure_quantity</code> are instances of the <code>EL_TERMINAL</code> descendant <code>EL_VARIABLE_REF</code>.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_class_descriptions_2"><a class="anchor" href="#_class_descriptions_2"></a>5.3. Class Descriptions</h3>
+<h3 id="_expression_slot_assertions"><a class="anchor" href="#_expression_slot_assertions"></a>5.3. Expression Slot Assertions</h3>
 <div class="paragraph">
-<p>The following classes augment the core model described in the <a href="/releases/BASE/latest/expression.html">openEHR Expression Language specification</a>.</p>
+<p>The second class in the <code>rules</code> package is <code>ARCHETYPE_ID_CONSTRAINT</code>, a specialisation of ; in <code>AOM_CONSTRAINT_EXPRESSION</code> whose constraint is a <code>C_STRING</code>. This is used to represent constraints on archetype identifiers in the <code>ARCHETYPE_SLOT</code> attributes <code><em>includes</em></code> and <code><em>excludes</em></code>.</p>
 </div>
+</div>
+<div class="sect2">
+<h3 id="_class_descriptions_2"><a class="anchor" href="#_class_descriptions_2"></a>5.4. Class Descriptions</h3>
 <div class="sect3">
-<h4 id="_expr_constraint_class"><a class="anchor" href="#_expr_constraint_class"></a>5.3.1. EXPR_CONSTRAINT Class</h4>
+<h4 id="_aom_constraint_expression_class"><a class="anchor" href="#_aom_constraint_expression_class"></a>5.4.1. AOM_CONSTRAINT_EXPRESSION Class</h4>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
 <col style="width: 11.1111%;">
@@ -5857,17 +5832,17 @@ other: <code>C_SECOND_ORDER[1]</code><br>
 <tbody>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Class</strong></p></th>
-<th class="tableblock halign-center valign-top" colspan="2"><p class="tableblock"><strong>EXPR_CONSTRAINT</strong></p></th>
+<th class="tableblock halign-center valign-top" colspan="2"><p class="tableblock"><strong>AOM_CONSTRAINT_EXPRESSION</strong></p></th>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Description</strong></p></th>
 <td class="tableblock halign-left valign-top" colspan="2"><div><div class="paragraph">
-<p>Expression tree leaf item representing a constraint on a primitive type, expressed in the form of a concrete subtype of C_PRIMITIVE_OBJECT.</p>
+<p>Constraint expression of the form <code>&lt;expression&gt; matches &lt;constraint&gt;</code>, where <code>&lt;expression&gt;</code> is any EL expression and <code>&lt;constraint&gt;</code> is a <code>C_DEFINED_OBJECT</code> instance.</p>
 </div></div></td>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Inherit</strong></p></th>
-<td class="tableblock halign-left valign-top" colspan="2"><p class="tableblock"><code>EXPR_LITERAL</code></p></td>
+<td class="tableblock halign-left valign-top" colspan="2"><p class="tableblock"><code>EL_CONSTRAINT_EXPRESSION</code></p></td>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Attributes</strong></p></th>
@@ -5877,16 +5852,16 @@ other: <code>C_SECOND_ORDER[1]</code><br>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>1..1<br>
 (redefined)</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>item</strong>: <code>C_PRIMITIVE_OBJECT</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>constraint</strong>: <code>C_DEFINED_OBJECT</code></p></td>
 <td class="tableblock halign-left valign-top"><div><div class="paragraph">
-<p>The constraint.</p>
+<p>Right hand side of the constraint expression, in the form of a defined AOM object constraint.</p>
 </div></div></td>
 </tr>
 </tbody>
 </table>
 </div>
 <div class="sect3">
-<h4 id="_expr_archetype_id_constraint_class"><a class="anchor" href="#_expr_archetype_id_constraint_class"></a>5.3.2. EXPR_ARCHETYPE_ID_CONSTRAINT Class</h4>
+<h4 id="_archetype_id_constraint_class"><a class="anchor" href="#_archetype_id_constraint_class"></a>5.4.2. ARCHETYPE_ID_CONSTRAINT Class</h4>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
 <col style="width: 11.1111%;">
@@ -5896,17 +5871,17 @@ other: <code>C_SECOND_ORDER[1]</code><br>
 <tbody>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Class</strong></p></th>
-<th class="tableblock halign-center valign-top" colspan="2"><p class="tableblock"><strong>EXPR_ARCHETYPE_ID_CONSTRAINT</strong></p></th>
+<th class="tableblock halign-center valign-top" colspan="2"><p class="tableblock"><strong>ARCHETYPE_ID_CONSTRAINT</strong></p></th>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Description</strong></p></th>
 <td class="tableblock halign-left valign-top" colspan="2"><div><div class="paragraph">
-<p>Expression tree leaf item representing a constraint on an archetype identifier.</p>
+<p>Constraint expression representing a regex constraint on an archetype identifier.</p>
 </div></div></td>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Inherit</strong></p></th>
-<td class="tableblock halign-left valign-top" colspan="2"><p class="tableblock"><code>EXPR_CONSTRAINT</code></p></td>
+<td class="tableblock halign-left valign-top" colspan="2"><p class="tableblock"><code>AOM_CONSTRAINT_EXPRESSION</code></p></td>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Attributes</strong></p></th>
@@ -5916,64 +5891,10 @@ other: <code>C_SECOND_ORDER[1]</code><br>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>1..1<br>
 (redefined)</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>item</strong>: <code>C_STRING</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>constraint</strong>: <code>C_STRING</code></p></td>
 <td class="tableblock halign-left valign-top"><div><div class="paragraph">
-<p>A C_STRING representing a regular expression for matching Archetype identifiers.</p>
+<p>Right hand side of the constraint expression, in the form of a <code>C_STRING</code>, i.e. string value constrainer.</p>
 </div></div></td>
-</tr>
-</tbody>
-</table>
-</div>
-<div class="sect3">
-<h4 id="_expr_archetype_ref_class"><a class="anchor" href="#_expr_archetype_ref_class"></a>5.3.3. EXPR_ARCHETYPE_REF Class</h4>
-<table class="tableblock frame-all grid-all spread">
-<colgroup>
-<col style="width: 11.1111%;">
-<col style="width: 33.3333%;">
-<col style="width: 55.5556%;">
-</colgroup>
-<tbody>
-<tr>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Class</strong></p></th>
-<th class="tableblock halign-center valign-top" colspan="2"><p class="tableblock"><strong>EXPR_ARCHETYPE_REF</strong></p></th>
-</tr>
-<tr>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Description</strong></p></th>
-<td class="tableblock halign-left valign-top" colspan="2"><div><div class="paragraph">
-<p>Expression tree leaf item representing a reference to a value found in data at a location specified by a path in the archetype definition.</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>A path referring to a value in the archetype (paths with a leading ‘/’ are in the definition section.</p>
-</li>
-<li>
-<p>Paths with no leading ‘/’ are in the outer part of the archetype, e.g. “archetype_id/value” refers to the String value of the archetype_id attribute of the enclosing archetype.</p>
-</li>
-</ul>
-</div></div></td>
-</tr>
-<tr>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Inherit</strong></p></th>
-<td class="tableblock halign-left valign-top" colspan="2"><p class="tableblock"><code>EXPR_VALUE_REF</code></p></td>
-</tr>
-<tr>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Attributes</strong></p></th>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Signature</strong></p></th>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Meaning</strong></p></th>
-</tr>
-<tr>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>1..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>path</strong>: <code>String</code></p></td>
-<td class="tableblock halign-left valign-top"><div><div class="paragraph">
-<p>The path to the archetype node.</p>
-</div></div></td>
-</tr>
-<tr>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>1..1<br>
-(redefined)</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>item</strong>: <code>ARCHETYPE_CONSTRAINT</code></p></td>
-<td class="tableblock halign-left valign-top"><div></div></td>
 </tr>
 </tbody>
 </table>
@@ -6038,7 +5959,7 @@ other: <code>C_SECOND_ORDER[1]</code><br>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_semantics_3"><a class="anchor" href="#_semantics_3"></a>6.2. Semantics</h3>
+<h3 id="_semantics_2"><a class="anchor" href="#_semantics_2"></a>6.2. Semantics</h3>
 <div class="sect3">
 <h4 id="_specialisation_depth"><a class="anchor" href="#_specialisation_depth"></a>6.2.1. Specialisation Depth</h4>
 <div class="paragraph">
@@ -7472,15 +7393,11 @@ Hash of keys ("text", "description" etc) and corresponding values.</p>
 <h2 id="_references"><a class="anchor" href="#_references"></a>References</h2>
 <div class="sectionbody">
 <div class="sect2">
-<h3 id="_publications"><a class="anchor" href="#_publications"></a>Publications</h3>
+<h3 id="_publications_e_health"><a class="anchor" href="#_publications_e_health"></a>Publications - e-Health</h3>
+<div class="sect3">
+<h4 id="_articles_books"><a class="anchor" href="#_articles_books"></a>Articles, Books</h4>
 <div class="olist bibliography">
 <ol class="bibliography">
-<li>
-<p><a id="Anderson_1996"></a>[Anderson_1996] Ross Anderson. <strong>Security in Clinical Information Systems</strong>. Available at <a href="http://www.cl.cam.ac.uk/users/rja14/policy11/policy11.html" class="bare">http://www.cl.cam.ac.uk/users/rja14/policy11/policy11.html</a>.</p>
-</li>
-<li>
-<p><a id="Baretto_2005"></a>[Baretto_2005] Barretto S A. <strong>Designing Guideline-based Workflow-Integrated Electronic Health Records.</strong> 2005. PhD dissertation, University of South Australia. Available at <a href="http://www.cis.unisa.edu.au/~cissab/Barretto_PhD_Thesis_Revised_FINAL.pdf" class="bare">http://www.cis.unisa.edu.au/~cissab/Barretto_PhD_Thesis_Revised_FINAL.pdf</a>.</p>
-</li>
 <li>
 <p><a id="Beale_2000"></a>[Beale_2000] Beale T. <strong>Archetypes: Constraint-based Domain Models for Future-proof Information Systems.</strong> 2000.  Available at <a href="http://www.openehr.org/files/resources/publications/archetypes/archetypes_beale_web_2000.pdf" class="bare">http://www.openehr.org/files/resources/publications/archetypes/archetypes_beale_web_2000.pdf</a> .</p>
 </li>
@@ -7491,16 +7408,7 @@ Hash of keys ("text", "description" etc) and corresponding values.</p>
 <p><a id="Beale_Heard_2007"></a>[Beale_Heard_2007] Beale T, Heard S. <strong>An Ontology-based Model of Clinical Information.</strong> 2007. pp760-764 Proceedings MedInfo 2007, K. Kuhn et al. (Eds), IOS Publishing 2007. See <a href="http://www.openehr.org/publications/health_ict/MedInfo2007-BealeHeard.pdf" class="bare">http://www.openehr.org/publications/health_ict/MedInfo2007-BealeHeard.pdf</a>.</p>
 </li>
 <li>
-<p><a id="Booch_1994"></a>[Booch_1994] Booch G. <strong>Object-Oriented Analysis and Design with applications. 2nd ed.</strong> Benjamin/Cummings 1994.</p>
-</li>
-<li>
-<p><a id="Browne_2005"></a>[Browne_2005] Browne E D. <strong>Workflow Modelling of Coordinated Inter-Health-Provider Care Plans.</strong> 2005. PhD dissertation, University of South Australia. Available at <a href="http://www.openehr.org/publications/workflow/t_browne_thesis_abstract.htm" class="bare">http://www.openehr.org/publications/workflow/t_browne_thesis_abstract.htm</a>.</p>
-</li>
-<li>
 <p><a id="Cimino_1997"></a>[Cimino_1997] Cimino J J. <strong>Desiderata for Controlled Medical vocabularies in the Twenty-First Century.</strong> IMIA WG6 Conference, Jacksonville, Florida, Jan 19-22, 1997.</p>
-</li>
-<li>
-<p><a id="Eiffel"></a>[Eiffel] Meyer B. <strong>Eiffel the Language (2nd Ed).</strong> Prentice Hall, 1992.</p>
 </li>
 <li>
 <p><a id="Elstein_1987"></a>[Elstein_1987] Elstein AS, Shulman LS, Sprafka SA. <strong>Medical problem solving: an analysis of clinical reasoning.</strong> Cambridge, MA: Harvard University Press 1987.</p>
@@ -7509,40 +7417,7 @@ Hash of keys ("text", "description" etc) and corresponding values.</p>
 <p><a id="Elstein_Schwarz_2002"></a>[Elstein_Schwarz_2002] Elstein AS, Schwarz A. <strong>Evidence base of clinical diagnosis: Clinical problem solving and diagnostic decision making: selective review of the cognitive literature.</strong> BMJ 2002;324;729-732.</p>
 </li>
 <li>
-<p><a id="Fowler_1997"></a>[Fowler_1997] Fowler M. <strong>Analysis Patterns: Reusable Object Models.</strong> Addison Wesley 1997</p>
-</li>
-<li>
-<p><a id="Fowler_Scott_2000"></a>[Fowler_Scott_2000] Fowler M, Scott K. <strong>UML Distilled (2nd Ed.).</strong> Addison Wesley Longman 2000.</p>
-</li>
-<li>
-<p><a id="Gray_reuter_1993"></a>[Gray_reuter_1993] Gray J, Reuter A. <strong>Transaction Processing Concepts and Techniques.</strong> Morgan Kaufmann 1993.</p>
-</li>
-<li>
-<p><a id="Hein_2002"></a>[Hein_2002] Hein J L. Discrete Structures, Logic and Computability (2nd Ed). Jones and Bartlett 2002.</p>
-</li>
-<li>
-<p><a id="Hnìtynka_2004"></a>[Hnìtynka_2004] Hnìtynka P, Plášil F. <strong>Distributed Versioning Model for MOF.</strong> Proceedings of WISICT 2004, Cancun, Mexico, A volume in the ACM international conference proceedings series, published by Computer Science Press, Trinity College Dublin Ireland, 2004.</p>
-</li>
-<li>
 <p><a id="Ingram_1995"></a>[Ingram_1995] Ingram D. <strong>The Good European Health Record Project.</strong> Laires, Laderia Christensen, Eds. Health in the New Communications Age. Amsterdam: IOS Press; 1995; pp. 66-74.</p>
-</li>
-<li>
-<p><a id="Kifer_Lausen_Wu_1995"></a>[Kifer_Lausen_Wu_1995] Kifer M, Lausen G, Wu J. <strong>Logical Foundations of Object-Oriented and FrameBased Languages.</strong> JACM May 1995. See See <a href="ftp://ftp.cs.sunysb.edu/pub/TechReports/kifer/flogic.pdf" class="bare">ftp://ftp.cs.sunysb.edu/pub/TechReports/kifer/flogic.pdf</a>.</p>
-</li>
-<li>
-<p><a id="Kilov_1994"></a>[Kilov_1994] Kilov H, Ross J. <strong>Information Modelling - an object-oriented approach.</strong> Prentice Hall 1994.</p>
-</li>
-<li>
-<p><a id="Maier_2000"></a>[Maier_2000] Maier M. <strong>Architecting Principles for Systems-of-Systems.</strong> Technical Report, University of Alabama in Huntsville. 2000. Available at <a href="http://www.infoed.com/Open/PAPERS/systems.htm" class="bare">http://www.infoed.com/Open/PAPERS/systems.htm</a></p>
-</li>
-<li>
-<p><a id="Martin"></a>[Martin] Martin P. <strong>Translations between UML, OWL, KIF and the WebKB-2 languages (For-Taxonomy, Frame-CG, Formalized English)</strong>. May/June 2003. Available at <a href="http://www.webkb.org/doc/model/comparisons.html" class="bare">http://www.webkb.org/doc/model/comparisons.html</a> as at Aug 2004.</p>
-</li>
-<li>
-<p><a id="Meyer_OOSC2"></a>[Meyer_OOSC2] Meyer B. <strong>Object-oriented Software Construction, 2nd Ed.</strong> Prentice Hall 1997</p>
-</li>
-<li>
-<p><a id="Müller_2003"></a>[Müller_2003] Müller R. <strong>Event-oriented Dnamic Adaptation of Workflows: Model, Architecture, and Implementation.</strong> 2003. PhD dissertation, University of Leipzig. Available at <a href="http://www.openehr.org/publications/workflow/t_mueller_thesis_abstract.htm" class="bare">http://www.openehr.org/publications/workflow/t_mueller_thesis_abstract.htm</a>.</p>
 </li>
 <li>
 <p><a id="Object_Z"></a>[Object_Z] Smith G. <strong>The Object Z Specification Language</strong>. Kluwer Academic Publishers 2000. See <a href="http://www.itee.uq.edu.au/~smith/objectz.html" class="bare">http://www.itee.uq.edu.au/~smith/objectz.html</a> .</p>
@@ -7557,12 +7432,6 @@ Hash of keys ("text", "description" etc) and corresponding values.</p>
 <p><a id="Rector_1999"></a>[Rector_1999] Rector A L. <strong>Clinical terminology: why is it so hard?</strong> Methods Inf Med. 1999 Dec;38(4-5):239-52. Available at <a href="http://www.cs.man.ac.uk/~rector/papers/Why-is-terminology-hard-single-r2.pdf" class="bare">http://www.cs.man.ac.uk/~rector/papers/Why-is-terminology-hard-single-r2.pdf</a> .</p>
 </li>
 <li>
-<p><a id="Richards_1998"></a>[Richards_1998] Richards E G. <strong>Mapping Time - The Calendar and its History.</strong> Oxford University Press 1998.</p>
-</li>
-<li>
-<p><a id="Sowa_2000"></a>[Sowa_2000] Sowa J F. <strong>Knowledge Representation: Logical, philosophical and Computational Foundations.</strong> 2000, Brooks/Cole, California.</p>
-</li>
-<li>
 <p><a id="Sottile_1999"></a>[Sottile_1999] Sottile P.A., Ferrara F.M., Grimson W., Kalra D., and Scherrer J.R. <strong>The holistic healthcare information system. Toward an Electronic Health Record Europe.</strong> 1999. Nov 1999; 259-266.</p>
 </li>
 <li>
@@ -7574,20 +7443,8 @@ Hash of keys ("text", "description" etc) and corresponding values.</p>
 </ol>
 </div>
 </div>
-<div class="sect2">
-<h3 id="_resources_2"><a class="anchor" href="#_resources_2"></a>Resources</h3>
 <div class="sect3">
-<h4 id="_general"><a class="anchor" href="#_general"></a>General</h4>
-<div class="olist bibliography">
-<ol class="bibliography">
-<li>
-<p><a id="cov_contra"></a>[cov_contra] Wikipedia. <strong>Covariance and contravariance.</strong> See <a href="https://en.wikipedia.org/wiki/Covariance_and_contravariance_(computer_science" class="bare">https://en.wikipedia.org/wiki/Covariance_and_contravariance_(computer_science</a>) .</p>
-</li>
-</ol>
-</div>
-</div>
-<div class="sect3">
-<h4 id="_e_health_standards"><a class="anchor" href="#_e_health_standards"></a>e-Health Standards</h4>
+<h4 id="_standards"><a class="anchor" href="#_standards"></a>Standards</h4>
 <div class="olist bibliography">
 <ol class="bibliography">
 <li>
@@ -7648,7 +7505,7 @@ Hash of keys ("text", "description" etc) and corresponding values.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_e_health_projects"><a class="anchor" href="#_e_health_projects"></a>e-Health Projects</h4>
+<h4 id="_projects"><a class="anchor" href="#_projects"></a>Projects</h4>
 <div class="olist bibliography">
 <ol class="bibliography">
 <li>
@@ -7699,71 +7556,13 @@ Hash of keys ("text", "description" etc) and corresponding values.</p>
 </ol>
 </div>
 </div>
-<div class="sect3">
-<h4 id="_general_standards"><a class="anchor" href="#_general_standards"></a>General Standards</h4>
-<div class="olist bibliography">
-<ol class="bibliography">
-<li>
-<p><a id="OCL"></a>[OCL] <strong>The Object Constraint Language 2.0.</strong> Object Management Group (OMG). Available at <a href="http://www.omg.org/cgi-bin/doc?ptc/2003-10-14" class="bare">http://www.omg.org/cgi-bin/doc?ptc/2003-10-14</a> .</p>
-</li>
-<li>
-<p><a id="IEEE_828"></a>[IEEE_828] IEEE. <strong>IEEE 828-2005: standard for Software Configuration Management Plans.</strong></p>
-</li>
-<li>
-<p><a id="ISO_8601"></a>[ISO_8601] <strong>ISO 8601 standard describing formats for representing times, dates, and durations.</strong> See <a href="https://en.wikipedia.org/wiki/ISO_8601" class="bare">https://en.wikipedia.org/wiki/ISO_8601</a>.</p>
-</li>
-<li>
-<p><a id="ISO_2788"></a>[ISO_2788] ISO. ISO 2788 <strong>Guide to Establishment and development of monolingual thesauri</strong>.</p>
-</li>
-<li>
-<p><a id="ISO_5964"></a>[ISO_5964] ISO. ISO 5964 <strong>Guide to Establishment and development of multilingual thesauri</strong>.</p>
-</li>
-<li>
-<p><a id="Perl_regex"></a>[Perl_regex] Perl.org. <strong>Perl Regular Expressions</strong>. Available at <a href="http://perldoc.perl.org/perlre.html" class="bare">http://perldoc.perl.org/perlre.html</a> .</p>
-</li>
-<li>
-<p><a id="rfc_2396"></a>[rfc_2396] Berners-Lee T. <strong>Universal Resource Identifiers in WWW</strong>. Available at <a href="http://www.ietf.org/rfc/rfc2396.txt" class="bare">http://www.ietf.org/rfc/rfc2396.txt</a>. This is a World-Wide Web RFC for global identification of resources. In current use on the web, e.g. by Mosaic, Netscape and similar tools. See <a href="http://www.w3.org/Addressing" class="bare">http://www.w3.org/Addressing</a> for a starting point on URIs.</p>
-</li>
-<li>
-<p><a id="rfc_4880"></a>[rfc_4880] <strong>RFC 4880: OpenPGP Message Format</strong>. See <a href="http://www.ietf.org/rfc/rfc4880" class="bare">http://www.ietf.org/rfc/rfc4880</a> .</p>
-</li>
-<li>
-<p><a id="rfc_3986"></a>[rfc_3986] <strong>RFC 3986: Uniform Resource Identifier (URI): Generic Syntax</strong>. IETF. See <a href="http://www.ietf.org/rfc/rfc3986.txt" class="bare">http://www.ietf.org/rfc/rfc3986.txt</a> .</p>
-</li>
-<li>
-<p><a id="rfc_4122"></a>[rfc_4122] <strong>RFC 4122: A Universally Unique IDentifier (UUID) URN Namespace</strong>. IETF. See <a href="http://www.ietf.org/rfc/rfc4122.txt" class="bare">http://www.ietf.org/rfc/rfc4122.txt</a> .</p>
-</li>
-<li>
-<p><a id="rfc_2781"></a>[rfc_2781] IETF. <strong>RFC 2781: UTF-16, an encoding of ISO 10646</strong> See <a href="http://tools.ietf.org/html/rfc2781" class="bare">http://tools.ietf.org/html/rfc2781</a>.</p>
-</li>
-<li>
-<p><a id="rfc_5646"></a>[rfc_5646] IETF. <strong>RFC 5646.</strong> Available at <a href="http://tools.ietf.org/html/rfc5646" class="bare">http://tools.ietf.org/html/rfc5646</a>.</p>
-</li>
-<li>
-<p><a id="sem_ver"></a>[sem_ver] <strong>Semantic Versioning</strong>. <a href="http://semver.org" class="bare">http://semver.org</a> .</p>
-</li>
-<li>
-<p><a id="Xpath"></a>[Xpath] W3C <strong>Xpath 1.0 specification</strong>. 1999. Available at <a href="http://www.w3.org/TR/xpath" class="bare">http://www.w3.org/TR/xpath</a>.</p>
-</li>
-<li>
-<p><a id="uri_syntax"></a>[uri_syntax] <strong>Uniform Resource Identifier (URI): Generic Syntax, Internet proposed standard</strong>. January 2005. see <a href="http://www.ietf.org/rfc/rfc3986.txt" class="bare">http://www.ietf.org/rfc/rfc3986.txt</a> .</p>
-</li>
-<li>
-<p><a id="w3c_owl"></a>[w3c_owl] W3C. <strong>OWL - the Web Ontology Language</strong>. See <a href="http://www.w3.org/TR/2003/CR-owl-ref-20030818/" class="bare">http://www.w3.org/TR/2003/CR-owl-ref-20030818/</a> .</p>
-</li>
-<li>
-<p><a id="w3c_xpath"></a>[w3c_xpath] W3C. <strong>XML Path Language</strong>. See <a href="http://w3c.org/TR/xpath" class="bare">http://w3c.org/TR/xpath</a> .</p>
-</li>
-</ol>
-</div>
-</div>
 </div>
 </div>
 </div>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2018-01-07 16:32:23 GMT
+Last updated 2018-09-08 14:19:24 BST
 </div>
 </div>
 </body>

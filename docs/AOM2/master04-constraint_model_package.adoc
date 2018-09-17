@@ -99,6 +99,14 @@ Within a specialised archetype, redefined or added object nodes may be defined u
 
 It is possible to mark an instance of any defined node type as deprecated, meaning that by preference it should not be used, and that there is an alternative solution for recording the same information. Rules or recommendations for how deprecation should be handled are outside the scope of the archetype proper, and should be provided by the governance framework under which the archetype is managed.
 
+=== Reference Objects
+
+Two subtypes of `C_OBJECT`, namely `ARCHETYPE_SLOT` and `C_COMPLEX_OBJECT_PROXY` are used to express constraints in the form of references to other constraints, rather than directly.
+
+An `ARCHETYPE_SLOT` defines a 'slot' specifying other archetypes that can be plugged in at that point, in terms of constraints on archetype identifiers. These are expressed as instances of the `ARCHETYPE_ID_CONSTRAINT` class, a specialised version of the ELOM `EL_CONSTRAINT_EXPRESSION` class.
+
+The type `C_COMPLEX_OBJECT_PROXY` represents a reference to another part of the current archetype that expresses exactly the same constraints needed at the  point where the proxy appears.
+
 === Defined Object Nodes (C_DEFINED_OBJECT)
 
 The `C_DEFINED_OBJECT` subtype corresponds to the category of `C_OBJECTs` that are defined in an archetype by value, i.e. by inline definition. Four properties characterise `C_DEFINED_OBJECT` s as follows.
@@ -114,10 +122,6 @@ This function is used to generate a reasonable default value of the reference ob
 ==== Default_value
 
 This attribute allows a user-specified default value to be defined within an archetype. The `_default_value_` object must be of the same type as defined by the `_prototype_value_` function, pass the `_valid_value_` test. Where defined, the `_prototype_value_` function would return this value instead of a synthesised value.
-
-=== Reference Objects
-
-The types `ARCHETYPE_SLOT` and `C_COMPLEX_OBJECT_PROXY` are used to express, respectively, a 'slot' where further archetypes can be used to continue describing constraints; a reference to a part of the current archetype that expresses exactly the same constraints needed at another point.
 
 === Complex Objects (C_COMPLEX_OBJECT)
 
@@ -262,7 +266,7 @@ image::diagrams/tuple_example_data.svg[id=tuple_constraint_example_data, align="
 
 === Assertions
 
-Assertions are also used in `ARCHETYPE_SLOTs` , in order to express the 'included' and 'excluded' archetypes for the slot. In this case, each assertion is an expression that refers to parts of other archetypes, such as its identifier (e.g. 'include archetypes with `_short_concept_name_` matching `xxxx` '). Assertions are modelled here as a generic expression tree of unary prefix and binary infix operators. Examples of archetype slots in ADL syntax are given in the openEHR {openehr_am_adl2}[ADL specification].
+Assertions are used in `ARCHETYPE_SLOTs`, in order to express the 'included' and 'excluded' archetypes for the slot. In this case, each assertion is an expression that refers to parts of other archetypes, such as its identifier (e.g. 'include archetypes with `_short_concept_name_` matching `xxxx` '). Assertions are modelled here as a generic expression tree of unary prefix and binary infix operators. Examples of archetype slots in ADL syntax are given in the openEHR {openehr_am_adl2}[ADL specification].
 
 == AOM Type Substitutions
 
