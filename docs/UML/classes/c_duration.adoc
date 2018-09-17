@@ -6,7 +6,7 @@ h|*Class*
 2+^h|*C_DURATION*
 
 h|*Description*
-2+a|Constraint on instances of assumed primitive type `Duration`, which is assumed to have the same parts as the ISO8601 duration string. Thus, constraints are of the form `"PWD"` (weeks and/or days), `"PDTHMS"` (days, hours, minutes, seconds) and so on.
+2+a|Constraint on instances representing duration, which is assumed to have the same parts as the ISO8601 duration string. Thus, constraints are of the form `"PWD"` (weeks and/or days), `"PDTHMS"` (days, hours, minutes, seconds) and so on.
 
 In official ISO 8601:2004, the ‘W’ (week) designator cannot be mixed in; allowing it is an openEHR-wide exception. The allowed patterns are: `P[Y&#124;y][M&#124;m][D&#124;d][T[H&#124;h][M&#124;m][S&#124;s]] and P[W&#124;w]`.
 
@@ -19,8 +19,8 @@ h|*Attributes*
 
 h|*0..1 +
 (redefined)*
-|*constraint*: `List<Interval<IDuration>>`
-a|Formal constraint on assumed primitive type `Duration`, in the form of List of `Interval<Duration>`, i.e. one or more intervals of `Duration`.
+|*constraint*: `List<Interval<Iso8601_duration>>`
+a|Formal constraint on the assumed primitive `Iso8601_duration` type, in the form of List of `Interval<Iso8601_duration>`, i.e. one or more intervals of `Iso8601_duration`.
 h|*Functions*
 ^h|*Signature*
 ^h|*Meaning*

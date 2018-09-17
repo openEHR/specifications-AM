@@ -6,7 +6,9 @@ h|*Class*
 2+^h|*C_DATE_TIME*
 
 h|*Description*
-2+a|Constraint on instances of assumed primitive type `Date_time`. There is no validity flag for `_year_`, since it must always be by definition mandatory in order to have a sensible date/time at all. Syntax expressions of instances of this class include `"YYYY-MM-DDT??:??:??"` (date/time with optional time) and `"YYYY-MMDDTHH:MM:xx"` (date/time, seconds not allowed).
+2+a|Constraint on instances representing date/times, i.e. instants in time.
+
+There is no validity flag for `_year_`, since it must always be by definition mandatory in order to have a sensible date/time at all. Syntax expressions of instances of this class include `"YYYY-MM-DDT??:??:??"` (date/time with optional time) and `"YYYY-MMDDTHH:MM:xx"` (date/time, seconds not allowed).
 
 h|*Inherit*
 2+|`C_TEMPORAL`
@@ -17,8 +19,8 @@ h|*Attributes*
 
 h|*0..1 +
 (redefined)*
-|*constraint*: `List<Interval<IDate_time>>`
-a|Formal constraint on assumed primitive type `Date_time`, in the form of List of `Interval<Date_time>`, i.e. one or more intervals of Date_time.
+|*constraint*: `List<Interval<Iso8601_date_time>>`
+a|Formal constraint on the assumed primitive `Iso8601_date_time` type, in the form of List of `Interval<Iso8601_date_time>`, i.e. one or more intervals of `Iso8601_date_time`.
 h|*Functions*
 ^h|*Signature*
 ^h|*Meaning*
