@@ -594,11 +594,17 @@ The syntactic form of the identifier of a redefined node is a copy of the origin
 
 This permits node identifiers from a given level to be redefined not just at the next level, but at multiple levels below.
 
-Examples of redefined node identifiers:
+The following are examples of redefined node identifiers:
 
-* `id2.1`   -- redefinition of `id1` at level 1 specialisation
-* `id2.0.1` -- redefinition of `id1` node in level 2 specialisation archetype
-* `id2.1.1` -- redefinition of `id2.1` in level 2 specialisation archetype.
+* `id2.1`  : redefinition of `id2` at level 1 specialisation;
+* `id2.0.1`: redefinition of `id2` node in level 2 specialisation archetype;
+* `id2.1.1`: redefinition of `id2.1` in level 2 specialisation archetype.
+
+The digits '1' and '2' here should not be confused with levels 1 and 2. The above identifiers based on an `id6` node might easily be:
+
+* `id6.7`  : redefinition of `id6` in a level 1 specialisation archetype;
+* `id6.0.8`: redefinition of `id6` node in a level 2 specialisation archetype;
+* `id6.7.8`: redefinition of `id6.7` in a level 2 specialisation archetype.
 
 ==== Adding Nodes
 
@@ -608,8 +614,8 @@ The node identifier syntax of an extension node commences with at least one inst
 
 Examples of added node identifiers:
 
-* `id0.1`   -- identifier of extension node introduced at level 1
-* `id0.0.1` -- identifier of extension node introduced at level 2
+* `id0.1`  : identifier of extension node introduced at level 1;
+* `id0.0.1`: identifier of extension node introduced at level 2.
 
 When a flat form is created, the level at which any given node was introduced or redefined is clear due to the identifier coding system.
 

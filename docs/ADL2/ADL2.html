@@ -462,7 +462,7 @@
 </table>
 <div class="imageblock" style="text-align: center">
 <div class="content">
-<img src="diagrams/openehr_block_diagram.png" alt="openEHR components" width="60%">
+<img src="diagrams/openehr_block_diagram.svg" alt="openEHR components" width="60%">
 </div>
 </div>
 <table class="tableblock frame-all grid-all spread">
@@ -515,10 +515,22 @@
 <th class="tableblock halign-center valign-top" colspan="4"><p class="tableblock"><strong>AM Release-2.1.?</strong></p></th>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a id="latest_issue"></a>2.1.2</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a id="latest_issue"></a>2.1.3</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Correct node identifier typos in section 9.5.1.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">M Kramer</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a id="latest_issue_date"></a>28 Oct 2018</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Update link for ARCHETYPE_ID syntax from ADL2 spec to link directly to BASE. (Fixes <a href="https://openehr.atlassian.net/browse/SPECPR-267">SPECPR-267</a>).</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">S Garde</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">03 Nov 2018</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">2.1.2</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://openehr.atlassian.net/browse/SPECAM-57">SPECAM-57</a>. Adjust model of <code>ASSERTIONs</code> and rules to use Expression Language Object Model (ELOM). Update <code>rules</code> section.</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">T Beale</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a id="latest_issue_date"></a>16 Sep 2018</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">16 Sep 2018</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">2.1.0</p></td>
@@ -1061,6 +1073,9 @@
 </li>
 <li>
 <p>Sam Heard MD, Ocean Informatics</p>
+</li>
+<li>
+<p>Mark Kramer, Division Chief Engineer, Health Technology Center, The Mitre Corporation, USA</p>
 </li>
 <li>
 <p>Patrick Langford, NeuronSong LLC</p>
@@ -4723,7 +4738,7 @@ that allowing the <code>W</code> designator to be used with the other designator
 <p>The following syntax validity rule applies in the identification section:</p>
 </div>
 <div class="paragraph rule">
-<p>SARID: archetype identifier validity. the identifier of the artefact must conform to the ARCHETYPE_ID identifier syntax defined in the openEHR.Support IM Specification.</p>
+<p>SARID: archetype identifier validity. the identifier of the artefact must conform to the ARCHETYPE_ID identifier syntax defined in the <a href="/releases/BASE/latest/base_types.html">openEHR BASE/Base Types Specification</a>.</p>
 </div>
 </div>
 <div class="sect3">
@@ -6691,18 +6706,34 @@ Note that in the above, the '/' is used to denote '/protocol' as a differential 
 <p>This permits node identifiers from a given level to be redefined not just at the next level, but at multiple levels below.</p>
 </div>
 <div class="paragraph">
-<p>Examples of redefined node identifiers:</p>
+<p>The following are examples of redefined node identifiers:</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p><code>id2.1</code>  &#8201;&#8212;&#8201;redefinition of <code>id1</code> at level 1 specialisation</p>
+<p><code>id2.1</code>  : redefinition of <code>id2</code> at level 1 specialisation;</p>
 </li>
 <li>
-<p><code>id2.0.1</code>&#8201;&#8212;&#8201;redefinition of <code>id1</code> node in level 2 specialisation archetype</p>
+<p><code>id2.0.1</code>: redefinition of <code>id2</code> node in level 2 specialisation archetype;</p>
 </li>
 <li>
-<p><code>id2.1.1</code>&#8201;&#8212;&#8201;redefinition of <code>id2.1</code> in level 2 specialisation archetype.</p>
+<p><code>id2.1.1</code>: redefinition of <code>id2.1</code> in level 2 specialisation archetype.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>The digits '1' and '2' here should not be confused with levels 1 and 2. The above identifiers based on an <code>id6</code> node might easily be:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>id6.7</code>  : redefinition of <code>id6</code> in a level 1 specialisation archetype;</p>
+</li>
+<li>
+<p><code>id6.0.8</code>: redefinition of <code>id6</code> node in a level 2 specialisation archetype;</p>
+</li>
+<li>
+<p><code>id6.7.8</code>: redefinition of <code>id6.7</code> in a level 2 specialisation archetype.</p>
 </li>
 </ul>
 </div>
@@ -6720,10 +6751,10 @@ Note that in the above, the '/' is used to denote '/protocol' as a differential 
 <div class="ulist">
 <ul>
 <li>
-<p><code>id0.1</code>  &#8201;&#8212;&#8201;identifier of extension node introduced at level 1</p>
+<p><code>id0.1</code>  : identifier of extension node introduced at level 1;</p>
 </li>
 <li>
-<p><code>id0.0.1</code>&#8201;&#8212;&#8201;identifier of extension node introduced at level 2</p>
+<p><code>id0.0.1</code>: identifier of extension node introduced at level 2.</p>
 </li>
 </ul>
 </div>
@@ -9188,7 +9219,7 @@ Note that in the above, the '/' is used to denote '/protocol' as a differential 
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2018-09-08 14:26:27 BST
+Last updated 2018-10-28 09:47:05 GMT
 </div>
 </div>
 </body>
