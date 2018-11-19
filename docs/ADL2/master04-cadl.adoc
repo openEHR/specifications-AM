@@ -65,7 +65,7 @@ Symbol equivalents for some of the above are given in the following table.
 
 === Block / Node Structure
 
-cADL constraints are written in a block-structured style, similar to block-structured programming languages like C. A typical block resembles the following (the recurring pattern `/.+/` is a regular expression meaning "non-empty string"):
+cADL constraints are written in a block-structured style, similar to block-structured programming languages like C. A typical block resembles the following (the recurring pattern `/.+/` is a regular expression matching a non-empty string):
 
 [source, cadl]
 --------
@@ -90,11 +90,11 @@ cADL constraints are written in a block-structured style, similar to block-struc
     }
 --------
 
-In the above, an identifier (shown in green in this document) followed by the ∈ operator (equivalent text keyword: `matches` or `is_in` ) followed by an open brace, is the start of a 'block', which continues until the closing matching brace (normally visually indented to match the line at the beginning of the block).
+In the above, each block is introduced by an identifier (shown in blue) from an information model. The identifiers alternate between type-names (upper case in this example, or 'camel' case) and type attribute names (lower case). Here, 'type-name' indicates the name of a type, which may be a class name, or may be a derived generic type name. An 'attribute name' is the name of an attribute in the inheritance-flattened form of a type, i.e. may be be defined in an ancestor class of the class to which the type-name most directly corresponds.
 
-Two kinds of identifiers from the underlying information model are used, in alternation: type names (shown in upper case in this document) and attribute names (shown in lower case).
+Blocks introduced by a type name are known as _object blocks_ or _object nodes_, while those introduced by an attribute name are _attribute blocks_ or _attribute nodes_.
 
-Blocks introduced by a type name are known as _object blocks_ or _object nodes_, while those introduced by an attribute name are _attribute blocks_ or _attribute nodes_ as illustrated below.
+The block identifier is followed by the ∈ operator (equivalent text keyword: `matches` or `is_in` ) followed by an open brace, is the start of a 'block', which continues until the closing matching brace (normally visually indented to match the line at the beginning of the block).
 
 [source, cadl]
 --------
@@ -105,7 +105,7 @@ Blocks introduced by a type name are known as _object blocks_ or _object nodes_,
     }                                   -------------------------------+
 --------
 
-An object block or node can be thought of as a constraint matching a set of instances of the type which introduces the block.
+An object block or node can be thought of as a constraint matching a set of instances conforming to the type which introduces the block.
 
 The example above expresses a constraint on an instance of the type `PERSON` ; the constraint is expressed by everything inside the `PERSON` block. The two blocks at the next level define constraints on properties of `PERSON` , in this case `_name_` and `_addresses_`. Each of these constraints is expressed in turn by the next level containing constraints on further types, and so on. The general structure is therefore a recursive nesting of constraints on types, followed by constraints on attributes (of that type), followed by types (being the types of the attribute under which it appears) until leaf nodes are reached.
 
@@ -127,7 +127,7 @@ Identifiers in cADL texts correspond to entities - types and attributes - in an 
 .UML Model of Person
 image::{uml_export_dir}/diagrams/ADL-demographics.svg[id=uml_model_of_person, align="center"]
 
-Constraints expressed in cADL cannot be stronger than those from the information model. For example, the `PERSON`.`_family_name_` attribute is mandatory in the model in the above `PERSON` model, so it is not valid to express a constraint allowing the attribute to be optional. In general, a cADL archetype can only further constrain an existing information model. However, it must be remembered that for very generic models consisting of only a few classes and a lot of optionality, this rule is not so much a limitation as a way of adding meaning to information. Thus, for a demographic information model which has only the types `PARTY` and `PERSON`, one can write cADL which defines the concepts of entities such as `COMPANY` , `EMPLOYEE` , `PROFESSIONAL` , and so on, in terms of constraints on the types available in the information model.
+Constraints expressed in cADL cannot invalidate those from the information model. For example, the `PERSON._family_name_` attribute is mandatory in the model in the above `PERSON` model, so it is not valid to express a constraint allowing the attribute to be optional. In general, a cADL archetype can only further constrain an existing information model. However, it must be remembered that for very generic models consisting of only a few classes and a lot of optionality, this rule is not so much a limitation as a way of adding meaning to information. Thus, for a demographic information model which has only the types `PARTY` and `PERSON`, one can write cADL which defines the concepts of entities such as `COMPANY` , `EMPLOYEE` , `PROFESSIONAL` , and so on, in terms of constraints on the types available in the information model.
 
 This general approach can be used to express constraints for instances of any information model. The following example shows how to express a constraint on the `_value_` property of an `ELEMENT` class to be a `DV_QUANTITY` with a suitable range for expressing blood pressure.
 
@@ -350,9 +350,9 @@ In the example below, three `EVENT` constraints are shown; the first one ("1 min
 [source, cadl]
 --------
     events cardinality ∈ {*} ∈ {     
-        EVENT[id2] occurrences ∈ {1..1} ∈ {    }          -- 1 min sample
-        EVENT[id3] occurrences ∈ {0..1} ∈ {    }          -- 2 min sample
-        EVENT[id4] occurrences ∈ {0..1} ∈ {    }          -- 3 min sample
+        EVENT[id2] occurrences ∈ {1..1} ∈ {    }          -- 1 minute sample
+        EVENT[id3] occurrences ∈ {0..1} ∈ {    }          -- 2 minute sample
+        EVENT[id4] occurrences ∈ {0..1} ∈ {    }          -- 3 minute sample
     }
 --------
 
@@ -385,7 +385,7 @@ Where cardinality constraints are used (remembering that occurrences is always t
 * where a cardinality constraint is stated with a finite upper bound:
 ** any child object with either stated occurrences with an open upper bound (typically `0..\*` or `1..*`) or else inferred occurrences (`0..*`) is legal, since the occurrences open upper bound is interpreted to mean the maximum value allowed by the cardinality upper bound.
 ** the sum of all child object occurrences lower bounds must be less than the cardinality upper bound;
-* no 'orphans': at least instance of one optional child object (occurrences lower bound = 0), and one instance of every mandatory child object (occurrences lower bound > 0) must be includable within the cardinality range.
+* no 'orphans': at least one instance of an optional child object (occurrences lower bound = 0), and one instance of every mandatory child object (occurrences lower bound > 0) must be includable within the cardinality range.
 
 === "Any" Constraints
 
@@ -1148,7 +1148,7 @@ ordinal_attr[id3]/value[3]  -- refer to the constraint {2}
 
 === Group Constraints
 
-Within a container attribute, any number of object constraints may be defined. The cardinality and occurrences constraints described above show how to control respectively, the overall container contents, and the occurrence of any particular object constraint within data. However, sometimes finer control is needed on repetition and grouping of members within the container. This can be achieved by the `group` construct, which provides an interior block where a sub-group of the overall container can be treated as a sub-group. The following example shows a typical used of the group construct.
+Within a container attribute, any number of object constraints may be defined. The cardinality and occurrences constraints described above show how to control respectively, the overall container contents, and the occurrence of any particular object constraint within data. However, sometimes finer control is needed on repetition and grouping of members within the container. This can be achieved by the `group` construct, which provides an interior block where a subset of the overall container can be treated as a sub-group. The following example shows a typical used of the group construct.
 
 [source, cadl]
 --------
@@ -1167,10 +1167,12 @@ Within a container attribute, any number of object constraints may be defined. T
     }
 --------
 
-In the above, the group is used to state a logical choice of methodology representations, each defined by one of the three constraints within the group. The group construct includes both cardinality and occurrences qualifier constraints. The former indicates the size and ordering of the group, in the same way as the cardinality constraint does for the overall contents of a container attribute. The latter defines the repeatability of the group. If the group occurrences upper limit is above 1, it means that the sub group may repeat, with each repetition respecting the order and size defined by the group cardinality.
+NOTE: although block-style indenting is used to express group blocks, the `group` constraint is not itself a structural object node, only a pure grouping mechanism.
+
+In the above, the group is used to state a logical choice of methodology representations, each defined by one of the three constraints within the group. The `group` construct includes both `cardinality` and `occurrences` qualifier constraints. The former indicates the size and ordering of the group, in the same way as a cardinality constraint does for the overall contents of a container attribute. The latter defines the repeatability of the group. If the group `occurrences` upper limit is above 1, it means that the sub group may repeat, with each repetition respecting the order and size defined by the group cardinality.
 
 [.principle]
-A group constraint may be used to delimit a sub-list of objects within the total list of object constraints defined within a container attribute. A cardinality, defining size, ordering and uniqueness of the sub-list must be defined. An occurrences defining the repeatbility of the sub-list must also be defined. Group constraints can be nested.
+A `group` constraint may be used to delimit a subset of objects within the total list of object constraints defined within a container attribute. A cardinality must be stated, defining size, ordering and uniqueness of the subset. An occurrences defining the repeatability of the subset must also be stated. Group constraints can be nested.
 
 The use of group cardinality and occurrences constraints, coupled with the occurrences constraints on each group member provide a means of specifying a number of logical constraint types found in other formalisms, including XML, as follows.
 
@@ -1188,7 +1190,7 @@ The use of group cardinality and occurrences constraints, coupled with the occur
 |sub-group, repeating       |upper > 1, unordered   |upper > 1      |any
 |==========================================================
 
-Group blocks can be nested, enabling sub-lists of sub-lists to be defined, as illustrated below.
+Group blocks can be nested, enabling subsets of subsets to be defined, as illustrated below.
 
 [source, cadl]
 --------
@@ -1209,9 +1211,26 @@ Group blocks can be nested, enabling sub-lists of sub-lists to be defined, as il
     }
 --------
 
+For nested groups, the individual object nodes of the sub-group count _individually_ towards the super-group's cardinality, i.e. the group itself is not counted as a node. Thus, in the following example, any three nodes can be chosen from nodes `id6` - `id11`, with one or two of those nodes being from nodes `id9` - `id11`.
+
+[source, cadl]
+--------
+    group cardinality ∈ {3} occurrences ∈ {*} ∈ {         -- pick any 3 from id6-id11 & repeat
+        ELEMENT[id6] occurrences ∈ {0..1} ∈ {...}
+        ELEMENT[id7] occurrences ∈ {0..1} ∈ {...}
+        CLUSTER[id8] occurrences ∈ {0..1} ∈ {...}
+            group cardinality ∈ {1} occurrences ∈ {1..2} ∈ {  -- pick 1-2 from id9 - id11
+                ELEMENT[id9] occurrences ∈ {0..1} ∈ {...}
+                CLUSTER[id10] occurrences ∈ {0..1} ∈ {...}
+                ELEMENT[id11] occurrences ∈ {0..1} ∈ {...}
+            }
+        }
+    }
+--------
+
 ==== Slots and Grouping
 
-The group constraint is often useful with a slot definition, in order to control the ordering and occurrences of items defined by other archetypes, within an overall container. Consider the example of data of the general structure: 'any number of problem and diagnosis Entries, followed by one or more plan & treatment Entries'. An example of data following this structure would be:
+The group constraint is often useful with a slot definition, in order to control the ordering and occurrences of items defined by other archetypes, within an overall container. Consider the example of data of the general structure: 'any number of problem and diagnosis Entries, followed by one plan and one or more treatment Entries'. An example of data following this structure would be:
 
 * `EVALUATION` : problem #1
 * `EVALUATION` : diagnosis #1
@@ -1239,15 +1258,15 @@ It might be expected that the slot constraints needed to define this are as foll
                 include
                     archetype_id/value ∈ {/openEHR-EHR-EVALUATION\.plan\.v*/}
             }
-            allow_archetype INSTRUCTION[id9] occurrences ∈ {*} ∈ {  -- Intervention
+            allow_archetype INSTRUCTION[id9] occurrences ∈ {1..*} ∈ {  -- Intervention
                 include
-                    archetype_id/value ∈ {/openEHR-EHR-INSTRUCTION\.plan\.v*/}
+                    archetype_id/value ∈ {/openEHR-EHR-INSTRUCTION\.(medication_order|therapy)\.v*/}
             }
         }
     }
 --------
 
-The above says that the `SECTION`.`_items_` attribute is an ordered list, and that its contents include multiple `EVALUATION` objects representing problem, diagnosis and plan, and also multiple `INSTRUCTION` objects representing interventions. The problem is now apparent. Each slot definition is set of possibilities, but we do not necessarily want to follow the slot ordering for the ordering of the archetypes chosen to fill the slots. To impose the required ordering and occurrences, we can use the group construct as follows.
+The above says that the `SECTION._items_` attribute is an ordered list, and that its contents include multiple `EVALUATION` objects representing problem, diagnosis and plan, and also multiple `INSTRUCTION` objects representing interventions. The problem is now apparent. Each slot definition is set of possibilities, but we do not necessarily want to follow the slot ordering for the ordering of the archetypes chosen to fill the slots. To impose the required ordering and occurrences, we can use the group construct as follows.
 
 [source, cadl]
 --------
@@ -1268,15 +1287,15 @@ The above says that the `SECTION`.`_items_` attribute is an ordered list, and th
                 include
                     archetype_id/value ∈ {/openEHR-EHR-EVALUATION\.plan\.v*/}
             }
-            allow_archetype INSTRUCTION[id9] occurrences ∈ {*} ∈ {     -- Intervention
+            allow_archetype INSTRUCTION[id9] occurrences ∈ {1..*} ∈ {     -- Intervention
                 include
-                    archetype_id/value ∈ {/openEHR-EHR-INSTRUCTION\.plan\.v*/}
+                    archetype_id/value ∈ {/openEHR-EHR-INSTRUCTION\.(medication_order|therapy)\.v*/}
             }
         }
     }
 --------
 
-The above has the desired result in data: a group of any number of problems and diagnoses, followed by a plan, followed by one or more Interventions.
+The above has the desired result in data: a group of any number of problems and diagnoses, followed by a plan, followed by one or more medications or other therapies.
 
 [[cADL_Constraints_Primitive_Types]]
 == Constraints on Primitive Types
@@ -1316,7 +1335,7 @@ Although for the majority of primitive type constraints, the shortened form is t
     }
 ----
 
-This may occur because the attribute `_some_attr_` in the reference model is of a more general type, e.g. `Any`. The constraint may thus be to simply require a `String`, `Terminology_code` or other primitive type. In the regular form a valid id-code must be supplied; this may be either a standard id-code (e.g. `id9`) or the `Primitive_node_id` value. If the former is used, any specialised that adds a value constraint must use the regular form, as in the following example.
+This may occur because the attribute `_some_attr_` in the reference model is of a more general type, e.g. `Any`. The constraint may thus be to simply require a `String`, `Terminology_code` or other primitive type. In the regular form a valid id-code must be supplied; this may be either a standard id-code (e.g. `id9`) or the `Primitive_node_id` value. If the former is used, any specialised archetype that adds a value constraint must use the regular form, as in the following example.
 
 ----
     -- in parent archetype
@@ -1427,7 +1446,7 @@ The regular expression patterns supported in cADL are as follows.
 | `pattern1\|pattern2`   |match either pattern1 or pattern2.     |E.g. `lying\|sitting\|standing` matches any of the words `"lying"` , `"sitting"` and `"standing"` .
 |==========================================================
 
-A similar warning should be noted for the use of regular expressions to constrain strings: they should be limited to non-linguistically dependent patterns, such as proper and scientific names. The use of regular expressions for constraints on normal words will render an archetype linguistically dependent, and potentially unusable by others.
+A similar warning as for a list of strings should be noted for the use of regular expressions to constrain strings: they should be limited to non-linguistically dependent patterns, such as proper and scientific names. The use of regular expressions for constraints on normal words will render an archetype linguistically dependent, and potentially unusable by others.
 
 === Constraints on Integer
 
@@ -1767,7 +1786,7 @@ constrains each value in the list corresponding to the value of the attribute `s
 
 === Constraints on Enumerated Types
 
-Enumeration types in the reference model are assumed to have the semantics defined in UML and mainstream programming languages, i.e. to be a distinct type based on a primitive type, normally Integer or String. Each such type consists of a set of values from the domain of its underlying type, thus, a set of Integer, String or other primitive values. Each of these values is assumed to be named in the manner of a symbolic constant. Although stricly speaking UML doesn't require an enumerated type to be based on an underlying primitive type, programming languages do, hence the assumption here that values from the domain of such a type are involved.
+Enumeration types in the reference model are assumed to have the semantics defined in UML and mainstream programming languages, i.e. to be a distinct type based on a primitive type, normally Integer or String. Each such type consists of a set of values from the domain of its underlying type, thus, a set of Integer, String or other primitive values. Each of these values is assumed to be named in the manner of a symbolic constant. Although strictly speaking UML doesn't require an enumerated type to be based on an underlying primitive type, programming languages do, hence the assumption here that values from the domain of such a type are involved.
 
 In ADL, constraints on enumerated types are represented by constraints on the underlying primitive values. The following example shows 2 constraints on an attribute of the type `PROPORTION_KIND` from the openEHR Reference Model.
 

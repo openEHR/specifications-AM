@@ -178,7 +178,7 @@ This section introduces the archetype with the keyword `archetype`, `template`, 
 
 [source, adl]
 --------
-archetype (adl_version=2.0.5; rm_release=1.0.3; provenance_id=15E82D77-7DB7-4F70-8D8E-EED6FF241B2D; build_id=E163E472-3E90-409C-9803-0668A7DA48CE; generated; controlled)
+archetype (adl_version=2.0.5; rm_release=1.0.3; provenance_id=15E82D77-7DB7-4F70-8D8E-EED6FF241B2D; build_uid=E163E472-3E90-409C-9803-0668A7DA48CE; generated; controlled)
     openEHR-EHR-OBSERVATION.haematology_result.v0.1.9
 --------
 
@@ -201,7 +201,7 @@ archetype (adl_version=2.0.5; rm_release=1.0.3; uid=15E82D77-7DB7-4F70-8D8E-EED6
 
 This identifier is set at initial creation or at any time later, and never subsequently changes. It acts as an identifier for the physical artefact, regardless of what semantics are changed, including changes to the constituent parts of the multi-axial identifier.
 
-A `build_id` identifier can also be specified, with a GUID value, identifying the current artefact. This identifier changes whenever any change is made to the text of the archetype, and can thus be used to disambiguate subsequent versions.
+A `build_uid` identifier can also be specified, with a GUID value, identifying the current artefact. This identifier changes whenever any change is made to the text of the archetype, and can thus be used to disambiguate subsequent versions.
 
 === Namespaces
 
@@ -519,7 +519,7 @@ In the above, the node identifier `[id1]` is assigned a meaning such as "clinica
 
 == Rules Section
 
-The `rules` section in an ADL archetype contains _statements_ which relate to the entire archetype, and can be used to make statements which are not possible within the block structure of the `definition` section. Any constraint that references more than one property is in this category, as are most constraints containing mathematical or logical formulae. Archetype rule section statements are a subset of the {openehr_expression}[openEHR Expression Language (EL)].
+The `rules` section in an ADL archetype contains _statements_ which relate to the entire archetype, and can be used to make statements which are not possible within the block structure of the `definition` section. Any constraint that references more than one property is in this category, as are most constraints containing mathematical or logical formulae. Archetype rule section statements are a subset of the {openehr_el}[openEHR Expression Language (EL)].
 
 Rule section statements invariably need to reference elements in the main definition path of the archetype. This done via EL external variables ('$' variables) which are separately mapped to archetype paths in a `data_bindings` section. Rule section statements are used to express various kinds of constraint, as described below.
 

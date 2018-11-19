@@ -226,7 +226,7 @@ The second text below is from the 'problem-diagnosis' archetype, i.e. a 'diagnos
 [[redefinition_for_specialisation]]
 === Redefinition for Specialisation
 
-The example shown below illustrates redefinition in a specialised archetype. The first text is taken from the definition section of the 'laboratory result' `OBSERVATION` archetype (available at {openehr_CKM}[openEHR CKM]), and contains an `ELEMENT` node whose identifier is `[id79]` , defined as 'panel item' in the archetype terminology (sibling nodes are not shown here). The intention is that the `id79` node be specialised into particular 'panel items' or analytes according to particular types of test result. Accordingly, the `id79` node has occurrences of `0..*` and its value is not constrained with respect to the reference model, meaning that the type of the `_value_` attirbute can be any descendant of `DATA_VALUE` .
+The example shown below illustrates redefinition in a specialised archetype. The first text is taken from the definition section of the 'laboratory result' `OBSERVATION` archetype (available at {openehr_CKM}[openEHR CKM]), and contains an `ELEMENT` node whose identifier is `[id79]` , defined as 'panel item' in the archetype terminology (sibling nodes are not shown here). The intention is that the `id79` node be specialised into particular 'panel items' or analytes according to particular types of test result. Accordingly, the `id79` node has occurrences of `0..*` and its value is not constrained with respect to the reference model, meaning that the type of the `_value_` attribute can be any descendant of `DATA_VALUE` .
 
 [source, cadl]
 --------
@@ -263,7 +263,7 @@ The second text, below, is a specialised version of the laboratory result archet
     ------ openEHR-EHR-OBSERVATION.laboratory-thyroid.v1 ------
     OBSERVATION[id1.1] -- Thyroid function tests
         /data[id2]/events[id3]/data[id4]/items ∈ {
-            ELEMENT[id79.2] occurrences ∈ {0..1} ∈ {        -- TSH
+            ELEMENT[id79.1] occurrences ∈ {0..1} ∈ {        -- TSH
                 value ∈ {
                     DV_QUANTITY[id0.7] ∈ {
                         property ∈ {[at15]}
@@ -272,13 +272,13 @@ The second text, below, is a specialised version of the laboratory result archet
                     }
                 }
             }
-            ELEMENT[id79.7] occurrences ∈ {0..1} ∈ {...}    -- Free Triiodothyronine (Free T3)
-            ELEMENT[id79.8] occurrences ∈ {0..1} ∈ {...}    -- Total Triiodothyronine (Total T3)
-            ELEMENT[id79.3] occurrences ∈ {0..1} ∈ {...}    -- Free thyroxine (Free T4)
-            ELEMENT[id79.4] occurrences ∈ {0..1} ∈ {...}    -- Total Thyroxine (Total T4)
-            ELEMENT[id79.5] occurrences ∈ {0..1} ∈ {...}    -- T4 loaded uptake
-            ELEMENT[id79.9] occurrences ∈ {0..1} ∈ {...}    -- Free Triiodothyronine index (Free T3 index)
-            ELEMENT[id79.6] occurrences ∈ {0..1} ∈ {...}    -- Free thyroxine index (FTI)
+            ELEMENT[id79.2] occurrences ∈ {0..1} ∈ {...}    -- Free Triiodothyronine (Free T3)
+            ELEMENT[id79.3] occurrences ∈ {0..1} ∈ {...}    -- Total Triiodothyronine (Total T3)
+            ELEMENT[id79.4] occurrences ∈ {0..1} ∈ {...}    -- Free thyroxine (Free T4)
+            ELEMENT[id79.5] occurrences ∈ {0..1} ∈ {...}    -- Total Thyroxine (Total T4)
+            ELEMENT[id79.6] occurrences ∈ {0..1} ∈ {...}    -- T4 loaded uptake
+            ELEMENT[id79.7] occurrences ∈ {0..1} ∈ {...}    -- Free Triiodothyronine index (Free T3 index)
+            ELEMENT[id79.8] occurrences ∈ {0..1} ∈ {...}    -- Free thyroxine index (FTI)
         }
     }
 --------
@@ -286,9 +286,11 @@ The second text, below, is a specialised version of the laboratory result archet
 The redefinitions include:
 
 * a redefinition of the top-level object node identifier `[id1]` , with the specialised node identifier `[id1.1]`;
-* eight nodes redefining the `[id79]` node are shown, with overridden node identifiers `[id79.2]` - `[id79.9]`;
+* eight nodes redefining the `[id79]` node are shown, with overridden node identifiers `[id79.1]` - `[id79.8]`;
 * reduced occurrences (`0..1` in each case);
-* redefinition of the `_value_` attribute of each `ELEMENT` type to `DV_QUANTITY`, shown in expanded form for node `[id79.2]`.
+* redefinition of the `_value_` attribute of each `ELEMENT` type to `DV_QUANTITY`, shown in expanded form for node `[id79.1]`.
+
+Note that the original `ELEMENT[id79]` node with `occurrences` of `0..*` remains a valid constraint node: the fact of specialisation does not remove it. If the intention is that the specialsed nodes constitute an _exhaustive_ redefinition of the original node, the latter can be effectively removed, as described in <<_exhaustive_and_non_exhaustive_redefinition>>.
 
 This archetype is typical of a class of specialisations that use only redefinition, due to the fact that all objects in the redefined part of the specialised version are semantically specific kinds of a general object, in this case, 'panel item'.
 
@@ -395,7 +397,7 @@ The flattened result consists of a number of repetitions of the entire `CLUSTER[
 .Specialisation with Cloning
 image::images/specialisation_with_cloning.png[id=specialisation_with_cloning, align="center", width="75%"]
 
-It can also be seen that the original `[id3]` sub-tree remains. This can be removed if required, as described in <<Exhaustive and non-exhaustive specialisation>>.
+It can also be seen that the original `[id3]` sub-tree remains. This can be removed if required, as described in <<_exhaustive_and_non_exhaustive_redefinition>>.
 
 == Attribute Redefinition
 
@@ -403,7 +405,7 @@ A small number of things can be redefined on attributes, including existence and
 
 === Existence Redefinition: Mandation and Exclusion
 
-All attributes mentioned in an archetype have an _existence_ constraint, indicating whether a value is required or not. The constraint is either stated explicitly - typically done for single-valued attirbutes - or it is the value from the reference model - typical for multiply-valued attributes. In both cases, the existence of an attribute in a parent archetype can be redefined in a specialised archetype using the standard cADL syntax. In the following example, an implicit existence constraint picked up from the reference model of `{0..1}` is redefined in a child archetype to `{1}` , i.e. mandatory.
+All attributes mentioned in an archetype have an _existence_ constraint, indicating whether a value is required or not. The constraint is either stated explicitly - typically done for single-valued attributes - or it is the value from the reference model - typical for multiply-valued attributes. In both cases, the existence of an attribute in a parent archetype can be redefined in a specialised archetype using the standard cADL syntax. In the following example, an implicit existence constraint picked up from the reference model of `{0..1}` is redefined in a child archetype to `{1}` , i.e. mandatory.
 
 Parent archetype:
 
@@ -704,11 +706,11 @@ The first case corresponds to the situation where the 'effective occurrences' of
 
 In any multiple specialisation situation, there is a question of whether the original node being specialised (e.g. `id79` and `id2` in the examples above) remains available for further redefinition in subsequent child archetypes, or do the redefinition children _exhaustively_ define the instance space for the given parent node?
 
-Should these children be considered exhaustive? One point of view says so, since all subsequently discovered varieties of hepratitis (C, D, E, etc) would now become children of 'hepatitis non-A non-B'. However this is likely to be sub-optimal, since now the category 'hepatitis non-A non-B' probably exists solely because of the order in which the various hepatitis virus tests were perfected. Therefore an alternative argument would say that the categories 'hepatitis C', 'hepatitis D' etc should be defined directly below 'hepatitis', as if 'hepatitis non-A non-B' had never existed. Under this argument, the children would not be declared, even when they are theoretically exhaustive.
+Should these children be considered exhaustive? One point of view says so, since all subsequently discovered varieties of hepatitis (C, D, E, etc) would now become children of 'hepatitis non-A non-B'. However this is likely to be sub-optimal, since now the category 'hepatitis non-A non-B' probably exists solely because of the order in which the various hepatitis virus tests were perfected. Therefore an alternative argument would say that the categories 'hepatitis C', 'hepatitis D' etc should be defined directly below 'hepatitis', as if 'hepatitis non-A non-B' had never existed. Under this argument, the children would not be declared, even when they are theoretically exhaustive.
 
 This kind of argument comes up time and again, and the need for catch-all categories (archetype nodes) and the possibility of future discoveries cannot be predicted. Even in situations such as a lab result (e.g. cholesterol), where the list of analytes seem to be known and fixed, experience of clinical modellers has shown that there is nevertheless no guarantee of not needing another data point, perhaps for something other than an analyte.
 
-The default situation is that they do, unless explicitly stated otherwise, which is done by excluding the parent node in the normal way, i.e. using `occurrences matches {0}`. *If an exclusion node is included, it must come last* in the set of siblings that specialise the parent node, otherwise a deletion will occur, leaving no node to specialise. The first example would then become:
+The default situation is that child redefinition nodes do not exhaustively replace the parent unless explicitly stated otherwise. This may be done by excluding the parent node in the normal way, i.e. using `occurrences matches {0}`. *If an exclusion node is included, it must come last* in the set of siblings that specialise the parent node, otherwise a deletion will occur, leaving no node to specialise. The first example would then become:
 
 Parent archetype:
 
@@ -731,14 +733,14 @@ Child archetype:
 [source, cadl]
 --------
     /data/events[id2]/data/items ∈ {                                                
-        ELEMENT[id79.2] occurrences ∈ {0..1} ∈ {...}                    -- TSH
-        ELEMENT[id79.7] occurrences ∈ {0..1} ∈ {...}                    -- Free Triiodothyronine
-        ELEMENT[id79.8] occurrences ∈ {0..1} ∈ {...}                    -- Total Triiodothyronine
-        ELEMENT[id79.3] occurrences ∈ {0..1} ∈ {...}                    -- Free thyroxine (Free T4)
-        ELEMENT[id79.4] occurrences ∈ {0..1} ∈ {...}                    -- Total Thyroxine (Total T4)
-        ELEMENT[id79.5] occurrences ∈ {0..1} ∈ {...}                    -- T4 loaded uptake
-        ELEMENT[id79.9] occurrences ∈ {0..1} ∈ {...}                    -- Free Triiodothyronine index
-        ELEMENT[id79.6] occurrences ∈ {0..1} ∈ {...}                    -- Free thyroxine index (FTI)
+        ELEMENT[id79.1] occurrences ∈ {0..1} ∈ {...}                    -- TSH
+        ELEMENT[id79.2] occurrences ∈ {0..1} ∈ {...}                    -- Free Triiodothyronine
+        ELEMENT[id79.3] occurrences ∈ {0..1} ∈ {...}                    -- Total Triiodothyronine
+        ELEMENT[id79.4] occurrences ∈ {0..1} ∈ {...}                    -- Free thyroxine (Free T4)
+        ELEMENT[id79.5] occurrences ∈ {0..1} ∈ {...}                    -- Total Thyroxine (Total T4)
+        ELEMENT[id79.6] occurrences ∈ {0..1} ∈ {...}                    -- T4 loaded uptake
+        ELEMENT[id79.7] occurrences ∈ {0..1} ∈ {...}                    -- Free Triiodothyronine index
+        ELEMENT[id79.8] occurrences ∈ {0..1} ∈ {...}                    -- Free thyroxine index (FTI)
         ELEMENT[id79] occurrences ∈ {0}                                  -- MUST COME LAST!
     }
 --------
@@ -984,31 +986,6 @@ This slot specification allows `EVALUATION` archetypes for the concepts 'clinica
     }
 --------
 
-Since node identifiers are only required to disambiguate multiple sibling nodes, they may not exist on all nodes in a typical archetype. It is therefore possible to have a slot that carries no node identifier (e.g. due to being under a single-valued attribute). A `use_archetype` specification within a template will accordingly only mention the archetype identifier, with no node id, as per the following example (archetype followed by a template).
-
-[source, cadl]
---------
-    ACTIVITY[id1] ∈ {   -- Medication activity
-        description ∈ {
-            allow_archetype ITEM_TREE[id4] ∈ {
-                include
-                    archetype_id/value ∈ {...}
-            }
-        }
-    }
---------
-
-A template containing a filler for this slot would be as follows:
-
-[source, cadl]
---------
-    use_archetype INSTRUCTION[openEHR-EHR-INSTRUCTION.medication.v1] ∈ {
-        /activities[id1]/description ∈ {
-            use_archetype ITEM_TREE[id4, org.openehr::openEHR-EHR-ITEM_TREE.medication.v1]
-        }
-    }
---------
-
 Slots can be recursively filled in the above fashion, according to the possibilities offered by the chosen archetypes or templates. The following ADL fragment shows two levels of slot-filling:
 
 [source, cadl]
@@ -1044,7 +1021,7 @@ Narrowing the slot is done with a replacement ` allow_archetype` statement conta
 
 === Unconstrained Attributes
 
-The `use_archetype` keyword can be used to specify child object constraints under any attribute in the reference model that is so far unconstrained by the flat parent of an archetype or template. Technically this could occur in any kind of archetype but would normally be in a specialised archetype or template. This is no more than the standard use of an 'external reference' (see <<External References>>).
+The `use_archetype` keyword can be used to specify child object constraints under any attribute in the reference model that is so far unconstrained by the flat parent of an archetype or template. Technically this could occur in any kind of archetype but would normally be in a specialised archetype or template. This is no more than the standard use of an 'external reference' (see <<_external_references>>).
 
 Any reference specified will have no slot, and is instead validity-checked against the appropriate part of the underlying reference model.
 
@@ -1065,7 +1042,7 @@ The following example from the openEHR reference model is typical.
 
 The above cADL block partially specifies a `COMPOSITION` object, via constraints (often including slot definitions) on the _category_ and _context_ attributes defined on that class in the reference model. However, the attribute of most interest in a `COMPOSITION` object is usually the _content_ attribute, which is not constrained at all here. The reference model defines it to be of type `List<CONTENT_ITEM>` .
 
-This kind of constraint is similar to 'slot-filling', except there is no slot providing any constraint, and typically occurs . Using an external reference for in an unarchetyped part of the RM structure is almost always done in specialised archetypes or templates, but is technically valid in a top-level archetype.
+Using an external reference in an unarchetyped part of the RM structure is almost always done in specialised archetypes or templates, but is valid in a top-level archetype.
 
 The following example shows the use of `use_archetype` within a specialised archetype.
 

@@ -512,19 +512,25 @@
 </thead>
 <tbody>
 <tr>
-<th class="tableblock halign-center valign-top" colspan="4"><p class="tableblock"><strong>AM Release-2.1.?</strong></p></th>
+<th class="tableblock halign-center valign-top" colspan="4"><p class="tableblock"><strong>AM R E L E A S E&#160;&#160;&#160;&#160;&#160;2.1.?</strong></p></th>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a id="latest_issue"></a>2.1.3</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Correct node identifier typos in section 9.5.1.</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">M Kramer</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a id="latest_issue_date"></a>28 Oct 2018</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://openehr.atlassian.net/browse/SPECAM-58">SPECAM-58</a>. Correct errors and improve examples - S Garde review Nov 2018.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">S Garde</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a id="latest_issue_date"></a>18 Nov 2018</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Update link for ARCHETYPE_ID syntax from ADL2 spec to link directly to BASE. (Fixes <a href="https://openehr.atlassian.net/browse/SPECPR-267">SPECPR-267</a>).</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Update link for <code>ARCHETYPE_ID</code> syntax from ADL2 spec to link directly to BASE. (Fixes <a href="https://openehr.atlassian.net/browse/SPECPR-267">SPECPR-267</a>).</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">S Garde</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">03 Nov 2018</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Correct node identifier typos in section 9.5.1.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">M Kramer</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">28 Oct 2018</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">2.1.2</p></td>
@@ -572,7 +578,7 @@
 <td class="tableblock halign-left valign-top"><p class="tableblock">04 Oct 2017</p></td>
 </tr>
 <tr>
-<th class="tableblock halign-center valign-top" colspan="4"><p class="tableblock"><strong>AM Release-2.0.6</strong></p></th>
+<th class="tableblock halign-center valign-top" colspan="4"><p class="tableblock"><strong>AM R E L E A S E&#160;&#160;&#160;&#160;&#160;2.0.6</strong></p></th>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">2.0.6</p></td>
@@ -1332,7 +1338,7 @@ Source projects can be found at the <a href="https://github.com/openEHR">openEHR
 <p>new keywords for defining the order of specialised object nodes within container attributes;</p>
 </li>
 <li>
-<p>an explanation of how to use the negated match operator (<code>~matches</code>, or <code>∈</code>) to define value set exclusions in specialised archetypes;</p>
+<p>an explanation of how to use the negated match operator (<code>~matches</code>, or <code>∉</code>) to define value set exclusions in specialised archetypes;</p>
 </li>
 <li>
 <p>a description of the semantics of 'inheritance-flattened' archetypes;</p>
@@ -1607,7 +1613,7 @@ the structure, as shown in the following example:</p>
 <div class="sect2">
 <h3 id="_file_encoding"><a class="anchor" href="#_file_encoding"></a>3.1. File Encoding</h3>
 <div class="paragraph">
-<p>Because ADL files are inherently likely to contain multiple languages due to internationalised authoring and translation, they must be capable of accommodating characters from any language. ADL files do not explicitly indicate an encoding because they are assumed to be in UTF-8 encoding of unicode.  For ideographic and script-oriented languuages, this is a necessity.</p>
+<p>Because ADL files are inherently likely to contain multiple languages due to internationalised authoring and translation, they must be capable of accommodating characters from any language. ADL files do not explicitly indicate an encoding because they are assumed to be in UTF-8 encoding of unicode.  For ideographic and script-oriented languages, this is a necessity.</p>
 </div>
 <div class="paragraph">
 <p>There are three places in ADL files where non-ASCII characters can occur:</p>
@@ -1823,7 +1829,7 @@ the structure, as shown in the following example:</p>
 <div class="sect3">
 <h4 id="_block_node_structure"><a class="anchor" href="#_block_node_structure"></a>4.2.2. Block / Node Structure</h4>
 <div class="paragraph">
-<p>cADL constraints are written in a block-structured style, similar to block-structured programming languages like C. A typical block resembles the following (the recurring pattern <code>/.+/</code> is a regular expression meaning "non-empty string"):</p>
+<p>cADL constraints are written in a block-structured style, similar to block-structured programming languages like C. A typical block resembles the following (the recurring pattern <code>/.+/</code> is a regular expression matching a non-empty string):</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -1849,13 +1855,13 @@ the structure, as shown in the following example:</p>
 </div>
 </div>
 <div class="paragraph">
-<p>In the above, an identifier (shown in green in this document) followed by the ∈ operator (equivalent text keyword: <code>matches</code> or <code>is_in</code> ) followed by an open brace, is the start of a 'block', which continues until the closing matching brace (normally visually indented to match the line at the beginning of the block).</p>
+<p>In the above, each block is introduced by an identifier (shown in blue) from an information model. The identifiers alternate between type-names (upper case in this example, or 'camel' case) and type attribute names (lower case). Here, 'type-name' indicates the name of a type, which may be a class name, or may be a derived generic type name. An 'attribute name' is the name of an attribute in the inheritance-flattened form of a type, i.e. may be be defined in an ancestor class of the class to which the type-name most directly corresponds.</p>
 </div>
 <div class="paragraph">
-<p>Two kinds of identifiers from the underlying information model are used, in alternation: type names (shown in upper case in this document) and attribute names (shown in lower case).</p>
+<p>Blocks introduced by a type name are known as <em>object blocks</em> or <em>object nodes</em>, while those introduced by an attribute name are <em>attribute blocks</em> or <em>attribute nodes</em>.</p>
 </div>
 <div class="paragraph">
-<p>Blocks introduced by a type name are known as <em>object blocks</em> or <em>object nodes</em>, while those introduced by an attribute name are <em>attribute blocks</em> or <em>attribute nodes</em> as illustrated below.</p>
+<p>The block identifier is followed by the ∈ operator (equivalent text keyword: <code>matches</code> or <code>is_in</code> ) followed by an open brace, is the start of a 'block', which continues until the closing matching brace (normally visually indented to match the line at the beginning of the block).</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -1867,7 +1873,7 @@ the structure, as shown in the following example:</p>
 </div>
 </div>
 <div class="paragraph">
-<p>An object block or node can be thought of as a constraint matching a set of instances of the type which introduces the block.</p>
+<p>An object block or node can be thought of as a constraint matching a set of instances conforming to the type which introduces the block.</p>
 </div>
 <div class="paragraph">
 <p>The example above expresses a constraint on an instance of the type <code>PERSON</code> ; the constraint is expressed by everything inside the <code>PERSON</code> block. The two blocks at the next level define constraints on properties of <code>PERSON</code> , in this case <code><em>name</em></code> and <code><em>addresses</em></code>. Each of these constraints is expressed in turn by the next level containing constraints on further types, and so on. The general structure is therefore a recursive nesting of constraints on types, followed by constraints on attributes (of that type), followed by types (being the types of the attribute under which it appears) until leaf nodes are reached.</p>
@@ -1897,7 +1903,7 @@ the structure, as shown in the following example:</p>
 <div class="title">Figure 2. UML Model of Person</div>
 </div>
 <div class="paragraph">
-<p>Constraints expressed in cADL cannot be stronger than those from the information model. For example, the <code>PERSON</code>.<code><em>family_name</em></code> attribute is mandatory in the model in the above <code>PERSON</code> model, so it is not valid to express a constraint allowing the attribute to be optional. In general, a cADL archetype can only further constrain an existing information model. However, it must be remembered that for very generic models consisting of only a few classes and a lot of optionality, this rule is not so much a limitation as a way of adding meaning to information. Thus, for a demographic information model which has only the types <code>PARTY</code> and <code>PERSON</code>, one can write cADL which defines the concepts of entities such as <code>COMPANY</code> , <code>EMPLOYEE</code> , <code>PROFESSIONAL</code> , and so on, in terms of constraints on the types available in the information model.</p>
+<p>Constraints expressed in cADL cannot invalidate those from the information model. For example, the <code>PERSON.<em>family_name</em></code> attribute is mandatory in the model in the above <code>PERSON</code> model, so it is not valid to express a constraint allowing the attribute to be optional. In general, a cADL archetype can only further constrain an existing information model. However, it must be remembered that for very generic models consisting of only a few classes and a lot of optionality, this rule is not so much a limitation as a way of adding meaning to information. Thus, for a demographic information model which has only the types <code>PARTY</code> and <code>PERSON</code>, one can write cADL which defines the concepts of entities such as <code>COMPANY</code> , <code>EMPLOYEE</code> , <code>PROFESSIONAL</code> , and so on, in terms of constraints on the types available in the information model.</p>
 </div>
 <div class="paragraph">
 <p>This general approach can be used to express constraints for instances of any information model. The following example shows how to express a constraint on the <code><em>value</em></code> property of an <code>ELEMENT</code> class to be a <code>DV_QUANTITY</code> with a suitable range for expressing blood pressure.</p>
@@ -2176,9 +2182,9 @@ the structure, as shown in the following example:</p>
 <div class="listingblock">
 <div class="content">
 <pre class="pygments highlight"><code data-lang="cadl">    <span class="tok-nc">events</span> <span class="tok-kt">cardinality </span><span class="tok-o">∈</span> <span class="tok-p">{</span><span class="tok-m">*</span><span class="tok-p">}</span> <span class="tok-o">∈</span> <span class="tok-p">{</span>
-        <span class="tok-nc">EVENT</span><span class="tok-p">[</span><span class="tok-nd">id2</span><span class="tok-p">]</span> <span class="tok-kt">occurrences </span><span class="tok-o">∈</span> <span class="tok-p">{</span><span class="tok-m">1..1</span><span class="tok-p">}</span> <span class="tok-o">∈</span> <span class="tok-p">{</span>    <span class="tok-p">}</span>          <span class="tok-c">-- 1 min sample</span>
-        <span class="tok-nc">EVENT</span><span class="tok-p">[</span><span class="tok-nd">id3</span><span class="tok-p">]</span> <span class="tok-kt">occurrences </span><span class="tok-o">∈</span> <span class="tok-p">{</span><span class="tok-m">0..1</span><span class="tok-p">}</span> <span class="tok-o">∈</span> <span class="tok-p">{</span>    <span class="tok-p">}</span>          <span class="tok-c">-- 2 min sample</span>
-        <span class="tok-nc">EVENT</span><span class="tok-p">[</span><span class="tok-nd">id4</span><span class="tok-p">]</span> <span class="tok-kt">occurrences </span><span class="tok-o">∈</span> <span class="tok-p">{</span><span class="tok-m">0..1</span><span class="tok-p">}</span> <span class="tok-o">∈</span> <span class="tok-p">{</span>    <span class="tok-p">}</span>          <span class="tok-c">-- 3 min sample</span>
+        <span class="tok-nc">EVENT</span><span class="tok-p">[</span><span class="tok-nd">id2</span><span class="tok-p">]</span> <span class="tok-kt">occurrences </span><span class="tok-o">∈</span> <span class="tok-p">{</span><span class="tok-m">1..1</span><span class="tok-p">}</span> <span class="tok-o">∈</span> <span class="tok-p">{</span>    <span class="tok-p">}</span>          <span class="tok-c">-- 1 minute sample</span>
+        <span class="tok-nc">EVENT</span><span class="tok-p">[</span><span class="tok-nd">id3</span><span class="tok-p">]</span> <span class="tok-kt">occurrences </span><span class="tok-o">∈</span> <span class="tok-p">{</span><span class="tok-m">0..1</span><span class="tok-p">}</span> <span class="tok-o">∈</span> <span class="tok-p">{</span>    <span class="tok-p">}</span>          <span class="tok-c">-- 2 minute sample</span>
+        <span class="tok-nc">EVENT</span><span class="tok-p">[</span><span class="tok-nd">id4</span><span class="tok-p">]</span> <span class="tok-kt">occurrences </span><span class="tok-o">∈</span> <span class="tok-p">{</span><span class="tok-m">0..1</span><span class="tok-p">}</span> <span class="tok-o">∈</span> <span class="tok-p">{</span>    <span class="tok-p">}</span>          <span class="tok-c">-- 3 minute sample</span>
     <span class="tok-p">}</span></code></pre>
 </div>
 </div>
@@ -2227,7 +2233,7 @@ the structure, as shown in the following example:</p>
 </div>
 </li>
 <li>
-<p>no 'orphans': at least instance of one optional child object (occurrences lower bound = 0), and one instance of every mandatory child object (occurrences lower bound &gt; 0) must be includable within the cardinality range.</p>
+<p>no 'orphans': at least one instance of an optional child object (occurrences lower bound = 0), and one instance of every mandatory child object (occurrences lower bound &gt; 0) must be includable within the cardinality range.</p>
 </li>
 </ul>
 </div>
@@ -3165,7 +3171,7 @@ direct matching of so-called CamelCase by Snake_case or SCREAMING_SNAKE_CASE and
 <div class="sect3">
 <h4 id="_group_constraints"><a class="anchor" href="#_group_constraints"></a>4.4.2. Group Constraints</h4>
 <div class="paragraph">
-<p>Within a container attribute, any number of object constraints may be defined. The cardinality and occurrences constraints described above show how to control respectively, the overall container contents, and the occurrence of any particular object constraint within data. However, sometimes finer control is needed on repetition and grouping of members within the container. This can be achieved by the <code>group</code> construct, which provides an interior block where a sub-group of the overall container can be treated as a sub-group. The following example shows a typical used of the group construct.</p>
+<p>Within a container attribute, any number of object constraints may be defined. The cardinality and occurrences constraints described above show how to control respectively, the overall container contents, and the occurrence of any particular object constraint within data. However, sometimes finer control is needed on repetition and grouping of members within the container. This can be achieved by the <code>group</code> construct, which provides an interior block where a subset of the overall container can be treated as a sub-group. The following example shows a typical used of the group construct.</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -3184,11 +3190,23 @@ direct matching of so-called CamelCase by Snake_case or SCREAMING_SNAKE_CASE and
     <span class="tok-p">}</span></code></pre>
 </div>
 </div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Note</div>
+</td>
+<td class="content">
+although block-style indenting is used to express group blocks, the <code>group</code> constraint is not itself a structural object node, only a pure grouping mechanism.
+</td>
+</tr>
+</table>
+</div>
 <div class="paragraph">
-<p>In the above, the group is used to state a logical choice of methodology representations, each defined by one of the three constraints within the group. The group construct includes both cardinality and occurrences qualifier constraints. The former indicates the size and ordering of the group, in the same way as the cardinality constraint does for the overall contents of a container attribute. The latter defines the repeatability of the group. If the group occurrences upper limit is above 1, it means that the sub group may repeat, with each repetition respecting the order and size defined by the group cardinality.</p>
+<p>In the above, the group is used to state a logical choice of methodology representations, each defined by one of the three constraints within the group. The <code>group</code> construct includes both <code>cardinality</code> and <code>occurrences</code> qualifier constraints. The former indicates the size and ordering of the group, in the same way as a cardinality constraint does for the overall contents of a container attribute. The latter defines the repeatability of the group. If the group <code>occurrences</code> upper limit is above 1, it means that the sub group may repeat, with each repetition respecting the order and size defined by the group cardinality.</p>
 </div>
 <div class="paragraph principle">
-<p>A group constraint may be used to delimit a sub-list of objects within the total list of object constraints defined within a container attribute. A cardinality, defining size, ordering and uniqueness of the sub-list must be defined. An occurrences defining the repeatbility of the sub-list must also be defined. Group constraints can be nested.</p>
+<p>A <code>group</code> constraint may be used to delimit a subset of objects within the total list of object constraints defined within a container attribute. A cardinality must be stated, defining size, ordering and uniqueness of the subset. An occurrences defining the repeatability of the subset must also be stated. Group constraints can be nested.</p>
 </div>
 <div class="paragraph">
 <p>The use of group cardinality and occurrences constraints, coupled with the occurrences constraints on each group member provide a means of specifying a number of logical constraint types found in other formalisms, including XML, as follows.</p>
@@ -3251,7 +3269,7 @@ direct matching of so-called CamelCase by Snake_case or SCREAMING_SNAKE_CASE and
 </tbody>
 </table>
 <div class="paragraph">
-<p>Group blocks can be nested, enabling sub-lists of sub-lists to be defined, as illustrated below.</p>
+<p>Group blocks can be nested, enabling subsets of subsets to be defined, as illustrated below.</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -3272,10 +3290,28 @@ direct matching of so-called CamelCase by Snake_case or SCREAMING_SNAKE_CASE and
     <span class="tok-p">}</span></code></pre>
 </div>
 </div>
+<div class="paragraph">
+<p>For nested groups, the individual object nodes of the sub-group count <em>individually</em> towards the super-group&#8217;s cardinality, i.e. the group itself is not counted as a node. Thus, in the following example, any three nodes can be chosen from nodes <code>id6</code> - <code>id11</code>, with one or two of those nodes being from nodes <code>id9</code> - <code>id11</code>.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="pygments highlight"><code data-lang="cadl">    <span class="tok-kt">group cardinality </span><span class="tok-o">∈</span> <span class="tok-p">{</span><span class="tok-m">3</span><span class="tok-p">}</span> <span class="tok-kt">occurrences </span><span class="tok-o">∈</span> <span class="tok-p">{</span><span class="tok-m">*</span><span class="tok-p">}</span> <span class="tok-o">∈</span> <span class="tok-p">{</span>         <span class="tok-c">-- pick any 3 from id6-id11 &amp; repeat</span>
+        <span class="tok-nc">ELEMENT</span><span class="tok-p">[</span><span class="tok-nd">id6</span><span class="tok-p">]</span> <span class="tok-kt">occurrences </span><span class="tok-o">∈</span> <span class="tok-p">{</span><span class="tok-m">0..1</span><span class="tok-p">}</span> <span class="tok-o">∈</span> <span class="tok-p">{...}</span>
+        <span class="tok-nc">ELEMENT</span><span class="tok-p">[</span><span class="tok-nd">id7</span><span class="tok-p">]</span> <span class="tok-kt">occurrences </span><span class="tok-o">∈</span> <span class="tok-p">{</span><span class="tok-m">0..1</span><span class="tok-p">}</span> <span class="tok-o">∈</span> <span class="tok-p">{...}</span>
+        <span class="tok-nc">CLUSTER</span><span class="tok-p">[</span><span class="tok-nd">id8</span><span class="tok-p">]</span> <span class="tok-kt">occurrences </span><span class="tok-o">∈</span> <span class="tok-p">{</span><span class="tok-m">0..1</span><span class="tok-p">}</span> <span class="tok-o">∈</span> <span class="tok-p">{...}</span>
+            <span class="tok-kt">group cardinality </span><span class="tok-o">∈</span> <span class="tok-p">{</span><span class="tok-m">1</span><span class="tok-p">}</span> <span class="tok-kt">occurrences </span><span class="tok-o">∈</span> <span class="tok-p">{</span><span class="tok-m">1..2</span><span class="tok-p">}</span> <span class="tok-o">∈</span> <span class="tok-p">{</span>  <span class="tok-c">-- pick 1-2 from id9 - id11</span>
+                <span class="tok-nc">ELEMENT</span><span class="tok-p">[</span><span class="tok-nd">id9</span><span class="tok-p">]</span> <span class="tok-kt">occurrences </span><span class="tok-o">∈</span> <span class="tok-p">{</span><span class="tok-m">0..1</span><span class="tok-p">}</span> <span class="tok-o">∈</span> <span class="tok-p">{...}</span>
+                <span class="tok-nc">CLUSTER</span><span class="tok-p">[</span><span class="tok-nd">id10</span><span class="tok-p">]</span> <span class="tok-kt">occurrences </span><span class="tok-o">∈</span> <span class="tok-p">{</span><span class="tok-m">0..1</span><span class="tok-p">}</span> <span class="tok-o">∈</span> <span class="tok-p">{...}</span>
+                <span class="tok-nc">ELEMENT</span><span class="tok-p">[</span><span class="tok-nd">id11</span><span class="tok-p">]</span> <span class="tok-kt">occurrences </span><span class="tok-o">∈</span> <span class="tok-p">{</span><span class="tok-m">0..1</span><span class="tok-p">}</span> <span class="tok-o">∈</span> <span class="tok-p">{...}</span>
+            <span class="tok-p">}</span>
+        <span class="tok-p">}</span>
+    <span class="tok-p">}</span></code></pre>
+</div>
+</div>
 <div class="sect4">
 <h5 id="_slots_and_grouping"><a class="anchor" href="#_slots_and_grouping"></a>4.4.2.1. Slots and Grouping</h5>
 <div class="paragraph">
-<p>The group constraint is often useful with a slot definition, in order to control the ordering and occurrences of items defined by other archetypes, within an overall container. Consider the example of data of the general structure: 'any number of problem and diagnosis Entries, followed by one or more plan &amp; treatment Entries'. An example of data following this structure would be:</p>
+<p>The group constraint is often useful with a slot definition, in order to control the ordering and occurrences of items defined by other archetypes, within an overall container. Consider the example of data of the general structure: 'any number of problem and diagnosis Entries, followed by one plan and one or more treatment Entries'. An example of data following this structure would be:</p>
 </div>
 <div class="ulist">
 <ul>
@@ -3321,16 +3357,16 @@ direct matching of so-called CamelCase by Snake_case or SCREAMING_SNAKE_CASE and
                 <span class="tok-kt">include</span>
                     <span class="tok-nc">archetype_id</span><span class="tok-p">/</span><span class="tok-nc">value</span><span class="tok-p"> </span><span class="tok-o">∈</span> <span class="tok-p">{</span><span class="tok-sr">/openEHR-EHR-EVALUATION\.plan\.v*/</span><span class="tok-p">}</span>
             <span class="tok-p">}</span>
-            <span class="tok-kt">allow_archetype </span><span class="tok-nc">INSTRUCTION</span><span class="tok-p">[</span><span class="tok-nd">id9</span><span class="tok-p">]</span> <span class="tok-kt">occurrences </span><span class="tok-o">∈</span> <span class="tok-p">{</span><span class="tok-m">*</span><span class="tok-p">}</span> <span class="tok-o">∈</span> <span class="tok-p">{</span>  <span class="tok-c">-- Intervention</span>
+            <span class="tok-kt">allow_archetype </span><span class="tok-nc">INSTRUCTION</span><span class="tok-p">[</span><span class="tok-nd">id9</span><span class="tok-p">]</span> <span class="tok-kt">occurrences </span><span class="tok-o">∈</span> <span class="tok-p">{</span><span class="tok-m">1..*</span><span class="tok-p">}</span> <span class="tok-o">∈</span> <span class="tok-p">{</span>  <span class="tok-c">-- Intervention</span>
                 <span class="tok-kt">include</span>
-                    <span class="tok-nc">archetype_id</span><span class="tok-p">/</span><span class="tok-nc">value</span><span class="tok-p"> </span><span class="tok-o">∈</span> <span class="tok-p">{</span><span class="tok-sr">/openEHR-EHR-INSTRUCTION\.plan\.v*/</span><span class="tok-p">}</span>
+                    <span class="tok-nc">archetype_id</span><span class="tok-p">/</span><span class="tok-nc">value</span><span class="tok-p"> </span><span class="tok-o">∈</span> <span class="tok-p">{</span><span class="tok-sr">/openEHR-EHR-INSTRUCTION\.(medication_order|therapy)\.v*/</span><span class="tok-p">}</span>
             <span class="tok-p">}</span>
         <span class="tok-p">}</span>
     <span class="tok-p">}</span></code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>The above says that the <code>SECTION</code>.<code><em>items</em></code> attribute is an ordered list, and that its contents include multiple <code>EVALUATION</code> objects representing problem, diagnosis and plan, and also multiple <code>INSTRUCTION</code> objects representing interventions. The problem is now apparent. Each slot definition is set of possibilities, but we do not necessarily want to follow the slot ordering for the ordering of the archetypes chosen to fill the slots. To impose the required ordering and occurrences, we can use the group construct as follows.</p>
+<p>The above says that the <code>SECTION.<em>items</em></code> attribute is an ordered list, and that its contents include multiple <code>EVALUATION</code> objects representing problem, diagnosis and plan, and also multiple <code>INSTRUCTION</code> objects representing interventions. The problem is now apparent. Each slot definition is set of possibilities, but we do not necessarily want to follow the slot ordering for the ordering of the archetypes chosen to fill the slots. To impose the required ordering and occurrences, we can use the group construct as follows.</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -3351,16 +3387,16 @@ direct matching of so-called CamelCase by Snake_case or SCREAMING_SNAKE_CASE and
                 <span class="tok-kt">include</span>
                     <span class="tok-nc">archetype_id</span><span class="tok-p">/</span><span class="tok-nc">value</span><span class="tok-p"> </span><span class="tok-o">∈</span> <span class="tok-p">{</span><span class="tok-sr">/openEHR-EHR-EVALUATION\.plan\.v*/</span><span class="tok-p">}</span>
             <span class="tok-p">}</span>
-            <span class="tok-kt">allow_archetype </span><span class="tok-nc">INSTRUCTION</span><span class="tok-p">[</span><span class="tok-nd">id9</span><span class="tok-p">]</span> <span class="tok-kt">occurrences </span><span class="tok-o">∈</span> <span class="tok-p">{</span><span class="tok-m">*</span><span class="tok-p">}</span> <span class="tok-o">∈</span> <span class="tok-p">{</span>     <span class="tok-c">-- Intervention</span>
+            <span class="tok-kt">allow_archetype </span><span class="tok-nc">INSTRUCTION</span><span class="tok-p">[</span><span class="tok-nd">id9</span><span class="tok-p">]</span> <span class="tok-kt">occurrences </span><span class="tok-o">∈</span> <span class="tok-p">{</span><span class="tok-m">1..*</span><span class="tok-p">}</span> <span class="tok-o">∈</span> <span class="tok-p">{</span>     <span class="tok-c">-- Intervention</span>
                 <span class="tok-kt">include</span>
-                    <span class="tok-nc">archetype_id</span><span class="tok-p">/</span><span class="tok-nc">value</span><span class="tok-p"> </span><span class="tok-o">∈</span> <span class="tok-p">{</span><span class="tok-sr">/openEHR-EHR-INSTRUCTION\.plan\.v*/</span><span class="tok-p">}</span>
+                    <span class="tok-nc">archetype_id</span><span class="tok-p">/</span><span class="tok-nc">value</span><span class="tok-p"> </span><span class="tok-o">∈</span> <span class="tok-p">{</span><span class="tok-sr">/openEHR-EHR-INSTRUCTION\.(medication_order|therapy)\.v*/</span><span class="tok-p">}</span>
             <span class="tok-p">}</span>
         <span class="tok-p">}</span>
     <span class="tok-p">}</span></code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>The above has the desired result in data: a group of any number of problems and diagnoses, followed by a plan, followed by one or more Interventions.</p>
+<p>The above has the desired result in data: a group of any number of problems and diagnoses, followed by a plan, followed by one or more medications or other therapies.</p>
 </div>
 </div>
 </div>
@@ -3427,7 +3463,7 @@ direct matching of so-called CamelCase by Snake_case or SCREAMING_SNAKE_CASE and
 </div>
 </div>
 <div class="paragraph">
-<p>This may occur because the attribute <code><em>some_attr</em></code> in the reference model is of a more general type, e.g. <code>Any</code>. The constraint may thus be to simply require a <code>String</code>, <code>Terminology_code</code> or other primitive type. In the regular form a valid id-code must be supplied; this may be either a standard id-code (e.g. <code>id9</code>) or the <code>Primitive_node_id</code> value. If the former is used, any specialised that adds a value constraint must use the regular form, as in the following example.</p>
+<p>This may occur because the attribute <code><em>some_attr</em></code> in the reference model is of a more general type, e.g. <code>Any</code>. The constraint may thus be to simply require a <code>String</code>, <code>Terminology_code</code> or other primitive type. In the regular form a valid id-code must be supplied; this may be either a standard id-code (e.g. <code>id9</code>) or the <code>Primitive_node_id</code> value. If the former is used, any specialised archetype that adds a value constraint must use the regular form, as in the following example.</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -3623,7 +3659,7 @@ direct matching of so-called CamelCase by Snake_case or SCREAMING_SNAKE_CASE and
 </tbody>
 </table>
 <div class="paragraph">
-<p>A similar warning should be noted for the use of regular expressions to constrain strings: they should be limited to non-linguistically dependent patterns, such as proper and scientific names. The use of regular expressions for constraints on normal words will render an archetype linguistically dependent, and potentially unusable by others.</p>
+<p>A similar warning as for a list of strings should be noted for the use of regular expressions to constrain strings: they should be limited to non-linguistically dependent patterns, such as proper and scientific names. The use of regular expressions for constraints on normal words will render an archetype linguistically dependent, and potentially unusable by others.</p>
 </div>
 </div>
 </div>
@@ -4138,7 +4174,7 @@ that allowing the <code>W</code> designator to be used with the other designator
 <div class="sect3">
 <h4 id="_constraints_on_enumerated_types"><a class="anchor" href="#_constraints_on_enumerated_types"></a>4.5.10. Constraints on Enumerated Types</h4>
 <div class="paragraph">
-<p>Enumeration types in the reference model are assumed to have the semantics defined in UML and mainstream programming languages, i.e. to be a distinct type based on a primitive type, normally Integer or String. Each such type consists of a set of values from the domain of its underlying type, thus, a set of Integer, String or other primitive values. Each of these values is assumed to be named in the manner of a symbolic constant. Although stricly speaking UML doesn&#8217;t require an enumerated type to be based on an underlying primitive type, programming languages do, hence the assumption here that values from the domain of such a type are involved.</p>
+<p>Enumeration types in the reference model are assumed to have the semantics defined in UML and mainstream programming languages, i.e. to be a distinct type based on a primitive type, normally Integer or String. Each such type consists of a set of values from the domain of its underlying type, thus, a set of Integer, String or other primitive values. Each of these values is assumed to be named in the manner of a symbolic constant. Although strictly speaking UML doesn&#8217;t require an enumerated type to be based on an underlying primitive type, programming languages do, hence the assumption here that values from the domain of such a type are involved.</p>
 </div>
 <div class="paragraph">
 <p>In ADL, constraints on enumerated types are represented by constraints on the underlying primitive values. The following example shows 2 constraints on an attribute of the type <code>PROPORTION_KIND</code> from the openEHR Reference Model.</p>
@@ -4613,7 +4649,7 @@ that allowing the <code>W</code> designator to be used with the other designator
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="pygments highlight"><code data-lang="adl"><span class="tok-gh">archetype</span><span class="tok-p"> (</span><span class="tok-nc">adl_version</span><span class="tok-o">=</span><span class="tok-l">2.0.5</span><span class="tok-p">;</span> <span class="tok-nc">rm_release</span><span class="tok-o">=</span><span class="tok-l">1.0.3</span><span class="tok-p">;</span> <span class="tok-nc">provenance_id</span><span class="tok-o">=</span><span class="tok-l">15E82D77-7DB7-4F70-8D8E-EED6FF241B2D</span><span class="tok-p">;</span> <span class="tok-nc">build_id</span><span class="tok-o">=</span><span class="tok-l">E163E472-3E90-409C-9803-0668A7DA48CE</span><span class="tok-p">;</span> <span class="tok-nc">generated</span><span class="tok-p">;</span> <span class="tok-nc">controlled</span><span class="tok-p">)</span>
+<pre class="pygments highlight"><code data-lang="adl"><span class="tok-gh">archetype</span><span class="tok-p"> (</span><span class="tok-nc">adl_version</span><span class="tok-o">=</span><span class="tok-l">2.0.5</span><span class="tok-p">;</span> <span class="tok-nc">rm_release</span><span class="tok-o">=</span><span class="tok-l">1.0.3</span><span class="tok-p">;</span> <span class="tok-nc">provenance_id</span><span class="tok-o">=</span><span class="tok-l">15E82D77-7DB7-4F70-8D8E-EED6FF241B2D</span><span class="tok-p">;</span> <span class="tok-nc">build_uid</span><span class="tok-o">=</span><span class="tok-l">E163E472-3E90-409C-9803-0668A7DA48CE</span><span class="tok-p">;</span> <span class="tok-nc">generated</span><span class="tok-p">;</span> <span class="tok-nc">controlled</span><span class="tok-p">)</span>
 <span class="tok-nd">    openEHR-EHR-OBSERVATION.haematology_result.v0.1.9</span></code></pre>
 </div>
 </div>
@@ -4643,7 +4679,7 @@ that allowing the <code>W</code> designator to be used with the other designator
 <p>This identifier is set at initial creation or at any time later, and never subsequently changes. It acts as an identifier for the physical artefact, regardless of what semantics are changed, including changes to the constituent parts of the multi-axial identifier.</p>
 </div>
 <div class="paragraph">
-<p>A <code>build_id</code> identifier can also be specified, with a GUID value, identifying the current artefact. This identifier changes whenever any change is made to the text of the archetype, and can thus be used to disambiguate subsequent versions.</p>
+<p>A <code>build_uid</code> identifier can also be specified, with a GUID value, identifying the current artefact. This identifier changes whenever any change is made to the text of the archetype, and can thus be used to disambiguate subsequent versions.</p>
 </div>
 </div>
 <div class="sect3">
@@ -5031,7 +5067,7 @@ some non-conforming ADL tools in the past created archetypes without a language 
 <div class="sect2">
 <h3 id="_rules_section"><a class="anchor" href="#_rules_section"></a>7.11. Rules Section</h3>
 <div class="paragraph">
-<p>The <code>rules</code> section in an ADL archetype contains <em>statements</em> which relate to the entire archetype, and can be used to make statements which are not possible within the block structure of the <code>definition</code> section. Any constraint that references more than one property is in this category, as are most constraints containing mathematical or logical formulae. Archetype rule section statements are a subset of the <a href="/releases/BASE/latest/expression.html">openEHR Expression Language (EL)</a>.</p>
+<p>The <code>rules</code> section in an ADL archetype contains <em>statements</em> which relate to the entire archetype, and can be used to make statements which are not possible within the block structure of the <code>definition</code> section. Any constraint that references more than one property is in this category, as are most constraints containing mathematical or logical formulae. Archetype rule section statements are a subset of the <a href="/releases/LANG/latest/el.html">openEHR Expression Language (EL)</a>.</p>
 </div>
 <div class="paragraph">
 <p>Rule section statements invariably need to reference elements in the main definition path of the archetype. This done via EL external variables ('$' variables) which are separately mapped to archetype paths in a <code>data_bindings</code> section. Rule section statements are used to express various kinds of constraint, as described below.</p>
@@ -6238,7 +6274,7 @@ it is quite common that only <em>some</em> of the local at-codes have equivalent
 <div class="sect3">
 <h4 id="redefinition_for_specialisation"><a class="anchor" href="#redefinition_for_specialisation"></a>9.3.2. Redefinition for Specialisation</h4>
 <div class="paragraph">
-<p>The example shown below illustrates redefinition in a specialised archetype. The first text is taken from the definition section of the 'laboratory result' <code>OBSERVATION</code> archetype (available at <a href="/ckm">openEHR CKM</a>), and contains an <code>ELEMENT</code> node whose identifier is <code>[id79]</code> , defined as 'panel item' in the archetype terminology (sibling nodes are not shown here). The intention is that the <code>id79</code> node be specialised into particular 'panel items' or analytes according to particular types of test result. Accordingly, the <code>id79</code> node has occurrences of <code>0..*</code> and its value is not constrained with respect to the reference model, meaning that the type of the <code><em>value</em></code> attirbute can be any descendant of <code>DATA_VALUE</code> .</p>
+<p>The example shown below illustrates redefinition in a specialised archetype. The first text is taken from the definition section of the 'laboratory result' <code>OBSERVATION</code> archetype (available at <a href="/ckm">openEHR CKM</a>), and contains an <code>ELEMENT</code> node whose identifier is <code>[id79]</code> , defined as 'panel item' in the archetype terminology (sibling nodes are not shown here). The intention is that the <code>id79</code> node be specialised into particular 'panel items' or analytes according to particular types of test result. Accordingly, the <code>id79</code> node has occurrences of <code>0..*</code> and its value is not constrained with respect to the reference model, meaning that the type of the <code><em>value</em></code> attribute can be any descendant of <code>DATA_VALUE</code> .</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -6276,7 +6312,7 @@ it is quite common that only <em>some</em> of the local at-codes have equivalent
 <pre class="pygments highlight"><code data-lang="cadl">    <span class="tok-c">------ openEHR-EHR-OBSERVATION.laboratory-thyroid.v1 ------</span>
     <span class="tok-nc">OBSERVATION</span><span class="tok-p">[</span><span class="tok-nd">id1.1</span><span class="tok-p">]</span> <span class="tok-c">-- Thyroid function tests</span>
         <span class="tok-p">/</span><span class="tok-nc">data</span><span class="tok-p">[</span><span class="tok-nd">id2</span><span class="tok-p">]/</span><span class="tok-nc">events</span><span class="tok-p">[</span><span class="tok-nd">id3</span><span class="tok-p">]/</span><span class="tok-nc">data</span><span class="tok-p">[</span><span class="tok-nd">id4</span><span class="tok-p">]/</span><span class="tok-nc">items</span><span class="tok-p"> </span><span class="tok-o">∈</span> <span class="tok-p">{</span>
-            <span class="tok-nc">ELEMENT</span><span class="tok-p">[</span><span class="tok-nd">id79.2</span><span class="tok-p">]</span> <span class="tok-kt">occurrences </span><span class="tok-o">∈</span> <span class="tok-p">{</span><span class="tok-m">0..1</span><span class="tok-p">}</span> <span class="tok-o">∈</span> <span class="tok-p">{</span>        <span class="tok-c">-- TSH</span>
+            <span class="tok-nc">ELEMENT</span><span class="tok-p">[</span><span class="tok-nd">id79.1</span><span class="tok-p">]</span> <span class="tok-kt">occurrences </span><span class="tok-o">∈</span> <span class="tok-p">{</span><span class="tok-m">0..1</span><span class="tok-p">}</span> <span class="tok-o">∈</span> <span class="tok-p">{</span>        <span class="tok-c">-- TSH</span>
                 <span class="tok-nc">value</span> <span class="tok-o">∈</span> <span class="tok-p">{</span>
                     <span class="tok-nc">DV_QUANTITY</span><span class="tok-p">[</span><span class="tok-nd">id0.7</span><span class="tok-p">]</span> <span class="tok-o">∈</span> <span class="tok-p">{</span>
                         <span class="tok-nc">property</span> <span class="tok-o">∈</span> <span class="tok-p">{[</span><span class="tok-nd">at15</span><span class="tok-p">]}</span>
@@ -6285,13 +6321,13 @@ it is quite common that only <em>some</em> of the local at-codes have equivalent
                     <span class="tok-p">}</span>
                 <span class="tok-p">}</span>
             <span class="tok-p">}</span>
-            <span class="tok-nc">ELEMENT</span><span class="tok-p">[</span><span class="tok-nd">id79.7</span><span class="tok-p">]</span> <span class="tok-kt">occurrences </span><span class="tok-o">∈</span> <span class="tok-p">{</span><span class="tok-m">0..1</span><span class="tok-p">}</span> <span class="tok-o">∈</span> <span class="tok-p">{...}</span>    <span class="tok-c">-- Free Triiodothyronine (Free T3)</span>
-            <span class="tok-nc">ELEMENT</span><span class="tok-p">[</span><span class="tok-nd">id79.8</span><span class="tok-p">]</span> <span class="tok-kt">occurrences </span><span class="tok-o">∈</span> <span class="tok-p">{</span><span class="tok-m">0..1</span><span class="tok-p">}</span> <span class="tok-o">∈</span> <span class="tok-p">{...}</span>    <span class="tok-c">-- Total Triiodothyronine (Total T3)</span>
-            <span class="tok-nc">ELEMENT</span><span class="tok-p">[</span><span class="tok-nd">id79.3</span><span class="tok-p">]</span> <span class="tok-kt">occurrences </span><span class="tok-o">∈</span> <span class="tok-p">{</span><span class="tok-m">0..1</span><span class="tok-p">}</span> <span class="tok-o">∈</span> <span class="tok-p">{...}</span>    <span class="tok-c">-- Free thyroxine (Free T4)</span>
-            <span class="tok-nc">ELEMENT</span><span class="tok-p">[</span><span class="tok-nd">id79.4</span><span class="tok-p">]</span> <span class="tok-kt">occurrences </span><span class="tok-o">∈</span> <span class="tok-p">{</span><span class="tok-m">0..1</span><span class="tok-p">}</span> <span class="tok-o">∈</span> <span class="tok-p">{...}</span>    <span class="tok-c">-- Total Thyroxine (Total T4)</span>
-            <span class="tok-nc">ELEMENT</span><span class="tok-p">[</span><span class="tok-nd">id79.5</span><span class="tok-p">]</span> <span class="tok-kt">occurrences </span><span class="tok-o">∈</span> <span class="tok-p">{</span><span class="tok-m">0..1</span><span class="tok-p">}</span> <span class="tok-o">∈</span> <span class="tok-p">{...}</span>    <span class="tok-c">-- T4 loaded uptake</span>
-            <span class="tok-nc">ELEMENT</span><span class="tok-p">[</span><span class="tok-nd">id79.9</span><span class="tok-p">]</span> <span class="tok-kt">occurrences </span><span class="tok-o">∈</span> <span class="tok-p">{</span><span class="tok-m">0..1</span><span class="tok-p">}</span> <span class="tok-o">∈</span> <span class="tok-p">{...}</span>    <span class="tok-c">-- Free Triiodothyronine index (Free T3 index)</span>
-            <span class="tok-nc">ELEMENT</span><span class="tok-p">[</span><span class="tok-nd">id79.6</span><span class="tok-p">]</span> <span class="tok-kt">occurrences </span><span class="tok-o">∈</span> <span class="tok-p">{</span><span class="tok-m">0..1</span><span class="tok-p">}</span> <span class="tok-o">∈</span> <span class="tok-p">{...}</span>    <span class="tok-c">-- Free thyroxine index (FTI)</span>
+            <span class="tok-nc">ELEMENT</span><span class="tok-p">[</span><span class="tok-nd">id79.2</span><span class="tok-p">]</span> <span class="tok-kt">occurrences </span><span class="tok-o">∈</span> <span class="tok-p">{</span><span class="tok-m">0..1</span><span class="tok-p">}</span> <span class="tok-o">∈</span> <span class="tok-p">{...}</span>    <span class="tok-c">-- Free Triiodothyronine (Free T3)</span>
+            <span class="tok-nc">ELEMENT</span><span class="tok-p">[</span><span class="tok-nd">id79.3</span><span class="tok-p">]</span> <span class="tok-kt">occurrences </span><span class="tok-o">∈</span> <span class="tok-p">{</span><span class="tok-m">0..1</span><span class="tok-p">}</span> <span class="tok-o">∈</span> <span class="tok-p">{...}</span>    <span class="tok-c">-- Total Triiodothyronine (Total T3)</span>
+            <span class="tok-nc">ELEMENT</span><span class="tok-p">[</span><span class="tok-nd">id79.4</span><span class="tok-p">]</span> <span class="tok-kt">occurrences </span><span class="tok-o">∈</span> <span class="tok-p">{</span><span class="tok-m">0..1</span><span class="tok-p">}</span> <span class="tok-o">∈</span> <span class="tok-p">{...}</span>    <span class="tok-c">-- Free thyroxine (Free T4)</span>
+            <span class="tok-nc">ELEMENT</span><span class="tok-p">[</span><span class="tok-nd">id79.5</span><span class="tok-p">]</span> <span class="tok-kt">occurrences </span><span class="tok-o">∈</span> <span class="tok-p">{</span><span class="tok-m">0..1</span><span class="tok-p">}</span> <span class="tok-o">∈</span> <span class="tok-p">{...}</span>    <span class="tok-c">-- Total Thyroxine (Total T4)</span>
+            <span class="tok-nc">ELEMENT</span><span class="tok-p">[</span><span class="tok-nd">id79.6</span><span class="tok-p">]</span> <span class="tok-kt">occurrences </span><span class="tok-o">∈</span> <span class="tok-p">{</span><span class="tok-m">0..1</span><span class="tok-p">}</span> <span class="tok-o">∈</span> <span class="tok-p">{...}</span>    <span class="tok-c">-- T4 loaded uptake</span>
+            <span class="tok-nc">ELEMENT</span><span class="tok-p">[</span><span class="tok-nd">id79.7</span><span class="tok-p">]</span> <span class="tok-kt">occurrences </span><span class="tok-o">∈</span> <span class="tok-p">{</span><span class="tok-m">0..1</span><span class="tok-p">}</span> <span class="tok-o">∈</span> <span class="tok-p">{...}</span>    <span class="tok-c">-- Free Triiodothyronine index (Free T3 index)</span>
+            <span class="tok-nc">ELEMENT</span><span class="tok-p">[</span><span class="tok-nd">id79.8</span><span class="tok-p">]</span> <span class="tok-kt">occurrences </span><span class="tok-o">∈</span> <span class="tok-p">{</span><span class="tok-m">0..1</span><span class="tok-p">}</span> <span class="tok-o">∈</span> <span class="tok-p">{...}</span>    <span class="tok-c">-- Free thyroxine index (FTI)</span>
         <span class="tok-p">}</span>
     <span class="tok-p">}</span></code></pre>
 </div>
@@ -6305,15 +6341,18 @@ it is quite common that only <em>some</em> of the local at-codes have equivalent
 <p>a redefinition of the top-level object node identifier <code>[id1]</code> , with the specialised node identifier <code>[id1.1]</code>;</p>
 </li>
 <li>
-<p>eight nodes redefining the <code>[id79]</code> node are shown, with overridden node identifiers <code>[id79.2]</code> - <code>[id79.9]</code>;</p>
+<p>eight nodes redefining the <code>[id79]</code> node are shown, with overridden node identifiers <code>[id79.1]</code> - <code>[id79.8]</code>;</p>
 </li>
 <li>
 <p>reduced occurrences (<code>0..1</code> in each case);</p>
 </li>
 <li>
-<p>redefinition of the <code><em>value</em></code> attribute of each <code>ELEMENT</code> type to <code>DV_QUANTITY</code>, shown in expanded form for node <code>[id79.2]</code>.</p>
+<p>redefinition of the <code><em>value</em></code> attribute of each <code>ELEMENT</code> type to <code>DV_QUANTITY</code>, shown in expanded form for node <code>[id79.1]</code>.</p>
 </li>
 </ul>
+</div>
+<div class="paragraph">
+<p>Note that the original <code>ELEMENT[id79]</code> node with <code>occurrences</code> of <code>0..*</code> remains a valid constraint node: the fact of specialisation does not remove it. If the intention is that the specialsed nodes constitute an <em>exhaustive</em> redefinition of the original node, the latter can be effectively removed, as described in <a href="#_exhaustive_and_non_exhaustive_redefinition">Exhaustive and Non-Exhaustive Redefinition</a>.</p>
 </div>
 <div class="paragraph">
 <p>This archetype is typical of a class of specialisations that use only redefinition, due to the fact that all objects in the redefined part of the specialised version are semantically specific kinds of a general object, in this case, 'panel item'.</p>
@@ -6428,7 +6467,7 @@ it is quite common that only <em>some</em> of the local at-codes have equivalent
 <div class="title">Figure 5. Specialisation with Cloning</div>
 </div>
 <div class="paragraph">
-<p>It can also be seen that the original <code>[id3]</code> sub-tree remains. This can be removed if required, as described in <a href="#Exhaustive and non-exhaustive specialisation">[Exhaustive and non-exhaustive specialisation]</a>.</p>
+<p>It can also be seen that the original <code>[id3]</code> sub-tree remains. This can be removed if required, as described in <a href="#_exhaustive_and_non_exhaustive_redefinition">Exhaustive and Non-Exhaustive Redefinition</a>.</p>
 </div>
 </div>
 </div>
@@ -6441,7 +6480,7 @@ it is quite common that only <em>some</em> of the local at-codes have equivalent
 <div class="sect3">
 <h4 id="_existence_redefinition_mandation_and_exclusion"><a class="anchor" href="#_existence_redefinition_mandation_and_exclusion"></a>9.4.1. Existence Redefinition: Mandation and Exclusion</h4>
 <div class="paragraph">
-<p>All attributes mentioned in an archetype have an <em>existence</em> constraint, indicating whether a value is required or not. The constraint is either stated explicitly - typically done for single-valued attirbutes - or it is the value from the reference model - typical for multiply-valued attributes. In both cases, the existence of an attribute in a parent archetype can be redefined in a specialised archetype using the standard cADL syntax. In the following example, an implicit existence constraint picked up from the reference model of <code>{0..1}</code> is redefined in a child archetype to <code>{1}</code> , i.e. mandatory.</p>
+<p>All attributes mentioned in an archetype have an <em>existence</em> constraint, indicating whether a value is required or not. The constraint is either stated explicitly - typically done for single-valued attributes - or it is the value from the reference model - typical for multiply-valued attributes. In both cases, the existence of an attribute in a parent archetype can be redefined in a specialised archetype using the standard cADL syntax. In the following example, an implicit existence constraint picked up from the reference model of <code>{0..1}</code> is redefined in a child archetype to <code>{1}</code> , i.e. mandatory.</p>
 </div>
 <div class="paragraph">
 <p>Parent archetype:</p>
@@ -6863,13 +6902,13 @@ Note that in the above, the '/' is used to denote '/protocol' as a differential 
 <p>In any multiple specialisation situation, there is a question of whether the original node being specialised (e.g. <code>id79</code> and <code>id2</code> in the examples above) remains available for further redefinition in subsequent child archetypes, or do the redefinition children <em>exhaustively</em> define the instance space for the given parent node?</p>
 </div>
 <div class="paragraph">
-<p>Should these children be considered exhaustive? One point of view says so, since all subsequently discovered varieties of hepratitis (C, D, E, etc) would now become children of 'hepatitis non-A non-B'. However this is likely to be sub-optimal, since now the category 'hepatitis non-A non-B' probably exists solely because of the order in which the various hepatitis virus tests were perfected. Therefore an alternative argument would say that the categories 'hepatitis C', 'hepatitis D' etc should be defined directly below 'hepatitis', as if 'hepatitis non-A non-B' had never existed. Under this argument, the children would not be declared, even when they are theoretically exhaustive.</p>
+<p>Should these children be considered exhaustive? One point of view says so, since all subsequently discovered varieties of hepatitis (C, D, E, etc) would now become children of 'hepatitis non-A non-B'. However this is likely to be sub-optimal, since now the category 'hepatitis non-A non-B' probably exists solely because of the order in which the various hepatitis virus tests were perfected. Therefore an alternative argument would say that the categories 'hepatitis C', 'hepatitis D' etc should be defined directly below 'hepatitis', as if 'hepatitis non-A non-B' had never existed. Under this argument, the children would not be declared, even when they are theoretically exhaustive.</p>
 </div>
 <div class="paragraph">
 <p>This kind of argument comes up time and again, and the need for catch-all categories (archetype nodes) and the possibility of future discoveries cannot be predicted. Even in situations such as a lab result (e.g. cholesterol), where the list of analytes seem to be known and fixed, experience of clinical modellers has shown that there is nevertheless no guarantee of not needing another data point, perhaps for something other than an analyte.</p>
 </div>
 <div class="paragraph">
-<p>The default situation is that they do, unless explicitly stated otherwise, which is done by excluding the parent node in the normal way, i.e. using <code>occurrences matches {0}</code>. <strong>If an exclusion node is included, it must come last</strong> in the set of siblings that specialise the parent node, otherwise a deletion will occur, leaving no node to specialise. The first example would then become:</p>
+<p>The default situation is that child redefinition nodes do not exhaustively replace the parent unless explicitly stated otherwise. This may be done by excluding the parent node in the normal way, i.e. using <code>occurrences matches {0}</code>. <strong>If an exclusion node is included, it must come last</strong> in the set of siblings that specialise the parent node, otherwise a deletion will occur, leaving no node to specialise. The first example would then become:</p>
 </div>
 <div class="paragraph">
 <p>Parent archetype:</p>
@@ -6894,14 +6933,14 @@ Note that in the above, the '/' is used to denote '/protocol' as a differential 
 <div class="listingblock">
 <div class="content">
 <pre class="pygments highlight"><code data-lang="cadl">    <span class="tok-p">/</span><span class="tok-nc">data</span><span class="tok-p">/</span><span class="tok-nc">events</span><span class="tok-p">[</span><span class="tok-nd">id2</span><span class="tok-p">]/</span><span class="tok-nc">data</span><span class="tok-p">/</span><span class="tok-nc">items</span><span class="tok-p"> </span><span class="tok-o">∈</span> <span class="tok-p">{</span>
-        <span class="tok-nc">ELEMENT</span><span class="tok-p">[</span><span class="tok-nd">id79.2</span><span class="tok-p">]</span> <span class="tok-kt">occurrences </span><span class="tok-o">∈</span> <span class="tok-p">{</span><span class="tok-m">0..1</span><span class="tok-p">}</span> <span class="tok-o">∈</span> <span class="tok-p">{...}</span>                    <span class="tok-c">-- TSH</span>
-        <span class="tok-nc">ELEMENT</span><span class="tok-p">[</span><span class="tok-nd">id79.7</span><span class="tok-p">]</span> <span class="tok-kt">occurrences </span><span class="tok-o">∈</span> <span class="tok-p">{</span><span class="tok-m">0..1</span><span class="tok-p">}</span> <span class="tok-o">∈</span> <span class="tok-p">{...}</span>                    <span class="tok-c">-- Free Triiodothyronine</span>
-        <span class="tok-nc">ELEMENT</span><span class="tok-p">[</span><span class="tok-nd">id79.8</span><span class="tok-p">]</span> <span class="tok-kt">occurrences </span><span class="tok-o">∈</span> <span class="tok-p">{</span><span class="tok-m">0..1</span><span class="tok-p">}</span> <span class="tok-o">∈</span> <span class="tok-p">{...}</span>                    <span class="tok-c">-- Total Triiodothyronine</span>
-        <span class="tok-nc">ELEMENT</span><span class="tok-p">[</span><span class="tok-nd">id79.3</span><span class="tok-p">]</span> <span class="tok-kt">occurrences </span><span class="tok-o">∈</span> <span class="tok-p">{</span><span class="tok-m">0..1</span><span class="tok-p">}</span> <span class="tok-o">∈</span> <span class="tok-p">{...}</span>                    <span class="tok-c">-- Free thyroxine (Free T4)</span>
-        <span class="tok-nc">ELEMENT</span><span class="tok-p">[</span><span class="tok-nd">id79.4</span><span class="tok-p">]</span> <span class="tok-kt">occurrences </span><span class="tok-o">∈</span> <span class="tok-p">{</span><span class="tok-m">0..1</span><span class="tok-p">}</span> <span class="tok-o">∈</span> <span class="tok-p">{...}</span>                    <span class="tok-c">-- Total Thyroxine (Total T4)</span>
-        <span class="tok-nc">ELEMENT</span><span class="tok-p">[</span><span class="tok-nd">id79.5</span><span class="tok-p">]</span> <span class="tok-kt">occurrences </span><span class="tok-o">∈</span> <span class="tok-p">{</span><span class="tok-m">0..1</span><span class="tok-p">}</span> <span class="tok-o">∈</span> <span class="tok-p">{...}</span>                    <span class="tok-c">-- T4 loaded uptake</span>
-        <span class="tok-nc">ELEMENT</span><span class="tok-p">[</span><span class="tok-nd">id79.9</span><span class="tok-p">]</span> <span class="tok-kt">occurrences </span><span class="tok-o">∈</span> <span class="tok-p">{</span><span class="tok-m">0..1</span><span class="tok-p">}</span> <span class="tok-o">∈</span> <span class="tok-p">{...}</span>                    <span class="tok-c">-- Free Triiodothyronine index</span>
-        <span class="tok-nc">ELEMENT</span><span class="tok-p">[</span><span class="tok-nd">id79.6</span><span class="tok-p">]</span> <span class="tok-kt">occurrences </span><span class="tok-o">∈</span> <span class="tok-p">{</span><span class="tok-m">0..1</span><span class="tok-p">}</span> <span class="tok-o">∈</span> <span class="tok-p">{...}</span>                    <span class="tok-c">-- Free thyroxine index (FTI)</span>
+        <span class="tok-nc">ELEMENT</span><span class="tok-p">[</span><span class="tok-nd">id79.1</span><span class="tok-p">]</span> <span class="tok-kt">occurrences </span><span class="tok-o">∈</span> <span class="tok-p">{</span><span class="tok-m">0..1</span><span class="tok-p">}</span> <span class="tok-o">∈</span> <span class="tok-p">{...}</span>                    <span class="tok-c">-- TSH</span>
+        <span class="tok-nc">ELEMENT</span><span class="tok-p">[</span><span class="tok-nd">id79.2</span><span class="tok-p">]</span> <span class="tok-kt">occurrences </span><span class="tok-o">∈</span> <span class="tok-p">{</span><span class="tok-m">0..1</span><span class="tok-p">}</span> <span class="tok-o">∈</span> <span class="tok-p">{...}</span>                    <span class="tok-c">-- Free Triiodothyronine</span>
+        <span class="tok-nc">ELEMENT</span><span class="tok-p">[</span><span class="tok-nd">id79.3</span><span class="tok-p">]</span> <span class="tok-kt">occurrences </span><span class="tok-o">∈</span> <span class="tok-p">{</span><span class="tok-m">0..1</span><span class="tok-p">}</span> <span class="tok-o">∈</span> <span class="tok-p">{...}</span>                    <span class="tok-c">-- Total Triiodothyronine</span>
+        <span class="tok-nc">ELEMENT</span><span class="tok-p">[</span><span class="tok-nd">id79.4</span><span class="tok-p">]</span> <span class="tok-kt">occurrences </span><span class="tok-o">∈</span> <span class="tok-p">{</span><span class="tok-m">0..1</span><span class="tok-p">}</span> <span class="tok-o">∈</span> <span class="tok-p">{...}</span>                    <span class="tok-c">-- Free thyroxine (Free T4)</span>
+        <span class="tok-nc">ELEMENT</span><span class="tok-p">[</span><span class="tok-nd">id79.5</span><span class="tok-p">]</span> <span class="tok-kt">occurrences </span><span class="tok-o">∈</span> <span class="tok-p">{</span><span class="tok-m">0..1</span><span class="tok-p">}</span> <span class="tok-o">∈</span> <span class="tok-p">{...}</span>                    <span class="tok-c">-- Total Thyroxine (Total T4)</span>
+        <span class="tok-nc">ELEMENT</span><span class="tok-p">[</span><span class="tok-nd">id79.6</span><span class="tok-p">]</span> <span class="tok-kt">occurrences </span><span class="tok-o">∈</span> <span class="tok-p">{</span><span class="tok-m">0..1</span><span class="tok-p">}</span> <span class="tok-o">∈</span> <span class="tok-p">{...}</span>                    <span class="tok-c">-- T4 loaded uptake</span>
+        <span class="tok-nc">ELEMENT</span><span class="tok-p">[</span><span class="tok-nd">id79.7</span><span class="tok-p">]</span> <span class="tok-kt">occurrences </span><span class="tok-o">∈</span> <span class="tok-p">{</span><span class="tok-m">0..1</span><span class="tok-p">}</span> <span class="tok-o">∈</span> <span class="tok-p">{...}</span>                    <span class="tok-c">-- Free Triiodothyronine index</span>
+        <span class="tok-nc">ELEMENT</span><span class="tok-p">[</span><span class="tok-nd">id79.8</span><span class="tok-p">]</span> <span class="tok-kt">occurrences </span><span class="tok-o">∈</span> <span class="tok-p">{</span><span class="tok-m">0..1</span><span class="tok-p">}</span> <span class="tok-o">∈</span> <span class="tok-p">{...}</span>                    <span class="tok-c">-- Free thyroxine index (FTI)</span>
         <span class="tok-nc">ELEMENT</span><span class="tok-p">[</span><span class="tok-nd">id79</span><span class="tok-p">]</span> <span class="tok-kt">occurrences </span><span class="tok-o">∈</span> <span class="tok-p">{</span><span class="tok-m">0</span><span class="tok-p">}</span>                                  <span class="tok-c">-- MUST COME LAST!</span>
     <span class="tok-p">}</span></code></pre>
 </div>
@@ -7219,33 +7258,6 @@ Note that in the above, the '/' is used to denote '/protocol' as a differential 
 </div>
 </div>
 <div class="paragraph">
-<p>Since node identifiers are only required to disambiguate multiple sibling nodes, they may not exist on all nodes in a typical archetype. It is therefore possible to have a slot that carries no node identifier (e.g. due to being under a single-valued attribute). A <code>use_archetype</code> specification within a template will accordingly only mention the archetype identifier, with no node id, as per the following example (archetype followed by a template).</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="pygments highlight"><code data-lang="cadl">    <span class="tok-nc">ACTIVITY</span><span class="tok-p">[</span><span class="tok-nd">id1</span><span class="tok-p">]</span> <span class="tok-o">∈</span> <span class="tok-p">{</span>   <span class="tok-c">-- Medication activity</span>
-        <span class="tok-nc">description</span> <span class="tok-o">∈</span> <span class="tok-p">{</span>
-            <span class="tok-kt">allow_archetype </span><span class="tok-nc">ITEM_TREE</span><span class="tok-p">[</span><span class="tok-nd">id4</span><span class="tok-p">]</span> <span class="tok-o">∈</span> <span class="tok-p">{</span>
-                <span class="tok-kt">include</span>
-                    <span class="tok-nc">archetype_id</span><span class="tok-p">/</span><span class="tok-nc">value</span><span class="tok-p"> </span><span class="tok-o">∈</span> <span class="tok-p">{...}</span>
-            <span class="tok-p">}</span>
-        <span class="tok-p">}</span>
-    <span class="tok-p">}</span></code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>A template containing a filler for this slot would be as follows:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="pygments highlight"><code data-lang="cadl">    <span class="tok-kt">use_archetype </span><span class="tok-nc">INSTRUCTION</span><span class="tok-p">[</span><span class="tok-nd">openEHR-EHR-INSTRUCTION.medication.v1</span><span class="tok-p">]</span> <span class="tok-o">∈</span> <span class="tok-p">{</span>
-        <span class="tok-p">/</span><span class="tok-nc">activities</span><span class="tok-p">[</span><span class="tok-nd">id1</span><span class="tok-p">]/</span><span class="tok-nc">description</span><span class="tok-p"> </span><span class="tok-o">∈</span> <span class="tok-p">{</span>
-            <span class="tok-kt">use_archetype </span><span class="tok-nc">ITEM_TREE</span><span class="tok-p">[</span><span class="tok-nd">id4</span><span class="tok-p">, </span><span class="tok-nd">org.openehr::openEHR-EHR-ITEM_TREE.medication.v1</span><span class="tok-p">]</span>
-        <span class="tok-p">}</span>
-    <span class="tok-p">}</span></code></pre>
-</div>
-</div>
-<div class="paragraph">
 <p>Slots can be recursively filled in the above fashion, according to the possibilities offered by the chosen archetypes or templates. The following ADL fragment shows two levels of slot-filling:</p>
 </div>
 <div class="listingblock">
@@ -7311,7 +7323,7 @@ Note that in the above, the '/' is used to denote '/protocol' as a differential 
 <p>The above cADL block partially specifies a <code>COMPOSITION</code> object, via constraints (often including slot definitions) on the <em>category</em> and <em>context</em> attributes defined on that class in the reference model. However, the attribute of most interest in a <code>COMPOSITION</code> object is usually the <em>content</em> attribute, which is not constrained at all here. The reference model defines it to be of type <code>List&lt;CONTENT_ITEM&gt;</code> .</p>
 </div>
 <div class="paragraph">
-<p>This kind of constraint is similar to 'slot-filling', except there is no slot providing any constraint, and typically occurs . Using an external reference for in an unarchetyped part of the RM structure is almost always done in specialised archetypes or templates, but is technically valid in a top-level archetype.</p>
+<p>Using an external reference in an unarchetyped part of the RM structure is almost always done in specialised archetypes or templates, but is valid in a top-level archetype.</p>
 </div>
 <div class="paragraph">
 <p>The following example shows the use of <code>use_archetype</code> within a specialised archetype.</p>
@@ -7758,7 +7770,7 @@ Note that in the above, the '/' is used to denote '/protocol' as a differential 
 <div class="sect2">
 <h3 id="_example"><a class="anchor" href="#_example"></a>10.2. Example</h3>
 <div class="paragraph">
-<p>By way of illustrating ADL&#8217;s template-related ADL features, an example is useful. The following is the openEHR archetype <code>openEHR-EHR-COMPOSITION.discharge.v1</code> for the generic concept 'disharge summary' followed by a template representing a full patient clinical information discharge summary, consisting of <code>COMPOSITION</code>, <code>SECTION</code> and various <code>ENTRY</code> archetypes.</p>
+<p>By way of illustrating ADL&#8217;s template-related ADL features, an example is useful. The following is the openEHR archetype <code>openEHR-EHR-COMPOSITION.discharge.v1</code> for the generic concept 'discharge summary' followed by a template representing a full patient clinical information discharge summary, consisting of <code>COMPOSITION</code>, <code>SECTION</code> and various <code>ENTRY</code> archetypes.</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -7792,7 +7804,8 @@ Note that in the above, the '/' is used to denote '/protocol' as a differential 
         <span class="tok-p">}</span>
         <span class="tok-nc">content</span> <span class="tok-o">matches </span><span class="tok-p">{</span>
             <span class="tok-kt">allow_archetype </span><span class="tok-nc">CONTENT_ITEM</span><span class="tok-p">[</span><span class="tok-nd">id2</span><span class="tok-p">]</span> <span class="tok-o">matches </span><span class="tok-p">{</span>
-                <span class="tok-o">&lt;</span> <span class="tok-nc">openEHR</span><span class="tok-o">-</span><span class="tok-nc">EHR</span><span class="tok-o">-</span><span class="tok-nc">SECTION</span> <span class="tok-kt">or </span><span class="tok-o">&lt;</span> <span class="tok-nc">openEHR</span><span class="tok-o">-</span><span class="tok-nc">EHR</span><span class="tok-o">-</span><span class="tok-nc">EVALUATION</span>
+                <span class="tok-kt">include</span>
+                    <span class="tok-nc">archetype_id</span><span class="tok-p">/</span><span class="tok-nc">value</span><span class="tok-p"> </span><span class="tok-o">∈</span> <span class="tok-p">{</span><span class="tok-sr">/openEHR-EHR-(SECTION|EVALUATION)/</span><span class="tok-p">}</span>
             <span class="tok-p">}</span>
         <span class="tok-p">}</span>
         <span class="tok-nc">context</span> <span class="tok-o">matches </span><span class="tok-p">{</span>
@@ -7823,7 +7836,7 @@ Note that in the above, the '/' is used to denote '/protocol' as a differential 
 <p>Below is the template definition. The root artefact is a self-standing template <code>openEHR-EHR-COMPOSITION.t_clinical_info_ds_sf.v1.0.0</code> that specialises the archetype . The declaration of being a 'template' is primarily to signal to tools the intended use of the artefact - it doesn&#8217;t have any formal implications. The job of the template is to define the specific clinical information required in a discharge summary (note that not all the usual items are included, in order to reduce the size of the template as shown here - clinical synopsis and medications list are left out).</p>
 </div>
 <div class="paragraph">
-<p>In the root template, the <code>definition</code> section contains a number of <code>use_archetype</code> statements that specify archetypes to be used as fillers for the <code>id2</code> slot of the parent archetype. Each of the slot-fillers is a template_overlay, rather than being an independent archetype or template. As a result, each overlay includes no descriptive meta-data of its own, and appears within the template artefact, separated by a long comment line. This simple mechanism enables the overlays, which are in all other respects formal archetypes, to be treated as local additions to the template, not visible externally. The template, if saved as a file, contains all its overlays in one file.</p>
+<p>In the root template, the <code>definition</code> section contains a number of <code>use_archetype</code> statements that specify archetypes to be used as fillers for the <code>id2</code> slot of the parent archetype. Each of the slot-fillers is a template overlay, rather than being an independent archetype or template. As a result, each overlay includes no descriptive meta-data of its own, and appears within the template artefact, separated by a long comment line. This simple mechanism enables the overlays, which are in all other respects formal archetypes, to be treated as local additions to the template, not visible externally. The template, if saved as a file, contains all its overlays in one file.</p>
 </div>
 <div class="paragraph">
 <p>Each of the filler archetypes can have its occurrences individually constrained in the normal way.</p>
