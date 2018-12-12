@@ -1,0 +1,53 @@
+=== DV_QUANTIFIED Class
+
+[cols="^1,3,5"]
+|===
+h|*Class*
+2+^h|*_DV_QUANTIFIED (abstract)_*
+
+h|*Description*
+2+a|Abstract class defining the concept of true quantified values, i.e. values which are not only ordered, but which have a precise magnitude.
+
+h|*Inherit*
+2+|`DV_ORDERED`
+
+h|*Attributes*
+^h|*Signature*
+^h|*Meaning*
+
+h|*0..1*
+|*magnitude_status*: `String`
+a|Optional status of magnitude with values:
+
+* =   :   magnitude is a point value
+* <   :   value is < magnitude
+* >   :   value is > magnitude
+* \\<= : value is \<= magnitude
+* >= : value is >= magnitude
+* ~   :   value is approximately magnitude
+
+If not present, meaning is  = .
+
+h|*0..1*
+|*accuracy*: `Any`
+a|
+h|*Functions*
+^h|*Signature*
+^h|*Meaning*
+
+h|
+|*valid_magnitude_status* (): `Boolean` +
+*_Post_*: `Result = s.is_equal (“=”) or s.is_equal (“<”) or s.is_equal (“>”) or s.is_equal (“\<=”) or s.is_equal (“>=”) or s.is_equal (“~”)`
+a|Test whether a string value is one of the valid values for the magnitude_status attribute.
+
+h|(abstract)
+|*magnitude* (): `Ordered_Numeric`
+a|
+
+h|
+|*accuracy_unknown* (): `Boolean`
+a|True if accuracy is not known, e.g. due to not being recorded or discernable.
+
+h|*Invariants*
+2+a|*_Magnitude_status_valid_*: `magnitude_status /= Void implies valid_magnitude_status (magnitude_status)`
+|===

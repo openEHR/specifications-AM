@@ -1,0 +1,53 @@
+=== ITEM_LIST Class
+
+[cols="^1,3,5"]
+|===
+h|*Class*
+2+^h|*ITEM_LIST*
+
+h|*Description*
+2+a|Logical list data structure, where each item has a value and can be referred to by a name and a positional index in the list. The list may be empty. Use Used to represent any data which is logically a list of values, such as blood pressure, most protocols, many blood tests etc.
+
+Misuse: Not to be used for time-based lists, which should be represented with the proper temporal class, i.e. HISTORY.
+
+h|*Inherit*
+2+|`ITEM_STRUCTURE`
+
+h|*Attributes*
+^h|*Signature*
+^h|*Meaning*
+
+h|*0..1*
+|*items*: `List<ELEMENT>`
+a|Physical representation of the list.
+h|*Functions*
+^h|*Signature*
+^h|*Meaning*
+
+h|
+|*item_count* (): `Integer`
+a|Count of all items.
+
+h|
+|*names* (): `List<DV_TEXT>`
+a|Retrieve the names of all items.
+
+h|(redefined)
+|*as_hierarchy* (): `CLUSTER`
+a|Generate a CEN EN13606-compatible hierarchy consisting of a single CLUSTER containing the ELEMENTs of this list.
+
+h|
+|*named_item* ( +
+a_name: `String[1]` +
+): `ELEMENT`
+a|Retrieve the item with name ‘a_name’.
+
+h|
+|*ith_item* ( +
+i: `Integer[1]` +
+): `ELEMENT`
+a|Retrieve the i-th item with name.
+
+h|*Invariants*
+2+a|*_Valid_structure_*: ` items.forall (i:ITEM &#124; i.type = "ELEMENT")`
+|===

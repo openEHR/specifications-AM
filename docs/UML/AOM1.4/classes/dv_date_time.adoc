@@ -1,0 +1,67 @@
+=== DV_DATE_TIME Class
+
+[cols="^1,3,5"]
+|===
+h|*Class*
+2+^h|*DV_DATE_TIME*
+
+h|*Description*
+2+a|Represents an absolute point in time, specified to the second. Semantics defined by ISO 8601.
+
+Used for recording a precise point in real world time, and for approximate time stamps, e.g. the origin of a HISTORY in an OBSERVATION which is only partially known.
+
+h|*Inherit*
+2+|`DV_TEMPORAL`, `ISO8601_DATE_TIME`
+
+h|*Attributes*
+^h|*Signature*
+^h|*Meaning*
+
+h|*1..1*
+|*value*: `String`
+a|ISO8601 date/time string.
+h|*Functions*
+^h|*Signature*
+^h|*Meaning*
+
+h|(effected)
+|*magnitude* (): `double`
+a|Numeric value of the date/time as seconds since the calendar origin date/time 0001-01-01T00:00:00Z.
+
+h|(effected)
+|*is_strictly_comparable_to* ( +
+other: `DV_ORDERED[1]` +
+): `Boolean`
+a|Test if two instances are strictly comparable.
+
+h|(effected)
+|*add* ( +
+a_diff: `DV_AMOUNT[1]` +
+): `DV_ABSOLUTE_QUANTITY`
+a|Add a time period to this date_time.
+
+h|(effected)
+|*subtract* ( +
+a_diif: `DV_AMOUNT[1]` +
+): `DV_ABSOLUTE_QUANTITY`
+a|Subtract a time period from this date_time.
+
+h|(effected)
+|*diff* ( +
+other: `DV_ABSOLUTE_QUANTITY[1]` +
+): `DV_AMOUNT`
+a|Difference of two quantities.
+
+h|
+|*operator=* ( +
+source: `DV_DATE_TIME[1]` +
+): `DV_DATE_TIME`
+a|
+
+h|(redefined)
+|*as_string* (): `String`
+a|
+
+h|*Invariants*
+2+a|*_Value_valid_*: `valid_iso8601_date_time (value)`
+|===

@@ -1,0 +1,66 @@
+=== COMPOSITION Class
+
+[cols="^1,3,5"]
+|===
+h|*Class*
+2+^h|*COMPOSITION*
+
+h|*Description*
+2+a|One version in a VERSIONED_COMPOSITION. A composition is considered the unit of modification of the record, the unit of transmission in record extracts, and the unit of attestation by authorising clinicians. In this latter sense, it may be considered equivalent to a signed document.
+
+h|*Inherit*
+2+|`LOCATABLE`
+
+h|*Attributes*
+^h|*Signature*
+^h|*Meaning*
+
+h|*1..1*
+|*language*: `CODE_PHRASE`
+a|Mandatory indicator of the localised language in which this Composition is written. Coded from openEHR Code Set  languages . The language of an Entry if different from the Composition is indicated in ENTRY.language.
+
+h|*1..1*
+|*territory*: `CODE_PHRASE`
+a|Name of territory in which this Composition was written. Coded from openEHR  countries  code set, which is an expression of the ISO 3166 standard.
+
+h|*1..1*
+|*category*: `DV_CODED_TEXT`
+a|Indicates what broad category this Composition is belogs to, e.g. persistent  - of longitudinal validity,  event ,  process  etc.
+
+h|*0..1*
+|*context*: `EVENT_CONTEXT`
+a|The clinical session context of this Composition, i.e. the contextual attributes of the clinical session.
+
+h|*1..1*
+|*composer*: `PARTY_PROXY`
+a|The person primarily responsible for the content of the Composition (but not necessarily its committal into the EHR system). This is the identifier which should appear on the screen. It may or may not be the person who entered the data. When it is the patient, the special self  instance of PARTY_PROXY will be used.
+
+h|*0..1*
+|*content*: `List<CONTENT_ITEM>`
+a|The content of this Composition.
+h|*Functions*
+^h|*Signature*
+^h|*Meaning*
+
+h|
+|*is_persistent* (): `Boolean`
+a|True if category is a  persistent  type, False otherwise. Useful for finding Compositions in an EHR which are guaranteed to be of interest to most users.
+
+h|*Invariants*
+2+a|*_Category_validity_*: `terminology (Terminology_id_openehr).has_code_for_group_id (Group_id_composition_category, category.defining_code)`
+
+h|
+2+a|*_Is_persistent_validity_*: `is_persistent implies context = Void`
+
+h|
+2+a|*_Territory_valid_*: `code_set(Code_set_id_countries).has_code(territory)`
+
+h|
+2+a|*_Language_valid_*: `code_set(Code_set_id_languages).has_code(language)`
+
+h|
+2+a|*_Content_valid_*: `content /= Void implies not content.is_empty`
+
+h|
+2+a|*_Is_archetype_root_*: `is_archetype_root`
+|===

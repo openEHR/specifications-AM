@@ -1,6 +1,6 @@
 === C_ATTRIBUTE_TUPLE Class
 
-[cols="^1,2,3"]
+[cols="^1,3,5"]
 |===
 h|*Class*
 2+^h|*C_ATTRIBUTE_TUPLE*
@@ -9,7 +9,7 @@ h|*Description*
 2+a|Object representing a constraint on an atttribute tuple, i.e. a group of attributes that are constrained together. Typically used for representing co-varying constraints like {units, range} constraints.
 
 h|*Inherit*
-2+|C_SECOND_ORDER
+2+|`C_SECOND_ORDER`
 
 h|*Attributes*
 ^h|*Signature*
@@ -28,10 +28,14 @@ h|*Functions*
 ^h|*Meaning*
 
 h|(effected)
-|*c_conforms_to* (other: `C_SECOND_ORDER`): `Boolean`
+|*c_conforms_to* ( +
+other: `C_SECOND_ORDER[1]` +
+): `Boolean`
 a|True if constraints represented by this node, ignoring any sub-parts, are narrower or the same as other. Typically used during validation of specialised archetype nodes.
 
 h|(effected)
-|*c_congruent_to* (other: `C_SECOND_ORDER`): `Boolean`
+|*c_congruent_to* ( +
+other: `C_SECOND_ORDER[1]` +
+): `Boolean`
 a|True if constraints represented by this node contain no further redefinitions with respect to the node other. Typically used to test if an inherited node locally contains any constraints.
 |===

@@ -4,20 +4,25 @@
 :doctype: book
 :pagenums:
 :numbered!:
-// git rid of PDF 'Chapter' labs on level 1 headings
+// get rid of PDF 'Chapter' labs on level 1 headings
 :chapter-label:
 //
 // HTML-only attributes
 //
 :linkcss:
-:keywords: reference model, openehr
-:description: openEHR Reference Model
+:keywords: archetype model, openehr
+:description: openEHR Archetype Model
 :sectanchors:
-:am_release: latest
-:jira-roadmap: https://openehr.atlassian.net/projects/SPECAM?selectedItem=com.atlassian.jira.jira-projects-plugin%3Arelease-page&status=unreleased
-:jira-hist-issues: https://openehr.atlassian.net/issues/?filter=10720
 
-image::http://www.openehr.org/releases/BASE/latest/resources/images/openehr_logo_large.png["openEHR logo",align="center"]
+include::{ref_dir}/docs/boilerplate/global_vars.adoc[]
+
+//
+// ============================================ Asciidoc PREAMBLE =============================================
+//
+
+image::{openehr_logo}["openEHR logo",align="center"]
+
+image::openehr_block_diagram.svg["openEHR components",align="center",width="60%"]
 
 = Archetype Model (AM) - {am_release}
 
@@ -25,15 +30,15 @@ image::http://www.openehr.org/releases/BASE/latest/resources/images/openehr_logo
 ifeval::["{am_release}" == "latest"]
 :jira-issues: https://openehr.atlassian.net/issues/?filter=10721
 [.title-para]
-{jira-roadmap}[Roadmap] | {jira-issues}[Current Issues] | {jira-hist-issues}[Change History]
+{component_prs}[Open Issues^] | {component_roadmap}[Roadmap^] | {component_history}[Previous Releases^] 
 endif::[]
 
 // Use the following version for a release
 ifeval::["{am_release}" != "latest"]
-:jira-pr-release: https://openehr.atlassian.net/projects/SPECPR/versions/11073
-:jira-cr-release: https://openehr.atlassian.net/projects/SPECAM/versions/10963
+:am_prs_fixed: {component_prs_fixed}{am_release}/issues
+:am_crs_done: {component_crs_done}{am_release}/changes
 [.title-para]
-{jira-pr-release}[Problems Fixed] | {jira-cr-release}[Changes Implemented] | {jira-roadmap}[Roadmap] | {jira-hist-issues}[Change History]
+{am_prs_fixed}[Issues Fixed^] | {am_crs_done}[Changes Implemented^] | {component_roadmap}[Roadmap^] | {component_history}[Change History^]
 endif::[]
 
 == Specifications
@@ -42,32 +47,36 @@ endif::[]
 |===
 |Specification |Description |Wiki
 
-|http://www.openehr.org/releases/AM/{am_release}/Overview.html[Archetype Technology Overview]
+|link:/releases/AM/{am_release}/Overview.html[Archetype Technology Overview]
 |Overview of archetype technology, basic semantics, types of artefact, parsing, compiling etc.
 |
 
-|http://www.openehr.org/releases/AM/{am_release}/ADL2.html[ADL 2]
+|link:/releases/AM/{am_release}/ADL2.html[ADL 2]
 |Archetype Definition Language 2 (ADL2): includes differential specialisation, terminology integation.
-|https://openehr.atlassian.net/wiki/display/ADL/ADL+2+Specifications[ADL2 wiki page]
+|{openehr_wiki_root}/display/ADL/ADL+2+Specifications[ADL2 wiki page^]
 
-|http://www.openehr.org/releases/AM/{am_release}/AOM2.html[AOM 2]
+|link:/releases/AM/{am_release}/AOM2.html[AOM 2]
 |Archetype Object Model 2 (AOM2) - full computable model of Archetypes and Templates. Includes uniquely identified formally testable validity conditions (suitable for output by compilers), revised primitive types, improved terminology section, and constraint model extended to represent differential archetypes.
 |
 
-|http://www.openehr.org/releases/AM/{am_release}/OPT2.html[OPT 2]
+|link:/releases/AM/{am_release}/OPT2.html[OPT 2]
 |Specificaion of the Operational Template format.
-|https://openehr.atlassian.net/wiki/display/ADL/ADL+2+Operational+Template[ADL2 OPT wiki page]
+|{openehr_wiki_root}/display/ADL/ADL+2+Operational+Template[ADL2 OPT wiki page^]
 
-|http://www.openehr.org/releases/AM/{am_release}/Identification.html[Archetype Identification]
+|link:/releases/AM/{am_release}/Identification.html[Archetype Identification]
 |Formal model of identifiers, versioning and lifecycle for archetypes, templates and terminology subsets.
-|https://openehr.atlassian.net/wiki/display/ADL/Knowledge+Artefact+Identification[Identification wiki page]
+|{openehr_wiki_root}/display/ADL/Knowledge+Artefact+Identification[Identification wiki page^]
 
-|http://www.openehr.org/releases/AM/{am_release}/ADL1.4.html[ADL 1.4]
+|link:/releases/AM/{am_release}/ADL1.4.html[ADL 1.4]
 |Abstract syntax specification for Archetype Definition Language (ADL), 1.4 edition of language (used in ISO 13606-2).
-|https://openehr.atlassian.net/wiki/display/ADL/ADL+1.4+Migration[ADL 1.4 migration page]
+|{openehr_wiki_root}/display/ADL/ADL+1.4+Migration[ADL 1.4 migration page^]
 
-|http://www.openehr.org/releases/AM/{am_release}/AOM1.4.html[AOM 1.4]
+|link:/releases/AM/{am_release}/AOM1.4.html[AOM 1.4]
 |Archetype Object Model (AOM) 1.4 - syntax-independent model of archetypes corresponding to ADL 1.4.
+|
+
+|link:/releases/1.0.2/architecture/am/openehr_archetype_profile.pdf[openEHR Archetype Profile]
+|Legacy specification of plug-in semantics for AOM 1.4 (replaced by standard semantics in AOM 2).
 |
 
 |===
@@ -78,8 +87,17 @@ endif::[]
 |===
 |Resource |Description
 
-|http://www.openehr.org/releases/AM/{am_release}/UML/openEHR_UML-AM.mdzip[source files / XMI]
-|UML file for MagicDraw 18.1. Contains UML 2.5 standard XMI file.
+|link:/releases/AM/{am_release}/UML/openEHR_UML-AM.mdzip[openEHR_UML-AM.mdzip]
+|MagicDraw 18.5 UML file for AOM 2. Contains UML 2.5 standard XMI file.
+
+|link:/releases/AM/{am_release}/UML/openEHR_UML-AM-14.mdzip[openEHR_UML-AM-14.mdzip]
+|MagicDraw 18.5 UML file for AOM 1.4. Contains UML 2.5 standard XMI file.
+
+|link:/releases/BASE/{base_release}/UML/openEHR_UML-Base.mdzip[openEHR_UML-Base.mdzip]
+|UML file for MagicDraw 18.5 for BASE model (included by AOM 2). Contains UML 2.5 standard XMI file.
+
+|link:/releases/RM/Release-1.0.3/UML/openEHR_UML-RM.mdzip[openEHR_UML-RM.mdzip]
+|UML file for MagicDraw 18.5 for RM Release 1.0.3 (included by AOM 1.4). Contains UML 2.5 standard XMI file.
 
 |===
 
@@ -87,3 +105,4 @@ endif::[]
 == Class Index
 
 include::UML/class_index.adoc[leveloffset=+1]
+

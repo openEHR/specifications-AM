@@ -1,0 +1,42 @@
+=== IMPORTED_VERSION Class
+
+[cols="^1,3,5"]
+|===
+h|*Class*
+2+^h|*IMPORTED_VERSION*
+
+h|*Description*
+2+a|Versions whose content is an ORIGINAL_VERSION copied from another location; this class inherits commit_audit and contribution from VERSION<T>, providing imported versions with their own audit trail and Contribution, distinct from those of the imported ORIGINAL_VERSION.
+
+h|*Inherit*
+2+|`VERSION`
+
+h|*Attributes*
+^h|*Signature*
+^h|*Meaning*
+
+h|*1..1*
+|*item*: `ORIGINAL_VERSION`
+a|The ORIGINAL_VERSION object that was imported.
+h|*Functions*
+^h|*Signature*
+^h|*Meaning*
+
+h|(effected)
+|*uid* (): `OBJECT_VERSION_ID` +
+*_Post_*: `Result = item.uid`
+a|Computed version of inheritance precursor, derived as item.uid.
+
+h|(effected)
+|*preceding_version_uid* (): `OBJECT_VERSION_ID` +
+*_Post_*: `Result = item.preceding_version_uid`
+a|Computed version of inheritance precursor, derived as item.preceding_version_uid.
+
+h|(effected)
+|*lifecycle_state* (): `DV_CODED_TEXT`
+a|Lifecycle state of the content item in wrapped ORIGINAL_VERSION, derived as item.lifecycle_state.
+
+h|(effected)
+|*data* (): `T`
+a|Original content of this Version.
+|===

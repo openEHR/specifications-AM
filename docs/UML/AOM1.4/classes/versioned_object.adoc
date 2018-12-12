@@ -1,0 +1,151 @@
+=== VERSIONED_OBJECT Class
+
+[cols="^1,3,5"]
+|===
+h|*Class*
+2+^h|*VERSIONED_OBJECT*
+
+h|*Description*
+2+a|Version control abstraction, defining semantics for versioning one complex object.
+
+h|*Attributes*
+^h|*Signature*
+^h|*Meaning*
+
+h|*1..1*
+|*uid*: `HIER_OBJECT_ID`
+a|Unique identifier of this version container in the form of a UID with no extension. This id will be the same in all instances of the same container in a distributed environment, meaning that it can be understood as the uid of the  virtual version tree.
+
+h|*1..1*
+|*owner_id*: `OBJECT_REF`
+a|Reference to object to which this version container belongs, e.g. the id of the containing EHR or other relevant owning entity.
+
+h|*1..1*
+|*time_created*: `DV_DATE_TIME`
+a|Time of initial creation of this versioned object.
+h|*Functions*
+^h|*Signature*
+^h|*Meaning*
+
+h|
+|*version_count* (): `Integer`
+a|Return the total number of versions in this object.
+
+h|
+|*all_version_ids* (): `List<OBJECT_VERSION_ID>`
+a|Return a list of ids of all versions in this object.
+
+h|
+|*all_versions* (): `List<VERSION>`
+a|Return a list of all versions in this object.
+
+h|
+|*has_version_at_time* ( +
+a_ver_id: `OBJECT_VERSION_ID[1]` +
+): `Boolean`
+a|True if a version for time  'a_time' exists.
+
+h|
+|*has_version_id* ( +
+a_ver_id: `OBJECT_VERSION_ID[1]` +
+): `Boolean`
+a|True if a version with an_id exists.
+
+h|
+|*version_with_id* ( +
+a_ver_id: `OBJECT_VERSION_ID[1]` +
+): `VERSION` +
+*_Pre_*: `has_version_id (a_ver_id)`
+a|Return the version with id =  'a_ver_id'.
+
+h|
+|*is_original_version* ( +
+a_ver_id: `OBJECT_VERSION_ID[1]` +
+): `Boolean` +
+*_Pre_*: `has_version_id(a_ver_id)`
+a|True if version with an_id is an ORIGINAL_VERSION.
+
+h|
+|*version_at_time* ( +
+a_time: `DV_DATE_TIME[1]` +
+): `VERSION` +
+*_Pre_*: `has_version_at_time (a_time)`
+a|Return the version for time  'a_time'.
+
+h|
+|*revision_history* (): `REVISION_HISTORY`
+a|History of all audits and attestations in this versioned repository.
+
+h|
+|*latest_version* (): `VERSION`
+a|Return the most recently added version (i.e. on trunk or any branch).
+
+h|
+|*latest_trunk_version* (): `VERSION`
+a|Return the most recently added trunk version.
+
+h|
+|*trunk_lifecycle_state* (): `DV_CODED_TEXT` +
+*_Post_*: `Result = latest_trunk_version.lifecycle_state`
+a|Return the lifecycle state from the latest trunk version. Useful for determining if the version container is logically deleted.
+
+h|
+|*commit_original_version* ( +
+a_contribution: `OBJECT_REF[1]`, +
+a_new_version_uid: `OBJECT_VERSION_ID[1]`, +
+a_preceding_version_id: `OBJECT_VERSION_ID[1]`, +
+an_audit: `AUDIT_DETAILS[1]`, +
+a_lifecycle_state: `DV_CODED_TEXT[1]`, +
+a_data: `T[1]`, +
+signing_key: `String[1]` +
+): `void` +
+*_Pre_*: `all_version_ids.has (a_preceding_version_uid) or else version_count = 0`
+a|Add a new original version.
+
+h|
+|*commit_original_merged_version* ( +
+a_contribution: `OBJECT_REF[1]`, +
+a_new_version_uid: `OBJECT_VERSION_ID[1]`, +
+a_preceding_version_id: `OBJECT_VERSION_ID[1]`, +
+an_audit: `AUDIT_DETAILS[1]`, +
+a_lifecycle_state: `DV_CODED_TEXT[1]`, +
+a_data: `T[1]`, +
+an_other_input_uids: `List<OBJECT_VERSION_ID>[1]`, +
+signing_key: `String[1]` +
+): `void` +
+*_Pre_*: `all_version_ids.has (a_preceding_version_uid) or else version_count = 0`
+a|Add a new original merged version. This commit function adds a parameter containing the ids of other versions merged into the current one.
+
+h|
+|*commit_imported_version* ( +
+a_contribution: `OBJECT_REF[1]`, +
+an_audit: `AUDIT_DETAILS[1]`, +
+a_version: `ORIGINAL_VERSION[1]` +
+): `void`
+a|Add a new imported version. Details of version id etc come from the ORIGINAL_VERSION being committed.
+
+h|
+|*commit_attestation* ( +
+an_attestation: `ATTESTATION[1]`, +
+a_ver_id: `OBJECT_VERSION_ID[1]`, +
+signing_key: `String[1]` +
+): `void` +
+*_Pre_*: `has_version_id(a_ver_id)
+and is_original_version(a_ver_id)`
+a|Add a new attestation to a specified original version. Attestations can only be added to Original versions.
+
+h|*Invariants*
+2+a|*_Version_count_valid_*: `version_count >= 0`
+
+h|
+2+a|*_All_version_ids_valid_*: `all_version_ids.count = version_count`
+
+h|
+2+a|*_All_versions_valid_*: `all_versions.count = version_count`
+
+h|
+2+a|*_Latest_version_valid_*: `version_count > 0 implies latest_version /= Void`
+
+h|
+2+a|*_Uid_validity_*: `extension.is_empty`
+|===

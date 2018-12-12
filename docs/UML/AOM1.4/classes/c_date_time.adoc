@@ -1,6 +1,6 @@
 === C_DATE_TIME Class
 
-[cols="^1,2,3"]
+[cols="^1,3,5"]
 |===
 h|*Class*
 2+^h|*C_DATE_TIME*
@@ -9,7 +9,7 @@ h|*Description*
 2+a|ISO 8601-compatible constraint on instances of Date_Time. There is no validity flag for ‘year’, since it must always be by definition mandatory in order to have a sensible date/time at all. Syntax expressions of instances of this class include “YYYY-MM-DDT??:??:??” (date/time with optional time) and “YYYY-MMDDTHH:MM:xx” (date/time, seconds not allowed).
 
 h|*Inherit*
-2+|C_PRIMITIVE
+2+|`C_PRIMITIVE`
 
 h|*Attributes*
 ^h|*Signature*
@@ -56,39 +56,39 @@ h|*Functions*
 ^h|*Meaning*
 
 h|
-|*validity_is_range*: `Boolean`
+|*validity_is_range* (): `Boolean`
 a|True if validity is in the form of a range; useful for developers to check which kind of constraint has been set.
 
-h|*Invariant*
-2+a|*_Month_validity_optional:_*: month_validity = {VALIDITY_KIND}.optional implies (day_validity = {VALIDITY_KIND}.optional or day_validity = {VALIDITY_KIND}.disallowed)
+h|*Invariants*
+2+a|*_Month_validity_optional:_*: `month_validity = {VALIDITY_KIND}.optional implies (day_validity = {VALIDITY_KIND}.optional or day_validity = {VALIDITY_KIND}.disallowed)`
 
 h|
-2+a|*_Month_validity_disallowed_*: month_validity = {VALIDITY_KIND}.disallowed implies day_validity = {VALIDITY_KIND}.disallowed
+2+a|*_Month_validity_disallowed_*: `month_validity = {VALIDITY_KIND}.disallowed implies day_validity = {VALIDITY_KIND}.disallowed`
 
 h|
-2+a|*_Day_validity_optional_*: day_validity = {VALIDITY_KIND}.optional implies (hour_validity = {VALIDITY_KIND}.optional or hour_validity = {VALIDITY_KIND}.disallowed)
+2+a|*_Day_validity_optional_*: `day_validity = {VALIDITY_KIND}.optional implies (hour_validity = {VALIDITY_KIND}.optional or hour_validity = {VALIDITY_KIND}.disallowed)`
 
 h|
-2+a|*_Day_validity_disallowed_*: day_validity = {VALIDITY_KIND}.disallowed implies hour_validity = {VALIDITY_KIND}.disallowed
+2+a|*_Day_validity_disallowed_*: `day_validity = {VALIDITY_KIND}.disallowed implies hour_validity = {VALIDITY_KIND}.disallowed`
 
 h|
-2+a|*_Hour_validity_optional_*: hour_validity = {VALIDITY_KIND}.optional implies (minute_validity = {VALIDITY_KIND}.optional or minute_validity = {VALIDITY_KIND}.disallowed)
+2+a|*_Hour_validity_optional_*: `hour_validity = {VALIDITY_KIND}.optional implies (minute_validity = {VALIDITY_KIND}.optional or minute_validity = {VALIDITY_KIND}.disallowed)`
 
 h|
-2+a|*_Hour_validity_disallowed_*: hour_validity = {VALIDITY_KIND}.disallowed implies minute_validity = {VALIDITY_KIND}.disallowed
+2+a|*_Hour_validity_disallowed_*: `hour_validity = {VALIDITY_KIND}.disallowed implies minute_validity = {VALIDITY_KIND}.disallowed`
 
 h|
-2+a|*_Minute_validity_optional_*: minute_validity = {VALIDITY_KIND}.optional implies (second_validity = {VALIDITY_KIND}.optional or second_validity = {VALIDITY_KIND}.disallowed)
+2+a|*_Minute_validity_optional_*: `minute_validity = {VALIDITY_KIND}.optional implies (second_validity = {VALIDITY_KIND}.optional or second_validity = {VALIDITY_KIND}.disallowed)`
 
 h|
-2+a|*_Minute_validity_disallowed_*: minute_validity = {VALIDITY_KIND}.disallowed implies second_validity = {VALIDITY_KIND}.disallowed
+2+a|*_Minute_validity_disallowed_*: `minute_validity = {VALIDITY_KIND}.disallowed implies second_validity = {VALIDITY_KIND}.disallowed`
 
 h|
-2+a|*_Second_validity_optional_*: second_validity = {VALIDITY_KIND}.optional implies (millisecond_validity = {VALIDITY_KIND}.optional or millisecond_validity = {VALIDITY_KIND}.disallowed)
+2+a|*_Second_validity_optional_*: `second_validity = {VALIDITY_KIND}.optional implies (millisecond_validity = {VALIDITY_KIND}.optional or millisecond_validity = {VALIDITY_KIND}.disallowed)`
 
 h|
-2+a|*_Second_validity_disallowed_*: second_validity = {VALIDITY_KIND}.disallowed implies millisecond_validity = {VALIDITY_KIND}.disallowed
+2+a|*_Second_validity_disallowed_*: `second_validity = {VALIDITY_KIND}.disallowed implies millisecond_validity = {VALIDITY_KIND}.disallowed`
 
 h|
-2+a|*_Validity_is_range_*: validity_is_range = (range /= Void)
+2+a|*_Validity_is_range_*: `validity_is_range = (range /= Void)`
 |===

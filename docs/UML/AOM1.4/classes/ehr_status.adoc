@@ -1,0 +1,36 @@
+=== EHR_STATUS Class
+
+[cols="^1,3,5"]
+|===
+h|*Class*
+2+^h|*EHR_STATUS*
+
+h|*Description*
+2+a|Single object per EHR containing various EHR-wide status flags and settings, including whether this EHR can be queried, modified etc. This object is always modifiable, in order to change the status of the EHR as a whole.
+
+h|*Inherit*
+2+|`LOCATABLE`
+
+h|*Attributes*
+^h|*Signature*
+^h|*Meaning*
+
+h|*1..1*
+|*subject*: `PARTY_SELF`
+a|The subject of this EHR. The external_ref attribute can be used to contain a direct reference to the subject in a demographic or identity service. Alternatively, the association between patients and their records may be done elsewhere for security reasons.
+
+h|*1..1*
+|*is_queryable*: `Boolean`
+a|True if this EHR should be included in population queries, i.e. if this EHR is considered active in the population.
+
+h|*1..1*
+|*is_modifiable*: `Boolean`
+a|True if this EHR is allowed to be written to. Note that the EHR_STATUS object is special and can always be written to.
+
+h|*0..1*
+|*other_details*: `ITEM_STRUCTURE`
+a|Any other details of the EHR summary object, in the form of an archetyped Item_structure.
+
+h|*Invariants*
+2+a|*_Is_archetype_root_*: `is_archetype_root`
+|===

@@ -1,6 +1,6 @@
 === ARCHETYPE_TERMINOLOGY Class
 
-[cols="^1,2,3"]
+[cols="^1,3,5"]
 |===
 h|*Class*
 2+^h|*ARCHETYPE_TERMINOLOGY*
@@ -48,69 +48,86 @@ h|*Functions*
 ^h|*Meaning*
 
 h|
-|*specialisation_depth*: `Integer`
+|*specialisation_depth* (): `Integer`
 a|Specialisation depth of this archetype. Unspecialised archetypes have depth 0, with each additional level of specialisation adding 1 to the specialisation_depth.
 
 h|
-|*id_codes*: `List<String>`
+|*id_codes* (): `List<String>`
 a|List of all id codes in the terminology., i.e. the “id” codes in an ADL archetype, which are the node_ids on C_OBJECT descendants.
 
 h|
-|*value_codes*: `List<String>`
+|*value_codes* (): `List<String>`
 a|List of all value term codes in the terminology, i.e. the “at” codes in an ADL archetype, which are used as possible values on terminological constrainer nodes.
 
 h|
-|*value_set_codes*: `List<String>`
+|*value_set_codes* (): `List<String>`
 a|List of all value set codes in the terminology defining value sets. These correspond to the “ac” codes in an ADL archetype.
 
 h|
-|*has_language* (a_lang: `String`): `Boolean`
+|*has_language* ( +
+a_lang: `String[1]` +
+): `Boolean`
 a|True if language `a_lang' is present in archetype terminology.
 
 h|
-|*has_terminology* (a_terminology_id: `String`): `boolean`
+|*has_terminology* ( +
+a_terminology_id: `String[1]` +
+): `boolean`
 a|True if terminology `a_terminology' is present in archetype ontology.
 
 h|
-|*has_term_code* (a_code: `String`): `boolean`
+|*has_term_code* ( +
+a_code: `String[1]` +
+): `boolean`
 a|True if code 'a_code' defined in this terminology.
 
 h|
-|*term_definition* (a_lang: `String`, a_code: `String`): `ARCHETYPE_TERM` +
-*_Pre_*: has_term-definition (a_lang, a_code)
+|*term_definition* ( +
+a_lang: `String[1]`, +
+a_code: `String[1]` +
+): `ARCHETYPE_TERM` +
+*_Pre_*: `has_term-definition (a_lang, a_code)`
 a|Term definition for a code, in a specified language.
 
 h|
-|*term_binding* (a_terminology: `String`, a_code: `String`): `Uri` +
-*_Pre_*: has_term_binding (a_terminology_id, a_code)
+|*term_binding* ( +
+a_terminology: `String[1]`, +
+a_code: `String[1]` +
+): `Uri` +
+*_Pre_*: `has_term_binding (a_terminology_id, a_code)`
 a|Binding of constraint corresponding to a_code in target external terminology a_terminology_id, as a string, which is usually a formal query expression.
 
 h|
-|*terminologies_available*: `List<String>`
+|*terminologies_available* (): `List<String>`
 a|List of terminologies to which term or constraint bindings exist in this terminology, computed from bindings.
 
 h|
-|*terminology_extract_term* (a_terminology_id: `String`, a_code: `String`): `ARCHETYPE_TERM` +
-*_Pre_*: has_terminology_extract (a_terminology_id) and has_terminology_extract_code (a_code)
+|*terminology_extract_term* ( +
+a_terminology_id: `String[1]`, +
+a_code: `String[1]` +
+): `ARCHETYPE_TERM` +
+*_Pre_*: `has_terminology_extract (a_terminology_id) and has_terminology_extract_code (a_code)`
 a|Return an ARCHETYPE_TERM from specified terminology extract, for specified term code.
 
 h|
-|*has_terminology_extract* (a_terminology_id: `String`): `Boolean`
+|*has_terminology_extract* ( +
+a_terminology_id: `String[1]` +
+): `Boolean`
 a|
 
 h|
-|*languages_available*: `List<String>`
+|*languages_available* (): `List<String>`
 a|List of languages in which terms in this terminology are available.
 
-h|*Invariant*
-2+a|*_Original_language_validity_*: code_set (Code_set_id_languages).has_concept_id (original_language)
+h|*Invariants*
+2+a|*_Original_language_validity_*: `code_set (Code_set_id_languages).has_concept_id (original_language)`
 
 h|
-2+a|*_concept_code_validity_*: id_codes.has (concept_code)
+2+a|*_concept_code_validity_*: `id_codes.has (concept_code)`
 
 h|
-2+a|*_Term_bindings_validity_*: bindings /= void implies not bindings.is_empty
+2+a|*_Term_bindings_validity_*: `bindings /= void implies not bindings.is_empty`
 
 h|
-2+a|*_Parent_archetype_valid_*: parent_archetype.terminology = Current
+2+a|*_Parent_archetype_valid_*: `parent_archetype.terminology = Current`
 |===

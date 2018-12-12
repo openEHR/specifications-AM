@@ -1,0 +1,34 @@
+=== ACTIVITY Class
+
+[cols="^1,3,5"]
+|===
+h|*Class*
+2+^h|*ACTIVITY*
+
+h|*Description*
+2+a|Defines a single activity within an Instruction, such as a medication administration.
+
+h|*Inherit*
+2+|`LOCATABLE`
+
+h|*Attributes*
+^h|*Signature*
+^h|*Meaning*
+
+h|*1..1*
+|*timing*: `DV_PARSABLE`
+a|Timing of the activity, in the form of a parsable string, such as an HL7 GTS or ISO8601 string.
+
+h|*0..1*
+|*action_archetype_id*: `String`
+a|Perl-compliant regular expression pattern, enclosed in  //' delimiters, indicating the valid archetype identifiers of archetypes for Actions corresponding to this Activity specification.
+
+Defaults to  /.*/ , meaning any archetype.
+
+h|*1..1*
+|*description*: `ITEM_STRUCTURE`
+a|Description of the activity, in the form of an archetyped structure.
+
+h|*Invariants*
+2+a|*_Action_archteype_id_valid_*: `not action_archetype_ids.is_empty`
+|===

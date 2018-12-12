@@ -1,0 +1,31 @@
+=== PARTY_IDENTITY Class
+
+[cols="^1,3,5"]
+|===
+h|*Class*
+2+^h|*PARTY_IDENTITY*
+
+h|*Description*
+2+a|An identity  owned  by a PARTY, such as a person name or company name, and which is used by the party to identify itself. Actual structure is archetyped.
+
+h|*Inherit*
+2+|`LOCATABLE`
+
+h|*Attributes*
+^h|*Signature*
+^h|*Meaning*
+
+h|*1..1*
+|*details*: `ITEM_STRUCTURE`
+a|The value of the indentity. This will often taken the form of a parsable string or a small structure of strings.
+h|*Functions*
+^h|*Signature*
+^h|*Meaning*
+
+h|
+|*purpose* (): `DV_TEXT`
+a|Purpose of identity, e.g.  legal ,  stagename ,  nickname ,  tribal name ,  trading name . Taken from value of inherited name attribute.
+
+h|*Invariants*
+2+a|*_Purpose_valid_*: `purpose = name`
+|===

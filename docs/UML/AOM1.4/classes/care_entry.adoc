@@ -1,0 +1,25 @@
+=== CARE_ENTRY Class
+
+[cols="^1,3,5"]
+|===
+h|*Class*
+2+^h|*_CARE_ENTRY (abstract)_*
+
+h|*Description*
+2+a|The abstract parent of all clinical ENTRY subtypes. A CARE_ENTRY defines protocol and guideline attributes for all clinical Entry subtypes.
+
+h|*Inherit*
+2+|`ENTRY`
+
+h|*Attributes*
+^h|*Signature*
+^h|*Meaning*
+
+h|*0..1*
+|*protocol*: `ITEM_STRUCTURE`
+a|Description of the method (i.e. how) the information in this entry was arrived at. For OBSERVATIONs, this is a description of the method or instrument used. For EVALUATIONs, how the evaluation was arrived at. For INSTRUCTIONs, how to execute the Instruction. This may take the form of references to guidelines, including manually followed and executable; knowledge references such as a paper in Medline; clinical reasons within a larger care process.
+
+h|*0..1*
+|*guideline_id*: `OBJECT_REF`
+a|Optional external identifier of guideline creating this Entry if relevant.
+|===

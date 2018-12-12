@@ -1,6 +1,6 @@
 === VERSION Class
 
-[cols="^1,2,3"]
+[cols="^1,3,5"]
 |===
 h|*Class*
 2+^h|*_VERSION (abstract)_*
@@ -27,39 +27,39 @@ h|*Functions*
 ^h|*Signature*
 ^h|*Meaning*
 
-h|
-|*uid*: `OBJECT_VERSION_ID`
+h|(abstract)
+|*uid* (): `OBJECT_VERSION_ID`
 a|Unique identifier of this VERSION, in the form of an {object_id, a version_tree_id, creating_system_id} triple, where the object_id has the same value as the containing VERSIONED_OBJECT's uid.
 
-h|
-|*preceding_version_uid*: `OBJECT_VERSION_ID`
+h|(abstract)
+|*preceding_version_uid* (): `OBJECT_VERSION_ID`
 a|Unique identifier of the version of which this version is a modification; Void if this is the first version.
 
-h|
-|*data*: `T`
+h|(abstract)
+|*data* (): `T`
 a|Original content of this Version.
 
-h|
-|*lifecycle_state*: `DV_CODED_TEXT`
+h|(abstract)
+|*lifecycle_state* (): `DV_CODED_TEXT`
 a|Lifecycle state of this version; coded by openEHR vocabulary version lifecycle state .
 
 h|
-|*canonical_form*: `String`
+|*canonical_form* (): `String`
 a|Canonical form of Version object, created by serialising all attributes except
 signature.
 
 h|
-|*owner_id*: `HIER_OBJECT_ID` +
-*_Post_*: Result.value.is_equal (uid.object_id.value)
+|*owner_id* (): `HIER_OBJECT_ID` +
+*_Post_*: `Result.value.is_equal (uid.object_id.value)`
 a|Copy of the owning VERSIONED_OBJECT.uid value; extracted from the local uid property's object_id.
 
 h|
-|*is_branch*: `Boolean`
+|*is_branch* (): `Boolean`
 a|True if this Version represents a branch. Derived from uid attribute.
 
-h|*Invariant*
-2+a|*_Preceding_version_uid_validity_*: uid.version_tree_id.is_first xor preceding_version_uid /= Void
+h|*Invariants*
+2+a|*_Preceding_version_uid_validity_*: `uid.version_tree_id.is_first xor preceding_version_uid /= Void`
 
 h|
-2+a|*_Lifecycle_state_ valid_*: lifecycle_state /= Void and then terminology (Term_id_openehr).has_code_for_group_id (Group_id_version_lifecycle_state, lifecycle_state.defining_code)
+2+a|*_Lifecycle_state_ valid_*: `lifecycle_state /= Void and then terminology (Term_id_openehr).has_code_for_group_id (Group_id_version_lifecycle_state, lifecycle_state.defining_code)`
 |===

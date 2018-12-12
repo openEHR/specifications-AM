@@ -1,0 +1,58 @@
+=== DV_ABSOLUTE_QUANTITY Class
+
+[cols="^1,3,5"]
+|===
+h|*Class*
+2+^h|*_DV_ABSOLUTE_QUANTITY (abstract)_*
+
+h|*Description*
+2+a|Abstract class defining the concept of quantified entities whose values are absolute with respect to an origin. Dates and Times are the main example.
+
+h|*Inherit*
+2+|`DV_QUANTIFIED`
+
+h|*Attributes*
+^h|*Signature*
+^h|*Meaning*
+
+h|*0..1 +
+(redefined)*
+|*accuracy*: `DV_AMOUNT`
+a|
+h|*Functions*
+^h|*Signature*
+^h|*Meaning*
+
+h|(abstract)
+|*diff* ( +
+other: `DV_ABSOLUTE_QUANTITY[1]` +
+): `DV_AMOUNT`
+a|Difference of two quantities.
+
+The value of accuracy in the result is either:
+
+* the sum of the accuracies of the operands, if both present, or;
+* unknown, if either or both operand accuracies are unknown.
+
+h|(abstract)
+|*add* ( +
+a_diff: `DV_AMOUNT[1]` +
+): `DV_ABSOLUTE_QUANTITY`
+a|Addition of a differential amount to this quantity.
+
+The value of accuracy in the result is either:
+
+* the sum of the accuracies of the operands, if both present, or;
+* unknown, if either or both operand accuracies are unknown.
+
+h|(abstract)
+|*subtract* ( +
+a_diif: `DV_AMOUNT[1]` +
+): `DV_ABSOLUTE_QUANTITY`
+a|Result of subtracting a differential amount from this quantity.
+
+The value of accuracy in the result is either:
+
+* the sum of the accuracies of the operands, if both present, or;
+* unknown, if either or both operand accuracies are unknown.
+|===

@@ -1,0 +1,61 @@
+=== DV_DATE Class
+
+[cols="^1,3,5"]
+|===
+h|*Class*
+2+^h|*DV_DATE*
+
+h|*Description*
+2+a|Represents an absolute point in time, as measured on the Gregorian calendar, and specified only to the day. Semantics defined by ISO 8601. Used for recording dates in real world time. The partial form is used for approximate birth dates, dates of death, etc.
+
+h|*Inherit*
+2+|`DV_TEMPORAL`, `ISO8601_DATE`
+
+h|*Attributes*
+^h|*Signature*
+^h|*Meaning*
+
+h|*1..1*
+|*value*: `String`
+a|ISO8601 date string.
+h|*Functions*
+^h|*Signature*
+^h|*Meaning*
+
+h|(effected)
+|*magnitude* (): `Integer`
+a|Numeric value of the date as days since the calendar origin date 0001-01-01.
+
+h|(effected)
+|*is_strictly_comparable_to* ( +
+other: `DV_ORDERED[1]` +
+): `Boolean`
+a|Test if two instances are strictly comparable.
+
+h|(effected)
+|*infix <* ( +
+other_quantity: `DV_ORDERED[1]` +
+): `Boolean`
+a|Tests if this date is earlier than the cited date.
+
+h|(effected)
+|*add* ( +
+a_diff: `DV_AMOUNT[1]` +
+): `DV_ABSOLUTE_QUANTITY`
+a|Add a time period to this date.
+
+h|(effected)
+|*subtract* ( +
+a_diif: `DV_AMOUNT[1]` +
+): `DV_ABSOLUTE_QUANTITY`
+a|Subtract a time period from this date.
+
+h|(effected)
+|*diff* ( +
+other: `DV_DATE[1]` +
+): `DV_DURATION`
+a|Difference of two quantities.
+
+h|*Invariants*
+2+a|*_Value_valid_*: `valid_iso8601_date(value)`
+|===

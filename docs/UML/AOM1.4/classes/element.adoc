@@ -1,0 +1,41 @@
+=== ELEMENT Class
+
+[cols="^1,3,5"]
+|===
+h|*Class*
+2+^h|*ELEMENT*
+
+h|*Description*
+2+a|The leaf variant of ITEM, to which a DATA_VALUE instance is attached.
+
+h|*Inherit*
+2+|`ITEM`
+
+h|*Attributes*
+^h|*Signature*
+^h|*Meaning*
+
+h|*0..1*
+|*null_flavour*: `DV_CODED_TEXT`
+a|Flavour of null value, e.g. indeterminate, not asked etc.
+
+h|*0..1*
+|*value*: `DATA_VALUE`
+a|Property representing leaf value object of ELEMENT. In real data, any concrete subtype of DATA_VALUE can be used.
+h|*Functions*
+^h|*Signature*
+^h|*Meaning*
+
+h|
+|*is_null* (): `Boolean`
+a|True if value logically not known, e.g. if indeterminate, not asked etc.
+
+h|*Invariants*
+2+a|*_Is_null_valid_*: `is_null = (value = Void)`
+
+h|
+2+a|*_Null_flavour_indicated_*: `is_null xor null_flavour = Void`
+
+h|
+2+a|*_Null_flavour_valid_*: `is_null implies terminology (Terminology_id_openehr).has_code_for_group_id (Group_id_null_flavour, null_flavour.defining_code)`
+|===

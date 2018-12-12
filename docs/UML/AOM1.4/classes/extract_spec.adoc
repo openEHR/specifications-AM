@@ -1,0 +1,64 @@
+=== EXTRACT_SPEC Class
+
+[cols="^1,3,5"]
+|===
+h|*Class*
+2+^h|*EXTRACT_SPEC*
+
+h|*Description*
+2+a|Specification of an Extract's contents. Subtypes can be used to add details specific to the type of Extract. The specification consists of attributes specifying the directory, and two further groups of attributes in their own classes, namely a version specfication (which versions of information items are to be included) and a manifest (which entities are to be included in the extract).
+
+Use: Used in a request to specify an Extract, as well as to describe what is contained in an Extract.
+
+h|*Attributes*
+^h|*Signature*
+^h|*Meaning*
+
+h|*0..1*
+|*version_spec*: `EXTRACT_VERSION_SPEC`
+a|Specification of which versions of information items to include in the Extract. If Void, the default is latest versions only (which is reasonable for non-versioning systems as well).
+
+h|*1..1*
+|*manifest*: `EXTRACT_MANIFEST`
+a|Specification of entities (e.g. records) to include in the Extract.
+
+h|*1..1*
+|*extract_type*: `DV_CODED_TEXT`
+a|Coded term indicating the type of content required, e.g.
+
+* openehr-ehr
+* openehr-demographic
+* generic-emr
+* other
+
+Coded by openEHR Terminology group "extract content type".
+
+h|*1..1*
+|*include_multimedia*: `Boolean`
+a|Indicates whether inline instances of DV_MULTIMEDIA in the source data are included or not.
+
+h|*1..1*
+|*priority*: `Integer`
+a|Requested priority of this request to be handled by server. Priority schemes are likely to be local, and use values agreed by both ends.
+
+TBD: alternative is standard coded terms
+
+h|*1..1*
+|*link_depth*: `Integer`
+a|Degree of links to follow emanating from content items specified for inclusion. The kind of links to follow is dependent on the type of Extract.
+
+All items at the target end of followed links at the given depth are also included in the extract; EXTRACT_CONTENT_ITEM.is_primary is used to differentiate.
+- 0 = don't follow;
+- 1 = follow first degree links;
+- 2 = follow 2nd degree links;
+- ....
+- n = follow nth degree links
+
+h|*0..1*
+|*criteria*: `List<DV_PARSABLE>`
+a|Queries specifying the contents of this Extract.
+
+h|*0..1*
+|*other_details*: `ITEM_STRUCTURE`
+a|Other specification items. Archetypable.
+|===

@@ -1,0 +1,45 @@
+=== TERMINOLOGY_ACCESS Interface
+
+[cols="^1,3,5"]
+|===
+h|*Interface*
+2+^h|*TERMINOLOGY_ACCESS*
+
+h|*Description*
+2+a|Defines an object providing proxy access to a terminology.
+
+h|*Functions*
+^h|*Signature*
+^h|*Meaning*
+
+h|
+|*id* (): `String`
+a|Identification of this Terminology.
+
+h|
+|*all_codes* (): `CODE_PHRASE`
+a|Return all codes known in this terminology.
+
+h|
+|*codes_for_group_id* ( +
+a_group_id: `String[1]` +
+): `List<CODE_PHRASE>`
+a|Return all codes under grouper 'a_group_id' from this terminology.
+
+h|
+|*codes_for_group_name* ( +
+a_lang: `String[1]`, +
+a_name: `String[1]` +
+): `List<CODE_PHRASE>`
+a|Return all codes under grouper whose name in 'a_lang' is 'a_name' from this terminology.
+
+h|
+|*has_code_for_group_id* (): `Boolean`
+a|True if  a_code' is known in group  group_id' in the openEHR terminology.
+
+h|
+|*rubric_for_code* ( +
+a_code: `String[1]` +
+): `String`
+a|Return all rubric of code  code' in language  lang'.
+|===

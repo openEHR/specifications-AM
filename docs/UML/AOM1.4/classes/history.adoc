@@ -1,0 +1,53 @@
+=== HISTORY Class
+
+[cols="^1,3,5"]
+|===
+h|*Class*
+2+^h|*HISTORY*
+
+h|*Description*
+2+a|Root object of a linear history, i.e. time series structure. For a periodic series of events, period will be set, and the time of each Event in the History must correspond; i.e. the EVENT.offset must be a multiple of period for each Event. Missing events in a period History are however allowed.
+
+h|*Inherit*
+2+|`DATA_STRUCTURE`
+
+h|*Attributes*
+^h|*Signature*
+^h|*Meaning*
+
+h|*1..1*
+|*origin*: `DV_DATE_TIME`
+a|Time origin of this event history. The first event is not necessarily at the origin point.
+
+h|*0..1*
+|*period*: `DV_DURATION`
+a|Period between samples in this segment if periodic.
+
+h|*0..1*
+|*duration*: `DV_DURATION`
+a|Duration of the entire History; either corresponds to the duration of all the events, and/or the duration represented by the summary, if it exists.
+
+h|*0..1*
+|*summary*: `ITEM_STRUCTURE`
+a|Optional summary data that aggregates, organizes, reduces and transforms the event series. This may be a text or image that presents a graphical presentation, or some data that assists with the interpretation of the data.
+
+h|*0..1*
+|*events*: `List<EVENT>`
+a|The events in the series.
+h|*Functions*
+^h|*Signature*
+^h|*Meaning*
+
+h|
+|*is_periodic* (): `Boolean`
+a|Indicates whether history is periodic.
+
+h|*Invariants*
+2+a|*_Events_valid_*: `(events /= Void and then not events.is_empty) or summary /= Void`
+
+h|
+2+a|*_Periodic_validity_*: `is_periodic xor period = Void`
+
+h|
+2+a|*_Period_consistency_*: `is_periodic implies events.for_all (e: EVENT &#124; e.offset. to_seconds.mod(period.to_seconds) = 0)`
+|===

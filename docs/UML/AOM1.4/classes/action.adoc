@@ -1,0 +1,33 @@
+=== ACTION Class
+
+[cols="^1,3,5"]
+|===
+h|*Class*
+2+^h|*ACTION*
+
+h|*Description*
+2+a|Used to record a clinical action that has been performed, which may have been ad hoc, or due to the execution of an Activity in an Instruction workflow. Every Action corresponds to a careflow step of some kind or another.
+
+h|*Inherit*
+2+|`CARE_ENTRY`
+
+h|*Attributes*
+^h|*Signature*
+^h|*Meaning*
+
+h|*1..1*
+|*time*: `DV_DATE_TIME`
+a|Point in time at which this action completed.
+
+h|*1..1*
+|*ism_transition*: `ISM_TRANSITION`
+a|Details of transition in the Instruction state machine caused by this Action.
+
+h|*0..1*
+|*instruction_details*: `INSTRUCTION_DETAILS`
+a|Details to of the Instruction that caused this Action to be performed, if there was one.
+
+h|*1..1*
+|*description*: `ITEM_STRUCTURE`
+a|Description of the action that has been performed, in the form of an archetyped structure.
+|===

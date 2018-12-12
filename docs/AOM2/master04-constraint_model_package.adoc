@@ -6,7 +6,7 @@ Figure <<constraint_model_top>> and Figure <<constraint_model_bottom>> illustrat
 
 [.text-center]
 .constraint_model Package
-image::{uml_export_dir}/diagrams/AOM-constraint_model-top.svg[id=constraint_model_top, align="center"]
+image::{uml_diagrams_uri}/AOM-constraint_model-top.svg[id=constraint_model_top, align="center"]
 
 The definition part of an archetype is an instance of a `C_COMPLEX_OBJECT` and consists of alternate layers of object and attribute constrainer nodes, each containing the next level of nodes. At the leaves are primitive object constrainer nodes constraining primitive types such as `String` , `Integer` etc. There are also nodes that represent internal references to other nodes, constraint reference nodes that refer to a text constraint in the constraint binding part of the archetype terminology, and archetype constraint nodes, which represent constraints on other archetypes allowed to appear at a given point. The full list of concrete node types is as follows:
 
@@ -21,7 +21,7 @@ The constraints define which configurations of reference model class instances a
 
 [.text-center]
 .constraint_model.primitive Package
-image::{uml_export_dir}/diagrams/AOM-constraint_model-bottom.svg[id=constraint_model_bottom, align="center"]
+image::{uml_diagrams_uri}/AOM-constraint_model-bottom.svg[id=constraint_model_bottom, align="center"]
 
 The type-name nomenclature `C_XXX` used here is intended to be read as "constraint on objects of type `XXXX` ", i.e. a `C_COMPLEX_OBJECT` is a "constraint on a complex object (defined by a complex reference model type)". These type names are used below in the formal model.
 
@@ -63,7 +63,7 @@ The appearance of both `_existence_` and `_cardinality_` constraints in `C_ATTRI
 
 [.text-center]
 .C_ATTRIBUTE variants
-image::diagrams/c_attributes.png[id=c_attributes, align="center", width="70%"]
+image::{diagrams_uri}/c_attributes.png[id=c_attributes, align="center", width="70%"]
 
 === Object Node Types
 
@@ -224,7 +224,7 @@ Since `C_PRIMITIVEs` don't have type names in ADL, the type name is inferred by 
 
 [.text-center]
 .Enumerated Constraint
-image::diagrams/enumerated_type_constraint.png[id=enumerated_constraint, align="center", width="70%"]
+image::{diagrams_uri}/enumerated_type_constraint.png[id=enumerated_constraint, align="center", width="70%"]
 
 A parser that deserialises from an object dump format such as ODIN, JSON or XML will not need to do this.
 
@@ -244,7 +244,7 @@ Tuple constraints are designed to account for the very common need to constrain 
 
 [.text-center]
 .Tuple Constraint Model
-image::{uml_export_dir}/diagrams/AOM-constraint_model-tuple.svg[id=tuple_constraint_model, align="center"]
+image::{uml_diagrams_uri}/AOM-constraint_model-tuple.svg[id=tuple_constraint_model, align="center"]
 
 In this model, the type `C_ATTRIBUTE_TUPLE` groups the co-constrained `C_ATTRIBUTEs` under a `C_COMPLEX_OBJECT`. Currently the concrete type is limited to being `C_PRIMITIVE_OBJECT` to reduce complexity, and since it caters for all known examples of tuple constraints. In principle, any `C_DEFINED_OBJECT` could be allowed, and this may change in the future.
 
@@ -254,11 +254,11 @@ These additions allow standard constraint structures (i.e. `C_ATTRIBUTE` / `C_CO
 
 [.text-center]
 .Tuple Constraint Example AOM Instances
-image::{uml_export_dir}/diagrams/AOM-ordinal_tuple_example.svg[id=ordinal_tuple_example, align="center"]
+image::{uml_diagrams_uri}/AOM-ordinal_tuple_example.svg[id=ordinal_tuple_example, align="center"]
 
 [.text-center]
 .Tuple Constraint Example Data
-image::diagrams/tuple_example_data.png[id=tuple_constraint_example_data, align="center"]
+image::{diagrams_uri}/tuple_example_data.png[id=tuple_constraint_example_data, align="center"]
 
 === Assertions
 
@@ -270,7 +270,7 @@ The `C_OBJECT` types defined in Figure <<constraint_model_top>> are reproduced b
 
 [.text-center]
 .C_Object Substitutions
-image::diagrams/c_object_substitutions.png[id=c_object_substitutions, align="center"]
+image::{diagrams_uri}/c_object_substitutions.png[id=c_object_substitutions, align="center"]
 
 Within a specialised archetype, nodes that redefine corresponding nodes in the parent are normally of the same `C_OBJECT` type (we can think of this as a 'meta-type', since the RM type is the 'type' in the information model sense), but in some cases may also be of different `C_OBJECT` types.
 

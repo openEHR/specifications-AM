@@ -1,0 +1,22 @@
+=== REVISION_HISTORY_ITEM Class
+
+[cols="^1,3,5"]
+|===
+h|*Class*
+2+^h|*REVISION_HISTORY_ITEM*
+
+h|*Description*
+2+a|An entry in a revision history, corresponding to a version from a versioned container. Consists of AUDIT_DETAILS instances with revision identifier of the revision to which the AUDIT_DETAILS intance belongs.
+
+h|*Attributes*
+^h|*Signature*
+^h|*Meaning*
+
+h|*1..1*
+|*version_id*: `OBJECT_VERSION_ID`
+a|Version identifier for this revision.
+
+h|*1..1*
+|*audits*: `List<AUDIT_DETAILS>`
+a|The audits for this revision; there will always be at least one commit audit (which may itself be an ATTESTATION), there may also be further attestations.
+|===

@@ -1,6 +1,6 @@
 === C_TEMPORAL Class
 
-[cols="^1,2,3"]
+[cols="^1,3,5"]
 |===
 h|*Class*
 2+^h|*_C_TEMPORAL (abstract)_*
@@ -9,7 +9,7 @@ h|*Description*
 2+a|Purpose Abstract parent of C_ORDERED types whose base type is an ISO date/time type.
 
 h|*Inherit*
-2+|C_ORDERED
+2+|`C_ORDERED`
 
 h|*Attributes*
 ^h|*Signature*
@@ -22,11 +22,16 @@ h|*Functions*
 ^h|*Signature*
 ^h|*Meaning*
 
-h|
-|*valid_pattern_constraint* (a_pattern: `String`): `Boolean`
+h|(abstract)
+|*valid_pattern_constraint* ( +
+a_pattern: `String[1]` +
+): `Boolean`
 a|True if 'a_pattern' is a valid constraint. Define in concrete descendants.
 
-h|
-|*valid_pattern_constraint_replacement* (a_pattern: `String`, an_other_pattern: `String`): `Boolean`
+h|(abstract)
+|*valid_pattern_constraint_replacement* ( +
+a_pattern: `String[1]`, +
+an_other_pattern: `String[1]` +
+): `Boolean`
 a|Return True if 'a_pattern' can be replaced by 'an_other_pattern' in a specialised constraint. Define in concrete subtypes.
 |===

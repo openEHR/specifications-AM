@@ -1,6 +1,6 @@
 === C_DATE Class
 
-[cols="^1,2,3"]
+[cols="^1,3,5"]
 |===
 h|*Class*
 2+^h|*C_DATE*
@@ -9,7 +9,7 @@ h|*Description*
 2+a|ISO 8601-compatible constraint on instances of Date in the form either of a set of validity values, or an actual date range. There is no validity flag for ‘year’, since it must always be by definition mandatory in order to have a sensible date at all. Syntax expressions of instances of this class include “YYYY-??-??” (date with optional month and day).
 
 h|*Inherit*
-2+|C_PRIMITIVE
+2+|`C_PRIMITIVE`
 
 h|*Attributes*
 ^h|*Signature*
@@ -36,12 +36,12 @@ h|*0..1 +
 |*assumed_value*: `Date`
 a|The value to assume if this item is not included in data, due to being part of an optional structure.
 
-h|*Invariant*
-2+a|*_Month_validity_optional_*: month_validity = {VALIDITY_KIND}.optional implies (day_validity = {VALIDITY_KIND}.optional or day_validity = {VALIDITY_KIND}.disallowed)
+h|*Invariants*
+2+a|*_Month_validity_optional_*: `month_validity = {VALIDITY_KIND}.optional implies (day_validity = {VALIDITY_KIND}.optional or day_validity = {VALIDITY_KIND}.disallowed)`
 
 h|
-2+a|*_Month_validity_disallowed_*: month_validity = {VALIDITY_KIND}.disallowed implies day_validity = {VALIDITY_KIND}.disallowed
+2+a|*_Month_validity_disallowed_*: `month_validity = {VALIDITY_KIND}.disallowed implies day_validity = {VALIDITY_KIND}.disallowed`
 
 h|
-2+a|*_Validity_is_range_*: validity_is_range = (range /= Void)
+2+a|*_Validity_is_range_*: `validity_is_range = (range /= Void)`
 |===

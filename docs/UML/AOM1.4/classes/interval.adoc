@@ -1,6 +1,6 @@
 === Interval Class
 
-[cols="^1,2,3"]
+[cols="^1,3,5"]
 |===
 h|*Class*
 2+^h|*Interval*
@@ -9,7 +9,7 @@ h|*Description*
 2+a|Interval of ordered items.
 
 h|*Inherit*
-2+|Any
+2+|`Any`
 
 h|*Attributes*
 ^h|*Signature*
@@ -43,7 +43,9 @@ h|*Functions*
 ^h|*Meaning*
 
 h|
-|*has* (e): `boolean`
+|*has* ( +
+e +
+): `boolean`
 a|True if (lower_unbounded or
 ((lower_included and v >= lower) or
 v > lower)) and
@@ -51,15 +53,15 @@ v > lower)) and
 ((upper_included and v \<= upper or v
 < upper)))
 
-h|*Invariant*
-2+a|*_Lower_included_valid_*: lower_unbounded implies not lower_included
+h|*Invariants*
+2+a|*_Lower_included_valid_*: `lower_unbounded implies not lower_included`
 
 h|
-2+a|*_Upper_included_valid_*: upper_unbounded implies not upper_included
+2+a|*_Upper_included_valid_*: `upper_unbounded implies not upper_included`
 
 h|
-2+a|*_Limits_consistent_*: (not upper_unbounded and not lower_unbounded) implies lower \<= upper
+2+a|*_Limits_consistent_*: `(not upper_unbounded and not lower_unbounded) implies lower \<= upper`
 
 h|
-2+a|*_Limits_comparable_*: (not upper_unbounded and not lower_unbounded) implies lower.strictly_comparable_to (upper)
+2+a|*_Limits_comparable_*: `(not upper_unbounded and not lower_unbounded) implies lower.strictly_comparable_to (upper)`
 |===

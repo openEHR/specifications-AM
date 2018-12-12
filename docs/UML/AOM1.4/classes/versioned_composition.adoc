@@ -1,0 +1,24 @@
+=== VERSIONED_COMPOSITION Class
+
+[cols="^1,3,5"]
+|===
+h|*Class*
+2+^h|*VERSIONED_COMPOSITION*
+
+h|*Description*
+2+a|Version-controlled composition abstraction, defined by inheriting VERSIONED_OBJECT<COMPOSITION>.
+
+h|*Functions*
+^h|*Signature*
+^h|*Meaning*
+
+h|
+|*is_persistent* (): `Boolean`
+a|Indicates whether this composition set is persistent; derived from first version.
+
+h|*Invariants*
+2+a|*_Archetype_node_id_valid_*: `all_versions.for_all (v &#124; v.archetype_node_id.is_equal (all_versions.first.archetype_node_id))`
+
+h|
+2+a|*_Persistent_validity_*: `all_versions.for_all (v &#124; v.is_persistent = all_versions.first.data.is_persistent)`
+|===

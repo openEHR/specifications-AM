@@ -1,0 +1,26 @@
+=== DV_PARAGRAPH Class
+
+[cols="^1,3,5"]
+|===
+h|*Class*
+2+^h|*DV_PARAGRAPH*
+
+h|*Description*
+2+a|A logical composite text value consisting of a series of DV_TEXTs, i.e. plain text (optionally coded) potentially with simple formatting, to form a larger tract of prose, which may be interpreted for display purposes as a paragraph.
+
+DV_PARAGRAPH is the standard way for constructing longer text items in summaries, reports and so on.
+
+h|*Inherit*
+2+|`DATA_VALUE`
+
+h|*Attributes*
+^h|*Signature*
+^h|*Meaning*
+
+h|*1..1*
+|*items*: `List<DV_TEXT>`
+a|Items making up the paragraph, each of which is a text item (which may have its own formatting, and/or have hyperlinks).
+
+h|*Invariants*
+2+a|*_Items_valid_*: `not items.is_empty`
+|===
