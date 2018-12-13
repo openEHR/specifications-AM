@@ -386,7 +386,7 @@
 </colgroup>
 <thead>
 <tr>
-<th class="tableblock halign-center valign-top" colspan="2"><strong>Issuer</strong>: <a href="https://www.openehr.org/programs/specification">openEHR Specification Program</a></th>
+<th class="tableblock halign-center valign-top" colspan="2"><strong>Issuer</strong>: <a href="https://www.openehr.org/programs/specification" target="_blank" rel="noopener">openEHR Specification Program</a></th>
 </tr>
 </thead>
 <tbody>
@@ -1455,7 +1455,7 @@ the above types do not constitute a formal part of this specification. Any imple
 <div class="sect2">
 <h3 id="_aom2_package_structure"><a class="anchor" href="#_aom2_package_structure"></a>2.2. AOM2 Package Structure</h3>
 <div class="paragraph">
-<p>The Archetype Object Model is defined by the package <code>am.aom2</code> and subordinate packages, as illustrated in Figure <a href="#aom_package_overview">Package Overview</a>.</p>
+<p>The Archetype Object Model is defined by the package <code>am.aom2</code> and subordinate packages, as illustrated in <a href="#aom_package_overview">Figure 4</a>.</p>
 </div>
 <div id="aom_package_overview" class="imageblock text-center" style="text-align: center">
 <div class="content">
@@ -1747,7 +1747,7 @@ a_level: <code>Integer[1]</code><br>
 <div class="sect3">
 <h4 id="_governance_meta_data_items"><a class="anchor" href="#_governance_meta_data_items"></a>3.4.1. Governance Meta-data Items</h4>
 <div class="paragraph">
-<p>Governance meta-data is visible primarily in the <code>RESOURCE_DESCRIPTION</code> class, inherited via <code>AUTHORED_RESOURCE</code>, and consists of items relating to management and intellectual property status of the artefact. A typical form of these is shown in the screenshot in Figure <a href="#metadata_governance">Governance Meta-data</a>.</p>
+<p>Governance meta-data is visible primarily in the <code>RESOURCE_DESCRIPTION</code> class, inherited via <code>AUTHORED_RESOURCE</code>, and consists of items relating to management and intellectual property status of the artefact. A typical form of these is shown in the screenshot in <a href="#metadata_governance">Figure 8</a>.</p>
 </div>
 <div id="metadata_governance" class="imageblock text-center" style="text-align: center">
 <div class="content">
@@ -1885,7 +1885,7 @@ first names last name, organisation &lt;organisation email address&gt;</pre>
 <p>The archetype definition is the main definitional part of an archetype and is an instance of a <code>C_COMPLEX_OBJECT</code> . This means that the root of the constraint structure of an archetype always takes the form of a constraint on a non-primitive object type.</p>
 </div>
 <div class="paragraph">
-<p>The terminology section of an archetype is represented by its own classes, and is what allows archetypes to be natural language- and terminology-neutral. It is described in detail in the <a href="#terminology_package">am.aom2.terminology Package</a>.</p>
+<p>The terminology section of an archetype is represented by its own classes, and is what allows archetypes to be natural language- and terminology-neutral. It is described in detail in <a href="#_terminology_package">Section 6</a>.</p>
 </div>
 <div class="paragraph">
 <p>An archetype may include one or more rules. Rules are statements expressed in a subset of predicate logic, which can be used to state constraints on multiple parts of an object. They are not needed to constrain single attributes or objects (since this can be done with an appopriate <code>C_ATTRIBUTE</code> or <code>C_OBJECT</code> ), but are necessary for constraints referring to more than one attribute, such as a constraint that 'systolic pressure should be &gt;= diastolic pressure' in a blood pressure measurement archetype. They can also be used to declare variables, including external data query results, and make other constraints dependent on a variable value, e.g. the gender of the record subject.</p>
@@ -1897,7 +1897,7 @@ first names last name, organisation &lt;organisation email address&gt;</pre>
 <div class="sect3">
 <h4 id="_structural_variants"><a class="anchor" href="#_structural_variants"></a>3.5.2. Structural Variants</h4>
 <div class="paragraph">
-<p>The model in Figure <a href="#archetype_package">am.aom2.archetype Package</a> defines the structures of a number of variants of the 'archetype' idea. All concrete instances are instances of one of the concrete descendants of <code>ARCHETYPE</code>. Figure <a href="#source_archetype_structure">Source Archetype Structure</a> illustrates the typical object structure of a source archetype - the form of archetype created by an authoring tool - represented by a <code>DIFFERENTIAL_ARCHETYPE</code> instance. Mandatory parts are shown in bold.</p>
+<p>The model in <a href="#archetype_package">Figure 6</a> defines the structures of a number of variants of the 'archetype' idea. All concrete instances are instances of one of the concrete descendants of <code>ARCHETYPE</code>. <a href="#source_archetype_structure">Figure 11</a> illustrates the typical object structure of a source archetype - the form of archetype created by an authoring tool - represented by a <code>DIFFERENTIAL_ARCHETYPE</code> instance. Mandatory parts are shown in bold.</p>
 </div>
 <div id="source_archetype_structure" class="imageblock text-center" style="text-align: center">
 <div class="content">
@@ -1921,13 +1921,13 @@ first names last name, organisation &lt;organisation email address&gt;</pre>
 <p>This form is used to represent the full 'operational' structure of a specialised archetype, and has two uses. The first is to generate backwards compatible ADL 1.4 legacy archetypes (always in flat form); the second is during the template flattening process, when the flat forms of all referenced archetypes and templates are ultimately combined into a single operational template.</p>
 </div>
 <div class="paragraph">
-<p>Figure <a href="#source_template_structure">Source Template Structure</a> illustrates the structure of a source template, i.e instances of <code>TEMPLATE</code>. A source template is an archetype containing <code>C_ARCHETYPE_ROOT</code> objects representing slot fillers - each referring to an external archetype or template, or potentially an overlay archetype.</p>
+<p><a href="#source_template_structure">Figure 12</a> illustrates the structure of a source template, i.e instances of <code>TEMPLATE</code>. A source template is an archetype containing <code>C_ARCHETYPE_ROOT</code> objects representing slot fillers - each referring to an external archetype or template, or potentially an overlay archetype.</p>
 </div>
 <div class="paragraph">
-<p>Another archetype variant, also shown in <a href="#source_template_structure">Source Template Structure</a> is the template overlay, i.e. an instance of <code>TEMPLATE_OVERLAY</code>. These are purely local components of templates, and include only the definition and terminology. The definition structure is always a specialised overlay on something else, and may not contain any slot fillers or external references, i.e. no <code>C_ARCHETYPE_ROOT</code> objects. No identifier, adl_version, languages or description are required, as they are considered to be propagated from the owning root template. Accordingly, template overlays act like a simplified specialised archetype. Template overlays can be thought of as being similar to 'anonymous' or 'inner' classes in some object-oriented programming languages.</p>
+<p>Another archetype variant, also shown in <a href="#source_template_structure">Figure 12</a> is the template overlay, i.e. an instance of <code>TEMPLATE_OVERLAY</code>. These are purely local components of templates, and include only the definition and terminology. The definition structure is always a specialised overlay on something else, and may not contain any slot fillers or external references, i.e. no <code>C_ARCHETYPE_ROOT</code> objects. No identifier, adl_version, languages or description are required, as they are considered to be propagated from the owning root template. Accordingly, template overlays act like a simplified specialised archetype. Template overlays can be thought of as being similar to 'anonymous' or 'inner' classes in some object-oriented programming languages.</p>
 </div>
 <div class="paragraph">
-<p>Figure <a href="#operational_template_structure">Operational Template Structure</a> illustrates the resulting operational template, or compiled form of a template. This is created by building the composition of referenced archetypes and/or templates and/or template overlays, in their flattened form, to generate a single 'giant' archetype. The root node of this archetype, along with every archetype/template root node within, is represented using a <code>C_ARCHETYPE_ROOT</code> object. An operational template also has a component_terminologies property containing the ontologies from every constituent archetype, template and overlay.</p>
+<p><a href="#operational_template_structure">Figure 13</a> illustrates the resulting operational template, or compiled form of a template. This is created by building the composition of referenced archetypes and/or templates and/or template overlays, in their flattened form, to generate a single 'giant' archetype. The root node of this archetype, along with every archetype/template root node within, is represented using a <code>C_ARCHETYPE_ROOT</code> object. An operational template also has a component_terminologies property containing the ontologies from every constituent archetype, template and overlay.</p>
 </div>
 <div id="operational_template_structure" class="imageblock text-center" style="text-align: center">
 <div class="content">
@@ -2537,7 +2537,7 @@ an_id: <code>String[1]</code><br>
 <div class="sect2">
 <h3 id="_overview_3"><a class="anchor" href="#_overview_3"></a>4.1. Overview</h3>
 <div class="paragraph">
-<p>Figure <a href="#constraint_model_top">am.aom2.constraint_model Package</a> and Figure <a href="#constraint_model_bottom">am.aom2.primitive Package</a> illustrate the object model of constraints used in an archetype definition. This model is completely generic, and is designed to express the semantics of constraints on instances of classes which are themselves described in any orthodox object-oriented formalism, such as UML. Accordingly, the major abstractions in this model correspond to major abstractions in object-oriented formalisms, including several variations of the notion of 'object' and the notion of 'attribute'. The notion of 'object' rather than 'class' or 'type' is used because archetypes are about constraints on data (i.e. 'instances', or 'objects') rather than models, which are constructed from 'classes'. In this document, the word 'attribute' refers to any data property of a class, regardless of whether regarded as a 'relationship' (i.e. association, aggregation, or composition) or 'primitive' (i.e. value) attribute in an object model.</p>
+<p><a href="#constraint_model_top">Figure 14</a> and <a href="#constraint_model_bottom">Figure 15</a> illustrate the object model of constraints used in an archetype definition. This model is completely generic, and is designed to express the semantics of constraints on instances of classes which are themselves described in any orthodox object-oriented formalism, such as UML. Accordingly, the major abstractions in this model correspond to major abstractions in object-oriented formalisms, including several variations of the notion of 'object' and the notion of 'attribute'. The notion of 'object' rather than 'class' or 'type' is used because archetypes are about constraints on data (i.e. 'instances', or 'objects') rather than models, which are constructed from 'classes'. In this document, the word 'attribute' refers to any data property of a class, regardless of whether regarded as a 'relationship' (i.e. association, aggregation, or composition) or 'primitive' (i.e. value) attribute in an object model.</p>
 </div>
 <div id="constraint_model_top" class="imageblock text-center" style="text-align: center">
 <div class="content">
@@ -2605,7 +2605,7 @@ an_id: <code>String[1]</code><br>
 <p>All node types include two functions that formalise the notion of conformance of a specialised archetype to a parent archetype. Both functions take an argument which must be a corresponding node in a parent archetype, not necessarily the immediate parent. A 'corresponding' node is one found at the same or a congruent path. A congruent path is one in which one or more at-codes have been redefined in the specialised archetype.</p>
 </div>
 <div class="paragraph">
-<p>The <code><em>c_conforms_to</em></code> function returns True if the node on which it is called is a valid specialisation of the 'other' node. The <code><em>c_congruent_to</em></code> function returns True if the node on which it is called is the same as the other node, with the possible exception of a redefined at-code. The latter may happen due to the need to restrict the domain meaning of node to a meaning narrower than that of the same node in the parent. The formal semantics of both functions are given in the section <a href="AOM2.htm#50487317_85899">See Class Definitions</a>.</p>
+<p>The <code><em>c_conforms_to</em></code> function returns True if the node on which it is called is a valid specialisation of the 'other' node. The <code><em>c_congruent_to</em></code> function returns True if the node on which it is called is the same as the other node, with the possible exception of a redefined at-code. The latter may happen due to the need to restrict the domain meaning of node to a meaning narrower than that of the same node in the parent. The formal semantics of both functions are given in the class definitions, <a href="#_class_definitions_2">Section 4.5</a>.</p>
 </div>
 </div>
 <div class="sect4">
@@ -2637,7 +2637,7 @@ an_id: <code>String[1]</code><br>
 <p>In the case of single-valued attributes (such as Person.date_of_birth) the children represent one or more alternative object constraints for the attribute value.</p>
 </div>
 <div class="paragraph">
-<p>For multiply-valued attributes (such as <code>Person</code>.<code><em>contacts</em></code>: <code>List&lt;Contact&gt;</code>), a cardinality constraint on the container can be defined. The constraint on child objects is essentially the same except that more than one of the alternatives can co-exist in the data. Figure <a href="#c_attributes">C_ATTRIBUTE variants</a> illustrates the two possibilities.</p>
+<p>For multiply-valued attributes (such as <code>Person</code>.<code><em>contacts</em></code>: <code>List&lt;Contact&gt;</code>), a cardinality constraint on the container can be defined. The constraint on child objects is essentially the same except that more than one of the alternatives can co-exist in the data. <a href="#c_attributes">Figure 16</a> illustrates the two possibilities.</p>
 </div>
 <div class="paragraph">
 <p>The appearance of both <code><em>existence</em></code> and <code><em>cardinality</em></code> constraints in <code>C_ATTRIBUTE</code> deserves some explanation, especially as the meanings of these notions are often confused in object-oriented literature. An existence constraint indicates whether an object will be found in a given attribute field, while a cardinality constraint indicates what the valid membership of a container object is. <code><em>Cardinality</em></code> is only required for container objects such as <code>List&lt;T&gt;</code> , <code>Set&lt;T&gt;</code> and so on, whereas <code><em>existence</em></code> is always possible. If both are used, the meaning is as follows: the existence constraint says whether the container object will be there (at all), while the cardinality constraint says how many items must be in the container, and whether it acts logically as a list, set or bag. Both existence and cardinality are optional in the model, since they are only needed to override the settings from the reference model.</p>
@@ -2759,7 +2759,7 @@ an_id: <code>String[1]</code><br>
 <p>Constraints on primitive types are defined by the classes inheriting from <code>C_PRIMITIVE_OBJECT</code> , i.e. <code>C_STRING</code> , <code>C_INTEGER</code> and so on. The primitive types are represented in such a way as to accommodate both 'tuple' constraints and logically unary constraints, using a tuple array whose members are each a primitive constraint corresponding to each primitive type. Tuple constraints are second order constraints, described below, enable covarying constraints to be stated. In the unary case, the constraint is the first member of a tuple array.</p>
 </div>
 <div class="paragraph">
-<p><code>C_PRIMITIVE_OBJECT</code> instances are created with a fixed id-code <code>ADL_CODE_DEFINITIONS.<em>primitive_node_id</em></code> as the value of <code><em>node_id</em></code> (see <a href="#_adl_code_definitions_class">ADL_CODE_DEFINITIONS Class</a>). For this reason, no node identifier needs to be supplied in a syntax or serialised form of an archetype, including ADL.</p>
+<p><code>C_PRIMITIVE_OBJECT</code> instances are created with a fixed id-code <code>ADL_CODE_DEFINITIONS.<em>primitive_node_id</em></code> as the value of <code><em>node_id</em></code> (see <a href="#_adl_code_definitions_class">Section 2.3.3</a>). For this reason, no node identifier needs to be supplied in a syntax or serialised form of an archetype, including ADL.</p>
 </div>
 <div class="paragraph">
 <p>The primitive constraint for each primitive type may itself be complex. Its RM type is given by the type of the <code><em>constraint</em></code> accessor in each <code>C_PRIMITIVE_OBJECT</code> descendant and is summarised in the following table.</p>
@@ -2889,7 +2889,7 @@ an_id: <code>String[1]</code><br>
 </ul>
 </div>
 <div class="paragraph">
-<p>A way of configuring this on a per-RM basis is described in the section <a href="#_rm_primitive_type_equivalences">RM Primitive Type Equivalences</a> below.</p>
+<p>A way of configuring this on a per-RM basis is described in <a href="#_rm_primitive_type_equivalences">Section 10.3</a> below.</p>
 </div>
 <div class="sect4">
 <h5 id="_assumed_value"><a class="anchor" href="#_assumed_value"></a>4.2.7.1. Assumed_value</h5>
@@ -3010,7 +3010,7 @@ Since an archetype might not contain external terminology bindings for all (or e
 <p>All of the constraint semantics described above can be considered 'first order' in the sense that they define how specific object/attribute/object hierarchies are defined in the instance possibility space of some part of a reference model.</p>
 </div>
 <div class="paragraph">
-<p>Some constraints however do not fit directly within the object/attribute/object hierarchy scheme, and are considered 'second order constraints' in the archetype formalism. The 'rule' constraints ('invariants' in ADL/AOM 1.4) constitute one such group. These constraints are defined in terms of first order predicate logic statements that can refer to any number of constraint nodes within the main hierarchy. These are described in Figure <a href="#rules_package">am.aom2.rules Package</a>.</p>
+<p>Some constraints however do not fit directly within the object/attribute/object hierarchy scheme, and are considered 'second order constraints' in the archetype formalism. The 'rule' constraints ('invariants' in ADL/AOM 1.4) constitute one such group. These constraints are defined in terms of first order predicate logic statements that can refer to any number of constraint nodes within the main hierarchy. These are described in <a href="#rules_package">Figure 22</a>.</p>
 </div>
 <div class="paragraph">
 <p>Another type of second order constraint can be 'attached' to the object/attribute/object hierarchy in order to further limit structural possibilities. Although these constraints could also theoretically be expressed as rules, they are supported by direct additions to the main constraint model since they can be easily and intuitively represented inline in ADL and corresponding AOM structures.</p>
@@ -3018,7 +3018,7 @@ Since an archetype might not contain external terminology bindings for all (or e
 <div class="sect3">
 <h4 id="_tuple_constraints"><a class="anchor" href="#_tuple_constraints"></a>4.3.1. Tuple Constraints</h4>
 <div class="paragraph">
-<p>Tuple constraints are designed to account for the very common need to constrain the values of more than one RM class attribute together. This effectively treats the attributes in question as a tuple, and the corresponding object constraints are accordingly modelled as tuples as well. A detailed explanation of tuples can be found in the ADL2 specification&#8217;s <a href="http://www.openehr.org/releases/AM/latest/docs/ADL2/ADL2.html#_second_order_constraints">section on second order constraints</a>. Additions to the main constraint model to support tuples are shown below.</p>
+<p>Tuple constraints are designed to account for the very common need to constrain the values of more than one RM class attribute together. This effectively treats the attributes in question as a tuple, and the corresponding object constraints are accordingly modelled as tuples as well. A detailed explanation of tuples can be found in the ADL2 specification&#8217;s <a href="https://specifications.openehr.org/releases/AM/latest/ADL2.html#_second_order_constraints">section on second order constraints</a>. Additions to the main constraint model to support tuples are shown below.</p>
 </div>
 <div id="tuple_constraint_model" class="imageblock text-center" style="text-align: center">
 <div class="content">
@@ -3058,7 +3058,7 @@ Since an archetype might not contain external terminology bindings for all (or e
 <div class="sect2">
 <h3 id="_aom_type_substitutions"><a class="anchor" href="#_aom_type_substitutions"></a>4.4. AOM Type Substitutions</h3>
 <div class="paragraph">
-<p>The <code>C_OBJECT</code> types defined in Figure <a href="#constraint_model_top">am.aom2.constraint_model Package</a> are reproduced below, with concrete types that may actually occur in archetypes shown in dark yellow / non-italic.</p>
+<p>The <code>C_OBJECT</code> types defined in <a href="#constraint_model_top">Figure 14</a> are reproduced below, with concrete types that may actually occur in archetypes shown in dark yellow / non-italic.</p>
 </div>
 <div id="c_object_substitutions" class="imageblock text-center" style="text-align: center">
 <div class="content">
@@ -5968,7 +5968,7 @@ other: <code>C_SECOND_ORDER[1]</code><br>
 </ul>
 </div>
 <div class="paragraph">
-<p>Depending on whether the archetype is in differential or flat form, an instance of the <code>ARCHETYPE_TERMINOLOGY</code> class contains terms, constraints, bindings and terminology extracts that were respectively either introduced in the owning archetype, or all codes and bindings obtained by compressing an archetype lineage through inheritance. A typical instance structure of <code>ARCHETYPE_TERMINOLOGY</code> is illustrated in Figure <a href="#terminology_instance">Terminology Instance Structure</a>.</p>
+<p>Depending on whether the archetype is in differential or flat form, an instance of the <code>ARCHETYPE_TERMINOLOGY</code> class contains terms, constraints, bindings and terminology extracts that were respectively either introduced in the owning archetype, or all codes and bindings obtained by compressing an archetype lineage through inheritance. A typical instance structure of <code>ARCHETYPE_TERMINOLOGY</code> is illustrated in <a href="#terminology_instance">Figure 24</a>.</p>
 </div>
 <div id="terminology_instance" class="imageblock text-center" style="text-align: center">
 <div class="content">
@@ -6780,7 +6780,7 @@ Hash of keys ("text", "description" etc) and corresponding values.</p>
 <p>Within the Archetype formalism, a template is used to aggregate and refine archetypes, to produce a structure corresponding to a particular data set. Templates thus provide a way to use archetypes for specific purposes, while the archetypes contain <em>possible</em> data items, not linked to specific purposes. See the <a href="https://specifications.openehr.org/releases/AM/latest/ADL2.html#_templates">ADL2 specification, Templates section</a> for a detailed description of template semantics.</p>
 </div>
 <div class="paragraph">
-<p>Templates are formally defined as specialised archetypes, via the <code>TEMPLATE</code> and <code>TEMPLATE_OVERLAY</code> classes shown in <a href="#archetype_package">am.aom2.archetype Package</a>. This means that all the formal characteristics of a template are defined by the openEHR Archetype Object Model (AOM) and Archetype Definition Language (ADL) specifications apply to templates. This includes the meta-data (inherited from the <code>AUTHORED_RESOURCE</code> class), specialisation semantics (templates can be specialised into other templates), <code>terminology</code> section (allowing multi-lingual local term definitions and external terminology bindings) as well as the <code>rules</code> and <code>annotations</code> sections.</p>
+<p>Templates are formally defined as specialised archetypes, via the <code>TEMPLATE</code> and <code>TEMPLATE_OVERLAY</code> classes shown in <a href="#archetype_package">Figure 6</a>. This means that all the formal characteristics of a template are defined by the openEHR Archetype Object Model (AOM) and Archetype Definition Language (ADL) specifications apply to templates. This includes the meta-data (inherited from the <code>AUTHORED_RESOURCE</code> class), specialisation semantics (templates can be specialised into other templates), <code>terminology</code> section (allowing multi-lingual local term definitions and external terminology bindings) as well as the <code>rules</code> and <code>annotations</code> sections.</p>
 </div>
 <div class="paragraph">
 <p>Since a template is a specialised archetype, it cannot change the semantics of archetypes it specialises, since it obeys the same rules as any other specialised archetype. Accordingly, all data created due to the use of templates are guaranteed to conform to the referenced archetypes, as well as the underlying reference model.</p>
@@ -7581,7 +7581,7 @@ Hash of keys ("text", "description" etc) and corresponding values.</p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2018-12-12 22:16:08 GMT
+Last updated 2018-12-13 19:38:20 GMT
 </div>
 </div>
 </body>

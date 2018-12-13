@@ -18,7 +18,7 @@ We can understand this model space equivalently as an ontological space, where t
 
 Returning to the Archetype HRID, the leading namespace indicates the Custodian Organisation, here the UK NHS. The implication of the namespace within the HRID is that multiple agencies may publish competing ideas of a ‘medication_order’ archetype based on the openEHR `COMPOSITION` class, and there will not be any clash. Although the namespace is prepended to the archetype identifier in the usual way, in fact it should be understood as a discriminator on the domain entity. In other words, the identifiers `uk.gov.nhs::openEHR-EHR-COMPOSITION.medication_order.v1` and `no.regjeringen::openEHR-EHR-COMPOSITION.medication_order.v1` should be understood as UK NHS and Norwegian Health Department ideas of ‘medication_order’, based on the same openEHR Reference Model `COMPOSITION` class.
 
-This is useful as a practical measure, to avoid immediate chaos. In the longer term, it is intended that archetype semantic identifiers for a given domain are located in a common international ontology of information artefact types. For the clinical domain, it could look as shown in the figure <<information_ontology>>, where it is assumed that the {bfo}[Basic Formal Ontology (BFO) 2nd Edition] and the {iao}[Information Artefact Ontology (IAO)] upper level ontologies would provide the foundation of clinically specific models.
+This is useful as a practical measure, to avoid immediate chaos. In the longer term, it is intended that archetype semantic identifiers for a given domain are located in a common international ontology of information artefact types. For the clinical domain, it could look as shown in <<information_ontology>>, where it is assumed that the {bfo}[Basic Formal Ontology (BFO) 2nd Edition^] and the {iao}[Information Artefact Ontology (IAO)^] upper level ontologies would provide the foundation of clinically specific models.
 
 [.text-center]
 .Example archetype artefact ontology
@@ -43,7 +43,7 @@ Accordingly, the formalism and tooling is designed on the basis of the simplest 
 * real data can be computationally classified under various points in the ontology - i.e. we can computationally determine if certain data are a ‘bp_measurement’, a ‘UK NHS bp_measurement’ or even just an `OBSERVATION` ;
 * we can use the subsumption operator on the IS-A hierarchy to define useful subsets of the overall space, e.g. `{any-descendant of ‘medical_device’}, {any-descendant-or-self of OBSERVATION}` and so on.
 
-The IS-A hierarchy is available in archetype tools such as the {openehr_awb}[openEHR ADL Workbench], as shown in the figure <<archetypes_is_a_hierarchy>>.
+The IS-A hierarchy is available in archetype tools such as the {openehr_awb}[openEHR ADL Workbench], as shown in <<archetypes_is_a_hierarchy>>.
 
 [.text-center]
 .Is-A hierarchy of the openEHR international archetypes

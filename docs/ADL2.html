@@ -1726,7 +1726,7 @@ the structure, as shown in the following example:</p>
 <p>Typically in a normal string, including multi-line paragraphs as used in ODIN, only <code>\\</code> and <code>\"</code> are likely to be necessary, since all of the others can be accommodated in their literal forms; the same goes for single characters - only <code>\\</code> and <code>\'</code> are likely to commonly occur. However, some authors may prefer to use <code>\n</code> and <code>\t</code> to make intended formatting clearer, or to allow for text editors that do not react properly to such characters. Parsers should therefore support the above list.</p>
 </div>
 <div class="paragraph">
-<p>In regular expressions (only used in cADL string constraints), there will typically be backslashescaped characters from the above list as well as other patterns like <code>\s</code> (whitspace) and <code>\d</code> (decimal digit), according to the PERL regular expression specification (<a href="#Perl_regex">[Perl_regex]</a>). These should not be treated as anything other than literal strings, since they are processed by a regular expression parser.</p>
+<p>In regular expressions (only used in cADL string constraints), there will typically be backslashescaped characters from the above list as well as other patterns like <code>\s</code> (whitspace) and <code>\d</code> (decimal digit), according to the <a href="https://perldoc.perl.org/perlre.html">PERL regular expression specification</a>. These should not be treated as anything other than literal strings, since they are processed by a regular expression parser.</p>
 </div>
 </div>
 </div>
@@ -1774,7 +1774,7 @@ the structure, as shown in the following example:</p>
 <p>The full set of equivalences appears below. Raw cADL is persisted in the text-based form, to remove any difficulties when authoring cADL text in normal text editors, and to aid reading in English. However, the symbolic form might be more widely used for display purposes and in more sophisticated tools, as it is more succinct and less language-dependent. The use of symbols or text is completely a matter of taste, and no meaning whatsoever is lost by completely ignoring one or other format according to one&#8217;s personal preference. This document uses both conventions.</p>
 </div>
 <div class="paragraph">
-<p>In the standard cADL documented in this section, literal leaf values (such as the regular expression <code>/.+/</code> in the above example) are always constraints on a set of 'standard' widely-accepted primitive types, as described in the openEHR ODIN syntax specification <a href="#openehr_odin">[openehr_odin]</a>.</p>
+<p>In the standard cADL documented in this section, literal leaf values (such as the regular expression <code>/.+/</code> in the above example) are always constraints on a set of 'standard' widely-accepted primitive types, as described in the <a href="https://specifications.openehr.org/releases/LANG/latest/odin.html">openEHR ODIN syntax specification</a>.</p>
 </div>
 </div>
 <div class="sect2">
@@ -1915,7 +1915,7 @@ the structure, as shown in the following example:</p>
 </div>
 <div id="uml_model_of_person" class="imageblock text-center" style="text-align: center">
 <div class="content">
-<img src="UML/diagrams/ADL-demographics.svg" alt="ADL demographics">
+<img src="UML/diagrams/AM-example-demographics.svg" alt="AM example demographics">
 </div>
 <div class="title">Figure 2. UML Model of Person</div>
 </div>
@@ -2321,7 +2321,7 @@ direct matching of so-called CamelCase by Snake_case or SCREAMING_SNAKE_CASE and
 </div>
 <div id="ADL-demographics-parties" class="imageblock text-center" style="text-align: center">
 <div class="content">
-<img src="UML/diagrams/ADL-demographics-parties.svg" alt="ADL demographics parties">
+<img src="UML/diagrams/AM-example-demographics-parties.svg" alt="AM example demographics parties">
 </div>
 <div class="title">Figure 3. Reference Model Sub-type Hierarchy</div>
 </div>
@@ -2574,7 +2574,7 @@ direct matching of so-called CamelCase by Snake_case or SCREAMING_SNAKE_CASE and
 </div>
 </div>
 <div class="paragraph">
-<p>Proxy objects provide an internal reuse mechanism. Specialised archetypes may redefine structures on such nodes as if they had been defined inline. This is described in more detail in <a href="#_internal_reference_proxy_object_redefinition">Section 9.5.6</a> in the <a href="#_specialisation">Section 9</a> section.</p>
+<p>Proxy objects provide an internal reuse mechanism. Specialised archetypes may redefine structures on such nodes as if they had been defined inline. This is described in more detail in <a href="#_internal_reference_proxy_object_redefinition">Section 9.5.6</a>.</p>
 </div>
 <div class="paragraph principle">
 <p>A proxy constraint object allows object constraints defined elsewhere to be re-used within the same archetype or a specialised child.</p>
@@ -2736,7 +2736,7 @@ direct matching of so-called CamelCase by Snake_case or SCREAMING_SNAKE_CASE and
 <p>External references can of course also be defined under container attributes.</p>
 </div>
 <div class="paragraph">
-<p>The second use of external references is typically in templates, to specify an archetype or sub-template of a template for an attribute where no slot has been defined. This use is described in the <a href="#_unconstrained_attributes">Section 9.5.9</a> section.</p>
+<p>The second use of external references is typically in templates, to specify an archetype or sub-template of a template for an attribute where no slot has been defined. This use is described in <a href="#_unconstrained_attributes">Section 9.5.9</a>.</p>
 </div>
 <div class="sect4">
 <h5 id="_paths_2"><a class="anchor" href="#_paths_2"></a>4.3.9.1. Paths</h5>
@@ -5933,7 +5933,7 @@ it is quite common that only <em>some</em> of the local at-codes have equivalent
 <p>The upshot of these considerations is that the choice of which kind of term to use (internal or external) in a given deployment or situation is deferrable to a later stage than archetype authoring. The approach ADL takes is that 'source form' archetypes and templates always use internal coding and optionally binding, and that if external codes are to be directly substituted for the internal codes for some deployment situation for certain fields in an archetype or template, this is specified as an option at the point of operational template generation.</p>
 </div>
 <div class="paragraph">
-<p>As described in section <a href="#cADL_Terminology_Constraints">Section 4.5.8</a>, constraints of the form <code>[acN]</code> and <code>[atN]</code> are replaced by <code>[acN@ttttt]</code> and <code>[atN@ttttt]</code>. A generated operational template that includes the above archetype, with the choice to use the <code>snomed_ct</code> binding&#8217;s external terms made on some nodes, could include the following content.</p>
+<p>As described in <a href="#cADL_Terminology_Constraints">Section 4.5.8</a>, constraints of the form <code>[acN]</code> and <code>[atN]</code> are replaced by <code>[acN@ttttt]</code> and <code>[atN@ttttt]</code>. A generated operational template that includes the above archetype, with the choice to use the <code>snomed_ct</code> binding&#8217;s external terms made on some nodes, could include the following content.</p>
 </div>
 <div class="listingblock">
 <div class="content">
