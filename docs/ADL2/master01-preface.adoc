@@ -78,6 +78,7 @@ The changes in version 2.0 are designed to make archetypes more computable with 
 * value sets are now declared in their own subsection of the terminology section rather than inline in the definition section;
 
 ==== Backward Compatibility
+
 In its current form, the changes to the internal coding system and value set representation in ADL 2.x and the AOM with respect to ADL/AOM 1.5 constitute syntactically breaking changes, and therefore require conversion of ADL 1.4 archetypes to ADL 2 form. The changes have been carefully designed to allow this conversion to be implementable, and are implemented in the ADL Workbench tool. ADL 1.4 style paths are generatable from ADL 2 archetypes, so that AQL queries can be built for use with ADL 1.4 based data.
 
 === ADL 1.5
@@ -109,6 +110,7 @@ A number of small changes were made in this version, along with significant tigh
 All ISO 8601 date, time, date/time and duration values in dADL are now conformant (previously the usage of the 'T' separator was not correct). Constraint patterns in cADL for dates, times and date/times are also corrected, with a new constraint pattern for ISO 8601 durations being added. The latter allows a deviation from the standard to include the 'W' specifier, since durations with a mixture of weeks, days etc is often used in medicine.
 
 ==== Non-inclusive Two-sided Intervals
+
 It is now possible to define an interval of any ordered amount (integer, real, date, time, date/time, duration) where one or both of the limits is not included, for example:
 
 ```
@@ -118,9 +120,11 @@ It is now possible to define an interval of any ordered amount (integer, real, d
 ```
 
 ==== Occurrences for 'use_node' References
+
 Occurrences can now be stated for `use_node` references, overriding the occurrences of the target node.  If no occurrences is stated, the target node occurrences value is used.
 
 ==== Quoting Rules
+
 The old quoting rules based on XML/ISO mnemonic patterns (`&ohmgr;` etc) are replaced by specifying ADL to be UTF-8 based, and any exceptions to this requiring ASCII encoding should use the `\Uhhhh` style of quoting unicode used in various programming languages.
 
 === ADL 1.3
@@ -128,6 +132,7 @@ The old quoting rules based on XML/ISO mnemonic patterns (`&ohmgr;` etc) are rep
 The specific changes made in version 1.3 of ADL are as follows.
 
 ==== Query syntax replaced by URI data type
+
 In version 1.2 of ADL, it was possible to include an external query, using syntax of the form:
 
 ```
