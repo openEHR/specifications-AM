@@ -296,7 +296,7 @@
 <ul class="sectlevel2">
 <li><a href="#_requirements">8.1. Requirements</a></li>
 <li><a href="#_term_constraint_basics">8.2. Term Constraint Basics</a></li>
-<li><a href="#terminology_integration_concrete_codes">8.3. From Constraints to Concrete Codes in Data</a></li>
+<li><a href="#_from_constraints_to_concrete_codes_in_data">8.3. From Constraints to Concrete Codes in Data</a></li>
 </ul>
 </li>
 <li><a href="#_specialisation">9. Specialisation</a>
@@ -445,7 +445,7 @@
 </colgroup>
 <thead>
 <tr>
-<th class="tableblock halign-center valign-top" colspan="2"><strong>Issuer</strong>: <a href="https://www.openehr.org/programs/specification">openEHR Specification Program</a></th>
+<th class="tableblock halign-center valign-top" colspan="2"><strong>Issuer</strong>: <a href="https://www.openehr.org/programs/specification" target="_blank" rel="noopener">openEHR Specification Program</a></th>
 </tr>
 </thead>
 <tbody>
@@ -1375,7 +1375,7 @@ Source projects can be found at the <a href="https://github.com/openEHR" target=
 </ul>
 </div>
 <div class="paragraph">
-<p>Nearly all the changes occur in the section <a href="#_cadl_constraint_adl">cADL - Constraint ADL</a> or the new section <a href="#_specialisation">Specialisation</a>.</p>
+<p>Nearly all the changes occur in <a href="#_cadl_constraint_adl">Section 4</a> or <a href="#_specialisation">Section 9</a>.</p>
 </div>
 </div>
 </div>
@@ -1911,7 +1911,7 @@ the structure, as shown in the following example:</p>
 <div class="sect3">
 <h4 id="_the_underlying_information_model"><a class="anchor" href="#_the_underlying_information_model"></a>4.2.4. The Underlying Information Model</h4>
 <div class="paragraph">
-<p>Identifiers in cADL texts correspond to entities - types and attributes - in an information model. The latter is typically an object-oriented model, but may just as easily be an entity-relationship model or any other typed model of information. A UML model compatible with the example above is shown in <a href="#uml_model_of_person">UML Model of Person</a>. Note that there can be more than one model compatible with a given fragment of cADL syntax, and in particular, there are usually more properties and classes in the reference model than are mentioned in the cADL constraints. In other words, a cADL text includes constraints <em>only for those parts of a model that are useful or meaningful to constrain</em>.</p>
+<p>Identifiers in cADL texts correspond to entities - types and attributes - in an information model. The latter is typically an object-oriented model, but may just as easily be an entity-relationship model or any other typed model of information. A UML model compatible with the example above is shown in <a href="#uml_model_of_person">Figure 2</a>. Note that there can be more than one model compatible with a given fragment of cADL syntax, and in particular, there are usually more properties and classes in the reference model than are mentioned in the cADL constraints. In other words, a cADL text includes constraints <em>only for those parts of a model that are useful or meaningful to constrain</em>.</p>
 </div>
 <div id="uml_model_of_person" class="imageblock text-center" style="text-align: center">
 <div class="content">
@@ -2182,7 +2182,7 @@ the structure, as shown in the following example:</p>
 <p>A <strong>Node identifier</strong> is required for every object node in an archetype.</p>
 </div>
 <div class="paragraph">
-<p>The node identifier can also perform a semantic function, that of giving a design-time meaning to the node, by equating the node identifier to some description. The use of node identifiers in archetypes is the main source of their expressive power. Each node identifier acts as a 'semantic marker' or 'override' on the node. Thus, in the example shown in <a href="#_the_underlying_information_model">The Underlying Information Model</a>, the <code>ELEMENT</code> node is identified by the code <code>[id10]</code> , which can be designated elsewhere in an archetype as meaning "diastolic blood pressure". In this way rich meaning is given to data constructed from a limited number of object types.</p>
+<p>The node identifier can also perform a semantic function, that of giving a design-time meaning to the node, by equating the node identifier to some description. The use of node identifiers in archetypes is the main source of their expressive power. Each node identifier acts as a 'semantic marker' or 'override' on the node. Thus, in the example shown in <a href="#_the_underlying_information_model">Section 4.2.4</a>, the <code>ELEMENT</code> node is identified by the code <code>[id10]</code> , which can be designated elsewhere in an archetype as meaning "diastolic blood pressure". In this way rich meaning is given to data constructed from a limited number of object types.</p>
 </div>
 <div class="paragraph">
 <p><strong>Not every object node identifier needs to be defined in the archetype terminology</strong>: it is only mandatory for the identifiers of nodes defined under container attributes, and multiple alternative nodes under single-valued attributes. The identifiers of single object nodes defined under single-valued attributes may have terminology definitions, but don&#8217;t typically need them, since the meaning is obvious from the attribute.</p>
@@ -2191,7 +2191,7 @@ the structure, as shown in the following example:</p>
 <div class="sect4">
 <h5 id="_occurrences"><a class="anchor" href="#_occurrences"></a>4.3.4.2. Occurrences</h5>
 <div class="paragraph">
-<p>A constraint on occurrences is used only with cADL object nodes, to indicate how many times in data an instance conforming to the constraint can occur. It is usually only defined on objects that are children of a container attribute, since by definition, the occurrences of an object that is the value of a single-valued attribute can only be <code>0..1</code> or <code>1..1</code>, and this is already defined by the attribute&#8217;s <code>existence</code>. However, it may be used in specialised archetypes to exclude a possibility defined in a parent archetype (see <a href="#_attribute_redefinition">Attribute Redefinition</a>).</p>
+<p>A constraint on occurrences is used only with cADL object nodes, to indicate how many times in data an instance conforming to the constraint can occur. It is usually only defined on objects that are children of a container attribute, since by definition, the occurrences of an object that is the value of a single-valued attribute can only be <code>0..1</code> or <code>1..1</code>, and this is already defined by the attribute&#8217;s <code>existence</code>. However, it may be used in specialised archetypes to exclude a possibility defined in a parent archetype (see <a href="#_attribute_redefinition">Section 9.4</a>).</p>
 </div>
 <div class="paragraph">
 <p>In the example below, three <code>EVENT</code> constraints are shown; the first one ("1 minute sample") is shown as mandatory, while the other two are optional.</p>
@@ -2352,7 +2352,7 @@ direct matching of so-called CamelCase by Snake_case or SCREAMING_SNAKE_CASE and
 <p>This cADL text says that the instance value of the <code><em>counter_party</em></code> attribute in the data can either be a <code>PERSON</code> object matching the <code>PERSON</code> block, with a <code><em>date_of_birth</em></code> matching the given range, or else any other kind of <code>PARTY</code> object.</p>
 </div>
 <div class="paragraph">
-<p>Under a multiply-valued attribute, the alternative subtypes are included as identified child members. The following example illustrates a constraint on the <code><em>counter_parties</em></code> attribute of instances of the class <code>YYYY</code> in <a href="#ADL-demographics-parties">Reference Model Sub-type Hierarchy</a>.</p>
+<p>Under a multiply-valued attribute, the alternative subtypes are included as identified child members. The following example illustrates a constraint on the <code><em>counter_parties</em></code> attribute of instances of the class <code>YYYY</code> in <a href="#ADL-demographics-parties">Figure 3</a>.</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -2473,7 +2473,7 @@ direct matching of so-called CamelCase by Snake_case or SCREAMING_SNAKE_CASE and
 <p>The above paths can all be used to reference the relevant nodes within the archetype in which they are defined, or within any specialised child archetype.</p>
 </div>
 <div class="paragraph">
-<p>Paths used in cADL are expressed in the ADL path syntax, described in detail in <a href="#_adl_paths">ADL Paths</a>. ADL paths have the same alternating object/attribute structure implied in the general hierarchical structure of cADL, obeying the pattern <code>TYPE/attribute/TYPE/attribute/</code> &#8230;&#8203; .</p>
+<p>Paths used in cADL are expressed in the ADL path syntax, described in detail in <a href="#_adl_paths">Section 5</a>. ADL paths have the same alternating object/attribute structure implied in the general hierarchical structure of cADL, obeying the pattern <code>TYPE/attribute/TYPE/attribute/</code> &#8230;&#8203; .</p>
 </div>
 <div class="paragraph">
 <p>The examples above are <em>physical</em> paths because they refer to object nodes using node identifier codes such as 'id4'. Physical paths can be rendered as <em>logical</em> paths by adding the code meanings from the <code>terminology</code> section as annotations for node identifiers, if defined. Thus, the following two paths might be equivalent:</p>
@@ -2574,7 +2574,7 @@ direct matching of so-called CamelCase by Snake_case or SCREAMING_SNAKE_CASE and
 </div>
 </div>
 <div class="paragraph">
-<p>Proxy objects provide an internal reuse mechanism. Specialised archetypes may redefine structures on such nodes as if they had been defined inline. This is described in more detail in <a href="#_internal_reference_proxy_object_redefinition">Internal Reference (Proxy Object) Redefinition</a> in the <a href="#_specialisation">Specialisation</a> section.</p>
+<p>Proxy objects provide an internal reuse mechanism. Specialised archetypes may redefine structures on such nodes as if they had been defined inline. This is described in more detail in <a href="#_internal_reference_proxy_object_redefinition">Section 9.5.6</a> in the <a href="#_specialisation">Section 9</a> section.</p>
 </div>
 <div class="paragraph principle">
 <p>A proxy constraint object allows object constraints defined elsewhere to be re-used within the same archetype or a specialised child.</p>
@@ -2730,13 +2730,13 @@ direct matching of so-called CamelCase by Snake_case or SCREAMING_SNAKE_CASE and
 </div>
 </div>
 <div class="paragraph">
-<p>where the 'vaccine' archetype is a specialisation of the 'medication' archetype. Redefinitions of this kind are described in more detail in the section <a href="#_external_reference_redefinition">External Reference Redefinition</a>.</p>
+<p>where the 'vaccine' archetype is a specialisation of the 'medication' archetype. Redefinitions of this kind are described in more detail in <a href="#_external_reference_redefinition">Section 9.5.7</a>.</p>
 </div>
 <div class="paragraph">
 <p>External references can of course also be defined under container attributes.</p>
 </div>
 <div class="paragraph">
-<p>The second use of external references is typically in templates, to specify an archetype or sub-template of a template for an attribute where no slot has been defined. This use is described in the <a href="#_unconstrained_attributes">Unconstrained Attributes</a> section.</p>
+<p>The second use of external references is typically in templates, to specify an archetype or sub-template of a template for an attribute where no slot has been defined. This use is described in the <a href="#_unconstrained_attributes">Section 9.5.9</a> section.</p>
 </div>
 <div class="sect4">
 <h5 id="_paths_2"><a class="anchor" href="#_paths_2"></a>4.3.9.1. Paths</h5>
@@ -2791,7 +2791,7 @@ direct matching of so-called CamelCase by Snake_case or SCREAMING_SNAKE_CASE and
 <p>A slot is designed to be 'filled', i.e. to have one of the allowed archetypes chosen for use. This is done in a child archetype, almost always a template. A slot can also be 'closed', meaning no further fillers can be added.</p>
 </div>
 <div class="paragraph">
-<p>The actual specification of slot fillers, and also the 'closing' of slots is done in specialised archetypes, and is described in the section <a href="#_slot_filling_and_redefinition">Slot Filling and Redefinition</a>, in the chapter on specialisation.</p>
+<p>The actual specification of slot fillers, and also the 'closing' of slots is done in specialised archetypes, and is described in <a href="#_slot_filling_and_redefinition">Section 9.5.8</a>, in the chapter on specialisation.</p>
 </div>
 <div class="sect4">
 <h5 id="_formal_semantics_of_include_and_exclude_constraints"><a class="anchor" href="#_formal_semantics_of_include_and_exclude_constraints"></a>4.3.10.1. Formal Semantics of include and exclude Constraints</h5>
@@ -2946,7 +2946,7 @@ direct matching of so-called CamelCase by Snake_case or SCREAMING_SNAKE_CASE and
 </div>
 </div>
 <div class="paragraph">
-<p>In ADL, slot-filling is considered a kind of specialisation of a slot, which enables slots to be filled by the same mechanism as any other kind of specialisation found in a child archetype. Slot-filling and other forms of slot redefinition are described in more detail in the section <a href="#_slot_filling_and_redefinition">Slot Filling and Redefinition</a>.</p>
+<p>In ADL, slot-filling is considered a kind of specialisation of a slot, which enables slots to be filled by the same mechanism as any other kind of specialisation found in a child archetype. Slot-filling and other forms of slot redefinition are described in more detail in <a href="#_slot_filling_and_redefinition">Section 9.5.8</a>.</p>
 </div>
 </div>
 </div>
@@ -3542,7 +3542,7 @@ although block-style indenting is used to express group blocks, the <code>group<
 </div>
 </div>
 <div class="paragraph">
-<p>The first example constrains the runtime value of the <code><em>species</em></code> attribute of some object to take the value "platypus"; the second constrains it be either "platypus" or "kangaroo", and so on. <strong>In almost all cases, this kind of string constraint should be avoided</strong>, since it usually renders the body of the archetype language-dependent. Exceptions are proper names (e.g. "NHS", "Apgar"), product tradenames (but note even these are typically different in different language locales, even if the different names are not literally translations of each other). The preferred way of constraining string attributes in a language independent way is with value sets of terminology codes. See the <a href="#cADL_Terminology_Constraints">Terminology Constraints</a> section.</p>
+<p>The first example constrains the runtime value of the <code><em>species</em></code> attribute of some object to take the value "platypus"; the second constrains it be either "platypus" or "kangaroo", and so on. <strong>In almost all cases, this kind of string constraint should be avoided</strong>, since it usually renders the body of the archetype language-dependent. Exceptions are proper names (e.g. "NHS", "Apgar"), product tradenames (but note even these are typically different in different language locales, even if the different names are not literally translations of each other). The preferred way of constraining string attributes in a language independent way is with value sets of terminology codes. See <a href="#cADL_Terminology_Constraints">Section 4.5.8</a>.</p>
 </div>
 </div>
 <div class="sect4">
@@ -3566,7 +3566,7 @@ although block-style indenting is used to express group blocks, the <code>group<
 </div>
 </div>
 <div class="paragraph">
-<p>The rules for including special characters within strings are described in the <a href="#_file_encoding_and_character_quoting">File Encoding and Character Quoting</a> section.</p>
+<p>The rules for including special characters within strings are described in <a href="#_file_encoding_and_character_quoting">Section 3</a>.</p>
 </div>
 <div class="paragraph tbd">
 <p>TBD: there is an argument for only allowing a single String value rather than a list, where the value is aways a regex since <code>{"platypus", "kangaroo", "wombat"}</code> can be expressed as <code>{/platypus|kangaroo|wombat/}</code>. See also AOM spec.</p>
@@ -4091,7 +4091,7 @@ that allowing the <code>W</code> designator to be used with the other designator
 <p>Coded terms are treated as a primitive type in ADL in order to enable the formalism and tools to work with terminology constraints. Unlike other primitive constraints, terminology constraints may be complex, because they can refer to external resources, either directly or via 'bindings' defined elsewhere in the archeype. This section describes just the syntax representations and relationships between these.</p>
 </div>
 <div class="paragraph">
-<p>The full description, including binding and resolution is provided in the section <a href="#_terminology_integration">Terminology Integration</a>. This section describes only the syntax for term constraint in the <code>definition</code> section of an archetype.</p>
+<p>The full description, including binding and resolution is provided in <a href="#_terminology_integration">Section 8</a>. This section describes only the syntax for term constraint in the <code>definition</code> section of an archetype.</p>
 </div>
 <div class="paragraph">
 <p>Syntactically, there are two types of terminology constraint expressible in 'source form' ADL, i.e. authored archetypes and templates. The first is expressed with an ac-code which refers to a value set which is either defined in the archetype terminology or externally. The second, for convenience, uses a single at-code, in order to express a single term value without requiring a value-set. For the first case, an assumed value in the form of an at-code can also be stated, and has the same sense as the assumed values of other primitive types already described.</p>
@@ -4139,7 +4139,7 @@ that allowing the <code>W</code> designator to be used with the other designator
 <p>The last variant shows a second value set, this time with an assumed code, where <code>at23</code> must be in the value set referred to by <code>ac2</code>.</p>
 </div>
 <div class="paragraph">
-<p>A further syntax possibility exists, for use at the point of operational template generation. As described in the Section <a href="#terminology_integration_concrete_codes">From Constraints to Concrete Codes in Data</a>, the choice may be made that a specific operational template (OPT) should use external codes from the archetype bindings (such as from <a href="http://www.ihtsdo.org">SNOMED CT</a>, <a href="http://www.who.int/classifications/icd/en/">ICD10</a>, etc) as the values of some or all coded nodes, rather than using the internal at-codes.</p>
+<p>A further syntax possibility exists, for use at the point of operational template generation. As described in <a href="#_from_constraints_to_concrete_codes_in_data">Section 8.3</a>, the choice may be made that a specific operational template (OPT) should use external codes from the archetype bindings (such as from <a href="http://www.ihtsdo.org">SNOMED CT</a>, <a href="http://www.who.int/classifications/icd/en/">ICD10</a>, etc) as the values of some or all coded nodes, rather than using the internal at-codes.</p>
 </div>
 <div class="paragraph">
 <p>To express this choice, the OPT&#8217;s <code>definition</code> section contains a modified version of the usual syntax <code>[at1]</code> or <code>[ac1]</code> in those nodes where an external term from the bindings is to be used. This takes the form <code>[acN@ttttt]</code> or <code>[atN@ttttt]</code> where <code>ttttt</code> is the namespace identifier of a binding in the <code>terminology</code> section of the archetype.</p>
@@ -4163,7 +4163,7 @@ that allowing the <code>W</code> designator to be used with the other designator
 </div>
 </div>
 <div class="paragraph">
-<p>See the <a href="#_terminology_integration">Terminology Integration</a> section for fuller picture of how this works.</p>
+<p>See <a href="#_terminology_integration">Section 8</a> for fuller picture of how this works.</p>
 </div>
 </div>
 <div class="sect3">
@@ -4431,7 +4431,7 @@ that allowing the <code>W</code> designator to be used with the other designator
 <p>Some syntax valdity rules are defined, but validity in general is defined by the rules stated in the AOM specification, which can be checked by a compiler as soon as an AOM structure is parsed from an ADL document (or other serialsiation format).</p>
 </div>
 <div class="paragraph">
-<p>The general structure of ADL artefacts is as follows (the full definitions are shown in the <a href="#_syntax_specification">Syntax Specification</a> section below):</p>
+<p>The general structure of ADL artefacts is as follows (the full definitions are shown in <a href="#_syntax_specification">Appendix B</a> below):</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -4461,7 +4461,7 @@ that allowing the <code>W</code> designator to be used with the other designator
 </div>
 </div>
 <div class="paragraph">
-<p>The syntax for <code>meta_data_item</code>, <code>ARCHETYPE_HRID</code> and <code>ARCHETYPE_REF</code> can be found below in the <a href="#_base_patterns">Base Patterns</a> section.</p>
+<p>The syntax for <code>meta_data_item</code>, <code>ARCHETYPE_HRID</code> and <code>ARCHETYPE_REF</code> can be found below in <a href="#_base_patterns">Section B.7</a>.</p>
 </div>
 <div class="paragraph">
 <p>The 'archetype' artefact type can have any or all of the above sections. The other artefact types are more specific in their form.</p>
@@ -5077,7 +5077,7 @@ some non-conforming ADL tools in the past created archetypes without a language 
 </div>
 </div>
 <div class="paragraph">
-<p>In the above, the node identifier <code>[id1]</code> is assigned a meaning such as "clinical problem" in the archetype terminology section. The subsequent lines express a constraint on the runtime <em>name</em> attribute, using the internal code <code>[ac1]</code> . The constraint <code>[ac1]</code> is also defined in the archetype terminology section with a formal statement meaning "any clinical problem type", which could clearly evaluate to thousands of possible values, such as "diabetes", "arthritis" and so on. As a result, in the runtime data, the node identifier corresponding to "clinical problem" and the actual problem type chosen at runtime by a user, e.g. "diabetes", can both be found. This enables querying to find all nodes with meaning "problem", or all nodes describing the problem "diabetes". Internal <code>[acNNNN]</code> codes are described in he section <a href="#Local Constraint Codes">[Local Constraint Codes]</a>.</p>
+<p>In the above, the node identifier <code>[id1]</code> is assigned a meaning such as "clinical problem" in the archetype terminology section. The subsequent lines express a constraint on the runtime <em>name</em> attribute, using the internal code <code>[ac1]</code> . The constraint <code>[ac1]</code> is also defined in the archetype terminology section with a formal statement meaning "any clinical problem type", which could clearly evaluate to thousands of possible values, such as "diabetes", "arthritis" and so on. As a result, in the runtime data, the node identifier corresponding to "clinical problem" and the actual problem type chosen at runtime by a user, e.g. "diabetes", can both be found. This enables querying to find all nodes with meaning "problem", or all nodes describing the problem "diabetes". Internal <code>[acNNNN]</code> codes are described in <a href="#Local Constraint Codes">[Local Constraint Codes]</a>.</p>
 </div>
 </div>
 </div>
@@ -5155,7 +5155,7 @@ some non-conforming ADL tools in the past created archetypes without a language 
 <div class="sect3">
 <h4 id="_overview_5"><a class="anchor" href="#_overview_5"></a>7.12.1. Overview</h4>
 <div class="paragraph">
-<p>This section describes the syntax of the <code>terminology</code> section of an archetype. The following section on <a href="#_terminology_integration">Terminology Integration</a> describes the semantics.</p>
+<p>This section describes the syntax of the <code>terminology</code> section of an archetype. The following section, <a href="#_terminology_integration">Section 8</a> describes the semantics.</p>
 </div>
 <div class="paragraph">
 <p>The <code>terminology</code> section of an archetype is expressed in ODIN, and is where codes representing node identifiers, constraints on coded term values, and bindings to terminologies are defined. Linguistic language translations are added in the form of extra blocks keyed by the relevant language. The following example shows the general layout of this section.</p>
@@ -5692,7 +5692,7 @@ some non-conforming ADL tools in the past created archetypes without a language 
 <div class="sect2">
 <h3 id="_term_constraint_basics"><a class="anchor" href="#_term_constraint_basics"></a>8.2. Term Constraint Basics</h3>
 <div class="paragraph">
-<p>Expressing terminology constraints in cADL was briefly described in <a href="#cADL_Terminology_Constraints">Terminology Constraints</a>. Constraints in the <code>definition</code> section of an archetype are only a small part of the picture. The targets of of the at- and ac- codes are defined in the archetype <code>terminology</code> section, potentially with bindings to external terminology. In order to illustrate the approach clearly, the cADL example from earlier is repeated here, minus the node containing the assumed value, and this time with an extract from the terminology section.</p>
+<p>Expressing terminology constraints in cADL was briefly described in <a href="#cADL_Terminology_Constraints">Section 4.5.8</a>. Constraints in the <code>definition</code> section of an archetype are only a small part of the picture. The targets of of the at- and ac- codes are defined in the archetype <code>terminology</code> section, potentially with bindings to external terminology. In order to illustrate the approach clearly, the cADL example from earlier is repeated here, minus the node containing the assumed value, and this time with an extract from the terminology section.</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -5758,7 +5758,7 @@ some non-conforming ADL tools in the past created archetypes without a language 
 </div>
 </div>
 <div class="paragraph">
-<p>The at- and ac- codes (and of course id-codes) in the above are defined in the archetype terminology in the normal way (noting that codes <code>id8</code> and <code>id55</code> do not need local terminology definitions, following the rules described earlier<a href="#_node_identifiers_2">Node Identifiers</a>), with various possibilities for defining and binding the value set denoted by the code <code>ac1</code>. Below is shown the first alternative: local value-set definition.</p>
+<p>The at- and ac- codes (and of course id-codes) in the above are defined in the archetype terminology in the normal way (noting that codes <code>id8</code> and <code>id55</code> do not need local terminology definitions, following the rules described earlier<a href="#_node_identifiers_2">Section 4.3.4.1</a>), with various possibilities for defining and binding the value set denoted by the code <code>ac1</code>. Below is shown the first alternative: local value-set definition.</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -5891,7 +5891,7 @@ it is quite common that only <em>some</em> of the local at-codes have equivalent
 </div>
 </div>
 <div class="sect2">
-<h3 id="terminology_integration_concrete_codes"><a class="anchor" href="#terminology_integration_concrete_codes"></a>8.3. From Constraints to Concrete Codes in Data</h3>
+<h3 id="_from_constraints_to_concrete_codes_in_data"><a class="anchor" href="#_from_constraints_to_concrete_codes_in_data"></a>8.3. From Constraints to Concrete Codes in Data</h3>
 <div class="paragraph">
 <p>A key question not answered by the above is: what codes ultimately find their way into data created via archetypes used in conjunction with terminology? With the exception of alternative #4 above, there are two ways of recording values of coded terms in data. One is to use the at-codes chosen by the user (or software component) at execution time, and the other is to store the target of the term binding, i.e. a SNOMED CT, LOINC or other external code. Which strategy to use depends on a number of factors, mostly not determinable at archetype development time.</p>
 </div>
@@ -5933,7 +5933,7 @@ it is quite common that only <em>some</em> of the local at-codes have equivalent
 <p>The upshot of these considerations is that the choice of which kind of term to use (internal or external) in a given deployment or situation is deferrable to a later stage than archetype authoring. The approach ADL takes is that 'source form' archetypes and templates always use internal coding and optionally binding, and that if external codes are to be directly substituted for the internal codes for some deployment situation for certain fields in an archetype or template, this is specified as an option at the point of operational template generation.</p>
 </div>
 <div class="paragraph">
-<p>As described in section <a href="#cADL_Terminology_Constraints">Terminology Constraints</a>, constraints of the form <code>[acN]</code> and <code>[atN]</code> are replaced by <code>[acN@ttttt]</code> and <code>[atN@ttttt]</code>. A generated operational template that includes the above archetype, with the choice to use the <code>snomed_ct</code> binding&#8217;s external terms made on some nodes, could include the following content.</p>
+<p>As described in section <a href="#cADL_Terminology_Constraints">Section 4.5.8</a>, constraints of the form <code>[acN]</code> and <code>[atN]</code> are replaced by <code>[acN@ttttt]</code> and <code>[atN@ttttt]</code>. A generated operational template that includes the above archetype, with the choice to use the <code>snomed_ct</code> binding&#8217;s external terms made on some nodes, could include the following content.</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -6028,7 +6028,7 @@ it is quite common that only <em>some</em> of the local at-codes have equivalent
 <div class="sect3">
 <h4 id="_differential_and_flat_forms"><a class="anchor" href="#_differential_and_flat_forms"></a>9.2.1. Differential and Flat Forms</h4>
 <div class="paragraph">
-<p>Specialised archetypes in their authored form are represented in 'differential' form. The syntax is the same as for non-specialised archetypes, with two additions: specialisation paths (see <a href="#_specialisation_paths">Specialisation Paths</a>) and ordering indicators (see <a href="#_ordering_of_sibling_nodes">Ordering of Sibling Nodes</a>). For a specialised archetype therefore, the lineage of archetypes back to the ultimate parent must be taken into account in order to obtain its complete semantics.</p>
+<p>Specialised archetypes in their authored form are represented in 'differential' form. The syntax is the same as for non-specialised archetypes, with two additions: specialisation paths (see <a href="#_specialisation_paths">Section 9.2.3</a>) and ordering indicators (see <a href="#_ordering_of_sibling_nodes">Section 9.4.2.2</a>). For a specialised archetype therefore, the lineage of archetypes back to the ultimate parent must be taken into account in order to obtain its complete semantics.</p>
 </div>
 <div class="paragraph">
 <p>Differential form means that the only attributes or objects mentioned are those that redefine corresponding elements in the parent and those that introduce new elements. The differential approach to representation of specialised archetypes give rise to the need for a <em>flat form</em> of a specialised archetype: the equivalent archetype defined by the sum of the (differential) child and its parent, as if the child archetype had been defined standalone. The flat form of archetypes is used for building templates, and subsequently at runtime. It is generated by 'compressing' the effects of inheritance of the parent to the specialised child into a single archetype, and applies recursively all the way up an archetype lineage to the ultimate parent, which must be a top-level (non-specialised) archetype. For a top-level archetype, the flat-form is the same as its differential form (i.e. in a top-level archetype, every node is considered to be an extension node).</p>
@@ -6103,7 +6103,7 @@ it is quite common that only <em>some</em> of the local at-codes have equivalent
 <div class="sect3">
 <h4 id="_path_congruence"><a class="anchor" href="#_path_congruence"></a>9.2.4. Path Congruence</h4>
 <div class="paragraph">
-<p>Any node in an archetype can unambiguously be located by its archetype path. For example, the text value of the 'problem' node of the <code>openEHR-EHR-EVALUATION.problem.v1</code> archetype shown at the top of the <a href="#redefinition_for_specialisation">Redefinition for Specialisation</a> example is:</p>
+<p>Any node in an archetype can unambiguously be located by its archetype path. For example, the text value of the 'problem' node of the <code>openEHR-EHR-EVALUATION.problem.v1</code> archetype shown at the top of the example in <a href="#redefinition_for_specialisation">Section 9.3.2</a> is:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -6369,7 +6369,7 @@ it is quite common that only <em>some</em> of the local at-codes have equivalent
 </ul>
 </div>
 <div class="paragraph">
-<p>Note that the original <code>ELEMENT[id79]</code> node with <code>occurrences</code> of <code>0..*</code> remains a valid constraint node: the fact of specialisation does not remove it. If the intention is that the specialsed nodes constitute an <em>exhaustive</em> redefinition of the original node, the latter can be effectively removed, as described in <a href="#_exhaustive_and_non_exhaustive_redefinition">Exhaustive and Non-Exhaustive Redefinition</a>.</p>
+<p>Note that the original <code>ELEMENT[id79]</code> node with <code>occurrences</code> of <code>0..*</code> remains a valid constraint node: the fact of specialisation does not remove it. If the intention is that the specialsed nodes constitute an <em>exhaustive</em> redefinition of the original node, the latter can be effectively removed, as described in <a href="#_exhaustive_and_non_exhaustive_redefinition">Section 9.5.4</a>.</p>
 </div>
 <div class="paragraph">
 <p>This archetype is typical of a class of specialisations that use only redefinition, due to the fact that all objects in the redefined part of the specialised version are semantically specific kinds of a general object, in this case, 'panel item'.</p>
@@ -6475,7 +6475,7 @@ it is quite common that only <em>some</em> of the local at-codes have equivalent
 </div>
 </div>
 <div class="paragraph">
-<p>The flattened result consists of a number of repetitions of the entire <code>CLUSTER[id3]</code> structure from the parent, corresponding to the specialisations in the child. The ADL source form is too large to show here, but the <a href="/downloads/ADLworkbench">ADL Workbench</a> provides a visualisation in the section <a href="#specialisation_with_cloning">Specialisation with Cloning</a>. In this figure we can see that the <code>CLUSTER</code> / <code>ELEMENT</code> overlays from the child archetype have been overlaid on clones of the <code>CLUSTER[id3]</code> structure from the parent, preserving the <code>id4</code> , <code>id5</code> etc nodes. Elements shown in light blue are inherited; where they appear under the nodes <code>[id3.1]</code>, <code>[id3.2]</code> etc, they are cloned from the corresponding nodes under <code>[id3]</code>.</p>
+<p>The flattened result consists of a number of repetitions of the entire <code>CLUSTER[id3]</code> structure from the parent, corresponding to the specialisations in the child. The ADL source form is too large to show here, but the <a href="/downloads/ADLworkbench">ADL Workbench</a> provides a visualisation in <a href="#specialisation_with_cloning">Figure 5</a>. In this figure we can see that the <code>CLUSTER</code> / <code>ELEMENT</code> overlays from the child archetype have been overlaid on clones of the <code>CLUSTER[id3]</code> structure from the parent, preserving the <code>id4</code> , <code>id5</code> etc nodes. Elements shown in light blue are inherited; where they appear under the nodes <code>[id3.1]</code>, <code>[id3.2]</code> etc, they are cloned from the corresponding nodes under <code>[id3]</code>.</p>
 </div>
 <div id="specialisation_with_cloning" class="imageblock text-center" style="text-align: center">
 <div class="content">
@@ -6484,7 +6484,7 @@ it is quite common that only <em>some</em> of the local at-codes have equivalent
 <div class="title">Figure 5. Specialisation with Cloning</div>
 </div>
 <div class="paragraph">
-<p>It can also be seen that the original <code>[id3]</code> sub-tree remains. This can be removed if required, as described in <a href="#_exhaustive_and_non_exhaustive_redefinition">Exhaustive and Non-Exhaustive Redefinition</a>.</p>
+<p>It can also be seen that the original <code>[id3]</code> sub-tree remains. This can be removed if required, as described in <a href="#_exhaustive_and_non_exhaustive_redefinition">Section 9.5.4</a>.</p>
 </div>
 </div>
 </div>
@@ -6603,7 +6603,7 @@ Note that in the above, the '/' is used to denote '/protocol' as a differential 
 <div class="sect4">
 <h5 id="_ordering_of_sibling_nodes"><a class="anchor" href="#_ordering_of_sibling_nodes"></a>9.4.2.2. Ordering of Sibling Nodes</h5>
 <div class="paragraph">
-<p>Within container attributes, the order of objects may be significant from the point of view of domain users, i.e. the container may be considered as an ordered list. This is easy to achieve in top-level archetype, using the 'ordered' qualifier on a cardinality constraint. However when particular node(s) are redefined into multiple specialised nodes, or new nodes added by extension, the desired order of the new nodes may be such that they should occur interspersed at particular locations among nodes defined in the parent archetype. The following text is a slightly summarised view of the items attribute from the problem archetype shown in <a href="#redefinition_for_specialisation">Redefinition for Specialisation</a>:</p>
+<p>Within container attributes, the order of objects may be significant from the point of view of domain users, i.e. the container may be considered as an ordered list. This is easy to achieve in top-level archetype, using the 'ordered' qualifier on a cardinality constraint. However when particular node(s) are redefined into multiple specialised nodes, or new nodes added by extension, the desired order of the new nodes may be such that they should occur interspersed at particular locations among nodes defined in the parent archetype. The following text is a slightly summarised view of the items attribute from the problem archetype shown in <a href="#redefinition_for_specialisation">Section 9.3.2</a>:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -6689,7 +6689,7 @@ Note that in the above, the '/' is used to denote '/protocol' as a differential 
 <div class="sect3">
 <h4 id="_node_identifiers_3"><a class="anchor" href="#_node_identifiers_3"></a>9.5.1. Node Identifiers</h4>
 <div class="paragraph">
-<p>In an archetype, node identifiers ('id-codes') are mandatory on all object constraint nodes. The identifiers of those object nodes defined as children of a multiply-valued attribute and multiple alternative children of single-valued attributes (see <a href="#_node_identifiers">Node Identifiers</a>) require definitions in the archetype terminology. Definitions are optional on other single child constraints of single-valued attributes. This rule applies in specialised as well as top-level archetypes.</p>
+<p>In an archetype, node identifiers ('id-codes') are mandatory on all object constraint nodes. The identifiers of those object nodes defined as children of a multiply-valued attribute and multiple alternative children of single-valued attributes (see <a href="#_node_identifiers">Section 4.2.5</a>) require definitions in the archetype terminology. Definitions are optional on other single child constraints of single-valued attributes. This rule applies in specialised as well as top-level archetypes.</p>
 </div>
 <div class="paragraph">
 <p>A key question is: when does a node identifier need to be redefined? There are three possible situations:</p>
@@ -6746,7 +6746,7 @@ Note that in the above, the '/' is used to denote '/protocol' as a differential 
 <p>Here the <code>id5</code> ('Description') node is refined in meaning to <code>id5.1</code> ('Summary'). Since there is no other constraint to be stated, no further <code>matches</code> block is required.</p>
 </div>
 <div class="paragraph">
-<p>An example of the 3rd case above of redefinition is shown in the first archetype in <a href="#redefinition_for_specialisation">Redefinition for Specialisation</a>, where the node <code>[id79]</code> is redefined into a number of more specialised nodes <code>[id79.2]</code> - <code>[id79.9]</code>, while in the second, the identifier <code>[id2]</code> is redefined to a single node <code>[id2.1]</code> .</p>
+<p>An example of the 3rd case above of redefinition is shown in the first archetype in <a href="#redefinition_for_specialisation">Section 9.3.2</a>, where the node <code>[id79]</code> is redefined into a number of more specialised nodes <code>[id79.2]</code> - <code>[id79.9]</code>, while in the second, the identifier <code>[id2]</code> is redefined to a single node <code>[id2.1]</code> .</p>
 </div>
 <div class="paragraph">
 <p>The syntactic form of the identifier of a redefined node is a copy of the original followed by a dot ('.'), optionally intervening instances of the pattern '0.' and then a further non-zero number, i.e.:</p>
@@ -6822,7 +6822,7 @@ Note that in the above, the '/' is used to denote '/protocol' as a differential 
 <div class="sect3">
 <h4 id="_occurrences_redefinition_and_exclusion"><a class="anchor" href="#_occurrences_redefinition_and_exclusion"></a>9.5.2. Occurrences Redefinition and Exclusion</h4>
 <div class="paragraph">
-<p>The <code>occurrences</code> constraint on an object node indicates how many instances within the data may conform to that constraint (see <a href="#_container_attributes">Container Attributes</a>). Within container attributes, <code>occurrences</code> is usually redefined in order to make a given object mandatory rather than optional; it can also be used to exclude an object constraint. In the following example, the occurrences of the <code>id4</code> node is redefined from <code>{0..1}</code> i.e. optional, to <code>{1}</code> , i.e. mandatory.</p>
+<p>The <code>occurrences</code> constraint on an object node indicates how many instances within the data may conform to that constraint (see <a href="#_container_attributes">Section 4.3.3</a>). Within container attributes, <code>occurrences</code> is usually redefined in order to make a given object mandatory rather than optional; it can also be used to exclude an object constraint. In the following example, the occurrences of the <code>id4</code> node is redefined from <code>{0..1}</code> i.e. optional, to <code>{1}</code> , i.e. mandatory.</p>
 </div>
 <div class="paragraph">
 <p>Parent (<code>openEHR-EHR-EVALUATION.problem.v1.0.3</code>):</p>
@@ -6892,7 +6892,7 @@ Note that in the above, the '/' is used to denote '/protocol' as a differential 
 </div>
 </div>
 <div class="paragraph">
-<p>If the whole attribute is to be removed, this can be done by redefining existence to <code>{0}</code>, as described in <a href="#_existence_redefinition_mandation_and_exclusion">Existence Redefinition: Mandation and Exclusion</a>.</p>
+<p>If the whole attribute is to be removed, this can be done by redefining existence to <code>{0}</code>, as described in <a href="#_existence_redefinition_mandation_and_exclusion">Section 9.4.1</a>.</p>
 </div>
 </div>
 <div class="sect3">
@@ -7315,7 +7315,7 @@ Note that in the above, the '/' is used to denote '/protocol' as a differential 
 <div class="sect3">
 <h4 id="_unconstrained_attributes"><a class="anchor" href="#_unconstrained_attributes"></a>9.5.9. Unconstrained Attributes</h4>
 <div class="paragraph">
-<p>The <code>use_archetype</code> keyword can be used to specify child object constraints under any attribute in the reference model that is so far unconstrained by the flat parent of an archetype or template. Technically this could occur in any kind of archetype but would normally be in a specialised archetype or template. This is no more than the standard use of an 'external reference' (see <a href="#_external_references">External References</a>).</p>
+<p>The <code>use_archetype</code> keyword can be used to specify child object constraints under any attribute in the reference model that is so far unconstrained by the flat parent of an archetype or template. Technically this could occur in any kind of archetype but would normally be in a specialised archetype or template. This is no more than the standard use of an 'external reference' (see <a href="#_external_references">Section 4.3.9</a>).</p>
 </div>
 <div class="paragraph">
 <p>Any reference specified will have no slot, and is instead validity-checked against the appropriate part of the underlying reference model.</p>
@@ -7363,7 +7363,7 @@ Note that in the above, the '/' is used to denote '/protocol' as a differential 
 <div class="ulist">
 <ul>
 <li>
-<p>addition of value constraints for nodes which in the parent are constrained solely to a primitive type (described in <a href="#cADL_Constraints_Primitive_Types">Constraints on Primitive Types</a>);</p>
+<p>addition of value constraints for nodes which in the parent are constrained solely to a primitive type (described in <a href="#cADL_Constraints_Primitive_Types">Section 4.5</a>);</p>
 </li>
 <li>
 <p>redefined value ranges or sets using a narrower value range or set;</p>
@@ -9249,7 +9249,7 @@ Note that in the above, the '/' is used to denote '/protocol' as a differential 
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2018-12-12 22:15:48 GMT
+Last updated 2018-12-13 19:35:41 GMT
 </div>
 </div>
 </body>

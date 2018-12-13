@@ -6,7 +6,7 @@ This section describes whole ADL artefacts. The relationship of the cADL-encoded
 
 Some syntax valdity rules are defined, but validity in general is defined by the rules stated in the AOM specification, which can be checked by a compiler as soon as an AOM structure is parsed from an ADL document (or other serialsiation format).
 
-The general structure of ADL artefacts is as follows (the full definitions are shown in the <<Syntax Specification>> section below):
+The general structure of ADL artefacts is as follows (the full definitions are shown in <<Syntax Specification>> below):
 
 [source, antlr-java]
 --------
@@ -35,7 +35,7 @@ artefact_type: 'archetype' | 'template' | 'template_overlay' | 'operational_temp
 meta_data: '(' meta_data_item  (';' meta_data_item )* ')' ;
 --------
 
-The syntax for `meta_data_item`, `ARCHETYPE_HRID` and `ARCHETYPE_REF` can be found below in the <<Base Patterns>> section.
+The syntax for `meta_data_item`, `ARCHETYPE_HRID` and `ARCHETYPE_REF` can be found below in <<_base_patterns>>.
 
 The 'archetype' artefact type can have any or all of the above sections. The other artefact types are more specific in their form. 
 
@@ -515,7 +515,7 @@ An example which shows the difference between design-time meanings associated wi
     }
 --------
 
-In the above, the node identifier `[id1]` is assigned a meaning such as "clinical problem" in the archetype terminology section. The subsequent lines express a constraint on the runtime _name_ attribute, using the internal code `[ac1]` . The constraint `[ac1]` is also defined in the archetype terminology section with a formal statement meaning "any clinical problem type", which could clearly evaluate to thousands of possible values, such as "diabetes", "arthritis" and so on. As a result, in the runtime data, the node identifier corresponding to "clinical problem" and the actual problem type chosen at runtime by a user, e.g. "diabetes", can both be found. This enables querying to find all nodes with meaning "problem", or all nodes describing the problem "diabetes". Internal `[acNNNN]` codes are described in he section <<Local Constraint Codes>>.
+In the above, the node identifier `[id1]` is assigned a meaning such as "clinical problem" in the archetype terminology section. The subsequent lines express a constraint on the runtime _name_ attribute, using the internal code `[ac1]` . The constraint `[ac1]` is also defined in the archetype terminology section with a formal statement meaning "any clinical problem type", which could clearly evaluate to thousands of possible values, such as "diabetes", "arthritis" and so on. As a result, in the runtime data, the node identifier corresponding to "clinical problem" and the actual problem type chosen at runtime by a user, e.g. "diabetes", can both be found. This enables querying to find all nodes with meaning "problem", or all nodes describing the problem "diabetes". Internal `[acNNNN]` codes are described in <<Local Constraint Codes>>.
 
 == Rules Section
 
@@ -577,7 +577,7 @@ This makes used of both the EL `check` statement and the `defined()` predicate (
 
 === Overview
 
-This section describes the syntax of the `terminology` section of an archetype. The following section on <<Terminology Integration>> describes the semantics.
+This section describes the syntax of the `terminology` section of an archetype. The following section, <<Terminology Integration>> describes the semantics.
 
 The `terminology` section of an archetype is expressed in ODIN, and is where codes representing node identifiers, constraints on coded term values, and bindings to terminologies are defined. Linguistic language translations are added in the form of extra blocks keyed by the relevant language. The following example shows the general layout of this section.
 

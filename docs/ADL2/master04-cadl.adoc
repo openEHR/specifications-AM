@@ -782,7 +782,7 @@ Following the standard object-oriented semantics of type substitutability, and a
     }
 --------
 
-where the 'vaccine' archetype is a specialisation of the 'medication' archetype. Redefinitions of this kind are described in more detail in the section <<External Reference Redefinition>>.
+where the 'vaccine' archetype is a specialisation of the 'medication' archetype. Redefinitions of this kind are described in more detail in <<External Reference Redefinition>>.
 
 External references can of course also be defined under container attributes.
 
@@ -831,7 +831,7 @@ The simplest possible slot has no includes or excludes, and effectively imposes 
 
 A slot is designed to be 'filled', i.e. to have one of the allowed archetypes chosen for use. This is done in a child archetype, almost always a template. A slot can also be 'closed', meaning no further fillers can be added.
 
-The actual specification of slot fillers, and also the 'closing' of slots is done in specialised archetypes, and is described in the section <<Slot Filling and Redefinition>>, in the chapter on specialisation.
+The actual specification of slot fillers, and also the 'closing' of slots is done in specialised archetypes, and is described in <<Slot Filling and Redefinition>>, in the chapter on specialisation.
 
 ==== Formal Semantics of include and exclude Constraints
 
@@ -947,7 +947,7 @@ Slots are 'filled' in specialised archetypes or templates by the use of use_arch
     }
 --------
 
-In ADL, slot-filling is considered a kind of specialisation of a slot, which enables slots to be filled by the same mechanism as any other kind of specialisation found in a child archetype. Slot-filling and other forms of slot redefinition are described in more detail in the section <<Slot Filling and Redefinition>>.
+In ADL, slot-filling is considered a kind of specialisation of a slot, which enables slots to be filled by the same mechanism as any other kind of specialisation found in a child archetype. Slot-filling and other forms of slot redefinition are described in more detail in <<Slot Filling and Redefinition>>.
 
 === Mixed Structures
 
@@ -1387,7 +1387,7 @@ A String-valued attribute can be constrained by a list of strings (using the ODI
     species ∈ {"platypus", "kangaroo", "wombat"}
 --------
 
-The first example constrains the runtime value of the `_species_` attribute of some object to take the value "platypus"; the second constrains it be either "platypus" or "kangaroo", and so on. *In almost all cases, this kind of string constraint should be avoided*, since it usually renders the body of the archetype language-dependent. Exceptions are proper names (e.g. "NHS", "Apgar"), product tradenames (but note even these are typically different in different language locales, even if the different names are not literally translations of each other). The preferred way of constraining string attributes in a language independent way is with value sets of terminology codes. See the <<Terminology Constraints>> section.
+The first example constrains the runtime value of the `_species_` attribute of some object to take the value "platypus"; the second constrains it be either "platypus" or "kangaroo", and so on. *In almost all cases, this kind of string constraint should be avoided*, since it usually renders the body of the archetype language-dependent. Exceptions are proper names (e.g. "NHS", "Apgar"), product tradenames (but note even these are typically different in different language locales, even if the different names are not literally translations of each other). The preferred way of constraining string attributes in a language independent way is with value sets of terminology codes. See <<Terminology Constraints>>.
 
 ==== Regular Expression
 
@@ -1406,7 +1406,7 @@ For example, the following two patterns are equivalent:
     units ∈ {^km/h|mi/h^}
 --------
 
-The rules for including special characters within strings are described in the <<File Encoding and Character Quoting>> section.
+The rules for including special characters within strings are described in <<File Encoding and Character Quoting>>.
 
 [.tbd]
 TBD: there is an argument for only allowing a single String value rather than a list, where the value is aways a regex since `{"platypus", "kangaroo", "wombat"}` can be expressed as `{/platypus|kangaroo|wombat/}`. See also AOM spec.
@@ -1702,7 +1702,7 @@ Terminology constraints deal with a special category of data values known as 'co
 
 Coded terms are treated as a primitive type in ADL in order to enable the formalism and tools to work with terminology constraints. Unlike other primitive constraints, terminology constraints may be complex, because they can refer to external resources, either directly or via 'bindings' defined elsewhere in the archeype. This section describes just the syntax representations and relationships between these. 
 
-The full description, including binding and resolution is provided in the section <<Terminology Integration>>. This section describes only the syntax for term constraint in the `definition` section of an archetype.
+The full description, including binding and resolution is provided in <<Terminology Integration>>. This section describes only the syntax for term constraint in the `definition` section of an archetype.
 
 Syntactically, there are two types of terminology constraint expressible in 'source form' ADL, i.e. authored archetypes and templates. The first is expressed with an ac-code which refers to a value set which is either defined in the archetype terminology or externally. The second, for convenience, uses a single at-code, in order to express a single term value without requiring a value-set. For the first case, an assumed value in the form of an at-code can also be stated, and has the same sense as the assumed values of other primitive types already described.
 
@@ -1744,7 +1744,7 @@ The second variant uses the code `ac1`, which refers to a value set. This is by 
 
 The last variant shows a second value set, this time with an assumed code, where `at23` must be in the value set referred to by `ac2`.
 
-A further syntax possibility exists, for use at the point of operational template generation. As described in the Section <<terminology_integration_concrete_codes>>, the choice may be made that a specific operational template (OPT) should use external codes from the archetype bindings (such as from {snomed_ct}[SNOMED CT], {who_icd}[ICD10], etc) as the values of some or all coded nodes, rather than using the internal at-codes. 
+A further syntax possibility exists, for use at the point of operational template generation. As described in <<From Constraints to Concrete Codes in Data>>, the choice may be made that a specific operational template (OPT) should use external codes from the archetype bindings (such as from {snomed_ct}[SNOMED CT], {who_icd}[ICD10], etc) as the values of some or all coded nodes, rather than using the internal at-codes. 
 
 To express this choice, the OPT's `definition` section contains a modified version of the usual syntax `[at1]` or `[ac1]` in those nodes where an external term from the bindings is to be used. This takes the form `[acN@ttttt]` or `[atN@ttttt]` where `ttttt` is the namespace identifier of a binding in the `terminology` section of the archetype.
 
@@ -1764,7 +1764,7 @@ The following example shows the result in an operational template fragment.
     }
 --------
 
-See the <<Terminology Integration>> section for fuller picture of how this works.
+See <<Terminology Integration>> for fuller picture of how this works.
 
 === Constraints on Lists of Primitive types
 
