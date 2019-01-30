@@ -27,7 +27,7 @@ The type-name nomenclature `C_XXX` used here is intended to be read as "constrai
 
 == Semantics
 
-The effect of the model is to create archetype definition structures that are a hierarchical alternation of object and attribute constraints. This structure can be seen by inspecting an ADL archetype, or by viewing an archetype in an AOM-based tool such as the openEHR {openehr_awb}[ADL workbench], and is a direct consequence of the object-oriented principle that classes consist of properties, which in turn have types that are classes. (To be completely correct, types do not always correspond to classes in an object model, but it does not make any difference here). The repeated object/attribute hierarchical structure of an archetype provides the basis for using paths to reference any node in an archetype. Archetype paths follow a syntax that is a directly convertible in and out of the W3C Xpath syntax.
+The effect of the model is to create archetype definition structures that are a hierarchical alternation of object and attribute constraints. This structure can be seen by inspecting an ADL archetype, or by viewing an archetype in an AOM-based tool such as the openEHR {openehr_awb}[ADL workbench^], and is a direct consequence of the object-oriented principle that classes consist of properties, which in turn have types that are classes. (To be completely correct, types do not always correspond to classes in an object model, but it does not make any difference here). The repeated object/attribute hierarchical structure of an archetype provides the basis for using paths to reference any node in an archetype. Archetype paths follow a syntax that is a directly convertible in and out of the W3C Xpath syntax.
 
 === All Node Types
 
@@ -71,7 +71,7 @@ The following sections apply to all object nodes in an archetype, i.e. instances
 
 ==== Rm_type_name and Reference Model Type Matching
 
-Every object node has an `_rm_type_name_` attribute that states the RM type to be matched by that node in the archetype. The value of `_rm_type_name_` is understood as a constraint on the dynamic type of data _instances_ of the stated Reference Model type. It is either a class name from the RM, or a generic type constructed from RM class names, as described in the {openehr_am_adl2}#_reference_model_type_matching[Reference model type matching] section of the ADL2 specification.
+Every object node has an `_rm_type_name_` attribute that states the RM type to be matched by that node in the archetype. The value of `_rm_type_name_` is understood as a constraint on the dynamic type of data _instances_ of the stated Reference Model type. It is either a class name from the RM, or a generic type constructed from RM class names, as described in the {openehr_am_adl2}#_reference_model_type_matching[Reference model type matching^] section of the ADL2 specification.
 
 The RM type stated in an archetype object node is understood to be a _static_ type constraint. Accordingly, it will match an instance of any RM _subtype_ of the stated type, as long as the inheritance relationship is stated in the RM definition. This holds both for sub-classes, and subtypes of generic types, in a covariant fashion. The following matching will thus succeed:
 
@@ -129,49 +129,59 @@ Along with `C_ATTRIBUTE`, `C_COMPLEX_OBJECT` is the key structuring type of the 
 
 === Primitive Types (C_PRIMITIVE_OBJECT descendants)
 
-Constraints on primitive types are defined by the classes inheriting from `C_PRIMITIVE_OBJECT` , i.e. `C_STRING` , `C_INTEGER` and so on. The primitive types are represented in such a way as to accommodate both 'tuple' constraints and logically unary constraints, using a tuple array whose members are each a primitive constraint corresponding to each primitive type. Tuple constraints are second order constraints, described below, enable covarying constraints to be stated. In the unary case, the constraint is the first member of a tuple array.
+Constraints on primitive types are defined by the descendants of `C_PRIMITIVE_OBJECT`, i.e. `C_STRING` , `C_INTEGER` and so on. The primitive constraint types are represented in such a way as to accommodate both 'tuple' constraints and logically unary constraints, using a tuple array (`C_PRIMITIVE_TUPLE._members_`) whose members are each a primitive constraint corresponding to each primitive type in the tuple. Tuple constraints are second order constraints, described below, enabling covarying constraints to be stated. In the unary case, the constraint is the first member of a tuple array.
 
 `C_PRIMITIVE_OBJECT` instances are created with a fixed id-code `ADL_CODE_DEFINITIONS._primitive_node_id_` as the value of `_node_id_` (see <<ADL_CODE_DEFINITIONS Class>>). For this reason, no node identifier needs to be supplied in a syntax or serialised form of an archetype, including ADL.
 
-The primitive constraint for each primitive type may itself be complex. Its RM type is given by the type of the `_constraint_` accessor in each `C_PRIMITIVE_OBJECT` descendant and is summarised in the following table.
+The primitive constraint for each primitive type may itself be complex. Its formal type is the type of the `_constraint_` accessor in each `C_PRIMITIVE_OBJECT` descendant. The use of the constrainer types for each RM type is summarised in the following table.
 
 [[primitive-types,Primitive Types]]
 [width="100%",cols="1,1,2,3",options="header",]
 |===========
-|AOM type             |RM Primitive type       |AOM Primitive constrainer type |Explanation
-|`C_BOOLEAN`          |`Boolean`               |`List <Boolean>`               |Can represent one or two Boolean values, enabling the logical constraints 
+|RM Primitive type    |AOM type                |AOM Primitive constrainer type |Constraint description
+|`Boolean`            |`C_BOOLEAN`             |`List <Boolean>`               |One or two Boolean values, enabling the logical constraints 
                                                                                 'true', 'false' and 'true or false' to be expressed.
-|`C_STRING`           |`String`                |`List <String>`                |A list of possible string values, which may include regular expressions, 
+|`String`             |`C_STRING`              |`List <String>`                |A list of possible string values, which may include regular expressions, 
                                                                                 which are delimited by '/' characters.
-|`C_TERMINOLOGY_CODE` |`Terminology_code`      |Terminology constraint - +
+|`Terminology_code`   |`C_TERMINOLOGY_CODE`    |Terminology constraint - +
                                                 `[acN]` or `[atN]`             |A string containing either a single at-code or a single ac-code. In the 
                                                                                 latter case, the constraint refers to either a locally defined value set 
                                                                                 or (via a binding) an external value set.
-|`C_ORDERED`          |Descendants of +
-                       `Ordered`               |`List <Interval<T>>`           |Can represent a single value (which is a point interval), a list of values 
+|Descendants of +
+ `Ordered`            |`C_ORDERED`             |`List <Interval<T->Ordered>>`  |A single value (which is a point interval), a list of values 
                                                                                 (list of point intervals), a list of intervals, which may be mixed proper 
                                                                                 and point intervals.
-|`C_INTEGER`          |`Integer`               |`List <Interval<Integer>>`     |As for Ordered type, with T = `Integer`
-|`C_REAL`             |`Real`                  |`List <Interval<Real>>`        |As for Ordered type, with T = `Real`
-|`C_TEMPORAL`         |Descendants of +
-                       `Temporal`              |`List <Interval<T->Temporal>>` +
+|`Integer`            |`C_INTEGER`             |`List <Interval<Integer>>`     |As for Ordered type, with T = `Integer`
+|`Real`               |`C_REAL`                |`List <Interval<Real>>`        |As for Ordered type, with T = `Real`
+|Descendants of + 
+`Temporal`            |`C_TEMPORAL`            |`List <Interval<T->Temporal>>` +
                                                 OR +
-                                                String (ADL pattern)           |As for ordered types, with T being an sub-type type of `Temporal`, an 
+                                                `String` (ADL pattern)         |As for ordered types, with T being an sub-type type of `Temporal`, an 
                                                                                 ancestor of the assumed Date/time primitive types., with the addition of a 
-                                                                                second type constraint -                                                                                                                             {openehr_am_adl2}#_constraints_on_dates_times_and_durations[a pattern based on ISO8601 syntax].
+                                                                                second type constraint -                                                                                                                             {openehr_am_adl2}#_constraints_on_dates_times_and_durations[a pattern based on ISO8601 syntax^].
 
-|`C_DATE`             |`Date`                  |`List <Interval<Date>>` +
+|`Date`               |`C_DATE`                |`List <Interval<Date>>` +
                                                 OR +
-                                                String (ADL pattern)           |As for Temporal types with T = `Date`
-|`C_TIME`             |`Time`                  |`List <Interval<Time>>` +
+                                                `String` (ADL pattern)           |As for Temporal types with T = `Date`
+|`Time`               |`C_TIME`                |`List <Interval<Time>>` +
                                                 OR +
-                                                String (ADL pattern)           |As for Temporal types with T = `Time`
-|`C_DATE_TIME`        |`Date_time` OR `DateTime` |`List <Interval<Date_time>>` +
+                                                `String` (ADL pattern)           |As for Temporal types with T = `Time`
+|`Date_time`          |`C_DATE_TIME`           |`List <Interval<Date_time>>` +
                                                 OR +
-                                                 String (ADL pattern)          |As for Temporal types with T = `Date_time`
-|`C_DURATION`         |`Duration`              |`List <Interval<Duration>>` +
+                                                 `String` (ADL pattern)          |As for Temporal types with T = `Date_time`
+|`Duration`           |`C_DURATION`            |`List <Interval<Duration>>` +
                                                 OR +
-                                                String (ADL pattern)           |As for Temporal types with T = `Duration`
+                                                `String` (ADL pattern)           |As for Temporal types with T = `Duration`
+                                                
+|`List<T>`            |`C_PRIMITIVE_OBJECT` +
+                       descendant appropriate +
+                       to RM type               |`List<T>` or `List<Interval<T>>` +
+                                                for Ordered types                |Members of List value match any value in constraint list
+
+|`Interval<T->Ordered>`|`C_PRIMITIVE_ORDERED` +
+                       descendant appropriate +
+                       to RM type              |`List<Interval<T>>`              |Interval value matches any (Interval) value in constraint list
+                                                
 |===========
 
 Note in the above that the `C_DATE_TIME` AOM type is assumed by default to apply to data items of the RM types `DateTime` and `Date_time`, including any variations in case.
@@ -252,7 +262,7 @@ image::{uml_diagrams_uri}/AM-aom2.constraint_model-tuple.svg[id=tuple_constraint
 
 In this model, the type `C_ATTRIBUTE_TUPLE` groups the co-constrained `C_ATTRIBUTEs` under a `C_COMPLEX_OBJECT`. Currently the concrete type is limited to being `C_PRIMITIVE_OBJECT` to reduce complexity, and since it caters for all known examples of tuple constraints. In principle, any `C_DEFINED_OBJECT` could be allowed, and this may change in the future.
 
-The tuple constraint type replaces all domain-specific constraint types defined in {openehr_am_adl14}[ADL/AOM 1.4], including `C_DV_QUANTITY` and `C_DV_ORDINAL`.
+The tuple constraint type replaces all domain-specific constraint types defined in {openehr_am_adl14}[ADL/AOM 1.4^], including `C_DV_QUANTITY` and `C_DV_ORDINAL`.
 
 These additions allow standard constraint structures (i.e. `C_ATTRIBUTE` / `C_COMPLEX_OBJECT` / `C_PRIMITIVE_OBJECT` hierarchies) to be 'annotated', while leaving the first order structure intact. The following example shows an archetype instance structure in which a notional `ORDINAL` type is constrained. The logical requirement is to constrain a `ORDINAL` to one of three instance possibilities, each of which consists of a pair of values for the attributes value and symbol, of type Integer and `TERMINOLOGY_CODE` respectively. Each of these three instance constraints should be understood as an alternative for the single valued owning attribute, `ELEMENT` .value. Tuple constraints achieve the requirement to express the constraints as pairs not just as allowable alternatives at the final leaf level, which would incorrectly allowing any mixing of the Integer and code values.
 
@@ -266,7 +276,7 @@ image::{diagrams_uri}/tuple_example_data.svg[id=tuple_constraint_example_data, a
 
 === Assertions
 
-Assertions are used in `ARCHETYPE_SLOTs`, in order to express the 'included' and 'excluded' archetypes for the slot. In this case, each assertion is an expression that refers to parts of other archetypes, such as its identifier (e.g. 'include archetypes with `_short_concept_name_` matching `xxxx` '). Assertions are modelled here as a generic expression tree of unary prefix and binary infix operators. Examples of archetype slots in ADL syntax are given in the openEHR {openehr_am_adl2}[ADL specification].
+Assertions are used in `ARCHETYPE_SLOTs`, in order to express the 'included' and 'excluded' archetypes for the slot. In this case, each assertion is an expression that refers to parts of other archetypes, such as its identifier (e.g. 'include archetypes with `_short_concept_name_` matching `xxxx` '). Assertions are modelled here as a generic expression tree of unary prefix and binary infix operators. Examples of archetype slots in ADL syntax are given in the openEHR {openehr_am_adl2}[ADL specification^].
 
 == AOM Type Substitutions
 
@@ -409,7 +419,7 @@ include::{uml_export_dir}/classes/sibling_order.adoc[]
 
 The notion of 'occurrences' does not exist in an object model that might be used as the reference model on which archteypes are based, because it is a class model. However, archetypes commonly constrain the occurrences of object nodes under a container attribute, indicating how many objects conforming to a specific object constraint node might exist.
 
-There are various circumstances where it is useful to know the effective occurrences of an archetype object node. One is in validation, in order to determine validity of occurrences constraints; another is in archetype editor tools. Similarly, in an {openehr_am_opt2}[operational template], an occurrences constraint is required on all child object nodes of container attributes. Most such constraints come from the source template(s) and archetypes, but often there will be nodes with no occurrences set. In these cases, the occurrences constraint is inferred from the archetype and the reference model according to the following algorithm, where `c_object` represents any object node in an archetype.
+There are various circumstances where it is useful to know the effective occurrences of an archetype object node. One is in validation, in order to determine validity of occurrences constraints; another is in archetype editor tools. Similarly, in an {openehr_am_opt2}[Operational Template^], an occurrences constraint is required on all child object nodes of container attributes. Most such constraints come from the source template(s) and archetypes, but often there will be nodes with no occurrences set. In these cases, the occurrences constraint is inferred from the archetype and the reference model according to the following algorithm, where `c_object` represents any object node in an archetype.
 
 [source,eiffel]
 ---------
@@ -467,7 +477,7 @@ object_multiplicity (rm_type_name, rm_property_path: String): MULTIPLICITY_INTER
     end
 ---------
 
-How this is concretely implemented depends on the modelling environment. One possible RM model implementation is described in the {openehr_bmm}[openEHR Basic meta-model (BMM) specification].
+How this is concretely implemented depends on the modelling environment. One possible RM model implementation is described in the {openehr_bmm}[openEHR Basic meta-model (BMM) specification^].
 
 ==== Conformance semantics
 

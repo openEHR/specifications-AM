@@ -415,7 +415,7 @@
 </colgroup>
 <thead>
 <tr>
-<th class="tableblock halign-center valign-top" colspan="2">&#169; 2004 - 2018 The openEHR Foundation</th>
+<th class="tableblock halign-center valign-top" colspan="2">&#169; 2004 - 2019 The openEHR Foundation</th>
 </tr>
 </thead>
 <tbody>
@@ -458,12 +458,22 @@
 <th class="tableblock halign-center valign-top" colspan="4"><p class="tableblock"><strong>AM Release 2.1.?</strong></p></th>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a id="latest_issue"></a>2.1.2</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a id="latest_issue"></a>2.1.3</p></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p><a href="https://specifications.openehr.org/tickets/SPECAM-60" target="_blank" rel="noopener">SPECAM-60</a>. Improve documentation for constraints on lists and intervals.</p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">B Fabjan,<br>
+ M Pipan,<br>
+ T Beale</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a id="latest_issue_date"></a>21 Jan 2019</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">2.1.2</p></td>
 <td class="tableblock halign-left valign-top"><div><div class="paragraph">
 <p><a href="https://specifications.openehr.org/tickets/SPECAM-57" target="_blank" rel="noopener">SPECAM-57</a>. Adjust model of <code>ASSERTIONs</code> and rules to use Expression Language Object Model (ELOM).</p>
 </div></div></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">T Beale</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a id="latest_issue_date"></a>16 Sep 2018</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">16 Sep 2018</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">2.1.1</p></td>
@@ -1084,7 +1094,7 @@ Includes detailed input and review from:</p>
 <p>Linda Bird PhD, IHTSDO, Australia</p>
 </li>
 <li>
-<p>Pieter Bos, Software Engineer, Nedap, Netherlands</p>
+<p>Pieter Bos, Senior Software Engineer, Nedap, Netherlands</p>
 </li>
 <li>
 <p>Diego Boscá, IBIME, Technical University Valencia, VeraTech for Health, Spain</p>
@@ -1309,7 +1319,7 @@ Includes detailed input and review from:</p>
 <div class="sect2">
 <h3 id="_tools"><a class="anchor" href="#_tools"></a>1.7. Tools</h3>
 <div class="paragraph">
-<p>Various tools exist for creating and processing archetypes. The <a href="/downloads/ADLworkbench" target="_blank" rel="noopener">ADL Workbench</a> is a reference compiler, visualiser and editor. The openEHR ADL/AOM tools can be <a href="/downloads/modellingtools" target="_blank" rel="noopener">downloaded from the website</a> .</p>
+<p>Various tools exist for creating and processing archetypes. The <a href="https://www.openehr.org/downloads/ADLworkbench" target="_blank" rel="noopener">ADL Workbench</a> is a reference compiler, visualiser and editor. The openEHR ADL/AOM tools can be <a href="https://www.openehr.org/downloads/modellingtools" target="_blank" rel="noopener">downloaded from the website</a> .</p>
 </div>
 <div class="paragraph">
 <p>Source projects can be found at the <a href="https://github.com/openEHR" target="_blank" rel="noopener">openEHR Github project</a>.</p>
@@ -2589,7 +2599,7 @@ an_id: <code>String[1]</code><br>
 <div class="sect2">
 <h3 id="_semantics"><a class="anchor" href="#_semantics"></a>4.2. Semantics</h3>
 <div class="paragraph">
-<p>The effect of the model is to create archetype definition structures that are a hierarchical alternation of object and attribute constraints. This structure can be seen by inspecting an ADL archetype, or by viewing an archetype in an AOM-based tool such as the openEHR <a href="/downloads/ADLworkbench">ADL workbench</a>, and is a direct consequence of the object-oriented principle that classes consist of properties, which in turn have types that are classes. (To be completely correct, types do not always correspond to classes in an object model, but it does not make any difference here). The repeated object/attribute hierarchical structure of an archetype provides the basis for using paths to reference any node in an archetype. Archetype paths follow a syntax that is a directly convertible in and out of the W3C Xpath syntax.</p>
+<p>The effect of the model is to create archetype definition structures that are a hierarchical alternation of object and attribute constraints. This structure can be seen by inspecting an ADL archetype, or by viewing an archetype in an AOM-based tool such as the openEHR <a href="https://www.openehr.org/downloads/ADLworkbench" target="_blank" rel="noopener">ADL workbench</a>, and is a direct consequence of the object-oriented principle that classes consist of properties, which in turn have types that are classes. (To be completely correct, types do not always correspond to classes in an object model, but it does not make any difference here). The repeated object/attribute hierarchical structure of an archetype provides the basis for using paths to reference any node in an archetype. Archetype paths follow a syntax that is a directly convertible in and out of the W3C Xpath syntax.</p>
 </div>
 <div class="sect3">
 <h4 id="_all_node_types"><a class="anchor" href="#_all_node_types"></a>4.2.1. All Node Types</h4>
@@ -2660,7 +2670,7 @@ an_id: <code>String[1]</code><br>
 <div class="sect4">
 <h5 id="_rm_type_name_and_reference_model_type_matching"><a class="anchor" href="#_rm_type_name_and_reference_model_type_matching"></a>4.2.3.1. Rm_type_name and Reference Model Type Matching</h5>
 <div class="paragraph">
-<p>Every object node has an <code><em>rm_type_name</em></code> attribute that states the RM type to be matched by that node in the archetype. The value of <code><em>rm_type_name</em></code> is understood as a constraint on the dynamic type of data <em>instances</em> of the stated Reference Model type. It is either a class name from the RM, or a generic type constructed from RM class names, as described in the <a href="https://specifications.openehr.org/releases/AM/latest/ADL2.html#_reference_model_type_matching">Reference model type matching</a> section of the ADL2 specification.</p>
+<p>Every object node has an <code><em>rm_type_name</em></code> attribute that states the RM type to be matched by that node in the archetype. The value of <code><em>rm_type_name</em></code> is understood as a constraint on the dynamic type of data <em>instances</em> of the stated Reference Model type. It is either a class name from the RM, or a generic type constructed from RM class names, as described in the <a href="https://specifications.openehr.org/releases/AM/latest/ADL2.html#_reference_model_type_matching" target="_blank" rel="noopener">Reference model type matching</a> section of the ADL2 specification.</p>
 </div>
 <div class="paragraph">
 <p>The RM type stated in an archetype object node is understood to be a <em>static</em> type constraint. Accordingly, it will match an instance of any RM <em>subtype</em> of the stated type, as long as the inheritance relationship is stated in the RM definition. This holds both for sub-classes, and subtypes of generic types, in a covariant fashion. The following matching will thus succeed:</p>
@@ -2759,13 +2769,13 @@ an_id: <code>String[1]</code><br>
 <div class="sect3">
 <h4 id="_primitive_types_c_primitive_object_descendants"><a class="anchor" href="#_primitive_types_c_primitive_object_descendants"></a>4.2.7. Primitive Types (C_PRIMITIVE_OBJECT descendants)</h4>
 <div class="paragraph">
-<p>Constraints on primitive types are defined by the classes inheriting from <code>C_PRIMITIVE_OBJECT</code> , i.e. <code>C_STRING</code> , <code>C_INTEGER</code> and so on. The primitive types are represented in such a way as to accommodate both 'tuple' constraints and logically unary constraints, using a tuple array whose members are each a primitive constraint corresponding to each primitive type. Tuple constraints are second order constraints, described below, enable covarying constraints to be stated. In the unary case, the constraint is the first member of a tuple array.</p>
+<p>Constraints on primitive types are defined by the descendants of <code>C_PRIMITIVE_OBJECT</code>, i.e. <code>C_STRING</code> , <code>C_INTEGER</code> and so on. The primitive constraint types are represented in such a way as to accommodate both 'tuple' constraints and logically unary constraints, using a tuple array (<code>C_PRIMITIVE_TUPLE.<em>members</em></code>) whose members are each a primitive constraint corresponding to each primitive type in the tuple. Tuple constraints are second order constraints, described below, enabling covarying constraints to be stated. In the unary case, the constraint is the first member of a tuple array.</p>
 </div>
 <div class="paragraph">
 <p><code>C_PRIMITIVE_OBJECT</code> instances are created with a fixed id-code <code>ADL_CODE_DEFINITIONS.<em>primitive_node_id</em></code> as the value of <code><em>node_id</em></code> (see <a href="#_adl_code_definitions_class">Section 2.3.3</a>). For this reason, no node identifier needs to be supplied in a syntax or serialised form of an archetype, including ADL.</p>
 </div>
 <div class="paragraph">
-<p>The primitive constraint for each primitive type may itself be complex. Its RM type is given by the type of the <code><em>constraint</em></code> accessor in each <code>C_PRIMITIVE_OBJECT</code> descendant and is summarised in the following table.</p>
+<p>The primitive constraint for each primitive type may itself be complex. Its formal type is the type of the <code><em>constraint</em></code> accessor in each <code>C_PRIMITIVE_OBJECT</code> descendant. The use of the constrainer types for each RM type is summarised in the following table.</p>
 </div>
 <table id="primitive-types" class="tableblock frame-all grid-all spread">
 <colgroup>
@@ -2776,30 +2786,30 @@ an_id: <code>String[1]</code><br>
 </colgroup>
 <thead>
 <tr>
-<th class="tableblock halign-left valign-top">AOM type</th>
 <th class="tableblock halign-left valign-top">RM Primitive type</th>
+<th class="tableblock halign-left valign-top">AOM type</th>
 <th class="tableblock halign-left valign-top">AOM Primitive constrainer type</th>
-<th class="tableblock halign-left valign-top">Explanation</th>
+<th class="tableblock halign-left valign-top">Constraint description</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>C_BOOLEAN</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>Boolean</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>C_BOOLEAN</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>List &lt;Boolean&gt;</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Can represent one or two Boolean values, enabling the logical constraints
+<td class="tableblock halign-left valign-top"><p class="tableblock">One or two Boolean values, enabling the logical constraints
                                                                                 'true', 'false' and 'true or false' to be expressed.</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>C_STRING</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>C_STRING</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>List &lt;String&gt;</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">A list of possible string values, which may include regular expressions,
                                                                                 which are delimited by '/' characters.</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>C_TERMINOLOGY_CODE</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>Terminology_code</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>C_TERMINOLOGY_CODE</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Terminology constraint -<br>
                                                 <code>[acN]</code> or <code>[atN]</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">A string containing either a single at-code or a single ac-code. In the
@@ -2807,68 +2817,83 @@ an_id: <code>String[1]</code><br>
                                                                                 or (via a binding) an external value set.</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>C_ORDERED</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Descendants of<br>
-                       <code>Ordered</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>List &lt;Interval&lt;T&gt;&gt;</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Can represent a single value (which is a point interval), a list of values
+ <code>Ordered</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>C_ORDERED</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>List &lt;Interval&lt;T&#8594;Ordered&gt;&gt;</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">A single value (which is a point interval), a list of values
                                                                                 (list of point intervals), a list of intervals, which may be mixed proper
                                                                                 and point intervals.</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>C_INTEGER</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>Integer</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>C_INTEGER</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>List &lt;Interval&lt;Integer&gt;&gt;</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">As for Ordered type, with T = <code>Integer</code></p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>C_REAL</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>Real</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>C_REAL</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>List &lt;Interval&lt;Real&gt;&gt;</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">As for Ordered type, with T = <code>Real</code></p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>C_TEMPORAL</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Descendants of<br>
-                       <code>Temporal</code></p></td>
+<code>Temporal</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>C_TEMPORAL</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>List &lt;Interval&lt;T&#8594;Temporal&gt;&gt;</code><br>
                                                 OR<br>
-                                                String (ADL pattern)</p></td>
+                                                <code>String</code> (ADL pattern)</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">As for ordered types, with T being an sub-type type of <code>Temporal</code>, an
                                                                                 ancestor of the assumed Date/time primitive types., with the addition of a
-                                                                                second type constraint -                                                                                                                             <a href="https://specifications.openehr.org/releases/AM/latest/ADL2.html#_constraints_on_dates_times_and_durations">a pattern based on ISO8601 syntax</a>.</p></td>
+                                                                                second type constraint -                                                                                                                             <a href="https://specifications.openehr.org/releases/AM/latest/ADL2.html#_constraints_on_dates_times_and_durations" target="_blank" rel="noopener">a pattern based on ISO8601 syntax</a>.</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>C_DATE</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>Date</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>C_DATE</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>List &lt;Interval&lt;Date&gt;&gt;</code><br>
                                                 OR<br>
-                                                String (ADL pattern)</p></td>
+                                                <code>String</code> (ADL pattern)</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">As for Temporal types with T = <code>Date</code></p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>C_TIME</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>Time</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>C_TIME</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>List &lt;Interval&lt;Time&gt;&gt;</code><br>
                                                 OR<br>
-                                                String (ADL pattern)</p></td>
+                                                <code>String</code> (ADL pattern)</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">As for Temporal types with T = <code>Time</code></p></td>
 </tr>
 <tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Date_time</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>C_DATE_TIME</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Date_time</code> OR <code>DateTime</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>List &lt;Interval&lt;Date_time&gt;&gt;</code><br>
                                                 OR<br>
-                                                 String (ADL pattern)</p></td>
+                                                 <code>String</code> (ADL pattern)</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">As for Temporal types with T = <code>Date_time</code></p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>C_DURATION</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>Duration</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>C_DURATION</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>List &lt;Interval&lt;Duration&gt;&gt;</code><br>
                                                 OR<br>
-                                                String (ADL pattern)</p></td>
+                                                <code>String</code> (ADL pattern)</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">As for Temporal types with T = <code>Duration</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>List&lt;T&gt;</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>C_PRIMITIVE_OBJECT</code><br>
+                       appropriate to RM type</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>List&lt;T&gt;</code> or <code>List&lt;Interval&lt;T&gt;&gt;</code><br>
+                                                for Ordered types</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Members of List value match any value in constraint list</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Interval&lt;T&#8594;Ordered&gt;</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>C_PRIMITIVE_ORDERED</code><br>
+                       appropriate to RM type</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>List&lt;Interval&lt;T&gt;&gt;</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Interval value matches any (Interval) value in constraint list</p></td>
 </tr>
 </tbody>
 </table>
@@ -3033,7 +3058,7 @@ Since an archetype might not contain external terminology bindings for all (or e
 <p>In this model, the type <code>C_ATTRIBUTE_TUPLE</code> groups the co-constrained <code>C_ATTRIBUTEs</code> under a <code>C_COMPLEX_OBJECT</code>. Currently the concrete type is limited to being <code>C_PRIMITIVE_OBJECT</code> to reduce complexity, and since it caters for all known examples of tuple constraints. In principle, any <code>C_DEFINED_OBJECT</code> could be allowed, and this may change in the future.</p>
 </div>
 <div class="paragraph">
-<p>The tuple constraint type replaces all domain-specific constraint types defined in <a href="https://specifications.openehr.org/releases/AM/latest/ADL1.4.html">ADL/AOM 1.4</a>, including <code>C_DV_QUANTITY</code> and <code>C_DV_ORDINAL</code>.</p>
+<p>The tuple constraint type replaces all domain-specific constraint types defined in <a href="https://specifications.openehr.org/releases/AM/latest/ADL1.4.html" target="_blank" rel="noopener">ADL/AOM 1.4</a>, including <code>C_DV_QUANTITY</code> and <code>C_DV_ORDINAL</code>.</p>
 </div>
 <div class="paragraph">
 <p>These additions allow standard constraint structures (i.e. <code>C_ATTRIBUTE</code> / <code>C_COMPLEX_OBJECT</code> / <code>C_PRIMITIVE_OBJECT</code> hierarchies) to be 'annotated', while leaving the first order structure intact. The following example shows an archetype instance structure in which a notional <code>ORDINAL</code> type is constrained. The logical requirement is to constrain a <code>ORDINAL</code> to one of three instance possibilities, each of which consists of a pair of values for the attributes value and symbol, of type Integer and <code>TERMINOLOGY_CODE</code> respectively. Each of these three instance constraints should be understood as an alternative for the single valued owning attribute, <code>ELEMENT</code> .value. Tuple constraints achieve the requirement to express the constraints as pairs not just as allowable alternatives at the final leaf level, which would incorrectly allowing any mixing of the Integer and code values.</p>
@@ -3054,7 +3079,7 @@ Since an archetype might not contain external terminology bindings for all (or e
 <div class="sect3">
 <h4 id="_assertions"><a class="anchor" href="#_assertions"></a>4.3.2. Assertions</h4>
 <div class="paragraph">
-<p>Assertions are used in <code>ARCHETYPE_SLOTs</code>, in order to express the 'included' and 'excluded' archetypes for the slot. In this case, each assertion is an expression that refers to parts of other archetypes, such as its identifier (e.g. 'include archetypes with <code><em>short_concept_name</em></code> matching <code>xxxx</code> '). Assertions are modelled here as a generic expression tree of unary prefix and binary infix operators. Examples of archetype slots in ADL syntax are given in the openEHR <a href="https://specifications.openehr.org/releases/AM/latest/ADL2.html">ADL specification</a>.</p>
+<p>Assertions are used in <code>ARCHETYPE_SLOTs</code>, in order to express the 'included' and 'excluded' archetypes for the slot. In this case, each assertion is an expression that refers to parts of other archetypes, such as its identifier (e.g. 'include archetypes with <code><em>short_concept_name</em></code> matching <code>xxxx</code> '). Assertions are modelled here as a generic expression tree of unary prefix and binary infix operators. Examples of archetype slots in ADL syntax are given in the openEHR <a href="https://specifications.openehr.org/releases/AM/latest/ADL2.html" target="_blank" rel="noopener">ADL specification</a>.</p>
 </div>
 </div>
 </div>
@@ -3721,7 +3746,7 @@ other: <code>C_OBJECT[1]</code><br>
 <p>The notion of 'occurrences' does not exist in an object model that might be used as the reference model on which archteypes are based, because it is a class model. However, archetypes commonly constrain the occurrences of object nodes under a container attribute, indicating how many objects conforming to a specific object constraint node might exist.</p>
 </div>
 <div class="paragraph">
-<p>There are various circumstances where it is useful to know the effective occurrences of an archetype object node. One is in validation, in order to determine validity of occurrences constraints; another is in archetype editor tools. Similarly, in an <a href="https://specifications.openehr.org/releases/AM/latest/OPT2.html">operational template</a>, an occurrences constraint is required on all child object nodes of container attributes. Most such constraints come from the source template(s) and archetypes, but often there will be nodes with no occurrences set. In these cases, the occurrences constraint is inferred from the archetype and the reference model according to the following algorithm, where <code>c_object</code> represents any object node in an archetype.</p>
+<p>There are various circumstances where it is useful to know the effective occurrences of an archetype object node. One is in validation, in order to determine validity of occurrences constraints; another is in archetype editor tools. Similarly, in an <a href="https://specifications.openehr.org/releases/AM/latest/OPT2.html" target="_blank" rel="noopener">Operational Template</a>, an occurrences constraint is required on all child object nodes of container attributes. Most such constraints come from the source template(s) and archetypes, but often there will be nodes with no occurrences set. In these cases, the occurrences constraint is inferred from the archetype and the reference model according to the following algorithm, where <code>c_object</code> represents any object node in an archetype.</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -3781,7 +3806,7 @@ other: <code>C_OBJECT[1]</code><br>
 </div>
 </div>
 <div class="paragraph">
-<p>How this is concretely implemented depends on the modelling environment. One possible RM model implementation is described in the <a href="https://specifications.openehr.org/releases/LANG/latest/bmm.html">openEHR Basic meta-model (BMM) specification</a>.</p>
+<p>How this is concretely implemented depends on the modelling environment. One possible RM model implementation is described in the <a href="https://specifications.openehr.org/releases/LANG/latest/bmm.html" target="_blank" rel="noopener">openEHR Basic meta-model (BMM) specification</a>.</p>
 </div>
 </div>
 <div class="sect4">
@@ -7142,7 +7167,7 @@ Hash of keys ("text", "description" etc) and corresponding values.</p>
 <div class="sect3">
 <h4 id="_configuration_file"><a class="anchor" href="#_configuration_file"></a>10.1.5. Configuration File</h4>
 <div class="paragraph">
-<p>Instances of the above classes can be expressed in an ODIN format file, as a convenient way of defining configuration for tools. Examples of such files used for the <a href="/downloads/ADLworkbench">openEHR ADL Workbench</a> tool can be found in the <a href="https://github.com/openEHR/adl-tools/tree/master/apps/resources/aom_profiles">Github project for the tool</a>.</p>
+<p>Instances of the above classes can be expressed in an ODIN format file, as a convenient way of defining configuration for tools. Examples of such files used for the <a href="https://www.openehr.org/downloads/ADLworkbench">openEHR ADL Workbench</a> tool can be found in the <a href="https://github.com/openEHR/adl-tools/tree/master/apps/resources/aom_profiles">Github project for the tool</a>.</p>
 </div>
 </div>
 </div>
@@ -7584,7 +7609,7 @@ Hash of keys ("text", "description" etc) and corresponding values.</p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2018-12-13 19:38:20 GMT
+Last updated 2019-01-02 11:13:49 GMT
 </div>
 </div>
 </body>
