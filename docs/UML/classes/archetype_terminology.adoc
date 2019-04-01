@@ -14,15 +14,15 @@ h|*Attributes*
 
 h|*1..1*
 |*is_differential*: `Boolean`
-a|
+a|True if this terminology only contains terms relating to a differential specialisation of the owning artefact, rather than a complete set.
 
 h|*1..1*
 |*original_language*: `String`
-a|Original language of the terminology, as set at archetype creation or parsing time; must be a code in the ISO 639-1 2 character language code-set.
+a|Original language of the terminology, as set at artefact creation or parsing time; must be a code in the ISO 639-1 2 character language code-set.
 
 h|*1..1*
 |*concept_code*: `String`
-a|Term code defining the meaning of the archetype as a whole, and always used as the at-code on the root node of the archetype. Must be defined in the term_definitions property.
+a|Term code defining the meaning of the artefact as a whole, and always used as the id-code on the root node of the artefact. Must be defined in the `_term_definitions_` property.
 
 h|*1..1*
 |*term_definitions*: `Hash<String, Hash<String, ARCHETYPE_TERM>>`
@@ -30,7 +30,7 @@ a|Directory of term definitions as a two-level table. The outer hash keys are la
 
 h|*0..1*
 |*term_bindings*: `Hash <String, Hash<String, Uri>>`
-a|Directory of bindings to external terminology codes and value sets, as a two-level table. The outer hash keys are terminology ids, e.g. `"SNOMED_CT"`, and the inner hash keys are constraint codes, e.g. `"at4"`, `"ac13"` or paths. The indexed `DV_URI` objects represent references to externally defined resources, either terms, ontology concepts, or terminology subsets / ref-sets.
+a|Directory of bindings to external terminology codes and value sets, as a two-level table. The outer hash keys are terminology ids, e.g. `"SNOMED_CT"`, and the inner hash keys are constraint codes, e.g. `"at4"`, `"ac13"` or paths. The indexed `Uri` objects represent references to externally defined resources, either terms, ontology concepts, or terminology subsets / ref-sets.
 
 h|*1..1*
 |*owner_archetype*: `ARCHETYPE`
@@ -49,19 +49,19 @@ h|*Functions*
 
 h|
 |*specialisation_depth* (): `Integer`
-a|Specialisation depth of this archetype. Unspecialised archetypes have depth 0, with each additional level of specialisation adding 1 to the specialisation_depth.
+a|Specialisation depth of this artefact. Unspecialised artefacts have depth 0, with each additional level of specialisation adding 1 to the specialisation_depth.
 
 h|
 |*id_codes* (): `List<String>`
-a|List of all id codes in the terminology., i.e. the “id” codes in an ADL archetype, which are the node_ids on C_OBJECT descendants.
+a|List of all id codes in the terminology., i.e. the 'id' codes in an ADL archetype, which are the `_node_id_` values on `C_OBJECT` descendants.
 
 h|
 |*value_codes* (): `List<String>`
-a|List of all value term codes in the terminology, i.e. the “at” codes in an ADL archetype, which are used as possible values on terminological constrainer nodes.
+a|List of all value term codes in the terminology, i.e. the 'at' codes in an ADL archetype, which are used as possible values on terminological constrainer nodes.
 
 h|
 |*value_set_codes* (): `List<String>`
-a|List of all value set codes in the terminology defining value sets. These correspond to the “ac” codes in an ADL archetype.
+a|List of all value set codes in the terminology defining value sets. These correspond to the 'ac' codes in an ADL archetype.
 
 h|
 |*has_language* ( +
