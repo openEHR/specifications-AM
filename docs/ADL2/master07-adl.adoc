@@ -26,8 +26,6 @@ adl_artefact: artefact_type meta_data?
         odin_text
     ('annotations' 
         odin_text)?
-    ('revision_history' 
-        odin_text)?
     ;
     
 artefact_type: 'archetype' | 'template' | 'template_overlay' | 'operational_template' ;
@@ -60,8 +58,6 @@ adl_template: 'template' meta_data?
     'terminology'
         odin_text
     ('annotations' 
-        odin_text)?
-    ('revision_history' 
         odin_text)?
     ;
 --------
@@ -923,40 +919,3 @@ annotations
 --------
 
 Because annotations are defined as a separate section, they can be easily removed in production versions of an archetype or template, and ignored in the generation of digital signatures.
-
-== Revision History Section
-
-The revision history section of an archetype shows the audit history of changes to the archetype, and is expressed in ODIN syntax. It is optional, and is included at the end of the archetype, since it does not contain content of direct interest to archetype authors, and will monotonically grow in size. Where archetypes are stored in a version-controlled repository such as CVS or some commercial product, the revision history section would normally be regenerated each time by the authoring software, e.g. via processing of the output of the `prs` command used with SCCS files, or `rlog` for RCS files. The following shows a typical example, with entries in most-recent-first order (although technically speaking, the order is irrelevant to ADL).
-
-[source, adl]
---------
-revision_history 
-    revision_history = <
-        ["1.57"] = <
-            committer = <"Miriam Hanoosh">
-            committer_organisation = <"AIHW.org.au">
-            time_committed = <2004-11-02 09:31:04+1000>
-            revision = <"1.2">
-            reason = <"Added social history section">
-            change_type = <"Modification">
-        >
-        -- etc
-        ["1.1"] = <
-            committer = <"Enrico Barrios">
-            committer_organisation = <"AIHW.org.au">
-            time_committed = <2004-09-24 11:57:00+1000>
-            revision = <"1.1">
-            reason = <"Updated HbA1C test result reference">
-            change_type = <"Modification">
-        >
-        ["1.0"] = <
-            committer = <"Enrico Barrios">
-            committer_organisation = <"AIHW.org.au">
-            time_committed = <2004-09-14 16:05:00+1000>
-            revision = <"1.0">
-            reason = <"Initial Writing">
-            change_type = <"Creation">
-        >
-    >
---------
-

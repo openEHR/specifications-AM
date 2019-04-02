@@ -292,7 +292,6 @@
 </ul>
 </li>
 <li><a href="#_annotations_section">7.13. Annotations Section</a></li>
-<li><a href="#_revision_history_section_2">7.14. Revision History Section</a></li>
 </ul>
 </li>
 <li><a href="#_terminology_integration">8. Terminology Integration</a>
@@ -521,11 +520,19 @@
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a id="latest_issue"></a>2.1.3</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://specifications.openehr.org/tickets/SPECAM-61" target="_blank" rel="noopener">SPECAM-61</a>. Remove revision_history from ADL2 specification.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">D Bosca,<br>
+ P Bos,<br>
+ T Beale</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a id="latest_issue_date"></a>04 Apr 2019</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://specifications.openehr.org/tickets/SPECAM-60" target="_blank" rel="noopener">SPECAM-60</a>. Improve documentation for constraints on lists and intervals.</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">B Fabjan,<br>
  M Pipan,<br>
  T Beale</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a id="latest_issue_date"></a>21 Jan 2019</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">21 Jan 2019</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"></td>
@@ -1331,6 +1338,9 @@ Source projects can be found at the <a href="https://github.com/openEHR" target=
 <li>
 <p>value sets are now declared in their own subsection of the terminology section rather than inline in the definition section;</p>
 </li>
+<li>
+<p>the <code>revision_history</code> section is removed, since the AOM2 uses the openEHR <a href="https://specifications.openehr.org/releases/BASE/latest/resource.html" target="_blank" rel="noopener">Base Types version of the Resource package</a>.</p>
+</li>
 </ul>
 </div>
 </div>
@@ -1559,7 +1569,7 @@ the structure, as shown in the following example:</p>
 <h2 id="_overview"><a class="anchor" href="#_overview"></a>2. Overview</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>ADL uses three syntaxes, cADL (constraint form of ADL), ODIN (Object Data Instance Notation), and a version of first-order predicate logic (FOPL), to express constraints on data which are instances of an underlying information model, which may be expressed in UML, relational form, or in a programming language. ADL itself is a very simple 'glue' syntax, which uses two other syntaxes for expressing structured constraints and data, respectively. The cADL syntax is used to express the archetype <code>definition</code> section, while the ODIN syntax is used to express data which appears in the <code>language</code>, <code>description</code>, <code>terminology</code>, and <code>revision_history</code> sections of an ADL archetype. The top-level structure of an ADL archetype is shown in the figure below.</p>
+<p>ADL uses three syntaxes, cADL (constraint form of ADL), ODIN (Object Data Instance Notation), and a version of first-order predicate logic (FOPL), to express constraints on data which are instances of an underlying information model, which may be expressed in UML, relational form, or in a programming language. ADL itself is a very simple 'glue' syntax, which uses two other syntaxes for expressing structured constraints and data, respectively. The cADL syntax is used to express the archetype <code>definition</code> section, while the ODIN syntax is used to express data which appears in the <code>language</code>, <code>description</code>, and <code>terminology</code> sections of an ADL archetype. The top-level structure of an ADL archetype is shown in the figure below.</p>
 </div>
 <div class="paragraph">
 <p>This main part of this document describes cADL and ADL path syntax, before going on to describe the combined ADL syntax, archetypes, specialisation, terminology integration and templates.</p>
@@ -4508,8 +4518,6 @@ that allowing the <code>W</code> designator to be used with the other designator
 <span class="tok-w">        </span><span class="tok-nv">odin_text</span><span class="tok-w"></span>
 <span class="tok-w">    </span><span class="tok-o">(</span><span class="tok-s">&#39;annotations&#39;</span><span class="tok-w"></span>
 <span class="tok-w">        </span><span class="tok-nv">odin_text</span><span class="tok-o">)?</span><span class="tok-w"></span>
-<span class="tok-w">    </span><span class="tok-o">(</span><span class="tok-s">&#39;revision_history&#39;</span><span class="tok-w"></span>
-<span class="tok-w">        </span><span class="tok-nv">odin_text</span><span class="tok-o">)?</span><span class="tok-w"></span>
 <span class="tok-w">    </span><span class="tok-p">;</span><span class="tok-w"></span>
 
 <span class="tok-nl">artefact_type</span><span class="tok-p">:</span><span class="tok-w"> </span><span class="tok-s">&#39;archetype&#39;</span><span class="tok-w"> </span><span class="tok-o">|</span><span class="tok-w"> </span><span class="tok-s">&#39;template&#39;</span><span class="tok-w"> </span><span class="tok-o">|</span><span class="tok-w"> </span><span class="tok-s">&#39;template_overlay&#39;</span><span class="tok-w"> </span><span class="tok-o">|</span><span class="tok-w"> </span><span class="tok-s">&#39;operational_template&#39;</span><span class="tok-w"> </span><span class="tok-p">;</span><span class="tok-w"></span>
@@ -4545,8 +4553,6 @@ that allowing the <code>W</code> designator to be used with the other designator
 <span class="tok-w">    </span><span class="tok-s">&#39;terminology&#39;</span><span class="tok-w"></span>
 <span class="tok-w">        </span><span class="tok-nv">odin_text</span><span class="tok-w"></span>
 <span class="tok-w">    </span><span class="tok-o">(</span><span class="tok-s">&#39;annotations&#39;</span><span class="tok-w"></span>
-<span class="tok-w">        </span><span class="tok-nv">odin_text</span><span class="tok-o">)?</span><span class="tok-w"></span>
-<span class="tok-w">    </span><span class="tok-o">(</span><span class="tok-s">&#39;revision_history&#39;</span><span class="tok-w"></span>
 <span class="tok-w">        </span><span class="tok-nv">odin_text</span><span class="tok-o">)?</span><span class="tok-w"></span>
 <span class="tok-w">    </span><span class="tok-p">;</span><span class="tok-w"></span></code></pre>
 </div>
@@ -5630,44 +5636,6 @@ some non-conforming ADL tools in the past created archetypes without a language 
 </div>
 <div class="paragraph">
 <p>Because annotations are defined as a separate section, they can be easily removed in production versions of an archetype or template, and ignored in the generation of digital signatures.</p>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_revision_history_section_2"><a class="anchor" href="#_revision_history_section_2"></a>7.14. Revision History Section</h3>
-<div class="paragraph">
-<p>The revision history section of an archetype shows the audit history of changes to the archetype, and is expressed in ODIN syntax. It is optional, and is included at the end of the archetype, since it does not contain content of direct interest to archetype authors, and will monotonically grow in size. Where archetypes are stored in a version-controlled repository such as CVS or some commercial product, the revision history section would normally be regenerated each time by the authoring software, e.g. via processing of the output of the <code>prs</code> command used with SCCS files, or <code>rlog</code> for RCS files. The following shows a typical example, with entries in most-recent-first order (although technically speaking, the order is irrelevant to ADL).</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="pygments highlight"><code data-lang="adl"><span class="tok-gh">revision_history</span>
-    <span class="tok-nc">revision_history</span> <span class="tok-o">=</span> <span class="tok-p">&lt;</span>
-        <span class="tok-p">[</span><span class="tok-s">&quot;1.57&quot;</span><span class="tok-p">]</span> <span class="tok-o">=</span> <span class="tok-p">&lt;</span>
-            <span class="tok-nc">committer</span> <span class="tok-o">=</span> <span class="tok-p">&lt;</span><span class="tok-s">&quot;Miriam Hanoosh&quot;</span><span class="tok-p">&gt;</span>
-            <span class="tok-nc">committer_organisation</span> <span class="tok-o">=</span> <span class="tok-p">&lt;</span><span class="tok-s">&quot;AIHW.org.au&quot;</span><span class="tok-p">&gt;</span>
-            <span class="tok-nc">time_committed</span> <span class="tok-o">=</span> <span class="tok-p">&lt;</span><span class="tok-ld">2004-11-02</span> <span class="tok-ld">09:31:04+1000</span><span class="tok-p">&gt;</span>
-            <span class="tok-nc">revision</span> <span class="tok-o">=</span> <span class="tok-p">&lt;</span><span class="tok-s">&quot;1.2&quot;</span><span class="tok-p">&gt;</span>
-            <span class="tok-nc">reason</span> <span class="tok-o">=</span> <span class="tok-p">&lt;</span><span class="tok-s">&quot;Added social history section&quot;</span><span class="tok-p">&gt;</span>
-            <span class="tok-nc">change_type</span> <span class="tok-o">=</span> <span class="tok-p">&lt;</span><span class="tok-s">&quot;Modification&quot;</span><span class="tok-p">&gt;</span>
-        <span class="tok-p">&gt;</span>
-        <span class="tok-c">-- etc</span>
-        <span class="tok-p">[</span><span class="tok-s">&quot;1.1&quot;</span><span class="tok-p">]</span> <span class="tok-o">=</span> <span class="tok-p">&lt;</span>
-            <span class="tok-nc">committer</span> <span class="tok-o">=</span> <span class="tok-p">&lt;</span><span class="tok-s">&quot;Enrico Barrios&quot;</span><span class="tok-p">&gt;</span>
-            <span class="tok-nc">committer_organisation</span> <span class="tok-o">=</span> <span class="tok-p">&lt;</span><span class="tok-s">&quot;AIHW.org.au&quot;</span><span class="tok-p">&gt;</span>
-            <span class="tok-nc">time_committed</span> <span class="tok-o">=</span> <span class="tok-p">&lt;</span><span class="tok-ld">2004-09-24</span> <span class="tok-ld">11:57:00+1000</span><span class="tok-p">&gt;</span>
-            <span class="tok-nc">revision</span> <span class="tok-o">=</span> <span class="tok-p">&lt;</span><span class="tok-s">&quot;1.1&quot;</span><span class="tok-p">&gt;</span>
-            <span class="tok-nc">reason</span> <span class="tok-o">=</span> <span class="tok-p">&lt;</span><span class="tok-s">&quot;Updated HbA1C test result reference&quot;</span><span class="tok-p">&gt;</span>
-            <span class="tok-nc">change_type</span> <span class="tok-o">=</span> <span class="tok-p">&lt;</span><span class="tok-s">&quot;Modification&quot;</span><span class="tok-p">&gt;</span>
-        <span class="tok-p">&gt;</span>
-        <span class="tok-p">[</span><span class="tok-s">&quot;1.0&quot;</span><span class="tok-p">]</span> <span class="tok-o">=</span> <span class="tok-p">&lt;</span>
-            <span class="tok-nc">committer</span> <span class="tok-o">=</span> <span class="tok-p">&lt;</span><span class="tok-s">&quot;Enrico Barrios&quot;</span><span class="tok-p">&gt;</span>
-            <span class="tok-nc">committer_organisation</span> <span class="tok-o">=</span> <span class="tok-p">&lt;</span><span class="tok-s">&quot;AIHW.org.au&quot;</span><span class="tok-p">&gt;</span>
-            <span class="tok-nc">time_committed</span> <span class="tok-o">=</span> <span class="tok-p">&lt;</span><span class="tok-ld">2004-09-14</span> <span class="tok-ld">16:05:00+1000</span><span class="tok-p">&gt;</span>
-            <span class="tok-nc">revision</span> <span class="tok-o">=</span> <span class="tok-p">&lt;</span><span class="tok-s">&quot;1.0&quot;</span><span class="tok-p">&gt;</span>
-            <span class="tok-nc">reason</span> <span class="tok-o">=</span> <span class="tok-p">&lt;</span><span class="tok-s">&quot;Initial Writing&quot;</span><span class="tok-p">&gt;</span>
-            <span class="tok-nc">change_type</span> <span class="tok-o">=</span> <span class="tok-p">&lt;</span><span class="tok-s">&quot;Creation&quot;</span><span class="tok-p">&gt;</span>
-        <span class="tok-p">&gt;</span>
-    <span class="tok-p">&gt;</span></code></pre>
-</div>
 </div>
 </div>
 </div>
