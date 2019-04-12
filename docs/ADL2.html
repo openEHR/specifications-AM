@@ -291,7 +291,8 @@
 </li>
 </ul>
 </li>
-<li><a href="#_annotations_section">7.13. Annotations Section</a></li>
+<li><a href="#_rm_visbility_section">7.13. RM Visbility Section</a></li>
+<li><a href="#_annotations_section">7.14. Annotations Section</a></li>
 </ul>
 </li>
 <li><a href="#_terminology_integration">8. Terminology Integration</a>
@@ -481,7 +482,7 @@
 </thead>
 <tbody>
 <tr>
-<td class="tableblock halign-center valign-top" colspan="2"><p class="tableblock"><a href="https://www.openehr.org" target="_blank" rel="noopener">The openEHR Foundation</a> is an independent, non-profit community organisation, facilitating the sharing of health records by consumers and clinicians via open standards-based implementations.</p></td>
+<td class="tableblock halign-center valign-top" colspan="2"><p class="tableblock"><a href="https://www.openehr.org" target="_blank" rel="noopener">The openEHR Foundation</a> is an independent, non-profit foundation, facilitating the sharing of health records by consumers and clinicians via open specifications, clinical models and open platform implementations.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-center valign-top"><p class="tableblock"><strong>Licence</strong></p></td>
@@ -519,12 +520,21 @@
 <th class="tableblock halign-center valign-top" colspan="4"><p class="tableblock"><strong>AM Release 2.1.?</strong></p></th>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a id="latest_issue"></a>2.1.3</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://specifications.openehr.org/tickets/SPECAM-61" target="_blank" rel="noopener">SPECAM-61</a>. Remove revision_history from ADL2 specification.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a id="latest_issue"></a>2.2.0</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://specifications.openehr.org/tickets/SPECAM-63" target="_blank" rel="noopener">SPECAM-63</a>. Add <code>rm_visibility</code> top-level section to state hide/show and RM attribute aliasing.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">I McNicoll,<br>
+ S L Bakke,<br>
+ B Fabjan,<br>
+ T Beale</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a id="latest_issue_date"></a>12 Apr 2019</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">2.1.3</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://specifications.openehr.org/tickets/SPECAM-61" target="_blank" rel="noopener">SPECAM-61</a>. Remove <code><em>revision_history</em></code> from ADL2 specification.</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">D Bosca,<br>
  P Bos,<br>
  T Beale</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a id="latest_issue_date"></a>04 Apr 2019</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">04 Apr 2019</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"></td>
@@ -1071,6 +1081,9 @@
 <p>Tony Austin PhD, Centre for Health Informatics and Multi-professional Education (CHIME), UCL, UK</p>
 </li>
 <li>
+<p>Silje Ljosland Bakke, RN, Nasjonal IKT HF, Norway</p>
+</li>
+<li>
 <p>Pieter Bos, Software Engineer, Nedap, Netherlands</p>
 </li>
 <li>
@@ -1081,6 +1094,9 @@
 </li>
 <li>
 <p>Joey Coyle MD, PhD, Intermountain Healthcare, New York</p>
+</li>
+<li>
+<p>Borut Fabjan, senior architect, Marand d.o.o., Slovenia</p>
 </li>
 <li>
 <p>Adam Flinton, NHS Connecting for Health, UK</p>
@@ -1119,7 +1135,7 @@
 <p>Ian McNicoll MD, MSc, Ocean Informatics UK</p>
 </li>
 <li>
-<p>Claude Nanjo MA African Studies., M Public Health, Cognitive Medical Systems Inc., California</p>
+<p>Claude Nanjo MA African Studies, M Public Health, Cognitive Medical Systems Inc., California</p>
 </li>
 <li>
 <p>Andrew Patterson PhD, LLM, Federation Health Software, Australia</p>
@@ -5562,9 +5578,63 @@ some non-conforming ADL tools in the past created archetypes without a language 
 </div>
 </div>
 <div class="sect2">
-<h3 id="_annotations_section"><a class="anchor" href="#_annotations_section"></a>7.13. Annotations Section</h3>
+<h3 id="_rm_visbility_section"><a class="anchor" href="#_rm_visbility_section"></a>7.13. RM Visbility Section</h3>
 <div class="paragraph">
-<p>The <code>annotations</code> section of an archetype or template provides a place for node-level meta-data to be added. This can be used during the design phase to track dependencies, design decisions, and specific resource references.</p>
+<p>One of the basic characteristics of any underlying information model which may be archetyped is that its class attributes are already named, typically in English, if the model is internationally shared or standardised. Archetyping solves effective renaming and language-independence of object nodes, via the basic mechanism of id-codes, but attribute names are by default unchangeable and mono-lingual. Experience in archetype-based modelling has shown that such renaming is a common need, for the simple reason that the attribute name chosed in the original model is not the one desired by authors or users of a particular archetype. A simple example is the <a href="https://specifications.openehr.org/releases/RM/latest/ehr.html#\_composition_package" target="_blank" rel="noopener">openEHR class <code>COMPOSITION</code></a>, which has an attribute <code><em>composer</em></code>. For particular archetypes corresponding to specific sub-domains in healthcare, or specific geographies, a preferable name may be <code><em>author</em></code>; additionally, any such name (even the original) is needed in multiple languages.</p>
+</div>
+<div class="paragraph">
+<p>In ADL, re-labelling of RM attributes is called <em>aliasing</em>, and is achieved by mentioning an attribute path in the archetype and associating an alias with it, in the form of an 'ad-code' ('ad' denotes 'attribute identifier').</p>
+</div>
+<div class="paragraph">
+<p>A second need, related to the above, is that archetype modellers sometimes need to be know what elements are already in an information model, so they don&#8217;t try to remodel them again as redundant object nodes. In a simple implementation of an archetype authoring tool, attributes not so far archetyped will be all hidden, perhaps with a possibility of showing them all. However, commonly, finer-grained control is needed whereby particular attributes, possibly only on <em>particular object nodes</em> need to be made visible in order to indicate they need not be modelled.</p>
+</div>
+<div class="paragraph">
+<p>For this reason a 'show' marker can be added to an attribute path. Taking into account archetype and template specialisation, it should also be possible to add a 'hide' marker, in order to hide an attribute marked as 'show' in a specialisation parent.</p>
+</div>
+<div class="paragraph">
+<p>Since both of these needs relate to the visibility of RM attributes in an archetype, and are specfied in terms of RM attribute paths, a single dedicated top-level section called <code>rm_visibility</code> is used to specify them. The following example illustrates the use of this section to force visibility and aliasing of one attribute, and hiding of another attribute within an archetype.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="pygments highlight"><code data-lang="odin"><span class="tok-nc">rm_visibility</span>
+    <span class="tok-p">[</span><span class="tok-s">&quot;/path/to[id4]/archetype/node[id213]/path/to/rm/attribute&quot;</span><span class="tok-p">]</span> <span class="tok-o">=</span> <span class="tok-p">&lt;</span>
+        <span class="tok-nc">visibility</span> <span class="tok-o">=</span> <span class="tok-p">&lt;</span><span class="tok-s">&quot;show&quot;</span><span class="tok-p">&gt;</span>
+        <span class="tok-nc">alias</span> <span class="tok-o">=</span> <span class="tok-p">&lt;[</span><span class="tok-nd">local</span><span class="tok-p">::</span><span class="tok-nd">ad12</span><span class="tok-p">]&gt;</span>
+    <span class="tok-p">&gt;</span>
+    <span class="tok-p">[</span><span class="tok-s">&quot;/path/to[id5]/archetype/node[id64]/path/to/rm/attribute&quot;</span><span class="tok-p">]</span> <span class="tok-o">=</span> <span class="tok-p">&lt;</span>
+        <span class="tok-nc">visibility</span> <span class="tok-o">=</span> <span class="tok-p">&lt;</span><span class="tok-s">&quot;hide&quot;</span><span class="tok-p">&gt;</span>
+    <span class="tok-p">&gt;</span>
+
+<span class="tok-nc">terminology</span>
+    <span class="tok-nc">term_definitions</span> <span class="tok-o">=</span> <span class="tok-p">&lt;</span>
+        <span class="tok-p">[</span><span class="tok-s">&quot;en&quot;</span><span class="tok-p">]</span> <span class="tok-o">=</span> <span class="tok-p">&lt;</span>
+            <span class="tok-p">[</span><span class="tok-s">&quot;ad12&quot;</span><span class="tok-p">]</span> <span class="tok-o">=</span> <span class="tok-p">&lt;</span>
+                <span class="tok-nc">text</span> <span class="tok-o">=</span> <span class="tok-p">&lt;</span><span class="tok-s">&quot;name in English&quot;</span><span class="tok-p">&gt;</span>
+                <span class="tok-nc">description</span> <span class="tok-o">=</span> <span class="tok-p">&lt;</span><span class="tok-s">&quot;description in English&quot;</span><span class="tok-p">&gt;</span>
+            <span class="tok-p">&gt;</span>
+            <span class="tok-p">...</span>
+        <span class="tok-p">&gt;</span>
+        <span class="tok-p">[</span><span class="tok-s">&quot;de&quot;</span><span class="tok-p">]</span> <span class="tok-o">=</span> <span class="tok-p">&lt;</span>
+            <span class="tok-p">[</span><span class="tok-s">&quot;ad12&quot;</span><span class="tok-p">]</span> <span class="tok-o">=</span> <span class="tok-p">&lt;</span>
+                <span class="tok-nc">text</span> <span class="tok-o">=</span> <span class="tok-p">&lt;</span><span class="tok-s">&quot;name in German&quot;</span><span class="tok-p">&gt;</span>
+                <span class="tok-nc">description</span> <span class="tok-o">=</span> <span class="tok-p">&lt;</span><span class="tok-s">&quot;description in German&quot;</span><span class="tok-p">&gt;</span>
+            <span class="tok-p">&gt;</span>
+            <span class="tok-p">...</span>
+        <span class="tok-p">&gt;</span>
+    <span class="tok-p">&gt;</span></code></pre>
+</div>
+</div>
+<div class="paragraph tbd">
+<p>TBD: do we want to allow path-patterns and/or CLASS_NAME/attr_name (ClassName/attrName)?</p>
+</div>
+<div class="paragraph tbd">
+<p>TBD: is there a better code type than 'ad'? Shouldn&#8217;t be 'id', since id-codes can only appear in paths; these ones cannot.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_annotations_section"><a class="anchor" href="#_annotations_section"></a>7.14. Annotations Section</h3>
+<div class="paragraph">
+<p>The <code>annotations</code> section of an archetype or template provides a place for ad hoc node-level meta-data to be added. This can be used during the design phase to track dependencies, design decisions, and specific resource references.</p>
 </div>
 <div class="paragraph">
 <p>Annotations are divided into major named groups. Currently a <code>documentation</code> group is defined, intended for documentary (i.e. human-readable text) annotations. Other groups are likely to be defined in the future for various kinds of processing, where the annotations may be formal expressions or code fragments.</p>
@@ -9274,7 +9344,7 @@ Note that in the above, the '/' is used to denote '/protocol' as a differential 
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2018-12-13 19:35:41 GMT
+Last updated 2019-04-12 13:05:21 BST
 </div>
 </div>
 </body>

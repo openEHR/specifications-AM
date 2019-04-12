@@ -857,9 +857,57 @@ The following shows the structure of the terminology section used in ADL 1.4 arc
     >
 --------
 
+== RM Visbility Section
+
+One of the basic characteristics of any underlying information model which may be archetyped is that its class attributes are already named, typically in English, if the model is internationally shared or standardised. Archetyping solves effective renaming and language-independence of object nodes, via the basic mechanism of id-codes, but attribute names are by default unchangeable and mono-lingual. Experience in archetype-based modelling has shown that such renaming is a common need, for the simple reason that the attribute name chosed in the original model is not the one desired by authors or users of a particular archetype. A simple example is the {openehr_rm_ehr}#\_composition_package[openEHR class `COMPOSITION`^], which has an attribute `__composer__`. For particular archetypes corresponding to specific sub-domains in healthcare, or specific geographies, a preferable name may be `__author__`; additionally, any such name (even the original) is needed in multiple languages.
+
+In ADL, re-labelling of RM attributes is called _aliasing_, and is achieved by mentioning an attribute path in the archetype and associating an alias with it, in the form of an 'ad-code' ('ad' denotes 'attribute identifier').
+
+A second need, related to the above, is that archetype modellers sometimes need to be know what elements are already in an information model, so they don't try to remodel them again as redundant object nodes. In a simple implementation of an archetype authoring tool, attributes not so far archetyped will be all hidden, perhaps with a possibility of showing them all. However, commonly, finer-grained control is needed whereby particular attributes, possibly only on _particular object nodes_ need to be made visible in order to indicate they need not be modelled.
+
+For this reason a 'show' marker can be added to an attribute path. Taking into account archetype and template specialisation, it should also be possible to add a 'hide' marker, in order to hide an attribute marked as 'show' in a specialisation parent.
+
+Since both of these needs relate to the visibility of RM attributes in an archetype, and are specfied in terms of RM attribute paths, a single dedicated top-level section called `rm_visibility` is used to specify them. The following example illustrates the use of this section to force visibility and aliasing of one attribute, and hiding of another attribute within an archetype.
+
+[source, odin]
+--------
+rm_visibility
+    ["/path/to[id4]/archetype/node[id213]/path/to/rm/attribute"] = <
+        visibility = <"show">
+        alias = <[local::ad12]>
+    >
+    ["/path/to[id5]/archetype/node[id64]/path/to/rm/attribute"] = <
+        visibility = <"hide">
+    >
+ 
+terminology
+    term_definitions = <
+        ["en"] = <
+            ["ad12"] = <
+                text = <"name in English">
+                description = <"description in English">
+            >
+            ...
+        >
+        ["de"] = <
+            ["ad12"] = <        
+                text = <"name in German">
+                description = <"description in German">
+            >
+            ...    
+        >
+    >
+--------
+
+[.tbd]
+TBD: do we want to allow path-patterns and/or CLASS_NAME/attr_name (ClassName/attrName)?
+
+[.tbd]
+TBD: is there a better code type than 'ad'? Shouldn't be 'id', since id-codes can only appear in paths; these ones cannot.
+
 == Annotations Section
 
-The `annotations` section of an archetype or template provides a place for node-level meta-data to be added. This can be used during the design phase to track dependencies, design decisions, and specific resource references. 
+The `annotations` section of an archetype or template provides a place for ad hoc node-level meta-data to be added. This can be used during the design phase to track dependencies, design decisions, and specific resource references. 
 
 Annotations are divided into major named groups. Currently a `documentation` group is defined, intended for documentary (i.e. human-readable text) annotations. Other groups are likely to be defined in the future for various kinds of processing, where the annotations may be formal expressions or code fragments.
 
