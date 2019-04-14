@@ -569,6 +569,123 @@ rules
 
 This makes used of both the EL `check` statement and the `defined()` predicate (a type of expression).
 
+== RM Overlay Section
+
+Most content in an archetype consists of constraints expressed as an attribute/object structure based on a Reference Model. However, sometimes related meta-data need to be stated with respect to unconstrained RM attributes and paths. Such statements can be made in the `rm_overlay` section of an archetype, which is designed to be extensible. Specific categories of statement or constraint relating to RM attribute paths can be stated within dedicated sub-sections. 
+
+=== RM Visibility
+
+One of the basic characteristics of any underlying information model which may be archetyped is that its class attributes are already named, typically in English, if the model is internationally shared or standardised. Archetyping solves effective renaming and language-independence of object nodes, via the mechanism of id-codes, but attribute names are by default unchangeable and mono-lingual. Experience in archetype-based modelling has shown that such renaming is a common need, usually because the attribute name chosed in the original model is not the one desired by authors or users of a particular archetype. An example is the {openehr_rm_ehr}#\_composition_package[openEHR class `COMPOSITION`^], which has an attribute `__composer__`. For particular archetypes corresponding to specific sub-domains in healthcare, or specific geographies, a preferable name may be `__author__`; additionally, any such name (even the original) may be needed in multiple languages.
+
+In ADL, re-labelling of RM attributes is called _aliasing_, and is achieved by mentioning an attribute path in the archetype and associating an alias with it, in the form of an 'ad-code' ('ad' denotes 'attribute identifier').
+
+A second need, related to the above, is that archetype modellers sometimes need to be know what elements are already in an information model, so they don't try to remodel them again as redundant object nodes. In a simple implementation of an archetype authoring tool, attributes not so far archetyped will be all hidden, perhaps with a possibility of showing them all. However, commonly, finer-grained control is needed whereby particular attributes, possibly only on _particular object nodes_ need to be made visible in order to indicate they need not be modelled.
+
+For this reason a 'show' marker can be added to an attribute path. Taking into account archetype and template specialisation, it should also be possible to add a 'hide' marker, in order to hide an attribute marked as 'show' in a specialisation parent.
+
+Since both of these needs relate to the visibility of RM attributes in an archetype, and are specfied in terms of RM attribute paths, an `rm_overlay` sub-section called `rm_visibility` is used to specify them. The following example illustrates the use of this section to force visibility and aliasing of one attribute, and hiding of another attribute within an archetype.
+
+[source, odin]
+--------
+rm_overlay
+    rm_visibility = <
+        ["/path/to[id4]/archetype/node[id213]/path/to/rm/attribute"] = <
+            visibility = <"show">
+            alias = <[local::ad12]>
+        >
+        ["/path/to[id5]/archetype/node[id64]/path/to/rm/attribute"] = <
+            visibility = <"hide">
+        >
+    >
+
+terminology
+    term_definitions = <
+        ["en"] = <
+            ["ad12"] = <
+                text = <"name in English">
+                description = <"description in English">
+            >
+            ...
+        >
+        ["de"] = <
+            ["ad12"] = <        
+                text = <"name in German">
+                description = <"description in German">
+            >
+            ...    
+        >
+    >
+--------
+
+[.tbd]
+TBD: do we want to allow path-patterns and/or CLASS_NAME/attr_name (ClassName/attrName)?
+
+[.tbd]
+TBD: is there a better code type than 'ad'? Shouldn't be 'id', since id-codes can only appear in paths; these ones cannot.
+
+== Annotations Section
+
+The `annotations` section of an archetype or template provides a place for ad hoc node-level meta-data to be added. This can be used during the design phase to track dependencies, design decisions, and specific resource references. 
+
+Annotations are divided into major named groups. Currently a `documentation` group is defined, intended for documentary (i.e. human-readable text) annotations. Other groups are likely to be defined in the future for various kinds of processing, where the annotations may be formal expressions or code fragments.
+
+Each annotation is keyed by a path, and may have any number of tagged elements. The path key can either be:
+
+* the path of the archetype node being annotated, or 
+* a pure RM path
+
+The usual case is the first, since annotations are mainly relate to nodes in an archetype. However, it may be the case that within the context of the archetype, there is a need to refer to a part of the Reference Model type on which the archetype is based (`OBSERVATION`, `EVALUATION` etc) that _is not_ constrained within the archetype, in order to indicate how it is to be understood within that archetyped structure (remember that an archetype does not need to constrain all possible paths of an information model class, but that such structures may nevertheless be instantiated).
+
+A typical `annotations` section looks as follows (https://github.com/openEHR/adl-archetypes/blob/master/ADL2-reference/features/description/annotations/openEHR-EHR-EVALUATION.annotations_1st_child.v1.adls[archetype source]). The `/subject` path is a non-constrained 'RM path'.
+
+[source, adl]
+--------
+--
+-- Extract from test archetype openEHR-EHR-EVALUATION.annotations_1st_child.v1.0.0
+--
+definition
+    EVALUATION[id1.1] matches {    -- Exclusion statement - Adverse Reaction
+        /data[id2]/items matches {
+            ...
+            ELEMENT[id0.8] occurrences matches {0..1} matches {    -- No known allergic reaction to
+                value matches {
+                    DV_TEXT[id0.6] 
+                }
+            }
+            ...
+            ELEMENT[id0.10] occurrences matches {0..1} matches {    -- No known intolerance to
+                value matches {
+                    DV_TEXT[id0.8]     -- No known allergic reaction to
+                }
+            }
+        }
+    }
+
+terminology
+    ...
+    
+annotations 
+    documentation = <
+        ["en"] = <
+            ["/subject"] = <
+                ["design note"] = <"xxxxxx">
+            >
+            ["/data[id2]/items[id0.8]"] = <
+                ["design note"] = <"this is a design note on allergic reaction">
+                ["requirements note"] = <"this is a requirements note on allergic reaction">
+                ["medline ref"] = <"this is a medline ref on allergic reaction">
+            >
+            ["/data[id2]/items[id0.10]"] = <
+                ["design note"] = <"this is a design note on intelerance">
+                ["requirements note"] = <"this is a requirements note on intolerance">
+                ["national data dictionary"] = <"NDD ref for intolerance">
+            >
+        >
+    >
+--------
+
+Because annotations are defined as a separate section, they can be easily removed in production versions of an archetype or template, and ignored in the generation of digital signatures.
+
 == Terminology Section
 
 === Overview
@@ -856,114 +973,3 @@ The following shows the structure of the terminology section used in ADL 1.4 arc
         >
     >
 --------
-
-== RM Visbility Section
-
-One of the basic characteristics of any underlying information model which may be archetyped is that its class attributes are already named, typically in English, if the model is internationally shared or standardised. Archetyping solves effective renaming and language-independence of object nodes, via the basic mechanism of id-codes, but attribute names are by default unchangeable and mono-lingual. Experience in archetype-based modelling has shown that such renaming is a common need, for the simple reason that the attribute name chosed in the original model is not the one desired by authors or users of a particular archetype. A simple example is the {openehr_rm_ehr}#\_composition_package[openEHR class `COMPOSITION`^], which has an attribute `__composer__`. For particular archetypes corresponding to specific sub-domains in healthcare, or specific geographies, a preferable name may be `__author__`; additionally, any such name (even the original) is needed in multiple languages.
-
-In ADL, re-labelling of RM attributes is called _aliasing_, and is achieved by mentioning an attribute path in the archetype and associating an alias with it, in the form of an 'ad-code' ('ad' denotes 'attribute identifier').
-
-A second need, related to the above, is that archetype modellers sometimes need to be know what elements are already in an information model, so they don't try to remodel them again as redundant object nodes. In a simple implementation of an archetype authoring tool, attributes not so far archetyped will be all hidden, perhaps with a possibility of showing them all. However, commonly, finer-grained control is needed whereby particular attributes, possibly only on _particular object nodes_ need to be made visible in order to indicate they need not be modelled.
-
-For this reason a 'show' marker can be added to an attribute path. Taking into account archetype and template specialisation, it should also be possible to add a 'hide' marker, in order to hide an attribute marked as 'show' in a specialisation parent.
-
-Since both of these needs relate to the visibility of RM attributes in an archetype, and are specfied in terms of RM attribute paths, a single dedicated top-level section called `rm_visibility` is used to specify them. The following example illustrates the use of this section to force visibility and aliasing of one attribute, and hiding of another attribute within an archetype.
-
-[source, odin]
---------
-rm_visibility
-    ["/path/to[id4]/archetype/node[id213]/path/to/rm/attribute"] = <
-        visibility = <"show">
-        alias = <[local::ad12]>
-    >
-    ["/path/to[id5]/archetype/node[id64]/path/to/rm/attribute"] = <
-        visibility = <"hide">
-    >
- 
-terminology
-    term_definitions = <
-        ["en"] = <
-            ["ad12"] = <
-                text = <"name in English">
-                description = <"description in English">
-            >
-            ...
-        >
-        ["de"] = <
-            ["ad12"] = <        
-                text = <"name in German">
-                description = <"description in German">
-            >
-            ...    
-        >
-    >
---------
-
-[.tbd]
-TBD: do we want to allow path-patterns and/or CLASS_NAME/attr_name (ClassName/attrName)?
-
-[.tbd]
-TBD: is there a better code type than 'ad'? Shouldn't be 'id', since id-codes can only appear in paths; these ones cannot.
-
-== Annotations Section
-
-The `annotations` section of an archetype or template provides a place for ad hoc node-level meta-data to be added. This can be used during the design phase to track dependencies, design decisions, and specific resource references. 
-
-Annotations are divided into major named groups. Currently a `documentation` group is defined, intended for documentary (i.e. human-readable text) annotations. Other groups are likely to be defined in the future for various kinds of processing, where the annotations may be formal expressions or code fragments.
-
-Each annotation is keyed by a path, and may have any number of tagged elements. The path key can either be:
-
-* the path of the archetype node being annotated, or 
-* a pure RM path
-
-The usual case is the first, since annotations are mainly relate to nodes in an archetype. However, it may be the case that within the context of the archetype, there is a need to refer to a part of the Reference Model type on which the archetype is based (`OBSERVATION`, `EVALUATION` etc) that _is not_ constrained within the archetype, in order to indicate how it is to be understood within that archetyped structure (remember that an archetype does not need to constrain all possible paths of an information model class, but that such structures may nevertheless be instantiated).
-
-A typical `annotations` section looks as follows (https://github.com/openEHR/adl-archetypes/blob/master/ADL2-reference/features/description/annotations/openEHR-EHR-EVALUATION.annotations_1st_child.v1.adls[archetype source]). The `/subject` path is a non-constrained 'RM path'.
-
-[source, adl]
---------
---
--- Extract from test archetype openEHR-EHR-EVALUATION.annotations_1st_child.v1.0.0
---
-definition
-    EVALUATION[id1.1] matches {    -- Exclusion statement - Adverse Reaction
-        /data[id2]/items matches {
-            ...
-            ELEMENT[id0.8] occurrences matches {0..1} matches {    -- No known allergic reaction to
-                value matches {
-                    DV_TEXT[id0.6] 
-                }
-            }
-            ...
-            ELEMENT[id0.10] occurrences matches {0..1} matches {    -- No known intolerance to
-                value matches {
-                    DV_TEXT[id0.8]     -- No known allergic reaction to
-                }
-            }
-        }
-    }
-
-terminology
-    ...
-    
-annotations 
-    documentation = <
-        ["en"] = <
-            ["/subject"] = <
-                ["design note"] = <"xxxxxx">
-            >
-            ["/data[id2]/items[id0.8]"] = <
-                ["design note"] = <"this is a design note on allergic reaction">
-                ["requirements note"] = <"this is a requirements note on allergic reaction">
-                ["medline ref"] = <"this is a medline ref on allergic reaction">
-            >
-            ["/data[id2]/items[id0.10]"] = <
-                ["design note"] = <"this is a design note on intelerance">
-                ["requirements note"] = <"this is a requirements note on intolerance">
-                ["national data dictionary"] = <"NDD ref for intolerance">
-            >
-        >
-    >
---------
-
-Because annotations are defined as a separate section, they can be easily removed in production versions of an archetype or template, and ignored in the generation of digital signatures.
