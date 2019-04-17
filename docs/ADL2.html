@@ -530,7 +530,7 @@
  S L Bakke,<br>
  B Fabjan,<br>
  T Beale</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a id="latest_issue_date"></a>12 Apr 2019</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a id="latest_issue_date"></a>17 Apr 2019</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">2.1.3</p></td>
@@ -5241,16 +5241,16 @@ some non-conforming ADL tools in the past created archetypes without a language 
 <div class="sect3">
 <h4 id="_rm_visibility"><a class="anchor" href="#_rm_visibility"></a>7.12.1. RM Visibility</h4>
 <div class="paragraph">
-<p>One of the basic characteristics of any underlying information model which may be archetyped is that its class attributes are already named, typically in English, if the model is internationally shared or standardised. Archetyping solves effective renaming and language-independence of object nodes, via the mechanism of id-codes, but attribute names are by default unchangeable and mono-lingual. Experience in archetype-based modelling has shown that such renaming is a common need, usually because the attribute name chosed in the original model is not the one desired by authors or users of a particular archetype. An example is the <a href="https://specifications.openehr.org/releases/RM/latest/ehr.html#\_composition_package" target="_blank" rel="noopener">openEHR class <code>COMPOSITION</code></a>, which has an attribute <code><em>composer</em></code>. For particular archetypes corresponding to specific sub-domains in healthcare, or specific geographies, a preferable name may be <code><em>author</em></code>; additionally, any such name (even the original) may be needed in multiple languages.</p>
+<p>One of the basic characteristics of any underlying information model which may be archetyped is that its class attributes are already named, typically in English, if the model is internationally shared or standardised. Archetyping solves effective renaming and language-independence of object nodes, via the mechanism of id-codes, but attribute names are by default unchangeable and mono-lingual. Experience in archetype-based modelling has shown that renaming of RM attributes within the context of an archetype is a common need, usually because the attribute name chosen in the original model is not sufficiently specific for the users of a particular archetype. An example is the <a href="https://specifications.openehr.org/releases/RM/latest/ehr.html#\_composition_package" target="_blank" rel="noopener">openEHR class <code>COMPOSITION</code></a>, which has an attribute <code><em>composer</em></code>. For particular archetypes corresponding to specific sub-domains in healthcare, or specific geographies, a preferable name may be <code><em>author</em></code>; additionally, any such name (even the original) may be needed in multiple languages.</p>
 </div>
 <div class="paragraph">
-<p>In ADL, re-labelling of RM attributes is called <em>aliasing</em>, and is achieved by mentioning an attribute path in the archetype and associating an alias with it, in the form of an 'ad-code' ('ad' denotes 'attribute identifier').</p>
+<p>In ADL, re-labelling of RM attributes is called <em>aliasing</em>, and is achieved by mentioning an RM attribute path in the archetype and associating an alias with it, in the form of an 'ad-code' ('ad' denotes 'attribute identifier'). Aliasing may apply to any RM attribute path (constrained or unconstrained) in the archetype.</p>
 </div>
 <div class="paragraph">
-<p>A second need, related to the above, is that archetype modellers sometimes need to be know what elements are already in an information model, so they don&#8217;t try to remodel them again as redundant object nodes. In a simple implementation of an archetype authoring tool, attributes not so far archetyped will be all hidden, perhaps with a possibility of showing them all. However, commonly, finer-grained control is needed whereby particular attributes, possibly only on <em>particular object nodes</em> need to be made visible in order to indicate they need not be modelled.</p>
+<p>A second need, related to the above, is that archetype modellers sometimes need to be know what elements are already in an information model, so they don&#8217;t try to remodel them again as redundant object nodes. In a simple implementation of an archetype authoring tool, attributes not so far archetyped will be all hidden, perhaps with a possibility of showing them all. However, commonly, finer-grained control is needed whereby particular attributes, possibly only on <em>particular object nodes</em> need to be made visible in a modelling tool, in order to indicate they need not be modelled.</p>
 </div>
 <div class="paragraph">
-<p>For this reason a 'show' marker can be added to an attribute path. Taking into account archetype and template specialisation, it should also be possible to add a 'hide' marker, in order to hide an attribute marked as 'show' in a specialisation parent.</p>
+<p>For this reason a 'show' marker can be associated with the path of an non-constrained RM attribute, causing it to be made visible in a modelling tool. Taking into account archetype and template specialisation, it should also be possible to add a 'hide' marker, in order to hide an attribute marked as 'show' in a specialisation parent. It has also been found by experience that sometimes a constrained RM attribute from a parent archetype needs to be hidden in a specialisation child. Thus, the general case is that 'hide' and 'show' markers can be associated with any RM attribute path (constrained or unconstrained) in the archetype.</p>
 </div>
 <div class="paragraph">
 <p>Since both of these needs relate to the visibility of RM attributes in an archetype, and are specfied in terms of RM attribute paths, an <code>rm_overlay</code> sub-section called <code>rm_visibility</code> is used to specify them. The following example illustrates the use of this section to force visibility and aliasing of one attribute, and hiding of another attribute within an archetype.</p>
@@ -5286,12 +5286,6 @@ some non-conforming ADL tools in the past created archetypes without a language 
         <span class="tok-p">&gt;</span>
     <span class="tok-p">&gt;</span></code></pre>
 </div>
-</div>
-<div class="paragraph tbd">
-<p>TBD: do we want to allow path-patterns and/or CLASS_NAME/attr_name (ClassName/attrName)?</p>
-</div>
-<div class="paragraph tbd">
-<p>TBD: is there a better code type than 'ad'? Shouldn&#8217;t be 'id', since id-codes can only appear in paths; these ones cannot.</p>
 </div>
 </div>
 </div>

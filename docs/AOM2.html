@@ -5999,11 +5999,11 @@ other: <code>C_SECOND_ORDER[1]</code><br>
 <div class="paragraph">
 <p>Classes in the <code>archetype.rm_overlay</code> package are used to support definition of settings relating to unconstrained RM attributes of constrained object nodes (including the top-level object) within the archetype. The UML model is shown below.</p>
 </div>
-<div id="rm_overlay" class="imageblock text-center" style="text-align: center">
+<div id="rm_overlay_package" class="imageblock text-center" style="text-align: center">
 <div class="content">
-<img src="UML/diagrams/AM-aom2.archetype.rm_overlay.svg" alt="AM aom2.archetype.rm overlay">
+<img src="UML/diagrams/AM-aom2.rm_overlay.svg" alt="AM aom2.rm overlay">
 </div>
-<div class="title">Figure 23. RM overlay package</div>
+<div class="title">Figure 23. <code>rm_overlay</code> package</div>
 </div>
 </div>
 <div class="sect2">
@@ -6011,10 +6011,10 @@ other: <code>C_SECOND_ORDER[1]</code><br>
 <div class="sect3">
 <h4 id="_rm_attribute_visibility"><a class="anchor" href="#_rm_attribute_visibility"></a>6.2.1. RM Attribute Visibility</h4>
 <div class="paragraph">
-<p>Currently, the only RM overlay settings are for RM attribute visibility, which is visibility of non-archetyped RM attributes within the context of an archetype. This is described in more detail in the <a href="https://specifications.openehr.org/releases/AM/latest/ADL2.html#_rm_overlay_section" target="_blank" rel="noopener">ADL2 specification</a>.</p>
+<p>Currently, the only RM overlay settings are for RM attribute visibility, which relates to RM attributes within the context of an archetype. This is described in more detail in the <a href="https://specifications.openehr.org/releases/AM/latest/ADL2.html#_rm_overlay_section" target="_blank" rel="noopener">ADL2 specification</a>.</p>
 </div>
 <div class="paragraph">
-<p>The visibility settings consist of a list of per-RM attribute settings, in the form of instances of the class <code>RM_ATTRIBUTE_VISIBILITY</code>, each keyed by the RM path to the node(s) to which they apply. The path is formed of an object node path within the archetype follwed by a path to an RM attribute not already included in the archetype structure. The former part is one of:</p>
+<p>The visibility settings consist of a list of per-RM attribute settings, in the form of instances of the class <code>RM_ATTRIBUTE_VISIBILITY</code>, each keyed by the RM path to the node(s) to which they apply. The path is formed of an object node path within the archetype follwed by a path to an RM attribute, which may be on an already-constrained path, or may be a path not already included in the archetype structure. The former part is one of:</p>
 </div>
 <div class="ulist">
 <ul>
@@ -6030,15 +6030,31 @@ other: <code>C_SECOND_ORDER[1]</code><br>
 <p>The latter part is a path containing no object identifiers (id-codes), of one or mode RM attribute names from the Reference Model. The terminal attribute name will almost always be a single-valued attribute, since the visibility of container attributes will almost always be defined in terms of specifically constrained child objects, i.e. part of the archetyped structure.</p>
 </div>
 <div class="paragraph">
-<p>RM visibility can be specified in two ways. First, in terms of attribute visibility within modelling tools, using the values <code>show</code> and <code>hide</code>. A non-archetyped RM attribute is by default no visible within an archetype modelling tool visualisation, since it is not part of the archetyped structure. The only means of displaying such an attrbute is to display all non-archetyped RM attributes in some generic fashion. Setting the visibility on a particular RM attribute path to <code>show</code> indicates to the tool that this RM attribute should be displayed, along with the archetyped structure - preferably in a visually distinct way. This enables modellers to see specific model attributes that are built into the RM, and do not need to be modelled as archetype objects.</p>
+<p>Two types of RM visibility can be specified. First, in terms of attribute visibility within modelling tools, using the values <code>show</code> and <code>hide</code>. A non-archetyped RM attribute is by default not visible within an archetype modelling tool visualisation, since it is not part of the archetyped structure. Without visibility settings, the only means of displaying such an attrbute is to display all non-archetyped RM attributes in some generic fashion. Setting the visibility on a particular RM attribute path to <code>show</code> indicates to the tool that this RM attribute should be displayed, along with the archetyped structure - preferably in a visually distinct way. This enables modellers to see specific model attributes that are built into the RM, and do not need to be modelled as archetype objects.</p>
 </div>
 <div class="paragraph">
-<p>The <code>hide</code> setting is to allow a <code>show</code> setting for an attribute&#8217;s visibility in a specialisation parent to be reversed in the current archetype. The visibility setting for an RM attribute with respect to the specialisation lineage (aka inheritance hierarchy) is just the most recent setting.</p>
+<p>The <code>hide</code> setting is to allow two possibilities:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>to reverse the <code>show</code> setting for an attribute&#8217;s visibility in a specialisation parent in the current archetype; and</p>
+</li>
+<li>
+<p>to hide an already-archetyped RM attribute in a specialisation child archetype.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>The visibility setting for an RM attribute with respect to the specialisation lineage (aka inheritance hierarchy) is just the most recent setting, i.e. the setting from the deepest child.</p>
+</div>
+<div class="paragraph">
+<p>A second visibility setting is an optional <em>alias</em>, which is specified in the form of an ad-code (similar to an id-code) whose definition is found in the <code>terminology</code> section of the archetype, in the usual fashion. An alias can be associated with any RM path in the archetype, including non-archetyped RM attributes reachable from the root RM type of the archetype. Definition of an alias enables an RM attribute node to be multi-lingually renamed from its default RM name.</p>
 </div>
 <div class="sect4">
 <h5 id="_validity"><a class="anchor" href="#_validity"></a>6.2.1.1. Validity</h5>
 <div class="paragraph">
-<p>A second visibility setting is an optional <em>alias</em>, which is specified in the form of an ad-code (similar to an id-code) whose definition is found in the <code>terminology</code> section of the archetype, in the usual fashion. Definition of an alias enables an RM attribute node to be multi-lingually renamed from its default RM name. If the <code><em>alias</em></code> attribute is set, the <code><em>visibility</em></code> must also be set. Normally this should be set to <code>show</code>, ahtough the value is not currently mandated, in order to allow possible extension of visibility settings beyond just <code>show</code> and <code>hide</code>.</p>
+<p>If the <code><em>alias</em></code> attribute is set, the <code><em>visibility</em></code> must also be set. Normally this should be set to <code>show</code>, ahtough the value is not currently mandated, in order to allow possible extension of visibility settings beyond just <code>show</code> and <code>hide</code>.</p>
 </div>
 </div>
 </div>
@@ -6061,7 +6077,7 @@ other: <code>C_SECOND_ORDER[1]</code><br>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Description</strong></p></th>
 <td class="tableblock halign-left valign-top" colspan="2"><div><div class="paragraph">
-<p>Container object for archetype statements relating to unconstrained RM attributes, which may be directly on objects constrained within the archetype, or at deeper RM paths from an object or the root.</p>
+<p>Container object for archetype statements relating to RM attributes, which may be directly on objects constrained within the archetype, or at deeper RM paths from an object or the root.</p>
 </div></div></td>
 </tr>
 <tr>
@@ -6073,7 +6089,7 @@ other: <code>C_SECOND_ORDER[1]</code><br>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><strong>rm_visibility</strong>: <code>Hash&lt;String,RM_ATTRIBUTE_VISIBILITY&gt;</code></p></td>
 <td class="tableblock halign-left valign-top"><div><div class="paragraph">
-<p>Optional structure in which visibility and aliasing of non-archetyped reference model elements can be specified.</p>
+<p>Optional structure in which visibility and aliasing of reference model elements can be specified. Key is path to an RM attribute, which is typically formed from a path to an archetyped node concatenated with a further pure RM attribute path; may also refer to a non-archetyped attribute.</p>
 </div></div></td>
 </tr>
 </tbody>
@@ -6095,7 +6111,7 @@ other: <code>C_SECOND_ORDER[1]</code><br>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Description</strong></p></th>
 <td class="tableblock halign-left valign-top" colspan="2"><div><div class="paragraph">
-<p>Definition of visibility of a non-archetyped RM attribute within a larger archetype structure.</p>
+<p>Definition of visibility of an RM attribute within a larger archetype structure.</p>
 </div></div></td>
 </tr>
 <tr>
@@ -6107,14 +6123,7 @@ other: <code>C_SECOND_ORDER[1]</code><br>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><strong>visibility</strong>: <code>VISIBILITY_TYPE</code></p></td>
 <td class="tableblock halign-left valign-top"><div><div class="paragraph">
-<p>Visibility setting of this RM attribute.</p>
-</div></div></td>
-</tr>
-<tr>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>1..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>path</strong>: <code>String</code></p></td>
-<td class="tableblock halign-left valign-top"><div><div class="paragraph">
-<p>Path to non-archetyped RM attribute. Typically formed from a path to an archetyped node concatenated with a further pure RM attribute path.</p>
+<p>Visibility setting of a non-archetyped RM attribute (RM attributes that are constrained or within the archetyped structure are visible by default).</p>
 </div></div></td>
 </tr>
 <tr>
