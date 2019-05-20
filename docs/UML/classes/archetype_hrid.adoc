@@ -6,7 +6,7 @@ h|*Class*
 2+^h|*ARCHETYPE_HRID*
 
 h|*Description*
-2+a|Human_readable structured identifier (HRID) for an archetype or template.
+2+a|Human-readable structured identifier (HRID) for an archetype or template.
 
 h|*Attributes*
 ^h|*Signature*
@@ -22,7 +22,7 @@ a|Name of the Reference Model publisher.
 
 h|*1..1*
 |*rm_package*: `String`
-a|Name of the package in whose reachability graph the rm_class class is found (there can be more than one possibility in many reference models).
+a|Name of the package in whose reachability graph the `_rm_class_` class is found (there can be more than one possibility in many reference models).
 
 h|*1..1*
 |*rm_class*: `String`
@@ -30,15 +30,20 @@ a|Name of the root class of this archetype.
 
 h|*1..1*
 |*concept_id*: `String`
-a|The short concept name of the archetype as used in the multi-axial archetype_hrid.
+a|The short concept name of the archetype as used in the multi-axial `_archetype_hrid_`.
 
 h|*1..1*
 |*release_version*: `String`
-a|The full numeric version of this archetype consisting of 3 parts, e.g. `"1.8.2"`. The archetype_hrid feature includes only the major version.
+a|The full numeric version of this archetype consisting of 3 parts, e.g. `"1.8.2"`. The `_archetype_hrid_` feature includes only the major version.
 
 h|*1..1*
 |*version_status*: `VERSION_STATUS`
-a|The status of the version, i.e. released, release_candidate etc.
+a|The status of the version, i.e.:
+
+* released: (empty string)
+* release_candidate: `"rc"`
+* alpha: `"alpha"`
+* beta: `"beta"`
 
 h|*1..1*
 |*build_count*: `String`
@@ -49,27 +54,27 @@ h|*Functions*
 
 h|
 |*semantic_id* (): `String`
-a|The ‘interface’ form of the HRID, i.e. down to the major version.
+a|The 'interface' form of the HRID, i.e. down to the major version.
 
 h|
 |*physical_id* (): `String`
-a|The ‘physical’ form of the HRID, i.e. with complete version information.
+a|The 'physical' form of the HRID, i.e. with complete version information specified by `_version_id()_`.
 
 h|
 |*version_id* (): `String`
-a|Full version identifier string, based on release_version and lifecycle, e.g. `"1.8.2-rc.4"`.
+a|Full version identifier string, based on `_release_version_`, `_version_status_`, and `_build_count_` e.g. `"1.8.2-rc.4"`.
 
 h|
 |*major_version* (): `String`
-a|Major version of this archetype, extracted from release_version.
+a|Major version of this archetype, extracted from `_release_version_`.
 
 h|
 |*minor_version* (): `String`
-a|Minor version of this archetype, extracted from release_version.
+a|Minor version of this archetype, extracted from `_release_version_`.
 
 h|
 |*patch_version* (): `String`
-a|Patch version of this archetype, extracted from release_version. Equivalent to patch version in patch version in semver.org sytem.
+a|Patch version of this archetype, extracted from `_release_version_`. Equivalent to patch version in patch version in `semver.org` sytem.
 
 h|*Invariants*
 2+a|*_Inv_rm_publisher_validity_*: `not rm_publisher.is_empty`

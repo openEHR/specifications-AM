@@ -487,10 +487,18 @@
  S L Bakke,<br>
  B Fabjan,<br>
  T Beale</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a id="latest_issue_date"></a>12 Apr 2019</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a id="latest_issue_date"></a>21 May 2019</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">2.1.3</p></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p><a href="https://specifications.openehr.org/tickets/SPECPR-294" target="_blank" rel="noopener">SPECPR-294</a>. Fix minor typos and name errors in documentation of <code>ARCHETYPE_HRID</code>.</p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">B Verhees</p></td>
+<td class="tableblock halign-left valign-top"></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"><div><div class="paragraph">
 <p><a href="https://specifications.openehr.org/tickets/SPECAM-60" target="_blank" rel="noopener">SPECAM-60</a>. Improve documentation for constraints on lists and intervals.</p>
 </div></div></td>
@@ -2220,7 +2228,7 @@ lang: <code>String[1]</code><br>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Description</strong></p></th>
 <td class="tableblock halign-left valign-top" colspan="2"><div><div class="paragraph">
-<p>Human_readable structured identifier (HRID) for an archetype or template.</p>
+<p>Human-readable structured identifier (HRID) for an archetype or template.</p>
 </div></div></td>
 </tr>
 <tr>
@@ -2260,21 +2268,37 @@ lang: <code>String[1]</code><br>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>1..1</strong></p></th>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><strong>concept_id</strong>: <code>String</code></p></td>
 <td class="tableblock halign-left valign-top"><div><div class="paragraph">
-<p>The short concept name of the archetype as used in the multi-axial archetype_hrid.</p>
+<p>The short concept name of the archetype as used in the multi-axial <code><em>archetype_hrid</em></code>.</p>
 </div></div></td>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>1..1</strong></p></th>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><strong>release_version</strong>: <code>String</code></p></td>
 <td class="tableblock halign-left valign-top"><div><div class="paragraph">
-<p>The full numeric version of this archetype consisting of 3 parts, e.g. <code>"1.8.2"</code>. The archetype_hrid feature includes only the major version.</p>
+<p>The full numeric version of this archetype consisting of 3 parts, e.g. <code>"1.8.2"</code>. The <code><em>archetype_hrid</em></code> feature includes only the major version.</p>
 </div></div></td>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>1..1</strong></p></th>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><strong>version_status</strong>: <code>VERSION_STATUS</code></p></td>
 <td class="tableblock halign-left valign-top"><div><div class="paragraph">
-<p>The status of the version, i.e. released, release_candidate etc.</p>
+<p>The status of the version, i.e.:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>released: (empty string)</p>
+</li>
+<li>
+<p>release_candidate: <code>"rc"</code></p>
+</li>
+<li>
+<p>alpha: <code>"alpha"</code></p>
+</li>
+<li>
+<p>beta: <code>"beta"</code></p>
+</li>
+</ul>
 </div></div></td>
 </tr>
 <tr>
@@ -2293,42 +2317,42 @@ lang: <code>String[1]</code><br>
 <th class="tableblock halign-center valign-top"></th>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><strong>semantic_id</strong> (): <code>String</code></p></td>
 <td class="tableblock halign-left valign-top"><div><div class="paragraph">
-<p>The ‘interface’ form of the HRID, i.e. down to the major version.</p>
+<p>The 'interface' form of the HRID, i.e. down to the major version.</p>
 </div></div></td>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"></th>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><strong>physical_id</strong> (): <code>String</code></p></td>
 <td class="tableblock halign-left valign-top"><div><div class="paragraph">
-<p>The ‘physical’ form of the HRID, i.e. with complete version information.</p>
+<p>The 'physical' form of the HRID, i.e. with complete version information specified by <code><em>version_id()</em></code>.</p>
 </div></div></td>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"></th>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><strong>version_id</strong> (): <code>String</code></p></td>
 <td class="tableblock halign-left valign-top"><div><div class="paragraph">
-<p>Full version identifier string, based on release_version and lifecycle, e.g. <code>"1.8.2-rc.4"</code>.</p>
+<p>Full version identifier string, based on <code><em>release_version</em></code>, <code><em>version_status</em></code>, and <code><em>build_count</em></code> e.g. <code>"1.8.2-rc.4"</code>.</p>
 </div></div></td>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"></th>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><strong>major_version</strong> (): <code>String</code></p></td>
 <td class="tableblock halign-left valign-top"><div><div class="paragraph">
-<p>Major version of this archetype, extracted from release_version.</p>
+<p>Major version of this archetype, extracted from <code><em>release_version</em></code>.</p>
 </div></div></td>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"></th>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><strong>minor_version</strong> (): <code>String</code></p></td>
 <td class="tableblock halign-left valign-top"><div><div class="paragraph">
-<p>Minor version of this archetype, extracted from release_version.</p>
+<p>Minor version of this archetype, extracted from <code><em>release_version</em></code>.</p>
 </div></div></td>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"></th>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><strong>patch_version</strong> (): <code>String</code></p></td>
 <td class="tableblock halign-left valign-top"><div><div class="paragraph">
-<p>Patch version of this archetype, extracted from release_version. Equivalent to patch version in patch version in semver.org sytem.</p>
+<p>Patch version of this archetype, extracted from <code><em>release_version</em></code>. Equivalent to patch version in patch version in <code>semver.org</code> sytem.</p>
 </div></div></td>
 </tr>
 <tr>
