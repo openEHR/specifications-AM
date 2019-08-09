@@ -46,7 +46,9 @@ a|Level of specialisation of this archetype node, based on its node_id. The valu
 
 h|
 |*effective_occurrences* (): `Multiplicity_interval`
-a|
+a|Compute effective occurrences, where no local occurrences constraint set. If the owning `C_ATTRIBUTE._cardinality_` is set, use its upper value, else use RM multiplicity of the owning attribute.
+
+If local `occurrences` not set, always assume 0 as the lower bound.
 
 h|(effected)
 |*c_conforms_to* ( +

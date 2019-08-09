@@ -424,31 +424,28 @@ There are various circumstances where it is useful to know the effective occurre
 [source,eiffel]
 ---------
 effective_occurrences (agent rm_prop_mult (rm_type_name, rm_property_path: String): MULTIPLICITY_INTERVAL): MULTIPLICITY_INTERVAL
-        -- evaluate effective occurrences, using the RM when no occurrences constraint or parent node 
-        -- cardinality exists.
-        -- In this case, the upper limit of the RM's owning attribute is used to provide a value.
-        -- `rm_prop_mult' is a function object that knows how to compute effective object multiplicity
-        -- by looking at the owning RM property.
-    local
-        occ_lower: INTEGER
+		-- Compute effective occurrences, where no local occurrences constraint set. If the owning 
+		-- `C_ATTRIBUTE._cardinality_` is set, use its upper value, else use RM multiplicity of the 
+		-- owning attribute. 
+		-- `rm_attr_prop_mult` is a function that knows how to compute effective object multiplicity
+		-- by looking at the owning RM property.
+		-- If local `occurrences` not set, always assume 0 as the lower bound.
     do
         if occurrences /= Void then
             Result := occurrences
 
         elseif parent /= Void then
-            if parent.existence /= Void then
-                occ_lower := parent.existence.lower
-            end
             if parent.cardinality /= Void then
                 if parent.cardinality.interval.upper_unbounded then
-                    create Result.make_upper_unbounded (occ_lower)
+                    create Result.make_open
                 else
                     create Result.make_bounded (occ_lower, parent.cardinality.interval.upper)
                 end
             elseif parent.parent /= Void then
                 Result := rm_prop_mult (parent.parent.rm_type_name, parent.parent.rm_attribute_path)
+				Result.set_lower (0)
             else
-                create Result.make_upper_unbounded (occ_lower)
+                create Result.make_open
             end
         else
             create Result.make_open
