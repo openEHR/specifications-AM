@@ -2,14 +2,13 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge"><![endif]-->
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="generator" content="Asciidoctor 1.5.6.1">
+<meta name="generator" content="Asciidoctor 2.0.10">
 <meta name="description" content="openEHR ADL 2 specification">
 <meta name="keywords" content="EHR, ADL, AOM, health records, archetypes, constraint language, 13606">
 <title>Archetype Definition Language 2 (ADL2)</title>
 <link rel="stylesheet" href="https://specifications.openehr.org/styles/openehr.css">
-<link rel="stylesheet" href="https://specifications.openehr.org/styles/pygments-default.css">
 </head>
 <body class="book toc2 toc-left">
 <div id="header">
@@ -52,7 +51,7 @@
 </li>
 <li><a href="#_adl_1_4">1.8.4. ADL 1.4</a>
 <ul class="sectlevel4">
-<li><a href="#_iso_8601_date_time_conformance">1.8.4.1. ISO 8601 Date/Time Conformance</a></li>
+<li><a href="#_iso_8601_datetime_conformance">1.8.4.1. ISO 8601 Date/Time Conformance</a></li>
 <li><a href="#_non_inclusive_two_sided_intervals">1.8.4.2. Non-inclusive Two-sided Intervals</a></li>
 <li><a href="#_occurrences_for_use_node_references">1.8.4.3. Occurrences for 'use_node' References</a></li>
 <li><a href="#_quoting_rules">1.8.4.4. Quoting Rules</a></li>
@@ -201,7 +200,7 @@
 <li><a href="#_constraints_on_real">4.5.8. Constraints on Real</a></li>
 <li><a href="#_constraints_on_dates_times_and_durations">4.5.9. Constraints on Dates, Times and Durations</a>
 <ul class="sectlevel4">
-<li><a href="#_date_time_and_date_time">4.5.9.1. Date, Time and Date/Time</a></li>
+<li><a href="#_date_time_and_datetime">4.5.9.1. Date, Time and Date/Time</a></li>
 <li><a href="#_duration_constraints">4.5.9.2. Duration Constraints</a></li>
 </ul>
 </li>
@@ -435,7 +434,7 @@
 <div id="content">
 <div id="preamble">
 <div class="sectionbody">
-<div class="imageblock" style="text-align: center">
+<div class="imageblock text-center">
 <div class="content">
 <img src="https://specifications.openehr.org/images/openEHR_logo_RGB.svg" alt="openEHR logo">
 </div>
@@ -445,7 +444,7 @@
 <h1 id="_archetype_definition_language_2_adl2" class="sect0">Archetype Definition Language 2 (ADL2)</h1>
 <div class="openblock partintro">
 <div class="content">
-<table class="tableblock frame-all grid-all spread">
+<table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 50%;">
 <col style="width: 50%;">
@@ -469,12 +468,12 @@
 </tr>
 </tbody>
 </table>
-<div class="imageblock" style="text-align: center">
+<div class="imageblock text-center">
 <div class="content">
 <object type="image/svg+xml" data="openehr_block_diagram.svg" width="60%"><span class="alt">openEHR components</span></object>
 </div>
 </div>
-<table class="tableblock frame-all grid-all spread">
+<table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 80%;">
@@ -504,7 +503,7 @@
 <div class="sect1">
 <h2 id="_amendment_record">Amendment Record</h2>
 <div class="sectionbody">
-<table class="tableblock frame-all grid-all spread">
+<table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 9.0909%;">
 <col style="width: 54.5454%;">
@@ -1426,7 +1425,7 @@ Source projects can be found at the <a href="https://github.com/openEHR" target=
 <p>A number of small changes were made in this version, along with significant tightening up of the explanatory text and examples.</p>
 </div>
 <div class="sect4">
-<h5 id="_iso_8601_date_time_conformance"><a class="anchor" href="#_iso_8601_date_time_conformance"></a>1.8.4.1. ISO 8601 Date/Time Conformance</h5>
+<h5 id="_iso_8601_datetime_conformance"><a class="anchor" href="#_iso_8601_datetime_conformance"></a>1.8.4.1. ISO 8601 Date/Time Conformance</h5>
 <div class="paragraph">
 <p>All ISO 8601 date, time, date/time and duration values in dADL are now conformant (previously the usage of the 'T' separator was not correct). Constraint patterns in cADL for dates, times and date/times are also corrected, with a new constraint pattern for ISO 8601 durations being added. The latter allows a deviation from the standard to include the 'W' specifier, since durations with a mixture of weeks, days etc is often used in medicine.</p>
 </div>
@@ -1469,7 +1468,7 @@ Source projects can be found at the <a href="https://github.com/openEHR" target=
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="pygments highlight"><code>    attr_name = &lt;query("some_service", "some_query_string")&gt;</code></pre>
+<pre class="pygments highlight"><code>    attr_name = &lt;query(&quot;some_service&quot;, &quot;some_query_string&quot;)&gt;</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -1518,9 +1517,9 @@ Source projects can be found at the <a href="https://github.com/openEHR" target=
 		locations(1) = &lt;...&gt;
 		locations(2) = &lt;...&gt;
 		locations(3) = &lt;...&gt;
-		subjects("philosophy:plato") = &lt;...&gt;
-		subjects("philosophy:kant") = &lt;...&gt;
-		subjects("art") = &lt;...&gt;
+		subjects(&quot;philosophy:plato&quot;) = &lt;...&gt;
+		subjects(&quot;philosophy:kant&quot;) = &lt;...&gt;
+		subjects(&quot;art&quot;) = &lt;...&gt;
 	&gt;</code></pre>
 </div>
 </div>
@@ -1536,9 +1535,9 @@ Source projects can be found at the <a href="https://github.com/openEHR" target=
 			[3] = &lt;...&gt;
 		&gt;
 		subjects = &lt;
-			["philosophy:plato"] = &lt;...&gt;
-			["philosophy:kant"] = &lt;...&gt;
-			["art"] = &lt;...&gt;
+			[&quot;philosophy:plato&quot;] = &lt;...&gt;
+			[&quot;philosophy:kant&quot;] = &lt;...&gt;
+			[&quot;art&quot;] = &lt;...&gt;
 		&gt;
 	&gt;</code></pre>
 </div>
@@ -1558,9 +1557,9 @@ the structure, as shown in the following example:</p>
 			[3] = ARTS_PAVILLION &lt;...&gt;
 		&gt;
 		subjects = &lt;
-			["philosophy:plato"] = ELECTIVE_SUBJECT &lt;...&gt;
-			["philosophy:kant"] = ELECTIVE_SUBJECT &lt;...&gt;
-			["art"] = MANDATORY_SUBJECT &lt;...&gt;
+			[&quot;philosophy:plato&quot;] = ELECTIVE_SUBJECT &lt;...&gt;
+			[&quot;philosophy:kant&quot;] = ELECTIVE_SUBJECT &lt;...&gt;
+			[&quot;art&quot;] = MANDATORY_SUBJECT &lt;...&gt;
 		&gt;
 	&gt;</code></pre>
 </div>
@@ -1594,7 +1593,7 @@ the structure, as shown in the following example:</p>
 <div class="paragraph">
 <p>This main part of this document describes cADL and ADL path syntax, before going on to describe the combined ADL syntax, archetypes, specialisation, terminology integration and templates.</p>
 </div>
-<div id="archetype_structure" class="imageblock text-center" style="text-align: center">
+<div id="archetype_structure" class="imageblock text-center text-center">
 <div class="content">
 <img src="ADL2/diagrams/adl_text_overview.svg" alt="adl text overview" width="50%">
 </div>
@@ -1694,7 +1693,7 @@ the structure, as shown in the following example:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="pygments highlight"><code>unreserved = ALPHA / DIGIT / "-" / "." / "_" / "~"</code></pre>
+<pre class="pygments highlight"><code>unreserved = ALPHA / DIGIT / &quot;-&quot; / &quot;.&quot; / &quot;_&quot; / &quot;~&quot;</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -1850,7 +1849,7 @@ the structure, as shown in the following example:</p>
 <div class="paragraph">
 <p>Symbol equivalents for some of the above are given in the following table.</p>
 </div>
-<table class="tableblock frame-all grid-all spread">
+<table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 16.6666%;">
 <col style="width: 16.6666%;">
@@ -1954,7 +1953,7 @@ the structure, as shown in the following example:</p>
 <div class="paragraph">
 <p>Identifiers in cADL texts correspond to entities - types and attributes - in an information model. The latter is typically an object-oriented model, but may just as easily be an entity-relationship model or any other typed model of information. A UML model compatible with the example above is shown in <a href="#uml_model_of_person">Figure 2</a>. Note that there can be more than one model compatible with a given fragment of cADL syntax, and in particular, there are usually more properties and classes in the reference model than are mentioned in the cADL constraints. In other words, a cADL text includes constraints <em>only for those parts of a model that are useful or meaningful to constrain</em>.</p>
 </div>
-<div id="uml_model_of_person" class="imageblock text-center" style="text-align: center">
+<div id="uml_model_of_person" class="imageblock text-center text-center">
 <div class="content">
 <img src="UML/diagrams/AM-example-demographics.svg" alt="AM example demographics">
 </div>
@@ -2360,7 +2359,7 @@ direct matching of so-called CamelCase by Snake_case or SCREAMING_SNAKE_CASE and
 <div class="paragraph">
 <p>One of the consequences of subtype-based type matching is that semantics are needed for when more than one reference model subtype is declared under the same attribute node in cADL. Consider the reference model inheritance structure shown below, in which the abstract <code>PARTY</code> class has abstract and concrete descendants including <code>ACTOR</code>, <code>ROLE</code>, and so on.</p>
 </div>
-<div id="ADL-demographics-parties" class="imageblock text-center" style="text-align: center">
+<div id="ADL-demographics-parties" class="imageblock text-center text-center">
 <div class="content">
 <img src="UML/diagrams/AM-example-demographics-parties.svg" alt="AM example demographics parties">
 </div>
@@ -3269,7 +3268,7 @@ although block-style indenting is used to express group blocks, the <code>group<
 <div class="paragraph">
 <p>The use of group cardinality and occurrences constraints, coupled with the occurrences constraints on each group member provide a means of specifying a number of logical constraint types found in other formalisms, including XML, as follows.</p>
 </div>
-<table class="tableblock frame-all grid-all spread">
+<table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
 <col style="width: 33.3333%;">
@@ -3681,7 +3680,7 @@ although block-style indenting is used to express group blocks, the <code>group<
 <div class="paragraph">
 <p>The regular expression patterns supported in cADL are as follows.</p>
 </div>
-<table class="tableblock frame-all grid-all spread">
+<table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 14.2857%;">
 <col style="width: 42.8571%;">
@@ -3922,7 +3921,7 @@ although block-style indenting is used to express group blocks, the <code>group<
 <p>The first method allows temporal values to be constrained to actual date, time etc values, while the second allows values to be constrained on the basis of which parts of the date, time etc are present or missing, regardless of value. The pattern method is described first, since patterns can also be used in lists and intervals.</p>
 </div>
 <div class="sect4">
-<h5 id="_date_time_and_date_time"><a class="anchor" href="#_date_time_and_date_time"></a>4.5.9.1. Date, Time and Date/Time</h5>
+<h5 id="_date_time_and_datetime"><a class="anchor" href="#_date_time_and_datetime"></a>4.5.9.1. Date, Time and Date/Time</h5>
 <div class="sect5">
 <h6 id="_patterns"><a class="anchor" href="#_patterns"></a>Patterns</h6>
 <div class="paragraph">
@@ -3952,7 +3951,7 @@ date_time_pattern:      date_constraint time_in_date_pattern</pre>
 <div class="paragraph">
 <p>The following table shows the valid patterns that can be used, and the types implied by each pattern.</p>
 </div>
-<table class="tableblock frame-all grid-all spread">
+<table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 30%;">
@@ -5210,7 +5209,7 @@ some non-conforming ADL tools in the past created archetypes without a language 
 <div class="paragraph">
 <p>As for the previous example, the variables are mapped to the relevant archetype paths in the <code>data_bindings</code> section. These statements can be visualised in tools, e.g. as follows in the <a href="https://www.openehr.org/downloads/ADLworkbench">ADL Workbench</a>.</p>
 </div>
-<div id="assertions_bp_map_pp.png" class="imageblock text-center" style="text-align: center">
+<div id="assertions_bp_map_pp.png" class="imageblock text-center text-center">
 <div class="content">
 <img src="ADL2/images/assertions_bp_map_pp.png" alt="assertions bp map pp" width="70%">
 </div>
@@ -6234,7 +6233,7 @@ it is quite common that only <em>some</em> of the local at-codes have equivalent
 <div class="paragraph">
 <p>A specialised archetype definition at any level consists of a set of changes with respect to its flat parent. The technically available changes are categorised as follows.</p>
 </div>
-<table class="tableblock frame-all grid-all spread">
+<table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 40%;">
@@ -6578,7 +6577,7 @@ it is quite common that only <em>some</em> of the local at-codes have equivalent
 <div class="paragraph">
 <p>The flattened result consists of a number of repetitions of the entire <code>CLUSTER[id3]</code> structure from the parent, corresponding to the specialisations in the child. The ADL source form is too large to show here, but the <a href="https://www.openehr.org/downloads/ADLworkbench">ADL Workbench</a> provides a visualisation in <a href="#specialisation_with_cloning">Figure 5</a>. In this figure we can see that the <code>CLUSTER</code> / <code>ELEMENT</code> overlays from the child archetype have been overlaid on clones of the <code>CLUSTER[id3]</code> structure from the parent, preserving the <code>id4</code> , <code>id5</code> etc nodes. Elements shown in light blue are inherited; where they appear under the nodes <code>[id3.1]</code>, <code>[id3.2]</code> etc, they are cloned from the corresponding nodes under <code>[id3]</code>.</p>
 </div>
-<div id="specialisation_with_cloning" class="imageblock text-center" style="text-align: center">
+<div id="specialisation_with_cloning" class="imageblock text-center text-center">
 <div class="content">
 <img src="ADL2/images/specialisation_with_cloning.png" alt="specialisation with cloning" width="75%">
 </div>
@@ -7072,7 +7071,7 @@ Note that in the above, the '/' is used to denote '/protocol' as a differential 
 <div class="paragraph">
 <p>The type of an object may be redefined to one of its subtypes as defined by the reference model. A typical example of where this occurs in archetypes based on the openEHR reference model is when <code>ELEMENT.<em>value</em></code> is constrained to <code>*</code> in a parent archetype, meaning 'no further constraint on its RM type of <code>DATA_VALUE</code>, but is then constrained in a specialised archetype to subtypes of <code>DATA_VALUE</code>, e.g. <code>DV_QUANTITY</code> or <code>DV_PROPORTION</code> (see <a href="https://specifications.openehr.org/releases/RM/latest/data_types.html">openEHR Data Types</a>). The following figure containts a simplified extract of the data values part of the openEHR reference model, and is the basis for the examples below.</p>
 </div>
-<div id="rm_type_structure" class="imageblock text-center" style="text-align: center">
+<div id="rm_type_structure" class="imageblock text-center text-center">
 <div class="content">
 <img src="ADL2/diagrams/RM-data_types-overview.svg" alt="RM data types overview" width="50%">
 </div>
@@ -8840,7 +8839,7 @@ Note that in the above, the '/' is used to denote '/protocol' as a differential 
 <div class="sect2">
 <h3 id="_odin_value_types"><a class="anchor" href="#_odin_value_types"></a>B.6. ODIN value types</h3>
 <div class="paragraph">
-<p>The following grammar defines the syntax for the terminal types in ADL, which are derivde from ODIN.</p>
+<p>The following grammar defines the syntax for the terminal types in ADL, which are derived from ODIN.</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -9146,10 +9145,10 @@ Note that in the above, the '/' is used to denote '/protocol' as a differential 
 </div>
 <div class="sect3">
 <h4 id="_online_resources"><a class="anchor" href="#_online_resources"></a>Online Resources</h4>
-<div class="olist arabic">
-<ol class="arabic">
+<div class="olist bibliography">
+<ol class="bibliography">
 <li>
-<p>[<a id="cov_contra"></a>] Wikipedia. <strong>Covariance and contravariance.</strong> See <a href="https://en.wikipedia.org/wiki/Covariance_and_contravariance_(computer_science" class="bare">https://en.wikipedia.org/wiki/Covariance_and_contravariance_(computer_science</a>) .</p>
+<p><a id="cov_contra"></a>[cov_contra] Wikipedia. <strong>Covariance and contravariance.</strong> See <a href="https://en.wikipedia.org/wiki/Covariance_and_contravariance_(computer_science" class="bare">https://en.wikipedia.org/wiki/Covariance_and_contravariance_(computer_science</a>) .</p>
 </li>
 </ol>
 </div>
@@ -9350,8 +9349,9 @@ Note that in the above, the '/' is used to denote '/protocol' as a differential 
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2019-04-13 12:09:13 BST
+Last updated 2019-04-13 12:09:13 +0100
 </div>
 </div>
+<link rel="stylesheet" href="https://specifications.openehr.org/styles/pygments-default.css">
 </body>
 </html>
