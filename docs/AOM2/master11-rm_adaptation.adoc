@@ -26,7 +26,7 @@ include::{uml_export_dir}/classes/aom_property_mapping.adoc[]
 
 === Configuration File
 
-Instances of the above classes can be expressed in an ODIN format file, as a convenient way of defining configuration for tools. Examples of such files used for the {openehr_awb}[openEHR ADL Workbench] tool can be found in the {openehr_awb_profiles}[Github project for the tool]. 
+Instances of the above classes can be expressed in an ODIN format file, as a convenient way of defining configuration for tools. Examples of such files used for the {openehr_awb}[openEHR ADL Workbench^] tool can be found in the {openehr_awb_profiles}[Github project for the tool^]. 
 
 == Mapping RM Entities to AOM Entities
 
@@ -59,7 +59,7 @@ aom_rm_type_mappings = <
 >
 --------
 
-The following extract is from the {cimi_home}[CIMI] AOM profile file for the ADL Workbench. This defines a mapping from the CIMI RM class `CODED_TEXT` to the AOM class `TERMINOLOGY_CODE`.
+The following extract is from the {hl7_cimi}[HL7 CIMI^] AOM profile file for the ADL Workbench. This defines a mapping from the CIMI RM class `CODED_TEXT` to the AOM class `TERMINOLOGY_CODE`.
 
 [source, odin]
 --------
@@ -161,7 +161,7 @@ The effect of these mappings is that literal values in an archetype that parse a
 
 == AOM Lifecycle State Mappings
 
-Another kind of useful mapping adjustment that can help to make tools process archetypes in a more homogeneous way is to do with the AOM life-cycle states, which are standardised in the {openehr_am_id}[openEHR Archetype Identification specification]. These states denote the state of a whole archetype in its authoring life cycle. Historically however there were no standard names, with the consequence that various archetype tools implement their own local lifecycle state names. To adjust for this the `_aom_lifecycle_mappings_` property in the `AOM_PROFILE` class can be used. These mappings have the effect of replacing the current value of the `_lifecycle_state_` property of the `RESOURCE_DESCRIPTION` instance of a parsed archetype with an openEHR standard state name. A typical example of the `description` section of an archetype with a local lifecycle state name is below.
+Another kind of useful mapping adjustment that can help to make tools process archetypes in a more homogeneous way is to do with the AOM life-cycle states, which are standardised in the {openehr_am_id}[openEHR Archetype Identification specification^]. These states denote the state of a whole archetype in its authoring life cycle. Historically however there were no standard names, with the consequence that various archetype tools implement their own local lifecycle state names. To adjust for this the `_aom_lifecycle_mappings_` property in the `AOM_PROFILE` class can be used. These mappings have the effect of replacing the current value of the `_lifecycle_state_` property of the `RESOURCE_DESCRIPTION` instance of a parsed archetype with an openEHR standard state name. A typical example of the `description` section of an archetype with a local lifecycle state name is below.
 
 [source, odin]
 --------
@@ -227,7 +227,7 @@ archetype_visualise_descendants_of = <"CLASS_NAME">
 
 === archetype_parent_class
 
-The `archetype_parent_class` attribute defines a base class from the Reference Model that provides archetyping capability in RM data structures. It is optional, and there need be no such class in the RM. In the openEHR and 13606 RMs, this class exists, (`LOCATABLE`, and `RECORD_COMPONENT` respectively). Defining it here has the effect in tools that the class tree under which archetypes are arranged contains only RM classes inheriting from this class, e.g. `LOCATABLE` classes in the case of openEHR. If nothing is set here, all classes in the RM are assumed as candidates for archetypes.
+The `archetype_parent_class` attribute defines a base class from the Reference Model that provides archetyping capability in RM data structures. It is optional, and there need be no such class in the RM. In the openEHR and ISO 13606 Reference Models, this class exists, (`LOCATABLE`, and `RECORD_COMPONENT` respectively). Defining it here has the effect in tools that the class tree under which archetypes are arranged contains only RM classes inheriting from this class, e.g. `LOCATABLE` classes in the case of openEHR. If nothing is set here, all classes in the RM are assumed as candidates for archetypes.
 
 This attribute, if defined, must be defined in the same schema that defines the referenced class.
 

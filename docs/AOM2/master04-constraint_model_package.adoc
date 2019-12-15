@@ -158,7 +158,7 @@ The primitive constraint for each primitive type may itself be complex. Its form
                                                 OR +
                                                 `String` (ADL pattern)         |As for ordered types, with T being an sub-type type of `Temporal`, an 
                                                                                 ancestor of the assumed Date/time primitive types., with the addition of a 
-                                                                                second type constraint -                                                                                                                             {openehr_am_adl2}#_constraints_on_dates_times_and_durations[a pattern based on ISO8601 syntax^].
+                                                                                second type constraint -                                                                                                                             {openehr_am_adl2}#_constraints_on_dates_times_and_durations[a pattern based on ISO 8601 syntax^].
 
 |`Date`               |`C_DATE`                |`List <Interval<Date>>` +
                                                 OR +
@@ -254,7 +254,7 @@ Another type of second order constraint can be 'attached' to the object/attribut
 
 === Tuple Constraints
 
-Tuple constraints are designed to account for the very common need to constrain the values of more than one RM class attribute together. This effectively treats the attributes in question as a tuple, and the corresponding object constraints are accordingly modelled as tuples as well. A detailed explanation of tuples can be found in the ADL2 specification's {openehr_am_adl2}#_second_order_constraints[section on second order constraints]. Additions to the main constraint model to support tuples are shown below.
+Tuple constraints are designed to account for the very common need to constrain the values of more than one RM class attribute together. This effectively treats the attributes in question as a tuple, and the corresponding object constraints are accordingly modelled as tuples as well. A detailed explanation of tuples can be found in the ADL2 specification's {openehr_am_adl2}#_second_order_constraints[section on second order constraints^]. Additions to the main constraint model to support tuples are shown below.
 
 [.text-center]
 .Tuple Constraint Model
@@ -276,7 +276,7 @@ image::{diagrams_uri}/tuple_example_data.svg[id=tuple_constraint_example_data, a
 
 === Assertions
 
-Assertions are used in `ARCHETYPE_SLOTs`, in order to express the 'included' and 'excluded' archetypes for the slot. In this case, each assertion is an expression that refers to parts of other archetypes, such as its identifier (e.g. 'include archetypes with `_short_concept_name_` matching `xxxx` '). Assertions are modelled here as a generic expression tree of unary prefix and binary infix operators. Examples of archetype slots in ADL syntax are given in the openEHR {openehr_am_adl2}[ADL specification^].
+Assertions are used in `ARCHETYPE_SLOTs`, in order to express the 'included' and 'excluded' archetypes for the slot. In this case, each assertion is an expression that refers to parts of other archetypes, such as its identifier (e.g. 'include archetypes with `_short_concept_name_` matching `xxxx` '). Assertions are modelled here as a generic expression tree of unary prefix and binary infix operators. Examples of archetype slots in ADL syntax are given in the openEHR {openehr_am_adl2}[ADL2 specification^].
 
 == AOM Type Substitutions
 
@@ -562,7 +562,7 @@ The validity rules for all `C_OBJECTs` are as follows:
 *VCORMT* object constraint type validity: a type name introducing an object constraint block must be the same as or conform to the type stated in the underlying information model of its owning attribute.
 
 [.rule]
-*VCOCD* object constraint definition validity: an object constraint block consists of one of the following (depending on subtype): an 'any' constraint; a reference; an inline definition of sub-constraints, or nothing, in the case where occurrences is set to \{0}.
+*VCOCD* object constraint definition validity: an object constraint block consists of one of the following (depending on subtype): an 'any' constraint; a reference; an inline definition of sub-constraints, or nothing, in the case where occurrences is set to `{0}`.
 
 [.rule]
 *VCOID* object node identifier validity: every object node must have a node identifier.

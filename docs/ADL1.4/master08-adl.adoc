@@ -60,7 +60,7 @@ archetype (adl_version=1.4)
     openEHR-EHR-OBSERVATION.haematology.v1
 --------
 
-The multi-axial identifier identifies archetypes in a global space. The syntax of the identifier is described in <<Archetype Identification>> in {openehr_am_arch_sys}[The openEHR Archetype System].
+The multi-axial identifier identifies archetypes in a global space. The syntax of the identifier is described in <<Archetype Identification>> in {openehr_am_arch_sys}[The openEHR Archetype System^].
 
 === Controlled Indicator
 
@@ -86,7 +86,7 @@ specialise
     openEHR-EHR-OBSERVATION.haematology.v1
 --------
 
-Here the identifier of the new archetype is derived from that of the parent by adding a new section to its domain concept section. See the `ARCHETYPE_ID` definition in the identification package in the {openehr_rm_support}[openEHR Support IM specification].
+Here the identifier of the new archetype is derived from that of the parent by adding a new section to its domain concept section. See the `ARCHETYPE_ID` definition in the identification package in the {openehr_rm_support}[openEHR Support IM specification^].
 
 NOTE: both the US and British English versions of the word "specialise" are valid in ADL.
 
@@ -176,7 +176,7 @@ description
 
 --------
 
-A number of details are worth noting here. Firstly, the free hierarchical structuring capability of dADL is exploited for expressing the 'deep' structure of the `details` section and its subsections. Secondly, the dADL qualified list form is used to allow multiple translations of the `purpose` and `use` to be shown. Lastly, empty items such as `misuse` (structured if there is data) are shown with just one level of empty brackets. The above example shows meta-data based on the {openehr_am_aom14}[openEHR Archetype Object Model (AOM)].
+A number of details are worth noting here. Firstly, the free hierarchical structuring capability of dADL is exploited for expressing the 'deep' structure of the `details` section and its subsections. Secondly, the dADL qualified list form is used to allow multiple translations of the `purpose` and `use` to be shown. Lastly, empty items such as `misuse` (structured if there is data) are shown with just one level of empty brackets. The above example shows meta-data based on the {openehr_am_aom14}[openEHR Archetype Object Model (AOM)^].
 
 The `description` section is technically optional according to the AOM, but in any realistic use of ADL for archetypes, it will be required. A minimal description section satisfying to the AOM is as follows:
 
@@ -425,7 +425,7 @@ items = <
 >
 ----
 
-Note that while it often seems tempting to use classification codes, e.g. from the {who_icd}[ICD vocabularies], these will rarely be much use in terminology or constraint definitions, because it is nearly always _descriptive_, not classificatory terms which are needed.
+Note that while it often seems tempting to use classification codes, e.g. from the {who_icd}[ICD vocabularies^], these will rarely be much use in terminology or constraint definitions, because it is nearly always _descriptive_, not classificatory terms which are needed.
 
 === Term_bindings Section
 
@@ -460,7 +460,7 @@ Each entry indicates which term in an external terminology is equivalent to the 
 
 ==== Path-based Bindings
 
-The second kind of binding is one between an archetype path and an external code. This occurs commonly for archetypes where a term us re-used at the leaf level. For example, in the binding example below, the at0004 code represents 'temperature' and the codes `at0003`, `at0005`, `at0006` etc correspond to various times such as 'any', 1-hour average, 1-hour maximum and so on. Some terminologies (notably {loinc}[LOINC], the laboratory terminology in this example) define 'pre-coordinated' codes, such as '1 hour body temperature'; these clearly correspond not to single codes such as at0004 in the archetype, but to whole paths. In such cases, the key in each term binding row is a full path rather than a single term.
+The second kind of binding is one between an archetype path and an external code. This occurs commonly for archetypes where a term us re-used at the leaf level. For example, in the binding example below, the at0004 code represents 'temperature' and the codes `at0003`, `at0005`, `at0006` etc correspond to various times such as 'any', 1-hour average, 1-hour maximum and so on. Some terminologies (notably {loinc}[LOINC^], the laboratory terminology in this example) define 'pre-coordinated' codes, such as '1 hour body temperature'; these clearly correspond not to single codes such as at0004 in the archetype, but to whole paths. In such cases, the key in each term binding row is a full path rather than a single term.
 
 [source, odin]
 ----
@@ -579,7 +579,7 @@ The following constraints apply to the definition section of the archetype.
 
 The following syntax and lexical specification are used to process an entire ADL file. Their main job is reading the header items, and then cutting it up into dADL, cADL and assertion sections.
 
-The ADL grammar is implemented and tested using lex (.l file) and yacc (.y file) specifications for in the Eiffel programming environment. The 1.4 release of these files is available in the https://github.com/openEHR/adl-tools/tree/Release-1.4/components/adl_parser/src/syntax/adl/parser[ADL grammar files]. The .l and .y files can be converted for use in another yacc/lex-based programming environment.
+The ADL grammar is implemented and tested using lex (.l file) and yacc (.y file) specifications for in the Eiffel programming environment. The 1.4 release of these files is available in the https://github.com/openEHR/adl-tools/tree/Release-1.4/components/adl_parser/src/syntax/adl/parser[ADL grammar files^]. The .l and .y files can be converted for use in another yacc/lex-based programming environment.
 
 === Grammar
 

@@ -10,7 +10,7 @@ The basic test that must be satisfied by a specialised archetype is as follows:
 
 This condition ensures that data created by a specialised archetype that is not itself shared by two systems can be processed by the use of a more general parent that is shared.
 
-The semantics that allow this are similar to the 'covariant redefinition' <<cov_contra>> notion used in some object-oriented programming languages, and can be summarised as follows.
+The semantics that allow this are similar to the {wikipedia_cov_contra}[covariant redefinition^] notion used in some object-oriented programming languages, and can be summarised as follows.
 
 * A non-specialised (i.e. top-level) archetype defines an instance space that is a subset of the space defined by the class in the reference information model on which the archetype is based.
 * A specialised archetype can specialise only one parent archetype, i.e. single inheritance.
@@ -226,7 +226,7 @@ The second text below is from the 'problem-diagnosis' archetype, i.e. a 'diagnos
 [[redefinition_for_specialisation]]
 === Redefinition for Specialisation
 
-The example shown below illustrates redefinition in a specialised archetype. The first text is taken from the definition section of the 'laboratory result' `OBSERVATION` archetype (available at {openehr_CKM}[openEHR CKM]), and contains an `ELEMENT` node whose identifier is `[id79]` , defined as 'panel item' in the archetype terminology (sibling nodes are not shown here). The intention is that the `id79` node be specialised into particular 'panel items' or analytes according to particular types of test result. Accordingly, the `id79` node has occurrences of `0..*` and its value is not constrained with respect to the reference model, meaning that the type of the `_value_` attribute can be any descendant of `DATA_VALUE` .
+The example shown below illustrates redefinition in a specialised archetype. The first text is taken from the definition section of the 'laboratory result' `OBSERVATION` archetype (available at {openehr_CKM}[openEHR CKM^]), and contains an `ELEMENT` node whose identifier is `[id79]` , defined as 'panel item' in the archetype terminology (sibling nodes are not shown here). The intention is that the `id79` node be specialised into particular 'panel items' or analytes according to particular types of test result. Accordingly, the `id79` node has occurrences of `0..*` and its value is not constrained with respect to the reference model, meaning that the type of the `_value_` attribute can be any descendant of `DATA_VALUE` .
 
 [source, cadl]
 --------
@@ -391,7 +391,7 @@ Specialised child archetype:
     }
 --------
 
-The flattened result consists of a number of repetitions of the entire `CLUSTER[id3]` structure from the parent, corresponding to the specialisations in the child. The ADL source form is too large to show here, but the {openehr_awb}[ADL Workbench] provides a visualisation in <<specialisation_with_cloning>>. In this figure we can see that the `CLUSTER` / `ELEMENT` overlays from the child archetype have been overlaid on clones of the `CLUSTER[id3]` structure from the parent, preserving the `id4` , `id5` etc nodes. Elements shown in light blue are inherited; where they appear under the nodes `[id3.1]`, `[id3.2]` etc, they are cloned from the corresponding nodes under `[id3]`.
+The flattened result consists of a number of repetitions of the entire `CLUSTER[id3]` structure from the parent, corresponding to the specialisations in the child. The ADL source form is too large to show here, but the {openehr_awb}[ADL Workbench^] provides a visualisation in <<specialisation_with_cloning>>. In this figure we can see that the `CLUSTER` / `ELEMENT` overlays from the child archetype have been overlaid on clones of the `CLUSTER[id3]` structure from the parent, preserving the `id4` , `id5` etc nodes. Elements shown in light blue are inherited; where they appear under the nodes `[id3.1]`, `[id3.2]` etc, they are cloned from the corresponding nodes under `[id3]`.
 
 [.text-center]
 .Specialisation with Cloning
@@ -449,7 +449,7 @@ The following sub-sections describe specialisation semantics specific to contain
 The _cardinality_ constraint defines how many object instances can be in the container within the data (not the archetype). In a specialised archetype, cardinality can be redefined to be a narrower range than in the parent, further limiting the valid ranges of items in the data that may occur within the container. This would normally only make sense if refinements were made to the occurrences of the contained items, i.e.:
 
 * narrowing the occurrences range of an object;
-* excluding an object by setting its occurrences to {0};
+* excluding an object by setting its occurrences to `{0}`;
 * adding new objects, which themselves will have occurrences constraints;
 * setting some object occurrences to mandatory, and the enclosing cardinality lower limit to some non-zero value.
 
@@ -749,7 +749,7 @@ Without the above specification, a deeper child archetype could then redefine bo
 
 === Reference Model Type Refinement
 
-The type of an object may be redefined to one of its subtypes as defined by the reference model. A typical example of where this occurs in archetypes based on the openEHR reference model is when `ELEMENT._value_` is constrained to `*` in a parent archetype, meaning 'no further constraint on its RM type of `DATA_VALUE`, but is then constrained in a specialised archetype to subtypes of `DATA_VALUE`, e.g. `DV_QUANTITY` or `DV_PROPORTION` (see {openehr_rm_data_types}[openEHR Data Types]). The following figure containts a simplified extract of the data values part of the openEHR reference model, and is the basis for the examples below.
+The type of an object may be redefined to one of its subtypes as defined by the reference model. A typical example of where this occurs in archetypes based on the openEHR reference model is when `ELEMENT._value_` is constrained to `*` in a parent archetype, meaning 'no further constraint on its RM type of `DATA_VALUE`, but is then constrained in a specialised archetype to subtypes of `DATA_VALUE`, e.g. `DV_QUANTITY` or `DV_PROPORTION` (see {openehr_rm_data_types}[openEHR Data Types^]). The following figure containts a simplified extract of the data values part of the openEHR reference model, and is the basis for the examples below.
 
 [.text-center]
 .Example Reference Model type structure
@@ -1266,7 +1266,7 @@ However, if the specialised archetype language is not present at all in the pare
 
 The languages present in the flat output will therefore be those languages available in both the flat parent (implying all previous archetypes / templates in the specialisation lineage) and the new specialisation. Any new languages introduced in the latter not available in the flat parent will be discarded.
 
-Locale-specific overrides can be introduced for any linguistic element in an archetype, including the terminology. Such an override has a language code conforming to a subset of the {rfc5646}[IETF RFC 5646 language tag standard], namely the common 2-part language-region tag exemplified by 'en-GB' (British English), 'pt-BR' (Brazilian Portuguese), and so on. The tags are case-insensitive, but tools that create tags should follow the recommendation from the standard, which is that:
+Locale-specific overrides can be introduced for any linguistic element in an archetype, including the terminology. Such an override has a language code conforming to a subset of the {rfc5646}[IETF RFC 5646 language tag standard^], namely the common 2-part language-region tag exemplified by 'en-GB' (British English), 'pt-BR' (Brazilian Portuguese), and so on. The tags are case-insensitive, but tools that create tags should follow the recommendation from the standard, which is that:
 
 * language tag is lowercase;
 * region tags are uppercase.

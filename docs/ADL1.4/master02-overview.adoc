@@ -2,9 +2,9 @@
 
 == What is ADL?
 
-Archetype Definition Language (ADL) is a formal language for expressing archetypes, which are constraint-based models of domain entities, or what some might call 'structured business rules'. The archetype concept is described by Beale <<Beale_2000>>, <<Beale_2002>>. The {openehr_am_adl14}[openEHR Archetype Object Model 1.4] describes the definitive semantic model of archetypes, in the form of an object model. The ADL syntax is one possible serialisation of an archetype.
+Archetype Definition Language (ADL) is a formal language for expressing archetypes, which are constraint-based models of domain entities, or what some might call 'structured business rules'. The archetype concept is described by citenp:[Beale2000], citenp:[Beale2002]. The {openehr_am_adl14}[openEHR Archetype Object Model 1.4^] describes the definitive semantic model of archetypes, in the form of an object model. The ADL syntax is one possible serialisation of an archetype.
 
-The openEHR archetype framework is described in terms of {openehr_am_def_pri}[Archetype Definitions and Principles] and an {openehr_am_arch_sys}[Archetype System]. Other semantic formalisms considered in the course of the development of ADL, and some which remain relevant are described in detailed in <<Relationship of ADL to Other Formalisms>>.
+The openEHR archetype framework is described in terms of {openehr_am_def_pri}[Archetype Definitions and Principles^] and an {openehr_am_arch_sys}[Archetype System^]. Other semantic formalisms considered in the course of the development of ADL, and some which remain relevant are described in detailed in <<Relationship of ADL to Other Formalisms>>.
 
 ADL uses three other syntaxes, cADL (constraint form of ADL), dADL (data definition form of ADL), and a version of first-order predicate logic (FOPL), to describe constraints on data which are instances of some information model (e.g. expressed in UML). It is most useful when very generic information models are used for describing the data in a system, for example, where the logical concepts `PATIENT`, `DOCTOR` and `HOSPITAL` might all be represented using a small number of classes such as `PARTY` and `ADDRESS`. In such cases, archetypes are used to constrain the valid structures of instances of these generic classes to represent the desired domain concepts. In this way future-proof information systems can be built - relatively simple information models and database schemas can be defined, and archetypes supply the semantic modelling, completely outside the software. ADL can thus be used to write archetypes for any domain where formal object model(s) exist which describe data instances.
 
@@ -85,7 +85,7 @@ ontology
 
 === Semantics
 
-As a parsable syntax, ADL has a formal relationship with structural models such as those expressed in UML, according to the scheme of the following figure. Here we can see that ADL documents are parsed into a network of objects (often known as a ‘parse tree’) which are themselves defined by a formal, abstract object model (see The {openehr_am_adl14}[openEHR Archetype Object Model 1.4]. Such a model can in turn be reexpressed as any number of concrete models, such as in a programming language, XML-schema or OMG IDL.
+As a parsable syntax, ADL has a formal relationship with structural models such as those expressed in UML, according to the scheme of the following figure. Here we can see that ADL documents are parsed into a network of objects (often known as a ‘parse tree’) which are themselves defined by a formal, abstract object model (see The {openehr_am_adl14}[openEHR Archetype Object Model 1.4^]. Such a model can in turn be reexpressed as any number of concrete models, such as in a programming language, XML-schema or OMG IDL.
 
 While ADL syntax remains the primary abstract formalism for expressing archetypes, the AOM defines the semantics of an archetype, in particular relationships which must hold true between the parts of an archetype for it to be valid as a whole.
 
@@ -103,7 +103,7 @@ A third artifact governing the functioning of archetypes and templates at runtim
 
 == XML form of Archetypes
 
-With ADL parsing tools it is possible to convert ADL to any number of forms, including various XML formats. XML instance can be generated from the object form of an archetype in memory. An XML-schema corresponding to the ADL Object Model is http://www.openehr.org/releases/trunk/its/XML-schema[published at openEHR.org].
+With ADL parsing tools it is possible to convert ADL to any number of forms, including various XML formats. XML instance can be generated from the object form of an archetype in memory. An XML-schema corresponding to the ADL Object Model is http://www.openehr.org/releases/trunk/its/XML-schema[published at openEHR.org^].
 
 [.text-center]
 .Archetypes, Templates and Palette
@@ -117,9 +117,11 @@ For existing users of ADL or archetype development tools, the following provides
 A number of small changes were made in this version, along with significant tightening up of the explanatory text and examples.
 
 ==== ISO 8601 Date/Time Conformance
-All ISO 8601 date, time, date/time and duration values in dADL are now conformant (previously the usage of the 'T' separator was not correct). Constraint patterns in cADL for dates, times and date/times are also corrected, with a new constraint pattern for ISO 8601 durations being added. The latter allows a deviation from the standard to include the 'W' specifier, since durations with a mixture of weeks, days etc is often used in medicine.
+
+All {iso_8601}[ISO 8601] date, time, date/time and duration values in dADL are now conformant (previously the usage of the 'T' separator was not correct). Constraint patterns in cADL for dates, times and date/times are also corrected, with a new constraint pattern for ISO 8601 durations being added. The latter allows a deviation from the standard to include the 'W' specifier, since durations with a mixture of weeks, days etc is often used in medicine.
 
 ==== Non-inclusive Two-sided Intervals
+
 It is now possible to define an interval of any ordered amount (integer, real, date, time, date/time, duration) where one or both of the limits is not included, for example:
 
 ```
@@ -129,15 +131,19 @@ It is now possible to define an interval of any ordered amount (integer, real, d
 ```
 
 ==== Occurrences for 'use_node' References
+
 Occurrences can now be stated for `use_node` references, overriding the occurrences of the target node.  If no occurrences is stated, the target node occurrences value is used.
 
 ==== Quoting Rules
+
 The old quoting rules based on XML/ISO mnemonic patterns (`&ohmgr;` etc) are replaced by specifying ADL to be UTF-8 based, and any exceptions to this requiring ASCII encoding should use the `\Uhhhh` style of quoting unicode used in various programming languages.
 
 === Version 1.3 from Version 1.2
+
 The specific changes made in version 1.3 of ADL are as follows.
 
 ==== Query syntax replaced by URI data type
+
 In version 1.2 of ADL, it was possible to include an external query, using syntax of the form:
 
 ```
@@ -223,7 +229,9 @@ the structure, as shown in the following example:
 These changes will affect the parsing of container structures and keys in the description and terminology parts of the archetype.
 
 ==== Revision History Section
+
 Revision history is now recorded in a separate section of the archetype, both to logically separate it from the archetype descriptive details, and to facilitate automatic processing by version control systems in which archtypes may be stored. This section is included at the end of the archetype because it is in general a monotonically growing section.
 
 ==== Primary_language and Languages_available Sections
+
 An attribute previously called `_primary_language_` was required in the `ontology` section of an ADL 1.1 archetype. This is renamed to `_original_language_` and is now moved to a new top level section in the archetype called `language`. Its value is still expressed as a dADL String attribute. The `_languages_available_` attribute previously required in the `ontology` section of the archetype is renamed to `_translations_`, no longer includes the original languages, and is also moved to this new top level section.

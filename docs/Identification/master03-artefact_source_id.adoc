@@ -2,7 +2,7 @@
 
 == Overview
 
-The basis for identifying source (i.e. authored) artefacts is to define a number of separate logically identifying properties, as well as a machine identifier. One or more human-readable identifier(s) can be generated from the non-uid identifying properties. For archetypes and templates, the relevant properties are described in the link:/releases/AM/latest/AOM2.html#_the_archetype_package[AOM Archetype package], including the `ARCHETYPE_HRID` class. Related properties are inherited from the `AUTHORED_RESOURCE` class into `ARCHETYPE` are shown, including the `lifecycle_state` property, as well as all other descriptive meta-data.
+The basis for identifying source (i.e. authored) artefacts is to define a number of separate logically identifying properties, as well as a machine identifier. One or more human-readable identifier(s) can be generated from the non-uid identifying properties. For archetypes and templates, the relevant properties are described in the {openehr_am_latest_aom2}#_the_archetype_package[AOM Archetype package^], including the `ARCHETYPE_HRID` class. Related properties are inherited from the `AUTHORED_RESOURCE` class into `ARCHETYPE` are shown, including the `lifecycle_state` property, as well as all other descriptive meta-data.
 
 [.text-center]
 .am.aom2.archetype Package
@@ -54,7 +54,7 @@ Examples:
 
 The archetype human-readable identifier consists of two logical parts: an identifier of the reference model (i.e. logical information model) class on which it is based, and an ontological identifier.
 
-The identifier is defined by the following grammar rules, which are a slightly simplified version of the grammar for the openEHR / ISO 13606 `ARCHETYPE_ID` type:
+The identifier is defined by the following grammar rules, which are a slightly simplified version of the grammar for the {openehr_base_types}#_identification_package[openEHR `ARCHETYPE_ID` type^]:
 
 [source, ebnf]
 --------
@@ -111,13 +111,13 @@ It is not the business of this specification to define the ontology, but we can 
 .Information Artefact Ontology
 image::{diagrams_uri}/information_artefact_ontology.png[id=info_artefact_ontology, align="center", width=70%]
 
-This (putative) ontology consists of high-level health information recording entities (black), a set of record entry types derived from the Clinical Investigator Record ontology (<<Beale_Heard_2007>>), and domain-specific entities in blue. It is assumed that the top node(s) of the ontology could be related to nodes in a published ontology such as the {iao}[Information Artefact Ontology (IAO)], but this is not a pre-requisite for establishing this ontology. More ideally, its categories would be related to categories in the {bfo}[Basic Formal Ontology (BFO)].
+This (putative) ontology consists of high-level health information recording entities (black), a set of record entry types derived from the Clinical Investigator Record ontology cite:[Beale_Heard2007], and domain-specific entities in blue. It is assumed that the top node(s) of the ontology could be related to nodes in a published ontology such as the {iao}[Information Artefact Ontology (IAO)^], but this is not a pre-requisite for establishing this ontology. More ideally, its categories would be related to categories in the {bfo}[Basic Formal Ontology (BFO)^].
 
 The blue node `measurement_of_systemic_arterial_blood_pressure` (bottom left) describes an entity corresponding to a 'record of systemic arterial blood pressure measurement'. Long names such as this are standard in the ontology community, and are designed to ensure that the name of a category is sufficient to unamiguously define its meaning. Such names are typically too long and unwieldy for the purposes of managable lexical identifiers such as for archetypes.
 
-We therefore assume that a system of 'short identifiers' is possible within the ontology, where a 'short id' is a synonym for a full node identifier. If we further assume that the ontology is constructed with tools (e.g. {protege}[Protege]) and that ontology identifiers are checked to ensure uniqueness.
+We therefore assume that a system of 'short identifiers' is possible within the ontology, where a 'short id' is a synonym for a full node identifier. If we further assume that the ontology is constructed with tools (e.g. {protege}[Protege^]) and that ontology identifiers are checked to ensure uniqueness.
 
-Facilities to manage such ontologies should be available either centrally (e.g. openEHR.org or at The {obo}[Open Biological and Biomedical Ontologies (OBO)]), so that every added archetype, template or subset is assigned a short ontological identifier from the ontology.
+Facilities to manage such ontologies should be available either centrally (e.g. openEHR.org or at The {obo}[Open Biological and Biomedical Ontologies (OBO)^]), so that every added archetype, template or subset is assigned a short ontological identifier from the ontology.
 
 Existing archetypes can be accommodated within such ontologies in two possible ways. If they have been in use, and data exist containing these identifiers, then their current ontological identifiers can be proposed as the short id for an ontology class defined for the archetype. If there is a clash, a new archetype concept short identifier will be needed, and the archetype will need to be republished under a different identifier.
 
