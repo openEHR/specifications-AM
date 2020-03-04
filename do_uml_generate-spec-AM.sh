@@ -1,8 +1,8 @@
 rm -f docs/UML/classes/*.*
 rm -f docs/UML/diagrams/*.*
 
-../specifications-AA_GLOBAL/bin/uml_generate.sh -i {am_release} -r AM -o docs/UML computable/UML/openEHR_UML-AM.mdzip
-../specifications-AA_GLOBAL/bin/uml_generate.sh -r AM -o docs/UML computable/UML/ADL-examples.mdzip
+../specifications-AA_GLOBAL/bin/uml_generate.sh -d svg -i {am_release} -r AM -o docs/UML computable/UML/openEHR_UML-AM.mdzip
+../specifications-AA_GLOBAL/bin/uml_generate.sh -d svg -r AM -o docs/UML computable/UML/ADL-examples.mdzip
 
 # the following generates the same files, but with Cambria font, used for ISO 13606 publication.
 #rm docs/UML_13606/classes/*.*
