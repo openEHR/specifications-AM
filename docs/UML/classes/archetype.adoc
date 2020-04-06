@@ -46,7 +46,8 @@ h|*Functions*
 
 h|
 |*concept_code* (): `String` +
-*_post-condition_*: `Result.is_equal (definition.node_id)`
+ +
+_post-condition_: `Result.is_equal (definition.node_id)`
 a|The concept code of the root object of the archetype, also standing for the concept of the archetype as a whole.
 
 h|
@@ -61,17 +62,19 @@ a|Set of language-dependent paths extracted from archetype. Paths obey the same 
 
 h|
 |*specialisation_depth* (): `Integer` +
-*_post-condition_*: `Result = terminology.specialisation_depth`
+ +
+_post-condition_: `Result = terminology.specialisation_depth`
 a|Specialisation depth of this archetype; larger than 0 if this archetype has a parent. Derived from terminology.specialisation_depth.
 
 h|
 |*is_specialised* (): `Boolean` +
-*_post-condition_*: `Result implies parent_archetype_hrid /= Void`
+ +
+_post-condition_: `Result implies parent_archetype_hrid /= Void`
 a|True if this archetype is a specialisation of another.
 
 h|*Invariants*
-2+a|*_Invariant_concept_valid_*: `terminology.has_term_code (concept_code)`
+2+a|_Invariant_concept_valid_: `terminology.has_term_code (concept_code)`
 
 h|
-2+a|*_Invariant_specialisation_validity_*: `is_specialised implies specialisation_depth > 0`
+2+a|_Invariant_specialisation_validity_: `is_specialised implies specialisation_depth > 0`
 |===

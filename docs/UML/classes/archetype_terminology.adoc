@@ -87,7 +87,8 @@ h|
 a_lang: `String[1]`, +
 a_code: `String[1]` +
 ): `ARCHETYPE_TERM` +
-*_Pre_*: `has_term-definition (a_lang, a_code)`
+ +
+_Pre_: `has_term-definition (a_lang, a_code)`
 a|Term definition for a code, in a specified language.
 
 h|
@@ -95,7 +96,8 @@ h|
 a_terminology: `String[1]`, +
 a_code: `String[1]` +
 ): `Uri` +
-*_Pre_*: `has_term_binding (a_terminology_id, a_code)`
+ +
+_Pre_: `has_term_binding (a_terminology_id, a_code)`
 a|Binding of constraint corresponding to `_a_code_` in target external terminology `_a_terminology_id_`, as a string, which is usually a formal query expression.
 
 h|
@@ -107,7 +109,8 @@ h|
 a_terminology_id: `String[1]`, +
 a_code: `String[1]` +
 ): `ARCHETYPE_TERM` +
-*_Pre_*: `has_terminology_extract (a_terminology_id) and has_terminology_extract_code (a_code)`
+ +
+_Pre_: `has_terminology_extract (a_terminology_id) and has_terminology_extract_code (a_code)`
 a|Return an `ARCHETYPE_TERM` from specified terminology extract, for specified term code.
 
 h|
@@ -121,14 +124,14 @@ h|
 a|List of languages in which terms in this terminology are available.
 
 h|*Invariants*
-2+a|*_Original_language_validity_*: `code_set (Code_set_id_languages).has_concept_id (original_language)`
+2+a|_Original_language_validity_: `code_set (Code_set_id_languages).has_concept_id (original_language)`
 
 h|
-2+a|*_concept_code_validity_*: `id_codes.has (concept_code)`
+2+a|_concept_code_validity_: `id_codes.has (concept_code)`
 
 h|
-2+a|*_Term_bindings_validity_*: `bindings /= void implies not bindings.is_empty`
+2+a|_Term_bindings_validity_: `bindings /= void implies not bindings.is_empty`
 
 h|
-2+a|*_Parent_archetype_valid_*: `parent_archetype.terminology = Current`
+2+a|_Parent_archetype_valid_: `parent_archetype.terminology = Current`
 |===

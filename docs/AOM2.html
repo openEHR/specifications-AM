@@ -1641,7 +1641,8 @@ a_parent_code: <code>String[1]</code><br>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><strong>is_adl_code</strong> (<br>
 a_code: <code>String[1]</code><br>
 ): <code>Boolean</code><br>
-<strong><em>Post</em></strong>: <code>Result = is_id_code (a_code) or else is_value_code (a_code) or else is_value_set_code (a_code)</code></p></td>
+<br>
+<em>Post</em>: <code>Result = is_id_code (a_code) or else is_value_code (a_code) or else is_value_set_code (a_code)</code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>True if a_code is any kind of ADL archetype local code.</p>
 </div></div></td>
@@ -1651,7 +1652,8 @@ a_code: <code>String[1]</code><br>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><strong>is_id_code</strong> (<br>
 a_code: <code>String[1]</code><br>
 ): <code>Boolean</code><br>
-<strong><em>Post</em></strong>: <code>Result = a_code.starts_with (Id_code_leader)</code></p></td>
+<br>
+<em>Post</em>: <code>Result = a_code.starts_with (Id_code_leader)</code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>True if a_code is an 'id' code.</p>
 </div></div></td>
@@ -1661,7 +1663,8 @@ a_code: <code>String[1]</code><br>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><strong>is_value_code</strong> (<br>
 a_code: <code>String[1]</code><br>
 ): <code>Boolean</code><br>
-<strong><em>Post</em></strong>: <code>Result = a_code.starts_with (Value_code_leader)</code></p></td>
+<br>
+<em>Post</em>: <code>Result = a_code.starts_with (Value_code_leader)</code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>True if a_code is an 'at' code, i.e. a code representing a single terminology item.</p>
 </div></div></td>
@@ -1671,7 +1674,8 @@ a_code: <code>String[1]</code><br>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><strong>is_value_set_code</strong> (<br>
 a_code: <code>String[1]</code><br>
 ): <code>Boolean</code><br>
-<strong><em>Post</em></strong>: <code>Result = a_code.starts_with (Value_set_code_leader)</code></p></td>
+<br>
+<em>Post</em>: <code>Result = a_code.starts_with (Value_set_code_leader)</code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>True if a_code is an 'ac' code, i.e. a code referring to a terminologyvalue set.</p>
 </div></div></td>
@@ -2088,7 +2092,8 @@ It is the parent class of all concrete types of archetype.</p>
 <tr>
 <th class="tableblock halign-center valign-top"></th>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><strong>concept_code</strong> (): <code>String</code><br>
-<strong><em>post-condition</em></strong>: <code>Result.is_equal (definition.node_id)</code></p></td>
+<br>
+<em>post-condition</em>: <code>Result.is_equal (definition.node_id)</code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>The concept code of the root object of the archetype, also standing for the concept of the archetype as a whole.</p>
 </div></div></td>
@@ -2112,7 +2117,8 @@ lang: <code>String[1]</code><br>
 <tr>
 <th class="tableblock halign-center valign-top"></th>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><strong>specialisation_depth</strong> (): <code>Integer</code><br>
-<strong><em>post-condition</em></strong>: <code>Result = terminology.specialisation_depth</code></p></td>
+<br>
+<em>post-condition</em>: <code>Result = terminology.specialisation_depth</code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>Specialisation depth of this archetype; larger than 0 if this archetype has a parent. Derived from terminology.specialisation_depth.</p>
 </div></div></td>
@@ -2120,7 +2126,8 @@ lang: <code>String[1]</code><br>
 <tr>
 <th class="tableblock halign-center valign-top"></th>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><strong>is_specialised</strong> (): <code>Boolean</code><br>
-<strong><em>post-condition</em></strong>: <code>Result implies parent_archetype_hrid /= Void</code></p></td>
+<br>
+<em>post-condition</em>: <code>Result implies parent_archetype_hrid /= Void</code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>True if this archetype is a specialisation of another.</p>
 </div></div></td>
@@ -2128,13 +2135,13 @@ lang: <code>String[1]</code><br>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Invariants</strong></p></th>
 <td class="tableblock halign-left valign-top" colspan="2"><div class="content"><div class="paragraph">
-<p><strong><em>Invariant_concept_valid</em></strong>: <code>terminology.has_term_code (concept_code)</code></p>
+<p><em>Invariant_concept_valid</em>: <code>terminology.has_term_code (concept_code)</code></p>
 </div></div></td>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"></th>
 <td class="tableblock halign-left valign-top" colspan="2"><div class="content"><div class="paragraph">
-<p><strong><em>Invariant_specialisation_validity</em></strong>: <code>is_specialised implies specialisation_depth &gt; 0</code></p>
+<p><em>Invariant_specialisation_validity</em>: <code>is_specialised implies specialisation_depth &gt; 0</code></p>
 </div></div></td>
 </tr>
 </tbody>
@@ -2204,19 +2211,19 @@ lang: <code>String[1]</code><br>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Invariants</strong></p></th>
 <td class="tableblock halign-left valign-top" colspan="2"><div class="content"><div class="paragraph">
-<p><strong><em>Invariant_adl_version_validity</em></strong>: <code>valid_version_id (adl_version)</code></p>
+<p><em>Invariant_adl_version_validity</em>: <code>valid_version_id (adl_version)</code></p>
 </div></div></td>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"></th>
 <td class="tableblock halign-left valign-top" colspan="2"><div class="content"><div class="paragraph">
-<p><strong><em>Invariant_rm_release</em></strong>: <code>valid_version_id (rm_release)</code></p>
+<p><em>Invariant_rm_release</em>: <code>valid_version_id (rm_release)</code></p>
 </div></div></td>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"></th>
 <td class="tableblock halign-left valign-top" colspan="2"><div class="content"><div class="paragraph">
-<p><strong><em>Description_validity</em></strong>: <code>description /= Void</code></p>
+<p><em>Description_validity</em>: <code>description /= Void</code></p>
 </div></div></td>
 </tr>
 </tbody>
@@ -2368,31 +2375,31 @@ lang: <code>String[1]</code><br>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Invariants</strong></p></th>
 <td class="tableblock halign-left valign-top" colspan="2"><div class="content"><div class="paragraph">
-<p><strong><em>Inv_rm_publisher_validity</em></strong>: <code>not rm_publisher.is_empty</code></p>
+<p><em>Inv_rm_publisher_validity</em>: <code>not rm_publisher.is_empty</code></p>
 </div></div></td>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"></th>
 <td class="tableblock halign-left valign-top" colspan="2"><div class="content"><div class="paragraph">
-<p><strong><em>Inv_rm_package_validity</em></strong>: <code>not rm_package.is_empty</code></p>
+<p><em>Inv_rm_package_validity</em>: <code>not rm_package.is_empty</code></p>
 </div></div></td>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"></th>
 <td class="tableblock halign-left valign-top" colspan="2"><div class="content"><div class="paragraph">
-<p><strong><em>Inv_class_name_validity</em></strong>: <code>not rm_class.is_empty</code></p>
+<p><em>Inv_class_name_validity</em>: <code>not rm_class.is_empty</code></p>
 </div></div></td>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"></th>
 <td class="tableblock halign-left valign-top" colspan="2"><div class="content"><div class="paragraph">
-<p><strong><em>Inv_concept_id_validity</em></strong>: <code>not concept_id.is_empty</code></p>
+<p><em>Inv_concept_id_validity</em>: <code>not concept_id.is_empty</code></p>
 </div></div></td>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"></th>
 <td class="tableblock halign-left valign-top" colspan="2"><div class="content"><div class="paragraph">
-<p><strong><em>Inv_release_version_validity</em></strong>: <code>valid_version (release_version)</code></p>
+<p><em>Inv_release_version_validity</em>: <code>valid_version (release_version)</code></p>
 </div></div></td>
 </tr>
 </tbody>
@@ -2436,7 +2443,7 @@ lang: <code>String[1]</code><br>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Invariants</strong></p></th>
 <td class="tableblock halign-left valign-top" colspan="2"><div class="content"><div class="paragraph">
-<p><strong><em>Inv_is_specialised</em></strong>: <code>is_specialised</code></p>
+<p><em>Inv_is_specialised</em>: <code>is_specialised</code></p>
 </div></div></td>
 </tr>
 </tbody>
@@ -2468,7 +2475,7 @@ lang: <code>String[1]</code><br>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Invariants</strong></p></th>
 <td class="tableblock halign-left valign-top" colspan="2"><div class="content"><div class="paragraph">
-<p><strong><em>Inv_is_specialised</em></strong>: <code>is_specialised</code></p>
+<p><em>Inv_is_specialised</em>: <code>is_specialised</code></p>
 </div></div></td>
 </tr>
 </tbody>
@@ -2534,7 +2541,7 @@ an_id: <code>String[1]</code><br>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Invariants</strong></p></th>
 <td class="tableblock halign-left valign-top" colspan="2"><div class="content"><div class="paragraph">
-<p><strong><em>Specialisation_validity</em></strong>: <code>is_specialised</code></p>
+<p><em>Specialisation_validity</em>: <code>is_specialised</code></p>
 </div></div></td>
 </tr>
 </tbody>
@@ -2779,7 +2786,7 @@ an_id: <code>String[1]</code><br>
 </ul>
 </div>
 <div class="paragraph">
-<p>The existence of <code><em>node_ids</em></code> in an archetype allows archetype paths to be created, which refer to each node. Every node in the archetype needs a <code><em>node_id</em></code> , but only node_ids for nodes under container attributes must have a terminology definition. For nodes under single-valued attributes, the terminology definition is optional (and typically not supplied), since the meaning is given by the reference model attribute definition.</p>
+<p>The existence of <code><em>node_ids</em></code> in an archetype allows archetype paths to be created, which refer to each node. Every node in the archetype needs a <code><em>node_id</em></code> , but only <code><em>node_ids</em></code> for nodes under container attributes must have a terminology definition. For nodes under single-valued attributes, the terminology definition is optional (and typically not supplied), since the meaning is given by the reference model attribute definition.</p>
 </div>
 <div class="paragraph">
 <p>Note that instances of <code>C_PRIMITIVE_OBJECT</code> have a constant <code><em>node_id</em></code> (see below) and thus do not require node identifiers to be supplied in syntax or serial forms that are converted to AOM structural form.</p>
@@ -3322,7 +3329,8 @@ other: <code>ARCHETYPE_CONSTRAINT[1]</code><br>
 <tr>
 <th class="tableblock halign-center valign-top"></th>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><strong>is_second_order_constrained</strong> (): <code>Boolean</code><br>
-<strong><em>Post</em></strong>: <code>soc_parent /= Void or else (parent /= Void and then parent.is_second_order_constrained)</code></p></td>
+<br>
+<em>Post</em>: <code>soc_parent /= Void or else (parent /= Void and then parent.is_second_order_constrained)</code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>True if there is a second order constraint such as a tuple constraint on this node.</p>
 </div></div></td>
@@ -3422,7 +3430,8 @@ other: <code>ARCHETYPE_CONSTRAINT[1]</code><br>
 <tr>
 <th class="tableblock halign-center valign-top"></th>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><strong>any_allowed</strong> (): <code>Boolean</code><br>
-<strong><em>Post</em></strong>: <code>Result := children.is_empty and not is_prohibited</code></p></td>
+<br>
+<em>Post</em>: <code>Result := children.is_empty and not is_prohibited</code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>True if there is no effective constraint on the children of the RM attribute to which this <code>C_ATTRIBUTE</code> refers.</p>
 </div></div></td>
@@ -3430,7 +3439,8 @@ other: <code>ARCHETYPE_CONSTRAINT[1]</code><br>
 <tr>
 <th class="tableblock halign-center valign-top"></th>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><strong>is_mandatory</strong> (): <code>Boolean</code><br>
-<strong><em>Post</em></strong>: <code>Result = existence /= Void and then existence.is_mandatory</code></p></td>
+<br>
+<em>Post</em>: <code>Result = existence /= Void and then existence.is_mandatory</code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>True if this <code>C_ATTRIBUTE</code> has an existence constraint of 1..1, i..e. mandation.</p>
 </div></div></td>
@@ -3454,7 +3464,8 @@ other: <code>ARCHETYPE_CONSTRAINT[1]</code><br>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><strong>c_congruent_to</strong> (<br>
 other: <code>ARCHETYPE_CONSTRAINT[1]</code><br>
 ): <code>Boolean</code><br>
-<strong><em>Post</em></strong>: <code>Result = existence = Void and is_single and other.is_single) or (is_multiple and other.is_multiple and cardinality = Void</code></p></td>
+<br>
+<em>Post</em>: <code>Result = existence = Void and is_single and other.is_single) or (is_multiple and other.is_multiple and cardinality = Void</code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>True if constraints represented by this node contain no further redefinitions with respect to the node other, with the exception of node_id redefnition in <code>C_OBJECT</code> nodes.</p>
 </div>
@@ -3468,7 +3479,8 @@ other: <code>ARCHETYPE_CONSTRAINT[1]</code><br>
 other: <code>ARCHETYPE_CONSTRAINT[1]</code>,<br>
 rmcc: <code>FUNCTION&lt;&lt;String,String&gt;,Boolean&gt;[1]</code><br>
 ): <code>Boolean</code><br>
-<strong><em>Post</em></strong>: <code>Result = existence_conforms_to (other) and is_single and other.is_single) or else (is_multiple and cardinality_conforms_to (other)</code></p></td>
+<br>
+<em>Post</em>: <code>Result = existence_conforms_to (other) and is_single and other.is_single) or else (is_multiple and cardinality_conforms_to (other)</code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>True if constraints represented by this node, ignoring any sub-parts, are narrower or the same as other.
 Typically used during validation of special-ised archetype nodes.</p>
@@ -3477,7 +3489,8 @@ Typically used during validation of special-ised archetype nodes.</p>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock">(effected)</p></th>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><strong>is_prohibited</strong> (): <code>Boolean</code><br>
-<strong><em>Post</em></strong>: <code>Result = existence /= Void and then existence.is_prohibited</code></p></td>
+<br>
+<em>Post</em>: <code>Result = existence /= Void and then existence.is_prohibited</code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>True if this <code>C_ATTRIBUTE</code> has an existence constraint of 0..0, i.e. prohibition.</p>
 </div></div></td>
@@ -3750,7 +3763,8 @@ other: <code>C_OBJECT[1]</code><br>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><strong>node_id_conforms_to</strong> (<br>
 other: <code>C_OBJECT[1]</code><br>
 ): <code>Boolean</code><br>
-<strong><em>Post</em></strong>: <code>Result = codes_conformant (node_id, other.node_id)</code></p></td>
+<br>
+<em>Post</em>: <code>Result = codes_conformant (node_id, other.node_id)</code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>True if this node id conforms to other.node_id, which includes the ids being identical; other is assumed to be in a flat archetype.</p>
 </div></div></td>
@@ -3758,7 +3772,8 @@ other: <code>C_OBJECT[1]</code><br>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock">(effected)</p></th>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><strong>is_prohibited</strong> (): <code>Boolean</code><br>
-<strong><em>Post</em></strong>: <code>Result = occurrences /= Void and then occurrences.is_prohibited</code></p></td>
+<br>
+<em>Post</em>: <code>Result = occurrences /= Void and then occurrences.is_prohibited</code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>True if this <code>C_OBJECT</code> node is prohibited, i.e. if its occurrences is 0..0.</p>
 </div></div></td>
@@ -4144,7 +4159,8 @@ a_value: <code>Any[1]</code><br>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock">(effected)</p></th>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><strong>any_allowed</strong> (): <code>Boolean</code><br>
-<strong><em>Post</em></strong>: <code>Result = attributes.is_empty and not is_prohibited</code></p></td>
+<br>
+<em>Post</em>: <code>Result = attributes.is_empty and not is_prohibited</code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>True if any value (i.e. instance) of the reference model type would be allowed. Redefined in descendants.</p>
 </div></div></td>
@@ -4394,7 +4410,8 @@ a_value: <code>Any[1]</code><br>
 <tr>
 <th class="tableblock halign-center valign-top"></th>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><strong>use_target_occurrences</strong> (): <code>Boolean</code><br>
-<strong><em>Post</em></strong>: <code>Result = (occurrences = Void)</code></p></td>
+<br>
+<em>Post</em>: <code>Result = (occurrences = Void)</code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>True if target occurrences are to be used as the value of occurrences in this object; by the time of runtime use, the target occurrences value has to be set into this object.</p>
 </div></div></td>
@@ -4687,7 +4704,8 @@ other: <code>C_PRIMITIVE_OBJECT[1]</code><br>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock">(effected)</p></th>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><strong>any_allowed</strong> (): <code>Boolean</code><br>
-<strong><em>Post</em></strong>: <code>Result = constraint.is_empty</code></p></td>
+<br>
+<em>Post</em>: <code>Result = constraint.is_empty</code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>True if any value (i.e. instance) of the reference model type would be allowed. Redefined in descendants.</p>
 </div></div></td>
@@ -4811,7 +4829,8 @@ a_value: <code>String[1]</code><br>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock">(effected)</p></th>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><strong>any_allowed</strong> (): <code>Boolean</code><br>
-<strong><em>Post</em></strong>: <code>Result = constraint.is_empty or else constraint.count = 1 and constraint.first.is_equal (Regex_any_string)</code></p></td>
+<br>
+<em>Post</em>: <code>Result = constraint.is_empty or else constraint.count = 1 and constraint.first.is_equal (Regex_any_string)</code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>True if any value (i.e. instance) of the reference model type would be allowed. Redefined in descendants.</p>
 </div></div></td>
@@ -4915,7 +4934,8 @@ other: <code>C_STRING[1]</code><br>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock">(effected)</p></th>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><strong>any_allowed</strong> (): <code>Boolean</code><br>
-<strong><em>Post</em></strong>: <code>Result = constraint.is_empty</code></p></td>
+<br>
+<em>Post</em>: <code>Result = constraint.is_empty</code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>True if any value (i.e. instance) of the reference model type would be allowed. Redefined in descendants.</p>
 </div></div></td>
@@ -5108,7 +5128,8 @@ an_other_pattern: <code>String[1]</code><br>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock">(effected)</p></th>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><strong>any_allowed</strong> (): <code>Boolean</code><br>
-<strong><em>Post</em></strong>: <code>Result = precursor and pattern_constraint.is_empty</code></p></td>
+<br>
+<em>Post</em>: <code>Result = precursor and pattern_constraint.is_empty</code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>True if any value (i.e. instance) of the reference model type would be allowed. Redefined in descendants.</p>
 </div></div></td>
@@ -5227,7 +5248,7 @@ other: <code>C_ORDERED[1]</code><br>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Invariants</strong></p></th>
 <td class="tableblock halign-left valign-top" colspan="2"><div class="content"><div class="paragraph">
-<p><strong><em>Pattern_validity</em></strong>: <code>pattern /= Void implies valid_iso8601_date_constraint_pattern(pattern)</code></p>
+<p><em>Pattern_validity</em>: <code>pattern /= Void implies valid_iso8601_date_constraint_pattern(pattern)</code></p>
 </div></div></td>
 </tr>
 </tbody>
@@ -5308,7 +5329,7 @@ other: <code>C_ORDERED[1]</code><br>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Invariants</strong></p></th>
 <td class="tableblock halign-left valign-top" colspan="2"><div class="content"><div class="paragraph">
-<p><strong><em>Pattern_validity</em></strong>: <code>pattern /= Void implies valid_iso8601_time_constraint_pattern (pattern)</code></p>
+<p><em>Pattern_validity</em>: <code>pattern /= Void implies valid_iso8601_time_constraint_pattern (pattern)</code></p>
 </div></div></td>
 </tr>
 </tbody>
@@ -5403,7 +5424,7 @@ other: <code>C_ORDERED[1]</code><br>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Invariants</strong></p></th>
 <td class="tableblock halign-left valign-top" colspan="2"><div class="content"><div class="paragraph">
-<p><strong><em>Pattern_validity</em></strong>: <code>pattern /= Void implies valid_iso8601_date_time_constraint_pattern(pattern)</code></p>
+<p><em>Pattern_validity</em>: <code>pattern /= Void implies valid_iso8601_date_time_constraint_pattern(pattern)</code></p>
 </div></div></td>
 </tr>
 </tbody>
@@ -5613,7 +5634,8 @@ a_value: <code>Terminology_code[1]</code><br>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock">(effected)</p></th>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><strong>any_allowed</strong> (): <code>Boolean</code><br>
-<strong><em>Post</em></strong>: <code>Result := constraint.is_empty</code></p></td>
+<br>
+<em>Post</em>: <code>Result := constraint.is_empty</code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>True if any value (i.e. instance) of the reference model type would be allowed. Redefined in descendants.</p>
 </div></div></td>
@@ -6172,7 +6194,7 @@ other: <code>C_SECOND_ORDER[1]</code><br>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Invariants</strong></p></th>
 <td class="tableblock halign-left valign-top" colspan="2"><div class="content"><div class="paragraph">
-<p><strong><em>Inv_alias_validity</em></strong>: <code>alias /= Void implies visibility /= Void</code></p>
+<p><em>Inv_alias_validity</em>: <code>alias /= Void implies visibility /= Void</code></p>
 </div></div></td>
 </tr>
 </tbody>
@@ -6452,7 +6474,8 @@ a_code: <code>String[1]</code><br>
 a_lang: <code>String[1]</code>,<br>
 a_code: <code>String[1]</code><br>
 ): <code>ARCHETYPE_TERM</code><br>
-<strong><em>Pre</em></strong>: <code>has_term-definition (a_lang, a_code)</code></p></td>
+<br>
+<em>Pre</em>: <code>has_term-definition (a_lang, a_code)</code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>Term definition for a code, in a specified language.</p>
 </div></div></td>
@@ -6463,7 +6486,8 @@ a_code: <code>String[1]</code><br>
 a_terminology: <code>String[1]</code>,<br>
 a_code: <code>String[1]</code><br>
 ): <code>Uri</code><br>
-<strong><em>Pre</em></strong>: <code>has_term_binding (a_terminology_id, a_code)</code></p></td>
+<br>
+<em>Pre</em>: <code>has_term_binding (a_terminology_id, a_code)</code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>Binding of constraint corresponding to <code><em>a_code</em></code> in target external terminology <code><em>a_terminology_id</em></code>, as a string, which is usually a formal query expression.</p>
 </div></div></td>
@@ -6481,7 +6505,8 @@ a_code: <code>String[1]</code><br>
 a_terminology_id: <code>String[1]</code>,<br>
 a_code: <code>String[1]</code><br>
 ): <code>ARCHETYPE_TERM</code><br>
-<strong><em>Pre</em></strong>: <code>has_terminology_extract (a_terminology_id) and has_terminology_extract_code (a_code)</code></p></td>
+<br>
+<em>Pre</em>: <code>has_terminology_extract (a_terminology_id) and has_terminology_extract_code (a_code)</code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>Return an <code>ARCHETYPE_TERM</code> from specified terminology extract, for specified term code.</p>
 </div></div></td>
@@ -6505,25 +6530,25 @@ a_terminology_id: <code>String[1]</code><br>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Invariants</strong></p></th>
 <td class="tableblock halign-left valign-top" colspan="2"><div class="content"><div class="paragraph">
-<p><strong><em>Original_language_validity</em></strong>: <code>code_set (Code_set_id_languages).has_concept_id (original_language)</code></p>
+<p><em>Original_language_validity</em>: <code>code_set (Code_set_id_languages).has_concept_id (original_language)</code></p>
 </div></div></td>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"></th>
 <td class="tableblock halign-left valign-top" colspan="2"><div class="content"><div class="paragraph">
-<p><strong><em>concept_code_validity</em></strong>: <code>id_codes.has (concept_code)</code></p>
+<p><em>concept_code_validity</em>: <code>id_codes.has (concept_code)</code></p>
 </div></div></td>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"></th>
 <td class="tableblock halign-left valign-top" colspan="2"><div class="content"><div class="paragraph">
-<p><strong><em>Term_bindings_validity</em></strong>: <code>bindings /= void implies not bindings.is_empty</code></p>
+<p><em>Term_bindings_validity</em>: <code>bindings /= void implies not bindings.is_empty</code></p>
 </div></div></td>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"></th>
 <td class="tableblock halign-left valign-top" colspan="2"><div class="content"><div class="paragraph">
-<p><strong><em>Parent_archetype_valid</em></strong>: <code>parent_archetype.terminology = Current</code></p>
+<p><em>Parent_archetype_valid</em>: <code>parent_archetype.terminology = Current</code></p>
 </div></div></td>
 </tr>
 </tbody>

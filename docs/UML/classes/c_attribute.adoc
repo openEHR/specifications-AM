@@ -44,12 +44,14 @@ h|*Functions*
 
 h|
 |*any_allowed* (): `Boolean` +
-*_Post_*: `Result := children.is_empty and not is_prohibited`
+ +
+_Post_: `Result := children.is_empty and not is_prohibited`
 a|True if there is no effective constraint on the children of the RM attribute to which this `C_ATTRIBUTE` refers.
 
 h|
 |*is_mandatory* (): `Boolean` +
-*_Post_*: `Result = existence /= Void and then existence.is_mandatory`
+ +
+_Post_: `Result = existence /= Void and then existence.is_mandatory`
 a|True if this `C_ATTRIBUTE` has an existence constraint of 1..1, i..e. mandation.
 
 h|
@@ -64,7 +66,8 @@ h|(effected)
 |*c_congruent_to* ( +
 other: `ARCHETYPE_CONSTRAINT[1]` +
 ): `Boolean` +
-*_Post_*: `Result = existence = Void and ((is_single and other.is_single) or (is_multiple and other.is_multiple and cardinality = Void))`
+ +
+_Post_: `Result = existence = Void and ((is_single and other.is_single) or (is_multiple and other.is_multiple and cardinality = Void))`
 a|True if constraints represented by this node contain no further redefinitions with respect to the node other, with the exception of node_id redefnition in `C_OBJECT` nodes.
 
 Typically used to test if an inherited node locally contains any constraints.
@@ -74,12 +77,14 @@ h|(effected)
 other: `ARCHETYPE_CONSTRAINT[1]`, +
 rmcc: `FUNCTION<<String,String>,Boolean>[1]` +
 ): `Boolean` +
-*_Post_*: `Result = existence_conforms_to (other) and ((is_single and other.is_single) or else (is_multiple and cardinality_conforms_to (other)))`
+ +
+_Post_: `Result = existence_conforms_to (other) and ((is_single and other.is_single) or else (is_multiple and cardinality_conforms_to (other)))`
 a|True if constraints represented by this node, ignoring any sub-parts, are narrower or the same as other.
 Typically used during validation of special-ised archetype nodes.
 
 h|(effected)
 |*is_prohibited* (): `Boolean` +
-*_Post_*: `Result = existence /= Void and then existence.is_prohibited`
+ +
+_Post_: `Result = existence /= Void and then existence.is_prohibited`
 a|True if this `C_ATTRIBUTE` has an existence constraint of 0..0, i.e. prohibition.
 |===

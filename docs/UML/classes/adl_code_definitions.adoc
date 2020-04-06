@@ -54,28 +54,32 @@ h|
 |*is_adl_code* ( +
 a_code: `String[1]` +
 ): `Boolean` +
-*_Post_*: `Result = is_id_code (a_code) or else is_value_code (a_code) or else is_value_set_code (a_code)`
+ +
+_Post_: `Result = is_id_code (a_code) or else is_value_code (a_code) or else is_value_set_code (a_code)`
 a|True if a_code is any kind of ADL archetype local code.
 
 h|
 |*is_id_code* ( +
 a_code: `String[1]` +
 ): `Boolean` +
-*_Post_*: `Result = a_code.starts_with (Id_code_leader)`
+ +
+_Post_: `Result = a_code.starts_with (Id_code_leader)`
 a|True if a_code is an 'id' code.
 
 h|
 |*is_value_code* ( +
 a_code: `String[1]` +
 ): `Boolean` +
-*_Post_*: `Result = a_code.starts_with (Value_code_leader)`
+ +
+_Post_: `Result = a_code.starts_with (Value_code_leader)`
 a|True if a_code is an 'at' code, i.e. a code representing a single terminology item.
 
 h|
 |*is_value_set_code* ( +
 a_code: `String[1]` +
 ): `Boolean` +
-*_Post_*: `Result = a_code.starts_with (Value_set_code_leader)`
+ +
+_Post_: `Result = a_code.starts_with (Value_set_code_leader)`
 a|True if a_code is an 'ac' code, i.e. a code referring to a terminologyvalue set.
 
 h|
