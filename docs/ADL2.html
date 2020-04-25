@@ -224,7 +224,8 @@
 </li>
 <li><a href="#_default_values">6. Default Values</a>
 <ul class="sectlevel2">
-<li><a href="#_overview_4">6.1. Overview</a></li>
+<li><a href="#_syntax">6.1. Syntax</a></li>
+<li><a href="#_examples">6.2. Examples</a></li>
 </ul>
 </li>
 <li><a href="#_adl_archetype_definition_language">7. ADL - Archetype Definition Language</a>
@@ -282,7 +283,7 @@
 <li><a href="#_annotations_section">7.13. Annotations Section</a></li>
 <li><a href="#_terminology_section">7.14. Terminology Section</a>
 <ul class="sectlevel3">
-<li><a href="#_overview_5">7.14.1. Overview</a></li>
+<li><a href="#_overview_4">7.14.1. Overview</a></li>
 <li><a href="#_term_definitions_sub_section">7.14.2. Term_definitions Sub-section</a></li>
 <li><a href="#_value_sets_sub_section">7.14.3. Value_sets Sub-section</a></li>
 <li><a href="#_term_bindings_sub_section">7.14.4. Term_bindings Sub-section</a></li>
@@ -307,7 +308,7 @@
 </li>
 <li><a href="#_specialisation">9. Specialisation</a>
 <ul class="sectlevel2">
-<li><a href="#_overview_6">9.1. Overview</a></li>
+<li><a href="#_overview_5">9.1. Overview</a></li>
 <li><a href="#_specialisation_concepts">9.2. Specialisation Concepts</a>
 <ul class="sectlevel3">
 <li><a href="#_differential_and_flat_forms">9.2.1. Differential and Flat Forms</a></li>
@@ -317,7 +318,7 @@
 <li><a href="#_redefinition_concepts">9.2.5. Redefinition Concepts</a></li>
 </ul>
 </li>
-<li><a href="#_examples">9.3. Examples</a>
+<li><a href="#_examples_2">9.3. Examples</a>
 <ul class="sectlevel3">
 <li><a href="#_redefinition_for_refinement">9.3.1. Redefinition for Refinement</a></li>
 <li><a href="#redefinition_for_specialisation">9.3.2. Redefinition for Specialisation</a>
@@ -372,13 +373,13 @@
 </li>
 <li><a href="#_templates">10. Templates</a>
 <ul class="sectlevel2">
-<li><a href="#_overview_7">10.1. Overview</a></li>
+<li><a href="#_overview_6">10.1. Overview</a></li>
 <li><a href="#_example">10.2. Example</a></li>
 </ul>
 </li>
 <li><a href="#_relationship_of_adl_to_other_formalisms">Appendix A: Relationship of ADL to Other Formalisms</a>
 <ul class="sectlevel2">
-<li><a href="#_overview_8">A.1. Overview</a></li>
+<li><a href="#_overview_7">A.1. Overview</a></li>
 <li><a href="#_constraint_syntaxes">A.2. Constraint Syntaxes</a>
 <ul class="sectlevel3">
 <li><a href="#_omg_ocl_object_constraint_language">A.2.1. OMG OCL (Object Constraint Language)</a></li>
@@ -507,9 +508,16 @@
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a id="latest_issue"></a>2.2.1</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://specifications.openehr.org/tickets/SPECAM-66" target="_blank" rel="noopener">SPECAM-66</a>: Improve specification of default values, including support for other syntaxes.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">P Bos,<br>
+ T Beale</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a id="latest_issue_date"></a>25 Apr 2020</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">2.2.1</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://specifications.openehr.org/tickets/SPECPUB-7" target="_blank" rel="noopener">SPECPUB-7</a>: Convert citations to bibtex form.</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">T Beale</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a id="latest_issue_date"></a>15 Dec 2019</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">15 Dec 2019</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">2.2.0</p></td>
@@ -4443,10 +4451,57 @@ that allowing the <code>W</code> designator to be used with the other designator
 <h2 id="_default_values"><a class="anchor" href="#_default_values"></a>6. Default Values</h2>
 <div class="sectionbody">
 <div class="sect2">
-<h3 id="_overview_4"><a class="anchor" href="#_overview_4"></a>6.1. Overview</h3>
+<h3 id="_syntax"><a class="anchor" href="#_syntax"></a>6.1. Syntax</h3>
 <div class="paragraph">
-<p>In ADL, it is possible to specify a default value for any object node. This almost always limited to use in templates, since default values are usually specific to local contexts or use cases. However they may validly be used in any archetype.</p>
+<p>In ADL, it is possible to specify a default value for any object node. This is usually limited to locally specialised archetypes and templates, since default values are usually specific to local contexts or use cases. However they may validly be used in any archetype.</p>
 </div>
+<div class="paragraph">
+<p>Default values are expressed in any regular object instance syntax, including <a href="https://specifications.openehr.org/releases/LANG/latest/odin.html" target="_blank" rel="noopener">ODIN syntax</a> and <a href="http://json.org" target="_blank" rel="noopener">JSON</a>, since they are instances of objects rather than constraints. They are introduced using a pseudo-attribute '_default', which is detected by the compiler as being a meta-attribute. The following shows the syntax in ODIN.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="pygments highlight"><code data-lang="cadl"><span></span>    <span class="tok-c">--</span>
+    <span class="tok-c">-- ODIN embedded in ADL</span>
+    <span class="tok-c">--</span>
+    <span class="tok-p">/</span><span class="tok-nc">path</span><span class="tok-p">[</span><span class="tok-nc">idN</span><span class="tok-p">]</span><span class="tok-err">...</span><span class="tok-p">/</span><span class="tok-nc">value</span><span class="tok-p"> </span><span class="tok-o">∈</span> <span class="tok-p">{</span>
+        <span class="tok-nc">TYPE</span> <span class="tok-o">∈</span> <span class="tok-p">{</span>
+            <span class="tok-nc">_default</span> <span class="tok-o">=</span> <span class="tok-p">(</span><span class="tok-nc">TYPE</span><span class="tok-p">)</span> <span class="tok-o">&lt;</span>
+                <span class="tok-nc">attribute_1</span> <span class="tok-o">=</span> <span class="tok-o">&lt;</span><span class="tok-nc">value_1</span><span class="tok-o">&gt;</span>
+                <span class="tok-nc">attribute_2</span> <span class="tok-o">=</span> <span class="tok-o">&lt;</span><span class="tok-nc">value_2</span><span class="tok-o">&gt;</span>
+                <span class="tok-p">...</span>
+                <span class="tok-nc">attribute_N</span> <span class="tok-o">=</span> <span class="tok-o">&lt;</span><span class="tok-nc">value_N</span><span class="tok-o">&gt;</span>
+            <span class="tok-o">&gt;</span>
+        <span class="tok-p">}</span>
+    <span class="tok-p">}</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The JSON equivalent is shown below.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="pygments highlight"><code data-lang="cadl"><span></span>    <span class="tok-c">--</span>
+    <span class="tok-c">-- JSON embedded in ADL</span>
+    <span class="tok-c">--</span>
+    <span class="tok-p">/</span><span class="tok-nc">path</span><span class="tok-p">[</span><span class="tok-nc">idN</span><span class="tok-p">]</span><span class="tok-err">...</span><span class="tok-p">/</span><span class="tok-nc">value</span><span class="tok-p"> </span><span class="tok-o">∈</span> <span class="tok-p">{</span>
+        <span class="tok-nc">TYPE</span> <span class="tok-o">∈</span> <span class="tok-p">{</span>
+            <span class="tok-s">&quot;_default&quot;</span> <span class="tok-err">:</span> <span class="tok-p">{</span>
+                <span class="tok-s">&quot;_type&quot;</span><span class="tok-err">:</span> <span class="tok-s">&quot;TYPE&quot;</span><span class="tok-p">,</span>
+                <span class="tok-s">&quot;attribute_1&quot;</span><span class="tok-err">:</span> <span class="tok-nc">value_1</span><span class="tok-p">,</span>
+                <span class="tok-s">&quot;attribute_2&quot;</span><span class="tok-err">:</span> <span class="tok-nc">value_2</span><span class="tok-p">,</span>
+                <span class="tok-p">...</span>
+                <span class="tok-s">&quot;attribute_N&quot;</span><span class="tok-err">:</span> <span class="tok-nc">value_N</span>
+            <span class="tok-p">}</span>
+        <span class="tok-p">}</span>
+    <span class="tok-p">}</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>A default value is either of the same type as specified by the corresponding archetype node (i.e. the first 'TYPE' in each of the above examples) or any subtype allowed by the reference model. Accordingly, the second appearance of 'TYPE' in both ODIN and JSON cases above represents either the same type as the first, or a subtype.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_examples"><a class="anchor" href="#_examples"></a>6.2. Examples</h3>
 <div class="paragraph">
 <p>Within a template, a default value can be defined to support the situation where only one value is possible for a data item due to the specific nature of the template. For example, a blood pressure archetype may allow a number of possible values for 'patient position', such as 'lying', and 'sitting', 'standing'. When used in a hospital, the patient will usually be lying so a default value for this can be set, as shown in the following example:</p>
 </div>
@@ -4454,42 +4509,30 @@ that allowing the <code>W</code> designator to be used with the other designator
 <div class="content">
 <pre class="pygments highlight"><code data-lang="cadl"><span></span>    <span class="tok-p">/</span><span class="tok-nc">data</span><span class="tok-p">[</span><span class="tok-nd">id2</span><span class="tok-p">]/</span><span class="tok-nc">events</span><span class="tok-p">[</span><span class="tok-nd">id6</span><span class="tok-p">]/</span><span class="tok-nc">state</span><span class="tok-p">[</span><span class="tok-nd">id7</span><span class="tok-p">]/</span><span class="tok-nc">items</span><span class="tok-p">[</span><span class="tok-nd">id8</span><span class="tok-p">]/</span><span class="tok-nc">value</span><span class="tok-p"> </span><span class="tok-o">∈</span> <span class="tok-p">{</span>
         <span class="tok-nc">DV_CODED_TEXT</span> <span class="tok-o">∈</span> <span class="tok-p">{</span>
-            <span class="tok-nc">_default</span> <span class="tok-o">=</span> <span class="tok-o">&lt;</span>
-                <span class="tok-p">(</span><span class="tok-nc">DV_CODED_TEXT</span><span class="tok-p">)</span> <span class="tok-o">&lt;</span>
-                    <span class="tok-nc">defining_code</span> <span class="tok-o">=</span> <span class="tok-o">&lt;</span><span class="tok-p">[</span><span class="tok-nd">snomedct</span><span class="tok-p">::</span><span class="tok-nd">163033001</span><span class="tok-p">]</span><span class="tok-o">&gt;</span> <span class="tok-c">-- lying BP</span>
-                <span class="tok-o">&gt;</span>
+            <span class="tok-nc">_default</span> <span class="tok-o">=</span> <span class="tok-p">(</span><span class="tok-nc">DV_CODED_TEXT</span><span class="tok-p">)</span> <span class="tok-o">&lt;</span>
+                <span class="tok-nc">defining_code</span> <span class="tok-o">=</span> <span class="tok-o">&lt;</span><span class="tok-p">[</span><span class="tok-nd">snomed_ct</span><span class="tok-p">::</span><span class="tok-nd">163033001</span><span class="tok-p">]</span><span class="tok-o">&gt;</span> <span class="tok-c">-- lying BP</span>
             <span class="tok-o">&gt;</span>
         <span class="tok-p">}</span>
     <span class="tok-p">}</span></code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>Default values are expressed in ODIN syntax, since they are instances of objects, rather than being constraints. They are introduced using a pseudo-attribute 'default', which is detected by the compiler as being a meta-attribute. The example above only sets the default value, but it could have also modified the constraint on the value object as well, as in the following version (where the standing blood pressure possibility from the archetype has been removed):</p>
+<p>The example above only sets the default value, but it could have also modified the constraint on the value object as well, as in the following version, where the standing blood pressure possibility from the archetype has been removed:</p>
 </div>
 <div class="listingblock">
 <div class="content">
 <pre class="pygments highlight"><code data-lang="cadl"><span></span>    <span class="tok-p">/</span><span class="tok-nc">data</span><span class="tok-p">[</span><span class="tok-nd">id2</span><span class="tok-p">]/</span><span class="tok-nc">events</span><span class="tok-p">[</span><span class="tok-nd">id6</span><span class="tok-p">]/</span><span class="tok-nc">state</span><span class="tok-p">[</span><span class="tok-nd">id7</span><span class="tok-p">]/</span><span class="tok-nc">items</span><span class="tok-p">[</span><span class="tok-nd">id8</span><span class="tok-p">]/</span><span class="tok-nc">value</span><span class="tok-p"> </span><span class="tok-o">∈</span> <span class="tok-p">{</span>
         <span class="tok-nc">DV_CODED_TEXT</span> <span class="tok-o">∈</span> <span class="tok-p">{</span>
             <span class="tok-nc">defining_code</span> <span class="tok-o">∈</span> <span class="tok-p">{</span>
-                <span class="tok-p">[</span><span class="tok-nd">snomedct</span><span class="tok-p">::</span><span class="tok-nd">163035008</span><span class="tok-p">]</span> <span class="tok-c">-- sitting blood pressure</span>
+                <span class="tok-p">[</span><span class="tok-nd">snomed_ct</span><span class="tok-p">::</span><span class="tok-nd">163035008</span><span class="tok-p">],</span> <span class="tok-c">-- sitting BP</span>
+                <span class="tok-p">[</span><span class="tok-nd">snomed_ct</span><span class="tok-p">::</span><span class="tok-nd">163033001</span><span class="tok-p">]</span>  <span class="tok-c">-- lying BP</span>
             <span class="tok-p">}</span>
-            <span class="tok-nc">_default</span> <span class="tok-o">=</span> <span class="tok-o">&lt;</span>
-                <span class="tok-p">(</span><span class="tok-nc">DV_CODED_TEXT</span><span class="tok-p">)</span> <span class="tok-o">&lt;</span>
-                    <span class="tok-nc">defining_code</span> <span class="tok-o">=</span> <span class="tok-o">&lt;</span><span class="tok-p">[</span><span class="tok-nd">snomed</span><span class="tok-p">::</span><span class="tok-nd">163033001</span><span class="tok-p">]</span><span class="tok-o">&gt;</span> <span class="tok-c">-- lying BP</span>
-                <span class="tok-o">&gt;</span>
+            <span class="tok-nc">_default</span> <span class="tok-o">=</span> <span class="tok-p">(</span><span class="tok-nc">DV_CODED_TEXT</span><span class="tok-p">)</span> <span class="tok-o">&lt;</span>
+                <span class="tok-nc">defining_code</span> <span class="tok-o">=</span> <span class="tok-o">&lt;</span><span class="tok-p">[</span><span class="tok-nd">snomed_ct</span><span class="tok-p">::</span><span class="tok-nd">163033001</span><span class="tok-p">]</span><span class="tok-o">&gt;</span> <span class="tok-c">-- lying BP</span>
             <span class="tok-o">&gt;</span>
         <span class="tok-p">}</span>
     <span class="tok-p">}</span></code></pre>
 </div>
-</div>
-<div class="paragraph">
-<p>Default values can be set in the same way on container objects, such that one or more container objects distinguished by node identifier or name (if renaming has been used in the template) within the same container can have a default value assigned to them.</p>
-</div>
-<div class="paragraph tbd">
-<p>TBD: example</p>
-</div>
-<div class="paragraph">
-<p>A default value is either of the same type as specified by the corresponding archetype node (<code><em>rm_type_name</em></code> AOM attribute) or any subtype allowed by the reference model.</p>
 </div>
 </div>
 </div>
@@ -5357,7 +5400,7 @@ some non-conforming ADL tools in the past created archetypes without a language 
 <div class="sect2">
 <h3 id="_terminology_section"><a class="anchor" href="#_terminology_section"></a>7.14. Terminology Section</h3>
 <div class="sect3">
-<h4 id="_overview_5"><a class="anchor" href="#_overview_5"></a>7.14.1. Overview</h4>
+<h4 id="_overview_4"><a class="anchor" href="#_overview_4"></a>7.14.1. Overview</h4>
 <div class="paragraph">
 <p>This section describes the syntax of the <code>terminology</code> section of an archetype. The following section, <a href="#_terminology_integration">Section 8</a> describes the semantics.</p>
 </div>
@@ -6050,7 +6093,7 @@ it is quite common that only <em>some</em> of the local at-codes have equivalent
 <h2 id="_specialisation"><a class="anchor" href="#_specialisation"></a>9. Specialisation</h2>
 <div class="sectionbody">
 <div class="sect2">
-<h3 id="_overview_6"><a class="anchor" href="#_overview_6"></a>9.1. Overview</h3>
+<h3 id="_overview_5"><a class="anchor" href="#_overview_5"></a>9.1. Overview</h3>
 <div class="paragraph">
 <p>Archetypes can be specialised in a similar way to classes in object-oriented programming languages. Common to both situations is the use of a differential style of declaration, i.e. the contents of a specialised artefact are expressed as differences with respect to the parent artefact - previously defined elements from the parent that are not changed are not repeated in the descendant. Two extra constructs are included in the ADL syntax to support redefinition in specialised archetypes or templates.</p>
 </div>
@@ -6309,7 +6352,7 @@ it is quite common that only <em>some</em> of the local at-codes have equivalent
 </div>
 </div>
 <div class="sect2">
-<h3 id="_examples"><a class="anchor" href="#_examples"></a>9.3. Examples</h3>
+<h3 id="_examples_2"><a class="anchor" href="#_examples_2"></a>9.3. Examples</h3>
 <div class="paragraph">
 <p>The examples below provide a basis for understanding most of the semantics discussed in the subsequent sections.</p>
 </div>
@@ -7859,7 +7902,7 @@ Note that in the above, the '/' is used to denote '/protocol' as a differential 
 <h2 id="_templates"><a class="anchor" href="#_templates"></a>10. Templates</h2>
 <div class="sectionbody">
 <div class="sect2">
-<h3 id="_overview_7"><a class="anchor" href="#_overview_7"></a>10.1. Overview</h3>
+<h3 id="_overview_6"><a class="anchor" href="#_overview_6"></a>10.1. Overview</h3>
 <div class="paragraph">
 <p>In ADL2, a template is a kind of specialised archetype that uses one feature of ADL in particular to express composition of archetypes: the ability to state 'slot fillers'. This is achieved by redefinition of a slot node, where the latter alters the slot by specifying one or more filler archetypes that match the slot specification.</p>
 </div>
@@ -8199,7 +8242,7 @@ Note that in the above, the '/' is used to denote '/protocol' as a differential 
 <h2 id="_relationship_of_adl_to_other_formalisms"><a class="anchor" href="#_relationship_of_adl_to_other_formalisms"></a>Appendix A: Relationship of ADL to Other Formalisms</h2>
 <div class="sectionbody">
 <div class="sect2">
-<h3 id="_overview_8"><a class="anchor" href="#_overview_8"></a>A.1. Overview</h3>
+<h3 id="_overview_7"><a class="anchor" href="#_overview_7"></a>A.1. Overview</h3>
 <div class="paragraph">
 <p>Whenever a new formalism is defined, it is reasonable to ask the question: are there not existing formalisms which would do the same job? Research to date has shown that in fact, no other formalism has been designed for the same use, and none easily express ADL&#8217;s semantics. During ADL&#8217;s initial development, it was felt that there was great value in analysing the problem space very carefully, and constructing an abstract syntax exactly matched to the solution, rather than attempting to use some other formalism - undoubtedly designed for a different purpose - to try and express the semantics of archetypes, or worse, to start with an XML-based exchange format, which often leads to the conflation of abstract and concrete representational semantics. Instead, the approach used has paid off, in that the resulting syntax is very simple and powerful, and in fact has allowed mappings to other formalisms to be more correctly defined and understood. The following sections compare ADL to other formalisms and show how it is different.</p>
 </div>

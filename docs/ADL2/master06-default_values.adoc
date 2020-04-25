@@ -1,8 +1,51 @@
 = Default Values
 
-== Overview
+== Syntax
 
-In ADL, it is possible to specify a default value for any object node. This almost always limited to use in templates, since default values are usually specific to local contexts or use cases. However they may validly be used in any archetype.
+In ADL, it is possible to specify a default value for any object node. This is usually limited to locally specialised archetypes and templates, since default values are usually specific to local contexts or use cases. However they may validly be used in any archetype.  
+
+Default values are expressed in any regular object instance syntax, including {openehr_odin}[ODIN syntax^] and {json}[JSON^], since they are instances of objects rather than constraints. They are introduced using a pseudo-attribute '_default', which is detected by the compiler as being a meta-attribute. The following shows the syntax in ODIN.
+
+[source, cadl]
+-----------------------------------------------------------------------
+    --
+    -- ODIN embedded in ADL
+    --
+    /path[idN].../value ∈ {
+        TYPE ∈ {
+            _default = (TYPE) <
+                attribute_1 = <value_1>
+                attribute_2 = <value_2>
+                ...
+                attribute_N = <value_N>
+            >
+        }
+    }
+-----------------------------------------------------------------------
+
+The JSON equivalent is shown below.
+
+[source, cadl]
+-----------------------------------------------------------------------
+    --
+    -- JSON embedded in ADL
+    --
+    /path[idN].../value ∈ {
+        TYPE ∈ {
+            "_default" : {
+                "_type": "TYPE",
+                "attribute_1": value_1,
+                "attribute_2": value_2,
+                ...
+                "attribute_N": value_N
+            }
+        }
+    }
+-----------------------------------------------------------------------
+
+A default value is either of the same type as specified by the corresponding archetype node (i.e. the first 'TYPE' in each of the above examples) or any subtype allowed by the reference model. Accordingly, the second appearance of 'TYPE' in both ODIN and JSON cases above represents either the same type as the first, or a subtype.
+
+== Examples
 
 Within a template, a default value can be defined to support the situation where only one value is possible for a data item due to the specific nature of the template. For example, a blood pressure archetype may allow a number of possible values for 'patient position', such as 'lying', and 'sitting', 'standing'. When used in a hospital, the patient will usually be lying so a default value for this can be set, as shown in the following example:
 
@@ -10,37 +53,27 @@ Within a template, a default value can be defined to support the situation where
 -----------------------------------------------------------------------
     /data[id2]/events[id6]/state[id7]/items[id8]/value ∈ {
         DV_CODED_TEXT ∈ {
-            _default = <
-                (DV_CODED_TEXT) <
-                    defining_code = <[snomedct::163033001]> -- lying BP
-                >
+            _default = (DV_CODED_TEXT) <
+                defining_code = <[snomed_ct::163033001]> -- lying BP
             >
         }
     }
 -----------------------------------------------------------------------
 
-Default values are expressed in ODIN syntax, since they are instances of objects, rather than being constraints. They are introduced using a pseudo-attribute 'default', which is detected by the compiler as being a meta-attribute. The example above only sets the default value, but it could have also modified the constraint on the value object as well, as in the following version (where the standing blood pressure possibility from the archetype has been removed):
+The example above only sets the default value, but it could have also modified the constraint on the value object as well, as in the following version, where the standing blood pressure possibility from the archetype has been removed:
 
 [source, cadl]
 ---------------------------------------------------------------------
     /data[id2]/events[id6]/state[id7]/items[id8]/value ∈ {
         DV_CODED_TEXT ∈ {
             defining_code ∈ {
-                [snomedct::163035008] -- sitting blood pressure
+                [snomed_ct::163035008], -- sitting BP
+                [snomed_ct::163033001]  -- lying BP
             }
-            _default = <
-                (DV_CODED_TEXT) <
-                    defining_code = <[snomed::163033001]> -- lying BP
-                >
+            _default = (DV_CODED_TEXT) <
+                defining_code = <[snomed_ct::163033001]> -- lying BP
             >
         }
     }
 ---------------------------------------------------------------------
-
-Default values can be set in the same way on container objects, such that one or more container objects distinguished by node identifier or name (if renaming has been used in the template) within the same container can have a default value assigned to them.
-
-[.tbd]
-TBD: example
-
-A default value is either of the same type as specified by the corresponding archetype node (`_rm_type_name_` AOM attribute) or any subtype allowed by the reference model.    
 
