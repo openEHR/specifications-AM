@@ -1006,6 +1006,7 @@ However, this is verbose, and does not clearly convey the dependence of `_units_
 
 The covarying requirement could be met using assertions like the following in the `rules` section:
 
+[source, cadl]
 --------
     .../value/units = "deg F" -> magnitude ∈ {|32.0..212.0|}
     .../value/units = "deg C" -> magnitude ∈ {|0.0..100.0|}
@@ -1333,6 +1334,7 @@ This is possible because the syntax patterns of all primitive type constraints a
 
 Although for the majority of primitive type constraints, the shortened form is the most convenient, there is one circumstance in which the regular syntax form is needed, which is when only the type is to be constrained, but not the value. This leads to a constraint of the following form:
 
+[source, cadl]
 ----
     some_attr matches {
         PRIMITIVE_TYPE[id3]
@@ -1341,6 +1343,7 @@ Although for the majority of primitive type constraints, the shortened form is t
 
 This may occur because the attribute `_some_attr_` in the reference model is of a more general type, e.g. `Any`. The constraint may thus be to simply require a `String`, `Terminology_code` or other primitive type. In the regular form a valid id-code must be supplied; this may be either a standard id-code (e.g. `id9`) or the `Primitive_node_id` value. If the former is used, any specialised archetype that adds a value constraint must use the regular form, as in the following example.
 
+[source, cadl]
 ----
     -- in parent archetype
     some_attr matches {
@@ -1355,6 +1358,7 @@ This may occur because the attribute `_some_attr_` in the reference model is of 
 
 If the `Primitive_node_id` is used, a specialisation may use the brief form, as in the following.
 
+[source, cadl]
 ----
     -- in parent archetype
     some_attr matches {
@@ -1439,6 +1443,7 @@ The first example constrains the runtime value of the `_species_` attribute of s
 
 The second way of constraining strings is with regular expressions, a widely used syntax for expressing patterns for matching strings. The regular expression syntax used in cADL is a proper subset of that used in the Perl language (see {perl_regex}[the specification of the regular expression language of Perl^]). It is specified as a constraint using either `//` or `^^` delimiters:
 
+[source, cadl]
 ----
     string_attr matches {/regular expression/} 
     string_attr matches {^regular expression^}
