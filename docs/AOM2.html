@@ -468,14 +468,24 @@
 <th class="tableblock halign-center valign-top" colspan="4"><p class="tableblock"><strong>AM Release 2.2.?</strong></p></th>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a id="latest_issue"></a>2.2.3</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a id="latest_issue"></a>2.2.4</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><a href="https://specifications.openehr.org/tickets/SPECAM-61" target="_blank" rel="noopener">SPECAM-61</a>. Remove <code><em>revision_history</em></code> from ADL2 specification.</p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">D Bosca,<br>
+ P Bos,<br>
+ T Beale</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a id="latest_issue_date"></a>19 May 2020</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">2.2.3</p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p><a href="https://specifications.openehr.org/tickets/SPECAM-65" target="_blank" rel="noopener">SPECAM-65</a>: Correct types of <code><em>default_value</em></code> and <code><em>assumed_value</em></code> in <code>C_PRIMITIVE_OBJECT</code> descendants.</p>
 </div></div></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">P Bos,<br>
  I McNicoll,<br>
  T Beale</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a id="latest_issue_date"></a>21 Apr 2020</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">21 Apr 2020</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">2.2.2</p></td>
@@ -1731,7 +1741,7 @@ a_level: <code>Integer[1]</code><br>
 <div class="sect2">
 <h3 id="_overview_2"><a class="anchor" href="#_overview_2"></a>3.1. Overview</h3>
 <div class="paragraph">
-<p>The top-level model of archetypes and templates (all variant forms) is illustrated in the Figure <a href="#archetype_package">below</a>. The model defines a standard structural representation of an archetype. Archetypes authored as independent entities are instances of the class <code>AUTHORED_ARCHETYPE</code> which is a descendant of <code>AUTHORED_RESOURCE</code> and <code>ARCHETYPE</code>. The first of the two parent classes provides a standardised model of descriptive meta-data, language information, annotations and revision history for any resource, and is documented in the <a href="https://specifications.openehr.org/releases/BASE/latest/resource.html" target="_blank" rel="noopener">openEHR Resource Model</a>. The resource classes are shown included in the diagram below. The second parent class defines the core structure of any kind of archetype, including definition, terminology, optional rules part, along with a 'semantic identifier' (<code>ARCHETYPE.<em>archetype_id</em></code>).</p>
+<p>The top-level model of archetypes and templates (all variant forms) is illustrated in the Figure <a href="#archetype_package">below</a>. The model defines a standard structural representation of an archetype. Archetypes authored as independent entities are instances of the class <code>AUTHORED_ARCHETYPE</code> which is a descendant of <code>AUTHORED_RESOURCE</code> and <code>ARCHETYPE</code>. The first of the two parent classes provides a standardised model of descriptive meta-data, language information, and annotations for any resource, and is documented in the <a href="https://specifications.openehr.org/releases/BASE/latest/resource.html" target="_blank" rel="noopener">openEHR Resource Model</a>. The resource classes are shown included in the diagram below. The second parent class defines the core structure of any kind of archetype, including definition, terminology, optional rules part, along with a 'semantic identifier' (<code>ARCHETYPE.<em>archetype_id</em></code>).</p>
 </div>
 <div id="archetype_package" class="imageblock text-center text-center">
 <div class="content">
@@ -1800,7 +1810,7 @@ a_level: <code>Integer[1]</code><br>
 <div class="sect3">
 <h4 id="_adl_version"><a class="anchor" href="#_adl_version"></a>3.3.1. ADL Version</h4>
 <div class="paragraph">
-<p>The <code>ARCHETYPE.<em>adl_version</em></code> attribute in ADL 1.4 was used to indicate the ADL release used in the archetype source file from which the AOM structure was created (the version number comes from the revision history of the <a href="https://specifications.openehr.org/releases/AM/latest/ADL2.html" target="_blank" rel="noopener">ADL2 specification</a>. In the current and future AOM and ADL specifications, the meaning of this attribute is generalised to mean 'the version of the archetype formalism' in which the current archetype is expressed. For reasons of convenience, the version number is still taken from the ADL specification, but now refers to all archetype-related specifications together, since they are always updated in a synchronised fashion.</p>
+<p>The <code>ARCHETYPE.<em>adl_version</em></code> attribute in ADL 1.4 was used to indicate the ADL release used in the archetype source file from which the AOM structure was created (the version number comes from the amendment record of the <a href="https://specifications.openehr.org/releases/AM/latest/ADL2.html#_amendment_record" target="_blank" rel="noopener">ADL2 specification</a>. In the current and future AOM and ADL specifications, the meaning of this attribute is generalised to mean 'the version of the archetype formalism' in which the current archetype is expressed. For reasons of convenience, the version number is still taken from the ADL specification, but now refers to all archetype-related specifications together, since they are always updated in a synchronised fashion.</p>
 </div>
 </div>
 <div class="sect3">
@@ -1971,7 +1981,7 @@ first names last name, organisation &lt;organisation email address&gt;</pre>
 <p>An archetype may include one or more rules. Rules are statements expressed in a subset of predicate logic, which can be used to state constraints on multiple parts of an object. They are not needed to constrain single attributes or objects (since this can be done with an appopriate <code>C_ATTRIBUTE</code> or <code>C_OBJECT</code> ), but are necessary for constraints referring to more than one attribute, such as a constraint that 'systolic pressure should be &gt;= diastolic pressure' in a blood pressure measurement archetype. They can also be used to declare variables, including external data query results, and make other constraints dependent on a variable value, e.g. the gender of the record subject.</p>
 </div>
 <div class="paragraph">
-<p>Lastly, annotations and revision history sections, inherited from the <code>AUTHORED_RESOURCE</code> class, can be included as required. The annotations section is of particular relevance to archetypes and templates, and is used to document individual nodes within an archetype or template, and/or nodes in reference model data, that may not be constrained in the archetype, but whose specific use in the archetyped data needs to be documented. In the former case, the annotations are keyed by an archetype path, while in the latter case, by a reference model path.</p>
+<p>Lastly, the annotations section, inherited from the <code>AUTHORED_RESOURCE</code> class, can be included as required. This section is of particular relevance to archetypes and templates, and is used to document individual nodes within an archetype or template, and/or nodes in reference model data, that may not be constrained in the archetype, but whose specific use in the archetyped data needs to be documented. In the former case, the annotations are keyed by an archetype path, while in the latter case, by a reference model path.</p>
 </div>
 </div>
 <div class="sect3">

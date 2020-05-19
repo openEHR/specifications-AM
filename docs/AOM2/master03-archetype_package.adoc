@@ -2,7 +2,7 @@
 
 == Overview
 
-The top-level model of archetypes and templates (all variant forms) is illustrated in the Figure <<archetype_package,below>>. The model defines a standard structural representation of an archetype. Archetypes authored as independent entities are instances of the class `AUTHORED_ARCHETYPE` which is a descendant of `AUTHORED_RESOURCE` and `ARCHETYPE`. The first of the two parent classes provides a standardised model of descriptive meta-data, language information, annotations and revision history for any resource, and is documented in the {openehr_resource}[openEHR Resource Model^]. The resource classes are shown included in the diagram below. The second parent class defines the core structure of any kind of archetype, including definition, terminology, optional rules part, along with a 'semantic identifier' (`ARCHETYPE._archetype_id_`).
+The top-level model of archetypes and templates (all variant forms) is illustrated in the Figure <<archetype_package,below>>. The model defines a standard structural representation of an archetype. Archetypes authored as independent entities are instances of the class `AUTHORED_ARCHETYPE` which is a descendant of `AUTHORED_RESOURCE` and `ARCHETYPE`. The first of the two parent classes provides a standardised model of descriptive meta-data, language information, and annotations for any resource, and is documented in the {openehr_resource}[openEHR Resource Model^]. The resource classes are shown included in the diagram below. The second parent class defines the core structure of any kind of archetype, including definition, terminology, optional rules part, along with a 'semantic identifier' (`ARCHETYPE._archetype_id_`).
 
 [.text-center]
 .am.aom2.archetype Package
@@ -44,7 +44,7 @@ The following items correspond to syntax elements that may appear in parentheses
 
 === ADL Version
 
-The `ARCHETYPE._adl_version_` attribute in ADL 1.4 was used to indicate the ADL release used in the archetype source file from which the AOM structure was created (the version number comes from the revision history of the {openehr_am_adl2}[ADL2 specification^]. In the current and future AOM and ADL specifications, the meaning of this attribute is generalised to mean 'the version of the archetype formalism' in which the current archetype is expressed. For reasons of convenience, the version number is still taken from the ADL specification, but now refers to all archetype-related specifications together, since they are always updated in a synchronised fashion.
+The `ARCHETYPE._adl_version_` attribute in ADL 1.4 was used to indicate the ADL release used in the archetype source file from which the AOM structure was created (the version number comes from the amendment record of the {openehr_am_adl2}#_amendment_record[ADL2 specification^]. In the current and future AOM and ADL specifications, the meaning of this attribute is generalised to mean 'the version of the archetype formalism' in which the current archetype is expressed. For reasons of convenience, the version number is still taken from the ADL specification, but now refers to all archetype-related specifications together, since they are always updated in a synchronised fashion.
 
 === Reference Model Release
 
@@ -161,7 +161,7 @@ The terminology section of an archetype is represented by its own classes, and i
 
 An archetype may include one or more rules. Rules are statements expressed in a subset of predicate logic, which can be used to state constraints on multiple parts of an object. They are not needed to constrain single attributes or objects (since this can be done with an appopriate `C_ATTRIBUTE` or `C_OBJECT` ), but are necessary for constraints referring to more than one attribute, such as a constraint that 'systolic pressure should be >= diastolic pressure' in a blood pressure measurement archetype. They can also be used to declare variables, including external data query results, and make other constraints dependent on a variable value, e.g. the gender of the record subject.
 
-Lastly, annotations and revision history sections, inherited from the `AUTHORED_RESOURCE` class, can be included as required. The annotations section is of particular relevance to archetypes and templates, and is used to document individual nodes within an archetype or template, and/or nodes in reference model data, that may not be constrained in the archetype, but whose specific use in the archetyped data needs to be documented. In the former case, the annotations are keyed by an archetype path, while in the latter case, by a reference model path.
+Lastly, the annotations section, inherited from the `AUTHORED_RESOURCE` class, can be included as required. This section is of particular relevance to archetypes and templates, and is used to document individual nodes within an archetype or template, and/or nodes in reference model data, that may not be constrained in the archetype, but whose specific use in the archetyped data needs to be documented. In the former case, the annotations are keyed by an archetype path, while in the latter case, by a reference model path.
 
 === Structural Variants
 
