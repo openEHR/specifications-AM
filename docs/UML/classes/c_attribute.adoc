@@ -42,27 +42,28 @@ h|*Functions*
 ^h|*Signature*
 ^h|*Meaning*
 
-h|
+h|*1..1*
 |*any_allowed* (): `Boolean` +
  +
 _Post_: `Result := children.is_empty and not is_prohibited`
 a|True if there is no effective constraint on the children of the RM attribute to which this `C_ATTRIBUTE` refers.
 
-h|
+h|*1..1*
 |*is_mandatory* (): `Boolean` +
  +
 _Post_: `Result = existence /= Void and then existence.is_mandatory`
 a|True if this `C_ATTRIBUTE` has an existence constraint of 1..1, i..e. mandation.
 
-h|
+h|*1..1*
 |*rm_attribute_path* (): `String`
 a|Path of this attribute with respect to owning `C_OBJECT`, including differential path where applicable.
 
-h|
+h|*1..1*
 |*is_single* (): `Boolean`
 a|True if this node logically represents a single-valued attribute. Evaluated as not is_multiple.
 
-h|(effected)
+h|*1..1 +
+(effected)*
 |*c_congruent_to* ( +
 other: `ARCHETYPE_CONSTRAINT[1]` +
 ): `Boolean` +
@@ -72,7 +73,8 @@ a|True if constraints represented by this node contain no further redefinitions 
 
 Typically used to test if an inherited node locally contains any constraints.
 
-h|(effected)
+h|*1..1 +
+(effected)*
 |*c_conforms_to* ( +
 other: `ARCHETYPE_CONSTRAINT[1]`, +
 rmcc: `FUNCTION<<String,String>,Boolean>[1]` +
@@ -82,7 +84,8 @@ _Post_: `Result = existence_conforms_to (other) and ((is_single and other.is_sin
 a|True if constraints represented by this node, ignoring any sub-parts, are narrower or the same as other.
 Typically used during validation of special-ised archetype nodes.
 
-h|(effected)
+h|*1..1 +
+(effected)*
 |*is_prohibited* (): `Boolean` +
  +
 _Post_: `Result = existence /= Void and then existence.is_prohibited`

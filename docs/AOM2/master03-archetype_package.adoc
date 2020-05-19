@@ -24,7 +24,7 @@ image::{diagrams_uri}/archetype_hrid_structure.svg[id=archetype_hrid_structure, 
 
 For specialised archetypes, the `_parent_archetype_id_` is also required. This is a string `_reference_` to an archetype, and is normally the 'interface' form of the id, i.e. down to the major version only. In some circumstances, it is useful to include the minor and patch version numbers as well.
 
-An important aspect of identification relates to the rules governing when when the HRID namespace changes or is retained, with respect to when 'moves' or 'forks' occur. Its value is always the same as one of the `_original_namespace_` and `_custodian_namespace_` properties inherited from `AUTHORED_RESOURCE._description_` (or both, in the case where they are the same). A full explanation of the identification system and rules is given in the openEHR {openehr_am_id}[Archetype Identification specification].
+An important aspect of identification relates to the rules governing when when the HRID namespace changes or is retained, with respect to when 'moves' or 'forks' occur. Its value is always the same as one of the `_original_namespace_` and `_custodian_namespace_` properties inherited from `AUTHORED_RESOURCE._description_` (or both, in the case where they are the same). A full explanation of the identification system and rules is given in the openEHR {openehr_am_id}[Archetype Identification specification^].
 
 === Machine Identifiers
 
@@ -78,7 +78,7 @@ The `_description_._lifecycle_state_` is an important property of an archetype, 
 
 ==== Original_namespace and Original_publisher
 
-These two optional properties indicate the original publishing organisation, and its namespace, i.e. the original publishing environment where the artefact was first imported or created. The `_original_namespace_` property is normally the same value as `_archetype_id_._namespace_`,unless the artefact has been forked into its current custodian, in which case `_archetype_id_._namespace_` will be the same as `_custodian_namespace_`.
+These two optional properties indicate the original publishing organisation, and its namespace, i.e. the original publishing environment where the artefact was first imported or created. The `_original_namespace_` property is normally the same value as `_archetype_id.namespace_`,unless the artefact has been forked into its current custodian, in which case `_archetype_id.namespace_` will be the same as `_custodian_namespace_`.
 
 ==== Custodian_namespace and Custodian_organisation
 
@@ -122,7 +122,7 @@ The `AUTHORED_RESOURCE._original_language_` and `TRANSLATION_DETAILS` class enab
 
 ==== Version_last_translated
 
-The `_version_last_translated_` property is used to record a copy of the `_archetype_id.physical_id_` for each language, when the translation was carried out. This enables maintainers to know when new translations are needed for some or all languages. This String property records the full version identifier (i.e. `ARCHETYPE._archetype_id_._version_id_`) at the time of last translation, enabling tools to determine if and when translations may be out of date.
+The `_version_last_translated_` property is used to record a copy of the `_archetype_id.physical_id_` for each language, when the translation was carried out. This enables maintainers to know when new translations are needed for some or all languages. This String property records the full version identifier (i.e. `ARCHETYPE._archetype_id.version_id_`) at the time of last translation, enabling tools to determine if and when translations may be out of date.
 
 === Descriptive Meta-data
 

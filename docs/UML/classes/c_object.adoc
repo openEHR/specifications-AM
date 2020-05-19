@@ -40,17 +40,18 @@ h|*Functions*
 ^h|*Signature*
 ^h|*Meaning*
 
-h|
+h|*1..1*
 |*specialisation_depth* (): `Integer`
 a|Level of specialisation of this archetype node, based on its node_id. The value 0 corresponds to non-specialised, 1 to first-level specialisation and so on. The level is the same as the number of ‘.’ characters in the node_id code. If node_id is not set, the return value is -1, signifying that the specialisation level should be determined from the nearest parent `C_OBJECT` node having a node_id.
 
-h|
+h|*1..1*
 |*effective_occurrences* (): `Multiplicity_interval`
 a|Compute effective occurrences, where no local occurrences constraint set. If the owning `C_ATTRIBUTE._cardinality_` is set, use its upper value, else use RM multiplicity of the owning attribute.
 
 If local `occurrences` not set, always assume 0 as the lower bound.
 
-h|(effected)
+h|*1..1 +
+(effected)*
 |*c_conforms_to* ( +
 other: `ARCHETYPE_CONSTRAINT[1]`, +
 rmcc: `FUNCTION<<String,String>,Boolean>[1]` +
@@ -62,7 +63,8 @@ Typically used during validation of special-ised archetype nodes.
 [horizontal]
 `_rmcc_`:: Reference Model conformance checker lambda.
 
-h|(effected)
+h|*1..1 +
+(effected)*
 |*c_congruent_to* ( +
 other: `ARCHETYPE_CONSTRAINT[1]` +
 ): `Boolean`
@@ -70,7 +72,7 @@ a|True if constraints represented by this node contain no further redefinitions 
 
 Typically used to test if an inherited node locally contains any constraints.
 
-h|
+h|*1..1*
 |*occurrences_conforms_to* ( +
 other: `C_OBJECT[1]` +
 ): `Boolean`
@@ -80,7 +82,7 @@ a|True if this node `_occurrences_` conforms to `_other.occurrences_`; `other' i
 [horizontal]
 `_other_`:: C_OBJECT from a flat parent archetype.
 
-h|
+h|*1..1*
 |*node_id_conforms_to* ( +
 other: `C_OBJECT[1]` +
 ): `Boolean` +
@@ -88,7 +90,8 @@ other: `C_OBJECT[1]` +
 _Post_: `Result = codes_conformant (node_id, other.node_id)`
 a|True if this node id conforms to other.node_id, which includes the ids being identical; other is assumed to be in a flat archetype.
 
-h|(effected)
+h|*1..1 +
+(effected)*
 |*is_prohibited* (): `Boolean` +
  +
 _Post_: `Result = occurrences /= Void and then occurrences.is_prohibited`

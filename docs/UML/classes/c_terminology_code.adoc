@@ -38,41 +38,46 @@ h|*Functions*
 ^h|*Signature*
 ^h|*Meaning*
 
-h|
+h|*0..1*
 |*value_set_expanded* (): `List<String>`
 a|Effective set of at-code values corresponding to an ac-code for a locally defined value set. Not defined for ac-codes that have no local value set.
 
-h|
+h|*0..1*
 |*value_set_substituted* (): `List<Uri>`
 a|For locally defined value sets within individual code bindings: return the term URI(s) substituted from bindings for local at-codes in `_value_set_expanded_`.
 
-h|
+h|*0..1*
 |*value_set_resolved* (): `List<Terminology_code>`
 a|For locally defined value sets within individual code bindings: final set of external codes to which value set is resolved.
 
-h|(effected)
+h|*1..1 +
+(effected)*
 |*valid_value* ( +
 a_value: `Terminology_code[1]` +
 ): `Boolean`
 a|True if a `_value_` is valid with respect to constraint expressed in concrete instance of this type.
 
-h|(effected)
+h|*1..1 +
+(effected)*
 |*prototype_value* (): `Terminology_code`
 a|A generated prototype value from this constraint object.
 
-h|(effected)
+h|*1..1 +
+(effected)*
 |*any_allowed* (): `Boolean` +
  +
 _Post_: `Result := constraint.is_empty`
 a|True if any value (i.e. instance) of the reference model type would be allowed. Redefined in descendants.
 
-h|(effected)
+h|*1..1 +
+(effected)*
 |*c_value_conforms_to* ( +
 other: `C_TERMINOLOGY_CODE[1]` +
 ): `Boolean`
 a|True if `_other.any_allowed_` or else every constraint in the `_constraint_` list exists in the `_other.constraint_`.
 
-h|(effected)
+h|*1..1 +
+(effected)*
 |*c_value_congruent_to* ( +
 other: `C_TERMINOLOGY_CODE[1]` +
 ): `Boolean`

@@ -47,42 +47,42 @@ h|*Functions*
 ^h|*Signature*
 ^h|*Meaning*
 
-h|
+h|*1..1*
 |*specialisation_depth* (): `Integer`
 a|Specialisation depth of this artefact. Unspecialised artefacts have depth 0, with each additional level of specialisation adding 1 to the specialisation_depth.
 
-h|
+h|*1..1*
 |*id_codes* (): `List<String>`
 a|List of all id codes in the terminology., i.e. the 'id' codes in an ADL archetype, which are the `_node_id_` values on `C_OBJECT` descendants.
 
-h|
+h|*0..1*
 |*value_codes* (): `List<String>`
 a|List of all value term codes in the terminology, i.e. the 'at' codes in an ADL archetype, which are used as possible values on terminological constrainer nodes.
 
-h|
+h|*0..1*
 |*value_set_codes* (): `List<String>`
 a|List of all value set codes in the terminology defining value sets. These correspond to the 'ac' codes in an ADL archetype.
 
-h|
+h|*1..1*
 |*has_language* ( +
 a_lang: `String[1]` +
 ): `Boolean`
 a|True if language `_a_lang_` is present in archetype terminology.
 
-h|
+h|*1..1*
 |*has_terminology* ( +
 a_terminology_id: `String[1]` +
 ): `boolean`
 a|True if there are bindings to terminology `_a_terminology_id_` present.
 True if terminology `a_terminology' is present in archetype ontology.
 
-h|
+h|*1..1*
 |*has_term_code* ( +
 a_code: `String[1]` +
 ): `boolean`
 a|True if code `_a_code_` defined in this terminology.
 
-h|
+h|*1..1*
 |*term_definition* ( +
 a_lang: `String[1]`, +
 a_code: `String[1]` +
@@ -91,7 +91,7 @@ a_code: `String[1]` +
 _Pre_: `has_term-definition (a_lang, a_code)`
 a|Term definition for a code, in a specified language.
 
-h|
+h|*1..1*
 |*term_binding* ( +
 a_terminology: `String[1]`, +
 a_code: `String[1]` +
@@ -100,11 +100,11 @@ a_code: `String[1]` +
 _Pre_: `has_term_binding (a_terminology_id, a_code)`
 a|Binding of constraint corresponding to `_a_code_` in target external terminology `_a_terminology_id_`, as a string, which is usually a formal query expression.
 
-h|
+h|*1..1*
 |*terminologies_available* (): `List<String>`
 a|List of terminologies to which term or constraint bindings exist in this terminology, computed from bindings.
 
-h|
+h|*1..1*
 |*terminology_extract_term* ( +
 a_terminology_id: `String[1]`, +
 a_code: `String[1]` +
@@ -113,13 +113,13 @@ a_code: `String[1]` +
 _Pre_: `has_terminology_extract (a_terminology_id) and has_terminology_extract_code (a_code)`
 a|Return an `ARCHETYPE_TERM` from specified terminology extract, for specified term code.
 
-h|
+h|*1..1*
 |*has_terminology_extract* ( +
 a_terminology_id: `String[1]` +
 ): `Boolean`
 a|True if there is a provided terminology extract present.
 
-h|
+h|*1..1*
 |*languages_available* (): `List<String>`
 a|List of languages in which terms in this terminology are available.
 

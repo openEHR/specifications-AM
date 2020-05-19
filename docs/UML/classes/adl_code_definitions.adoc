@@ -43,14 +43,14 @@ h|*Functions*
 ^h|*Signature*
 ^h|*Meaning*
 
-h|
+h|*1..1*
 |*codes_conformant* ( +
 a_child_code: `String[1]`, +
 a_parent_code: `String[1]` +
 ): `Boolean`
 a|True if a_child_code conforms to a_parent_code in the sense of specialisation, i.e. is a_child_code the same as or more specialised than a_parent_code.
 
-h|
+h|*1..1*
 |*is_adl_code* ( +
 a_code: `String[1]` +
 ): `Boolean` +
@@ -58,7 +58,7 @@ a_code: `String[1]` +
 _Post_: `Result = is_id_code (a_code) or else is_value_code (a_code) or else is_value_set_code (a_code)`
 a|True if a_code is any kind of ADL archetype local code.
 
-h|
+h|*1..1*
 |*is_id_code* ( +
 a_code: `String[1]` +
 ): `Boolean` +
@@ -66,7 +66,7 @@ a_code: `String[1]` +
 _Post_: `Result = a_code.starts_with (Id_code_leader)`
 a|True if a_code is an 'id' code.
 
-h|
+h|*1..1*
 |*is_value_code* ( +
 a_code: `String[1]` +
 ): `Boolean` +
@@ -74,7 +74,7 @@ a_code: `String[1]` +
 _Post_: `Result = a_code.starts_with (Value_code_leader)`
 a|True if a_code is an 'at' code, i.e. a code representing a single terminology item.
 
-h|
+h|*1..1*
 |*is_value_set_code* ( +
 a_code: `String[1]` +
 ): `Boolean` +
@@ -82,7 +82,7 @@ a_code: `String[1]` +
 _Post_: `Result = a_code.starts_with (Value_set_code_leader)`
 a|True if a_code is an 'ac' code, i.e. a code referring to a terminologyvalue set.
 
-h|
+h|*1..1*
 |*is_redefined_code* ( +
 a_code: `String[1]` +
 ): `Boolean`
@@ -91,7 +91,7 @@ a|A code has been specialised if there is a non-zero code index anywhere above t
 * at0.0.1 -> False
 * at1.0.1 -> True
 
-h|
+h|*1..1*
 |*code_exists_at_level* ( +
 a-code: `String[1]`, +
 a_level: `Integer[1]` +

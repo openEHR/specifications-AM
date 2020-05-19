@@ -26,21 +26,23 @@ h|*Functions*
 ^h|*Signature*
 ^h|*Meaning*
 
-h|(abstract)
+h|*1..1 +
+(abstract)*
 |*is_prohibited* (): `Boolean`
 a|True if this node is prohibited. Implemented in subtypes.
 
-h|
+h|*1..1*
 |*has_path* ( +
 a_path: `String[1]` +
 ): `boolean`
 a|True if the relative path a_path exists at this node.
 
-h|
+h|*1..1*
 |*path* (): `String`
 a|Path of this node relative to root of archetype.
 
-h|(abstract)
+h|*1..1 +
+(abstract)*
 |*c_conforms_to* ( +
 other: `ARCHETYPE_CONSTRAINT[1]`, +
 rmcc: `FUNCTION<<String,String>,Boolean>[1]` +
@@ -52,7 +54,8 @@ Typically used during validation of special-ised archetype nodes.
 [horizontal]
 `_rmcc_`:: RM conformance checker - a lambda (i.e. function object) that can compute conformance of type-names within the  Reference Model on which the current archetype is based. The signature provides two arguments representing respectively, the `_rm_type_name_` of the current node and the `_rm_type_name_` of the node being redefined in a specialisation parent archetype.
 
-h|(abstract)
+h|*1..1 +
+(abstract)*
 |*c_congruent_to* ( +
 other: `ARCHETYPE_CONSTRAINT[1]` +
 ): `Boolean`
@@ -60,17 +63,17 @@ a|True if constraints represented by this node contain no further redefinitions 
 
 Typically used to test if an inherited node locally contains any constraints.
 
-h|
+h|*1..1*
 |*is_second_order_constrained* (): `Boolean` +
  +
 _Post_: `soc_parent /= Void or else (parent /= Void and then parent.is_second_order_constrained)`
 a|True if there is a second order constraint such as a tuple constraint on this node.
 
-h|
+h|*1..1*
 |*is_root* (): `Boolean`
 a|True if this node is the root of the tree.
 
-h|
+h|*1..1*
 |*is_leaf* (): `Boolean`
 a|True if this node is a terminal node in the tree structure, i.e. having no child nodes.
 |===
