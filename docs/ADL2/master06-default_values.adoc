@@ -4,7 +4,7 @@
 
 In ADL, it is possible to specify a default value for any object node. This is usually limited to locally specialised archetypes and templates, since default values are usually specific to local contexts or use cases. However they may validly be used in any archetype.  
 
-Default values are expressed in any regular object instance syntax, including {openehr_odin}[ODIN syntax^] and {json}[JSON^], since they are instances of objects rather than constraints. They are introduced using a pseudo-attribute '_default', which is detected by the compiler as being a meta-attribute. The following shows the syntax in ODIN.
+Default values are expressed in any regular object instance syntax, including {openehr_odin}[ODIN syntax^] and {json}[JSON^], since they are instances of objects rather than constraints. They are introduced using a pseudo-attribute `_default`, followed by the `'='` symbol, and then a block in the chosen syntax. The following shows the syntax in ODIN.
 
 [source, cadl]
 -----------------------------------------------------------------------
@@ -32,13 +32,15 @@ The JSON equivalent is shown below.
     --
     /path[idN].../value ∈ {
         TYPE ∈ {
-            "_default" : {
-                "_type": "TYPE",
-                "attribute_1": value_1,
-                "attribute_2": value_2,
-                ...
-                "attribute_N": value_N
-            }
+            _default = (json) <#
+                {
+                    "_type": "TYPE",
+                    "attribute_1": value_1,
+                    "attribute_2": value_2,
+                    ...
+                    "attribute_N": value_N
+                }
+            #>
         }
     }
 -----------------------------------------------------------------------
@@ -54,7 +56,7 @@ Within a template, a default value can be defined to support the situation where
     /data[id2]/events[id6]/state[id7]/items[id8]/value ∈ {
         DV_CODED_TEXT ∈ {
             _default = (DV_CODED_TEXT) <
-                defining_code = <[snomed_ct::163033001]> -- lying BP
+                defining_code = <[snomed_ct::163033001|lying BP|]>
             >
         }
     }
@@ -67,13 +69,32 @@ The example above only sets the default value, but it could have also modified t
     /data[id2]/events[id6]/state[id7]/items[id8]/value ∈ {
         DV_CODED_TEXT ∈ {
             defining_code ∈ {
-                [snomed_ct::163035008], -- sitting BP
-                [snomed_ct::163033001]  -- lying BP
+                [snomed_ct::163035008|sitting BP|],
+                [snomed_ct::163033001|lying BP|]
             }
             _default = (DV_CODED_TEXT) <
-                defining_code = <[snomed_ct::163033001]> -- lying BP
+                defining_code = <[snomed_ct::163033001|lying BP|]>
             >
         }
     }
 ---------------------------------------------------------------------
 
+Note that in the above, the standard brief syntax for a `CODE_PHRASE` (also the equivalent class `Terminology_code`) is used. In the JSON format, the default value in the above examples is as follows:
+
+[source, cadl]
+---------------------------------------------------------------------
+    /data[id2]/events[id6]/state[id7]/items[id8]/value ∈ {
+        DV_CODED_TEXT ∈ {
+            _default = (json) <#
+                {
+                    "_type": "DV_CODED_TEXT",
+                    "defining_code": {
+                        "terminology_id": "snomed_ct",
+                        "code_string":    "163033001",
+                        "value":          "lying BP"
+                    }
+                }
+            #>
+        }
+    }
+---------------------------------------------------------------------

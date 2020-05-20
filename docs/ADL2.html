@@ -511,7 +511,7 @@
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://specifications.openehr.org/tickets/SPECAM-66" target="_blank" rel="noopener">SPECAM-66</a>: Improve specification of default values, including support for other syntaxes.</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">P Bos,<br>
  T Beale</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a id="latest_issue_date"></a>25 Apr 2020</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a id="latest_issue_date"></a>20 May 2020</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">2.2.1</p></td>
@@ -4456,7 +4456,7 @@ that allowing the <code>W</code> designator to be used with the other designator
 <p>In ADL, it is possible to specify a default value for any object node. This is usually limited to locally specialised archetypes and templates, since default values are usually specific to local contexts or use cases. However they may validly be used in any archetype.</p>
 </div>
 <div class="paragraph">
-<p>Default values are expressed in any regular object instance syntax, including <a href="https://specifications.openehr.org/releases/LANG/latest/odin.html" target="_blank" rel="noopener">ODIN syntax</a> and <a href="http://json.org" target="_blank" rel="noopener">JSON</a>, since they are instances of objects rather than constraints. They are introduced using a pseudo-attribute '_default', which is detected by the compiler as being a meta-attribute. The following shows the syntax in ODIN.</p>
+<p>Default values are expressed in any regular object instance syntax, including <a href="https://specifications.openehr.org/releases/LANG/latest/odin.html" target="_blank" rel="noopener">ODIN syntax</a> and <a href="http://json.org" target="_blank" rel="noopener">JSON</a>, since they are instances of objects rather than constraints. They are introduced using a pseudo-attribute <code>_default</code>, followed by the <code>'='</code> symbol, and then a block in the chosen syntax. The following shows the syntax in ODIN.</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -4485,13 +4485,15 @@ that allowing the <code>W</code> designator to be used with the other designator
     <span class="tok-c">--</span>
     <span class="tok-p">/</span><span class="tok-nc">path</span><span class="tok-p">[</span><span class="tok-nc">idN</span><span class="tok-p">]</span><span class="tok-err">...</span><span class="tok-p">/</span><span class="tok-nc">value</span><span class="tok-p"> </span><span class="tok-o">∈</span> <span class="tok-p">{</span>
         <span class="tok-nc">TYPE</span> <span class="tok-o">∈</span> <span class="tok-p">{</span>
-            <span class="tok-s">&quot;_default&quot;</span> <span class="tok-err">:</span> <span class="tok-p">{</span>
-                <span class="tok-s">&quot;_type&quot;</span><span class="tok-err">:</span> <span class="tok-s">&quot;TYPE&quot;</span><span class="tok-p">,</span>
-                <span class="tok-s">&quot;attribute_1&quot;</span><span class="tok-err">:</span> <span class="tok-nc">value_1</span><span class="tok-p">,</span>
-                <span class="tok-s">&quot;attribute_2&quot;</span><span class="tok-err">:</span> <span class="tok-nc">value_2</span><span class="tok-p">,</span>
-                <span class="tok-p">...</span>
-                <span class="tok-s">&quot;attribute_N&quot;</span><span class="tok-err">:</span> <span class="tok-nc">value_N</span>
-            <span class="tok-p">}</span>
+            <span class="tok-nc">_default</span> <span class="tok-o">=</span> <span class="tok-p">(</span><span class="tok-nc">json</span><span class="tok-p">)</span> <span class="tok-o">&lt;</span><span class="tok-err">#</span>
+                <span class="tok-p">{</span>
+                    <span class="tok-s">&quot;_type&quot;</span><span class="tok-err">:</span> <span class="tok-s">&quot;TYPE&quot;</span><span class="tok-p">,</span>
+                    <span class="tok-s">&quot;attribute_1&quot;</span><span class="tok-err">:</span> <span class="tok-nc">value_1</span><span class="tok-p">,</span>
+                    <span class="tok-s">&quot;attribute_2&quot;</span><span class="tok-err">:</span> <span class="tok-nc">value_2</span><span class="tok-p">,</span>
+                    <span class="tok-p">...</span>
+                    <span class="tok-s">&quot;attribute_N&quot;</span><span class="tok-err">:</span> <span class="tok-nc">value_N</span>
+                <span class="tok-p">}</span>
+            <span class="tok-err">#</span><span class="tok-o">&gt;</span>
         <span class="tok-p">}</span>
     <span class="tok-p">}</span></code></pre>
 </div>
@@ -4510,7 +4512,7 @@ that allowing the <code>W</code> designator to be used with the other designator
 <pre class="pygments highlight"><code data-lang="cadl"><span></span>    <span class="tok-p">/</span><span class="tok-nc">data</span><span class="tok-p">[</span><span class="tok-nd">id2</span><span class="tok-p">]/</span><span class="tok-nc">events</span><span class="tok-p">[</span><span class="tok-nd">id6</span><span class="tok-p">]/</span><span class="tok-nc">state</span><span class="tok-p">[</span><span class="tok-nd">id7</span><span class="tok-p">]/</span><span class="tok-nc">items</span><span class="tok-p">[</span><span class="tok-nd">id8</span><span class="tok-p">]/</span><span class="tok-nc">value</span><span class="tok-p"> </span><span class="tok-o">∈</span> <span class="tok-p">{</span>
         <span class="tok-nc">DV_CODED_TEXT</span> <span class="tok-o">∈</span> <span class="tok-p">{</span>
             <span class="tok-nc">_default</span> <span class="tok-o">=</span> <span class="tok-p">(</span><span class="tok-nc">DV_CODED_TEXT</span><span class="tok-p">)</span> <span class="tok-o">&lt;</span>
-                <span class="tok-nc">defining_code</span> <span class="tok-o">=</span> <span class="tok-o">&lt;</span><span class="tok-p">[</span><span class="tok-nd">snomed_ct</span><span class="tok-p">::</span><span class="tok-nd">163033001</span><span class="tok-p">]</span><span class="tok-o">&gt;</span> <span class="tok-c">-- lying BP</span>
+                <span class="tok-nc">defining_code</span> <span class="tok-o">=</span> <span class="tok-o">&lt;</span><span class="tok-p">[</span><span class="tok-nd">snomed_ct</span><span class="tok-p">::</span><span class="tok-nd">163033001</span><span class="tok-p">|</span><span class="tok-s">lying BP</span><span class="tok-p">|]</span><span class="tok-o">&gt;</span>
             <span class="tok-o">&gt;</span>
         <span class="tok-p">}</span>
     <span class="tok-p">}</span></code></pre>
@@ -4524,12 +4526,33 @@ that allowing the <code>W</code> designator to be used with the other designator
 <pre class="pygments highlight"><code data-lang="cadl"><span></span>    <span class="tok-p">/</span><span class="tok-nc">data</span><span class="tok-p">[</span><span class="tok-nd">id2</span><span class="tok-p">]/</span><span class="tok-nc">events</span><span class="tok-p">[</span><span class="tok-nd">id6</span><span class="tok-p">]/</span><span class="tok-nc">state</span><span class="tok-p">[</span><span class="tok-nd">id7</span><span class="tok-p">]/</span><span class="tok-nc">items</span><span class="tok-p">[</span><span class="tok-nd">id8</span><span class="tok-p">]/</span><span class="tok-nc">value</span><span class="tok-p"> </span><span class="tok-o">∈</span> <span class="tok-p">{</span>
         <span class="tok-nc">DV_CODED_TEXT</span> <span class="tok-o">∈</span> <span class="tok-p">{</span>
             <span class="tok-nc">defining_code</span> <span class="tok-o">∈</span> <span class="tok-p">{</span>
-                <span class="tok-p">[</span><span class="tok-nd">snomed_ct</span><span class="tok-p">::</span><span class="tok-nd">163035008</span><span class="tok-p">],</span> <span class="tok-c">-- sitting BP</span>
-                <span class="tok-p">[</span><span class="tok-nd">snomed_ct</span><span class="tok-p">::</span><span class="tok-nd">163033001</span><span class="tok-p">]</span>  <span class="tok-c">-- lying BP</span>
+                <span class="tok-p">[</span><span class="tok-nd">snomed_ct</span><span class="tok-p">::</span><span class="tok-nd">163035008</span><span class="tok-p">|</span><span class="tok-s">sitting BP</span><span class="tok-p">|],</span>
+                <span class="tok-p">[</span><span class="tok-nd">snomed_ct</span><span class="tok-p">::</span><span class="tok-nd">163033001</span><span class="tok-p">|</span><span class="tok-s">lying BP</span><span class="tok-p">|]</span>
             <span class="tok-p">}</span>
             <span class="tok-nc">_default</span> <span class="tok-o">=</span> <span class="tok-p">(</span><span class="tok-nc">DV_CODED_TEXT</span><span class="tok-p">)</span> <span class="tok-o">&lt;</span>
-                <span class="tok-nc">defining_code</span> <span class="tok-o">=</span> <span class="tok-o">&lt;</span><span class="tok-p">[</span><span class="tok-nd">snomed_ct</span><span class="tok-p">::</span><span class="tok-nd">163033001</span><span class="tok-p">]</span><span class="tok-o">&gt;</span> <span class="tok-c">-- lying BP</span>
+                <span class="tok-nc">defining_code</span> <span class="tok-o">=</span> <span class="tok-o">&lt;</span><span class="tok-p">[</span><span class="tok-nd">snomed_ct</span><span class="tok-p">::</span><span class="tok-nd">163033001</span><span class="tok-p">|</span><span class="tok-s">lying BP</span><span class="tok-p">|]</span><span class="tok-o">&gt;</span>
             <span class="tok-o">&gt;</span>
+        <span class="tok-p">}</span>
+    <span class="tok-p">}</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Note that in the above, the standard brief syntax for a <code>CODE_PHRASE</code> (also the equivalent class <code>Terminology_code</code>) is used. In the JSON format, the default value in the above examples is as follows:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="pygments highlight"><code data-lang="cadl"><span></span>    <span class="tok-p">/</span><span class="tok-nc">data</span><span class="tok-p">[</span><span class="tok-nd">id2</span><span class="tok-p">]/</span><span class="tok-nc">events</span><span class="tok-p">[</span><span class="tok-nd">id6</span><span class="tok-p">]/</span><span class="tok-nc">state</span><span class="tok-p">[</span><span class="tok-nd">id7</span><span class="tok-p">]/</span><span class="tok-nc">items</span><span class="tok-p">[</span><span class="tok-nd">id8</span><span class="tok-p">]/</span><span class="tok-nc">value</span><span class="tok-p"> </span><span class="tok-o">∈</span> <span class="tok-p">{</span>
+        <span class="tok-nc">DV_CODED_TEXT</span> <span class="tok-o">∈</span> <span class="tok-p">{</span>
+            <span class="tok-nc">_default</span> <span class="tok-o">=</span> <span class="tok-p">(</span><span class="tok-nc">json</span><span class="tok-p">)</span> <span class="tok-o">&lt;</span><span class="tok-err">#</span>
+                <span class="tok-p">{</span>
+                    <span class="tok-s">&quot;_type&quot;</span><span class="tok-err">:</span> <span class="tok-s">&quot;DV_CODED_TEXT&quot;</span><span class="tok-p">,</span>
+                    <span class="tok-s">&quot;defining_code&quot;</span><span class="tok-err">:</span> <span class="tok-p">{</span>
+                        <span class="tok-s">&quot;terminology_id&quot;</span><span class="tok-err">:</span> <span class="tok-s">&quot;snomed_ct&quot;</span><span class="tok-p">,</span>
+                        <span class="tok-s">&quot;code_string&quot;</span><span class="tok-err">:</span>    <span class="tok-s">&quot;163033001&quot;</span><span class="tok-p">,</span>
+                        <span class="tok-s">&quot;value&quot;</span><span class="tok-err">:</span>          <span class="tok-s">&quot;lying BP&quot;</span>
+                    <span class="tok-p">}</span>
+                <span class="tok-p">}</span>
+            <span class="tok-err">#</span><span class="tok-o">&gt;</span>
         <span class="tok-p">}</span>
     <span class="tok-p">}</span></code></pre>
 </div>
