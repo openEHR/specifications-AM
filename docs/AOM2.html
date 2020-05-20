@@ -52,7 +52,11 @@
 <ul class="sectlevel3">
 <li><a href="#_overview">2.3.1. Overview</a></li>
 <li><a href="#_class_definitions">2.3.2. Class Definitions</a></li>
-<li><a href="#_adl_code_definitions_class">2.3.3. ADL_CODE_DEFINITIONS Class</a></li>
+<li><a href="#_adl_code_definitions_class">2.3.3. ADL_CODE_DEFINITIONS Class</a>
+<ul class="sectlevel4">
+<li><a href="#_utility_algorithms">2.3.3.1. Utility Algorithms</a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -248,7 +252,11 @@
 </li>
 <li><a href="#_c_second_order_class">4.5.22. C_SECOND_ORDER Class</a></li>
 <li><a href="#_c_primitive_tuple_class">4.5.23. C_PRIMITIVE_TUPLE Class</a></li>
-<li><a href="#_c_attribute_tuple_class">4.5.24. C_ATTRIBUTE_TUPLE Class</a></li>
+<li><a href="#_c_attribute_tuple_class">4.5.24. C_ATTRIBUTE_TUPLE Class</a>
+<ul class="sectlevel4">
+<li><a href="#_conformance_semantics_9">4.5.24.1. Conformance semantics</a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -1249,13 +1257,16 @@ Includes detailed input and review from:</p>
 <div class="ulist">
 <ul>
 <li>
-<p>Ars Semantica, UK</p>
+<p>the <a href="https://www.openehr.org/community/industry_partners/" target="_blank" rel="noopener">openEHR Industry Partners</a>;</p>
 </li>
 <li>
-<p>UCL (University College London) - Centre for Health Informatics and Multiprofessional Education (CHIME)</p>
+<p>Ars Semantica, UK;</p>
 </li>
 <li>
-<p>Ocean Informatics.</p>
+<p>UCL (University College London) - Centre for Health Informatics and Multiprofessional Education (CHIME);</p>
+</li>
+<li>
+<p>Ocean Informatics, Australia.</p>
 </li>
 </ul>
 </div>
@@ -1731,6 +1742,24 @@ a_level: <code>Integer[1]</code><br>
 </tr>
 </tbody>
 </table>
+<div class="sect4">
+<h5 id="_utility_algorithms"><a class="anchor" href="#_utility_algorithms"></a>2.3.3.1. Utility Algorithms</h5>
+<div class="paragraph">
+<p>Useful utility algorithms from the above class, referenced elsewhere in this specification are shown below.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="pygments highlight"><code data-lang="eiffel"><span></span>    <span class="tok-n">codes_conformant</span> <span class="tok-p">(</span><span class="tok-n">a_child_code</span><span class="tok-p">,</span> <span class="tok-n">a_parent_code</span><span class="tok-p">:</span> <span class="tok-n">String</span><span class="tok-p">):</span> <span class="tok-n">Boolean</span>
+            <span class="tok-c1">-- True if `a_child_code&#39; conforms to `a_parent_code&#39; in the sense of specialisation, i.e.</span>
+            <span class="tok-c1">-- is `a_child_code&#39; the same as or more specialised than `a_parent_code&#39;</span>
+        <span class="tok-kr">do</span>
+            <span class="tok-kc">Result</span> <span class="tok-o">:=</span> <span class="tok-n">is_valid_code</span> <span class="tok-p">(</span><span class="tok-n">a_child_code</span><span class="tok-p">)</span> <span class="tok-ow">and then</span> <span class="tok-n">a_child_code</span><span class="tok-p">.</span><span class="tok-n">starts_with</span> <span class="tok-p">(</span><span class="tok-n">a_parent_code</span><span class="tok-p">)</span> <span class="tok-ow">and then</span>
+                <span class="tok-p">(</span><span class="tok-n">a_child_code</span><span class="tok-p">.</span><span class="tok-n">count</span> <span class="tok-o">=</span> <span class="tok-n">a_parent_code</span><span class="tok-p">.</span><span class="tok-n">count</span> <span class="tok-ow">or else</span>
+                <span class="tok-n">a_child_code</span><span class="tok-p">.</span><span class="tok-n">item</span> <span class="tok-p">(</span><span class="tok-n">a_parent_code</span><span class="tok-p">.</span><span class="tok-n">count</span> <span class="tok-o">+</span> <span class="tok-mi">1</span><span class="tok-p">)</span> <span class="tok-o">=</span> <span class="tok-n">Specialisation_separator</span><span class="tok-p">)</span>
+        <span class="tok-kr">end</span></code></pre>
+</div>
+</div>
+</div>
 </div>
 </div>
 </div>
@@ -1819,7 +1848,7 @@ a_level: <code>Integer[1]</code><br>
 <p>The <code>ARCHETYPE.<em>rm_release</em></code> attribute designates the release of the reference model on which the archetype is based, in the archetype&#8217;s current version. This means <code><em>rm_release</em></code> can change with new versions of the archetype, where re-versioning includes upgrading the archetype to a later RM release. However, such upgrading still has to obey the basic rule of archetype compatibility: later minor, patch versions and builds cannot create data that is not valid with respect to the prior version.</p>
 </div>
 <div class="paragraph">
-<p>This should be in the same semver.org 3-part form as the <code>ARCHETYPE_HRID.<em>release_version</em></code> property, e.g. "1.0.2". This property does not indicate conformance to any particular reference model version(s) other than the named one, since most archetypes can easily conform to more than one. More minimal archetypes are likely to technically conform to more old and future releases than more complex archteypes.</p>
+<p>This should be in the same semver.org 3-part form as the <code>ARCHETYPE_HRID.<em>release_version</em></code> property, e.g. "1.0.2". This property does not indicate conformance to any particular reference model version(s) other than the named one, since most archetypes can easily conform to more than one. More minimal archetypes are likely to technically conform to more old and future releases than more complex archetypes.</p>
 </div>
 </div>
 <div class="sect3">
@@ -2851,7 +2880,7 @@ an_id: <code>String[1]</code><br>
 <div class="sect4">
 <h5 id="_prototype_value"><a class="anchor" href="#_prototype_value"></a>4.2.5.2. Prototype_value</h5>
 <div class="paragraph">
-<p>This function is used to generate a reasonable default value of the reference object being constrained by a given node. This allows archteype-based software to build a 'prototype' object from an archetype which can serve as the initial version of the object being constrained, assuming it is being created new by user activity (e.g. via a GUI application). Implementation of this function will usually involve use of reflection libraries or similar.</p>
+<p>This function is used to generate a reasonable default value of the reference object being constrained by a given node. This allows archetype-based software to build a 'prototype' object from an archetype which can serve as the initial version of the object being constrained, assuming it is being created new by user activity (e.g. via a GUI application). Implementation of this function will usually involve use of reflection libraries or similar.</p>
 </div>
 </div>
 <div class="sect4">
@@ -3299,7 +3328,7 @@ Since an archetype might not contain external terminology bindings for all (or e
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>1..1</strong></p></th>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><strong>has_path</strong> (<br>
 a_path: <code>String[1]</code><br>
-): <code>boolean</code></p></td>
+): <code>Boolean</code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>True if the relative path a_path exists at this node.</p>
 </div></div></td>
@@ -3526,36 +3555,60 @@ Typically used during validation of special-ised archetype nodes.</p>
 <div class="sect4">
 <h5 id="_conformance_semantics"><a class="anchor" href="#_conformance_semantics"></a>4.5.2.1. Conformance Semantics</h5>
 <div class="paragraph">
-<p>The following functions formally define the conformance of a <code>C_ATRIBUTE</code> node in a specialised archetype to the corresponding node in a parent archetype, where 'corresponding' means a node found at the same or a congruent path.</p>
+<p>The following functions formally define the conformance interfaces of any <code>ARCHETYPE_CONSTRAINT</code> node in a specialised archetype to the corresponding node in a parent archetype, where 'corresponding' means a node found at the same or a congruent path.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="pygments highlight"><code data-lang="eiffel"><span></span><span class="tok-n">c_conforms_to</span> <span class="tok-p">(</span><span class="tok-n">other</span><span class="tok-p">:</span> <span class="tok-kr">like</span> <span class="tok-kc">Current</span><span class="tok-p">):</span> <span class="tok-n">Boolean</span>
-        <span class="tok-c1">-- True if this node on its own (ignoring any subparts) expresses the same or narrower constraints as `other&#39;.</span>
+<pre class="pygments highlight"><code data-lang="eiffel"><span></span><span class="tok-n">c_conforms_to</span> <span class="tok-p">(</span><span class="tok-n">other</span><span class="tok-p">:</span> <span class="tok-nc">ARCHETYPE_CONSTRAINT</span><span class="tok-p">;</span> <span class="tok-n">rmcc</span><span class="tok-p">:</span> <span class="tok-nc">FUNCTION</span><span class="tok-o">&lt;&lt;</span><span class="tok-n">a_type</span><span class="tok-p">,</span> <span class="tok-n">other_type</span><span class="tok-p">:</span> <span class="tok-n">String</span><span class="tok-o">&gt;</span><span class="tok-p">,</span> <span class="tok-n">Boolean</span><span class="tok-o">&gt;</span><span class="tok-p">):</span> <span class="tok-n">Boolean</span>
+        <span class="tok-c1">-- True if this node on its own (ignoring any subparts) expresses the same or narrower</span>
+        <span class="tok-c1">-- constraints as `other`.</span>
         <span class="tok-c1">-- Returns False if any of the following is incompatible:</span>
         <span class="tok-c1">--	 * cardinality</span>
         <span class="tok-c1">--	 * existence</span>
     <span class="tok-kr">require</span>
         <span class="tok-n">other</span> <span class="tok-o">/=</span> <span class="tok-kc">Void</span>
+        <span class="tok-n">rmcc</span> <span class="tok-o">/=</span> <span class="tok-kc">Void</span>
+    <span class="tok-kr">deferred</span>
+    <span class="tok-kr">end</span>
+
+<span class="tok-n">c_congruent_to</span> <span class="tok-p">(</span><span class="tok-n">other</span><span class="tok-p">:</span> <span class="tok-nc">ARCHETYPE_CONSTRAINT</span><span class="tok-p">):</span> <span class="tok-n">Boolean</span>
+        <span class="tok-c1">-- True if this node on its own (ignoring any subparts) expresses no additional</span>
+        <span class="tok-c1">-- constraints than `other`.</span>
+    <span class="tok-kr">require</span>
+        <span class="tok-n">other</span> <span class="tok-o">/=</span> <span class="tok-kc">Void</span>
+    <span class="tok-kr">deferred</span>
+    <span class="tok-kr">end</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The following effected functions defined in <code>C_ATTRIBUTE</code> define the conformance of an attribute node in a specialised archetype to the corresponding node in a parent archetype, where 'corresponding' means a node found at the same or a congruent path.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="pygments highlight"><code data-lang="eiffel"><span></span><span class="tok-n">c_conforms_to</span> <span class="tok-p">(</span><span class="tok-n">other</span><span class="tok-p">:</span> <span class="tok-nc">C_ATTRIBUTE</span><span class="tok-p">;</span> <span class="tok-n">rmcc</span><span class="tok-p">:</span> <span class="tok-nc">FUNCTION</span><span class="tok-o">&lt;&lt;</span><span class="tok-n">a_type</span><span class="tok-p">,</span> <span class="tok-n">other_type</span><span class="tok-p">:</span> <span class="tok-n">String</span><span class="tok-o">&gt;</span><span class="tok-p">,</span> <span class="tok-n">Boolean</span><span class="tok-o">&gt;</span><span class="tok-p">):</span> <span class="tok-n">Boolean</span>
+        <span class="tok-c1">-- True if this node on its own (ignoring any subparts) expresses the same or narrower</span>
+        <span class="tok-c1">-- constraints as `other&#39;.</span>
+        <span class="tok-c1">-- Returns False if any of the following is incompatible:</span>
+        <span class="tok-c1">--	 * cardinality</span>
+        <span class="tok-c1">--	 * existence</span>
     <span class="tok-kr">do</span>
         <span class="tok-kc">Result</span> <span class="tok-o">:=</span> <span class="tok-n">existence_conforms_to</span> <span class="tok-p">(</span><span class="tok-n">other</span><span class="tok-p">)</span> <span class="tok-ow">and</span>
             <span class="tok-p">((</span><span class="tok-n">is_single</span> <span class="tok-ow">and</span> <span class="tok-n">other</span><span class="tok-p">.</span><span class="tok-n">is_single</span><span class="tok-p">)</span> <span class="tok-ow">or else</span>
             <span class="tok-p">(</span><span class="tok-n">is_multiple</span> <span class="tok-ow">and</span> <span class="tok-n">cardinality_conforms_to</span> <span class="tok-p">(</span><span class="tok-n">other</span><span class="tok-p">)))</span>
     <span class="tok-kr">end</span>
 
-<span class="tok-n">c_congruent_to</span> <span class="tok-p">(</span><span class="tok-n">other</span><span class="tok-p">:</span> <span class="tok-kr">like</span> <span class="tok-kc">Current</span><span class="tok-p">):</span> <span class="tok-n">Boolean</span>
-		<span class="tok-c1">-- True if this node on its own (ignoring any subparts) expresses no additional constraints than `other&#39;.</span>
-    <span class="tok-kr">require</span>
-        <span class="tok-n">other</span> <span class="tok-o">/=</span> <span class="tok-kc">Void</span>
+<span class="tok-n">c_congruent_to</span> <span class="tok-p">(</span><span class="tok-n">other</span><span class="tok-p">:</span> <span class="tok-nc">C_ATTRIBUTE</span><span class="tok-p">):</span> <span class="tok-n">Boolean</span>
+		<span class="tok-c1">-- True if this node on its own (ignoring any subparts) expresses no additional</span>
+        <span class="tok-c1">-- constraints than `other&#39;.</span>
     <span class="tok-kr">do</span>
         <span class="tok-kc">Result</span> <span class="tok-o">:=</span> <span class="tok-n">existence</span> <span class="tok-o">=</span> <span class="tok-kc">Void</span> <span class="tok-ow">and</span> <span class="tok-p">((</span><span class="tok-n">is_single</span> <span class="tok-ow">and</span> <span class="tok-n">other</span><span class="tok-p">.</span><span class="tok-n">is_single</span><span class="tok-p">)</span> <span class="tok-ow">or</span>
                 <span class="tok-p">(</span><span class="tok-n">is_multiple</span> <span class="tok-ow">and</span> <span class="tok-n">other</span><span class="tok-p">.</span><span class="tok-n">is_multiple</span> <span class="tok-ow">and</span> <span class="tok-n">cardinality</span> <span class="tok-o">=</span> <span class="tok-kc">Void</span><span class="tok-p">))</span>
     <span class="tok-kr">end</span>
 
-<span class="tok-n">existence_conforms_to</span> <span class="tok-p">(</span><span class="tok-n">other</span><span class="tok-p">:</span> <span class="tok-kr">like</span> <span class="tok-kc">Current</span><span class="tok-p">):</span> <span class="tok-n">Boolean</span>
+<span class="tok-n">existence_conforms_to</span> <span class="tok-p">(</span><span class="tok-n">other</span><span class="tok-p">:</span> <span class="tok-nc">C_ATTRIBUTE</span><span class="tok-p">):</span> <span class="tok-n">Boolean</span>
 		<span class="tok-c1">-- True if the existence of this node conforms to other.existence</span>
     <span class="tok-kr">require</span>
-        <span class="tok-n">other_exists</span><span class="tok-p">:</span> <span class="tok-n">other</span> <span class="tok-o">/=</span> <span class="tok-kc">Void</span>
+        <span class="tok-n">other</span> <span class="tok-o">/=</span> <span class="tok-kc">Void</span>
     <span class="tok-kr">do</span>
         <span class="tok-kr">if</span> <span class="tok-n">existence</span> <span class="tok-o">/=</span> <span class="tok-kc">Void</span> <span class="tok-ow">and</span> <span class="tok-n">other</span><span class="tok-p">.</span><span class="tok-n">existence</span> <span class="tok-o">/=</span> <span class="tok-kc">Void</span> <span class="tok-kr">then</span>
             <span class="tok-kc">Result</span> <span class="tok-o">:=</span> <span class="tok-n">other</span><span class="tok-p">.</span><span class="tok-n">existence</span><span class="tok-p">.</span><span class="tok-n">contains</span> <span class="tok-p">(</span><span class="tok-n">existence</span><span class="tok-p">)</span>
@@ -3564,10 +3617,10 @@ Typically used during validation of special-ised archetype nodes.</p>
         <span class="tok-kr">end</span>
     <span class="tok-kr">end</span>
 
-<span class="tok-n">cardinality_conforms_to</span> <span class="tok-p">(</span><span class="tok-n">other</span><span class="tok-p">:</span> <span class="tok-kr">like</span> <span class="tok-kc">Current</span><span class="tok-p">):</span> <span class="tok-n">Boolean</span>
+<span class="tok-n">cardinality_conforms_to</span> <span class="tok-p">(</span><span class="tok-n">other</span><span class="tok-p">:</span> <span class="tok-nc">C_ATTRIBUTE</span><span class="tok-p">):</span> <span class="tok-n">Boolean</span>
 		<span class="tok-c1">-- True if the cardinality of this node conforms to other.cardinality, if it exists</span>
     <span class="tok-kr">require</span>
-        <span class="tok-n">other_exists</span><span class="tok-p">:</span> <span class="tok-n">other</span> <span class="tok-o">/=</span> <span class="tok-kc">Void</span>
+        <span class="tok-n">other</span> <span class="tok-o">/=</span> <span class="tok-kc">Void</span>
     <span class="tok-kr">do</span>
         <span class="tok-kr">if</span> <span class="tok-n">cardinality</span> <span class="tok-o">/=</span> <span class="tok-kc">Void</span> <span class="tok-ow">and</span> <span class="tok-n">other</span><span class="tok-p">.</span><span class="tok-n">cardinality</span> <span class="tok-o">/=</span> <span class="tok-kc">Void</span> <span class="tok-kr">then</span>
             <span class="tok-kc">Result</span> <span class="tok-o">:=</span> <span class="tok-n">other</span><span class="tok-p">.</span><span class="tok-n">cardinality</span><span class="tok-p">.</span><span class="tok-n">contains</span> <span class="tok-p">(</span><span class="tok-n">cardinality</span><span class="tok-p">)</span>
@@ -3608,16 +3661,16 @@ Typically used during validation of special-ised archetype nodes.</p>
 <p><strong>VSAM</strong>: specialised archetype attribute multiplicity conformance: the multiplicity, i.e. whether an attribute is multiply- or single-valued, of a redefined attribute must conform to that of the corresponding attribute in the parent archetype.</p>
 </div>
 <div class="paragraph">
-<p>The following validity rules apply to single-valued attributes, i.e when <code>C_ATTRIBUTE</code>.<code><em>is_multiple</em></code> is False:</p>
+<p>The following validity rules apply to single-valued attributes, i.e when <code>C_ATTRIBUTE.<em>is_multiple</em></code> is False:</p>
 </div>
 <div class="paragraph rule">
 <p><strong>VACSO</strong>: single-valued attribute child object occurrences validity: the occurrences of a child object of a single-valued attribute cannot have an upper limit greater than 1.</p>
 </div>
 <div class="paragraph">
-<p>The following validity rules apply to container attributes, i.e when <code>C_ATTRIBUTE</code>.<code><em>is_multiple</em></code> is True:</p>
+<p>The following validity rules apply to container attributes, i.e when <code>C_ATTRIBUTE.<em>is_multiple</em></code> is True:</p>
 </div>
 <div class="paragraph rule">
-<p><strong>VACMCU</strong>: cardinality/occurrences upper bound validity: where a cardinality with a finite upper bound is stated on an attribute, for all immediate child objects for which an occurrences constraint is stated, the occurrences must either have an open upper bound (i.e. n..*) which is interpreted as the maximum value allowed within the cardinality, or else a finite upper bound which is &#8656; the cardinality upper bound.</p>
+<p><strong>VACMCU</strong>: cardinality/occurrences upper bound validity: where a cardinality with a finite upper bound is stated on an attribute, for all immediate child objects for which an occurrences constraint is stated, the occurrences must either have an open upper bound (i.e. n..*) which is interpreted as the maximum value allowed within the cardinality, or else a finite upper bound which is &lt;= the cardinality upper bound.</p>
 </div>
 <div class="paragraph rule">
 <p><strong>VACMCO</strong>: cardinality/occurrences orphans: it must be possible for at least one instance of one optional child object (i.e. an object for which the occurrences lower bound is 0) and one instance of every mandatory child object (i.e. object constraints for which the occurrences lower bound is &gt;= 1) to be included within the cardinality range.</p>
@@ -3626,7 +3679,7 @@ Typically used during validation of special-ised archetype nodes.</p>
 <p><strong>VCACA</strong>: archetype attribute reference model cardinality conformance: the cardinality of an attribute must conform, i.e. be the same or narrower, to the cardinality of the corresponding attribute in the underlying information model.</p>
 </div>
 <div class="paragraph">
-<p>The following validity warnings apply to container attributes, i.e when <code>C_ATTRIBUTE</code>.<code><em>is_multiple</em></code> is True:</p>
+<p>The following validity warnings apply to container attributes, i.e when <code>C_ATTRIBUTE.<em>is_multiple</em></code> is True:</p>
 </div>
 <div class="paragraph rule">
 <p><strong>WACMCL</strong>: cardinality/occurrences lower bound validity: where a cardinality with a finite upper bound is stated on an attribute, for all immediate child objects for which an occurrences constraint is stated, the sum of occurrences lower bounds should be lower than the cardinality upper limit.</p>
@@ -3686,7 +3739,7 @@ Only set if it overrides the parent archetype in the case of specialised archety
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>1..1</strong></p></th>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><strong>node_id</strong>: <code>String</code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p>Semantic identifier of this node, used to dis-tinguish sibling nodes. All nodes must have a node_id; for nodes under a container <code>C_ATTRIBUTE</code>, the id must be an id-code must be defined in the archetype terminology. For valid structures, all node ids are id-codes.
+<p>Semantic identifier of this node, used to dis-tinguish sibling nodes. All nodes must have a <code><em>node_id</em></code>; for nodes under a container <code>C_ATTRIBUTE</code>, the id must be an id-code must be defined in the archetype terminology. For valid structures, all node ids are id-codes.
 For <code>C_PRIMITIVE_OBJECTs</code>, it will have the special value <code>Primitive_node_id</code>.</p>
 </div></div></td>
 </tr>
@@ -3701,7 +3754,7 @@ For <code>C_PRIMITIVE_OBJECTs</code>, it will have the special value <code>Primi
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><strong>sibling_order</strong>: <code>SIBLING_ORDER</code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p>Optional indicator of order of this node with respect to another sibling. Only meaningful in a specialised archetype for a <code>C_OBJECT</code> within a <code>C_ATTRIBUTE</code> with <code><em>is_multiple</em></code> = True.</p>
+<p>Optional indicator of order of this node with respect to another sibling. Only meaningful in a specialised archetype for a <code>C_OBJECT</code> within a <code>C_ATTRIBUTE</code> with <code><em>is_multiple</em> = True</code>.</p>
 </div></div></td>
 </tr>
 <tr>
@@ -3713,7 +3766,7 @@ For <code>C_PRIMITIVE_OBJECTs</code>, it will have the special value <code>Primi
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>1..1</strong></p></th>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><strong>specialisation_depth</strong> (): <code>Integer</code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p>Level of specialisation of this archetype node, based on its node_id. The value 0 corresponds to non-specialised, 1 to first-level specialisation and so on. The level is the same as the number of ‘.’ characters in the node_id code. If node_id is not set, the return value is -1, signifying that the specialisation level should be determined from the nearest parent <code>C_OBJECT</code> node having a node_id.</p>
+<p>Level of specialisation of this archetype node, based on its <code><em>node_id</em></code>. The value 0 corresponds to non-specialised, 1 to first-level specialisation and so on. The level is the same as the number of ‘.’ characters in the node_id code. If <code><em>node_id</em></code> is not set, the return value is -1, signifying that the specialisation level should be determined from the nearest parent <code>C_OBJECT</code> node having a node_id.</p>
 </div></div></td>
 </tr>
 <tr>
@@ -3730,7 +3783,7 @@ For <code>C_PRIMITIVE_OBJECTs</code>, it will have the special value <code>Primi
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>1..1<br>
 (effected)</strong></p></th>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><strong>c_conforms_to</strong> (<br>
-other: <code>ARCHETYPE_CONSTRAINT[1]</code>,<br>
+other: <code>C_OBJECT[1]</code>,<br>
 rmcc: <code>FUNCTION&lt;&lt;String,String&gt;,Boolean&gt;[1]</code><br>
 ): <code>Boolean</code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
@@ -3745,7 +3798,7 @@ Typically used during validation of special-ised archetype nodes.</p>
 <code><em>rmcc</em></code>
 </td>
 <td class="hdlist2">
-<p>Reference Model conformance checker lambda.</p>
+<p>Reference Model conformance checker agent (lambda).</p>
 </td>
 </tr>
 </table>
@@ -3780,7 +3833,7 @@ other: <code>C_OBJECT[1]</code><br>
 <code><em>other</em></code>
 </td>
 <td class="hdlist2">
-<p>C_OBJECT from a flat parent archetype.</p>
+<p><code>C_OBJECT</code> from a flat parent archetype.</p>
 </td>
 </tr>
 </table>
@@ -3794,7 +3847,7 @@ other: <code>C_OBJECT[1]</code><br>
 <br>
 <em>Post</em>: <code>Result = codes_conformant (node_id, other.node_id)</code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p>True if this node id conforms to other.node_id, which includes the ids being identical; other is assumed to be in a flat archetype.</p>
+<p>True if this node id conforms to <code><em>other.node_id</em></code>, which includes the ids being identical; <code><em>other</em></code> is assumed to be in a flat archetype.</p>
 </div></div></td>
 </tr>
 <tr>
@@ -3804,7 +3857,7 @@ other: <code>C_OBJECT[1]</code><br>
 <br>
 <em>Post</em>: <code>Result = occurrences /= Void and then occurrences.is_prohibited</code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p>True if this <code>C_OBJECT</code> node is prohibited, i.e. if its occurrences is 0..0.</p>
+<p>True if this <code>C_OBJECT</code> node is prohibited, i.e. if its <code><em>occurrences</em></code> is <code>0..0</code>.</p>
 </div></div></td>
 </tr>
 </tbody>
@@ -3868,20 +3921,20 @@ other: <code>C_OBJECT[1]</code><br>
 <div class="sect4">
 <h5 id="_occurrences_inferencing_rules"><a class="anchor" href="#_occurrences_inferencing_rules"></a>4.5.4.1. Occurrences inferencing rules</h5>
 <div class="paragraph">
-<p>The notion of 'occurrences' does not exist in an object model that might be used as the reference model on which archteypes are based, because it is a class model. However, archetypes commonly constrain the occurrences of object nodes under a container attribute, indicating how many objects conforming to a specific object constraint node might exist.</p>
+<p>The notion of 'occurrences' does not exist in an object model that might be used as the reference model on which archetypes are based, because it is a class model. However, archetypes commonly constrain the occurrences of object nodes under a container attribute, indicating how many objects conforming to a specific object constraint node might exist.</p>
 </div>
 <div class="paragraph">
 <p>There are various circumstances where it is useful to know the effective occurrences of an archetype object node. One is in validation, in order to determine validity of occurrences constraints; another is in archetype editor tools. Similarly, in an <a href="https://specifications.openehr.org/releases/AM/latest/OPT2.html" target="_blank" rel="noopener">Operational Template</a>, an occurrences constraint is required on all child object nodes of container attributes. Most such constraints come from the source template(s) and archetypes, but often there will be nodes with no occurrences set. In these cases, the occurrences constraint is inferred from the archetype and the reference model according to the following algorithm, where <code>c_object</code> represents any object node in an archetype.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="pygments highlight"><code data-lang="eiffel"><span></span><span class="tok-n">effective_occurrences</span> <span class="tok-p">(</span><span class="tok-kr">agent</span> <span class="tok-n">rm_prop_mult</span> <span class="tok-p">(</span><span class="tok-n">rm_type_name</span><span class="tok-p">,</span> <span class="tok-n">rm_property_path</span><span class="tok-p">:</span> <span class="tok-n">String</span><span class="tok-p">):</span> <span class="tok-nc">MULTIPLICITY_INTERVAL</span><span class="tok-p">):</span> <span class="tok-nc">MULTIPLICITY_INTERVAL</span>
-		<span class="tok-c1">-- Compute effective occurrences, where no local occurrences constraint set. If the owning</span>
-		<span class="tok-c1">-- `C_ATTRIBUTE._cardinality_` is set, use its upper value, else use RM multiplicity of the</span>
-		<span class="tok-c1">-- owning attribute.</span>
-		<span class="tok-c1">-- `rm_attr_prop_mult` is a function that knows how to compute effective object multiplicity</span>
-		<span class="tok-c1">-- by looking at the owning RM property.</span>
-		<span class="tok-c1">-- If local `occurrences` not set, always assume 0 as the lower bound.</span>
+<pre class="pygments highlight"><code data-lang="eiffel"><span></span><span class="tok-n">effective_occurrences</span> <span class="tok-p">(</span><span class="tok-n">rm_prop_mult</span><span class="tok-p">:</span> <span class="tok-nc">FUNCTION</span> <span class="tok-o">&lt;&lt;</span><span class="tok-n">rm_type_name</span><span class="tok-p">,</span> <span class="tok-n">rm_property_path</span><span class="tok-p">:</span> <span class="tok-n">String</span><span class="tok-o">&gt;</span><span class="tok-p">,</span> <span class="tok-n">Multiplicity_interval</span><span class="tok-o">&gt;</span><span class="tok-p">):</span> <span class="tok-n">Multiplicity_interval</span>
+        <span class="tok-c1">-- Compute effective occurrences, where no local occurrences constraint set. If the owning</span>
+        <span class="tok-c1">-- `C_ATTRIBUTE._cardinality_` is set, use its upper value, else use RM multiplicity of the</span>
+        <span class="tok-c1">-- owning attribute.</span>
+        <span class="tok-c1">-- `rm_attr_prop_mult` is a function that knows how to compute effective object multiplicity</span>
+        <span class="tok-c1">-- by looking at the owning RM property.</span>
+        <span class="tok-c1">-- If local `occurrences` not set, always assume 0 as the lower bound.</span>
     <span class="tok-kr">do</span>
         <span class="tok-kr">if</span> <span class="tok-n">occurrences</span> <span class="tok-o">/=</span> <span class="tok-kc">Void</span> <span class="tok-kr">then</span>
             <span class="tok-kc">Result</span> <span class="tok-o">:=</span> <span class="tok-n">occurrences</span>
@@ -3891,11 +3944,11 @@ other: <code>C_OBJECT[1]</code><br>
                 <span class="tok-kr">if</span> <span class="tok-n">parent</span><span class="tok-p">.</span><span class="tok-n">cardinality</span><span class="tok-p">.</span><span class="tok-n">interval</span><span class="tok-p">.</span><span class="tok-n">upper_unbounded</span> <span class="tok-kr">then</span>
                     <span class="tok-kr">create</span> <span class="tok-kc">Result</span><span class="tok-p">.</span><span class="tok-n">make_open</span>
                 <span class="tok-kr">else</span>
-                    <span class="tok-kr">create</span> <span class="tok-kc">Result</span><span class="tok-p">.</span><span class="tok-n">make_bounded</span> <span class="tok-p">(</span><span class="tok-n">occ_lower</span><span class="tok-p">,</span> <span class="tok-n">parent</span><span class="tok-p">.</span><span class="tok-n">cardinality</span><span class="tok-p">.</span><span class="tok-n">interval</span><span class="tok-p">.</span><span class="tok-n">upper</span><span class="tok-p">)</span>
+                    <span class="tok-kr">create</span> <span class="tok-kc">Result</span><span class="tok-p">.</span><span class="tok-n">make_bounded</span> <span class="tok-p">(</span><span class="tok-mi">0</span><span class="tok-p">,</span> <span class="tok-n">parent</span><span class="tok-p">.</span><span class="tok-n">cardinality</span><span class="tok-p">.</span><span class="tok-n">interval</span><span class="tok-p">.</span><span class="tok-n">upper</span><span class="tok-p">)</span>
                 <span class="tok-kr">end</span>
             <span class="tok-kr">elseif</span> <span class="tok-n">parent</span><span class="tok-p">.</span><span class="tok-n">parent</span> <span class="tok-o">/=</span> <span class="tok-kc">Void</span> <span class="tok-kr">then</span>
                 <span class="tok-kc">Result</span> <span class="tok-o">:=</span> <span class="tok-n">rm_prop_mult</span> <span class="tok-p">(</span><span class="tok-n">parent</span><span class="tok-p">.</span><span class="tok-n">parent</span><span class="tok-p">.</span><span class="tok-n">rm_type_name</span><span class="tok-p">,</span> <span class="tok-n">parent</span><span class="tok-p">.</span><span class="tok-n">parent</span><span class="tok-p">.</span><span class="tok-n">rm_attribute_path</span><span class="tok-p">)</span>
-				<span class="tok-kc">Result</span><span class="tok-p">.</span><span class="tok-n">set_lower</span> <span class="tok-p">(</span><span class="tok-mi">0</span><span class="tok-p">)</span>
+                <span class="tok-kc">Result</span><span class="tok-p">.</span><span class="tok-n">set_lower</span> <span class="tok-p">(</span><span class="tok-mi">0</span><span class="tok-p">)</span>
             <span class="tok-kr">else</span>
                 <span class="tok-kr">create</span> <span class="tok-kc">Result</span><span class="tok-p">.</span><span class="tok-n">make_open</span>
             <span class="tok-kr">end</span>
@@ -3910,9 +3963,12 @@ other: <code>C_OBJECT[1]</code><br>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="pygments highlight"><code data-lang="eiffel"><span></span><span class="tok-n">object_multiplicity</span> <span class="tok-p">(</span><span class="tok-n">rm_type_name</span><span class="tok-p">,</span> <span class="tok-n">rm_property_path</span><span class="tok-p">:</span> <span class="tok-n">String</span><span class="tok-p">):</span> <span class="tok-nc">MULTIPLICITY_INTERVAL</span>
+<pre class="pygments highlight"><code data-lang="eiffel"><span></span><span class="tok-n">object_multiplicity</span> <span class="tok-p">(</span><span class="tok-n">rm_type_name</span><span class="tok-p">,</span> <span class="tok-n">rm_property_path</span><span class="tok-p">:</span> <span class="tok-n">String</span><span class="tok-p">):</span> <span class="tok-n">Multiplicity_interval</span>
         <span class="tok-c1">-- compute the effective object multiplicity of objects at rm_property_path within type rm_type_name</span>
         <span class="tok-c1">-- from the Reference Model</span>
+    <span class="tok-kr">require</span>
+        <span class="tok-n">rm_type_name</span> <span class="tok-o">/=</span> <span class="tok-kc">Void</span>
+        <span class="tok-n">rm_property_path</span> <span class="tok-o">/=</span> <span class="tok-kc">Void</span>
     <span class="tok-kr">do</span>
         <span class="tok-n">rm_property_def</span> <span class="tok-o">:=</span> <span class="tok-n">get_rm_property_def</span> <span class="tok-p">(</span><span class="tok-n">rm_type_name</span><span class="tok-p">,</span> <span class="tok-n">rm_property_path</span><span class="tok-p">)</span>
         <span class="tok-kr">if</span> <span class="tok-n">rm_property_def</span><span class="tok-p">.</span><span class="tok-n">is_container</span> <span class="tok-kr">then</span>
@@ -3934,30 +3990,27 @@ other: <code>C_OBJECT[1]</code><br>
 <div class="sect4">
 <h5 id="_conformance_semantics_2"><a class="anchor" href="#_conformance_semantics_2"></a>4.5.4.2. Conformance semantics</h5>
 <div class="paragraph">
-<p>The following functions formally define the conformance of a <code>C_OBJECT</code> node in a specialised archetype to the corresponding node in a parent archetype, where 'corresponding' means a node found at the same or a congruent path.</p>
+<p>The following functions, which implement the precursors from <code>ARCHETYPE_CONSTRAINT</code> formally define the conformance of a <code>C_OBJECT</code> node in a specialised archetype to the corresponding node in a parent archetype, where 'corresponding' means a node found at the same or a congruent path. Note that the pre-conditions from the precursors are understood as inherited.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="pygments highlight"><code data-lang="eiffel"><span></span><span class="tok-n">c_conforms_to</span> <span class="tok-p">(</span><span class="tok-n">other</span><span class="tok-p">:</span> <span class="tok-kr">like</span> <span class="tok-kc">Current</span><span class="tok-p">;</span> <span class="tok-kr">agent</span> <span class="tok-n">rm_types_conformant</span> <span class="tok-p">(</span><span class="tok-n">a_type</span><span class="tok-p">,</span> <span class="tok-n">other_type</span><span class="tok-p">:</span> <span class="tok-n">String</span><span class="tok-p">):</span> <span class="tok-n">Boolean</span><span class="tok-p">):</span> <span class="tok-n">Boolean</span>
+<pre class="pygments highlight"><code data-lang="eiffel"><span></span><span class="tok-n">c_conforms_to</span> <span class="tok-p">(</span><span class="tok-n">other</span><span class="tok-p">:</span> <span class="tok-nc">C_OBJECT</span><span class="tok-p">;</span> <span class="tok-n">rmcc</span><span class="tok-p">:</span> <span class="tok-nc">FUNCTION</span><span class="tok-o">&lt;&lt;</span><span class="tok-n">a_type</span><span class="tok-p">,</span> <span class="tok-n">other_type</span><span class="tok-p">:</span> <span class="tok-n">String</span><span class="tok-o">&gt;</span><span class="tok-p">,</span> <span class="tok-n">Boolean</span><span class="tok-o">&gt;</span><span class="tok-p">):</span> <span class="tok-n">Boolean</span>
         <span class="tok-c1">-- True if this node on its own (ignoring any subparts) expresses strictly narrower constraints</span>
         <span class="tok-c1">-- as `other&#39;.</span>
         <span class="tok-c1">-- `other&#39; is typically from the flat parent archetype.</span>
+        <span class="tok-c1">-- `rmcc&#39; is an agent (lambda) that can test an RM type&#39;s conformance to another RM type</span>
         <span class="tok-c1">-- Returns True only when the following is True:</span>
         <span class="tok-c1">--	 * rm_type_name is the same or a subtype of rm_type_name of other;</span>
         <span class="tok-c1">--	 * occurrences is same (= Void) or a sub-interval</span>
         <span class="tok-c1">--	 * node_id is the same, or redefined to a legal code at the level of the owning archetype</span>
-        <span class="tok-c1">-- `rm_types_conformant&#39; is an agent (lambda) that can test an RM type&#39;s conformance to another RM type</span>
-    <span class="tok-kr">require</span>
-        <span class="tok-n">other</span> <span class="tok-o">/=</span> <span class="tok-kc">Void</span>
-        <span class="tok-n">rm_types_conformant</span> <span class="tok-o">/=</span> <span class="tok-kc">Void</span>
     <span class="tok-kr">do</span>
         <span class="tok-kc">Result</span> <span class="tok-o">:=</span> <span class="tok-n">node_id_conforms_to</span> <span class="tok-p">(</span><span class="tok-n">other</span><span class="tok-p">)</span> <span class="tok-ow">and</span>
             <span class="tok-n">occurrences_conforms_to</span> <span class="tok-p">(</span><span class="tok-n">other</span><span class="tok-p">)</span> <span class="tok-ow">and</span>
             <span class="tok-p">(</span><span class="tok-n">rm_type_name</span><span class="tok-p">.</span><span class="tok-n">is_case_insensitive_equal</span> <span class="tok-p">(</span><span class="tok-n">other</span><span class="tok-p">.</span><span class="tok-n">rm_type_name</span><span class="tok-p">)</span> <span class="tok-ow">or else</span>
-            <span class="tok-n">rm_types_conformant</span> <span class="tok-p">(</span><span class="tok-n">rm_type_name</span><span class="tok-p">,</span> <span class="tok-n">other</span><span class="tok-p">.</span><span class="tok-n">rm_type_name</span><span class="tok-p">))</span>
+            <span class="tok-n">rmcc</span> <span class="tok-p">(</span><span class="tok-n">rm_type_name</span><span class="tok-p">,</span> <span class="tok-n">other</span><span class="tok-p">.</span><span class="tok-n">rm_type_name</span><span class="tok-p">))</span>
     <span class="tok-kr">end</span>
 
-<span class="tok-n">c_congruent_to</span> <span class="tok-p">(</span><span class="tok-n">other</span><span class="tok-p">:</span> <span class="tok-kr">like</span> <span class="tok-kc">Current</span><span class="tok-p">):</span> <span class="tok-n">Boolean</span>
+<span class="tok-n">c_congruent_to</span> <span class="tok-p">(</span><span class="tok-n">other</span><span class="tok-p">:</span> <span class="tok-nc">C_OBJECT</span><span class="tok-p">):</span> <span class="tok-n">Boolean</span>
         <span class="tok-c1">-- True if this node on its own (ignoring any subparts) expresses no constraints in addition</span>
         <span class="tok-c1">-- to `other&#39;, other than possible redefinition of the node id, which doesn&#39;t matter, since</span>
         <span class="tok-c1">-- this won&#39;t get lost in a compressed path.</span>
@@ -3968,8 +4021,6 @@ other: <code>C_OBJECT[1]</code><br>
         <span class="tok-c1">--	 * occurrences is Void or else identical to other.occurrences</span>
         <span class="tok-c1">-- 	 * sibling_order is Void or else identical to other.sibling_order</span>
         <span class="tok-c1">--	 * node_id is identical or else is the only child that overlays the parent node</span>
-    <span class="tok-kr">require</span>
-        <span class="tok-n">other</span> <span class="tok-o">/=</span> <span class="tok-kc">Void</span>
     <span class="tok-kr">do</span>
         <span class="tok-kc">Result</span> <span class="tok-o">:=</span> <span class="tok-n">rm_type_name</span><span class="tok-p">.</span><span class="tok-n">is_case_insensitive_equal</span> <span class="tok-p">(</span><span class="tok-n">other</span><span class="tok-p">.</span><span class="tok-n">rm_type_name</span><span class="tok-p">)</span> <span class="tok-ow">and</span>
             <span class="tok-p">(</span><span class="tok-n">occurrences</span> <span class="tok-o">=</span> <span class="tok-kc">Void</span> <span class="tok-ow">or else</span> <span class="tok-p">(</span><span class="tok-n">other</span><span class="tok-p">.</span><span class="tok-n">occurrences</span> <span class="tok-o">/=</span> <span class="tok-kc">Void</span> <span class="tok-ow">and then</span>
@@ -3979,9 +4030,9 @@ other: <code>C_OBJECT[1]</code><br>
             <span class="tok-n">node_reuse_congruent</span> <span class="tok-p">(</span><span class="tok-n">other</span><span class="tok-p">)</span>
     <span class="tok-kr">end</span>
 
-<span class="tok-n">occurrences_conforms_to</span> <span class="tok-p">(</span><span class="tok-n">other</span><span class="tok-p">:</span> <span class="tok-kr">like</span> <span class="tok-kc">Current</span><span class="tok-p">):</span> <span class="tok-n">Boolean</span>
+<span class="tok-n">occurrences_conforms_to</span> <span class="tok-p">(</span><span class="tok-n">other</span><span class="tok-p">:</span> <span class="tok-nc">C_OBJECT</span><span class="tok-p">):</span> <span class="tok-n">Boolean</span>
     <span class="tok-kr">require</span>
-        <span class="tok-n">other_exists</span><span class="tok-p">:</span> <span class="tok-n">other</span> <span class="tok-o">/=</span> <span class="tok-kc">Void</span>
+        <span class="tok-n">other</span> <span class="tok-o">/=</span> <span class="tok-kc">Void</span>
     <span class="tok-kr">do</span>
         <span class="tok-kr">if</span> <span class="tok-n">occurrences</span> <span class="tok-o">/=</span> <span class="tok-kc">Void</span> <span class="tok-ow">and</span> <span class="tok-n">other</span><span class="tok-p">.</span><span class="tok-n">occurrences</span> <span class="tok-o">/=</span> <span class="tok-kc">Void</span> <span class="tok-kr">then</span>
             <span class="tok-kc">Result</span> <span class="tok-o">:=</span> <span class="tok-n">other</span><span class="tok-p">.</span><span class="tok-n">occurrences</span><span class="tok-p">.</span><span class="tok-n">contains</span> <span class="tok-p">(</span><span class="tok-n">occurrences</span><span class="tok-p">)</span>
@@ -3990,15 +4041,17 @@ other: <code>C_OBJECT[1]</code><br>
         <span class="tok-kr">end</span>
     <span class="tok-kr">end</span>
 
-<span class="tok-n">node_id_conforms_to</span> <span class="tok-p">(</span><span class="tok-n">other</span><span class="tok-p">:</span> <span class="tok-kr">like</span> <span class="tok-kc">Current</span><span class="tok-p">):</span> <span class="tok-n">Boolean</span>
+<span class="tok-n">node_id_conforms_to</span> <span class="tok-p">(</span><span class="tok-n">other</span><span class="tok-p">:</span> <span class="tok-nc">C_OBJECT</span><span class="tok-p">):</span> <span class="tok-n">Boolean</span>
     <span class="tok-kr">require</span>
-        <span class="tok-n">other_exists</span><span class="tok-p">:</span> <span class="tok-n">other</span> <span class="tok-o">/=</span> <span class="tok-kc">Void</span>
+        <span class="tok-n">other</span> <span class="tok-o">/=</span> <span class="tok-kc">Void</span>
     <span class="tok-kr">do</span>
         <span class="tok-kc">Result</span> <span class="tok-o">:=</span> <span class="tok-n">codes_conformant</span> <span class="tok-p">(</span><span class="tok-n">node_id</span><span class="tok-p">,</span> <span class="tok-n">other</span><span class="tok-p">.</span><span class="tok-n">node_id</span><span class="tok-p">)</span>
     <span class="tok-kr">end</span>
 
-<span class="tok-n">node_reuse_congruent</span> <span class="tok-p">(</span><span class="tok-n">other</span><span class="tok-p">:</span> <span class="tok-kr">like</span> <span class="tok-kc">Current</span><span class="tok-p">):</span> <span class="tok-n">Boolean</span>
+<span class="tok-n">node_reuse_congruent</span> <span class="tok-p">(</span><span class="tok-n">other</span><span class="tok-p">:</span> <span class="tok-nc">C_OBJECT</span><span class="tok-p">):</span> <span class="tok-n">Boolean</span>
         <span class="tok-c1">-- True if this node is the sole re-using node of the corresponding node in the flat</span>
+    <span class="tok-kr">require</span>
+        <span class="tok-n">other</span> <span class="tok-o">/=</span> <span class="tok-kc">Void</span>
     <span class="tok-kr">do</span>
         <span class="tok-kc">Result</span> <span class="tok-o">:=</span> <span class="tok-n">node_id_conforms_to</span> <span class="tok-p">(</span><span class="tok-n">other</span><span class="tok-p">)</span> <span class="tok-ow">and</span>
             <span class="tok-p">(</span><span class="tok-n">is_root</span> <span class="tok-ow">or else</span>
@@ -4196,6 +4249,44 @@ a_value: <code>Any[1]</code><br>
 <em>Post</em>: <code>Result = attributes.is_empty and not is_prohibited</code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>True if any value (i.e. instance) of the reference model type would be allowed. Redefined in descendants.</p>
+</div></div></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>1..1<br>
+(effected)</strong></p></th>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>c_conforms_to</strong> (<br>
+other: <code>C_COMPLEX_OBJECT[1]</code>,<br>
+rmcc: <code>FUNCTION&lt;&lt;String,String&gt;,Boolean&gt;[1]</code><br>
+): <code>Boolean</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>True if constraints represented by this node, ignoring any sub-parts, are narrower or the same as other.
+Typically used during validation of special-ised archetype nodes.</p>
+</div>
+<div class="hdlist">
+<div class="title">Parameters<br></div>
+<table>
+<tr>
+<td class="hdlist1">
+<code><em>rmcc</em></code>
+</td>
+<td class="hdlist2">
+<p>Reference Model conformance checker agent (lambda).</p>
+</td>
+</tr>
+</table>
+</div></div></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>1..1<br>
+(effected)</strong></p></th>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>c_congruent_to</strong> (<br>
+other: <code>C_COMPLEX_OBJECT[1]</code><br>
+): <code>Boolean</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>True if constraints represented by this node contain no further redefinitions with respect to the node <code><em>other</em></code>, with the exception of node_id redefnition in <code>C_OBJECT</code> nodes.</p>
+</div>
+<div class="paragraph">
+<p>Typically used to test if an inherited node locally contains any constraints.</p>
 </div></div></td>
 </tr>
 </tbody>
@@ -4636,21 +4727,19 @@ other: <code>C_PRIMITIVE_OBJECT[1]</code><br>
 <div class="sect4">
 <h5 id="_conformance_semantics_3"><a class="anchor" href="#_conformance_semantics_3"></a>4.5.10.2. Conformance semantics</h5>
 <div class="paragraph">
-<p>The following functions formally define the conformance of a node of a <code>C_PRIMITIVE_OBJECT</code> descendant type in a specialised archetype to a corresponding node in a parent archetype, where 'corresponding' means a node found at the same or a congruent path and of the same AOM type.</p>
+<p>The following functions redefine those of the same names from <code>C_OBJECT</code>, and formally define the conformance of a node of a <code>C_PRIMITIVE_OBJECT</code> descendant type in a specialised archetype to a corresponding node in a parent archetype, where 'corresponding' means a node found at the same or a congruent path and of the same AOM type.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="pygments highlight"><code data-lang="eiffel"><span></span><span class="tok-n">c_conforms_to</span> <span class="tok-p">(</span><span class="tok-n">other</span><span class="tok-p">:</span> <span class="tok-kr">like</span> <span class="tok-kc">Current</span><span class="tok-p">;</span> <span class="tok-kr">agent</span> <span class="tok-n">rm_types_conformant</span> <span class="tok-p">(</span><span class="tok-n">a_type</span><span class="tok-p">,</span> <span class="tok-n">other_type</span><span class="tok-p">:</span> <span class="tok-n">String</span><span class="tok-p">):</span> <span class="tok-n">Boolean</span><span class="tok-p">):</span> <span class="tok-n">Boolean</span>
-        <span class="tok-c1">-- True if this node on its own (ignoring any subparts) expresses the same or narrower constraints</span>
+<pre class="pygments highlight"><code data-lang="eiffel"><span></span><span class="tok-n">c_conforms_to</span> <span class="tok-p">(</span><span class="tok-n">other</span><span class="tok-p">:</span> <span class="tok-nc">C_PRIMITIVE_OBJECT</span><span class="tok-p">;</span> <span class="tok-n">rmcc</span><span class="tok-p">:</span> <span class="tok-nc">FUNCTION</span><span class="tok-o">&lt;&lt;</span><span class="tok-n">a_type</span><span class="tok-p">,</span> <span class="tok-n">other_type</span><span class="tok-p">:</span> <span class="tok-n">String</span><span class="tok-o">&gt;</span><span class="tok-p">,</span> <span class="tok-n">Boolean</span><span class="tok-o">&gt;</span><span class="tok-p">):</span> <span class="tok-n">Boolean</span>
+        <span class="tok-c1">-- True if this node on its own (ignoring any subparts) expresses the same or narrower</span>
+        <span class="tok-c1">-- constraints</span>
         <span class="tok-c1">-- as `other&#39;. Returns True only when the following is True:</span>
         <span class="tok-c1">--   * occurrences conforms</span>
         <span class="tok-c1">--   * `rm_type_name&#39; is identical to that in `other&#39;</span>
-        <span class="tok-c1">-- `rm_types_conformant&#39; is an agent (lambda) that can test an RM type&#39;s conformance to another RM type</span>
-    <span class="tok-kr">require</span>
-        <span class="tok-n">other</span> <span class="tok-o">/=</span> <span class="tok-kc">Void</span>
-        <span class="tok-n">rm_types_conformant</span> <span class="tok-o">/=</span> <span class="tok-kc">Void</span>
+        <span class="tok-c1">-- `rmcc&#39; is an agent (lambda) that can test an RM type&#39;s conformance to another RM type</span>
     <span class="tok-kr">do</span>
-        <span class="tok-kc">precursor</span> <span class="tok-p">(</span><span class="tok-n">other</span><span class="tok-p">,</span> <span class="tok-n">rm_type_conformance_checker</span><span class="tok-p">)</span> <span class="tok-ow">and</span> <span class="tok-n">c_value_conforms_to</span> <span class="tok-p">(</span><span class="tok-n">other</span><span class="tok-p">)</span>
+        <span class="tok-kc">Result</span> <span class="tok-o">:=</span> <span class="tok-kc">precursor</span> <span class="tok-p">(</span><span class="tok-n">other</span><span class="tok-p">,</span> <span class="tok-n">rmcc</span><span class="tok-p">)</span> <span class="tok-ow">and</span> <span class="tok-n">c_value_conforms_to</span> <span class="tok-p">(</span><span class="tok-n">other</span><span class="tok-p">)</span>
     <span class="tok-kr">end</span>
 
 <span class="tok-n">c_value_conforms_to</span> <span class="tok-p">(</span><span class="tok-n">other</span><span class="tok-p">:</span> <span class="tok-kr">like</span> <span class="tok-kc">Current</span><span class="tok-p">):</span> <span class="tok-n">Boolean</span>
@@ -4658,18 +4747,25 @@ other: <code>C_PRIMITIVE_OBJECT[1]</code><br>
     <span class="tok-kr">deferred</span>
     <span class="tok-kr">end</span>
 
-<span class="tok-n">c_congruent_to</span> <span class="tok-p">(</span><span class="tok-n">other</span><span class="tok-p">:</span> <span class="tok-kr">like</span> <span class="tok-kc">Current</span><span class="tok-p">):</span> <span class="tok-n">Boolean</span>
-        <span class="tok-c1">-- True if this node on its own (ignoring any subparts) expresses no constraints in addition to `other&#39;</span>
-    <span class="tok-kr">require</span>
-        <span class="tok-n">other</span> <span class="tok-o">/=</span> <span class="tok-kc">Void</span>
+<span class="tok-n">c_congruent_to</span> <span class="tok-p">(</span><span class="tok-n">other</span><span class="tok-p">:</span> <span class="tok-nc">C_PRIMITIVE_OBJECT</span><span class="tok-p">):</span> <span class="tok-n">Boolean</span>
+        <span class="tok-c1">-- True if this node on its own (ignoring any subparts) expresses no constraints in</span>
+        <span class="tok-c1">-- addition to `other&#39;</span>
     <span class="tok-kr">do</span>
 		<span class="tok-kc">Result</span> <span class="tok-o">:=</span> <span class="tok-n">constrained_typename</span><span class="tok-p">.</span><span class="tok-n">is_case_insensitive_equal</span> <span class="tok-p">(</span><span class="tok-n">other</span><span class="tok-p">.</span><span class="tok-n">constrained_typename</span><span class="tok-p">)</span> <span class="tok-ow">and</span>
             <span class="tok-n">c_value_congruent_to</span> <span class="tok-p">(</span><span class="tok-n">other</span><span class="tok-p">)</span>
     <span class="tok-kr">end</span>
 
-<span class="tok-n">c_value_congruent_to</span> <span class="tok-p">(</span><span class="tok-n">other</span><span class="tok-p">:</span> <span class="tok-kr">like</span> <span class="tok-kc">Current</span><span class="tok-p">):</span> <span class="tok-n">Boolean</span>
+<span class="tok-n">c_value_congruent_to</span> <span class="tok-p">(</span><span class="tok-n">other</span><span class="tok-p">:</span> <span class="tok-nc">C_PRIMITIVE_OBJECT</span><span class="tok-p">):</span> <span class="tok-n">Boolean</span>
         <span class="tok-c1">-- True if this node&#39;s value constraint is the same as that of `other&#39;</span>
     <span class="tok-kr">deferred</span>
+    <span class="tok-kr">end</span>
+
+<span class="tok-n">constrained_typename</span><span class="tok-p">:</span> <span class="tok-n">String</span>
+        <span class="tok-c1">-- the same as the C_XX clas name with the &quot;C_&quot; removed, but for some types e.g. Date/time types</span>
+        <span class="tok-c1">-- it is not true.</span>
+    <span class="tok-kr">do</span>
+        <span class="tok-kc">Result</span> <span class="tok-o">:=</span> <span class="tok-n">generating_type</span><span class="tok-p">.</span><span class="tok-n">name</span>
+        <span class="tok-kc">Result</span><span class="tok-p">.</span><span class="tok-n">remove_head</span> <span class="tok-p">(</span><span class="tok-mi">2</span><span class="tok-p">)</span>
     <span class="tok-kr">end</span></code></pre>
 </div>
 </div>
@@ -4779,19 +4875,19 @@ other: <code>C_BOOLEAN[1]</code><br>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="pygments highlight"><code data-lang="eiffel"><span></span><span class="tok-n">c_value_conforms_to</span> <span class="tok-p">(</span><span class="tok-n">other</span><span class="tok-p">:</span> <span class="tok-kr">like</span> <span class="tok-kc">Current</span><span class="tok-p">):</span> <span class="tok-n">Boolean</span>
+<pre class="pygments highlight"><code data-lang="eiffel"><span></span><span class="tok-n">c_value_conforms_to</span> <span class="tok-p">(</span><span class="tok-n">other</span><span class="tok-p">:</span> <span class="tok-nc">C_BOOLEAN</span><span class="tok-p">):</span> <span class="tok-n">Boolean</span>
         <span class="tok-c1">-- True if this node is a strict subset of `other&#39;</span>
     <span class="tok-kr">do</span>
         <span class="tok-kc">Result</span> <span class="tok-o">:=</span> <span class="tok-n">other</span><span class="tok-p">.</span><span class="tok-n">any_allowed</span> <span class="tok-ow">or</span>
             <span class="tok-n">constraint</span><span class="tok-p">.</span><span class="tok-n">count</span> <span class="tok-o">&lt;</span> <span class="tok-n">other</span><span class="tok-p">.</span><span class="tok-n">constraint</span><span class="tok-p">.</span><span class="tok-n">count</span> <span class="tok-ow">and</span>
-            <span class="tok-kr">across</span> <span class="tok-n">constraint</span> <span class="tok-kr">as</span> <span class="tok-n">val_csr</span> <span class="tok-kr">all</span> <span class="tok-n">other</span><span class="tok-p">.</span><span class="tok-n">constraint</span><span class="tok-p">.</span><span class="tok-n">has</span> <span class="tok-p">(</span><span class="tok-n">val_csr</span><span class="tok-p">.</span><span class="tok-n">item</span><span class="tok-p">)</span> <span class="tok-kr">end</span>
+            <span class="tok-n">for</span> <span class="tok-kr">all</span> <span class="tok-n">c</span> <span class="tok-n">in</span> <span class="tok-n">constraint</span> <span class="tok-o">|</span> <span class="tok-n">other</span><span class="tok-p">.</span><span class="tok-n">constraint</span><span class="tok-p">.</span><span class="tok-n">has</span> <span class="tok-p">(</span><span class="tok-n">c</span><span class="tok-p">)</span>
     <span class="tok-kr">end</span>
 
-<span class="tok-n">c_value_congruent_to</span> <span class="tok-p">(</span><span class="tok-n">other</span><span class="tok-p">:</span> <span class="tok-kr">like</span> <span class="tok-kc">Current</span><span class="tok-p">):</span> <span class="tok-n">Boolean</span>
+<span class="tok-n">c_value_congruent_to</span> <span class="tok-p">(</span><span class="tok-n">other</span><span class="tok-p">:</span> <span class="tok-nc">C_BOOLEAN</span><span class="tok-p">):</span> <span class="tok-n">Boolean</span>
         <span class="tok-c1">-- True if this node&#39;s value constraint is the same as that of `other&#39;</span>
     <span class="tok-kr">do</span>
         <span class="tok-kc">Result</span> <span class="tok-o">:=</span> <span class="tok-n">constraint</span><span class="tok-p">.</span><span class="tok-n">count</span> <span class="tok-o">=</span> <span class="tok-n">other</span><span class="tok-p">.</span><span class="tok-n">constraint</span><span class="tok-p">.</span><span class="tok-n">count</span> <span class="tok-ow">and</span>
-            <span class="tok-kr">across</span> <span class="tok-n">constraint</span> <span class="tok-kr">as</span> <span class="tok-n">val_csr</span> <span class="tok-kr">all</span> <span class="tok-n">other</span><span class="tok-p">.</span><span class="tok-n">constraint</span><span class="tok-p">.</span><span class="tok-n">has</span> <span class="tok-p">(</span><span class="tok-n">val_csr</span><span class="tok-p">.</span><span class="tok-n">item</span><span class="tok-p">)</span> <span class="tok-kr">end</span>
+            <span class="tok-n">for</span> <span class="tok-kr">all</span> <span class="tok-n">c</span> <span class="tok-n">in</span> <span class="tok-n">constraint</span> <span class="tok-o">|</span> <span class="tok-n">other</span><span class="tok-p">.</span><span class="tok-n">constraint</span><span class="tok-p">.</span><span class="tok-n">has</span> <span class="tok-p">(</span><span class="tok-n">c</span><span class="tok-p">)</span>
     <span class="tok-kr">end</span></code></pre>
 </div>
 </div>
@@ -4909,17 +5005,15 @@ other: <code>C_STRING[1]</code><br>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="pygments highlight"><code data-lang="eiffel"><span></span><span class="tok-n">c_value_conforms_to</span> <span class="tok-p">(</span><span class="tok-n">other</span><span class="tok-p">:</span> <span class="tok-kr">like</span> <span class="tok-kc">Current</span><span class="tok-p">):</span> <span class="tok-n">Boolean</span>
+<pre class="pygments highlight"><code data-lang="eiffel"><span></span><span class="tok-n">c_value_conforms_to</span> <span class="tok-p">(</span><span class="tok-n">other</span><span class="tok-p">:</span> <span class="tok-nc">C_STRING</span><span class="tok-p">):</span> <span class="tok-n">Boolean</span>
         <span class="tok-c1">-- True if `constraint&#39; is a strict subset of other.constraint</span>
     <span class="tok-kr">do</span>
         <span class="tok-kc">Result</span> <span class="tok-o">:=</span> <span class="tok-n">other</span><span class="tok-p">.</span><span class="tok-n">any_allowed</span> <span class="tok-ow">or</span>
             <span class="tok-n">constraint</span><span class="tok-p">.</span><span class="tok-n">count</span> <span class="tok-o">&lt;</span> <span class="tok-n">other</span><span class="tok-p">.</span><span class="tok-n">constraint</span><span class="tok-p">.</span><span class="tok-n">count</span> <span class="tok-ow">and</span>
-            <span class="tok-kr">across</span> <span class="tok-n">constraint</span> <span class="tok-kr">as</span> <span class="tok-n">constraint_csr</span> <span class="tok-kr">all</span>
-                <span class="tok-n">other</span><span class="tok-p">.</span><span class="tok-n">constraint</span><span class="tok-p">.</span><span class="tok-n">has</span> <span class="tok-p">(</span><span class="tok-n">constraint_csr</span><span class="tok-p">.</span><span class="tok-n">item</span><span class="tok-p">)</span>
-            <span class="tok-kr">end</span>
+            <span class="tok-n">for</span> <span class="tok-kr">all</span> <span class="tok-n">c</span> <span class="tok-n">in</span> <span class="tok-n">constraint</span> <span class="tok-o">|</span> <span class="tok-n">other</span><span class="tok-p">.</span><span class="tok-n">constraint</span><span class="tok-p">.</span><span class="tok-n">has</span> <span class="tok-p">(</span><span class="tok-n">c</span><span class="tok-p">)</span>
     <span class="tok-kr">end</span>
 
-<span class="tok-n">c_value_congruent_to</span> <span class="tok-p">(</span><span class="tok-n">other</span><span class="tok-p">:</span> <span class="tok-kr">like</span> <span class="tok-kc">Current</span><span class="tok-p">):</span> <span class="tok-n">Boolean</span>
+<span class="tok-n">c_value_congruent_to</span> <span class="tok-p">(</span><span class="tok-n">other</span><span class="tok-p">:</span> <span class="tok-nc">C_STRING</span><span class="tok-p">):</span> <span class="tok-n">Boolean</span>
         <span class="tok-c1">-- True if this node&#39;s value constraint is the same as that of `other&#39;</span>
     <span class="tok-kr">do</span>
         <span class="tok-kc">Result</span> <span class="tok-o">:=</span> <span class="tok-n">constraint</span><span class="tok-p">.</span><span class="tok-n">count</span> <span class="tok-o">=</span> <span class="tok-n">other</span><span class="tok-p">.</span><span class="tok-n">constraint</span><span class="tok-p">.</span><span class="tok-n">count</span> <span class="tok-ow">and then</span>
@@ -5029,20 +5123,20 @@ other: <code>C_ORDERED[1]</code><br>
 <div class="sect4">
 <h5 id="_conformance_semantics_6"><a class="anchor" href="#_conformance_semantics_6"></a>4.5.13.1. Conformance semantics</h5>
 <div class="paragraph">
-<p>The following functions formally define the conformance of a node of a <code>C_ORDERED</code> descendant type in a specialised archetype to a corresponding node in a parent archetype, where 'corresponding' means a node found at the same or a congruent path and of the same AOM type.</p>
+<p>The following functions implement those of the same names in <code>C_PRIMITIVE_OBJECT</code> and formally define the conformance of a node of a <code>C_ORDERED</code> descendant type in a specialised archetype to a corresponding node in a parent archetype, where 'corresponding' means a node found at the same or a congruent path and of the same AOM type.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="pygments highlight"><code data-lang="eiffel"><span></span><span class="tok-n">c_value_conforms_to</span> <span class="tok-p">(</span><span class="tok-n">other</span><span class="tok-p">:</span> <span class="tok-kr">like</span> <span class="tok-kc">Current</span><span class="tok-p">):</span> <span class="tok-n">Boolean</span>
+<pre class="pygments highlight"><code data-lang="eiffel"><span></span><span class="tok-n">c_value_conforms_to</span> <span class="tok-p">(</span><span class="tok-n">other</span><span class="tok-p">:</span> <span class="tok-nc">C_ORDERED</span><span class="tok-p">):</span> <span class="tok-n">Boolean</span>
         <span class="tok-c1">-- True if this node is a strict subset of `other&#39;</span>
     <span class="tok-kr">do</span>
         <span class="tok-kc">Result</span> <span class="tok-o">:=</span> <span class="tok-n">other</span><span class="tok-p">.</span><span class="tok-n">any_allowed</span> <span class="tok-ow">or</span>
-            <span class="tok-kr">across</span> <span class="tok-n">constraint</span> <span class="tok-kr">as</span> <span class="tok-n">ivl_csr</span> <span class="tok-kr">all</span>
-                <span class="tok-kr">across</span> <span class="tok-n">other</span><span class="tok-p">.</span><span class="tok-n">constraint</span> <span class="tok-kr">as</span> <span class="tok-n">other_ivl_csr</span> <span class="tok-n">some</span> <span class="tok-n">other_ivl_csr</span><span class="tok-p">.</span><span class="tok-n">item</span><span class="tok-p">.</span><span class="tok-n">contains</span> <span class="tok-p">(</span><span class="tok-n">ivl_csr</span><span class="tok-p">.</span><span class="tok-n">item</span><span class="tok-p">)</span> <span class="tok-kr">end</span>
+            <span class="tok-n">for</span> <span class="tok-kr">all</span> <span class="tok-n">c</span> <span class="tok-n">in</span> <span class="tok-n">constraint</span> <span class="tok-o">|</span>
+                <span class="tok-n">there_exists</span> <span class="tok-n">oc</span> <span class="tok-n">in</span> <span class="tok-n">other</span><span class="tok-p">.</span><span class="tok-n">constraint</span> <span class="tok-o">|</span> <span class="tok-n">oc</span><span class="tok-p">.</span><span class="tok-n">contains</span> <span class="tok-p">(</span><span class="tok-n">c</span><span class="tok-p">)</span>
             <span class="tok-kr">end</span>
     <span class="tok-kr">end</span>
 
-<span class="tok-n">c_value_congruent_to</span> <span class="tok-p">(</span><span class="tok-n">other</span><span class="tok-p">:</span> <span class="tok-kr">like</span> <span class="tok-kc">Current</span><span class="tok-p">):</span> <span class="tok-n">Boolean</span>
+<span class="tok-n">c_value_congruent_to</span> <span class="tok-p">(</span><span class="tok-nc">C_ORDERED</span><span class="tok-p">):</span> <span class="tok-n">Boolean</span>
         <span class="tok-c1">-- True if this node is the same as `other&#39;</span>
     <span class="tok-kr">do</span>
         <span class="tok-kc">Result</span> <span class="tok-o">:=</span> <span class="tok-n">constraint</span><span class="tok-p">.</span><span class="tok-n">count</span> <span class="tok-o">=</span> <span class="tok-n">other</span><span class="tok-p">.</span><span class="tok-n">constraint</span><span class="tok-p">.</span><span class="tok-n">count</span> <span class="tok-ow">and</span>
@@ -5242,7 +5336,7 @@ an_other_pattern: <code>String[1]</code><br>
 other: <code>C_ORDERED[1]</code><br>
 ): <code>Boolean</code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p>True if precursor() or else <code><em>other.pattern_constraint</em></code> is empty, or else <code><em>pattern_constraint</em></code> is a valid (narrower) replacement for <code><em>other.pattern_constraint</em></code>.</p>
+<p>True if <code>precursor()</code> or else <code><em>other.pattern_constraint</em></code> is empty, or else <code><em>pattern_constraint</em></code> is a valid (narrower) replacement for <code><em>other.pattern_constraint</em></code>.</p>
 </div></div></td>
 </tr>
 <tr>
@@ -5260,11 +5354,11 @@ other: <code>C_ORDERED[1]</code><br>
 <div class="sect4">
 <h5 id="_conformance_semantics_7"><a class="anchor" href="#_conformance_semantics_7"></a>4.5.16.1. Conformance semantics</h5>
 <div class="paragraph">
-<p>The following functions formally define the conformance of a node of a <code>C_TEMPORAL</code> descendant type in a specialised archetype to a corresponding node in a parent archetype, where 'corresponding' means a node found at the same or a congruent path and of the same AOM type.</p>
+<p>The following functions redefine those of the same names in <code>C_ORDERED</code> and formally define the conformance of a node of a <code>C_TEMPORAL</code> descendant type in a specialised archetype to a corresponding node in a parent archetype, where 'corresponding' means a node found at the same or a congruent path and of the same AOM type.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="pygments highlight"><code data-lang="eiffel"><span></span><span class="tok-n">c_value_conforms_to</span> <span class="tok-p">(</span><span class="tok-n">other</span><span class="tok-p">:</span> <span class="tok-kr">like</span> <span class="tok-kc">Current</span><span class="tok-p">):</span> <span class="tok-n">Boolean</span>
+<pre class="pygments highlight"><code data-lang="eiffel"><span></span><span class="tok-n">c_value_conforms_to</span> <span class="tok-p">(</span><span class="tok-n">other</span><span class="tok-p">:</span> <span class="tok-nc">C_TEMPORAL</span><span class="tok-p">):</span> <span class="tok-n">Boolean</span>
         <span class="tok-c1">-- True if this node is a strict subset of `other&#39;</span>
     <span class="tok-kr">do</span>
         <span class="tok-kc">Result</span> <span class="tok-o">:=</span> <span class="tok-kc">precursor</span> <span class="tok-p">(</span><span class="tok-n">other</span><span class="tok-p">)</span> <span class="tok-ow">and</span>
@@ -5273,7 +5367,7 @@ other: <code>C_ORDERED[1]</code><br>
                 <span class="tok-n">valid_pattern_constraint_replacement</span> <span class="tok-p">(</span><span class="tok-n">pattern_constraint</span><span class="tok-p">,</span> <span class="tok-n">other</span><span class="tok-p">.</span><span class="tok-n">pattern_constraint</span><span class="tok-p">)</span>
     <span class="tok-kr">end</span>
 
-<span class="tok-n">c_value_congruent_to</span> <span class="tok-p">(</span><span class="tok-n">other</span><span class="tok-p">:</span> <span class="tok-kr">like</span> <span class="tok-kc">Current</span><span class="tok-p">):</span> <span class="tok-n">Boolean</span>
+<span class="tok-n">c_value_congruent_to</span> <span class="tok-p">(</span><span class="tok-n">other</span><span class="tok-p">:</span> <span class="tok-nc">C_TEMPORAL</span><span class="tok-p">):</span> <span class="tok-n">Boolean</span>
         <span class="tok-c1">-- True if this node&#39;s value constraint is the same as that of `other&#39;</span>
     <span class="tok-kr">do</span>
         <span class="tok-kc">Result</span> <span class="tok-o">:=</span> <span class="tok-kc">precursor</span> <span class="tok-p">(</span><span class="tok-n">other</span><span class="tok-p">)</span> <span class="tok-ow">and</span>
@@ -5835,11 +5929,11 @@ other: <code>C_TERMINOLOGY_CODE[1]</code><br>
 <div class="sect4">
 <h5 id="_conformance_semantics_8"><a class="anchor" href="#_conformance_semantics_8"></a>4.5.21.1. Conformance semantics</h5>
 <div class="paragraph">
-<p>The following functions formally define the conformance of a <code>C_TERMINOLOGY_CODE</code> node in a specialised archetype to a corresponding node in a parent archetype, where 'corresponding' means a node found at the same or a congruent path and of the same AOM type.</p>
+<p>The following functions implement those of the same names in <code>C_PRIMITIVE_OBJECT</code> and formally define the conformance of a <code>C_TERMINOLOGY_CODE</code> node in a specialised archetype to a corresponding node in a parent archetype, where 'corresponding' means a node found at the same or a congruent path and of the same AOM type.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="pygments highlight"><code data-lang="eiffel"><span></span><span class="tok-n">c_value_conforms_to</span> <span class="tok-p">(</span><span class="tok-n">other</span><span class="tok-p">:</span> <span class="tok-kr">like</span> <span class="tok-kc">Current</span><span class="tok-p">):</span> <span class="tok-n">Boolean</span>
+<pre class="pygments highlight"><code data-lang="eiffel"><span></span><span class="tok-n">c_value_conforms_to</span> <span class="tok-p">(</span><span class="tok-n">other</span><span class="tok-p">:</span> <span class="tok-nc">C_TERMINOLOGY_CODE</span><span class="tok-p">):</span> <span class="tok-n">Boolean</span>
         <span class="tok-c1">-- True if this node expresses a value constraint that conforms to that of `other&#39;</span>
     <span class="tok-kr">local</span>
         <span class="tok-n">this_vset</span><span class="tok-p">,</span> <span class="tok-n">other_vset</span><span class="tok-p">:</span> <span class="tok-kr">like</span> <span class="tok-n">value_set_expanded</span>
@@ -5847,13 +5941,13 @@ other: <code>C_TERMINOLOGY_CODE[1]</code><br>
         <span class="tok-kr">if</span> <span class="tok-n">other</span><span class="tok-p">.</span><span class="tok-n">any_allowed</span> <span class="tok-kr">then</span>
             <span class="tok-kc">Result</span> <span class="tok-o">:=</span> <span class="tok-kc">True</span>
         <span class="tok-kr">elseif</span> <span class="tok-n">is_valid_value_set_code</span> <span class="tok-p">(</span><span class="tok-n">constraint</span><span class="tok-p">)</span> <span class="tok-ow">and</span> <span class="tok-n">is_valid_value_set_code</span> <span class="tok-p">(</span><span class="tok-n">other</span><span class="tok-p">.</span><span class="tok-n">constraint</span><span class="tok-p">)</span> <span class="tok-kr">then</span>
-            <span class="tok-c1">-- firstly, check if the other value-set is empty, which means there is no value-set, i.e. no constraint</span>
-            <span class="tok-c1">-- which means that this object&#39;s value set automatically conforms.</span>
+            <span class="tok-c1">-- firstly, check if the other value-set is empty, which means there is no value-set,</span>
+            <span class="tok-c1">-- i.e. no constraint, which means that this object&#39;s value set automatically conforms.</span>
             <span class="tok-n">other_vset</span> <span class="tok-o">:=</span> <span class="tok-n">other</span><span class="tok-p">.</span><span class="tok-n">value_set_expanded</span>
             <span class="tok-kr">if</span> <span class="tok-ow">not</span> <span class="tok-n">other_vset</span><span class="tok-p">.</span><span class="tok-n">is_empty</span> <span class="tok-kr">then</span>
                 <span class="tok-n">this_vset</span> <span class="tok-o">:=</span> <span class="tok-n">value_set_expanded</span>
                 <span class="tok-kc">Result</span> <span class="tok-o">:=</span> <span class="tok-n">codes_conformant</span> <span class="tok-p">(</span><span class="tok-n">constraint</span><span class="tok-p">,</span> <span class="tok-n">other</span><span class="tok-p">.</span><span class="tok-n">constraint</span><span class="tok-p">)</span> <span class="tok-ow">and then</span>
-                    <span class="tok-kr">across</span> <span class="tok-n">this_vset</span> <span class="tok-kr">as</span> <span class="tok-n">vset_csr</span> <span class="tok-kr">all</span> <span class="tok-n">other_vset</span><span class="tok-p">.</span><span class="tok-n">has</span> <span class="tok-p">(</span><span class="tok-n">vset_csr</span><span class="tok-p">.</span><span class="tok-n">item</span><span class="tok-p">)</span> <span class="tok-kr">end</span>
+                    <span class="tok-n">for_all</span> <span class="tok-n">v</span> <span class="tok-n">in</span> <span class="tok-n">this_vset</span> <span class="tok-o">|</span> <span class="tok-n">other_vset</span><span class="tok-p">.</span><span class="tok-n">has</span> <span class="tok-p">(</span><span class="tok-n">v</span><span class="tok-p">)</span>
             <span class="tok-kr">else</span>
                 <span class="tok-kc">Result</span> <span class="tok-o">:=</span> <span class="tok-kc">True</span>
             <span class="tok-kr">end</span>
@@ -5862,7 +5956,7 @@ other: <code>C_TERMINOLOGY_CODE[1]</code><br>
         <span class="tok-kr">end</span>
     <span class="tok-kr">end</span>
 
-<span class="tok-n">c_value_congruent_to</span> <span class="tok-p">(</span><span class="tok-n">other</span><span class="tok-p">:</span> <span class="tok-kr">like</span> <span class="tok-kc">Current</span><span class="tok-p">):</span> <span class="tok-n">Boolean</span>
+<span class="tok-n">c_value_congruent_to</span> <span class="tok-p">(</span><span class="tok-n">other</span><span class="tok-p">:</span> <span class="tok-nc">C_TERMINOLOGY_CODE</span><span class="tok-p">):</span> <span class="tok-n">Boolean</span>
         <span class="tok-c1">-- True if this node&#39;s value constraint is the same as that of `other&#39;</span>
     <span class="tok-kr">local</span>
         <span class="tok-n">this_vset</span><span class="tok-p">,</span> <span class="tok-n">other_vset</span><span class="tok-p">:</span> <span class="tok-kr">like</span> <span class="tok-n">value_set_expanded</span>
@@ -5872,7 +5966,7 @@ other: <code>C_TERMINOLOGY_CODE[1]</code><br>
             <span class="tok-n">other_vset</span> <span class="tok-o">:=</span> <span class="tok-n">other</span><span class="tok-p">.</span><span class="tok-n">value_set_expanded</span>
             <span class="tok-kc">Result</span> <span class="tok-o">:=</span> <span class="tok-n">constraint</span><span class="tok-p">.</span><span class="tok-n">is_equal</span> <span class="tok-p">(</span><span class="tok-n">other</span><span class="tok-p">.</span><span class="tok-n">constraint</span><span class="tok-p">)</span> <span class="tok-ow">and then</span>
                 <span class="tok-n">this_vset</span><span class="tok-p">.</span><span class="tok-n">count</span> <span class="tok-o">=</span> <span class="tok-n">other_vset</span><span class="tok-p">.</span><span class="tok-n">count</span> <span class="tok-ow">and then</span>
-                    <span class="tok-kr">across</span> <span class="tok-n">this_vset</span> <span class="tok-kr">as</span> <span class="tok-n">vset_csr</span> <span class="tok-kr">all</span> <span class="tok-n">other_vset</span><span class="tok-p">.</span><span class="tok-n">has</span> <span class="tok-p">(</span><span class="tok-n">vset_csr</span><span class="tok-p">.</span><span class="tok-n">item</span><span class="tok-p">)</span> <span class="tok-kr">end</span>
+                    <span class="tok-n">for_all</span> <span class="tok-n">v</span> <span class="tok-n">in</span> <span class="tok-n">this_vset</span> <span class="tok-o">|</span> <span class="tok-n">other_vset</span><span class="tok-p">.</span><span class="tok-n">has</span> <span class="tok-p">(</span><span class="tok-n">v</span><span class="tok-p">)</span>
         <span class="tok-kr">else</span>
             <span class="tok-kc">Result</span> <span class="tok-o">:=</span> <span class="tok-n">constraint</span><span class="tok-p">.</span><span class="tok-n">is_equal</span> <span class="tok-p">(</span><span class="tok-n">other</span><span class="tok-p">.</span><span class="tok-n">constraint</span><span class="tok-p">)</span>
         <span class="tok-kr">end</span>
@@ -5935,7 +6029,7 @@ rmcc: <code>FUNCTION&lt;&lt;String,String&gt;,Boolean&gt;[1]</code><br>
 <code><em>rmcc</em></code>
 </td>
 <td class="hdlist2">
-<p>RM conformance checker - a lambda (i.e. function object) that can compute conformance of type-names within the  Reference Model on which the current archetype is based. The signature provides two arguments representing respectively, the <code><em>rm_type_name</em></code> of the current node and the <code><em>rm_type_name</em></code> of the node being redefined in a specialisation parent archetype.</p>
+<p>RM conformance checker agent - a lambda (i.e. function object) that can compute conformance of type-names within the  Reference Model on which the current archetype is based. The signature provides two arguments representing respectively, the <code><em>rm_type_name</em></code> of the current node and the <code><em>rm_type_name</em></code> of the node being redefined in a specialisation parent archetype.</p>
 </td>
 </tr>
 </table>
@@ -5999,10 +6093,24 @@ other: <code>C_SECOND_ORDER[1]</code><br>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>1..1<br>
 (effected)</strong></p></th>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><strong>c_conforms_to</strong> (<br>
-other: <code>C_SECOND_ORDER[1]</code><br>
+other: <code>C_PRIMITIVE_TUPLE[1]</code>,<br>
+rmcc: <code>FUNCTION&lt;&lt;String,String&gt;,Boolean&gt;[1]</code><br>
 ): <code>Boolean</code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>True if constraints represented by this node, ignoring any sub-parts, are narrower or the same as other. Typically used during validation of specialised archetype nodes.</p>
+</div>
+<div class="hdlist">
+<div class="title">Parameters<br></div>
+<table>
+<tr>
+<td class="hdlist1">
+<code><em>rmcc</em></code>
+</td>
+<td class="hdlist2">
+<p>RM conformance checker agent.</p>
+</td>
+</tr>
+</table>
 </div></div></td>
 </tr>
 <tr>
@@ -6070,10 +6178,24 @@ other: <code>C_SECOND_ORDER[1]</code><br>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>1..1<br>
 (effected)</strong></p></th>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><strong>c_conforms_to</strong> (<br>
-other: <code>C_SECOND_ORDER[1]</code><br>
+other: <code>C_ATTRIBUTE_TUPLE[1]</code>,<br>
+rmcc: <code>FUNCTION&lt;&lt;String,String&gt;,Boolean&gt;[1]</code><br>
 ): <code>Boolean</code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>True if constraints represented by this node, ignoring any sub-parts, are narrower or the same as other. Typically used during validation of specialised archetype nodes.</p>
+</div>
+<div class="hdlist">
+<div class="title">Parameters<br></div>
+<table>
+<tr>
+<td class="hdlist1">
+<code><em>rmcc</em></code>
+</td>
+<td class="hdlist2">
+<p>RM conformance checker agent.</p>
+</td>
+</tr>
+</table>
 </div></div></td>
 </tr>
 <tr>
@@ -6088,6 +6210,87 @@ other: <code>C_SECOND_ORDER[1]</code><br>
 </tr>
 </tbody>
 </table>
+<div class="sect4">
+<h5 id="_conformance_semantics_9"><a class="anchor" href="#_conformance_semantics_9"></a>4.5.24.1. Conformance semantics</h5>
+<div class="paragraph">
+<p>The following functions formally define the conformance interfaces of any <code>C_SECOND_ORDER</code> node in a specialised archetype to the corresponding node in a parent archetype, where 'corresponding' means a node found at the same or a congruent path.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="pygments highlight"><code data-lang="eiffel"><span></span><span class="tok-n">c_conforms_to</span> <span class="tok-p">(</span><span class="tok-n">other</span><span class="tok-p">:</span> <span class="tok-nc">C_SECOND_ORDER</span><span class="tok-p">;</span> <span class="tok-n">rmcc</span><span class="tok-p">:</span> <span class="tok-nc">FUNCTION</span><span class="tok-o">&lt;&lt;</span><span class="tok-n">a_type</span><span class="tok-p">,</span> <span class="tok-n">other_type</span><span class="tok-p">:</span> <span class="tok-n">String</span><span class="tok-o">&gt;</span><span class="tok-p">,</span> <span class="tok-n">Boolean</span><span class="tok-o">&gt;</span><span class="tok-p">):</span> <span class="tok-n">Boolean</span>
+        <span class="tok-c1">-- True if this node on its own (ignoring any subparts) expresses the same or narrower</span>
+        <span class="tok-c1">-- constraints as `other`.</span>
+        <span class="tok-c1">-- Returns False if any of the following is incompatible:</span>
+        <span class="tok-c1">--	 * cardinality</span>
+        <span class="tok-c1">--	 * existence</span>
+    <span class="tok-kr">require</span>
+        <span class="tok-n">other</span> <span class="tok-o">/=</span> <span class="tok-kc">Void</span>
+        <span class="tok-n">rmcc</span> <span class="tok-o">/=</span> <span class="tok-kc">Void</span>
+    <span class="tok-kr">deferred</span>
+    <span class="tok-kr">end</span>
+
+<span class="tok-n">c_congruent_to</span> <span class="tok-p">(</span><span class="tok-n">other</span><span class="tok-p">:</span> <span class="tok-nc">C_SECOND_ORDER</span><span class="tok-p">):</span> <span class="tok-n">Boolean</span>
+        <span class="tok-c1">-- True if this node on its own (ignoring any subparts) expresses no additional</span>
+        <span class="tok-c1">-- constraints than `other`.</span>
+    <span class="tok-kr">require</span>
+        <span class="tok-n">other</span> <span class="tok-o">/=</span> <span class="tok-kc">Void</span>
+    <span class="tok-kr">deferred</span>
+    <span class="tok-kr">end</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The following functions implement those of the same names from <code>C_SECOND_ORDER</code>, and formally define the conformance interfaces of any <code>C_ATTRIBUTE_TUPLE</code> node in a specialised archetype to the corresponding node in a parent archetype, where 'corresponding' means a node found at the same or a congruent path.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="pygments highlight"><code data-lang="eiffel"><span></span><span class="tok-n">c_conforms_to</span> <span class="tok-p">(</span><span class="tok-n">other</span><span class="tok-p">:</span> <span class="tok-nc">C_ATTRIBUTE_TUPLE</span><span class="tok-p">;</span> <span class="tok-n">rmcc</span><span class="tok-p">:</span> <span class="tok-nc">FUNCTION</span><span class="tok-o">&lt;&lt;</span><span class="tok-n">a_type</span><span class="tok-p">,</span> <span class="tok-n">other_type</span><span class="tok-p">:</span> <span class="tok-n">String</span><span class="tok-o">&gt;</span><span class="tok-p">,</span> <span class="tok-n">Boolean</span><span class="tok-o">&gt;</span><span class="tok-p">):</span> <span class="tok-nc">BOOLEAN</span>
+        <span class="tok-c1">-- True if this node is a subset of, or the same as `other&#39;</span>
+    <span class="tok-kr">do</span>
+        <span class="tok-kc">Result</span> <span class="tok-o">:=</span>
+            <span class="tok-n">for_all</span> <span class="tok-n">t</span> <span class="tok-n">in</span> <span class="tok-n">tuples</span> <span class="tok-o">|</span>
+                <span class="tok-n">there_exists</span> <span class="tok-n">ot</span> <span class="tok-n">in</span> <span class="tok-n">other</span><span class="tok-p">.</span><span class="tok-n">tuples</span> <span class="tok-o">|</span> <span class="tok-n">t</span><span class="tok-p">.</span><span class="tok-n">c_conforms_to</span> <span class="tok-p">(</span><span class="tok-n">ot</span><span class="tok-p">,</span> <span class="tok-n">rmcc</span><span class="tok-p">)</span>
+            <span class="tok-ow">or else</span> <span class="tok-n">tuples</span><span class="tok-p">.</span><span class="tok-n">count</span> <span class="tok-o">&lt;</span> <span class="tok-n">other</span><span class="tok-p">.</span><span class="tok-n">tuples</span><span class="tok-p">.</span><span class="tok-n">count</span> <span class="tok-ow">and</span>
+                <span class="tok-n">for_all</span> <span class="tok-n">t</span> <span class="tok-n">in</span> <span class="tok-n">tuples</span> <span class="tok-o">|</span>
+                    <span class="tok-n">there_exists</span> <span class="tok-n">ot</span> <span class="tok-n">in</span> <span class="tok-n">other</span><span class="tok-p">.</span><span class="tok-n">tuples</span> <span class="tok-o">|</span> <span class="tok-n">t</span><span class="tok-p">.</span><span class="tok-n">c_congruent_to</span> <span class="tok-p">(</span><span class="tok-n">ot</span><span class="tok-p">)</span>
+    <span class="tok-kr">end</span>
+
+<span class="tok-n">c_congruent_to</span> <span class="tok-p">(</span><span class="tok-n">other</span><span class="tok-p">:</span> <span class="tok-nc">C_ATTRIBUTE_TUPLE</span><span class="tok-p">):</span> <span class="tok-nc">BOOLEAN</span>
+        <span class="tok-c1">-- True if Current adds no further constraints with respect to `other&#39;</span>
+    <span class="tok-kr">do</span>
+        <span class="tok-kc">Result</span> <span class="tok-o">:=</span> <span class="tok-n">for_all</span> <span class="tok-n">t</span> <span class="tok-n">in</span> <span class="tok-n">tuples</span> <span class="tok-o">|</span>
+            <span class="tok-n">there_exists</span> <span class="tok-n">ot</span> <span class="tok-n">in</span> <span class="tok-n">other</span><span class="tok-p">.</span><span class="tok-n">tuples</span> <span class="tok-o">|</span> <span class="tok-n">t</span><span class="tok-p">.</span><span class="tok-n">c_congruent_to</span> <span class="tok-p">(</span><span class="tok-n">ot</span><span class="tok-p">)</span>
+    <span class="tok-kr">end</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The following functions implement those of the same names from <code>C_SECOND_ORDER</code>, and formally define the conformance interfaces of any <code>C_PRIMITIVE_TUPLE</code> node in a specialised archetype to the corresponding node in a parent archetype, where 'corresponding' means a node found at the same or a congruent path.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="pygments highlight"><code data-lang="eiffel"><span></span><span class="tok-n">c_conforms_to</span> <span class="tok-p">(</span><span class="tok-n">other</span><span class="tok-p">:</span> <span class="tok-nc">C_PRIMITIVE_TUPLE</span><span class="tok-p">;</span> <span class="tok-n">rmcc</span><span class="tok-p">:</span> <span class="tok-nc">FUNCTION</span><span class="tok-o">&lt;&lt;</span><span class="tok-n">a_type</span><span class="tok-p">,</span> <span class="tok-n">other_type</span><span class="tok-p">:</span> <span class="tok-n">String</span><span class="tok-o">&gt;</span><span class="tok-p">,</span> <span class="tok-n">Boolean</span><span class="tok-o">&gt;</span><span class="tok-p">):</span> <span class="tok-nc">BOOLEAN</span>
+        <span class="tok-c1">-- True if this node is a subset of, or the same as `other&#39;</span>
+    <span class="tok-kr">do</span>
+        <span class="tok-kr">if</span> <span class="tok-n">count</span> <span class="tok-o">=</span> <span class="tok-n">other</span><span class="tok-p">.</span><span class="tok-n">count</span> <span class="tok-kr">then</span>
+            <span class="tok-kc">Result</span> <span class="tok-o">:=</span> <span class="tok-kr">across</span> <span class="tok-n">members</span> <span class="tok-kr">as</span> <span class="tok-n">cpo_csr</span> <span class="tok-kr">all</span>
+                <span class="tok-n">cpo_csr</span><span class="tok-p">.</span><span class="tok-n">item</span><span class="tok-p">.</span><span class="tok-n">same_type</span> <span class="tok-p">(</span><span class="tok-n">other</span><span class="tok-p">.</span><span class="tok-n">members</span><span class="tok-p">.</span><span class="tok-n">i_th</span> <span class="tok-p">(</span><span class="tok-n">cpo_csr</span><span class="tok-p">.</span><span class="tok-n">cursor_index</span><span class="tok-p">))</span> <span class="tok-ow">and then</span>
+                    <span class="tok-n">cpo_csr</span><span class="tok-p">.</span><span class="tok-n">item</span><span class="tok-p">.</span><span class="tok-n">c_conforms_to</span> <span class="tok-p">(</span><span class="tok-n">other</span><span class="tok-p">.</span><span class="tok-n">members</span><span class="tok-p">.</span><span class="tok-n">i_th</span> <span class="tok-p">(</span><span class="tok-n">cpo_csr</span><span class="tok-p">.</span><span class="tok-n">cursor_index</span><span class="tok-p">),</span> <span class="tok-n">rmcc</span><span class="tok-p">)</span>
+            <span class="tok-kr">end</span>
+        <span class="tok-kr">end</span>
+    <span class="tok-kr">end</span>
+
+<span class="tok-n">c_congruent_to</span> <span class="tok-p">(</span><span class="tok-n">other</span><span class="tok-p">:</span> <span class="tok-nc">C_PRIMITIVE_TUPLE</span><span class="tok-p">):</span> <span class="tok-nc">BOOLEAN</span>
+        <span class="tok-c1">-- True if Current and `other&#39; are semantically the same</span>
+    <span class="tok-kr">do</span>
+        <span class="tok-kr">if</span> <span class="tok-n">count</span> <span class="tok-o">=</span> <span class="tok-n">other</span><span class="tok-p">.</span><span class="tok-n">count</span> <span class="tok-kr">then</span>
+            <span class="tok-kc">Result</span> <span class="tok-o">:=</span> <span class="tok-kr">across</span> <span class="tok-n">members</span> <span class="tok-kr">as</span> <span class="tok-n">cpo_csr</span> <span class="tok-kr">all</span>
+                <span class="tok-n">cpo_csr</span><span class="tok-p">.</span><span class="tok-n">item</span><span class="tok-p">.</span><span class="tok-n">same_type</span> <span class="tok-p">(</span><span class="tok-n">other</span><span class="tok-p">.</span><span class="tok-n">members</span><span class="tok-p">.</span><span class="tok-n">i_th</span> <span class="tok-p">(</span><span class="tok-n">cpo_csr</span><span class="tok-p">.</span><span class="tok-n">cursor_index</span><span class="tok-p">))</span> <span class="tok-ow">and then</span>
+                    <span class="tok-n">cpo_csr</span><span class="tok-p">.</span><span class="tok-n">item</span><span class="tok-p">.</span><span class="tok-n">c_congruent_to</span> <span class="tok-p">(</span><span class="tok-n">other</span><span class="tok-p">.</span><span class="tok-n">members</span><span class="tok-p">.</span><span class="tok-n">i_th</span> <span class="tok-p">(</span><span class="tok-n">cpo_csr</span><span class="tok-p">.</span><span class="tok-n">cursor_index</span><span class="tok-p">))</span>
+            <span class="tok-kr">end</span>
+        <span class="tok-kr">end</span>
+    <span class="tok-kr">end</span></code></pre>
+</div>
+</div>
+</div>
 </div>
 </div>
 </div>
@@ -7928,7 +8131,7 @@ Hash of keys ("text", "description" etc) and corresponding values.</p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2020-03-04 19:37:11 UTC
+Last updated 2020-05-20 15:55:12 +0100
 </div>
 </div>
 <link rel="stylesheet" href="https://specifications.openehr.org/styles/pygments-default.css">

@@ -117,7 +117,7 @@ The `_valid_value_` function tests a reference model object for conformance to t
 
 ==== Prototype_value
 
-This function is used to generate a reasonable default value of the reference object being constrained by a given node. This allows archteype-based software to build a 'prototype' object from an archetype which can serve as the initial version of the object being constrained, assuming it is being created new by user activity (e.g. via a GUI application). Implementation of this function will usually involve use of reflection libraries or similar.
+This function is used to generate a reasonable default value of the reference object being constrained by a given node. This allows archetype-based software to build a 'prototype' object from an archetype which can serve as the initial version of the object being constrained, assuming it is being created new by user activity (e.g. via a GUI application). Implementation of this function will usually involve use of reflection libraries or similar.
 
 ==== Default_value
 
@@ -308,36 +308,59 @@ include::{uml_export_dir}/classes/c_attribute.adoc[]
 
 ==== Conformance Semantics
 
-The following functions formally define the conformance of a `C_ATRIBUTE` node in a specialised archetype to the corresponding node in a parent archetype, where 'corresponding' means a node found at the same or a congruent path.
+The following functions formally define the conformance interfaces of any `ARCHETYPE_CONSTRAINT` node in a specialised archetype to the corresponding node in a parent archetype, where 'corresponding' means a node found at the same or a congruent path.
 
 [source,eiffel]
 ---------
-c_conforms_to (other: like Current): Boolean
-        -- True if this node on its own (ignoring any subparts) expresses the same or narrower constraints as `other'.
+c_conforms_to (other: ARCHETYPE_CONSTRAINT; rmcc: FUNCTION<<a_type, other_type: String>, Boolean>): Boolean
+        -- True if this node on its own (ignoring any subparts) expresses the same or narrower 
+        -- constraints as `other`.
         -- Returns False if any of the following is incompatible:
         --	 * cardinality
         --	 * existence
     require
         other /= Void
+        rmcc /= Void
+    deferred
+    end
+        
+c_congruent_to (other: ARCHETYPE_CONSTRAINT): Boolean
+        -- True if this node on its own (ignoring any subparts) expresses no additional 
+        -- constraints than `other`.
+    require
+        other /= Void
+    deferred
+    end
+---------
+
+The following effected functions defined in `C_ATTRIBUTE` define the conformance of an attribute node in a specialised archetype to the corresponding node in a parent archetype, where 'corresponding' means a node found at the same or a congruent path.
+
+[source,eiffel]
+---------
+c_conforms_to (other: C_ATTRIBUTE; rmcc: FUNCTION<<a_type, other_type: String>, Boolean>): Boolean
+        -- True if this node on its own (ignoring any subparts) expresses the same or narrower 
+        -- constraints as `other'.
+        -- Returns False if any of the following is incompatible:
+        --	 * cardinality
+        --	 * existence
     do
         Result := existence_conforms_to (other) and 
             ((is_single and other.is_single) or else
             (is_multiple and cardinality_conforms_to (other)))
     end
-
-c_congruent_to (other: like Current): Boolean
-		-- True if this node on its own (ignoring any subparts) expresses no additional constraints than `other'.
-    require
-        other /= Void
+        
+c_congruent_to (other: C_ATTRIBUTE): Boolean
+		-- True if this node on its own (ignoring any subparts) expresses no additional 
+        -- constraints than `other'.
     do
         Result := existence = Void and ((is_single and other.is_single) or
                 (is_multiple and other.is_multiple and cardinality = Void))
     end
 
-existence_conforms_to (other: like Current): Boolean
+existence_conforms_to (other: C_ATTRIBUTE): Boolean
 		-- True if the existence of this node conforms to other.existence
     require
-        other_exists: other /= Void
+        other /= Void
     do
         if existence /= Void and other.existence /= Void then
             Result := other.existence.contains (existence)
@@ -346,10 +369,10 @@ existence_conforms_to (other: like Current): Boolean
         end
     end
 
-cardinality_conforms_to (other: like Current): Boolean
+cardinality_conforms_to (other: C_ATTRIBUTE): Boolean
 		-- True if the cardinality of this node conforms to other.cardinality, if it exists
     require
-        other_exists: other /= Void
+        other /= Void
     do
         if cardinality /= Void and other.cardinality /= Void then
             Result := other.cardinality.contains (cardinality)
@@ -386,15 +409,15 @@ The following validity rule applies to redefinition in a specialised archetype:
 [.rule]
 *VSAM*: specialised archetype attribute multiplicity conformance: the multiplicity, i.e. whether an attribute is multiply- or single-valued, of a redefined attribute must conform to that of the corresponding attribute in the parent archetype.
 
-The following validity rules apply to single-valued attributes, i.e when `C_ATTRIBUTE`.`_is_multiple_` is False:
+The following validity rules apply to single-valued attributes, i.e when `C_ATTRIBUTE._is_multiple_` is False:
 
 [.rule]
 *VACSO*: single-valued attribute child object occurrences validity: the occurrences of a child object of a single-valued attribute cannot have an upper limit greater than 1.
 
-The following validity rules apply to container attributes, i.e when `C_ATTRIBUTE`.`_is_multiple_` is True:
+The following validity rules apply to container attributes, i.e when `C_ATTRIBUTE._is_multiple_` is True:
 
 [.rule]
-*VACMCU*: cardinality/occurrences upper bound validity: where a cardinality with a finite upper bound is stated on an attribute, for all immediate child objects for which an occurrences constraint is stated, the occurrences must either have an open upper bound (i.e. n..*) which is interpreted as the maximum value allowed within the cardinality, or else a finite upper bound which is <= the cardinality upper bound.
+*VACMCU*: cardinality/occurrences upper bound validity: where a cardinality with a finite upper bound is stated on an attribute, for all immediate child objects for which an occurrences constraint is stated, the occurrences must either have an open upper bound (i.e. n..*) which is interpreted as the maximum value allowed within the cardinality, or else a finite upper bound which is \<= the cardinality upper bound.
 
 [.rule]
 *VACMCO*: cardinality/occurrences orphans: it must be possible for at least one instance of one optional child object (i.e. an object for which the occurrences lower bound is 0) and one instance of every mandatory child object (i.e. object constraints for which the occurrences lower bound is >= 1) to be included within the cardinality range.
@@ -402,7 +425,7 @@ The following validity rules apply to container attributes, i.e when `C_ATTRIBUT
 [.rule]
 *VCACA*: archetype attribute reference model cardinality conformance: the cardinality of an attribute must conform, i.e. be the same or narrower, to the cardinality of the corresponding attribute in the underlying information model.
 
-The following validity warnings apply to container attributes, i.e when `C_ATTRIBUTE`.`_is_multiple_` is True:
+The following validity warnings apply to container attributes, i.e when `C_ATTRIBUTE._is_multiple_` is True:
 
 [.rule]
 *WACMCL*: cardinality/occurrences lower bound validity: where a cardinality with a finite upper bound is stated on an attribute, for all immediate child objects for which an occurrences constraint is stated, the sum of occurrences lower bounds should be lower than the cardinality upper limit.
@@ -417,19 +440,19 @@ include::{uml_export_dir}/classes/sibling_order.adoc[]
 
 ==== Occurrences inferencing rules
 
-The notion of 'occurrences' does not exist in an object model that might be used as the reference model on which archteypes are based, because it is a class model. However, archetypes commonly constrain the occurrences of object nodes under a container attribute, indicating how many objects conforming to a specific object constraint node might exist.
+The notion of 'occurrences' does not exist in an object model that might be used as the reference model on which archetypes are based, because it is a class model. However, archetypes commonly constrain the occurrences of object nodes under a container attribute, indicating how many objects conforming to a specific object constraint node might exist.
 
 There are various circumstances where it is useful to know the effective occurrences of an archetype object node. One is in validation, in order to determine validity of occurrences constraints; another is in archetype editor tools. Similarly, in an {openehr_am_opt2}[Operational Template^], an occurrences constraint is required on all child object nodes of container attributes. Most such constraints come from the source template(s) and archetypes, but often there will be nodes with no occurrences set. In these cases, the occurrences constraint is inferred from the archetype and the reference model according to the following algorithm, where `c_object` represents any object node in an archetype.
 
 [source,eiffel]
 ---------
-effective_occurrences (agent rm_prop_mult (rm_type_name, rm_property_path: String): MULTIPLICITY_INTERVAL): MULTIPLICITY_INTERVAL
-		-- Compute effective occurrences, where no local occurrences constraint set. If the owning 
-		-- `C_ATTRIBUTE._cardinality_` is set, use its upper value, else use RM multiplicity of the 
-		-- owning attribute. 
-		-- `rm_attr_prop_mult` is a function that knows how to compute effective object multiplicity
-		-- by looking at the owning RM property.
-		-- If local `occurrences` not set, always assume 0 as the lower bound.
+effective_occurrences (rm_prop_mult: FUNCTION <<rm_type_name, rm_property_path: String>, Multiplicity_interval>): Multiplicity_interval
+        -- Compute effective occurrences, where no local occurrences constraint set. If the owning 
+        -- `C_ATTRIBUTE._cardinality_` is set, use its upper value, else use RM multiplicity of the 
+        -- owning attribute. 
+        -- `rm_attr_prop_mult` is a function that knows how to compute effective object multiplicity
+        -- by looking at the owning RM property.
+        -- If local `occurrences` not set, always assume 0 as the lower bound.
     do
         if occurrences /= Void then
             Result := occurrences
@@ -439,11 +462,11 @@ effective_occurrences (agent rm_prop_mult (rm_type_name, rm_property_path: Strin
                 if parent.cardinality.interval.upper_unbounded then
                     create Result.make_open
                 else
-                    create Result.make_bounded (occ_lower, parent.cardinality.interval.upper)
+                    create Result.make_bounded (0, parent.cardinality.interval.upper)
                 end
             elseif parent.parent /= Void then
                 Result := rm_prop_mult (parent.parent.rm_type_name, parent.parent.rm_attribute_path)
-				Result.set_lower (0)
+                Result.set_lower (0)
             else
                 create Result.make_open
             end
@@ -457,9 +480,12 @@ In the above, `_rm_prop_mult_` is a reference to a function within an RM schema 
 
 [source, eiffel]
 ---------
-object_multiplicity (rm_type_name, rm_property_path: String): MULTIPLICITY_INTERVAL
+object_multiplicity (rm_type_name, rm_property_path: String): Multiplicity_interval
         -- compute the effective object multiplicity of objects at rm_property_path within type rm_type_name
         -- from the Reference Model
+    require
+        rm_type_name /= Void
+        rm_property_path /= Void
     do
         rm_property_def := get_rm_property_def (rm_type_name, rm_property_path)
         if rm_property_def.is_container then
@@ -478,30 +504,27 @@ How this is concretely implemented depends on the modelling environment. One pos
 
 ==== Conformance semantics
 
-The following functions formally define the conformance of a `C_OBJECT` node in a specialised archetype to the corresponding node in a parent archetype, where 'corresponding' means a node found at the same or a congruent path.
+The following functions, which implement the precursors from `ARCHETYPE_CONSTRAINT` formally define the conformance of a `C_OBJECT` node in a specialised archetype to the corresponding node in a parent archetype, where 'corresponding' means a node found at the same or a congruent path. Note that the pre-conditions from the precursors are understood as inherited.
 
 [source,eiffel]
 ---------
-c_conforms_to (other: like Current; agent rm_types_conformant (a_type, other_type: String): Boolean): Boolean
+c_conforms_to (other: C_OBJECT; rmcc: FUNCTION<<a_type, other_type: String>, Boolean>): Boolean
         -- True if this node on its own (ignoring any subparts) expresses strictly narrower constraints 
         -- as `other'. 
         -- `other' is typically from the flat parent archetype.
+        -- `rmcc' is an agent (lambda) that can test an RM type's conformance to another RM type
         -- Returns True only when the following is True:
         --	 * rm_type_name is the same or a subtype of rm_type_name of other;
         --	 * occurrences is same (= Void) or a sub-interval
         --	 * node_id is the same, or redefined to a legal code at the level of the owning archetype
-        -- `rm_types_conformant' is an agent (lambda) that can test an RM type's conformance to another RM type
-    require
-        other /= Void
-        rm_types_conformant /= Void
     do
         Result := node_id_conforms_to (other) and
             occurrences_conforms_to (other) and
             (rm_type_name.is_case_insensitive_equal (other.rm_type_name) or else
-            rm_types_conformant (rm_type_name, other.rm_type_name))
+            rmcc (rm_type_name, other.rm_type_name))
     end
 
-c_congruent_to (other: like Current): Boolean
+c_congruent_to (other: C_OBJECT): Boolean
         -- True if this node on its own (ignoring any subparts) expresses no constraints in addition 
         -- to `other', other than possible redefinition of the node id, which doesn't matter, since 
         -- this won't get lost in a compressed path.
@@ -512,8 +535,6 @@ c_congruent_to (other: like Current): Boolean
         --	 * occurrences is Void or else identical to other.occurrences
         -- 	 * sibling_order is Void or else identical to other.sibling_order
         --	 * node_id is identical or else is the only child that overlays the parent node
-    require
-        other /= Void
     do
         Result := rm_type_name.is_case_insensitive_equal (other.rm_type_name) and
             (occurrences = Void or else (other.occurrences /= Void and then 
@@ -523,9 +544,9 @@ c_congruent_to (other: like Current): Boolean
             node_reuse_congruent (other)
     end
 
-occurrences_conforms_to (other: like Current): Boolean
+occurrences_conforms_to (other: C_OBJECT): Boolean
     require
-        other_exists: other /= Void
+        other /= Void
     do
         if occurrences /= Void and other.occurrences /= Void then
             Result := other.occurrences.contains (occurrences)
@@ -534,15 +555,17 @@ occurrences_conforms_to (other: like Current): Boolean
         end
     end
 
-node_id_conforms_to (other: like Current): Boolean
+node_id_conforms_to (other: C_OBJECT): Boolean
     require
-        other_exists: other /= Void
+        other /= Void
     do
         Result := codes_conformant (node_id, other.node_id)
     end
 
-node_reuse_congruent (other: like Current): Boolean
+node_reuse_congruent (other: C_OBJECT): Boolean
         -- True if this node is the sole re-using node of the corresponding node in the flat
+    require
+        other /= Void
     do
         Result := node_id_conforms_to (other) and
             (is_root or else
@@ -713,21 +736,19 @@ Validity rules applying to all `C_PRIMITIVE_OBJECT` types are as follows:
 
 ==== Conformance semantics
 
-The following functions formally define the conformance of a node of a `C_PRIMITIVE_OBJECT` descendant type in a specialised archetype to a corresponding node in a parent archetype, where 'corresponding' means a node found at the same or a congruent path and of the same AOM type.
+The following functions redefine those of the same names from `C_OBJECT`, and formally define the conformance of a node of a `C_PRIMITIVE_OBJECT` descendant type in a specialised archetype to a corresponding node in a parent archetype, where 'corresponding' means a node found at the same or a congruent path and of the same AOM type.
 
 [source,eiffel]
 ---------
-c_conforms_to (other: like Current; agent rm_types_conformant (a_type, other_type: String): Boolean): Boolean
-        -- True if this node on its own (ignoring any subparts) expresses the same or narrower constraints 
+c_conforms_to (other: C_PRIMITIVE_OBJECT; rmcc: FUNCTION<<a_type, other_type: String>, Boolean>): Boolean
+        -- True if this node on its own (ignoring any subparts) expresses the same or narrower 
+        -- constraints 
         -- as `other'. Returns True only when the following is True:
         --   * occurrences conforms
         --   * `rm_type_name' is identical to that in `other'
-        -- `rm_types_conformant' is an agent (lambda) that can test an RM type's conformance to another RM type
-    require
-        other /= Void
-        rm_types_conformant /= Void
+        -- `rmcc' is an agent (lambda) that can test an RM type's conformance to another RM type
     do
-        precursor (other, rm_type_conformance_checker) and c_value_conforms_to (other)
+        Result := precursor (other, rmcc) and c_value_conforms_to (other)
     end
 
 c_value_conforms_to (other: like Current): Boolean
@@ -735,20 +756,26 @@ c_value_conforms_to (other: like Current): Boolean
     deferred
     end
 
-c_congruent_to (other: like Current): Boolean
-        -- True if this node on its own (ignoring any subparts) expresses no constraints in addition to `other'
-    require
-        other /= Void
+c_congruent_to (other: C_PRIMITIVE_OBJECT): Boolean
+        -- True if this node on its own (ignoring any subparts) expresses no constraints in 
+        -- addition to `other'
     do
 		Result := constrained_typename.is_case_insensitive_equal (other.constrained_typename) and
             c_value_congruent_to (other)
     end
 
-c_value_congruent_to (other: like Current): Boolean
+c_value_congruent_to (other: C_PRIMITIVE_OBJECT): Boolean
         -- True if this node's value constraint is the same as that of `other'
     deferred
     end
-
+    
+constrained_typename: String
+        -- the same as the C_XX clas name with the "C_" removed, but for some types e.g. Date/time types
+        -- it is not true.
+    do
+        Result := generating_type.name
+        Result.remove_head (2)
+    end
 ---------
 
 include::{uml_export_dir}/classes/c_boolean.adoc[]
@@ -759,19 +786,19 @@ The following functions formally define the conformance of a `C_BOOLEAN` node in
 
 [source,eiffel]
 ---------
-c_value_conforms_to (other: like Current): Boolean
+c_value_conforms_to (other: C_BOOLEAN): Boolean
         -- True if this node is a strict subset of `other'
     do
         Result := other.any_allowed or
             constraint.count < other.constraint.count and
-            across constraint as val_csr all other.constraint.has (val_csr.item) end
+            for all c in constraint | other.constraint.has (c)
     end
 
-c_value_congruent_to (other: like Current): Boolean
+c_value_congruent_to (other: C_BOOLEAN): Boolean
         -- True if this node's value constraint is the same as that of `other'
     do
         Result := constraint.count = other.constraint.count and
-            across constraint as val_csr all other.constraint.has (val_csr.item) end
+            for all c in constraint | other.constraint.has (c)
     end
 
 ---------
@@ -784,17 +811,15 @@ The following functions formally define the conformance of a `C_STRING` node in 
 
 [source,eiffel]
 ---------
-c_value_conforms_to (other: like Current): Boolean
+c_value_conforms_to (other: C_STRING): Boolean
         -- True if `constraint' is a strict subset of other.constraint
     do
         Result := other.any_allowed or
             constraint.count < other.constraint.count and
-            across constraint as constraint_csr all
-                other.constraint.has (constraint_csr.item)
-            end
+            for all c in constraint | other.constraint.has (c)
     end
 
-c_value_congruent_to (other: like Current): Boolean
+c_value_congruent_to (other: C_STRING): Boolean
         -- True if this node's value constraint is the same as that of `other'
     do
         Result := constraint.count = other.constraint.count and then
@@ -808,20 +833,20 @@ include::{uml_export_dir}/classes/c_ordered.adoc[]
 
 ==== Conformance semantics
 
-The following functions formally define the conformance of a node of a `C_ORDERED` descendant type in a specialised archetype to a corresponding node in a parent archetype, where 'corresponding' means a node found at the same or a congruent path and of the same AOM type.
+The following functions implement those of the same names in `C_PRIMITIVE_OBJECT` and formally define the conformance of a node of a `C_ORDERED` descendant type in a specialised archetype to a corresponding node in a parent archetype, where 'corresponding' means a node found at the same or a congruent path and of the same AOM type.
 
 [source,eiffel]
 ---------
-c_value_conforms_to (other: like Current): Boolean
+c_value_conforms_to (other: C_ORDERED): Boolean
         -- True if this node is a strict subset of `other'
     do
         Result := other.any_allowed or
-            across constraint as ivl_csr all
-                across other.constraint as other_ivl_csr some other_ivl_csr.item.contains (ivl_csr.item) end
+            for all c in constraint |
+                there_exists oc in other.constraint | oc.contains (c)
             end
     end
 
-c_value_congruent_to (other: like Current): Boolean
+c_value_congruent_to (C_ORDERED): Boolean
         -- True if this node is the same as `other'
     do
         Result := constraint.count = other.constraint.count and
@@ -837,11 +862,11 @@ include::{uml_export_dir}/classes/c_temporal.adoc[]
 
 ==== Conformance semantics
 
-The following functions formally define the conformance of a node of a `C_TEMPORAL` descendant type in a specialised archetype to a corresponding node in a parent archetype, where 'corresponding' means a node found at the same or a congruent path and of the same AOM type.
+The following functions redefine those of the same names in `C_ORDERED` and formally define the conformance of a node of a `C_TEMPORAL` descendant type in a specialised archetype to a corresponding node in a parent archetype, where 'corresponding' means a node found at the same or a congruent path and of the same AOM type.
 
 [source,eiffel]
 ---------
-c_value_conforms_to (other: like Current): Boolean
+c_value_conforms_to (other: C_TEMPORAL): Boolean
         -- True if this node is a strict subset of `other'
     do
         Result := precursor (other) and
@@ -850,7 +875,7 @@ c_value_conforms_to (other: like Current): Boolean
                 valid_pattern_constraint_replacement (pattern_constraint, other.pattern_constraint)
     end
 
-c_value_congruent_to (other: like Current): Boolean
+c_value_congruent_to (other: C_TEMPORAL): Boolean
         -- True if this node's value constraint is the same as that of `other'
     do
         Result := precursor (other) and
@@ -867,11 +892,11 @@ include::{uml_export_dir}/classes/c_terminology_code.adoc[]
 
 ==== Conformance semantics
 
-The following functions formally define the conformance of a `C_TERMINOLOGY_CODE` node in a specialised archetype to a corresponding node in a parent archetype, where 'corresponding' means a node found at the same or a congruent path and of the same AOM type.
+The following functions implement those of the same names in `C_PRIMITIVE_OBJECT` and formally define the conformance of a `C_TERMINOLOGY_CODE` node in a specialised archetype to a corresponding node in a parent archetype, where 'corresponding' means a node found at the same or a congruent path and of the same AOM type.
 
 [source,eiffel]
 ---------
-c_value_conforms_to (other: like Current): Boolean
+c_value_conforms_to (other: C_TERMINOLOGY_CODE): Boolean
         -- True if this node expresses a value constraint that conforms to that of `other'
     local
         this_vset, other_vset: like value_set_expanded
@@ -879,13 +904,13 @@ c_value_conforms_to (other: like Current): Boolean
         if other.any_allowed then
             Result := True
         elseif is_valid_value_set_code (constraint) and is_valid_value_set_code (other.constraint) then
-            -- firstly, check if the other value-set is empty, which means there is no value-set, i.e. no constraint
-            -- which means that this object's value set automatically conforms.
+            -- firstly, check if the other value-set is empty, which means there is no value-set, 
+            -- i.e. no constraint, which means that this object's value set automatically conforms.
             other_vset := other.value_set_expanded
             if not other_vset.is_empty then
                 this_vset := value_set_expanded
                 Result := codes_conformant (constraint, other.constraint) and then
-                    across this_vset as vset_csr all other_vset.has (vset_csr.item) end
+                    for_all v in this_vset | other_vset.has (v)
             else
                 Result := True
             end
@@ -894,7 +919,7 @@ c_value_conforms_to (other: like Current): Boolean
         end
     end
 
-c_value_congruent_to (other: like Current): Boolean
+c_value_congruent_to (other: C_TERMINOLOGY_CODE): Boolean
         -- True if this node's value constraint is the same as that of `other'
     local
         this_vset, other_vset: like value_set_expanded
@@ -904,7 +929,7 @@ c_value_congruent_to (other: like Current): Boolean
             other_vset := other.value_set_expanded
             Result := constraint.is_equal (other.constraint) and then
                 this_vset.count = other_vset.count and then
-                    across this_vset as vset_csr all other_vset.has (vset_csr.item) end
+                    for_all v in this_vset | other_vset.has (v)
         else
             Result := constraint.is_equal (other.constraint)
         end
@@ -915,3 +940,80 @@ c_value_congruent_to (other: like Current): Boolean
 include::{uml_export_dir}/classes/c_second_order.adoc[]
 include::{uml_export_dir}/classes/c_primitive_tuple.adoc[]
 include::{uml_export_dir}/classes/c_attribute_tuple.adoc[]
+
+==== Conformance semantics
+
+The following functions formally define the conformance interfaces of any `C_SECOND_ORDER` node in a specialised archetype to the corresponding node in a parent archetype, where 'corresponding' means a node found at the same or a congruent path.
+
+[source,eiffel]
+---------
+c_conforms_to (other: C_SECOND_ORDER; rmcc: FUNCTION<<a_type, other_type: String>, Boolean>): Boolean
+        -- True if this node on its own (ignoring any subparts) expresses the same or narrower 
+        -- constraints as `other`.
+        -- Returns False if any of the following is incompatible:
+        --	 * cardinality
+        --	 * existence
+    require
+        other /= Void
+        rmcc /= Void
+    deferred
+    end
+        
+c_congruent_to (other: C_SECOND_ORDER): Boolean
+        -- True if this node on its own (ignoring any subparts) expresses no additional 
+        -- constraints than `other`.
+    require
+        other /= Void
+    deferred
+    end
+---------
+
+The following functions implement those of the same names from `C_SECOND_ORDER`, and formally define the conformance interfaces of any `C_ATTRIBUTE_TUPLE` node in a specialised archetype to the corresponding node in a parent archetype, where 'corresponding' means a node found at the same or a congruent path.
+
+[source,eiffel]
+--------
+c_conforms_to (other: C_ATTRIBUTE_TUPLE; rmcc: FUNCTION<<a_type, other_type: String>, Boolean>): BOOLEAN
+        -- True if this node is a subset of, or the same as `other'
+    do
+        Result :=
+            for_all t in tuples |
+                there_exists ot in other.tuples | t.c_conforms_to (ot, rmcc)
+            or else tuples.count < other.tuples.count and
+                for_all t in tuples |
+                    there_exists ot in other.tuples | t.c_congruent_to (ot)
+    end
+
+c_congruent_to (other: C_ATTRIBUTE_TUPLE): BOOLEAN
+        -- True if Current adds no further constraints with respect to `other'
+    do
+        Result := for_all t in tuples |
+            there_exists ot in other.tuples | t.c_congruent_to (ot)
+    end
+--------
+
+The following functions implement those of the same names from `C_SECOND_ORDER`, and formally define the conformance interfaces of any `C_PRIMITIVE_TUPLE` node in a specialised archetype to the corresponding node in a parent archetype, where 'corresponding' means a node found at the same or a congruent path.
+
+[source,eiffel]
+--------
+c_conforms_to (other: C_PRIMITIVE_TUPLE; rmcc: FUNCTION<<a_type, other_type: String>, Boolean>): BOOLEAN
+        -- True if this node is a subset of, or the same as `other'
+    do
+        if count = other.count then
+            Result := across members as cpo_csr all
+                cpo_csr.item.same_type (other.members.i_th (cpo_csr.cursor_index)) and then
+                    cpo_csr.item.c_conforms_to (other.members.i_th (cpo_csr.cursor_index), rmcc)
+            end
+        end
+    end
+
+c_congruent_to (other: C_PRIMITIVE_TUPLE): BOOLEAN
+        -- True if Current and `other' are semantically the same
+    do
+        if count = other.count then
+            Result := across members as cpo_csr all
+                cpo_csr.item.same_type (other.members.i_th (cpo_csr.cursor_index)) and then
+                    cpo_csr.item.c_congruent_to (other.members.i_th (cpo_csr.cursor_index))
+            end
+        end
+    end
+--------

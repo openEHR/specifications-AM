@@ -26,7 +26,7 @@ Only set if it overrides the parent archetype in the case of specialised archety
 
 h|*1..1*
 |*node_id*: `String`
-a|Semantic identifier of this node, used to dis-tinguish sibling nodes. All nodes must have a node_id; for nodes under a container `C_ATTRIBUTE`, the id must be an id-code must be defined in the archetype terminology. For valid structures, all node ids are id-codes.
+a|Semantic identifier of this node, used to dis-tinguish sibling nodes. All nodes must have a `_node_id_`; for nodes under a container `C_ATTRIBUTE`, the id must be an id-code must be defined in the archetype terminology. For valid structures, all node ids are id-codes.
 For `C_PRIMITIVE_OBJECTs`, it will have the special value `Primitive_node_id`.
 
 h|*0..1*
@@ -35,14 +35,14 @@ a|True if this node and by implication all sub-nodes are deprecated for use.
 
 h|*0..1*
 |*sibling_order*: `SIBLING_ORDER`
-a|Optional indicator of order of this node with respect to another sibling. Only meaningful in a specialised archetype for a `C_OBJECT` within a `C_ATTRIBUTE` with `_is_multiple_` = True.
+a|Optional indicator of order of this node with respect to another sibling. Only meaningful in a specialised archetype for a `C_OBJECT` within a `C_ATTRIBUTE` with `_is_multiple_ = True`.
 h|*Functions*
 ^h|*Signature*
 ^h|*Meaning*
 
 h|*1..1*
 |*specialisation_depth* (): `Integer`
-a|Level of specialisation of this archetype node, based on its node_id. The value 0 corresponds to non-specialised, 1 to first-level specialisation and so on. The level is the same as the number of ‘.’ characters in the node_id code. If node_id is not set, the return value is -1, signifying that the specialisation level should be determined from the nearest parent `C_OBJECT` node having a node_id.
+a|Level of specialisation of this archetype node, based on its `_node_id_`. The value 0 corresponds to non-specialised, 1 to first-level specialisation and so on. The level is the same as the number of ‘.’ characters in the node_id code. If `_node_id_` is not set, the return value is -1, signifying that the specialisation level should be determined from the nearest parent `C_OBJECT` node having a node_id.
 
 h|*1..1*
 |*effective_occurrences* (): `Multiplicity_interval`
@@ -53,7 +53,7 @@ If local `occurrences` not set, always assume 0 as the lower bound.
 h|*1..1 +
 (effected)*
 |*c_conforms_to* ( +
-other: `ARCHETYPE_CONSTRAINT[1]`, +
+other: `C_OBJECT[1]`, +
 rmcc: `FUNCTION<<String,String>,Boolean>[1]` +
 ): `Boolean`
 a|True if constraints represented by this node, ignoring any sub-parts, are narrower or the same as other.
@@ -61,7 +61,7 @@ Typically used during validation of special-ised archetype nodes.
 
 .Parameters +
 [horizontal]
-`_rmcc_`:: Reference Model conformance checker lambda.
+`_rmcc_`:: Reference Model conformance checker agent (lambda).
 
 h|*1..1 +
 (effected)*
@@ -80,7 +80,7 @@ a|True if this node `_occurrences_` conforms to `_other.occurrences_`; `other' i
 
 .Parameters +
 [horizontal]
-`_other_`:: C_OBJECT from a flat parent archetype.
+`_other_`:: `C_OBJECT` from a flat parent archetype.
 
 h|*1..1*
 |*node_id_conforms_to* ( +
@@ -88,12 +88,12 @@ other: `C_OBJECT[1]` +
 ): `Boolean` +
  +
 _Post_: `Result = codes_conformant (node_id, other.node_id)`
-a|True if this node id conforms to other.node_id, which includes the ids being identical; other is assumed to be in a flat archetype.
+a|True if this node id conforms to `_other.node_id_`, which includes the ids being identical; `_other_` is assumed to be in a flat archetype.
 
 h|*1..1 +
 (effected)*
 |*is_prohibited* (): `Boolean` +
  +
 _Post_: `Result = occurrences /= Void and then occurrences.is_prohibited`
-a|True if this `C_OBJECT` node is prohibited, i.e. if its occurrences is 0..0.
+a|True if this `C_OBJECT` node is prohibited, i.e. if its `_occurrences_` is `0..0`.
 |===

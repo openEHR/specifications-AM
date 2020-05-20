@@ -32,4 +32,26 @@ h|*1..1 +
  +
 _Post_: `Result = attributes.is_empty and not is_prohibited`
 a|True if any value (i.e. instance) of the reference model type would be allowed. Redefined in descendants.
+
+h|*1..1 +
+(effected)*
+|*c_conforms_to* ( +
+other: `C_COMPLEX_OBJECT[1]`, +
+rmcc: `FUNCTION<<String,String>,Boolean>[1]` +
+): `Boolean`
+a|True if constraints represented by this node, ignoring any sub-parts, are narrower or the same as other.
+Typically used during validation of special-ised archetype nodes.
+
+.Parameters +
+[horizontal]
+`_rmcc_`:: Reference Model conformance checker agent (lambda).
+
+h|*1..1 +
+(effected)*
+|*c_congruent_to* ( +
+other: `C_COMPLEX_OBJECT[1]` +
+): `Boolean`
+a|True if constraints represented by this node contain no further redefinitions with respect to the node `_other_`, with the exception of node_id redefnition in `C_OBJECT` nodes.
+
+Typically used to test if an inherited node locally contains any constraints.
 |===
