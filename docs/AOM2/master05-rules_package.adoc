@@ -2,7 +2,7 @@
 
 == Overview
 
-The AOM `rules` package adds two classes based on classes in the `BASE::org.openehr.expressions` package described in the {openehr_el}[openEHR Expression Language Object Model (ELOM)]. The package is shown below.
+The AOM `rules` package adds two classes based on classes in the `LANG::org.openehr.bmm.expressions` package described in the {openehr_bmm}[BMM Expression Model^]. The package is shown below.
 
 [.text-center]
 .am.aom2.rules Package
@@ -10,7 +10,7 @@ image::{uml_diagrams_uri}/AM-aom2.rules.svg[id=rules_package, align="center"]
 
 == AOM Constraint Expressions
 
-The class `AOM_CONSTRAINT_EXPRESSION` specialises the class `EL_CONSTRAINT_EXPRESSION`, which is a hook within the ELOM for adding 'match' expressions of the form:
+The class `AOM_CONSTRAINT_EXPRESSION` specialises the class `EL_CONSTRAINT_EXPRESSION`, which is a hook within the BMM expressions for adding 'match' expressions of the form:
 
 ----
     <expr> matches <constraint>
@@ -20,10 +20,10 @@ Here the `matches` operator has the same abstract semantics as in the AOM. In th
 
 ----
     -- match the systolic pressure real value
-    $systolic_pressure_value matches {|0.0..500.0|}
+    systolic_pressure_value matches {|0.0..500.0|}
     
     -- match systolic pressure DV_Quantity
-    $systolic_pressure_quantity matches {
+    systolic_pressure_quantity matches {
         DV_QUANTITY matches {
             magnitude matches {|0.0..500.0|}
             units matches {"mmol/L"}
@@ -31,7 +31,7 @@ Here the `matches` operator has the same abstract semantics as in the AOM. In th
     }
 ----
 
-In the above, the variables `$systolic_pressure_value` and `$systolic_pressure_quantity` are instances of the `EL_TERMINAL` descendant `EL_VARIABLE_REF`.
+In the above, the variables `systolic_pressure_value` and `systolic_pressure_quantity` are instances of the `EL_TERMINAL` descendant `EL_VARIABLE_REF`.
 
 == Expression Slot Assertions
 

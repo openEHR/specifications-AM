@@ -511,7 +511,7 @@ An example which shows the difference between design-time meanings associated wi
     }
 --------
 
-In the above, the node identifier `[id1]` is assigned a meaning such as "clinical problem" in the archetype terminology section. The subsequent lines express a constraint on the runtime _name_ attribute, using the internal code `[ac1]` . The constraint `[ac1]` is also defined in the archetype terminology section with a formal statement meaning "any clinical problem type", which could clearly evaluate to thousands of possible values, such as "diabetes", "arthritis" and so on. As a result, in the runtime data, the node identifier corresponding to "clinical problem" and the actual problem type chosen at runtime by a user, e.g. "diabetes", can both be found. This enables querying to find all nodes with meaning "problem", or all nodes describing the problem "diabetes". Internal `[acNNNN]` codes are described in <<Local Constraint Codes>>.
+In the above, the node identifier `[id1]` is assigned a meaning such as "clinical problem" in the archetype terminology section. The subsequent lines express a constraint on the runtime _name_ attribute, using the internal code `[ac1]` . The constraint `[ac1]` is also defined in the archetype terminology section with a formal statement meaning "any clinical problem type", which could clearly evaluate to thousands of possible values, such as "diabetes", "arthritis" and so on. As a result, in the runtime data, the node identifier corresponding to "clinical problem" and the actual problem type chosen at runtime by a user, e.g. "diabetes", can both be found. This enables querying to find all nodes with meaning "problem", or all nodes describing the problem "diabetes". Internal `[acN]` codes are described in <<Local Constraint Codes>>.
 
 == Rules Section
 
@@ -521,34 +521,34 @@ Rule section statements invariably need to reference elements in the main defini
 
 === Arithmetic Identities
 
-A basic type of statement is to assert that the value of one archetype element at runtime is related to the values of other elements. The following example specifies the summation of an Apgar score total from its parts, all assumed to be defined as distinct nodes within the archetype. The `$apgar_total_value`, `$apgar_heartrate_value` etc are EL variables bound to the relevant paths within the main archetype definition.
+A basic type of statement is to assert that the value of one archetype element at runtime is related to the values of other elements. The following example specifies the summation of an Apgar score total from its parts, all assumed to be defined as distinct nodes within the archetype. The `apgar_total_value`, `apgar_heartrate_value` etc are EL variables bound to the relevant paths within the main archetype definition.
 
 [source, adl]
 ----
 rules
-    check $apgar_total_value = $apgar_heartrate_value + $apgar_breathing_value + $apgar_reflex_value + $apgar_muscle_value + $apgar_colour_value
+    check apgar_total_value = apgar_heartrate_value + apgar_breathing_value + apgar_reflex_value + apgar_muscle_value + apgar_colour_value
     
 data_bindings
     content_bindings = <
         ["apgar_breathing_value"] = <"/data[id3]/events[id4]/data[id2]/items[id10]/value[id39]/value">
         ["apgar_heartrate_value"] = <"/data[id3]/events[id4]/data[id2]/items[id6]/value[id40]/value">
-        ["apgar_muscle_value"] = <"/data[id3]/events[id4]/data[id2]/items[id14]/value[id41]/value">
-        ["apgar_reflex_value"] = <"/data[id3]/events[id4]/data[id2]/items[id18]/value[id42]/value">
-        ["apgar_colour_value"] = <"/data[id3]/events[id4]/data[id2]/items[id22]/value[id43]/value">
-        ["apgar_total_value"] = <"/data[id3]/events[id4]/data[id2]/items[id26]/value[id44]/magnitude">
+        ["apgar_muscle_value"] =    <"/data[id3]/events[id4]/data[id2]/items[id14]/value[id41]/value">
+        ["apgar_reflex_value"] =    <"/data[id3]/events[id4]/data[id2]/items[id18]/value[id42]/value">
+        ["apgar_colour_value"] =    <"/data[id3]/events[id4]/data[id2]/items[id22]/value[id43]/value">
+        ["apgar_total_value"] =     <"/data[id3]/events[id4]/data[id2]/items[id26]/value[id44]/magnitude">
     >
 ----
 
-The statement above assumes that the data element specified by the `$apgar_total_value` location is being set externally, i.e. the above _does not set_ the total value, it just checks that whatever value is there correlates properly to its inputs.
+The statement above assumes that the data element specified by the `apgar_total_value` location is being set externally, i.e. the above _does not set_ the total value, it just checks that whatever value is there correlates properly to its inputs.
 
 The following example specifies the relationship between systolic, diastolic and mean arterial pressure (MAP), and also between pulse pressure and the systolic and diastolic values.
 
 [source, adl]
 ----
 rules
-    check $map_bp_value = $diastolic_bp_value + 0.33 * ($systolic_bp_value - $diastolic_bp_value)
+    check map_bp_value = diastolic_bp_value + 0.33 * (systolic_bp_value - diastolic_bp_value)
     
-    check $pulse_pressure_bp_value = $systolic_bp_value - $diastolic_bp_value
+    check pulse_pressure_bp_value = systolic_bp_value - diastolic_bp_value
 ----
 
 As for the previous example, the variables are mapped to the relevant archetype paths in the `data_bindings` section. These statements can be visualised in tools, e.g. as follows in the {openehr_awb}[ADL Workbench^].
@@ -564,7 +564,7 @@ A useful kind of statement is to assert that a particular part of an archetype e
 [source, adl]
 ----
 rules
-    check $is_smoker = True implies defined ($smoking_details)
+    check is_smoker = True implies defined (smoking_details)
 ----
 
 This makes used of both the EL `check` statement and the `defined()` predicate (a type of expression).

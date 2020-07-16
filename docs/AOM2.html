@@ -5,8 +5,8 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="generator" content="Asciidoctor 2.0.10">
-<meta name="description" content="openEHR AOM2 Specification">
-<meta name="keywords" content="EHR, ADL, AOM, health records, archetypes, constraint language, ISO 13606">
+<meta name="description" content="openEHR Archetype Object Model 2 (AOM2)">
+<meta name="keywords" content="EHR, ADL, AOM, health records, archetypes, constraint language, ISO 13606, openehr">
 <title>Archetype Object Model 2 (AOM2)</title>
 <link rel="stylesheet" href="https://specifications.openehr.org/styles/openehr.css">
 </head>
@@ -417,7 +417,7 @@
 <td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Date</strong>: <a href="#latest_issue_date">[latest_issue_date]</a></p></td>
 </tr>
 <tr>
-<td class="tableblock halign-center valign-top" colspan="2"><p class="tableblock"><strong>Keywords</strong>: EHR, ADL, AOM, health records, archetypes, constraint language, ISO 13606</p></td>
+<td class="tableblock halign-center valign-top" colspan="2"><p class="tableblock"><strong>Keywords</strong>: EHR, ADL, AOM, health records, archetypes, constraint language, ISO 13606, openehr</p></td>
 </tr>
 </tbody>
 </table>
@@ -1385,7 +1385,7 @@ Includes detailed input and review from:</p>
 <div class="sect2">
 <h3 id="_feedback"><a class="anchor" href="#_feedback"></a>1.5. Feedback</h3>
 <div class="paragraph">
-<p>Feedback may be provided on the <a href="https://forums.openehr.org/c/specifications" target="_blank" rel="noopener">technical mailing list</a>.</p>
+<p>Feedback may be provided on the <a href="https://discourse.openehr.org/c/specifications" target="_blank" rel="noopener">technical mailing list</a>.</p>
 </div>
 <div class="paragraph">
 <p>Issues may be raised on the <a href="https://specifications.openehr.org/components/AM/open_issues" target="_blank" rel="noopener">specifications Problem Report tracker</a>.</p>
@@ -6301,7 +6301,7 @@ other: <code>C_SECOND_ORDER[1]</code><br>
 <div class="sect2">
 <h3 id="_overview_4"><a class="anchor" href="#_overview_4"></a>5.1. Overview</h3>
 <div class="paragraph">
-<p>The AOM <code>rules</code> package adds two classes based on classes in the <code>BASE::org.openehr.expressions</code> package described in the {openehr_el}[openEHR Expression Language Object Model (ELOM)]. The package is shown below.</p>
+<p>The AOM <code>rules</code> package adds two classes based on classes in the <code>LANG::org.openehr.bmm.expressions</code> package described in the <a href="https://specifications.openehr.org/releases/LANG/latest/bmm.html" target="_blank" rel="noopener">BMM Expression Model</a>. The package is shown below.</p>
 </div>
 <div id="rules_package" class="imageblock text-center text-center">
 <div class="content">
@@ -6313,7 +6313,7 @@ other: <code>C_SECOND_ORDER[1]</code><br>
 <div class="sect2">
 <h3 id="_aom_constraint_expressions"><a class="anchor" href="#_aom_constraint_expressions"></a>5.2. AOM Constraint Expressions</h3>
 <div class="paragraph">
-<p>The class <code>AOM_CONSTRAINT_EXPRESSION</code> specialises the class <code>EL_CONSTRAINT_EXPRESSION</code>, which is a hook within the ELOM for adding 'match' expressions of the form:</p>
+<p>The class <code>AOM_CONSTRAINT_EXPRESSION</code> specialises the class <code>EL_CONSTRAINT_EXPRESSION</code>, which is a hook within the BMM expressions for adding 'match' expressions of the form:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -6326,10 +6326,10 @@ other: <code>C_SECOND_ORDER[1]</code><br>
 <div class="listingblock">
 <div class="content">
 <pre>    -- match the systolic pressure real value
-    $systolic_pressure_value matches {|0.0..500.0|}
+    systolic_pressure_value matches {|0.0..500.0|}
 
     -- match systolic pressure DV_Quantity
-    $systolic_pressure_quantity matches {
+    systolic_pressure_quantity matches {
         DV_QUANTITY matches {
             magnitude matches {|0.0..500.0|}
             units matches {"mmol/L"}
@@ -6338,7 +6338,7 @@ other: <code>C_SECOND_ORDER[1]</code><br>
 </div>
 </div>
 <div class="paragraph">
-<p>In the above, the variables <code>$systolic_pressure_value</code> and <code>$systolic_pressure_quantity</code> are instances of the <code>EL_TERMINAL</code> descendant <code>EL_VARIABLE_REF</code>.</p>
+<p>In the above, the variables <code>systolic_pressure_value</code> and <code>systolic_pressure_quantity</code> are instances of the <code>EL_TERMINAL</code> descendant <code>EL_VARIABLE_REF</code>.</p>
 </div>
 </div>
 <div class="sect2">
@@ -8131,7 +8131,7 @@ Hash of keys ("text", "description" etc) and corresponding values.</p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2020-05-20 15:55:12 +0100
+Last updated 2020-07-16 15:42:52 +0100
 </div>
 </div>
 <link rel="stylesheet" href="https://specifications.openehr.org/styles/pygments-default.css">

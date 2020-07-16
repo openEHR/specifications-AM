@@ -5,8 +5,8 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="generator" content="Asciidoctor 2.0.10">
-<meta name="description" content="openEHR ADL 2 specification">
-<meta name="keywords" content="EHR, ADL, AOM, health records, archetypes, constraint language, ISO 13606">
+<meta name="description" content="openEHR Archetype Definition Language 2 (ADL2)">
+<meta name="keywords" content="EHR, ADL, AOM, health records, archetypes, constraint language, ISO 13606, openehr">
 <title>Archetype Definition Language 2 (ADL2)</title>
 <link rel="stylesheet" href="https://specifications.openehr.org/styles/openehr.css">
 </head>
@@ -448,7 +448,7 @@
 <td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Date</strong>: <a href="#latest_issue_date">[latest_issue_date]</a></p></td>
 </tr>
 <tr>
-<td class="tableblock halign-center valign-top" colspan="2"><p class="tableblock"><strong>Keywords</strong>: EHR, ADL, AOM, health records, archetypes, constraint language, ISO 13606</p></td>
+<td class="tableblock halign-center valign-top" colspan="2"><p class="tableblock"><strong>Keywords</strong>: EHR, ADL, AOM, health records, archetypes, constraint language, ISO 13606, openehr</p></td>
 </tr>
 </tbody>
 </table>
@@ -1303,7 +1303,7 @@
 <div class="sect2">
 <h3 id="_feedback"><a class="anchor" href="#_feedback"></a>1.5. Feedback</h3>
 <div class="paragraph">
-<p>Feedback may be provided on the <a href="https://forums.openehr.org/c/specifications" target="_blank" rel="noopener">technical mailing list</a>.</p>
+<p>Feedback may be provided on the <a href="https://discourse.openehr.org/c/specifications" target="_blank" rel="noopener">technical mailing list</a>.</p>
 </div>
 <div class="paragraph">
 <p>Issues may be raised on the <a href="https://specifications.openehr.org/components/AM/open_issues" target="_blank" rel="noopener">specifications Problem Report tracker</a>.</p>
@@ -5220,7 +5220,7 @@ some non-conforming ADL tools in the past created archetypes without a language 
 </div>
 </div>
 <div class="paragraph">
-<p>In the above, the node identifier <code>[id1]</code> is assigned a meaning such as "clinical problem" in the archetype terminology section. The subsequent lines express a constraint on the runtime <em>name</em> attribute, using the internal code <code>[ac1]</code> . The constraint <code>[ac1]</code> is also defined in the archetype terminology section with a formal statement meaning "any clinical problem type", which could clearly evaluate to thousands of possible values, such as "diabetes", "arthritis" and so on. As a result, in the runtime data, the node identifier corresponding to "clinical problem" and the actual problem type chosen at runtime by a user, e.g. "diabetes", can both be found. This enables querying to find all nodes with meaning "problem", or all nodes describing the problem "diabetes". Internal <code>[acNNNN]</code> codes are described in <a href="#Local Constraint Codes">[Local Constraint Codes]</a>.</p>
+<p>In the above, the node identifier <code>[id1]</code> is assigned a meaning such as "clinical problem" in the archetype terminology section. The subsequent lines express a constraint on the runtime <em>name</em> attribute, using the internal code <code>[ac1]</code> . The constraint <code>[ac1]</code> is also defined in the archetype terminology section with a formal statement meaning "any clinical problem type", which could clearly evaluate to thousands of possible values, such as "diabetes", "arthritis" and so on. As a result, in the runtime data, the node identifier corresponding to "clinical problem" and the actual problem type chosen at runtime by a user, e.g. "diabetes", can both be found. This enables querying to find all nodes with meaning "problem", or all nodes describing the problem "diabetes". Internal <code>[acN]</code> codes are described in <a href="#Local Constraint Codes">[Local Constraint Codes]</a>.</p>
 </div>
 </div>
 </div>
@@ -5235,26 +5235,26 @@ some non-conforming ADL tools in the past created archetypes without a language 
 <div class="sect3">
 <h4 id="_arithmetic_identities"><a class="anchor" href="#_arithmetic_identities"></a>7.11.1. Arithmetic Identities</h4>
 <div class="paragraph">
-<p>A basic type of statement is to assert that the value of one archetype element at runtime is related to the values of other elements. The following example specifies the summation of an Apgar score total from its parts, all assumed to be defined as distinct nodes within the archetype. The <code>$apgar_total_value</code>, <code>$apgar_heartrate_value</code> etc are EL variables bound to the relevant paths within the main archetype definition.</p>
+<p>A basic type of statement is to assert that the value of one archetype element at runtime is related to the values of other elements. The following example specifies the summation of an Apgar score total from its parts, all assumed to be defined as distinct nodes within the archetype. The <code>apgar_total_value</code>, <code>apgar_heartrate_value</code> etc are EL variables bound to the relevant paths within the main archetype definition.</p>
 </div>
 <div class="listingblock">
 <div class="content">
 <pre class="pygments highlight"><code data-lang="adl"><span></span><span class="tok-gh">rules</span>
-    <span class="tok-nc">check</span> <span class="tok-err">$</span><span class="tok-nc">apgar_total_value</span> <span class="tok-o">=</span> <span class="tok-err">$</span><span class="tok-nc">apgar_heartrate_value</span> <span class="tok-o">+</span> <span class="tok-err">$</span><span class="tok-nc">apgar_breathing_value</span> <span class="tok-o">+</span> <span class="tok-err">$</span><span class="tok-nc">apgar_reflex_value</span> <span class="tok-o">+</span> <span class="tok-err">$</span><span class="tok-nc">apgar_muscle_value</span> <span class="tok-o">+</span> <span class="tok-err">$</span><span class="tok-nc">apgar_colour_value</span>
+    <span class="tok-nc">check</span> <span class="tok-nc">apgar_total_value</span> <span class="tok-o">=</span> <span class="tok-nc">apgar_heartrate_value</span> <span class="tok-o">+</span> <span class="tok-nc">apgar_breathing_value</span> <span class="tok-o">+</span> <span class="tok-nc">apgar_reflex_value</span> <span class="tok-o">+</span> <span class="tok-nc">apgar_muscle_value</span> <span class="tok-o">+</span> <span class="tok-nc">apgar_colour_value</span>
 
 <span class="tok-err">data_bindings</span>
 <span class="tok-err">    content_bindings = &lt;</span>
 <span class="tok-err">        [&quot;apgar_breathing_value&quot;] = &lt;&quot;/data[id3]/events[id4]/data[id2]/items[id10]/value[id39]/value&quot;&gt;</span>
 <span class="tok-err">        [&quot;apgar_heartrate_value&quot;] = &lt;&quot;/data[id3]/events[id4]/data[id2]/items[id6]/value[id40]/value&quot;&gt;</span>
-<span class="tok-err">        [&quot;apgar_muscle_value&quot;] = &lt;&quot;/data[id3]/events[id4]/data[id2]/items[id14]/value[id41]/value&quot;&gt;</span>
-<span class="tok-err">        [&quot;apgar_reflex_value&quot;] = &lt;&quot;/data[id3]/events[id4]/data[id2]/items[id18]/value[id42]/value&quot;&gt;</span>
-<span class="tok-err">        [&quot;apgar_colour_value&quot;] = &lt;&quot;/data[id3]/events[id4]/data[id2]/items[id22]/value[id43]/value&quot;&gt;</span>
-<span class="tok-err">        [&quot;apgar_total_value&quot;] = &lt;&quot;/data[id3]/events[id4]/data[id2]/items[id26]/value[id44]/magnitude&quot;&gt;</span>
+<span class="tok-err">        [&quot;apgar_muscle_value&quot;] =    &lt;&quot;/data[id3]/events[id4]/data[id2]/items[id14]/value[id41]/value&quot;&gt;</span>
+<span class="tok-err">        [&quot;apgar_reflex_value&quot;] =    &lt;&quot;/data[id3]/events[id4]/data[id2]/items[id18]/value[id42]/value&quot;&gt;</span>
+<span class="tok-err">        [&quot;apgar_colour_value&quot;] =    &lt;&quot;/data[id3]/events[id4]/data[id2]/items[id22]/value[id43]/value&quot;&gt;</span>
+<span class="tok-err">        [&quot;apgar_total_value&quot;] =     &lt;&quot;/data[id3]/events[id4]/data[id2]/items[id26]/value[id44]/magnitude&quot;&gt;</span>
 <span class="tok-err">    &gt;</span></code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>The statement above assumes that the data element specified by the <code>$apgar_total_value</code> location is being set externally, i.e. the above <em>does not set</em> the total value, it just checks that whatever value is there correlates properly to its inputs.</p>
+<p>The statement above assumes that the data element specified by the <code>apgar_total_value</code> location is being set externally, i.e. the above <em>does not set</em> the total value, it just checks that whatever value is there correlates properly to its inputs.</p>
 </div>
 <div class="paragraph">
 <p>The following example specifies the relationship between systolic, diastolic and mean arterial pressure (MAP), and also between pulse pressure and the systolic and diastolic values.</p>
@@ -5262,9 +5262,9 @@ some non-conforming ADL tools in the past created archetypes without a language 
 <div class="listingblock">
 <div class="content">
 <pre class="pygments highlight"><code data-lang="adl"><span></span><span class="tok-gh">rules</span>
-    <span class="tok-nc">check</span> <span class="tok-err">$</span><span class="tok-nc">map_bp_value</span> <span class="tok-o">=</span> <span class="tok-err">$</span><span class="tok-nc">diastolic_bp_value</span> <span class="tok-o">+</span> <span class="tok-mf">0.33</span> <span class="tok-o">*</span> <span class="tok-p">(</span><span class="tok-err">$</span><span class="tok-nc">systolic_bp_value</span> <span class="tok-o">-</span> <span class="tok-err">$</span><span class="tok-nc">diastolic_bp_value</span><span class="tok-p">)</span>
+    <span class="tok-nc">check</span> <span class="tok-nc">map_bp_value</span> <span class="tok-o">=</span> <span class="tok-nc">diastolic_bp_value</span> <span class="tok-o">+</span> <span class="tok-mf">0.33</span> <span class="tok-o">*</span> <span class="tok-p">(</span><span class="tok-nc">systolic_bp_value</span> <span class="tok-o">-</span> <span class="tok-nc">diastolic_bp_value</span><span class="tok-p">)</span>
 
-<span class="tok-err">    check $pulse_pressure_bp_value = $systolic_bp_value - $diastolic_bp_value</span></code></pre>
+<span class="tok-err">    check pulse_pressure_bp_value = systolic_bp_value - diastolic_bp_value</span></code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -5285,7 +5285,7 @@ some non-conforming ADL tools in the past created archetypes without a language 
 <div class="listingblock">
 <div class="content">
 <pre class="pygments highlight"><code data-lang="adl"><span></span><span class="tok-gh">rules</span>
-    <span class="tok-nc">check</span> <span class="tok-err">$</span><span class="tok-nc">is_smoker</span> <span class="tok-o">=</span> <span class="tok-l">True</span> <span class="tok-kt">implies </span><span class="tok-nc">defined</span> <span class="tok-p">(</span><span class="tok-err">$</span><span class="tok-nc">smoking_details</span><span class="tok-p">)</span></code></pre>
+    <span class="tok-nc">check</span> <span class="tok-nc">is_smoker</span> <span class="tok-o">=</span> <span class="tok-l">True</span> <span class="tok-kt">implies </span><span class="tok-nc">defined</span> <span class="tok-p">(</span><span class="tok-nc">smoking_details</span><span class="tok-p">)</span></code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -9164,7 +9164,7 @@ Note that in the above, the '/' is used to denote '/protocol' as a differential 
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2020-05-20 15:55:28 +0100
+Last updated 2020-07-16 15:42:27 +0100
 </div>
 </div>
 <link rel="stylesheet" href="https://specifications.openehr.org/styles/pygments-default.css">
