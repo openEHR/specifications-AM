@@ -3,47 +3,47 @@
 [cols="^1,3,5"]
 |===
 h|*Class*
-2+^h|*_C_PRIMITIVE_OBJECT (abstract)_*
+2+^h|*__C_PRIMITIVE_OBJECT (abstract)__*
 
 h|*Description*
 2+a|Parent of types representing constraints on primitive types.
 
 h|*Inherit*
-2+|`C_DEFINED_OBJECT`
+2+|`<<_c_defined_object_class,C_DEFINED_OBJECT>>`
 
 h|*Attributes*
 ^h|*Signature*
 ^h|*Meaning*
 
 h|*0..1*
-|*assumed_value*: `Any`
+|*assumed_value*: `link:/releases/BASE/{am_release}/foundation_types.html#_any_class[Any^]`
 a|Value to be assumed if none sent in data.
 
 h|*0..1*
-|*is_enumerated_type_constraint*: `Boolean`
+|*is_enumerated_type_constraint*: `link:/releases/BASE/{am_release}/foundation_types.html#_boolean_class[Boolean^]`
 a|True if this object represents a constraint on an enumerated type from the reference model, where the latter is assumed to be based on a primitive type, generally Integer or String.
 
 h|*1..1*
-|*constraint*: `Any`
+|*constraint*: `link:/releases/BASE/{am_release}/foundation_types.html#_any_class[Any^]`
 a|Constraint represented by this object; redefine in descendants.
 h|*Functions*
 ^h|*Signature*
 ^h|*Meaning*
 
 h|*1..1*
-|*has_assumed_value* (): `Boolean`
+|*has_assumed_value* (): `link:/releases/BASE/{am_release}/foundation_types.html#_boolean_class[Boolean^]`
 a|True if there is an assumed value.
 
 h|*1..1*
-|*constrained_typename* (): `String`
+|*constrained_typename* (): `link:/releases/BASE/{am_release}/foundation_types.html#_string_class[String^]`
 a|Generate name of native type that is constrained by this `C_XXX` type. For most types, it is the `C_XXX` typename without the `C_`, i.e. `XXX`. E.g. `C_INTEGER` -> `Integer`. For the date/time types the mapping is different.
 
 h|*1..1 +
 (effected)*
 |*c_conforms_to* ( +
-other: `C_PRIMITIVE_OBJECT[1]`, +
-rmcc: `FUNCTION<<String,String>,Boolean>[1]` +
-): `Boolean`
+other: `<<_c_primitive_object_class,C_PRIMITIVE_OBJECT>>[1]`, +
+rmcc: `link:/releases/BASE/{am_release}/foundation_types.html#_function_class[FUNCTION^]<<link:/releases/BASE/{am_release}/foundation_types.html#_string_class[String^],link:/releases/BASE/{am_release}/foundation_types.html#_string_class[String^]>,link:/releases/BASE/{am_release}/foundation_types.html#_boolean_class[Boolean^]>[1]` +
+): `link:/releases/BASE/{am_release}/foundation_types.html#_boolean_class[Boolean^]`
 a|True if constraints represented by this node, ignoring any sub-parts, are narrower or the same as other.
 Typically used during validation of special-ised archetype nodes.
 
@@ -54,15 +54,15 @@ Typically used during validation of special-ised archetype nodes.
 h|*1..1 +
 (abstract)*
 |*c_value_conforms_to* ( +
-other: `C_PRIMITIVE_OBJECT[1]` +
-): `Boolean`
+other: `<<_c_primitive_object_class,C_PRIMITIVE_OBJECT>>[1]` +
+): `link:/releases/BASE/{am_release}/foundation_types.html#_boolean_class[Boolean^]`
 a|True if this node expresses a value constraint that conforms to that of `other`. Effected in descendants.
 
 h|*1..1 +
 (effected)*
 |*c_congruent_to* ( +
-other: `C_PRIMITIVE_OBJECT[1]` +
-): `Boolean`
+other: `<<_c_primitive_object_class,C_PRIMITIVE_OBJECT>>[1]` +
+): `link:/releases/BASE/{am_release}/foundation_types.html#_boolean_class[Boolean^]`
 a|True if constraints represented by this node contain no further redefinitions with respect to the node `_other_`, with the exception of node_id redefnition in `C_OBJECT` nodes.
 
 Typically used to test if an inherited node locally contains any constraints.
@@ -70,7 +70,7 @@ Typically used to test if an inherited node locally contains any constraints.
 h|*1..1 +
 (abstract)*
 |*c_value_congruent_to* ( +
-other: `C_PRIMITIVE_OBJECT[1]` +
-): `Boolean`
+other: `<<_c_primitive_object_class,C_PRIMITIVE_OBJECT>>[1]` +
+): `link:/releases/BASE/{am_release}/foundation_types.html#_boolean_class[Boolean^]`
 a|True if this node expresses the same value constraint as `other`. Effected in descendants.
 |===

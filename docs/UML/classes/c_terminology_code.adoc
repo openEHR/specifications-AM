@@ -14,7 +14,7 @@ h|*Description*
 If there is an assumed value for the ac-code case above, the assumed_value attribute contains a single at-code, which must come from the list of at-codes defined as the internal value set for the ac-code.
 
 h|*Inherit*
-2+|`C_PRIMITIVE_OBJECT`
+2+|`<<_c_primitive_object_class,C_PRIMITIVE_OBJECT>>`
 
 h|*Attributes*
 ^h|*Signature*
@@ -22,64 +22,64 @@ h|*Attributes*
 
 h|*1..1 +
 (redefined)*
-|*constraint*: `String`
+|*constraint*: `link:/releases/BASE/{am_release}/foundation_types.html#_string_class[String^]`
 a|Type of individual constraint - a single string that can either be a local at-code, or a local ac-code signifying a locally defined value set. If an ac-code, assumed_value may contain an at-code from the value set of the ac-code.
 
 h|*0..1 +
 (redefined)*
-|*assumed_value*: `Terminology_code`
+|*assumed_value*: `link:/releases/BASE/{am_release}/foundation_types.html#_terminology_code_class[Terminology_code^]`
 a|Assumed Terminology code value.
 
 h|*0..1 +
 (redefined)*
-|*default_value*: `Terminology_code`
+|*default_value*: `link:/releases/BASE/{am_release}/foundation_types.html#_terminology_code_class[Terminology_code^]`
 a|
 h|*Functions*
 ^h|*Signature*
 ^h|*Meaning*
 
 h|*0..1*
-|*value_set_expanded* (): `List<String>`
+|*value_set_expanded* (): `link:/releases/BASE/{am_release}/foundation_types.html#_list_class[List^]<link:/releases/BASE/{am_release}/foundation_types.html#_string_class[String^]>`
 a|Effective set of at-code values corresponding to an ac-code for a locally defined value set. Not defined for ac-codes that have no local value set.
 
 h|*0..1*
-|*value_set_substituted* (): `List<Uri>`
+|*value_set_substituted* (): `link:/releases/BASE/{am_release}/foundation_types.html#_list_class[List^]<link:/releases/BASE/{am_release}/foundation_types.html#_uri_class[Uri^]>`
 a|For locally defined value sets within individual code bindings: return the term URI(s) substituted from bindings for local at-codes in `_value_set_expanded_`.
 
 h|*0..1*
-|*value_set_resolved* (): `List<Terminology_code>`
+|*value_set_resolved* (): `link:/releases/BASE/{am_release}/foundation_types.html#_list_class[List^]<link:/releases/BASE/{am_release}/foundation_types.html#_terminology_code_class[Terminology_code^]>`
 a|For locally defined value sets within individual code bindings: final set of external codes to which value set is resolved.
 
 h|*1..1 +
 (effected)*
 |*valid_value* ( +
-a_value: `Terminology_code[1]` +
-): `Boolean`
+a_value: `link:/releases/BASE/{am_release}/foundation_types.html#_terminology_code_class[Terminology_code^][1]` +
+): `link:/releases/BASE/{am_release}/foundation_types.html#_boolean_class[Boolean^]`
 a|True if a `_value_` is valid with respect to constraint expressed in concrete instance of this type.
 
 h|*1..1 +
 (effected)*
-|*prototype_value* (): `Terminology_code`
+|*prototype_value* (): `link:/releases/BASE/{am_release}/foundation_types.html#_terminology_code_class[Terminology_code^]`
 a|A generated prototype value from this constraint object.
 
 h|*1..1 +
 (effected)*
-|*any_allowed* (): `Boolean` +
+|*any_allowed* (): `link:/releases/BASE/{am_release}/foundation_types.html#_boolean_class[Boolean^]` +
  +
-_Post_: `Result := constraint.is_empty`
+__Post__: `Result := constraint.is_empty`
 a|True if any value (i.e. instance) of the reference model type would be allowed. Redefined in descendants.
 
 h|*1..1 +
 (effected)*
 |*c_value_conforms_to* ( +
-other: `C_TERMINOLOGY_CODE[1]` +
-): `Boolean`
+other: `<<_c_terminology_code_class,C_TERMINOLOGY_CODE>>[1]` +
+): `link:/releases/BASE/{am_release}/foundation_types.html#_boolean_class[Boolean^]`
 a|True if `_other.any_allowed_` or else every constraint in the `_constraint_` list exists in the `_other.constraint_`.
 
 h|*1..1 +
 (effected)*
 |*c_value_congruent_to* ( +
-other: `C_TERMINOLOGY_CODE[1]` +
-): `Boolean`
+other: `<<_c_terminology_code_class,C_TERMINOLOGY_CODE>>[1]` +
+): `link:/releases/BASE/{am_release}/foundation_types.html#_boolean_class[Boolean^]`
 a|True if `_constraint_` and `_other.constraint_` are both value-set ids, and expand to identical value sets, or else are identical value codes.
 |===
