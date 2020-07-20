@@ -229,14 +229,14 @@
 <li><a href="#_conformance_semantics_5">4.5.12.1. Conformance semantics</a></li>
 </ul>
 </li>
-<li><a href="#_c_orderedt_class">4.5.13. C_ORDERED&lt;T&gt; Class</a>
+<li><a href="#_c_ordered_class">4.5.13. C_ORDERED Class</a>
 <ul class="sectlevel4">
 <li><a href="#_conformance_semantics_6">4.5.13.1. Conformance semantics</a></li>
 </ul>
 </li>
 <li><a href="#_c_integer_class">4.5.14. C_INTEGER Class</a></li>
 <li><a href="#_c_real_class">4.5.15. C_REAL Class</a></li>
-<li><a href="#_c_temporalt_class">4.5.16. C_TEMPORAL&lt;T&gt; Class</a>
+<li><a href="#_c_temporal_class">4.5.16. C_TEMPORAL Class</a>
 <ul class="sectlevel4">
 <li><a href="#_conformance_semantics_7">4.5.16.1. Conformance semantics</a></li>
 </ul>
@@ -346,34 +346,41 @@
 <li><a href="#_diffing">8.3. Diffing</a></li>
 </ul>
 </li>
-<li><a href="#_serialisation_model">9. Serialisation Model</a></li>
+<li><a href="#_serialisation_model">9. Serialisation Model</a>
+<ul class="sectlevel2">
+<li><a href="#_overview_7">9.1. Overview</a></li>
+<li><a href="#_model_transformation_description">9.2. Model Transformation Description</a></li>
+</ul>
+</li>
 <li><a href="#_templates">10. Templates</a>
 <ul class="sectlevel2">
-<li><a href="#_an_example">10.1. An Example</a></li>
-<li><a href="#_template_identifiers">10.2. Template Identifiers</a></li>
+<li><a href="#_overview_8">10.1. Overview</a></li>
+<li><a href="#_an_example">10.2. An Example</a></li>
+<li><a href="#_template_identifiers">10.3. Template Identifiers</a></li>
 </ul>
 </li>
 <li><a href="#_reference_model_adaptation">11. Reference Model Adaptation</a>
 <ul class="sectlevel2">
-<li><a href="#_aom_profile_configuration">11.1. AOM Profile Configuration</a>
+<li><a href="#_overview_9">11.1. Overview</a></li>
+<li><a href="#_aom_profile_configuration">11.2. AOM Profile Configuration</a>
 <ul class="sectlevel3">
-<li><a href="#_class_definitions_3">11.1.1. Class Definitions</a></li>
-<li><a href="#_aom_profile_class">11.1.2. AOM_PROFILE Class</a></li>
-<li><a href="#_aom_type_mapping_class">11.1.3. AOM_TYPE_MAPPING Class</a></li>
-<li><a href="#_aom_property_mapping_class">11.1.4. AOM_PROPERTY_MAPPING Class</a></li>
-<li><a href="#_configuration_file">11.1.5. Configuration File</a></li>
+<li><a href="#_class_definitions_3">11.2.1. Class Definitions</a></li>
+<li><a href="#_aom_profile_class">11.2.2. AOM_PROFILE Class</a></li>
+<li><a href="#_aom_type_mapping_class">11.2.3. AOM_TYPE_MAPPING Class</a></li>
+<li><a href="#_aom_property_mapping_class">11.2.4. AOM_PROPERTY_MAPPING Class</a></li>
+<li><a href="#_configuration_file">11.2.5. Configuration File</a></li>
 </ul>
 </li>
-<li><a href="#_mapping_rm_entities_to_aom_entities">11.2. Mapping RM Entities to AOM Entities</a></li>
-<li><a href="#_rm_primitive_type_equivalences">11.3. RM Primitive Type Equivalences</a></li>
-<li><a href="#_rm_type_substitutions">11.4. RM Type Substitutions</a></li>
-<li><a href="#_aom_lifecycle_state_mappings">11.5. AOM Lifecycle State Mappings</a></li>
-<li><a href="#_facilities_for_rm_visualisation">11.6. Facilities for RM Visualisation</a>
+<li><a href="#_mapping_rm_entities_to_aom_entities">11.3. Mapping RM Entities to AOM Entities</a></li>
+<li><a href="#_rm_primitive_type_equivalences">11.4. RM Primitive Type Equivalences</a></li>
+<li><a href="#_rm_type_substitutions">11.5. RM Type Substitutions</a></li>
+<li><a href="#_aom_lifecycle_state_mappings">11.6. AOM Lifecycle State Mappings</a></li>
+<li><a href="#_facilities_for_rm_visualisation">11.7. Facilities for RM Visualisation</a>
 <ul class="sectlevel3">
-<li><a href="#_archetype_parent_class">11.6.1. archetype_parent_class</a></li>
-<li><a href="#_archetype_data_value_parent_class">11.6.2. archetype_data_value_parent_class</a></li>
-<li><a href="#_archetype_visualise_descendants_of">11.6.3. archetype_visualise_descendants_of</a></li>
-<li><a href="#_archetype_namespace">11.6.4. archetype_namespace</a></li>
+<li><a href="#_archetype_parent_class">11.7.1. archetype_parent_class</a></li>
+<li><a href="#_archetype_data_value_parent_class">11.7.2. archetype_data_value_parent_class</a></li>
+<li><a href="#_archetype_visualise_descendants_of">11.7.3. archetype_visualise_descendants_of</a></li>
+<li><a href="#_archetype_namespace">11.7.4. archetype_namespace</a></li>
 </ul>
 </li>
 </ul>
@@ -478,12 +485,23 @@
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a id="latest_issue"></a>2.2.4</p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><a href="https://specifications.openehr.org/tickets/SPECAM-67" target="_blank" rel="noopener">SPECAM-67</a>. Adjust package structure to be more regular:<br>
+ rename <code>am.aom2_profile</code> to <code>am.aom2.profile</code>;<br>
+ rename <code>am.p_aom2</code> to <code>am.aom2.persistence</code>;<br>
+ move <code>am.aom2.primitive</code> to <code>am.aom2.constraint_model.primitive</code></p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">T Beale</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a id="latest_issue_date"></a>19 May 2020</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">2.2.4</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p><a href="https://specifications.openehr.org/tickets/SPECAM-61" target="_blank" rel="noopener">SPECAM-61</a>. Remove <code><em>revision_history</em></code> from ADL2 specification.</p>
 </div></div></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">D Bosca,<br>
  P Bos,<br>
  T Beale</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a id="latest_issue_date"></a>19 May 2020</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">19 May 2020</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">2.2.3</p></td>
@@ -1776,7 +1794,7 @@ a_level: <code><a href="/releases/BASE/latest/foundation_types.html#_integer_cla
 <div class="content">
 <img src="UML/diagrams/AM-aom2.archetype.svg" alt="AM aom2.archetype">
 </div>
-<div class="title">Figure 6. am.aom2.archetype Package</div>
+<div class="title">Figure 6. <code>am.aom2.archetype</code> Package</div>
 </div>
 <div class="paragraph">
 <p>The <code>AUTHORED_ARCHETYPE</code> class adds identifying attributes, flags and descriptive meta-data, and is the ancestor type for two further specialisations - <code>TEMPLATE</code> and <code>OPERATIONAL_TEMPLATE</code> . The <code>TEMPLATE</code> class defines the notion of a 'templated' archetype, i.e. an archetype containing fillers/references (ADL&#8217;s <code>use_archetype</code> statements), typically designed to represent a data set. To enable this, it may contain 'overlays', private archetypes that specialise one or more of the referenced / filler archetypes it uses. Overlays are instances of the <code>TEMPLATE_OVERLAY</code> class, have no meta-data of their own, but are otherwise computationally just like any other archetype.</p>
@@ -2680,13 +2698,13 @@ an_id: <code><a href="/releases/BASE/latest/foundation_types.html#_string_class"
 <div class="sect2">
 <h3 id="_overview_3"><a class="anchor" href="#_overview_3"></a>4.1. Overview</h3>
 <div class="paragraph">
-<p><a href="#constraint_model_top">Figure 14</a> and <a href="#constraint_model_bottom">Figure 15</a> illustrate the object model of constraints used in an archetype definition. This model is completely generic, and is designed to express the semantics of constraints on instances of classes which are themselves described in any orthodox object-oriented formalism, such as UML. Accordingly, the major abstractions in this model correspond to major abstractions in object-oriented formalisms, including several variations of the notion of 'object' and the notion of 'attribute'. The notion of 'object' rather than 'class' or 'type' is used because archetypes are about constraints on data (i.e. 'instances', or 'objects') rather than models, which are constructed from 'classes'. In this document, the word 'attribute' refers to any data property of a class, regardless of whether regarded as a 'relationship' (i.e. association, aggregation, or composition) or 'primitive' (i.e. value) attribute in an object model.</p>
+<p><a href="#constraint_model">Figure 14</a> and <a href="#constraint_model_primitive">Figure 15</a> illustrate the object model of constraints used in an archetype definition. This model is completely generic, and is designed to express the semantics of constraints on instances of classes which are themselves described in any orthodox object-oriented formalism, such as UML. Accordingly, the major abstractions in this model correspond to major abstractions in object-oriented formalisms, including several variations of the notion of 'object' and the notion of 'attribute'. The notion of 'object' rather than 'class' or 'type' is used because archetypes are about constraints on data (i.e. 'instances', or 'objects') rather than models, which are constructed from 'classes'. In this document, the word 'attribute' refers to any data property of a class, regardless of whether regarded as a 'relationship' (i.e. association, aggregation, or composition) or 'primitive' (i.e. value) attribute in an object model.</p>
 </div>
-<div id="constraint_model_top" class="imageblock text-center text-center">
+<div id="constraint_model" class="imageblock text-center text-center">
 <div class="content">
-<img src="UML/diagrams/AM-aom2.constraint_model-top.svg" alt="AM aom2.constraint model top">
+<img src="UML/diagrams/AM-aom2.constraint_model.svg" alt="AM aom2.constraint model">
 </div>
-<div class="title">Figure 14. am.aom2.constraint_model Package</div>
+<div class="title">Figure 14. <code>am.aom2.constraint_model</code> Package</div>
 </div>
 <div class="paragraph">
 <p>The definition part of an archetype is an instance of a <code>C_COMPLEX_OBJECT</code> and consists of alternate layers of object and attribute constrainer nodes, each containing the next level of nodes. At the leaves are primitive object constrainer nodes constraining primitive types such as <code>String</code> , <code>Integer</code> etc. There are also nodes that represent internal references to other nodes, constraint reference nodes that refer to a text constraint in the constraint binding part of the archetype terminology, and archetype constraint nodes, which represent constraints on other archetypes allowed to appear at a given point. The full list of concrete node types is as follows:</p>
@@ -2716,11 +2734,11 @@ an_id: <code><a href="/releases/BASE/latest/foundation_types.html#_string_class"
 <div class="paragraph">
 <p>The constraints define which configurations of reference model class instances are considered to conform to the archetype. For example, certain configurations of the classes <code>PARTY</code> , <code>ADDRESS</code> , <code>CLUSTER</code> and <code>ELEMENT</code> might be defined by a Person archetype as allowable structures for 'people with identity, contacts, and addresses'. Because the constraints allow optionality, cardinality and other choices, a given archetype usually corresponds to a set of similar configurations of objects.</p>
 </div>
-<div id="constraint_model_bottom" class="imageblock text-center text-center">
+<div id="constraint_model_primitive" class="imageblock text-center text-center">
 <div class="content">
-<img src="UML/diagrams/AM-aom2.constraint_model-bottom.svg" alt="AM aom2.constraint model bottom">
+<img src="UML/diagrams/AM-aom2.constraint_model.primitive.svg" alt="AM aom2.constraint model.primitive">
 </div>
-<div class="title">Figure 15. am.aom2.primitive Package</div>
+<div class="title">Figure 15. <code>am.aom2.constraint_model.primitive</code> Package</div>
 </div>
 <div class="paragraph">
 <p>The type-name nomenclature <code>C_XXX</code> used here is intended to be read as "constraint on objects of type <code>XXXX</code> ", i.e. a <code>C_COMPLEX_OBJECT</code> is a "constraint on a complex object (defined by a complex reference model type)". These type names are used below in the formal model.</p>
@@ -3049,7 +3067,7 @@ an_id: <code><a href="/releases/BASE/latest/foundation_types.html#_string_class"
 </ul>
 </div>
 <div class="paragraph">
-<p>A way of configuring this on a per-RM basis is described in <a href="#_rm_primitive_type_equivalences">Section 11.3</a> below.</p>
+<p>A way of configuring this on a per-RM basis is described in <a href="#_rm_primitive_type_equivalences">Section 11.4</a> below.</p>
 </div>
 <div class="sect4">
 <h5 id="_assumed_value"><a class="anchor" href="#_assumed_value"></a>4.2.7.1. Assumed_value</h5>
@@ -3218,7 +3236,7 @@ Since an archetype might not contain external terminology bindings for all (or e
 <div class="sect2">
 <h3 id="_aom_type_substitutions"><a class="anchor" href="#_aom_type_substitutions"></a>4.4. AOM Type Substitutions</h3>
 <div class="paragraph">
-<p>The <code>C_OBJECT</code> types defined in <a href="#constraint_model_top">Figure 14</a> are reproduced below, with concrete types that may actually occur in archetypes shown in dark yellow / non-italic.</p>
+<p>The <code>C_OBJECT</code> types defined in <a href="#constraint_model_top">[constraint_model_top]</a> are reproduced below, with concrete types that may actually occur in archetypes shown in dark yellow / non-italic.</p>
 </div>
 <div id="c_object_substitutions" class="imageblock text-center text-center">
 <div class="content">
@@ -5026,7 +5044,7 @@ other: <code><a href="#_c_string_class">C_STRING</a>[1]</code><br>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_c_orderedt_class"><a class="anchor" href="#_c_orderedt_class"></a>4.5.13. C_ORDERED&lt;T&gt; Class</h4>
+<h4 id="_c_ordered_class"><a class="anchor" href="#_c_ordered_class"></a>4.5.13. C_ORDERED Class</h4>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 11.1111%;">
@@ -5259,7 +5277,7 @@ other: <code><a href="#_c_ordered_class">C_ORDERED</a>[1]</code><br>
 </table>
 </div>
 <div class="sect3">
-<h4 id="_c_temporalt_class"><a class="anchor" href="#_c_temporalt_class"></a>4.5.16. C_TEMPORAL&lt;T&gt; Class</h4>
+<h4 id="_c_temporal_class"><a class="anchor" href="#_c_temporal_class"></a>4.5.16. C_TEMPORAL Class</h4>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 11.1111%;">
@@ -5486,7 +5504,7 @@ other: <code><a href="#_c_ordered_class">C_ORDERED</a>[1]</code><br>
 <p>Constraint on instances representing times in the form either of a set of validity values, or else time ranges based on the <code>C_ORDERED</code> list constraint.</p>
 </div>
 <div class="paragraph">
-<p>There is no validity flag for <code><em>hour</em></code>, since it must always be by definition mandatory in order to have a sensible time at all. Syntax expressions of instances of this class include <code>“HH:??:xx”</code> (time with optional minutes and seconds not allowed).</p>
+<p>There is no validity flag for <code><em>hour</em></code>, since it must always be by definition mandatory in order to have a sensible time at all. Syntax expressions of instances of this class include <code>"HH:??:xx"</code> (time with optional minutes and seconds not allowed).</p>
 </div></div></td>
 </tr>
 <tr>
@@ -6301,13 +6319,13 @@ other: <code><a href="#_c_second_order_class">C_SECOND_ORDER</a>[1]</code><br>
 <div class="sect2">
 <h3 id="_overview_4"><a class="anchor" href="#_overview_4"></a>5.1. Overview</h3>
 <div class="paragraph">
-<p>The AOM <code>rules</code> package adds two classes based on classes in the <code>LANG::org.openehr.bmm.expressions</code> package described in the <a href="https://specifications.openehr.org/releases/LANG/latest/bmm.html" target="_blank" rel="noopener">BMM Expression Model</a>. The package is shown below.</p>
+<p>The AOM <code>aom2.rules</code> package adds two classes based on classes in the <code>LANG::org.openehr.bmm.expressions</code> package described in the <a href="https://specifications.openehr.org/releases/LANG/latest/bmm.html" target="_blank" rel="noopener">BMM Expression Model</a>. The package is shown below.</p>
 </div>
 <div id="rules_package" class="imageblock text-center text-center">
 <div class="content">
 <img src="UML/diagrams/AM-aom2.rules.svg" alt="AM aom2.rules">
 </div>
-<div class="title">Figure 22. am.aom2.rules Package</div>
+<div class="title">Figure 22. <code>am.aom2.rules</code> Package</div>
 </div>
 </div>
 <div class="sect2">
@@ -6436,13 +6454,13 @@ other: <code><a href="#_c_second_order_class">C_SECOND_ORDER</a>[1]</code><br>
 <div class="sect2">
 <h3 id="_overview_5"><a class="anchor" href="#_overview_5"></a>6.1. Overview</h3>
 <div class="paragraph">
-<p>Classes in the <code>archetype.rm_overlay</code> package are used to support definition of settings relating to unconstrained RM attributes of constrained object nodes (including the top-level object) within the archetype. The UML model is shown below.</p>
+<p>Classes in the <code>aom2.rm_overlay</code> package are used to support definition of settings relating to unconstrained RM attributes of constrained object nodes (including the top-level object) within the archetype. The UML model is shown below.</p>
 </div>
 <div id="rm_overlay_package" class="imageblock text-center text-center">
 <div class="content">
 <img src="UML/diagrams/AM-aom2.rm_overlay.svg" alt="AM aom2.rm overlay">
 </div>
-<div class="title">Figure 23. <code>rm_overlay</code> package</div>
+<div class="title">Figure 23. <code>am.aom2.rm_overlay</code> package</div>
 </div>
 </div>
 <div class="sect2">
@@ -6637,7 +6655,7 @@ other: <code><a href="#_c_second_order_class">C_SECOND_ORDER</a>[1]</code><br>
 <div class="content">
 <img src="UML/diagrams/AM-aom2.terminology.svg" alt="AM aom2.terminology">
 </div>
-<div class="title">Figure 24. am.aom2.terminology Package</div>
+<div class="title">Figure 24. <code>am.aom2.terminology</code> Package</div>
 </div>
 <div class="paragraph">
 <p>An archetype terminology consists of the following elements.</p>
@@ -7443,6 +7461,8 @@ Hash of keys ("text", "description" etc) and corresponding values.</p>
 <div class="sect1">
 <h2 id="_serialisation_model"><a class="anchor" href="#_serialisation_model"></a>9. Serialisation Model</h2>
 <div class="sectionbody">
+<div class="sect2">
+<h3 id="_overview_7"><a class="anchor" href="#_overview_7"></a>9.1. Overview</h3>
 <div class="paragraph">
 <p>This section describes an adjusted version of the AOM that is used for serialising archetypes to formats other than ADL. The classes in this model are nearly 1:1 with AOM classes, but with names prefixed with <code>P_</code>, for 'persistent'. Without using this model, an archetype can be serialised to an 'object dump' format such as ODIN, JSON, YAML, XML etc, but the output will be voluminous. The effect of this model is to reduce the size of the output, potentially by a factor of two or more. Human readability is also greatly improved, which is of increasing importance with the direct use of XML and JSON by programmers.</p>
 </div>
@@ -7452,6 +7472,21 @@ Hash of keys ("text", "description" etc) and corresponding values.</p>
 <div class="paragraph">
 <p>The <code>am.p_aom2</code> package is shown below, in two parts.</p>
 </div>
+<div id="P_AOM_upper" class="imageblock text-center text-center">
+<div class="content">
+<img src="UML/diagrams/AM-aom2.persistence-upper.svg" alt="AM aom2.persistence upper">
+</div>
+<div class="title">Figure 26. <code>am.aom2.persistence</code> Package - Serialisation AOM (upper)</div>
+</div>
+<div id="P_AOM_lower" class="imageblock text-center text-center">
+<div class="content">
+<img src="UML/diagrams/AM-aom2.persistence-lower.svg" alt="AM aom2.persistence lower">
+</div>
+<div class="title">Figure 27. <code>am.aom2.persistence</code> Package - Serialisation AOM (lower)</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_model_transformation_description"><a class="anchor" href="#_model_transformation_description"></a>9.2. Model Transformation Description</h3>
 <div class="paragraph">
 <p>The translations from the AOM effected by the <code>P_</code> classes are as follows:</p>
 </div>
@@ -7468,23 +7503,14 @@ Hash of keys ("text", "description" etc) and corresponding values.</p>
 </li>
 </ul>
 </div>
-<div id="P_AOM_upper" class="imageblock text-center text-center">
-<div class="content">
-<img src="UML/diagrams/AM-p_aom2-upper.svg" alt="AM p aom2 upper">
-</div>
-<div class="title">Figure 26. am.p_aom2 Package - Serialisation AOM (upper)</div>
-</div>
-<div id="P_AOM_lower" class="imageblock text-center text-center">
-<div class="content">
-<img src="UML/diagrams/AM-p_aom2-lower.svg" alt="AM p aom2 lower">
-</div>
-<div class="title">Figure 27. am.p_aom2 Package - Serialisation AOM (lower)</div>
 </div>
 </div>
 </div>
 <div class="sect1">
 <h2 id="_templates"><a class="anchor" href="#_templates"></a>10. Templates</h2>
 <div class="sectionbody">
+<div class="sect2">
+<h3 id="_overview_8"><a class="anchor" href="#_overview_8"></a>10.1. Overview</h3>
 <div class="paragraph">
 <p>Within the Archetype formalism, a template is used to aggregate and refine archetypes, to produce a structure corresponding to a particular data set. Templates thus provide a way to use archetypes for specific purposes, while the archetypes contain <em>possible</em> data items, not linked to specific purposes. See the <a href="https://specifications.openehr.org/releases/AM/latest/ADL2.html#_templates" target="_blank" rel="noopener">ADL2 specification, Templates section</a> for a detailed description of template semantics.</p>
 </div>
@@ -7541,8 +7567,9 @@ Hash of keys ("text", "description" etc) and corresponding values.</p>
 <div class="paragraph">
 <p>The first two of these are explicitly identified and published artefacts, and can usually be obtained as files in any of the available serialisation syntaxes. The template overlay is somewhat like the 'private' or anonymous class definition available in some programming languages, and is obtainable either as a separate file associated with the root template, or within the template source file.</p>
 </div>
+</div>
 <div class="sect2">
-<h3 id="_an_example"><a class="anchor" href="#_an_example"></a>10.1. An Example</h3>
+<h3 id="_an_example"><a class="anchor" href="#_an_example"></a>10.2. An Example</h3>
 <div class="paragraph">
 <p>In order to better explain the template artefact structure, an example is described below. Assume the logical structure required is as shown below. This shows three archetypes of specific RM types, that should be chained together by slot-filling at specific paths, to form a final template. The template also adds further constraints via overlays.</p>
 </div>
@@ -7572,7 +7599,7 @@ Hash of keys ("text", "description" etc) and corresponding values.</p>
 </div>
 <div id="AOM-template_example_1" class="imageblock text-center text-center">
 <div class="content">
-<img src="UML/diagrams/AM-template_example_1.png" alt="AM template example 1">
+<img src="UML/diagrams/AM-template_example_1.svg" alt="AM template example 1">
 </div>
 <div class="title">Figure 28. Template source structure example</div>
 </div>
@@ -7603,7 +7630,7 @@ Hash of keys ("text", "description" etc) and corresponding values.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_template_identifiers"><a class="anchor" href="#_template_identifiers"></a>10.2. Template Identifiers</h3>
+<h3 id="_template_identifiers"><a class="anchor" href="#_template_identifiers"></a>10.3. Template Identifiers</h3>
 <div class="paragraph">
 <p>Templates are identified using normal ADL multi-axial identifiers and GUIDs, just as for archetypes. However, to make them easier for tools and humans to see, some simple conventions are suggested for the concept part of the identifier, as follows.</p>
 </div>
@@ -7651,6 +7678,8 @@ Hash of keys ("text", "description" etc) and corresponding values.</p>
 <div class="sect1">
 <h2 id="_reference_model_adaptation"><a class="anchor" href="#_reference_model_adaptation"></a>11. Reference Model Adaptation</h2>
 <div class="sectionbody">
+<div class="sect2">
+<h3 id="_overview_9"><a class="anchor" href="#_overview_9"></a>11.1. Overview</h3>
 <div class="paragraph">
 <p>So far ADL has been presented as an abstract formal language that defines legal information structures based on a reference model (RM). In real world applications, we need to consider where reference models come from, and the question of harmonising or otherwise integrating archetypes based on different but related RMs.</p>
 </div>
@@ -7666,23 +7695,24 @@ Hash of keys ("text", "description" etc) and corresponding values.</p>
 <div class="paragraph">
 <p>In order to alleviate some of the problems caused by this situation, some of the measures described below, which are outside the AOM proper, can be applied to enable archetypes and RMs treated to be treated more uniformly.</p>
 </div>
+</div>
 <div class="sect2">
-<h3 id="_aom_profile_configuration"><a class="anchor" href="#_aom_profile_configuration"></a>11.1. AOM Profile Configuration</h3>
+<h3 id="_aom_profile_configuration"><a class="anchor" href="#_aom_profile_configuration"></a>11.2. AOM Profile Configuration</h3>
 <div class="paragraph">
-<p>These adaptations can be formalised in a configuration object that is an instance of the class <code>AOM_PROFILE</code>, illustrated below. This is only one way such information can be represented, and alternatives could be used.</p>
+<p>These adaptations can be formalised in a configuration object that is an instance of the class <code>AOM_PROFILE</code>, shown below. This is only one way such information can be represented, and alternatives could be used.</p>
 </div>
 <div id="aom_profile" class="imageblock text-center text-center">
 <div class="content">
-<img src="UML/diagrams/AM-aom2_profile.svg" alt="AM aom2 profile">
+<img src="UML/diagrams/AM-aom2.profile.svg" alt="AM aom2.profile">
 </div>
-<div class="title">Figure 29. aom_profile Package</div>
+<div class="title">Figure 29. <code>aom2.profile</code> Package</div>
 </div>
 <div class="sect3">
-<h4 id="_class_definitions_3"><a class="anchor" href="#_class_definitions_3"></a>11.1.1. Class Definitions</h4>
+<h4 id="_class_definitions_3"><a class="anchor" href="#_class_definitions_3"></a>11.2.1. Class Definitions</h4>
 
 </div>
 <div class="sect3">
-<h4 id="_aom_profile_class"><a class="anchor" href="#_aom_profile_class"></a>11.1.2. AOM_PROFILE Class</h4>
+<h4 id="_aom_profile_class"><a class="anchor" href="#_aom_profile_class"></a>11.2.2. AOM_PROFILE Class</h4>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 11.1111%;">
@@ -7709,7 +7739,7 @@ Hash of keys ("text", "description" etc) and corresponding values.</p>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><strong>aom_rm_type_substitutions</strong>: <code><a href="/releases/BASE/latest/foundation_types.html#_hash_class">Hash<sup></a>&lt;<a href="/releases/BASE/latest/foundation_types.html#_string_class">String</sup></a>, <a href="/releases/BASE/latest/foundation_types.html#_string_class" target="_blank" rel="noopener">String</a>&gt;</code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p>Allowed type substitutions: Actual RM type names keyed by AOM built-in types which can subsitute for them in an archetype. E.g. &lt;value = "String", key = "ISO8601_DATE"&gt; means that if RM property TYPE.some_property is of type String, an ISO8601_DATE is allowed at that position in the archetype.</p>
+<p>Allowed type substitutions: Actual RM type names keyed by AOM built-in types which can subsitute for them in an archetype. E.g. <code>&lt;value = "String", key = "ISO8601_DATE"&gt;</code> means that if RM property <code>TYPE.<em>some_property</em></code> is of type <code>String</code>, an <code>ISO8601_DATE</code> is allowed at that position in the archetype.</p>
 </div></div></td>
 </tr>
 <tr>
@@ -7737,7 +7767,7 @@ Hash of keys ("text", "description" etc) and corresponding values.</p>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><strong>rm_primitive_type_equivalences</strong>: <code><a href="/releases/BASE/latest/foundation_types.html#_hash_class">Hash<sup></a>&lt;<a href="/releases/BASE/latest/foundation_types.html#_string_class">String</sup></a>, <a href="/releases/BASE/latest/foundation_types.html#_string_class" target="_blank" rel="noopener">String</a>&gt;</code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p>Equivalences of RM primitive types to in-built set of primitive types. Used to determine which AOM C_PRIMITIVE_OBJECT descendant is used for a primitive type. Typical entries:</p>
+<p>Equivalences of RM primitive types to in-built set of primitive types. Used to determine which AOM <code>C_PRIMITIVE_OBJECT</code> descendant is used for a primitive type. Typical entries:</p>
 </div>
 <div class="ulist">
 <ul>
@@ -7757,7 +7787,7 @@ Hash of keys ("text", "description" etc) and corresponding values.</p>
 </table>
 </div>
 <div class="sect3">
-<h4 id="_aom_type_mapping_class"><a class="anchor" href="#_aom_type_mapping_class"></a>11.1.3. AOM_TYPE_MAPPING Class</h4>
+<h4 id="_aom_type_mapping_class"><a class="anchor" href="#_aom_type_mapping_class"></a>11.2.3. AOM_TYPE_MAPPING Class</h4>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 11.1111%;">
@@ -7805,7 +7835,7 @@ Hash of keys ("text", "description" etc) and corresponding values.</p>
 </table>
 </div>
 <div class="sect3">
-<h4 id="_aom_property_mapping_class"><a class="anchor" href="#_aom_property_mapping_class"></a>11.1.4. AOM_PROPERTY_MAPPING Class</h4>
+<h4 id="_aom_property_mapping_class"><a class="anchor" href="#_aom_property_mapping_class"></a>11.2.4. AOM_PROPERTY_MAPPING Class</h4>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 11.1111%;">
@@ -7846,14 +7876,14 @@ Hash of keys ("text", "description" etc) and corresponding values.</p>
 </table>
 </div>
 <div class="sect3">
-<h4 id="_configuration_file"><a class="anchor" href="#_configuration_file"></a>11.1.5. Configuration File</h4>
+<h4 id="_configuration_file"><a class="anchor" href="#_configuration_file"></a>11.2.5. Configuration File</h4>
 <div class="paragraph">
 <p>Instances of the above classes can be expressed in an ODIN format file, as a convenient way of defining configuration for tools. Examples of such files used for the <a href="https://www.openehr.org/downloads/ADLworkbench" target="_blank" rel="noopener">openEHR ADL Workbench</a> tool can be found in the <a href="https://github.com/openEHR/adl-tools/tree/master/apps/resources/aom_profiles" target="_blank" rel="noopener">Github project for the tool</a>.</p>
 </div>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_mapping_rm_entities_to_aom_entities"><a class="anchor" href="#_mapping_rm_entities_to_aom_entities"></a>11.2. Mapping RM Entities to AOM Entities</h3>
+<h3 id="_mapping_rm_entities_to_aom_entities"><a class="anchor" href="#_mapping_rm_entities_to_aom_entities"></a>11.3. Mapping RM Entities to AOM Entities</h3>
 <div class="paragraph">
 <p>One adjustment that can be made is to indicate equivalences between RM entities and AOM built-in types. This can be illustrated by a common situation in health, where multiple RMs have concretely different models of the 'coded term' notion. Semantically, these are all the same, and the correspond to the AOM built-in type <code>TERMINOLOGY_CODE</code>. However, there is nothing that can be stated in an ADL archetype that can indicate this relationship, with the result that ADL tools can&#8217;t infer that a certain type, e.g. openEHR&#8217;s <code>CODE_PHRASE</code> or ISO 13606&#8217;s <code>CODED_TEXT</code> are equivalents of the <code>TERMINOLOGY_CODE</code> type in the AOM.</p>
 </div>
@@ -7921,7 +7951,7 @@ Hash of keys ("text", "description" etc) and corresponding values.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_rm_primitive_type_equivalences"><a class="anchor" href="#_rm_primitive_type_equivalences"></a>11.3. RM Primitive Type Equivalences</h3>
+<h3 id="_rm_primitive_type_equivalences"><a class="anchor" href="#_rm_primitive_type_equivalences"></a>11.4. RM Primitive Type Equivalences</h3>
 <div class="paragraph">
 <p>The primitive constrainer types of the AOM, i.e. descendants of <code>C_PRIMITIVE_OBJECT</code> correspond to a small abstract set of primitive types, as shown in the table <a href="#primitive-types">Primitive Types</a>. The implied list of RM abstract primitive types is <code>Boolean</code>, <code>Integer</code>, <code>Real</code>, <code>Date</code>, <code>Date_time</code>, <code>Time</code>, <code>Duration</code>, <code>String</code>, and <code>Terminology_code</code>. However, real reference models may be based on typical programming languages, and therefore include types like <code>Double</code>, <code>Integer64</code>, and even numerous variants on <code>String</code>, <code>Integer</code> etc, such as <code>String_8</code>, <code>String32</code> and so on.</p>
 </div>
@@ -7959,7 +7989,7 @@ Hash of keys ("text", "description" etc) and corresponding values.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_rm_type_substitutions"><a class="anchor" href="#_rm_type_substitutions"></a>11.4. RM Type Substitutions</h3>
+<h3 id="_rm_type_substitutions"><a class="anchor" href="#_rm_type_substitutions"></a>11.5. RM Type Substitutions</h3>
 <div class="paragraph">
 <p>Occasionally there are type mismatches between the RM type and the AOM type we would like to use, or has been used in an archetype. For example, the RM may have a <code>String</code> attribute in some class that represents an ISO 8601 date. It is possible to use the AOM constrainer type <code>C_DATE</code> instead of <code>C_STRING</code>, to obtain more a meaningful constraint.</p>
 </div>
@@ -8000,7 +8030,7 @@ Hash of keys ("text", "description" etc) and corresponding values.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_aom_lifecycle_state_mappings"><a class="anchor" href="#_aom_lifecycle_state_mappings"></a>11.5. AOM Lifecycle State Mappings</h3>
+<h3 id="_aom_lifecycle_state_mappings"><a class="anchor" href="#_aom_lifecycle_state_mappings"></a>11.6. AOM Lifecycle State Mappings</h3>
 <div class="paragraph">
 <p>Another kind of useful mapping adjustment that can help to make tools process archetypes in a more homogeneous way is to do with the AOM life-cycle states, which are standardised in the <a href="https://specifications.openehr.org/releases/AM/latest/Identification.html" target="_blank" rel="noopener">openEHR Archetype Identification specification</a>. These states denote the state of a whole archetype in its authoring life cycle. Historically however there were no standard names, with the consequence that various archetype tools implement their own local lifecycle state names. To adjust for this the <code><em>aom_lifecycle_mappings</em></code> property in the <code>AOM_PROFILE</code> class can be used. These mappings have the effect of replacing the current value of the <code><em>lifecycle_state</em></code> property of the <code>RESOURCE_DESCRIPTION</code> instance of a parsed archetype with an openEHR standard state name. A typical example of the <code>description</code> section of an archetype with a local lifecycle state name is below.</p>
 </div>
@@ -8055,7 +8085,7 @@ Hash of keys ("text", "description" etc) and corresponding values.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_facilities_for_rm_visualisation"><a class="anchor" href="#_facilities_for_rm_visualisation"></a>11.6. Facilities for RM Visualisation</h3>
+<h3 id="_facilities_for_rm_visualisation"><a class="anchor" href="#_facilities_for_rm_visualisation"></a>11.7. Facilities for RM Visualisation</h3>
 <div class="paragraph">
 <p>Various meta-attributes may be added to an AOM profile in order to affect the behaviour of archetyping tools and processing. These are not required for correct functioning of tools, but are typically needed to make models comprehensible. Without them, there will no difference between primitive types such as <code>Any</code>, <code>Integer</code> etc, business types (e.g. things like <code>Person</code>, etc), and business-level data types (e.g. <code>CodedText</code>, <code>Quantity</code> etc).</p>
 </div>
@@ -8071,7 +8101,7 @@ Hash of keys ("text", "description" etc) and corresponding values.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_archetype_parent_class"><a class="anchor" href="#_archetype_parent_class"></a>11.6.1. archetype_parent_class</h4>
+<h4 id="_archetype_parent_class"><a class="anchor" href="#_archetype_parent_class"></a>11.7.1. archetype_parent_class</h4>
 <div class="paragraph">
 <p>The <code>archetype_parent_class</code> attribute defines a base class from the Reference Model that provides archetyping capability in RM data structures. It is optional, and there need be no such class in the RM. In the openEHR and ISO 13606 Reference Models, this class exists, (<code>LOCATABLE</code>, and <code>RECORD_COMPONENT</code> respectively). Defining it here has the effect in tools that the class tree under which archetypes are arranged contains only RM classes inheriting from this class, e.g. <code>LOCATABLE</code> classes in the case of openEHR. If nothing is set here, all classes in the RM are assumed as candidates for archetypes.</p>
 </div>
@@ -8080,7 +8110,7 @@ Hash of keys ("text", "description" etc) and corresponding values.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_archetype_data_value_parent_class"><a class="anchor" href="#_archetype_data_value_parent_class"></a>11.6.2. archetype_data_value_parent_class</h4>
+<h4 id="_archetype_data_value_parent_class"><a class="anchor" href="#_archetype_data_value_parent_class"></a>11.7.2. archetype_data_value_parent_class</h4>
 <div class="paragraph">
 <p>The <code>archetype_data_value_parent_class</code> attribute defines a base class from the Reference Model whose descendants are considered to be 'logical data types' (i.e. of some higher level than the built-in primitive types <code>String</code>, <code>Integer</code> etc). This attribute is optional, even if the RM does have such a class, and is only used to help tooling provide more intelligent display, e.g. in statistical reports.</p>
 </div>
@@ -8089,7 +8119,7 @@ Hash of keys ("text", "description" etc) and corresponding values.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_archetype_visualise_descendants_of"><a class="anchor" href="#_archetype_visualise_descendants_of"></a>11.6.3. archetype_visualise_descendants_of</h4>
+<h4 id="_archetype_visualise_descendants_of"><a class="anchor" href="#_archetype_visualise_descendants_of"></a>11.7.3. archetype_visualise_descendants_of</h4>
 <div class="paragraph">
 <p>If <code>archetype_parent_class</code> is not set, designate a class whose descendants should be made visible in tree and grid renderings of the archetype definition. For openEHR and CEN this class is normally the same as the <code>archetype_parent_class</code>, i.e. <code>LOCATABLE</code> and <code>RECORD_COMPONENT</code> respectively. It is typically set for CEN, because <code>archetype_parent_class</code> may not be stated, due to demographic types not inheriting from it.</p>
 </div>
@@ -8098,7 +8128,7 @@ Hash of keys ("text", "description" etc) and corresponding values.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_archetype_namespace"><a class="anchor" href="#_archetype_namespace"></a>11.6.4. archetype_namespace</h4>
+<h4 id="_archetype_namespace"><a class="anchor" href="#_archetype_namespace"></a>11.7.4. archetype_namespace</h4>
 <div class="paragraph">
 <p>The attribute <code>archetype_namespace</code> defines the package or packages that are considered the archetyping namespace used in archetype multi-axial ids. For example, in openEHR, an archetype is identified by an id of the form:</p>
 </div>

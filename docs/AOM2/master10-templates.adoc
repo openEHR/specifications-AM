@@ -1,5 +1,7 @@
 = Templates
 
+== Overview
+
 Within the Archetype formalism, a template is used to aggregate and refine archetypes, to produce a structure corresponding to a particular data set. Templates thus provide a way to use archetypes for specific purposes, while the archetypes contain _possible_ data items, not linked to specific purposes. See the {openehr_am_adl2}#_templates[ADL2 specification, Templates section^] for a detailed description of template semantics.
 
 Templates are formally defined as specialised archetypes, via the `TEMPLATE` and `TEMPLATE_OVERLAY` classes shown in <<archetype_package>>. This means that all the formal characteristics of a template are defined by the openEHR Archetype Object Model (AOM) and Archetype Definition Language (ADL) specifications apply to templates. This includes the meta-data (inherited from the `AUTHORED_RESOURCE` class), specialisation semantics (templates can be specialised into other templates), `terminology` section (allowing multi-lingual local term definitions and external terminology bindings) as well as the `rules` and `annotations` sections.
@@ -38,7 +40,7 @@ The actual template structure needed to achieve this is shown below. The archety
 
 [.text-center]
 .Template source structure example
-image::{uml_diagrams_uri}/AM-template_example_1.png[id=AOM-template_example_1, align="center"]
+image::{uml_diagrams_uri}/AM-template_example_1.svg[id=AOM-template_example_1, align="center"]
 
 The filler object specifies in its `_archetype_ref_` attribute the artefact being used to fill the slot (shown on the diagram as an ellipsis, for brevity). Here it is not simply the archetype `org.openehr::openEHR-EHR-SECTION.vital_signs_headings.v1`, but a specialised form of this archetype, defined as a local template overlay, whose identifier is `uk.nhs.clinical::openEHR-EHR-SECTION.t_encounter_report-vital_signs_headings-0001.v1`.
 

@@ -5,7 +5,7 @@
 The top-level model of archetypes and templates (all variant forms) is illustrated in the Figure <<archetype_package,below>>. The model defines a standard structural representation of an archetype. Archetypes authored as independent entities are instances of the class `AUTHORED_ARCHETYPE` which is a descendant of `AUTHORED_RESOURCE` and `ARCHETYPE`. The first of the two parent classes provides a standardised model of descriptive meta-data, language information, and annotations for any resource, and is documented in the {openehr_resource}[openEHR Resource Model^]. The resource classes are shown included in the diagram below. The second parent class defines the core structure of any kind of archetype, including definition, terminology, optional rules part, along with a 'semantic identifier' (`ARCHETYPE._archetype_id_`).
 
 [.text-center]
-.am.aom2.archetype Package
+.`am.aom2.archetype` Package
 image::{uml_diagrams_uri}/AM-aom2.archetype.svg[id=archetype_package, align="center"]
 
 The `AUTHORED_ARCHETYPE` class adds identifying attributes, flags and descriptive meta-data, and is the ancestor type for two further specialisations - `TEMPLATE` and `OPERATIONAL_TEMPLATE` . The `TEMPLATE` class defines the notion of a 'templated' archetype, i.e. an archetype containing fillers/references (ADL's `use_archetype` statements), typically designed to represent a data set. To enable this, it may contain 'overlays', private archetypes that specialise one or more of the referenced / filler archetypes it uses. Overlays are instances of the `TEMPLATE_OVERLAY` class, have no meta-data of their own, but are otherwise computationally just like any other archetype. 
