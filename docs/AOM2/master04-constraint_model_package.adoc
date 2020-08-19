@@ -204,9 +204,11 @@ Note that the notion of assumed values is distinct from that of 'default values'
 
 === Terminology Constraints (C_TERMINOLOGY_CODE)
 
+==== Formal Definition
+
 The `C_TERMINOLOGY_CODE` type entails some complexity and merits further explanation. This is the only constrainer type whose constraint semantics are not self-contained, but located in the archetype terminology and/or in external terminologies.
 
-A `C_TERMINOLOGY_CODE` instance in an archetype is simple: it can only be one of the following constraints:
+A `C_TERMINOLOGY_CODE` instance in an archetype is structurally simple: it can only be one of the following constraints:
 
 * a single ac-code, referring to either a value-set defined in the archetype terminology or bound to an external value set or ref set;
 ** in this case, an additional at-code may be included as an assumed value; the at-code must come from the locally defined value set;
@@ -214,7 +216,13 @@ A `C_TERMINOLOGY_CODE` instance in an archetype is simple: it can only be one of
 
 NOTE: The second case in theory could be done using an ac-code referring to a value set containing a single value, but there seems little value in this extra verbiage, and little cost in providing the single-member value set short cut.
 
-In addition, a `C_TERMINOLOGY_CODE` instance can reconstitute the internal value set via access to the archetype terminology (this has to be set up within the implementation). If bindings are evaluated, the external form of a value set can potentially be obtained as well. The utility of this is to be able to evaluate and cache certain external 'ref sets' when evaluating the Operational Template.
+==== Constraint Strengths
+
+Uniquely in the AOM, a Terminology code constraint may not be required, and may instead be considered informal. This is achieved via the attribute `_constraint_status_` which indicates either that the constraint is `required` (i.e. the data item must formally conform to the constraint), or three levels of informal constraint, namely `extensible (1) | preferred (2) | example (3)`. This particular model of constraint 'strength' follows the {hl7_fhir_binding_strengths}[HL7 FHIR 'binding strengths' model^]. The convenience function `_constraint_required_()` can be used to determine if the constraint is formal, i.e. if `_constraint_status_` has the value `required (0)` or else is not set.
+
+The informal constraint feature in `C_TERMINOLOGY_CODE` is provided to address the common real-world mismatch between local terminology use and more centrally defined archetypes. The enumeration values of 0 - 3 are designed such that the `required` constraint status (value = 0) is considered the default. Additionally, the `_constraint_status_` attribute is optional, and will not be present in archetypes authored with tools not including this feature. Accordingly, the `_constraint_required_()` function returns `True` if `_constraint_status_` is Void. This means that in all archetypes containing `C_TERMINOLOGY_CODE` nodes with no `_constraint_status_`, such nodes are considered to express a formally required constraint.
+
+For the non-required settings of `_constraint_status_`, a data instance value may be a non-matching terminology code, including from another terminology. It might also be a plain text (i.e. not coded), in which case it will not be matched by a `C_TERMINOLOGY_CODE` archetype node, but an archetype node corresponding to the relevant RM type. In openEHR, this would usually be `DV_TEXT`. To allow for coded text or text matching therefore, at least 2 sibling archetype nodes are required, with one containing the appropriately configured `C_TERMINOLOGY_CODE`, and another representing a text-only constraint.
 
 ==== Terminology Code Resolution
 

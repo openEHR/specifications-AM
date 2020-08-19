@@ -162,7 +162,9 @@
 </li>
 <li><a href="#_terminology_constraints_c_terminology_code">4.2.8. Terminology Constraints (C_TERMINOLOGY_CODE)</a>
 <ul class="sectlevel4">
-<li><a href="#_terminology_code_resolution">4.2.8.1. Terminology Code Resolution</a></li>
+<li><a href="#_formal_definition">4.2.8.1. Formal Definition</a></li>
+<li><a href="#_constraint_strengths">4.2.8.2. Constraint Strengths</a></li>
+<li><a href="#_terminology_code_resolution">4.2.8.3. Terminology Code Resolution</a></li>
 </ul>
 </li>
 <li><a href="#_constraints_on_enumeration_types">4.2.9. Constraints on Enumeration Types</a></li>
@@ -480,10 +482,20 @@
 </thead>
 <tbody>
 <tr>
-<th class="tableblock halign-center valign-top" colspan="4"><p class="tableblock"><strong>AM Release 2.2.?</strong></p></th>
+<th class="tableblock halign-center valign-top" colspan="4"><p class="tableblock"><strong>AM Release 2.3.?</strong></p></th>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a id="latest_issue"></a>2.2.4</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a id="latest_issue"></a>2.3.0</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><a href="https://specifications.openehr.org/tickets/SPECAM-68" target="_blank" rel="noopener">SPECAM-68</a>. Add flexible <code><em>constraint_status</em></code> indicator to <code>C_TERMINOLOGY_CODE</code>.</p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">B Fabjan,<br>
+ S Garde,<br>
+ openEHR SEC</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a id="latest_issue_date"></a>19 Aug 2020</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">2.2.4</p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p><a href="https://specifications.openehr.org/tickets/SPECAM-67" target="_blank" rel="noopener">SPECAM-67</a>. Adjust package structure to be more regular:<br>
  rename <code>am.aom2_profile</code> to <code>am.aom2.profile</code>;<br>
@@ -491,7 +503,7 @@
  move <code>am.aom2.primitive</code> to <code>am.aom2.constraint_model.primitive</code></p>
 </div></div></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">T Beale</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a id="latest_issue_date"></a>19 May 2020</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">19 May 2020</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">2.2.4</p></td>
@@ -3084,11 +3096,13 @@ an_id: <code><a href="/releases/BASE/latest/foundation_types.html#_string_class"
 </div>
 <div class="sect3">
 <h4 id="_terminology_constraints_c_terminology_code"><a class="anchor" href="#_terminology_constraints_c_terminology_code"></a>4.2.8. Terminology Constraints (C_TERMINOLOGY_CODE)</h4>
+<div class="sect4">
+<h5 id="_formal_definition"><a class="anchor" href="#_formal_definition"></a>4.2.8.1. Formal Definition</h5>
 <div class="paragraph">
 <p>The <code>C_TERMINOLOGY_CODE</code> type entails some complexity and merits further explanation. This is the only constrainer type whose constraint semantics are not self-contained, but located in the archetype terminology and/or in external terminologies.</p>
 </div>
 <div class="paragraph">
-<p>A <code>C_TERMINOLOGY_CODE</code> instance in an archetype is simple: it can only be one of the following constraints:</p>
+<p>A <code>C_TERMINOLOGY_CODE</code> instance in an archetype is structurally simple: it can only be one of the following constraints:</p>
 </div>
 <div class="ulist">
 <ul>
@@ -3119,11 +3133,21 @@ The second case in theory could be done using an ac-code referring to a value se
 </tr>
 </table>
 </div>
-<div class="paragraph">
-<p>In addition, a <code>C_TERMINOLOGY_CODE</code> instance can reconstitute the internal value set via access to the archetype terminology (this has to be set up within the implementation). If bindings are evaluated, the external form of a value set can potentially be obtained as well. The utility of this is to be able to evaluate and cache certain external 'ref sets' when evaluating the Operational Template.</p>
 </div>
 <div class="sect4">
-<h5 id="_terminology_code_resolution"><a class="anchor" href="#_terminology_code_resolution"></a>4.2.8.1. Terminology Code Resolution</h5>
+<h5 id="_constraint_strengths"><a class="anchor" href="#_constraint_strengths"></a>4.2.8.2. Constraint Strengths</h5>
+<div class="paragraph">
+<p>Uniquely in the AOM, a Terminology code constraint may not be required, and may instead be considered informal. This is achieved via the attribute <code><em>constraint_status</em></code> which indicates either that the constraint is <code>required</code> (i.e. the data item must formally conform to the constraint), or three levels of informal constraint, namely <code>extensible (1) | preferred (2) | example (3)</code>. This particular model of constraint 'strength' follows the <a href="https://www.hl7.org/fhir/terminologies.html#strength" target="_blank" rel="noopener">HL7 FHIR 'binding strengths' model</a>. The convenience function <code><em>constraint_required</em>()</code> can be used to determine if the constraint is formal, i.e. if <code><em>constraint_status</em></code> has the value <code>required (0)</code> or else is not set.</p>
+</div>
+<div class="paragraph">
+<p>The informal constraint feature in <code>C_TERMINOLOGY_CODE</code> is provided to address the common real-world mismatch between local terminology use and more centrally defined archetypes. The enumeration values of 0 - 3 are designed such that the <code>required</code> constraint status (value = 0) is considered the default. Additionally, the <code><em>constraint_status</em></code> attribute is optional, and will not be present in archetypes authored with tools not including this feature. Accordingly, the <code><em>constraint_required</em>()</code> function returns <code>True</code> if <code><em>constraint_status</em></code> is Void. This means that in all archetypes containing <code>C_TERMINOLOGY_CODE</code> nodes with no <code><em>constraint_status</em></code>, such nodes are considered to express a formally required constraint.</p>
+</div>
+<div class="paragraph">
+<p>For the non-required settings of <code><em>constraint_status</em></code>, a data instance value may be a non-matching terminology code, including from another terminology. It might also be a plain text (i.e. not coded), in which case it will not be matched by a <code>C_TERMINOLOGY_CODE</code> archetype node, but an archetype node corresponding to the relevant RM type. In openEHR, this would usually be <code>DV_TEXT</code>. To allow for coded text or text matching therefore, at least 2 sibling archetype nodes are required, with one containing the appropriately configured <code>C_TERMINOLOGY_CODE</code>, and another representing a text-only constraint.</p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_terminology_code_resolution"><a class="anchor" href="#_terminology_code_resolution"></a>4.2.8.3. Terminology Code Resolution</h5>
 <div class="paragraph">
 <p>When an archetype is deployed in the form of an operational template, the internally defined value sets, and any bindings are processed in stages in order to obtain the final terminology codes from which the user should choose. The <code>C_TERMINOLOGY_CODE</code> class provides a number of functions to formalise this as follows.</p>
 </div>
@@ -5834,7 +5858,10 @@ other: <code><a href="#_c_ordered_class">C_ORDERED</a>[1]</code><br>
 </ul>
 </div>
 <div class="paragraph">
-<p>If there is an assumed value for the ac-code case above, the assumed_value attribute contains a single at-code, which must come from the list of at-codes defined as the internal value set for the ac-code.</p>
+<p>If there is an assumed value for the ac-code case above, the <code><em>assumed_value</em></code> attribute contains a single at-code, which must come from the list of at-codes defined as the internal value set for the ac-code.</p>
+</div>
+<div class="paragraph">
+<p>The <code><em>constraint_status</em></code> attribute and <code><em>constraint_required</em>()</code> function together define whether the <code><em>constraint</em></code> is considered formal ('required') or not. In the non-required cases, a data-item matched to this constraint may be any coded term.</p>
 </div></div></td>
 </tr>
 <tr>
@@ -5845,6 +5872,11 @@ other: <code><a href="#_c_ordered_class">C_ORDERED</a>[1]</code><br>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Attributes</strong></p></th>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Signature</strong></p></th>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Meaning</strong></p></th>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>constraint_status</strong>: <code><a href="#_constraint_status_enumeration">CONSTRAINT_STATUS</a></code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"></div></td>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>1..1<br>
@@ -5872,6 +5904,13 @@ other: <code><a href="#_c_ordered_class">C_ORDERED</a>[1]</code><br>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Functions</strong></p></th>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Signature</strong></p></th>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Meaning</strong></p></th>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>1..1</strong></p></th>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>constraint_required</strong> (): <code><a href="/releases/BASE/latest/foundation_types.html#_boolean_class" target="_blank" rel="noopener">Boolean</a></code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>True if <code><em>constraint_status</em></code> is defined and equals <code>required</code> OR if Void. I.e. in archetypes where <code>C_TERMINOLOGY_CODE</code> instances have no <code><em>constraint_status</em></code>, the <code>required</code> status is assumed, which applies to all legacy archetypes.</p>
+</div></div></td>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
