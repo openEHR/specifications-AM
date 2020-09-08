@@ -204,7 +204,13 @@
 <li><a href="#_duration_constraints">4.5.9.2. Duration Constraints</a></li>
 </ul>
 </li>
-<li><a href="#cADL_Terminology_Constraints">4.5.10. Terminology Constraints</a></li>
+<li><a href="#cADL_Terminology_Constraints">4.5.10. Terminology Constraints</a>
+<ul class="sectlevel4">
+<li><a href="#_formal_terminology_constraint">4.5.10.1. Formal Terminology Constraint</a></li>
+<li><a href="#_soft_terminology_constraint">4.5.10.2. Soft Terminology Constraint</a></li>
+<li><a href="#_operational_binding_constraints">4.5.10.3. Operational Binding Constraints</a></li>
+</ul>
+</li>
 <li><a href="#_constraints_on_lists_of_primitive_types">4.5.11. Constraints on Lists of Primitive Types</a></li>
 <li><a href="#_constraints_on_intervals_of_ordered_primitive_types">4.5.12. Constraints on Intervals of Ordered Primitive Types</a></li>
 <li><a href="#_constraints_on_enumerated_types">4.5.13. Constraints on Enumerated Types</a></li>
@@ -357,8 +363,9 @@
 <li><a href="#_primitive_object_redefinition">9.5.10. Primitive Object Redefinition</a>
 <ul class="sectlevel4">
 <li><a href="#_numeric_primitive_redefinition">9.5.10.1. Numeric Primitive Redefinition</a></li>
-<li><a href="#_terminology_internal_value_set_redefinition">9.5.10.2. Terminology Internal Value Set Redefinition</a></li>
-<li><a href="#_terminology_external_subset_redefinition">9.5.10.3. Terminology External Subset Redefinition</a></li>
+<li><a href="#_terminology_constraint_redefinition">9.5.10.2. Terminology Constraint Redefinition</a></li>
+<li><a href="#_terminology_internal_value_set_redefinition">9.5.10.3. Terminology Internal Value Set Redefinition</a></li>
+<li><a href="#_terminology_external_subset_redefinition">9.5.10.4. Terminology External Subset Redefinition</a></li>
 </ul>
 </li>
 <li><a href="#_tuple_redefinition">9.5.11. Tuple Redefinition</a></li>
@@ -367,7 +374,7 @@
 <li><a href="#_rules">9.6. Rules</a></li>
 <li><a href="#_languages">9.7. Languages</a></li>
 <li><a href="#_description_section_2">9.8. Description Section</a></li>
-<li><a href="#_terminology">9.9. Terminology</a></li>
+<li><a href="#_terminology_section_2">9.9. Terminology Section</a></li>
 <li><a href="#_bindings">9.10. Bindings</a></li>
 </ul>
 </li>
@@ -507,11 +514,20 @@
 <th class="tableblock halign-center valign-top" colspan="4"><p class="tableblock"><strong>AM Release 2.1.?</strong></p></th>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a id="latest_issue"></a>2.2.1</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a id="latest_issue"></a>2.3.0</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://specifications.openehr.org/tickets/SPECAM-68" target="_blank" rel="noopener">SPECAM-68</a>. Add flexible <code><em>constraint_status</em></code> indicator to <code>C_TERMINOLOGY_CODE</code>; add related keywords to terminology constraints; see sections <a href="#_soft_terminology_constraint">Section 4.5.10.2</a> and <a href="#_terminology_constraint_redefinition">Section 9.5.10.2</a>.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">B Fabjan,<br>
+ I McNicoll,<br>
+ S Garde,<br>
+ P Bos</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a id="latest_issue_date"></a>07 Sep 2020</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">2.2.1</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://specifications.openehr.org/tickets/SPECAM-66" target="_blank" rel="noopener">SPECAM-66</a>: Improve specification of default values, including support for other syntaxes.</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">P Bos,<br>
  T Beale</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a id="latest_issue_date"></a>20 May 2020</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">20 May 2020</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">2.2.1</p></td>
@@ -2130,7 +2146,7 @@ the structure, as shown in the following example:</p>
 <p>Here the occurrences of both <code>DV_QUANTITY</code> constraints is not stated, leading to the result that only one <code>DV_QUANTITY</code> instance can appear in runtime data, matching either one of the constraints.</p>
 </div>
 <div class="paragraph principle">
-<p>Two or more object constraints introduced by type names appearing after a single-valued attribute (i.e. one for which there is no cardinality constraint) are taken to be alternative constraints, only one of which is matched by the data.</p>
+<p>Two or more object constraints introduced by type names appearing after a single-valued attribute (i.e. one for which there is no cardinality constraint) are understood as alternative constraints, only one of which is matched by the data.</p>
 </div>
 </div>
 <div class="sect3">
@@ -2411,7 +2427,7 @@ direct matching of so-called CamelCase by Snake_case or SCREAMING_SNAKE_CASE and
 </div>
 </div>
 <div class="paragraph">
-<p>The above says that <code>ORGANISATION</code> and <code>PERSON</code> instances in the data can only match the <code>ORGANISATION</code> and <code>PERSON</code> constraints stated above, while an instance of any other subtype of <code>PARTY</code> must match the <code>PARTY</code> constraint.</p>
+<p>The above says that <code>ORGANISATION</code> and <code>PERSON</code> instances in the data must match, respectively, the <code>ORGANISATION</code> and <code>PERSON</code> constraints stated above, while an instance of any other subtype of <code>PARTY</code> must match the <code>PARTY</code> constraint.</p>
 </div>
 </div>
 <div class="sect4">
@@ -4162,7 +4178,7 @@ that allowing the <code>W</code> designator to be used with the other designator
 <div class="sect3">
 <h4 id="cADL_Terminology_Constraints"><a class="anchor" href="#cADL_Terminology_Constraints"></a>4.5.10. Terminology Constraints</h4>
 <div class="paragraph">
-<p>Terminology constraints deal with a special category of data values known as 'coded terms' or 'terminology'. Coded data values are both textual (e.g. "diastolic blood pressure") and semantic (may have relationships to each other). The idea is that instead of using text, the possible values are represented in structured vocabularies, terminologies or ontologies that define both the possible text (including translations) and also the relationships, if any, between the terms (sometimes known as 'concepts'). In health, typical examples include 'terminology' resources such as <a href="http://www.who.int/classifications/icd/en/" target="_blank" rel="noopener">WHO ICDx</a> and <a href="http://www.ihtsdo.org" target="_blank" rel="noopener">SNOMED CT</a> terminologies and drug databases.</p>
+<p>Terminology constraints deal with a special category of data values known as 'coded terms' or 'terminology'. Coded data values are both textual (e.g. 'diastolic blood pressure') and semantic, i.e. they may have relationships to each other. The idea is that instead of using text, the possible values are represented in structured vocabularies, terminologies or ontologies that define both the possible text (including translations) and also the relationships, if any, between the terms (sometimes known as 'concepts'). In health, typical examples include 'terminology' resources such as <a href="http://www.who.int/classifications/icd/en/" target="_blank" rel="noopener">WHO ICDx</a> and <a href="http://www.ihtsdo.org" target="_blank" rel="noopener">SNOMED CT</a> terminologies and drug databases.</p>
 </div>
 <div class="paragraph">
 <p>Coded terms are treated as a primitive type in ADL in order to enable the formalism and tools to work with terminology constraints. Unlike other primitive constraints, terminology constraints may be complex, because they can refer to external resources, either directly or via 'bindings' defined elsewhere in the archeype. This section describes just the syntax representations and relationships between these.</p>
@@ -4170,6 +4186,11 @@ that allowing the <code>W</code> designator to be used with the other designator
 <div class="paragraph">
 <p>The full description, including binding and resolution is provided in <a href="#_terminology_integration">Section 8</a>. This section describes only the syntax for term constraint in the <code>definition</code> section of an archetype.</p>
 </div>
+<div class="paragraph">
+<p>Terminology constraints come in both the usual 'formal' form, as well as a 'soft' form, designed to allow constraints to be treated as various kinds of preferences. These are described below. The allowed specialisations of terminology constraints are described in <a href="#_primitive_object_redefinition">Section 9.5.10</a>.</p>
+</div>
+<div class="sect4">
+<h5 id="_formal_terminology_constraint"><a class="anchor" href="#_formal_terminology_constraint"></a>4.5.10.1. Formal Terminology Constraint</h5>
 <div class="paragraph">
 <p>Syntactically, there are two types of terminology constraint expressible in 'source form' ADL, i.e. authored archetypes and templates. The first is expressed with an ac-code which refers to a value set which is either defined in the archetype terminology or externally. The second, for convenience, uses a single at-code, in order to express a single term value without requiring a value-set. For the first case, an assumed value in the form of an at-code can also be stated, and has the same sense as the assumed values of other primitive types already described.</p>
 </div>
@@ -4179,7 +4200,7 @@ that allowing the <code>W</code> designator to be used with the other designator
 <div class="listingblock">
 <div class="content">
 <pre class="pygments highlight"><code data-lang="cadl"><span></span>    <span class="tok-c">--</span>
-    <span class="tok-c">-- fragment of openehr-ehr-EVALUATION.term_constraint_variations.v0.0.1</span>
+    <span class="tok-c">-- fragment of openEHR-EHR-EVALUATION.term_constraint_variations.v0.0.1</span>
     <span class="tok-c">--</span>
 
     <span class="tok-nc">items</span> <span class="tok-o">matches </span><span class="tok-p">{</span>
@@ -4207,16 +4228,95 @@ that allowing the <code>W</code> designator to be used with the other designator
 </div>
 </div>
 <div class="paragraph">
-<p>In the above, the constraint at the path <code>items[id11]/name[id8]</code> is on a <code>DV_CODED_TEXT</code>.<code><em>defining_code</em></code> representing the <code><em>name</em></code> of the <code>ELEMENT</code>. It is constrained to a single at-code value representing 'Substance' (assume this is the preferred name of the institution that created this archetype). The at-code is defined in the terminology part of the archetype, and may have bindings defined there as well. These are described in later sections.</p>
+<p>In the above, the constraint at the path <code>items[id11]/name[id8]</code> is on a <code>DV_CODED_TEXT.<em>defining_code</em></code> representing the <code><em>name</em></code> of the <code>ELEMENT</code>. It is constrained to a single at-code value representing 'Substance' (assume this is the preferred name of the institution that created this archetype). The at-code is defined in the terminology part of the archetype, and may have bindings defined there as well. These are described in later sections.</p>
 </div>
 <div class="paragraph">
 <p>The second variant uses the code <code>ac1</code>, which refers to a value set. This is by definition: all ac-codes in ADL refer only to value sets. This is the most common form of terminology constraint - defining possible codes for a codeable value in the model. The code and any bindings are also defined in the <code>terminology</code> section.</p>
 </div>
 <div class="paragraph">
-<p>The last variant shows a second value set, this time with an assumed code, where <code>at23</code> must be in the value set referred to by <code>ac2</code>.</p>
+<p>The last variant shows a second value set constraint, this time with an assumed code, where <code>at23</code> must be in the value set referred to by <code>ac2</code>.</p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_soft_terminology_constraint"><a class="anchor" href="#_soft_terminology_constraint"></a>4.5.10.2. Soft Terminology Constraint</h5>
+<div class="paragraph">
+<p>Uniquely in ADL, terminology constraints may be modified to be informal, also known as specifying a 'constraint strength'. Normally constraints in ADL are formal in the sense that they are intended to strictly apply to the instances they constrain. However, in the terminology value domain, the ability to easily constrain allowed 'values' to particular terms or value-sets is complicated by various factors, including:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>unforeseeable changes in thinking in classification and description in the terminology world;</p>
+</li>
+<li>
+<p>the lack of available fully developed terminological descriptions of the phenomena being represented;</p>
+</li>
+<li>
+<p>practical needs of mapping to specific local or other terminologies.</p>
+</li>
+</ul>
 </div>
 <div class="paragraph">
-<p>A further syntax possibility exists, for use at the point of operational template generation. As described in <a href="#_from_constraints_to_concrete_codes_in_data">Section 8.3</a>, the choice may be made that a specific operational template (OPT) should use external codes from the archetype bindings (such as from <a href="http://www.ihtsdo.org" target="_blank" rel="noopener">SNOMED CT</a>, <a href="http://www.who.int/classifications/icd/en/" target="_blank" rel="noopener">ICD10</a>, etc) as the values of some or all coded nodes, rather than using the internal at-codes.</p>
+<p>For these reasons, terminology constraints may be relaxed from the default 'required' status, to three <em>informal</em> constraint statuses, as follows:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><em>extensible</em>: the data instance must conform to the value set <em>if the intended concept is available within the value-set constraint</em>; if not, the instance may be any other code;</p>
+</li>
+<li>
+<p><em>preferred</em>: the data instance preferably conforms to the value set, but may use any other code, even if the concept is represented by a code within the constraint;</p>
+</li>
+<li>
+<p><em>example</em>: the constraint value or value-set is provided as an illustrative example only.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Formally, all three of these statuses are the same as a value constraint specifying only the RM type as being a terminology code (e.g. <code>DV_CODED_TEXT</code> from openEHR) and nothing more, which is to say, at the archetype level, validity of the data instance is achieved by supplying <em>any terminology code</em>. However, higher levels of semantic validation in tooling may be performed that do take into account which of the informal constraint statuses is actualy set in a particular situation.</p>
+</div>
+<div class="paragraph">
+<p>Soft terminology constraints are typically intended to be used alongside a constraint allowing a pure text value as well, i.e. to cope with the case where no terminology code of any kind is available at runtime to express the intended value (this happens every so often in healthcare when a novel virus or pathogen is identified, but not yet incorporated into published terminologies). The ability to construct a coded-text + plain-text constraint pattern is entirely dependent on the types available in the Reference Model on which the archetypes in question are based.</p>
+</div>
+<div class="paragraph">
+<p>The <em>recommendation</em> is that if a terminology constraint is not <code>required</code>, a plain text constraint should be supplied alongside if the RM permits, to allow for the case of unavailability of any coded term.</p>
+</div>
+<div class="paragraph">
+<p>Soft terminology constraints are specified in ADL using keywords prior to the formal constraint. Taking into account the recommendation for coded-text + text, the typical usage is as shown below. If no keyword is supplied, the meaning is <code>required</code>, although this may also be supplied as a keyword if desired.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="pygments highlight"><code data-lang="cadl"><span></span>    <span class="tok-nc">items</span> <span class="tok-o">matches </span><span class="tok-p">{</span>
+        <span class="tok-nc">ELEMENT</span><span class="tok-p">[</span><span class="tok-nd">id11</span><span class="tok-p">]</span> <span class="tok-kt">occurrences </span><span class="tok-o">matches </span><span class="tok-p">{</span><span class="tok-m">0..1</span><span class="tok-p">}</span> <span class="tok-o">matches </span><span class="tok-p">{</span>
+            <span class="tok-nc">name</span> <span class="tok-o">matches </span><span class="tok-p">{</span>
+                <span class="tok-nc">DV_CODED_TEXT</span><span class="tok-p">[</span><span class="tok-nd">id8</span><span class="tok-p">]</span> <span class="tok-o">matches </span><span class="tok-p">{</span>
+                    <span class="tok-nc">defining_code</span> <span class="tok-o">matches </span><span class="tok-p">{</span><span class="tok-nc">preferred</span> <span class="tok-p">[</span><span class="tok-nd">at5</span><span class="tok-p">]}</span>	<span class="tok-c">-- prefer &#39;Substance&#39;, any code ok</span>
+                <span class="tok-p">}</span>
+                <span class="tok-nc">DV_TEXT</span><span class="tok-p">[</span><span class="tok-nd">id9</span><span class="tok-p">]</span>                                <span class="tok-c">-- or plain text</span>
+            <span class="tok-p">}</span>
+            <span class="tok-nc">value</span> <span class="tok-o">matches </span><span class="tok-p">{</span>
+                <span class="tok-nc">DV_CODED_TEXT</span><span class="tok-p">[</span><span class="tok-nd">id55</span><span class="tok-p">]</span> <span class="tok-o">matches </span><span class="tok-p">{</span>
+                    <span class="tok-nc">defining_code</span> <span class="tok-o">matches </span><span class="tok-p">{</span><span class="tok-nc">example</span> <span class="tok-p">[</span><span class="tok-nd">ac1</span><span class="tok-p">]}</span>	<span class="tok-c">-- ac1 provided as example only</span>
+                <span class="tok-p">}</span>
+                <span class="tok-nc">DV_TEXT</span><span class="tok-p">[</span><span class="tok-nd">id56</span><span class="tok-p">]</span>                               <span class="tok-c">-- or plain text</span>
+            <span class="tok-p">}</span>
+        <span class="tok-p">}</span>
+        <span class="tok-nc">ELEMENT</span><span class="tok-p">[</span><span class="tok-nd">id22</span><span class="tok-p">]</span> <span class="tok-kt">occurrences </span><span class="tok-o">matches </span><span class="tok-p">{</span><span class="tok-m">0..1</span><span class="tok-p">}</span> <span class="tok-o">matches </span><span class="tok-p">{</span>
+            <span class="tok-nc">value</span> <span class="tok-o">matches </span><span class="tok-p">{</span>
+                <span class="tok-nc">DV_CODED_TEXT</span><span class="tok-p">[</span><span class="tok-nd">id58</span><span class="tok-p">]</span> <span class="tok-o">matches </span><span class="tok-p">{</span>
+                    <span class="tok-nc">defining_code</span> <span class="tok-o">matches </span><span class="tok-p">{</span><span class="tok-nc">extensible</span> <span class="tok-p">[</span><span class="tok-nd">ac2</span><span class="tok-p">]}</span> <span class="tok-c">-- use ac2 value-set if there is a match</span>
+                <span class="tok-p">}</span>                                            <span class="tok-c">-- or another code from same terminology</span>
+                <span class="tok-nc">DV_TEXT</span><span class="tok-p">[</span><span class="tok-nd">id59</span><span class="tok-p">]</span>                                <span class="tok-c">-- or plain text</span>
+            <span class="tok-p">}</span>
+        <span class="tok-p">}</span>
+        <span class="tok-p">...</span>
+    <span class="tok-p">}</span></code></pre>
+</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_operational_binding_constraints"><a class="anchor" href="#_operational_binding_constraints"></a>4.5.10.3. Operational Binding Constraints</h5>
+<div class="paragraph">
+<p>The above sections describe 'source form' constraints, i.e. constraints expressed in terms of internal codes and value-sets. A further constraint possibility exists, for use at the point of operational template generation. As described in <a href="#_from_constraints_to_concrete_codes_in_data">Section 8.3</a>, the choice may be made that a specific operational template (OPT) should use external codes from the archetype bindings (such as from <a href="http://www.ihtsdo.org" target="_blank" rel="noopener">SNOMED CT</a>, <a href="http://www.who.int/classifications/icd/en/" target="_blank" rel="noopener">ICD10</a>, etc) as the values of some or all coded nodes, rather than using the internal at-codes.</p>
 </div>
 <div class="paragraph">
 <p>To express this choice, the OPT&#8217;s <code>definition</code> section contains a modified version of the usual syntax <code>[at1]</code> or <code>[ac1]</code> in those nodes where an external term from the bindings is to be used. This takes the form <code>[acN@ttttt]</code> or <code>[atN@ttttt]</code> where <code>ttttt</code> is the namespace identifier of a binding in the <code>terminology</code> section of the archetype.</p>
@@ -4230,7 +4330,7 @@ that allowing the <code>W</code> designator to be used with the other designator
 <div class="listingblock">
 <div class="content">
 <pre class="pygments highlight"><code data-lang="cadl"><span></span>    <span class="tok-c">--</span>
-    <span class="tok-c">-- extract of an operational template based on openehr-ehr-EVALUATION.term_constraint_variations.v0.0.1</span>
+    <span class="tok-c">-- extract of an operational template based on openEHR-EHR-EVALUATION.term_constraint_variations.v0.0.1</span>
     <span class="tok-c">--</span>
     <span class="tok-nc">value</span> <span class="tok-o">matches </span><span class="tok-p">{</span>
         <span class="tok-nc">DV_CODED_TEXT</span><span class="tok-p">[</span><span class="tok-nd">id55</span><span class="tok-p">]</span> <span class="tok-o">matches </span><span class="tok-p">{</span>
@@ -4241,6 +4341,7 @@ that allowing the <code>W</code> designator to be used with the other designator
 </div>
 <div class="paragraph">
 <p>See <a href="#_terminology_integration">Section 8</a> for fuller picture of how this works.</p>
+</div>
 </div>
 </div>
 <div class="sect3">
@@ -7222,7 +7323,7 @@ Note that in the above, the '/' is used to denote '/protocol' as a differential 
 <p>an instance of <code>DV_PROPORTION</code> with <em>numerator</em> in the given range etc;</p>
 </li>
 <li>
-<p>an instance of any other subtype of <code>DV_AMOUNT</code> , with <em>accuracy</em> in the given range.</p>
+<p>an instance of any other subtype of <code>DV_AMOUNT</code>, with <em>accuracy</em> in the given range.</p>
 </li>
 </ul>
 </div>
@@ -7566,7 +7667,36 @@ Note that in the above, the '/' is used to denote '/protocol' as a differential 
 </div>
 </div>
 <div class="sect4">
-<h5 id="_terminology_internal_value_set_redefinition"><a class="anchor" href="#_terminology_internal_value_set_redefinition"></a>9.5.10.2. Terminology Internal Value Set Redefinition</h5>
+<h5 id="_terminology_constraint_redefinition"><a class="anchor" href="#_terminology_constraint_redefinition"></a>9.5.10.2. Terminology Constraint Redefinition</h5>
+<div class="paragraph">
+<p>Redefinition of a terminology constraint follows the general rule that redefinitions may only narrow constraints, not widen them, so as to preserve the instance / archetype validity relation up the specialisation lineage. With respect to terminology constraints, 'narrowing' of the terminology value or value-set may be realised in various ways, shown below. Regardless of any changes to the value constraint, narrowing must also be respected for the constraint strength. Concretely, this means that a redefined terminology constraint may narrow the constraint strength by redefining any strength declared in a parent to any 'higher' strength, where the following order holds, from lowest to highest: <code>example</code> &#8594; <code>preferred</code> &#8594; <code>exensible</code> &#8594; <code>required</code>. Thus, the folliwing redefinition from <code>preferred</code> to <code>required</code> may be made:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="pygments highlight"><code data-lang="cadl"><span></span>    <span class="tok-c">-- parent archetype</span>
+    <span class="tok-nc">name</span> <span class="tok-o">matches </span><span class="tok-p">{</span>
+        <span class="tok-nc">DV_CODED_TEXT</span><span class="tok-p">[</span><span class="tok-nd">id13</span><span class="tok-p">]</span> <span class="tok-o">matches </span><span class="tok-p">{</span>
+            <span class="tok-nc">defining_code</span> <span class="tok-o">matches </span><span class="tok-p">{</span><span class="tok-nc">preferred</span> <span class="tok-p">[</span><span class="tok-nd">ac1</span><span class="tok-p">]}</span>
+        <span class="tok-p">}</span>
+    <span class="tok-p">}</span>
+
+    <span class="tok-c">-- child archetype</span>
+    <span class="tok-nc">name</span> <span class="tok-o">matches </span><span class="tok-p">{</span>
+        <span class="tok-nc">DV_CODED_TEXT</span><span class="tok-p">[</span><span class="tok-nd">id13.1</span><span class="tok-p">]</span> <span class="tok-o">matches </span><span class="tok-p">{</span>
+            <span class="tok-nc">defining_code</span> <span class="tok-o">matches </span><span class="tok-p">{[</span><span class="tok-nd">ac1</span><span class="tok-p">]}</span>  <span class="tok-c">-- i.e. required</span>
+        <span class="tok-p">}</span>
+    <span class="tok-p">}</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The value set represented by <code>ac1</code> may also be narrowed at the same time, so in the above, <code>ac1.1</code> might have been used instead.</p>
+</div>
+<div class="paragraph">
+<p>A constraint with <code>required</code> strength cannot be redefined to any other strength in a specialised archetype.</p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_terminology_internal_value_set_redefinition"><a class="anchor" href="#_terminology_internal_value_set_redefinition"></a>9.5.10.3. Terminology Internal Value Set Redefinition</h5>
 <div class="paragraph">
 <p>The following example shows a redefined internal value set.</p>
 </div>
@@ -7631,7 +7761,7 @@ Note that in the above, the '/' is used to denote '/protocol' as a differential 
 </div>
 </div>
 <div class="sect4">
-<h5 id="_terminology_external_subset_redefinition"><a class="anchor" href="#_terminology_external_subset_redefinition"></a>9.5.10.3. Terminology External Subset Redefinition</h5>
+<h5 id="_terminology_external_subset_redefinition"><a class="anchor" href="#_terminology_external_subset_redefinition"></a>9.5.10.4. Terminology External Subset Redefinition</h5>
 <div class="paragraph">
 <p>A terminology external subset constraint is used to set the value set of a coded term to be one defined externally in a terminology, specified in the <code>term_definitions</code> sub-section of the <code>terminology</code> section, as shown in the following example.</p>
 </div>
@@ -7787,7 +7917,7 @@ Note that in the above, the '/' is used to denote '/protocol' as a differential 
 </div>
 </div>
 <div class="sect2">
-<h3 id="_terminology"><a class="anchor" href="#_terminology"></a>9.9. Terminology</h3>
+<h3 id="_terminology_section_2"><a class="anchor" href="#_terminology_section_2"></a>9.9. Terminology Section</h3>
 <div class="paragraph">
 <p>Specialisation in the <code>terminology</code> section manifests in terms of specialised and added terms in the <code>term_definitions</code> sub-section.</p>
 </div>
@@ -9164,7 +9294,7 @@ Note that in the above, the '/' is used to denote '/protocol' as a differential 
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2020-07-16 15:42:27 +0100
+Last updated 2020-09-08 15:18:26 +0100
 </div>
 </div>
 <link rel="stylesheet" href="https://specifications.openehr.org/styles/pygments-default.css">
