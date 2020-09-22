@@ -945,9 +945,11 @@ The use of this pattern indicates which 'slots' in an ISO duration string may be
     PThm          -- a duration containing hours and/or minutes only, e.g. PT2h30m
 --------
 
+Pure pattern constraints are used to constrain negative durations as well as positive durations. Accordingly, any of the above constraints may be used for values such as `'-P5d'` etc.
+
 ===== Lists and Intervals
 
-Durations can also be constrained by using absolute ISO 8601 duration values, or ranges of the same, e.g.:
+Durations can also be constrained by using absolute ISO 8601 duration values, or ranges of the same (including negative values), e.g.:
 
 [source, cadl]
 --------
@@ -963,6 +965,14 @@ In some cases there is a need to be able to limit the allowed units as well as s
 --------
     PWD/|P0W..P50W|   -- 0-50 weeks, expressed only using weeks and days
 --------
+
+The same type of constraint can be used to constrain values that may be negative:
+
+--------
+    PYMWD/|<=P0Y|     -- negative age, with years/months/weeks/days allowed
+--------
+
+NOTE: a negative sign (or equivalently, '< 0' construction as above) is only used for specifying interval values; the pattern part is understood as allowing values of either sign.
 
 The general form is a pattern followed by a slash ('/') followed by an interval, as follows:
 

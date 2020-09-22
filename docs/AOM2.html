@@ -488,13 +488,22 @@
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a id="latest_issue"></a>2.3.0</p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><a href="https://specifications.openehr.org/tickets/SPECAM-69" target="_blank" rel="noopener">SPECAM-69</a>. Support negative durations (see <a href="#_c_duration_class">Section 4.5.20</a>) (see also <a href="https://specifications.openehr.org/tickets/SPECRM-96" target="_blank" rel="noopener">SPECRM-96</a>).</p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">P Bos,<br>
+ S Garde</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a id="latest_issue_date"></a>09 Sep 2020</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p><a href="https://specifications.openehr.org/tickets/SPECAM-68" target="_blank" rel="noopener">SPECAM-68</a>. Add flexible <code><em>constraint_status</em></code> indicator to <code>C_TERMINOLOGY_CODE</code>.</p>
 </div></div></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">B Fabjan,<br>
  I McNicoll,<br>
  S Garde,<br>
  P Bos</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a id="latest_issue_date"></a>07 Sep 2020</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">07 Sep 2020</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">2.2.4</p></td>
@@ -508,7 +517,7 @@
 <td class="tableblock halign-left valign-top"><p class="tableblock">19 May 2020</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">2.2.4</p></td>
+<td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p><a href="https://specifications.openehr.org/tickets/SPECAM-61" target="_blank" rel="noopener">SPECAM-61</a>. Remove <code><em>revision_history</em></code> from ADL2 specification.</p>
 </div></div></td>
@@ -5735,10 +5744,23 @@ other: <code><a href="#_c_ordered_class">C_ORDERED</a>[1]</code><br>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Description</strong></p></th>
 <td class="tableblock halign-left valign-top" colspan="2"><div class="content"><div class="paragraph">
-<p>Constraint on instances representing duration, which is assumed to have the same parts as the ISO8601 duration string. Thus, constraints are of the form <code>"PWD"</code> (weeks and/or days), <code>"PDTHMS"</code> (days, hours, minutes, seconds) and so on.</p>
+<p>Constraint on instances representing duration, which is assumed to have the same parts as the ISO 8601 duration string. Thus, constraints are of the form <code>"PWD"</code> (weeks and/or days), <code>"PDTHMS"</code> (days, hours, minutes, seconds) and so on.</p>
 </div>
 <div class="paragraph">
-<p>In official ISO 8601:2004, the ‘W’ (week) designator cannot be mixed in; allowing it is an openEHR-wide exception. The allowed patterns are: <code>P[Y&#124;y][M&#124;m][D&#124;d][T[H&#124;h][M&#124;m][S&#124;s]] and P[W&#124;w]</code>.</p>
+<p>Both range and the constraint pattern can be set at the same time, corresponding to the ADL constraint <code>"PWD/&#124;P0W..P50W&#124;"</code>.</p>
+</div>
+<div class="paragraph">
+<p>As for all of openEHR, two ISO 8601 exceptions are allowed:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>the ‘W’ (week) designator can be mixed in - the allowed patterns are: <code>P[Y&#124;y][M&#124;m][D&#124;d][T[H&#124;h][M&#124;m][S&#124;s]]</code> and <code>P[W&#124;w]</code>;</p>
+</li>
+<li>
+<p>the values used in an interval constraint may be negated, i.e. a leading minus (<code>'-'</code>) sign may be used.</p>
+</li>
+</ul>
 </div></div></td>
 </tr>
 <tr>

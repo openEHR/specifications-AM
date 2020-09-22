@@ -515,12 +515,19 @@
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a id="latest_issue"></a>2.3.0</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://specifications.openehr.org/tickets/SPECAM-69" target="_blank" rel="noopener">SPECAM-69</a>. Support negative durations (see also <a href="https://specifications.openehr.org/tickets/SPECRM-96" target="_blank" rel="noopener">SPECRM-96</a>); add examples in <a href="#_duration_constraints">Section 4.5.9.2</a>.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">P Bos,<br>
+ S Garde</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a id="latest_issue_date"></a>09 Sep 2020</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://specifications.openehr.org/tickets/SPECAM-68" target="_blank" rel="noopener">SPECAM-68</a>. Add flexible <code><em>constraint_status</em></code> indicator to <code>C_TERMINOLOGY_CODE</code>; add related keywords to terminology constraints; see sections <a href="#_soft_terminology_constraint">Section 4.5.10.2</a> and <a href="#_terminology_constraint_redefinition">Section 9.5.10.2</a>.</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">B Fabjan,<br>
  I McNicoll,<br>
  S Garde,<br>
  P Bos</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a id="latest_issue_date"></a>07 Sep 2020</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">07 Sep 2020</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">2.2.1</p></td>
@@ -4119,8 +4126,7 @@ date_time_pattern:      date_constraint time_in_date_pattern</pre>
 <div class="title">Note</div>
 </td>
 <td class="content">
-that allowing the <code>W</code> designator to be used with the other designators corresponds to a deviation from the published ISO 8601 standard used in openEHR, namely:
-* durations are supposed to take the form of <code>PnnW</code> or <code>PnnYnnMnnDTnnHnnMnnS</code>, but in openEHR, the <code>W</code> (week) designator can be used with the other designators, since it is very common to state durations of pregnancy as some combination of weeks and days.
+the use of the <code>W</code> designator with the other designators is an openEHR deviation from the published ISO 8601 standard (where durations are supposed to take the form of either <code>PnnW</code> or <code>PnnYnnMnnDTnnHnnMnnS</code>), to support the common healthcare duration of pregnancy as some combination of weeks and days.
 </td>
 </tr>
 </table>
@@ -4137,20 +4143,33 @@ that allowing the <code>W</code> designator to be used with the other designator
     <span class="tok-ld">PThm</span>          <span class="tok-c">-- a duration containing hours and/or minutes only, e.g. PT2h30m</span></code></pre>
 </div>
 </div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Note</div>
+</td>
+<td class="content">
+the 's' (seconds) slot covers fractional seconds as well as whole seconds.
+</td>
+</tr>
+</table>
+</div>
 <div class="paragraph">
-<p>Note that the 's' (seconds) slot covers fractional seconds as well as whole seconds.</p>
+<p>Pure pattern constraints are used to constrain negative durations as well as positive durations. Accordingly, any of the above constraints may be used for values such as <code>'-P5d'</code> etc.</p>
 </div>
 </div>
 <div class="sect5">
 <h6 id="_lists_and_intervals"><a class="anchor" href="#_lists_and_intervals"></a>Lists and Intervals</h6>
 <div class="paragraph">
-<p>Durations can also be constrained by using absolute ISO 8601 duration values, or ranges of the same, e.g.:</p>
+<p>Durations can also be constrained by using absolute ISO 8601 duration values, or ranges of the same (including negative values), e.g.:</p>
 </div>
 <div class="listingblock">
 <div class="content">
 <pre class="pygments highlight"><code data-lang="cadl"><span></span>    <span class="tok-ld">PT1m</span>              <span class="tok-c">-- 1 minute</span>
     <span class="tok-ld">P1dT8h</span>            <span class="tok-c">-- 1 day 8 hrs</span>
-    <span class="tok-p">|</span><span class="tok-ld">PT0m</span><span class="tok-p">..</span><span class="tok-ld">PT1m30s</span><span class="tok-p">|</span>   <span class="tok-c">-- Reasonable time offset of first apgar sample</span></code></pre>
+    <span class="tok-p">|</span><span class="tok-ld">PT0m</span><span class="tok-p">..</span><span class="tok-ld">PT1m30s</span><span class="tok-p">|</span>   <span class="tok-c">-- Reasonable time offset of first apgar sample</span>
+    <span class="tok-p">|</span><span class="tok-err">-</span><span class="tok-ld">P5M</span><span class="tok-p">..</span><span class="tok-ld">P1Y</span><span class="tok-p">|</span>       <span class="tok-c">-- Possible range of infant gestational ages</span></code></pre>
 </div>
 </div>
 </div>
@@ -4163,6 +4182,26 @@ that allowing the <code>W</code> designator to be used with the other designator
 <div class="content">
 <pre>    PWD/|P0W..P50W|   -- 0-50 weeks, expressed only using weeks and days</pre>
 </div>
+</div>
+<div class="paragraph">
+<p>The same type of constraint can be used to constrain values that may be negative:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>    PYMWD/|&lt;=P0Y|     -- negative age, with years/months/weeks/days allowed</pre>
+</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Note</div>
+</td>
+<td class="content">
+a negative sign (or equivalently, '&lt; 0' construction as above) is only used for specifying interval values; the pattern part is understood as allowing values of either sign.
+</td>
+</tr>
+</table>
 </div>
 <div class="paragraph">
 <p>The general form is a pattern followed by a slash ('/') followed by an interval, as follows:</p>

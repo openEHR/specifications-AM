@@ -486,10 +486,20 @@
 </thead>
 <tbody>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a id="latest_issue"></a>1.4.3</p></td>
+<th class="tableblock halign-center valign-top" colspan="4"><p class="tableblock"><strong>AM Release 2.?.? (unreleased)</strong></p></th>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a id="latest_issue"></a>1.4.4</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://specifications.openehr.org/tickets/SPECAM-69" target="_blank" rel="noopener">SPECAM-69</a>. Support negative durations (see also <a href="https://specifications.openehr.org/tickets/SPECRM-96" target="_blank" rel="noopener">SPECRM-96</a>); add examples in <a href="#_duration_constraints">Section 5.4.6.2</a>.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">P Bos,<br>
+ S Garde</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a id="latest_issue_date"></a>09 Sep 2020</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1.4.3</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://specifications.openehr.org/tickets/SPECPUB-7" target="_blank" rel="noopener">SPECPUB-7</a>: Convert citations to bibtex form.</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">T Beale</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a id="latest_issue_date"></a>15 Dec 2019</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">15 Dec 2019</p></td>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top" colspan="4"><p class="tableblock"><strong>AM Release 2.0.6</strong></p></th>
@@ -4350,11 +4360,14 @@ allowing the 'W' designator to be used with the other designators corresponds to
     <span class="tok-ld">PThm</span>          <span class="tok-c">-- a duration containing hours and/or minutes only, e.g. PT2h30m</span></code></pre>
 </div>
 </div>
+<div class="paragraph">
+<p>Pure pattern constraints are used to constrain negative durations as well as positive durations. Accordingly, any of the above constraints may be used for values such as <code>'-P5d'</code> etc.</p>
+</div>
 </div>
 <div class="sect5">
 <h6 id="_lists_and_intervals"><a class="anchor" href="#_lists_and_intervals"></a>Lists and Intervals</h6>
 <div class="paragraph">
-<p>Durations can also be constrained by using absolute ISO 8601 duration values, or ranges of the same, e.g.:</p>
+<p>Durations can also be constrained by using absolute ISO 8601 duration values, or ranges of the same (including negative values), e.g.:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -4373,6 +4386,26 @@ allowing the 'W' designator to be used with the other designators corresponds to
 <div class="content">
 <pre>    PWD/|P0W..P50W|   -- 0-50 weeks, expressed only using weeks and days</pre>
 </div>
+</div>
+<div class="paragraph">
+<p>The same type of constraint can be used to constrain values that may be negative:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>    PYMWD/|&lt;=P0Y|     -- negative age, with years/months/weeks/days allowed</pre>
+</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Note</div>
+</td>
+<td class="content">
+a negative sign (or equivalently, '&lt; 0' construction as above) is only used for specifying interval values; the pattern part is understood as allowing values of either sign.
+</td>
+</tr>
+</table>
 </div>
 <div class="paragraph">
 <p>The general form is a pattern followed by a slash ('/') followed by an interval, as follows:</p>

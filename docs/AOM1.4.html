@@ -67,7 +67,6 @@
 <li><a href="#_class_descriptions">3.2. Class Descriptions</a>
 <ul class="sectlevel3">
 <li><a href="#_archetype_class">3.2.1. ARCHETYPE Class</a></li>
-<li><a href="#_validity_kind_enumeration">3.2.2. VALIDITY_KIND Enumeration</a></li>
 </ul>
 </li>
 </ul>
@@ -288,12 +287,21 @@
 </thead>
 <tbody>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a id="latest_issue"></a>1.4.4</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a id="latest_issue"></a>1.4.5</p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><a href="https://specifications.openehr.org/tickets/SPECPUB-7" target="_blank" rel="noopener">SPECPUB-7</a>: Convert citations to bibtex form.</p>
+<p><a href="https://specifications.openehr.org/tickets/SPECAM-69" target="_blank" rel="noopener">SPECAM-69</a>. Support negative durations. See <a href="#_c_duration_class">Section 6.2.9</a>. (see also <a href="https://specifications.openehr.org/tickets/SPECRM-96" target="_blank" rel="noopener">SPECRM-96</a>).</p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">P Bos,<br>
+ S Garde</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a id="latest_issue_date"></a>09 Sep 2020</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1.4.4</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><a href="https://specifications.openehr.org/tickets/SPECPUB-7" target="_blank" rel="noopener">SPECPUB-7</a>. Convert citations to bibtex form.</p>
 </div></div></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">T Beale</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a id="latest_issue_date"></a>15 Dec 2019</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">15 Dec 2019</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">1.4.3</p></td>
@@ -843,9 +851,6 @@ Source projects can be found at the <a href="https://github.com/openEHR" target=
 <img src="UML/AOM1.4/diagrams/AM-archetype.svg" alt="AM archetype">
 </div>
 <div class="title">Figure 4. am.aom.archetype Package</div>
-</div>
-<div class="paragraph">
-<p>A utility class, <code>VALIDITY_KIND</code> is also included in the Archetype package. This class contains one integer attribute and three constant definitions, and is intended to be used as the type of any attribute in this constraint model whose value is logically 'mandatory', 'optional', or 'disallowed'. It is used in this model in the classes <code>C_DATE</code>, <code>C_TIME</code> and <code>C_DATE_TIME</code>.</p>
 </div>
 </div>
 <div class="sect2">
@@ -3300,7 +3305,23 @@ a_value: <code><a href="/releases/BASE/1.4/assumed_types.html#_string_class" tar
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Description</strong></p></th>
 <td class="tableblock halign-left valign-top" colspan="2"><div class="content"><div class="paragraph">
-<p>ISO 8601-compatible constraint on instances of Duration. In ISO 8601 terms, constraints might are of the form “PWD” (weeks and/or days), “PDTHMS” (days, hours, minutes, seconds) and so on. In official ISO 8601:2004, the ‘W’ (week) designator cannot be mixed in; allowing it is an openEHR-wide exception. Both range and the constraint pattern can be set at the same time, corresponding to the ADL constraint PWD/&#124;P0W..P50W&#124;.</p>
+<p>ISO 8601-compatible constraint on instances of Duration. In ISO 8601 terms, constraints might are of the form “PWD” (weeks and/or days), “PDTHMS” (days, hours, minutes, seconds) and so on.</p>
+</div>
+<div class="paragraph">
+<p>Both range and the constraint pattern can be set at the same time, corresponding to the ADL constraint <code>"PWD/&#124;P0W..P50W&#124;"</code>.</p>
+</div>
+<div class="paragraph">
+<p>As for all of openEHR, two ISO 8601 exceptions are allowed:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>the ‘W’ (week) designator can be mixed in - the allowed patterns are: <code>P[Y&#124;y][M&#124;m][D&#124;d][T[H&#124;h][M&#124;m][S&#124;s]]</code> and <code>P[W&#124;w]</code>;</p>
+</li>
+<li>
+<p>the values used in an interval constraint may be negated, i.e. a leading minus (<code>'-'</code>) sign may be used.</p>
+</li>
+</ul>
 </div></div></td>
 </tr>
 <tr>
