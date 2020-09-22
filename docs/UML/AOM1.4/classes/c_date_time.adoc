@@ -9,86 +9,86 @@ h|*Description*
 2+a|ISO 8601-compatible constraint on instances of Date_Time. There is no validity flag for ‘year’, since it must always be by definition mandatory in order to have a sensible date/time at all. Syntax expressions of instances of this class include “YYYY-MM-DDT??:??:??” (date/time with optional time) and “YYYY-MMDDTHH:MM:xx” (date/time, seconds not allowed).
 
 h|*Inherit*
-2+|`C_PRIMITIVE`
+2+|`<<_c_primitive_class,C_PRIMITIVE>>`
 
 h|*Attributes*
 ^h|*Signature*
 ^h|*Meaning*
 
 h|*0..1*
-|*month_validity*: `VALIDITY_KIND`
+|*month_validity*: `link:/releases/BASE/1.4/VALIDITY_KIND.html#_validity_kind_enumeration[VALIDITY_KIND^]`
 a|Validity of month in constrained date.
 
 h|*0..1*
-|*day_validity*: `VALIDITY_KIND`
+|*day_validity*: `link:/releases/BASE/1.4/VALIDITY_KIND.html#_validity_kind_enumeration[VALIDITY_KIND^]`
 a|Validity of day in constrained date.
 
 h|*0..1*
-|*hour_validity*: `VALIDITY_KIND`
+|*hour_validity*: `link:/releases/BASE/1.4/VALIDITY_KIND.html#_validity_kind_enumeration[VALIDITY_KIND^]`
 a|Validity of hour in constrained time.
 
 h|*0..1*
-|*minute_validity*: `VALIDITY_KIND`
+|*minute_validity*: `link:/releases/BASE/1.4/VALIDITY_KIND.html#_validity_kind_enumeration[VALIDITY_KIND^]`
 a|Validity of minute in constrained time.
 
 h|*0..1*
-|*second_validity*: `VALIDITY_KIND`
+|*second_validity*: `link:/releases/BASE/1.4/VALIDITY_KIND.html#_validity_kind_enumeration[VALIDITY_KIND^]`
 a|Validity of second in constrained time.
 
 h|*0..1*
-|*millisecond_valdity*: `VALIDITY_KIND`
+|*millisecond_valdity*: `link:/releases/BASE/1.4/VALIDITY_KIND.html#_validity_kind_enumeration[VALIDITY_KIND^]`
 a|Validity of millisecond in constrained time.
 
 h|*0..1*
-|*timezone_valdity*: `VALIDITY_KIND`
+|*timezone_valdity*: `link:/releases/BASE/1.4/VALIDITY_KIND.html#_validity_kind_enumeration[VALIDITY_KIND^]`
 a|Validity of timezone in constrained date.
 
 h|*0..1*
-|*range*: `Interval<Date_time>`
+|*range*: `link:/releases/BASE/1.4/structure.html#_interval_class[Interval^]<link:/releases/BASE/1.4/assumed_types.html#_date_time_class[Date_time^]>`
 a|Range of Date_times specifying constraint.
 
 h|*0..1 +
 (redefined)*
-|*assumed_value*: `Date_time`
+|*assumed_value*: `link:/releases/BASE/1.4/assumed_types.html#_date_time_class[Date_time^]`
 a|The value to assume if this item is not included in data, due to being part of an optional structure.
 h|*Functions*
 ^h|*Signature*
 ^h|*Meaning*
 
-h|
-|*validity_is_range* (): `Boolean`
+h|*1..1*
+|*validity_is_range* (): `link:/releases/BASE/1.4/assumed_types.html#_boolean_class[Boolean^]`
 a|True if validity is in the form of a range; useful for developers to check which kind of constraint has been set.
 
 h|*Invariants*
-2+a|*_Month_validity_optional:_*: `month_validity = {VALIDITY_KIND}.optional implies (day_validity = {VALIDITY_KIND}.optional or day_validity = {VALIDITY_KIND}.disallowed)`
+2+a|__Month_validity_optional:__: `month_validity = {VALIDITY_KIND}.optional implies (day_validity = {VALIDITY_KIND}.optional or day_validity = {VALIDITY_KIND}.disallowed)`
 
 h|
-2+a|*_Month_validity_disallowed_*: `month_validity = {VALIDITY_KIND}.disallowed implies day_validity = {VALIDITY_KIND}.disallowed`
+2+a|__Month_validity_disallowed__: `month_validity = {VALIDITY_KIND}.disallowed implies day_validity = {VALIDITY_KIND}.disallowed`
 
 h|
-2+a|*_Day_validity_optional_*: `day_validity = {VALIDITY_KIND}.optional implies (hour_validity = {VALIDITY_KIND}.optional or hour_validity = {VALIDITY_KIND}.disallowed)`
+2+a|__Day_validity_optional__: `day_validity = {VALIDITY_KIND}.optional implies (hour_validity = {VALIDITY_KIND}.optional or hour_validity = {VALIDITY_KIND}.disallowed)`
 
 h|
-2+a|*_Day_validity_disallowed_*: `day_validity = {VALIDITY_KIND}.disallowed implies hour_validity = {VALIDITY_KIND}.disallowed`
+2+a|__Day_validity_disallowed__: `day_validity = {VALIDITY_KIND}.disallowed implies hour_validity = {VALIDITY_KIND}.disallowed`
 
 h|
-2+a|*_Hour_validity_optional_*: `hour_validity = {VALIDITY_KIND}.optional implies (minute_validity = {VALIDITY_KIND}.optional or minute_validity = {VALIDITY_KIND}.disallowed)`
+2+a|__Hour_validity_optional__: `hour_validity = {VALIDITY_KIND}.optional implies (minute_validity = {VALIDITY_KIND}.optional or minute_validity = {VALIDITY_KIND}.disallowed)`
 
 h|
-2+a|*_Hour_validity_disallowed_*: `hour_validity = {VALIDITY_KIND}.disallowed implies minute_validity = {VALIDITY_KIND}.disallowed`
+2+a|__Hour_validity_disallowed__: `hour_validity = {VALIDITY_KIND}.disallowed implies minute_validity = {VALIDITY_KIND}.disallowed`
 
 h|
-2+a|*_Minute_validity_optional_*: `minute_validity = {VALIDITY_KIND}.optional implies (second_validity = {VALIDITY_KIND}.optional or second_validity = {VALIDITY_KIND}.disallowed)`
+2+a|__Minute_validity_optional__: `minute_validity = {VALIDITY_KIND}.optional implies (second_validity = {VALIDITY_KIND}.optional or second_validity = {VALIDITY_KIND}.disallowed)`
 
 h|
-2+a|*_Minute_validity_disallowed_*: `minute_validity = {VALIDITY_KIND}.disallowed implies second_validity = {VALIDITY_KIND}.disallowed`
+2+a|__Minute_validity_disallowed__: `minute_validity = {VALIDITY_KIND}.disallowed implies second_validity = {VALIDITY_KIND}.disallowed`
 
 h|
-2+a|*_Second_validity_optional_*: `second_validity = {VALIDITY_KIND}.optional implies (millisecond_validity = {VALIDITY_KIND}.optional or millisecond_validity = {VALIDITY_KIND}.disallowed)`
+2+a|__Second_validity_optional__: `second_validity = {VALIDITY_KIND}.optional implies (millisecond_validity = {VALIDITY_KIND}.optional or millisecond_validity = {VALIDITY_KIND}.disallowed)`
 
 h|
-2+a|*_Second_validity_disallowed_*: `second_validity = {VALIDITY_KIND}.disallowed implies millisecond_validity = {VALIDITY_KIND}.disallowed`
+2+a|__Second_validity_disallowed__: `second_validity = {VALIDITY_KIND}.disallowed implies millisecond_validity = {VALIDITY_KIND}.disallowed`
 
 h|
-2+a|*_Validity_is_range_*: `validity_is_range = (range /= Void)`
+2+a|__Validity_is_range__: `validity_is_range = (range /= Void)`
 |===

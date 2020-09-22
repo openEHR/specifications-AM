@@ -9,26 +9,26 @@ h|*Description*
 2+a|Constraint describing a  slot' where another archetype can occur.
 
 h|*Inherit*
-2+|`C_REFERENCE_OBJECT`
+2+|`<<_c_reference_object_class,C_REFERENCE_OBJECT>>`
 
 h|*Attributes*
 ^h|*Signature*
 ^h|*Meaning*
 
 h|*0..1*
-|*includes*: `List<ASSERTION>`
+|*includes*: `link:/releases/BASE/1.4/structure.html#_list_class[List^]<<<_assertion_class,ASSERTION>>>`
 a|List of constraints defining other archetypes that could be included at this point.
 
 h|*0..1*
-|*excludes*: `List<ASSERTION>`
+|*excludes*: `link:/releases/BASE/1.4/structure.html#_list_class[List^]<<<_assertion_class,ASSERTION>>>`
 a|List of constraints defining other archetypes that cannot be included at this point.
 
 h|*Invariants*
-2+a|*_Includes_valid_*: `includes /= Void implies not includes.is_empty`
+2+a|__Includes_valid__: `includes /= Void implies not includes.is_empty`
 
 h|
-2+a|*_Excludes_valid_*: `excludes /= Void implies not excludes.is_empty`
+2+a|__Excludes_valid__: `excludes /= Void implies not excludes.is_empty`
 
 h|
-2+a|*_Validity_*: `any_allowed xor (includes /= Void or excludes /= Void)`
+2+a|__Validity__: `any_allowed xor (includes /= Void or excludes /= Void)`
 |===

@@ -3,7 +3,7 @@
 [cols="^1,3,5"]
 |===
 h|*Class*
-2+^h|*_ARCHETYPE_CONSTRAINT (abstract)_*
+2+^h|*__ARCHETYPE_CONSTRAINT (abstract)__*
 
 h|*Description*
 2+a|Archetype equivalent to LOCATABLE class in openEHR Common reference model. Defines common constraints for any inheritor of LOCATABLE in any reference model.
@@ -12,24 +12,26 @@ h|*Functions*
 ^h|*Signature*
 ^h|*Meaning*
 
-h|(abstract)
+h|*1..1 +
+(abstract)*
 |*is_subset_of* ( +
-other: `ARCHETYPE_CONSTRAINT[1]` +
-): `Boolean`
+other: `<<_archetype_constraint_class,ARCHETYPE_CONSTRAINT>>[1]` +
+): `link:/releases/BASE/1.4/assumed_types.html#_boolean_class[Boolean^]`
 a|True if constraints represented by this node, ignoring any sub-parts, are narrower or the same as other.
 Typically used during validation of special-ised archetype nodes.
 
-h|(abstract)
-|*is_valid* (): `Boolean`
+h|*1..1 +
+(abstract)*
+|*is_valid* (): `link:/releases/BASE/1.4/assumed_types.html#_boolean_class[Boolean^]`
 a|
 
-h|
-|*path* (): `String`
+h|*1..1*
+|*path* (): `link:/releases/BASE/1.4/assumed_types.html#_string_class[String^]`
 a|Path of this node relative to root of archetype.
 
-h|
+h|*1..1*
 |*has_path* ( +
-a_path: `String[1]` +
-): `Boolean`
+a_path: `link:/releases/BASE/1.4/assumed_types.html#_string_class[String^][1]` +
+): `link:/releases/BASE/1.4/assumed_types.html#_boolean_class[Boolean^]`
 a|True if the relative path a_path exists at this node.
 |===

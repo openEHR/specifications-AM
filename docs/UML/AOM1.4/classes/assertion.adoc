@@ -13,24 +13,24 @@ h|*Attributes*
 ^h|*Meaning*
 
 h|*0..1*
-|*tag*: `String`
+|*tag*: `link:/releases/BASE/1.4/assumed_types.html#_string_class[String^]`
 a|Expression tag, used for differentiating multiple assertions.
 
 h|*0..1*
-|*string_expression*: `String`
+|*string_expression*: `link:/releases/BASE/1.4/assumed_types.html#_string_class[String^]`
 a|String form of expression, in case an expression evaluator taking String expressions is used for evaluation.
 
 h|*1..1*
-|*expression*: `EXPR_ITEM`
+|*expression*: `<<_expr_item_class,EXPR_ITEM>>`
 a|Root of expression tree.
 
 h|*0..1*
-|*variables*: `List<ASSERTION_VARIABLE>`
+|*variables*: `link:/releases/BASE/1.4/structure.html#_list_class[List^]<<<_assertion_variable_class,ASSERTION_VARIABLE>>>`
 a|Definitions of variables used in the assertion expression.
 
 h|*Invariants*
-2+a|*_Tag_valid_*: `tag /= Void implies not tag.is_empty`
+2+a|__Tag_valid__: `tag /= Void implies not tag.is_empty`
 
 h|
-2+a|*_Expression_valid_*: `expression /= Void and then expression.type.is_equal(“BOOLEAN”)`
+2+a|__Expression_valid__: `expression /= Void and then expression.type.is_equal(“BOOLEAN”)`
 |===

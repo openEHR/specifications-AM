@@ -9,24 +9,26 @@ h|*Description*
 2+a|Constraint on a primitive type.
 
 h|*Inherit*
-2+|`C_DEFINED_OBJECT`
+2+|`<<_c_defined_object_class,C_DEFINED_OBJECT>>`
 
 h|*Attributes*
 ^h|*Signature*
 ^h|*Meaning*
 
 h|*1..1*
-|*item*: `C_PRIMITIVE`
+|*item*: `<<_c_primitive_class,C_PRIMITIVE>>`
 a|Object actually defining the constraint.
 h|*Functions*
 ^h|*Signature*
 ^h|*Meaning*
 
-h|(effected)
-|*any_allowed* (): `Boolean` +
-*_Post_*: `Result = item = Void`
+h|*1..1 +
+(effected)*
+|*any_allowed* (): `link:/releases/BASE/1.4/assumed_types.html#_boolean_class[Boolean^]` +
+ +
+__Post__: `Result = item = Void`
 a|True if any value of the type being constrained in item is allowed.
 
 h|*Invariants*
-2+a|*_Item_valid_*: `any_allowed xor item /= Void`
+2+a|__Item_valid__: `any_allowed xor item /= Void`
 |===
