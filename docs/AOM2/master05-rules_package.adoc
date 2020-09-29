@@ -1,44 +1,12 @@
-= The Rules Package
+= Archetype Rules
 
 == Overview
 
-The AOM `aom2.rules` package adds two classes based on classes in the `LANG::org.openehr.bmm.expressions` package described in the {openehr_bmm}[BMM Expression Model^]. The package is shown below.
+Rules are represented in archetypes as BMM assertions, which in turn use Boolean-valued expressions defined by the `LANG::org.openehr.bmm.expressions` package described in the {openehr_bmm}[BMM Expression Model^]. The following UML view illustrates.
 
 [.text-center]
-.`am.aom2.rules` Package
-image::{uml_diagrams_uri}/AM-aom2.rules.svg[id=rules_package, align="center"]
+.am.aom2 Rules
+image::{uml_diagrams_uri}/AM-aom2-rules.svg[id=aom_rules, align="center"]
 
-== AOM Constraint Expressions
-
-The class `AOM_CONSTRAINT_EXPRESSION` specialises the class `EL_CONSTRAINT_EXPRESSION`, which is a hook within the BMM expressions for adding 'match' expressions of the form:
-
-----
-    <expr> matches <constraint>
-----
-
-Here the `matches` operator has the same abstract semantics as in the AOM. In the `EL_CONSTRAINT_EXPRESSION` class, the `_constraint_` attribute is of type `Any`; in `AOM_CONSTRAINT_EXPRESSION` it is specialised to type `C_DEFINED_OBJECT`, enabling expressions of the form `<expr> matches <C_DEFINED_OBJECT>`, for example:
-
-----
-    -- match the systolic pressure real value
-    systolic_pressure_value matches {|0.0..500.0|}
-    
-    -- match systolic pressure DV_Quantity
-    systolic_pressure_quantity matches {
-        DV_QUANTITY matches {
-            magnitude matches {|0.0..500.0|}
-            units matches {"mmol/L"}
-        }
-    }
-----
-
-In the above, the variables `systolic_pressure_value` and `systolic_pressure_quantity` are instances of the `EL_TERMINAL` descendant `EL_VARIABLE_REF`.
-
-== Expression Slot Assertions
-
-The second class in the `rules` package is `ARCHETYPE_ID_CONSTRAINT`, a specialisation of ; in `AOM_CONSTRAINT_EXPRESSION` whose constraint is a `C_STRING`. This is used to represent constraints on archetype identifiers in the `ARCHETYPE_SLOT` attributes `_includes_` and `_excludes_`. 
-
-== Class Descriptions
-
-include::{uml_export_dir}/classes/aom_constraint_expression.adoc[]
-include::{uml_export_dir}/classes/archetype_id_constraint.adoc[]
+The BMM assertion structure resolves to the generic Boolean-returning expression meta-type `EL_BOOLEAN_EXPRESSION`, instances of which may include references to any bound variable, as described in the {openehr_am_adl2}#_rules_section[ADL2 specification^].
 

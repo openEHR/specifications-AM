@@ -264,17 +264,9 @@
 </li>
 </ul>
 </li>
-<li><a href="#_the_rules_package">5. The Rules Package</a>
+<li><a href="#_archetype_rules">5. Archetype Rules</a>
 <ul class="sectlevel2">
 <li><a href="#_overview_4">5.1. Overview</a></li>
-<li><a href="#_aom_constraint_expressions">5.2. AOM Constraint Expressions</a></li>
-<li><a href="#_expression_slot_assertions">5.3. Expression Slot Assertions</a></li>
-<li><a href="#_class_descriptions_2">5.4. Class Descriptions</a>
-<ul class="sectlevel3">
-<li><a href="#_aom_constraint_expression_class">5.4.1. AOM_CONSTRAINT_EXPRESSION Class</a></li>
-<li><a href="#_archetype_id_constraint_class">5.4.2. ARCHETYPE_ID_CONSTRAINT Class</a></li>
-</ul>
-</li>
 </ul>
 </li>
 <li><a href="#_the_rm_overlay_package">6. The RM Overlay Package</a>
@@ -289,7 +281,7 @@
 </li>
 </ul>
 </li>
-<li><a href="#_class_descriptions_3">6.3. Class Descriptions</a>
+<li><a href="#_class_descriptions_2">6.3. Class Descriptions</a>
 <ul class="sectlevel3">
 <li><a href="#_rm_overlay_class">6.3.1. RM_OVERLAY Class</a></li>
 <li><a href="#_rm_attribute_visibility_class">6.3.2. RM_ATTRIBUTE_VISIBILITY Class</a></li>
@@ -306,7 +298,7 @@
 <li><a href="#_specialisation_depth">7.2.1. Specialisation Depth</a></li>
 </ul>
 </li>
-<li><a href="#_class_descriptions_4">7.3. Class Descriptions</a>
+<li><a href="#_class_descriptions_3">7.3. Class Descriptions</a>
 <ul class="sectlevel3">
 <li><a href="#_archetype_terminology_class">7.3.1. ARCHETYPE_TERMINOLOGY Class</a></li>
 <li><a href="#_terminology_relation_class">7.3.2. TERMINOLOGY_RELATION Class</a></li>
@@ -2164,7 +2156,7 @@ It is the parent class of all concrete types of archetype.</p>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>rules</strong>: <code><a href="/releases/BASE/latest/foundation_types.html#_list_class">List<sup></a>&lt;<a href="/releases/LANG/latest/bmm.html#_el_boolean_expression_class">EL_BOOLEAN_EXPRESSION</sup></a>&gt;</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>rules</strong>: <code><a href="/releases/BASE/latest/foundation_types.html#_list_class">List<sup></a>&lt;<a href="/releases/LANG/latest/bmm.html#_bmm_assertion_class">BMM_ASSERTION</sup></a>&gt;</code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>Rules relating to this archetype. Statements are expressed in first order predicate logic, and usually refer to at least two attributes.</p>
 </div></div></td>
@@ -3223,7 +3215,7 @@ Since an archetype might not contain external terminology bindings for all (or e
 <p>All of the constraint semantics described above can be considered 'first order' in the sense that they define how specific object/attribute/object hierarchies are defined in the instance possibility space of some part of a reference model.</p>
 </div>
 <div class="paragraph">
-<p>Some constraints however do not fit directly within the object/attribute/object hierarchy scheme, and are considered 'second order constraints' in the archetype formalism. The 'rule' constraints ('invariants' in ADL/AOM 1.4) constitute one such group. These constraints are defined in terms of first order predicate logic statements that can refer to any number of constraint nodes within the main hierarchy. These are described in <a href="#rules_package">Figure 22</a>.</p>
+<p>Some constraints however do not fit directly within the object/attribute/object hierarchy scheme, and are considered 'second order constraints' in the archetype formalism. The 'rule' constraints ('invariants' in ADL/AOM 1.4) constitute one such group. These constraints are defined in terms of first order predicate logic statements that can refer to any number of constraint nodes within the main hierarchy. These are described in <a href="#rules_package">[rules_package]</a>.</p>
 </div>
 <div class="paragraph">
 <p>Another type of second order constraint can be 'attached' to the object/attribute/object hierarchy in order to further limit structural possibilities. Although these constraints could also theoretically be expressed as rules, they are supported by direct additions to the main constraint model since they can be easily and intuitively represented inline in ADL and corresponding AOM structures.</p>
@@ -6443,136 +6435,21 @@ other: <code><a href="#_c_second_order_class">C_SECOND_ORDER</a>[1]</code><br>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_the_rules_package"><a class="anchor" href="#_the_rules_package"></a>5. The Rules Package</h2>
+<h2 id="_archetype_rules"><a class="anchor" href="#_archetype_rules"></a>5. Archetype Rules</h2>
 <div class="sectionbody">
 <div class="sect2">
 <h3 id="_overview_4"><a class="anchor" href="#_overview_4"></a>5.1. Overview</h3>
 <div class="paragraph">
-<p>The AOM <code>aom2.rules</code> package adds two classes based on classes in the <code>LANG::org.openehr.bmm.expressions</code> package described in the <a href="https://specifications.openehr.org/releases/LANG/latest/bmm.html" target="_blank" rel="noopener">BMM Expression Model</a>. The package is shown below.</p>
+<p>Rules are represented in archetypes as BMM assertions, which in turn use Boolean-valued expressions defined by the <code>LANG::org.openehr.bmm.expressions</code> package described in the <a href="https://specifications.openehr.org/releases/LANG/latest/bmm.html" target="_blank" rel="noopener">BMM Expression Model</a>. The following UML view illustrates.</p>
 </div>
-<div id="rules_package" class="imageblock text-center text-center">
+<div id="aom_rules" class="imageblock text-center text-center">
 <div class="content">
-<img src="UML/diagrams/AM-aom2.rules.svg" alt="AM aom2.rules">
+<img src="UML/diagrams/AM-aom2-rules.svg" alt="AM aom2 rules">
 </div>
-<div class="title">Figure 22. <code>am.aom2.rules</code> Package</div>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_aom_constraint_expressions"><a class="anchor" href="#_aom_constraint_expressions"></a>5.2. AOM Constraint Expressions</h3>
-<div class="paragraph">
-<p>The class <code>AOM_CONSTRAINT_EXPRESSION</code> specialises the class <code>EL_CONSTRAINT_EXPRESSION</code>, which is a hook within the BMM expressions for adding 'match' expressions of the form:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre>    &lt;expr&gt; matches &lt;constraint&gt;</pre>
-</div>
+<div class="title">Figure 22. am.aom2 Rules</div>
 </div>
 <div class="paragraph">
-<p>Here the <code>matches</code> operator has the same abstract semantics as in the AOM. In the <code>EL_CONSTRAINT_EXPRESSION</code> class, the <code><em>constraint</em></code> attribute is of type <code>Any</code>; in <code>AOM_CONSTRAINT_EXPRESSION</code> it is specialised to type <code>C_DEFINED_OBJECT</code>, enabling expressions of the form <code>&lt;expr&gt; matches &lt;C_DEFINED_OBJECT&gt;</code>, for example:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre>    -- match the systolic pressure real value
-    systolic_pressure_value matches {|0.0..500.0|}
-
-    -- match systolic pressure DV_Quantity
-    systolic_pressure_quantity matches {
-        DV_QUANTITY matches {
-            magnitude matches {|0.0..500.0|}
-            units matches {"mmol/L"}
-        }
-    }</pre>
-</div>
-</div>
-<div class="paragraph">
-<p>In the above, the variables <code>systolic_pressure_value</code> and <code>systolic_pressure_quantity</code> are instances of the <code>EL_TERMINAL</code> descendant <code>EL_VARIABLE_REF</code>.</p>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_expression_slot_assertions"><a class="anchor" href="#_expression_slot_assertions"></a>5.3. Expression Slot Assertions</h3>
-<div class="paragraph">
-<p>The second class in the <code>rules</code> package is <code>ARCHETYPE_ID_CONSTRAINT</code>, a specialisation of ; in <code>AOM_CONSTRAINT_EXPRESSION</code> whose constraint is a <code>C_STRING</code>. This is used to represent constraints on archetype identifiers in the <code>ARCHETYPE_SLOT</code> attributes <code><em>includes</em></code> and <code><em>excludes</em></code>.</p>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_class_descriptions_2"><a class="anchor" href="#_class_descriptions_2"></a>5.4. Class Descriptions</h3>
-<div class="sect3">
-<h4 id="_aom_constraint_expression_class"><a class="anchor" href="#_aom_constraint_expression_class"></a>5.4.1. AOM_CONSTRAINT_EXPRESSION Class</h4>
-<table class="tableblock frame-all grid-all stretch">
-<colgroup>
-<col style="width: 11.1111%;">
-<col style="width: 33.3333%;">
-<col style="width: 55.5556%;">
-</colgroup>
-<tbody>
-<tr>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Class</strong></p></th>
-<th class="tableblock halign-center valign-top" colspan="2"><p class="tableblock"><strong>AOM_CONSTRAINT_EXPRESSION</strong></p></th>
-</tr>
-<tr>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Description</strong></p></th>
-<td class="tableblock halign-left valign-top" colspan="2"><div class="content"><div class="paragraph">
-<p>Constraint expression of the form <code>&lt;expression&gt; matches &lt;constraint&gt;</code>, where <code>&lt;expression&gt;</code> is any EL expression and <code>&lt;constraint&gt;</code> is a <code>C_DEFINED_OBJECT</code> instance.</p>
-</div></div></td>
-</tr>
-<tr>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Inherit</strong></p></th>
-<td class="tableblock halign-left valign-top" colspan="2"><p class="tableblock"><code><a href="/releases/LANG/latest/bmm.html#_el_constraint_expression_class" target="_blank" rel="noopener">EL_CONSTRAINT_EXPRESSION</a></code></p></td>
-</tr>
-<tr>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Attributes</strong></p></th>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Signature</strong></p></th>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Meaning</strong></p></th>
-</tr>
-<tr>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>1..1<br>
-(redefined)</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>constraint</strong>: <code><a href="#_c_defined_object_class">C_DEFINED_OBJECT</a></code></p></td>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p>Right hand side of the constraint expression, in the form of a defined AOM object constraint.</p>
-</div></div></td>
-</tr>
-</tbody>
-</table>
-</div>
-<div class="sect3">
-<h4 id="_archetype_id_constraint_class"><a class="anchor" href="#_archetype_id_constraint_class"></a>5.4.2. ARCHETYPE_ID_CONSTRAINT Class</h4>
-<table class="tableblock frame-all grid-all stretch">
-<colgroup>
-<col style="width: 11.1111%;">
-<col style="width: 33.3333%;">
-<col style="width: 55.5556%;">
-</colgroup>
-<tbody>
-<tr>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Class</strong></p></th>
-<th class="tableblock halign-center valign-top" colspan="2"><p class="tableblock"><strong>ARCHETYPE_ID_CONSTRAINT</strong></p></th>
-</tr>
-<tr>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Description</strong></p></th>
-<td class="tableblock halign-left valign-top" colspan="2"><div class="content"><div class="paragraph">
-<p>Constraint expression representing a regex constraint on an archetype identifier.</p>
-</div></div></td>
-</tr>
-<tr>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Inherit</strong></p></th>
-<td class="tableblock halign-left valign-top" colspan="2"><p class="tableblock"><code><a href="#_aom_constraint_expression_class">AOM_CONSTRAINT_EXPRESSION</a></code></p></td>
-</tr>
-<tr>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Attributes</strong></p></th>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Signature</strong></p></th>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Meaning</strong></p></th>
-</tr>
-<tr>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>1..1<br>
-(redefined)</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>constraint</strong>: <code><a href="#_c_string_class">C_STRING</a></code></p></td>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p>Right hand side of the constraint expression, in the form of a <code>C_STRING</code>, i.e. string value constrainer.</p>
-</div></div></td>
-</tr>
-</tbody>
-</table>
+<p>The BMM assertion structure resolves to the generic Boolean-returning expression meta-type <code>EL_BOOLEAN_EXPRESSION</code>, instances of which may include references to any bound variable, as described in the <a href="https://specifications.openehr.org/releases/AM/latest/ADL2.html#_rules_section" target="_blank" rel="noopener">ADL2 specification</a>.</p>
 </div>
 </div>
 </div>
@@ -6646,7 +6523,7 @@ other: <code><a href="#_c_second_order_class">C_SECOND_ORDER</a>[1]</code><br>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_class_descriptions_3"><a class="anchor" href="#_class_descriptions_3"></a>6.3. Class Descriptions</h3>
+<h3 id="_class_descriptions_2"><a class="anchor" href="#_class_descriptions_2"></a>6.3. Class Descriptions</h3>
 <div class="sect3">
 <h4 id="_rm_overlay_class"><a class="anchor" href="#_rm_overlay_class"></a>6.3.1. RM_OVERLAY Class</h4>
 <table class="tableblock frame-all grid-all stretch">
@@ -6854,7 +6731,7 @@ other: <code><a href="#_c_second_order_class">C_SECOND_ORDER</a>[1]</code><br>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_class_descriptions_4"><a class="anchor" href="#_class_descriptions_4"></a>7.3. Class Descriptions</h3>
+<h3 id="_class_descriptions_3"><a class="anchor" href="#_class_descriptions_3"></a>7.3. Class Descriptions</h3>
 <div class="sect3">
 <h4 id="_archetype_terminology_class"><a class="anchor" href="#_archetype_terminology_class"></a>7.3.1. ARCHETYPE_TERMINOLOGY Class</h4>
 <table class="tableblock frame-all grid-all stretch">
