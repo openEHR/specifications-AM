@@ -28,25 +28,25 @@ h|*Functions*
 
 h|*1..1 +
 (abstract)*
-|*is_prohibited* (): `link:/releases/BASE/{am_release}/foundation_types.html#_boolean_class[Boolean^]`
+|*is_prohibited* (): `link:/releases/BASE/{base_release}/foundation_types.html#_boolean_class[Boolean^]`
 a|True if this node is prohibited. Implemented in subtypes.
 
 h|*1..1*
 |*has_path* ( +
-a_path: `link:/releases/BASE/{am_release}/foundation_types.html#_string_class[String^][1]` +
-): `link:/releases/BASE/{am_release}/foundation_types.html#_boolean_class[Boolean^]`
+a_path: `link:/releases/BASE/{base_release}/foundation_types.html#_string_class[String^][1]` +
+): `link:/releases/BASE/{base_release}/foundation_types.html#_boolean_class[Boolean^]`
 a|True if the relative path a_path exists at this node.
 
 h|*1..1*
-|*path* (): `link:/releases/BASE/{am_release}/foundation_types.html#_string_class[String^]`
+|*path* (): `link:/releases/BASE/{base_release}/foundation_types.html#_string_class[String^]`
 a|Path of this node relative to root of archetype.
 
 h|*1..1 +
 (abstract)*
 |*c_conforms_to* ( +
 other: `<<_archetype_constraint_class,ARCHETYPE_CONSTRAINT>>[1]`, +
-rmcc: `link:/releases/BASE/{am_release}/foundation_types.html#_function_class[FUNCTION^]<<link:/releases/BASE/{am_release}/foundation_types.html#_string_class[String^],link:/releases/BASE/{am_release}/foundation_types.html#_string_class[String^]>,link:/releases/BASE/{am_release}/foundation_types.html#_boolean_class[Boolean^]>[1]` +
-): `link:/releases/BASE/{am_release}/foundation_types.html#_boolean_class[Boolean^]`
+rmcc: `link:/releases/BASE/{base_release}/foundation_types.html#_function_class[FUNCTION^]<<link:/releases/BASE/{base_release}/foundation_types.html#_string_class[String^],link:/releases/BASE/{base_release}/foundation_types.html#_string_class[String^]>,link:/releases/BASE/{base_release}/foundation_types.html#_boolean_class[Boolean^]>[1]` +
+): `link:/releases/BASE/{base_release}/foundation_types.html#_boolean_class[Boolean^]`
 a|True if constraints represented by this node, ignoring any sub-parts, are narrower or the same as other.
 Typically used during validation of special-ised archetype nodes.
 
@@ -58,22 +58,22 @@ h|*1..1 +
 (abstract)*
 |*c_congruent_to* ( +
 other: `<<_archetype_constraint_class,ARCHETYPE_CONSTRAINT>>[1]` +
-): `link:/releases/BASE/{am_release}/foundation_types.html#_boolean_class[Boolean^]`
+): `link:/releases/BASE/{base_release}/foundation_types.html#_boolean_class[Boolean^]`
 a|True if constraints represented by this node contain no further redefinitions with respect to the node other, with the exception of node_id redefnition in `C_OBJECT` nodes.
 
 Typically used to test if an inherited node locally contains any constraints.
 
 h|*1..1*
-|*is_second_order_constrained* (): `link:/releases/BASE/{am_release}/foundation_types.html#_boolean_class[Boolean^]` +
+|*is_second_order_constrained* (): `link:/releases/BASE/{base_release}/foundation_types.html#_boolean_class[Boolean^]` +
  +
 __Post__: `soc_parent /= Void or else (parent /= Void and then parent.is_second_order_constrained)`
 a|True if there is a second order constraint such as a tuple constraint on this node.
 
 h|*1..1*
-|*is_root* (): `link:/releases/BASE/{am_release}/foundation_types.html#_boolean_class[Boolean^]`
+|*is_root* (): `link:/releases/BASE/{base_release}/foundation_types.html#_boolean_class[Boolean^]`
 a|True if this node is the root of the tree.
 
 h|*1..1*
-|*is_leaf* (): `link:/releases/BASE/{am_release}/foundation_types.html#_boolean_class[Boolean^]`
+|*is_leaf* (): `link:/releases/BASE/{base_release}/foundation_types.html#_boolean_class[Boolean^]`
 a|True if this node is a terminal node in the tree structure, i.e. having no child nodes.
 |===

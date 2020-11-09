@@ -21,7 +21,7 @@ h|*Attributes*
 
 h|*0..1 +
 (redefined)*
-|*constraint*: `link:/releases/BASE/{am_release}/foundation_types.html#_list_class[List^]<link:/releases/BASE/{am_release}/foundation_types.html#_interval_class[Interval^]>`
+|*constraint*: `link:/releases/BASE/{base_release}/foundation_types.html#_list_class[List^]<link:/releases/BASE/{base_release}/foundation_types.html#_interval_class[Interval^]>`
 a|Constraint in the form of a List of Intervals of the parameter type T. Concrete types generated in descendants via template binding.
 
 h|*0..1 +
@@ -39,7 +39,7 @@ h|*Functions*
 
 h|*1..1 +
 (effected)*
-|*any_allowed* (): `link:/releases/BASE/{am_release}/foundation_types.html#_boolean_class[Boolean^]` +
+|*any_allowed* (): `link:/releases/BASE/{base_release}/foundation_types.html#_boolean_class[Boolean^]` +
  +
 __Post__: `Result = constraint.is_empty`
 a|True if any value (i.e. instance) of the reference model type would be allowed. Redefined in descendants.
@@ -48,13 +48,13 @@ h|*1..1 +
 (effected)*
 |*c_value_conforms_to* ( +
 other: `<<_c_ordered_class,C_ORDERED>>[1]` +
-): `link:/releases/BASE/{am_release}/foundation_types.html#_boolean_class[Boolean^]`
+): `link:/releases/BASE/{base_release}/foundation_types.html#_boolean_class[Boolean^]`
 a|True if `_other.any_allowed_` or else for every constraint in the `_constraint_` list there is a constraint in `_other.constraint_` that contains it.
 
 h|*1..1 +
 (effected)*
 |*c_value_congruent_to* ( +
 other: `<<_c_ordered_class,C_ORDERED>>[1]` +
-): `link:/releases/BASE/{am_release}/foundation_types.html#_boolean_class[Boolean^]`
+): `link:/releases/BASE/{base_release}/foundation_types.html#_boolean_class[Boolean^]`
 a|True if the items in `_constraint_` are equal in number and identical pair-wise with those in `_other.constraint_`.
 |===
