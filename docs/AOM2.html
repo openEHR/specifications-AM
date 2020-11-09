@@ -1418,7 +1418,7 @@ Includes detailed input and review from:</p>
 <div class="sect2">
 <h3 id="_feedback"><a class="anchor" href="#_feedback"></a>1.5. Feedback</h3>
 <div class="paragraph">
-<p>Feedback may be provided on the <a href="https://discourse.openehr.org/c/specifications" target="_blank" rel="noopener">technical mailing list</a>.</p>
+<p>Feedback may be provided on the <a href="https://discourse.openehr.org/c/specifications/adl" target="_blank" rel="noopener">openEHR ADL forum</a>.</p>
 </div>
 <div class="paragraph">
 <p>Issues may be raised on the <a href="https://specifications.openehr.org/components/AM/open_issues" target="_blank" rel="noopener">specifications Problem Report tracker</a>.</p>
@@ -1675,14 +1675,14 @@ the above types do not constitute a formal part of this specification. Any imple
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>1..1</strong></p></th>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Root_code_regex_pattern</strong>: <code><a href="/releases/BASE/latest/foundation_types.html#_string_class">String<sup></a>&#160;=&#160;"</sup>id1(\.1)&#42;$"</code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p>Regex pattern of the root id code of any archetype. Corresponds to codes of the form id1, id1.1, id1.1.1 etc..</p>
+<p>Regex pattern of the root id code of any archetype. Corresponds to codes of the form <code>id1</code>, <code>id1.1</code>, <code>id1.1.1</code> etc..</p>
 </div></div></td>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>1..1</strong></p></th>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Primitive_node_id</strong>: <code><a href="/releases/BASE/latest/foundation_types.html#_string_class" target="_blank" rel="noopener">String</a>&#160;=&#160;"id9999"</code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p>Code id used for C_PRIMITIVE_OBJECT nodes on creation.</p>
+<p>Code id used for <code>C_PRIMITIVE_OBJECT</code> nodes on creation.</p>
 </div></div></td>
 </tr>
 <tr>
@@ -1697,7 +1697,7 @@ a_child_code: <code><a href="/releases/BASE/latest/foundation_types.html#_string
 a_parent_code: <code><a href="/releases/BASE/latest/foundation_types.html#_string_class" target="_blank" rel="noopener">String</a>[1]</code><br>
 ): <code><a href="/releases/BASE/latest/foundation_types.html#_boolean_class" target="_blank" rel="noopener">Boolean</a></code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p>True if a_child_code conforms to a_parent_code in the sense of specialisation, i.e. is a_child_code the same as or more specialised than a_parent_code.</p>
+<p>True if <code><em>a_child_code</em></code> conforms to <code><em>a_parent_code</em></code> in the sense of specialisation, i.e. is <code><em>a_child_code</em></code> the same as or more specialised than <code><em>a_parent_code</em></code>?</p>
 </div></div></td>
 </tr>
 <tr>
@@ -1708,7 +1708,7 @@ a_code: <code><a href="/releases/BASE/latest/foundation_types.html#_string_class
 <br>
 <em>Post</em>: <code>Result = is_id_code (a_code) or else is_value_code (a_code) or else is_value_set_code (a_code)</code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p>True if a_code is any kind of ADL archetype local code.</p>
+<p>True if <code><em>a_code</em></code> is any kind of ADL archetype local code.</p>
 </div></div></td>
 </tr>
 <tr>
@@ -1719,7 +1719,7 @@ a_code: <code><a href="/releases/BASE/latest/foundation_types.html#_string_class
 <br>
 <em>Post</em>: <code>Result = a_code.starts_with (Id_code_leader)</code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p>True if a_code is an 'id' code.</p>
+<p>True if <code><em>a_code</em></code> is an 'id' code.</p>
 </div></div></td>
 </tr>
 <tr>
@@ -1730,7 +1730,7 @@ a_code: <code><a href="/releases/BASE/latest/foundation_types.html#_string_class
 <br>
 <em>Post</em>: <code>Result = a_code.starts_with (Value_code_leader)</code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p>True if a_code is an 'at' code, i.e. a code representing a single terminology item.</p>
+<p>True if <code><em>a_code</em></code> is an 'at' code, i.e. a code representing a single terminology item.</p>
 </div></div></td>
 </tr>
 <tr>
@@ -1741,7 +1741,7 @@ a_code: <code><a href="/releases/BASE/latest/foundation_types.html#_string_class
 <br>
 <em>Post</em>: <code>Result = a_code.starts_with (Value_set_code_leader)</code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p>True if a_code is an 'ac' code, i.e. a code referring to a terminologyvalue set.</p>
+<p>True if <code><em>a_code</em></code> is an 'ac' code, i.e. a code referring to a terminology value set.</p>
 </div></div></td>
 </tr>
 <tr>
@@ -1755,10 +1755,10 @@ a_code: <code><a href="/releases/BASE/latest/foundation_types.html#_string_class
 <div class="ulist">
 <ul>
 <li>
-<p>at0.0.1 &#8594; False</p>
+<p><code>at0.0.1</code> &#8594; False</p>
 </li>
 <li>
-<p>at1.0.1 &#8594; True</p>
+<p><code>at1.0.1</code> &#8594; True</p>
 </li>
 </ul>
 </div></div></td>
@@ -1770,7 +1770,7 @@ a-code: <code><a href="/releases/BASE/latest/foundation_types.html#_string_class
 a_level: <code><a href="/releases/BASE/latest/foundation_types.html#_integer_class" target="_blank" rel="noopener">Integer</a>[1]</code><br>
 ): <code><a href="/releases/BASE/latest/foundation_types.html#_boolean_class" target="_blank" rel="noopener">Boolean</a></code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p>Is `a_code' valid at level `a_level' or less, i.e. if we remove its trailing specialised part corresponding to specialisation below `a_level', and then any trailing '.0' pieces, do we end up with a valid code? If so it means that the code corresponds to a real node from `a_level' or higher.</p>
+<p>Is <code><em>a_code</em></code> valid at level <code><em>a_level</em></code> or less, i.e. if we remove its trailing specialised part corresponding to specialisation below <code><em>a_level</em></code>, and then any trailing '.0' pieces, do we end up with a valid code? If so it means that the code corresponds to a real node from <code><em>a_level</em></code> or higher.</p>
 </div></div></td>
 </tr>
 </tbody>
