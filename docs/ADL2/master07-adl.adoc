@@ -533,7 +533,6 @@ Each of these is described below.
 
 Assertions can be stated that make explicit intended arithmetic identities among value nodes in an archetype. For example, in an archetype representing {wikipedia}Apgar_score[Apgar Score], five values should sum to equal the total. This can be expressed as the following assertions:
 
-[source, adl]
 --------
 rules
 	$respiratory_effort: Integer := /data[id3]/events[id4]/data[id2]/items[id10]/value[id39]/value
@@ -550,7 +549,6 @@ rules
 
 The following ADL example shows a `rules` section containing the Blood Pressure MAP and Pulse pressure formulae expressed using references to the relevant input and output values in the archetype.
 
-[source, adl]
 --------
 rules
     $pulse_pressure: Real := /data[id2]/events[id7]/data[id4]/items[id1008]/value/magnitude
@@ -567,19 +565,18 @@ These assertions can be visualised in tools, e.g. as follows in the {openehr_awb
 
 [.text-center]
 .ADL assertion examples
-image::images/assertions_bp_map_pp.png[id=assertions_bp_map_pp.png, align="center", width="70%"]
+image::{images_uri}/assertions_bp_map_pp.png[id=assertions_bp_map_pp.png, align="center", width="70%"]
 
 === Value-dependent Existence
 
 One specific type of logical expression that is commonly required in archetypes is used to state the mandation (or otherwise) of certain data points as conditional on another specific data point. An example is an archetype that documents Tobacco use. This will normally contain a data point representing substance 'use status', which may have values such as 'never used', 'occasional user', 'frequent user', etc; and another set of data points quantifying the use. Clearly, if the 'use status' is 'never', the latter set of data is not needed; conversely, if 'use status' is any other value, the quantifying data items are needed. To make them mandatory if the 'use status' is any value other than 'never used', rules like the following can be used.
 
-[source, adl]
 --------
 rules
     $substance_use_status: Boolean := /data[id2]/items[id3]/value[id18]
     $substance_use_data: Object_ref := /data[id2]/items[id8]
     
-	Substance_use: $substance_use_status /= [at17] implies exists /data[id2]/items[id8]  -- [at17] = 'never used'
+    Substance_use: $substance_use_status /= [at17] implies exists /data[id2]/items[id8]  -- [at17] = 'never used'
 --------
 
 == Terminology Section

@@ -160,7 +160,7 @@ We use the term "object" block or node to refer to any block introduced by a typ
 
 [.text-center]
 .Object and Attribute Blocks in cADL
-image::diagrams/object_attribute_blocks.png[id=object_attribute_blocks, align="center"]
+image::{diagrams_uri}/object_attribute_blocks.png[id=object_attribute_blocks, align="center"]
 
 === Complex Objects
 
@@ -168,7 +168,7 @@ It may by now be clear that the identifiers in the above could correspond to ent
 
 [.text-center]
 .UML Model of Person
-image::{uml_export_dir}/diagrams/ADL-demographics.svg[id=uml_model_of_person, align="center"]
+image::{uml_diagrams_uri}/ADL-demographics.svg[id=uml_model_of_person, align="center"]
 
 Constraints expressed in cADL cannot be stronger than those from the information model. For example, the `PERSON`.`_family_name_` attribute is mandatory in the model in the above `PERSON` model, so it is not valid to express a constraint allowing the attribute to be optional. In general, a cADL archetype can only further constrain an existing information model. However, it must be remembered that for very generic models consisting of only a few classes and a lot of optionality, this rule is not so much a limitation as a way of adding meaning to information. Thus, for a demographic information model which has only the types `PARTY` and `PERSON`, one can write cADL which defines the concepts of entities such as `COMPANY` , `EMPLOYEE` , `PROFESSIONAL` , and so on, in terms of constraints on the types available in the information model.
 

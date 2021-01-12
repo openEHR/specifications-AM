@@ -17,13 +17,13 @@ The openEHR Archetype Object Model is defined as the package `am.archetype`, as 
 
 [.text-center]
 .Package Overview
-image::{uml_export_dir}/AOM1.4/diagrams/AM-packages.svg[id=package_overview, align="center", width="40%"]
+image::{uml_aom14_diagrams_uri}/AM-packages.svg[id=package_overview, align="center", width="40%"]
 
 == Model Overview
 
 The model described here is a pure object-oriented model that can be used with archetype parsers and software that manipulates archetypes. It is independent of any particular linguistic expression of an archetype, such as ADL or OWL, and can therefore be used with any kind of parser. 
 
-It is dependent on the {openehr_rm_102_support}[openEHR Release 1.0.2 Support IM] (`assumed_types` and `identifiers` packages), a small number of the openEHR Data Types ({openehr_rm_102_data_types}[openEHR Release 1.0.2 Data Types IM]), and the `resource` package from the {openehr_rm_102_common}[openEHR Release 1.0.2 Common IM]. These dependencies are shown for convenience in the <<Reference Model Dependencies>> appendix.
+It is dependent on the {openehr_rm_102_support}[openEHR Release 1.0.2 Support IM^] (`assumed_types` and `identifiers` packages), a small number of the openEHR Data Types ({openehr_rm_102_data_types}[openEHR Release 1.0.2 Data Types IM^]), and the `resource` package from the {openehr_rm_102_common}[openEHR Release 1.0.2 Common IM^]. These dependencies are shown for convenience in the <<Reference Model Dependencies>> appendix.
 
 === Archetypes as Objects
 
@@ -33,7 +33,7 @@ After initial parsing, the in-memory representation is then validated by the sem
 
 [.text-center]
 .Archetype Parsing Process
-image::diagrams/archetype_parsing_process.png[id=archetype_parsing_process, align="center", width="70%"]
+image::{diagrams_uri}/archetype_parsing_process.png[id=archetype_parsing_process, align="center", width="70%"]
 
 As shown in the figure, the definition part of the in-memory archetype consists of alternate layers of object and attribute constrainer nodes, each containing the next level of nodes. In this document, the word 'attribute' refers to any data property of a class, regardless of whether regarded as a 'relationship' (i.e. association, aggregation, or composition) or 'primitive' (i.e. value) attribute in an object model. At the leaves are primitive object constrainer nodes constraining primitive types such as `String`, `Integer` etc. There are also nodes that represent internal references to other nodes, constraint reference nodes that refer to a text constraint in the constraint binding part of the archetype ontology, and archetype constraint nodes, which represent constraints on other archetypes allowed to appear at a given point. The full list of concrete node types is as follows:
 

@@ -2,11 +2,11 @@
 
 == Overview
 
-The top-level model of archetypes and templates (all variant forms) is illustrated in the Figure <<archetype_package,below>>. The model defines a standard structural representation of an archetype. Archetypes authored as independent entities are instances of the class `AUTHORED_ARCHETYPE` which is a descendant of `AUTHORED_RESOURCE` and `ARCHETYPE`. The first of the two parent classes provides a standardised model of descriptive meta-data, language information, annotations and revision history for any resource, and is documented in the {openehr_resource}[openEHR Resource Model]. The resource classes are shown included in the diagram below. The second parent class defines the core structure of any kind of archetype, including definition, terminology, optional rules part, along with a 'semantic identifier' (`ARCHETYPE._archetype_id_`).
+The top-level model of archetypes and templates (all variant forms) is illustrated in <<archetype_package,below>>. The model defines a standard structural representation of an archetype. Archetypes authored as independent entities are instances of the class `AUTHORED_ARCHETYPE` which is a descendant of `AUTHORED_RESOURCE` and `ARCHETYPE`. The first of the two parent classes provides a standardised model of descriptive meta-data, language information, annotations and revision history for any resource, and is documented in the {openehr_resource}[openEHR Resource Model]. The resource classes are shown included in the diagram below. The second parent class defines the core structure of any kind of archetype, including definition, terminology, optional rules part, along with a 'semantic identifier' (`ARCHETYPE._archetype_id_`).
 
 [.text-center]
 .am.aom2.archetype Package
-image::{uml_export_dir}/diagrams/AM-aom2.archetype.svg[id=archetype_package, align="center"]
+image::{uml_diagrams_uri}/AM-aom2.archetype.svg[id=archetype_package, align="center"]
 
 The `AUTHORED_ARCHETYPE` class adds identifying attributes, flags and descriptive meta-data, and is the ancestor type for two further specialisations - `TEMPLATE` and `OPERATIONAL_TEMPLATE` . The `TEMPLATE` class defines the notion of a 'templated' archetype, i.e. an archetype containing fillers/references (ADL's `use_archetype` statements), typically designed to represent a data set. To enable this, it may contain 'overlays', private archetypes that specialise one or more of the referenced / filler archetypes it uses. Overlays are instances of the `TEMPLATE_OVERLAY` class, have no meta-data of their own, but are otherwise computationally just like any other archetype. 
 
@@ -20,7 +20,7 @@ All archetype variants based on `ARCHETYPE` have a human-readable, structured id
 
 [.text-center]
 .Archetype HRID Structure
-image::diagrams/archetype_hrid_structure.svg[id=archetype_hrid_structure, align="center",width="80%"]
+image::{diagrams_uri}/archetype_hrid_structure.svg[id=archetype_hrid_structure, align="center",width="80%"]
 
 For specialised archetypes, the `_parent_archetype_id_` is also required. This is a string `_reference_` to an archetype, and is normally the 'interface' form of the id, i.e. down to the major version only. In some circumstances, it is useful to include the minor and patch version numbers as well.
 
@@ -62,11 +62,11 @@ Various meta-data elements are inherited from the `AUTHORED_RESOURCE` class, and
 
 === Governance Meta-data Items
 
-Governance meta-data is visible primarily in the `RESOURCE_DESCRIPTION` class, inherited via `AUTHORED_RESOURCE`, and consists of items relating to management and intellectual property status of the artefact. A typical form of these is shown in the screenshot in Figure <<metadata_governance>>.
+Governance meta-data is visible primarily in the `RESOURCE_DESCRIPTION` class, inherited via `AUTHORED_RESOURCE`, and consists of items relating to management and intellectual property status of the artefact. A typical form of these is shown in the screenshot in <<metadata_governance>>.
 
 [.text-center]
 .Governance Meta-data
-image::images/metadata_governance.png[id=metadata_governance, align="center", width="80%"]
+image::{images_uri}/metadata_governance.png[id=metadata_governance, align="center", width="80%"]
 
 ==== Package
 
@@ -100,7 +100,7 @@ Authorship meta-data consists of items such as author name, contributors, and tr
 
 [.text-center]
 .Authoring Meta-data
-image::images/metadata_authoring.png[id=metadata_authoring, align="center", width="90%"]
+image::{images_uri}/metadata_authoring.png[id=metadata_authoring, align="center", width="90%"]
 
 ==== Original Author
 
@@ -130,7 +130,7 @@ Various descriptive meta-data may be provided for an archetype in multiple trans
 
 [.text-center]
 .Descriptive Meta-data
-image::images/metadata_details.png[id=metadata_descriptive, align="center"]
+image::{images_uri}/metadata_details.png[id=metadata_descriptive, align="center"]
 
 ==== Purpose
 
@@ -165,11 +165,11 @@ Lastly, annotations and revision history sections, inherited from the `AUTHORED_
 
 === Structural Variants
 
-The model in Figure <<archetype_package>> defines the structures of a number of variants of the 'archetype' idea. All concrete instances are instances of one of the concrete descendants of `ARCHETYPE`. Figure <<source_archetype_structure>> illustrates the typical object structure of a source archetype - the form of archetype created by an authoring tool - represented by a `DIFFERENTIAL_ARCHETYPE` instance. Mandatory parts are shown in bold.
+The model in <<archetype_package>> defines the structures of a number of variants of the 'archetype' idea. All concrete instances are instances of one of the concrete descendants of `ARCHETYPE`. <<source_archetype_structure>> illustrates the typical object structure of a source archetype - the form of archetype created by an authoring tool - represented by a `DIFFERENTIAL_ARCHETYPE` instance. Mandatory parts are shown in bold.
 
 [.text-center]
 .Source Archetype Structure
-image::{uml_export_dir}/diagrams/AM-source_archetype_structure.svg[id=source_archetype_structure, align="center", width="60%"]
+image::{uml_diagrams_uri}/AM-source_archetype_structure.svg[id=source_archetype_structure, align="center", width="60%"]
 
 Source archetypes can be specialised, in which case their definition structure is a partial overlay on the flat parent, or 'top-level', in which case the definition structure is complete. `C_ARCHETYPE_ROOT` instances may only occur representing direct references to other archetypes - 'external references'.
 
@@ -177,19 +177,19 @@ A flat archetype is generated from one or more source archetypes via the flatten
 
 [.text-center]
 .Source Template Structure
-image::{uml_export_dir}/diagrams/AM-source_template_structure.svg[id=source_template_structure, align="center", width="80%"]
+image::{uml_diagrams_uri}/AM-source_template_structure.svg[id=source_template_structure, align="center", width="80%"]
 
 This form is used to represent the full 'operational' structure of a specialised archetype, and has two uses. The first is to generate backwards compatible ADL 1.4 legacy archetypes (always in flat form); the second is during the template flattening process, when the flat forms of all referenced archetypes and templates are ultimately combined into a single operational template.
 
-Figure <<source_template_structure>> illustrates the structure of a source template, i.e instances of `TEMPLATE`. A source template is an archetype containing `C_ARCHETYPE_ROOT` objects representing slot fillers - each referring to an external archetype or template, or potentially an overlay archetype.
+<<source_template_structure>> illustrates the structure of a source template, i.e instances of `TEMPLATE`. A source template is an archetype containing `C_ARCHETYPE_ROOT` objects representing slot fillers - each referring to an external archetype or template, or potentially an overlay archetype.
 
 Another archetype variant, also shown in <<source_template_structure>> is the template overlay, i.e. an instance of `TEMPLATE_OVERLAY`. These are purely local components of templates, and include only the definition and terminology. The definition structure is always a specialised overlay on something else, and may not contain any slot fillers or external references, i.e. no `C_ARCHETYPE_ROOT` objects. No identifier, adl_version, languages or description are required, as they are considered to be propagated from the owning root template. Accordingly, template overlays act like a simplified specialised archetype. Template overlays can be thought of as being similar to 'anonymous' or 'inner' classes in some object-oriented programming languages.
 
-Figure <<operational_template_structure>> illustrates the resulting operational template, or compiled form of a template. This is created by building the composition of referenced archetypes and/or templates and/or template overlays, in their flattened form, to generate a single 'giant' archetype. The root node of this archetype, along with every archetype/template root node within, is represented using a `C_ARCHETYPE_ROOT` object. An operational template also has a component_terminologies property containing the ontologies from every constituent archetype, template and overlay.
+<<operational_template_structure>> illustrates the resulting operational template, or compiled form of a template. This is created by building the composition of referenced archetypes and/or templates and/or template overlays, in their flattened form, to generate a single 'giant' archetype. The root node of this archetype, along with every archetype/template root node within, is represented using a `C_ARCHETYPE_ROOT` object. An operational template also has a component_terminologies property containing the ontologies from every constituent archetype, template and overlay.
 
 [.text-center]
 .Operational Template Structure
-image::{uml_export_dir}/diagrams/AM-operational_template_structure.svg[id=operational_template_structure, align="center", width="80%"]
+image::{uml_diagrams_uri}/AM-operational_template_structure.svg[id=operational_template_structure, align="center", width="80%"]
 
 More details of template development, representation and semantics are described in the next section.
 

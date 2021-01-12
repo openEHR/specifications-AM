@@ -271,7 +271,7 @@
 </div>
 <div id="model_maths_1" class="imageblock text-center text-center">
 <div class="content">
-<img src="diagrams/model_maths_1.svg" alt="model maths 1" width="60%">
+<img src="Overview/diagrams/model_maths_1.svg" alt="model maths 1" width="60%">
 </div>
 <div class="title">Figure 1. Basic model maths</div>
 </div>
@@ -289,7 +289,7 @@
 </div>
 <div id="model_maths_2" class="imageblock text-center text-center">
 <div class="content">
-<img src="diagrams/model_maths_2.svg" alt="model maths 2" width="60%">
+<img src="Overview/diagrams/model_maths_2.svg" alt="model maths 2" width="60%">
 </div>
 <div class="title">Figure 2. Screen templates: a useful stop-gap</div>
 </div>
@@ -303,7 +303,7 @@
 <p>An important economic factor is that the creation of good quality domain models is time-consuming and expensive, relying as it does on domain experts - typically experienced clinicians, engineers etc - rather than IT staff. If models are created inside a specific product (e.g. a particular hospital information system), and that product is replaced, there is often little appetite or availability of the staff to recreate the work done in authoring the models/templates for the first product, in the new product environment. Multiplied across products, sites, and whole industry verticals, <em>the lack of standard ways of representing models of domain content has become a significant obstruction to the production of high quality information systems</em>. Instead, as each solution is replaced, its domain models usually die with it.</p>
 </div>
 <div class="paragraph">
-<p>The need for an efficient, formal, and product- and implementation format-independent domain modelling capability is therefore clear. In health, where the sheer amount of domain semantics requiring formalisation makes both the classic single-model approach and simplistic screen templating non-scalable, other methods have had to be developed. In openEHR, this took the form of the <a href="https://specifications.openehr.org/releases/AM/Release-2.1.0/index">Archetype formalism</a>, used in conjunction with terminologies including <a href="http://www.ihtsdo.org">SNOMED CT</a>, <a href="http://loinc.org">LOINC</a>, <a href="http://www.who.int/classifications/icd/en/">ICDx</a> and many others.</p>
+<p>The need for an efficient, formal, and product- and implementation format-independent domain modelling capability is therefore clear. In health, where the sheer amount of domain semantics requiring formalisation makes both the classic single-model approach and simplistic screen templating non-scalable, other methods have had to be developed. In openEHR, this took the form of the <a href="https://specifications.openehr.org/releases/AM/Release-2.1.0/index" target="_blank" rel="noopener">Archetype formalism</a>, used in conjunction with terminologies including <a href="http://www.ihtsdo.org" target="_blank" rel="noopener">SNOMED CT</a>, <a href="http://loinc.org" target="_blank" rel="noopener">LOINC</a>, <a href="http://www.who.int/classifications/icd/en/" target="_blank" rel="noopener">ICDx</a> and many others.</p>
 </div>
 <div class="paragraph">
 <p>Two categories of domain content models can be distinguished, responding to a universal need to be able to represent both use-independent definitions of 'data points' and 'data groups', and use-case dependent definitions of 'data sets'. Consider the case of recording patient vital signs. Assume that content models can be defined for 'blood pressure', 'heart rate' and 'blood oxygen'. These definitions need to be independent of specific uses such as patient home measurement, GP encounter, and hospital bedside measurement, since in all these cases, each vital sign is recorded in exactly the same way. However in each case, these vital signs data points are recorded within a larger data set of items that correspond to the health system event occurring, such as a GP patient health checkup or an ED initial assessment.</p>
@@ -346,7 +346,7 @@
 </div>
 <div id="archetype_quadrant" class="imageblock text-center text-center">
 <div class="content">
-<img src="diagrams/archetype_quadrant.svg" alt="archetype quadrant" width="60%">
+<img src="Overview/diagrams/archetype_quadrant.svg" alt="archetype quadrant" width="60%">
 </div>
 <div class="title">Figure 3. Archetype / Information Model Relationship</div>
 </div>
@@ -361,7 +361,7 @@
 </div>
 <div id="openehr_architecture" class="imageblock text-center text-center">
 <div class="content">
-<img src="diagrams/openehr_architecture.png" alt="openehr architecture" width="70%">
+<img src="Overview/diagrams/openehr_architecture.png" alt="openehr architecture" width="70%">
 </div>
 <div class="title">Figure 4. openEHR Semantic Architecture</div>
 </div>
@@ -454,7 +454,7 @@
 </div>
 <div id="archetype_id" class="imageblock text-center text-center">
 <div class="content">
-<img src="diagrams/archetype_id.png" alt="archetype id" width="70%">
+<img src="Overview/diagrams/archetype_id.png" alt="archetype id" width="70%">
 </div>
 <div class="title">Figure 5. Typical Archetype HRID</div>
 </div>
@@ -468,11 +468,11 @@
 <p>Returning to the Archetype HRID, the leading namespace indicates the Custodian Organisation, here the UK NHS. The implication of the namespace within the HRID is that multiple agencies may publish competing ideas of a ‘medication_order’ archetype based on the openEHR <code>COMPOSITION</code> class, and there will not be any clash. Although the namespace is prepended to the archetype identifier in the usual way, in fact it should be understood as a discriminator on the domain entity. In other words, the identifiers <code>uk.gov.nhs::openEHR-EHR-COMPOSITION.medication_order.v1</code> and <code>no.regjeringen::openEHR-EHR-COMPOSITION.medication_order.v1</code> should be understood as UK NHS and Norwegian Health Department ideas of ‘medication_order’, based on the same openEHR Reference Model <code>COMPOSITION</code> class.</p>
 </div>
 <div class="paragraph">
-<p>This is useful as a practical measure, to avoid immediate chaos. In the longer term, it is intended that archetype semantic identifiers for a given domain are located in a common international ontology of information artefact types. For the clinical domain, it could look as shown in the figure <a href="#information_ontology">Figure 6</a>, where it is assumed that the <a href="http://ifomis.uni-saarland.de/bfo/">Basic Formal Ontology (BFO) 2nd Edition</a> and the <a href="https://code.google.com/p/information-artifact-ontology/">Information Artefact Ontology (IAO)</a> upper level ontologies would provide the foundation of clinically specific models.</p>
+<p>This is useful as a practical measure, to avoid immediate chaos. In the longer term, it is intended that archetype semantic identifiers for a given domain are located in a common international ontology of information artefact types. For the clinical domain, it could look as shown in <a href="#information_ontology">Figure 6</a>, where it is assumed that the <a href="http://ifomis.uni-saarland.de/bfo/">Basic Formal Ontology (BFO) 2nd Edition</a> and the <a href="https://code.google.com/p/information-artifact-ontology/">Information Artefact Ontology (IAO)</a> upper level ontologies would provide the foundation of clinically specific models.</p>
 </div>
 <div id="information_ontology" class="imageblock text-center text-center">
 <div class="content">
-<img src="diagrams/information_ontology.png" alt="information ontology" width="90%">
+<img src="Overview/diagrams/information_ontology.png" alt="information ontology" width="90%">
 </div>
 <div class="title">Figure 6. Example archetype artefact ontology</div>
 </div>
@@ -511,11 +511,11 @@
 </ul>
 </div>
 <div class="paragraph">
-<p>The IS-A hierarchy is available in archetype tools such as the <a href="https://www.openehr.org/downloads/ADLworkbench">openEHR ADL Workbench</a>, as shown in the figure <a href="#archetypes_is_a_hierarchy">Figure 7</a>.</p>
+<p>The IS-A hierarchy is available in archetype tools such as the <a href="https://www.openehr.org/downloads/ADLworkbench">openEHR ADL Workbench</a>, as shown in <a href="#archetypes_is_a_hierarchy">Figure 7</a>.</p>
 </div>
 <div id="archetypes_is_a_hierarchy" class="imageblock text-center text-center">
 <div class="content">
-<img src="diagrams/archetypes_is_a_hierarchy.png" alt="archetypes is a hierarchy" width="70%">
+<img src="Overview/diagrams/archetypes_is_a_hierarchy.png" alt="archetypes is a hierarchy" width="70%">
 </div>
 <div class="title">Figure 7. Is-A hierarchy of the openEHR international archetypes</div>
 </div>
@@ -596,7 +596,7 @@
 </div>
 <div id="archetype_structure" class="imageblock text-center text-center">
 <div class="content">
-<img src="diagrams/archetype_structure.png" alt="archetype structure" width="50%">
+<img src="Overview/diagrams/archetype_structure.png" alt="archetype structure" width="50%">
 </div>
 <div class="title">Figure 8. ADL Archetype Structure</div>
 </div>
@@ -661,7 +661,7 @@
 </div>
 <div id="serialised_forms" class="imageblock text-center text-center">
 <div class="content">
-<img src="diagrams/serialised_forms.png" alt="serialised forms" width="80%">
+<img src="Overview/diagrams/serialised_forms.png" alt="serialised forms" width="80%">
 </div>
 <div class="title">Figure 9. Relationship of in-memory and syntax forms</div>
 </div>
@@ -670,7 +670,7 @@
 </div>
 <div id="artefact_types" class="imageblock text-center text-center">
 <div class="content">
-<img src="diagrams/artefact_types.png" alt="artefact types" width="80%">
+<img src="Overview/diagrams/artefact_types.png" alt="artefact types" width="80%">
 </div>
 <div class="title">Figure 10. ADL Archetype Types</div>
 </div>
@@ -701,7 +701,7 @@
 </div>
 <div id="toolchain" class="imageblock text-center text-center">
 <div class="content">
-<img src="diagrams/toolchain.png" alt="toolchain" width="80%">
+<img src="Overview/diagrams/toolchain.png" alt="toolchain" width="80%">
 </div>
 <div class="title">Figure 11. Archetype toolchain</div>
 </div>
@@ -719,7 +719,7 @@
 </div>
 <div id="archetype_compilation" class="imageblock text-center text-center">
 <div class="content">
-<img src="diagrams/archetype_compilation.png" alt="archetype compilation" width="80%">
+<img src="Overview/diagrams/archetype_compilation.png" alt="archetype compilation" width="80%">
 </div>
 <div class="title">Figure 12. Archetype compilation</div>
 </div>
