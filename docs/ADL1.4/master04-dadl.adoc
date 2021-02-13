@@ -35,7 +35,7 @@ A common question about dADL is why it is needed, when there is already XML? To 
 * not using the confusing XML notion of ‘attributes’ and ‘elements’ to represent what are essentially object properties;
 * requiring half the space of the equivalent XML.
 
-Of course, this does not prevent XML exchange syntaxes being used for dADL, and indeed the conversion to XML instance is rather straighforward. Details on the XML expression of dADL and use of Xpath expressions is described in section <<Expression of dADL in XML>>.
+Of course, this does not prevent XML exchange syntaxes being used for dADL, and indeed the conversion to XML instance is rather straighforward. Details on the XML expression of dADL and use of Xpath expressions is described in <<Expression of dADL in XML>>.
 
 The dADL syntax as described above has a number of useful characteristics that enable the extensive use of paths to navigate it, and express references. These include:
 
@@ -91,7 +91,7 @@ A *type name* is any identifier with an initial upper case letter, followed by a
 
 At least two well-known conventions that are ubiquitous in information models obey the above rule. One of these is the following convention:
 
-* type names are in all uppercase, e.g. `PERSON` , except for 'built-in' types, such as primitive types (` Integer` , `String` , `Boolean` , `Real` , `Double` ) and assumed container types (`List<T>` , `Set<T>` , `Hash<T, U>` ), which are in mixed case, in order to provide easy differentiation of built-in types from constructed types defined in the reference model. Built-in types are the same types assumed by UML, OCL, IDL and other similar object-oriented formalisms.
+* type names are in all uppercase, e.g. `PERSON` , except for 'built-in' types, such as primitive types (`Integer` , `String` , `Boolean` , `Real` , `Double` ) and assumed container types (`List<T>` , `Set<T>` , `Hash<T, U>` ), which are in mixed case, in order to provide easy differentiation of built-in types from constructed types defined in the reference model. Built-in types are the same types assumed by UML, OCL, IDL and other similar object-oriented formalisms.
 * attribute names are shown in all lowercase, e.g. `home_address` .
 * in both type names and attribute names, underscores are used to represent word breaks. This convention is used to maximise the readability of this document.
 
@@ -137,7 +137,7 @@ A dADL document expresses serialised instances of one or more complex objects. E
 attribute_name '=' '<' value '>' ;
 --------
 
-Each attribute name is the name of an attribute in an implied or actual object or relational model. Each "value" is either a literal value of a primitive type (see section <<See Primitive Types>>) or a further nesting of attribute names and values, terminating in leaf nodes of primitive type values. Where sibling attribute nodes occur, the attribute identifiers must be unique, just as in a standard object or relational model.
+Each attribute name is the name of an attribute in an implied or actual object or relational model. Each "value" is either a literal value of a primitive type (see <<See Primitive Types>>) or a further nesting of attribute names and values, terminating in leaf nodes of primitive type values. Where sibling attribute nodes occur, the attribute identifiers must be unique, just as in a standard object or relational model.
 
 [.principle]
 Sibling attribute names must be unique.
@@ -161,7 +161,7 @@ attr_1 = <
 attr_8 = <...>
 --------
 
-In the above structure, each "<>" encloses an instance of some type. The hierarchical structure corresponds to the part-of relationship between objects, otherwise known as _composition_ and _aggregation_ relationships in object-oriented formalisms such as UML (the difference between the two is usually described as being "sub-objects related by aggregation can have independent lifetimes, whereas sub-objects related by composition have co-termimal lifetimes and are always destroyed with the parent"; dADL does not differentiate between the two, since it is the business of a model, not the data, to express such semantics). Associations between instances in dADL are also representable by references, and are described in section <<Associations and Shared Objects>>.
+In the above structure, each "<>" encloses an instance of some type. The hierarchical structure corresponds to the part-of relationship between objects, otherwise known as _composition_ and _aggregation_ relationships in object-oriented formalisms such as UML (the difference between the two is usually described as being "sub-objects related by aggregation can have independent lifetimes, whereas sub-objects related by composition have co-termimal lifetimes and are always destroyed with the parent"; dADL does not differentiate between the two, since it is the business of a model, not the data, to express such semantics). Associations between instances in dADL are also representable by references, and are described in <<Associations and Shared Objects>>.
 
 ==== Outer Delimiters
 
@@ -195,7 +195,7 @@ The complete set of paths for the above example is as follows.
     /attr_8
 --------
 
-The path syntax used with dADL maps trivially to W3C Xpath and Xquery paths, and is described in the section <<Path Syntax>>.
+The path syntax used with dADL maps trivially to W3C Xpath and Xquery paths, and is described in the <<Path Syntax>>.
 
 === Empty Sections
 
@@ -321,7 +321,7 @@ end
 
 Other class specifications corresponding to the same data are possible, but will all be isomorphic to the above.
 
-How key values relate to a particular object structure depends on the object model being used during the dADL parsing process. It is possible to write a parser which makes reasonable inferences from an information model whose instances are represented as dADL text; it is also possible to include explicit typing information in the dADL itself (see section <<See Adding Type Information>> below).
+How key values relate to a particular object structure depends on the object model being used during the dADL parsing process. It is possible to write a parser which makes reasonable inferences from an information model whose instances are represented as dADL text; it is also possible to include explicit typing information in the dADL itself (see <<See Adding Type Information>> below).
 
 ==== Paths
 
@@ -477,7 +477,7 @@ as follows:
 'a'
 ----
 
-Characters outside the low ASCII (0-127) range must be UTF-8 encoded, with a small number of backslash-quoted ASCII characters allowed, as described in the section <<File Encoding and Character Quoting>>.
+Characters outside the low ASCII (0-127) range must be UTF-8 encoded, with a small number of backslash-quoted ASCII characters allowed, as described in the <<File Encoding and Character Quoting>>.
 
 ==== String Data
 All strings are enclosed in double quotes, as follows:
@@ -502,7 +502,7 @@ text = <"And now the STORM-BLAST came, and he
         And chased us south along.">
 --------
 
-String data can be used to contain almost any other kind of data, which is intended to be parsed as some other formalism. Characters outside the low ASCII (0-127) range must be UTF-8 encoded, with a small number of backslash-quoted ASCII characters allowed, as described in the section <<File Encoding and Character Quoting>>.
+String data can be used to contain almost any other kind of data, which is intended to be parsed as some other formalism. Characters outside the low ASCII (0-127) range must be UTF-8 encoded, with a small number of backslash-quoted ASCII characters allowed, as described in the <<File Encoding and Character Quoting>>.
 
 ==== Integer Data
 Integers are represented simply as numbers, e.g.:
@@ -513,7 +513,7 @@ Integers are represented simply as numbers, e.g.:
 29e6
 ----
 
-Commas or periods for breaking long numbers are not allowed, since they confuse the use of commas used to denote list items (see section <<Lists of Built-in Types>> below).
+Commas or periods for breaking long numbers are not allowed, since they confuse the use of commas used to denote list items (see <<Lists of Built-in Types>> below).
 
 ==== Real Data
 Real numbers are assumed whenever a decimal is detected in a number, e.g.:
@@ -524,7 +524,7 @@ Real numbers are assumed whenever a decimal is detected in a number, e.g.:
 6.023e23
 ----
 
-Commas or periods for breaking long numbers are not allowed. Only periods may be used to separate the decimal part of a number; unfortunately, the European use of the comma for this purpose conflicts with the use of the comma to distinguish list items (see section <<Lists of Built-in Types>> below).
+Commas or periods for breaking long numbers are not allowed. Only periods may be used to separate the decimal part of a number; unfortunately, the European use of the comma for this purpose conflicts with the use of the comma to distinguish list items (see <<Lists of Built-in Types>> below).
 
 ==== Boolean Data
 Boolean values can be indicated by the following values (case-insensitive):

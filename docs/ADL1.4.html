@@ -944,7 +944,7 @@
 <div class="title">Note</div>
 </td>
 <td class="content">
-this specification is a re-formatted issue of the <a href="https://specifications.openehr.org/releases/1.0.2/architecture/am/adl1.4.pdf" target="_blank" rel="noopener">original ADL 1.4 Specification from openEHR Release 1.0.2</a>. There are slight changes in formatting, citations and other references, corrections to typographical errors and changed syntax colourisation due to the use of more modern language-based syntax colourisers in the publishing tools.
+this specification is a re-formatted issue of the <a href="https://specifications.openehr.org/releases/1.0.2/architecture/am/adl.pdf" target="_blank" rel="noopener">original ADL 1.4 Specification from openEHR Release 1.0.2</a>. There are slight changes in formatting, citations and other references, corrections to typographical errors and changed syntax colourisation due to the use of more modern language-based syntax colourisers in the publishing tools.
 </td>
 </tr>
 </table>
@@ -998,7 +998,7 @@ Source projects can be found at the <a href="https://github.com/openEHR">openEHR
 <p>Archetype Definition Language (ADL) is a formal language for expressing archetypes, which are constraint-based models of domain entities, or what some might call 'structured business rules'. The archetype concept is described by Beale <a href="#Beale_2000">[Beale_2000]</a>, <a href="#Beale_2002">[Beale_2002]</a>. The <a href="https://specifications.openehr.org/releases/AM/Release-2.1.0/ADL1.4.html">openEHR Archetype Object Model 1.4</a> describes the definitive semantic model of archetypes, in the form of an object model. The ADL syntax is one possible serialisation of an archetype.</p>
 </div>
 <div class="paragraph">
-<p>The openEHR archetype framework is described in terms of <a href="https://specifications.openehr.org/releases/1.0.2/architecture/am/archetype_principles.pdf">Archetype Definitions and Principles</a> and an <a href="https://specifications.openehr.org/releases/1.0.2/architecture/am/archetype_system.pdf">Archetype System</a>. Other semantic formalisms considered in the course of the development of ADL, and some which remain relevant are described in detailed in section <a href="#_relationship_of_adl_to_other_formalisms">Appendix A</a>.</p>
+<p>The openEHR archetype framework is described in terms of <a href="https://specifications.openehr.org/releases/1.0.2/architecture/am/archetype_principles.pdf">Archetype Definitions and Principles</a> and an <a href="https://specifications.openehr.org/releases/1.0.2/architecture/am/archetype_system.pdf">Archetype System</a>. Other semantic formalisms considered in the course of the development of ADL, and some which remain relevant are described in detailed in <a href="#_relationship_of_adl_to_other_formalisms">Appendix A</a>.</p>
 </div>
 <div class="paragraph">
 <p>ADL uses three other syntaxes, cADL (constraint form of ADL), dADL (data definition form of ADL), and a version of first-order predicate logic (FOPL), to describe constraints on data which are instances of some information model (e.g. expressed in UML). It is most useful when very generic information models are used for describing the data in a system, for example, where the logical concepts <code>PATIENT</code>, <code>DOCTOR</code> and <code>HOSPITAL</code> might all be represented using a small number of classes such as <code>PARTY</code> and <code>ADDRESS</code>. In such cases, archetypes are used to constrain the valid structures of instances of these generic classes to represent the desired domain concepts. In this way future-proof information systems can be built - relatively simple information models and database schemas can be defined, and archetypes supply the semantic modelling, completely outside the software. ADL can thus be used to write archetypes for any domain where formal object model(s) exist which describe data instances.</p>
@@ -1118,11 +1118,11 @@ Source projects can be found at the <a href="https://github.com/openEHR">openEHR
 <div class="sect2">
 <h3 id="_xml_form_of_archetypes"><a class="anchor" href="#_xml_form_of_archetypes"></a>2.3. XML form of Archetypes</h3>
 <div class="paragraph">
-<p>With ADL parsing tools it is possible to convert ADL to any number of forms, including various XML formats. XML instance can be generated from the object form of an archetype in memory. An XML-schema corresponding to the ADL Object Model is <a href="http://www.openehr.org/releases/trunk/its/XML-schema">published at openEHR.org</a>.</p>
+<p>With ADL parsing tools it is possible to convert ADL to any number of forms, including various XML formats. XML instance can be generated from the object form of an archetype in memory, based on the published <a href="https://specifications.openehr.org/releases/ITS-XML/latest/components/AM" target="_blank" rel="noopener">XML schema</a>.</p>
 </div>
 <div id="archetypes_templates_palette" class="imageblock text-center text-center">
 <div class="content">
-<img src="ADL1.4/diagrams/archetypes_templates_palette.png" alt="archetypes templates palette" width="80%">
+<img src="ADL1.4/diagrams/archetypes_templates_palette.png" alt="archetypes templates palette" width="65%">
 </div>
 <div class="title">Figure 3. Archetypes, Templates and Palette</div>
 </div>
@@ -1458,7 +1458,7 @@ the structure, as shown in the following example:</p>
 </ul>
 </div>
 <div class="paragraph">
-<p>Of course, this does not prevent XML exchange syntaxes being used for dADL, and indeed the conversion to XML instance is rather straighforward. Details on the XML expression of dADL and use of Xpath expressions is described in section <a href="#_expression_of_dadl_in_xml">Section 4.7</a>.</p>
+<p>Of course, this does not prevent XML exchange syntaxes being used for dADL, and indeed the conversion to XML instance is rather straighforward. Details on the XML expression of dADL and use of Xpath expressions is described in <a href="#_expression_of_dadl_in_xml">Section 4.7</a>.</p>
 </div>
 <div class="paragraph">
 <p>The dADL syntax as described above has a number of useful characteristics that enable the extensive use of paths to navigate it, and express references. These include:</p>
@@ -1570,7 +1570,7 @@ the structure, as shown in the following example:</p>
 <div class="ulist">
 <ul>
 <li>
-<p>type names are in all uppercase, e.g. <code>PERSON</code> , except for 'built-in' types, such as primitive types (` Integer` , <code>String</code> , <code>Boolean</code> , <code>Real</code> , <code>Double</code> ) and assumed container types (<code>List&lt;T&gt;</code> , <code>Set&lt;T&gt;</code> , <code>Hash&lt;T, U&gt;</code> ), which are in mixed case, in order to provide easy differentiation of built-in types from constructed types defined in the reference model. Built-in types are the same types assumed by UML, OCL, IDL and other similar object-oriented formalisms.</p>
+<p>type names are in all uppercase, e.g. <code>PERSON</code> , except for 'built-in' types, such as primitive types (<code>Integer</code> , <code>String</code> , <code>Boolean</code> , <code>Real</code> , <code>Double</code> ) and assumed container types (<code>List&lt;T&gt;</code> , <code>Set&lt;T&gt;</code> , <code>Hash&lt;T, U&gt;</code> ), which are in mixed case, in order to provide easy differentiation of built-in types from constructed types defined in the reference model. Built-in types are the same types assumed by UML, OCL, IDL and other similar object-oriented formalisms.</p>
 </li>
 <li>
 <p>attribute names are shown in all lowercase, e.g. <code>home_address</code> .</p>
@@ -1635,7 +1635,7 @@ the structure, as shown in the following example:</p>
 </div>
 </div>
 <div class="paragraph">
-<p>Each attribute name is the name of an attribute in an implied or actual object or relational model. Each "value" is either a literal value of a primitive type (see section <a href="#See Primitive Types">[See Primitive Types]</a>) or a further nesting of attribute names and values, terminating in leaf nodes of primitive type values. Where sibling attribute nodes occur, the attribute identifiers must be unique, just as in a standard object or relational model.</p>
+<p>Each attribute name is the name of an attribute in an implied or actual object or relational model. Each "value" is either a literal value of a primitive type (see <a href="#See Primitive Types">[See Primitive Types]</a>) or a further nesting of attribute names and values, terminating in leaf nodes of primitive type values. Where sibling attribute nodes occur, the attribute identifiers must be unique, just as in a standard object or relational model.</p>
 </div>
 <div class="paragraph principle">
 <p>Sibling attribute names must be unique.</p>
@@ -1661,7 +1661,7 @@ the structure, as shown in the following example:</p>
 </div>
 </div>
 <div class="paragraph">
-<p>In the above structure, each "&lt;&gt;" encloses an instance of some type. The hierarchical structure corresponds to the part-of relationship between objects, otherwise known as <em>composition</em> and <em>aggregation</em> relationships in object-oriented formalisms such as UML (the difference between the two is usually described as being "sub-objects related by aggregation can have independent lifetimes, whereas sub-objects related by composition have co-termimal lifetimes and are always destroyed with the parent"; dADL does not differentiate between the two, since it is the business of a model, not the data, to express such semantics). Associations between instances in dADL are also representable by references, and are described in section <a href="#_associations_and_shared_objects">Section 4.4.6</a>.</p>
+<p>In the above structure, each "&lt;&gt;" encloses an instance of some type. The hierarchical structure corresponds to the part-of relationship between objects, otherwise known as <em>composition</em> and <em>aggregation</em> relationships in object-oriented formalisms such as UML (the difference between the two is usually described as being "sub-objects related by aggregation can have independent lifetimes, whereas sub-objects related by composition have co-termimal lifetimes and are always destroyed with the parent"; dADL does not differentiate between the two, since it is the business of a model, not the data, to express such semantics). Associations between instances in dADL are also representable by references, and are described in <a href="#_associations_and_shared_objects">Section 4.4.6</a>.</p>
 </div>
 <div class="sect4">
 <h5 id="_outer_delimiters"><a class="anchor" href="#_outer_delimiters"></a>4.4.1.1. Outer Delimiters</h5>
@@ -1700,7 +1700,7 @@ the structure, as shown in the following example:</p>
 </div>
 </div>
 <div class="paragraph">
-<p>The path syntax used with dADL maps trivially to W3C Xpath and Xquery paths, and is described in the section <a href="#Path Syntax">[Path Syntax]</a>.</p>
+<p>The path syntax used with dADL maps trivially to W3C Xpath and Xquery paths, and is described in the <a href="#Path Syntax">[Path Syntax]</a>.</p>
 </div>
 </div>
 </div>
@@ -1851,7 +1851,7 @@ class SUBJECT
 <p>Other class specifications corresponding to the same data are possible, but will all be isomorphic to the above.</p>
 </div>
 <div class="paragraph">
-<p>How key values relate to a particular object structure depends on the object model being used during the dADL parsing process. It is possible to write a parser which makes reasonable inferences from an information model whose instances are represented as dADL text; it is also possible to include explicit typing information in the dADL itself (see section <a href="#See Adding Type Information">[See Adding Type Information]</a> below).</p>
+<p>How key values relate to a particular object structure depends on the object model being used during the dADL parsing process. It is possible to write a parser which makes reasonable inferences from an information model whose instances are represented as dADL text; it is also possible to include explicit typing information in the dADL itself (see <a href="#See Adding Type Information">[See Adding Type Information]</a> below).</p>
 </div>
 <div class="sect4">
 <h5 id="_paths_3"><a class="anchor" href="#_paths_3"></a>4.4.3.1. Paths</h5>
@@ -2034,7 +2034,7 @@ as follows:</p>
 </div>
 </div>
 <div class="paragraph">
-<p>Characters outside the low ASCII (0-127) range must be UTF-8 encoded, with a small number of backslash-quoted ASCII characters allowed, as described in the section <a href="#_file_encoding_and_character_quoting">Section 3</a>.</p>
+<p>Characters outside the low ASCII (0-127) range must be UTF-8 encoded, with a small number of backslash-quoted ASCII characters allowed, as described in the <a href="#_file_encoding_and_character_quoting">Section 3</a>.</p>
 </div>
 </div>
 <div class="sect4">
@@ -2067,7 +2067,7 @@ as follows:</p>
 </div>
 </div>
 <div class="paragraph">
-<p>String data can be used to contain almost any other kind of data, which is intended to be parsed as some other formalism. Characters outside the low ASCII (0-127) range must be UTF-8 encoded, with a small number of backslash-quoted ASCII characters allowed, as described in the section <a href="#_file_encoding_and_character_quoting">Section 3</a>.</p>
+<p>String data can be used to contain almost any other kind of data, which is intended to be parsed as some other formalism. Characters outside the low ASCII (0-127) range must be UTF-8 encoded, with a small number of backslash-quoted ASCII characters allowed, as described in the <a href="#_file_encoding_and_character_quoting">Section 3</a>.</p>
 </div>
 </div>
 <div class="sect4">
@@ -2083,7 +2083,7 @@ as follows:</p>
 </div>
 </div>
 <div class="paragraph">
-<p>Commas or periods for breaking long numbers are not allowed, since they confuse the use of commas used to denote list items (see section <a href="#_lists_of_built_in_types">Section 4.5.4</a> below).</p>
+<p>Commas or periods for breaking long numbers are not allowed, since they confuse the use of commas used to denote list items (see <a href="#_lists_of_built_in_types">Section 4.5.4</a> below).</p>
 </div>
 </div>
 <div class="sect4">
@@ -2099,7 +2099,7 @@ as follows:</p>
 </div>
 </div>
 <div class="paragraph">
-<p>Commas or periods for breaking long numbers are not allowed. Only periods may be used to separate the decimal part of a number; unfortunately, the European use of the comma for this purpose conflicts with the use of the comma to distinguish list items (see section <a href="#_lists_of_built_in_types">Section 4.5.4</a> below).</p>
+<p>Commas or periods for breaking long numbers are not allowed. Only periods may be used to separate the decimal part of a number; unfortunately, the European use of the comma for this purpose conflicts with the use of the comma to distinguish list items (see <a href="#_lists_of_built_in_types">Section 4.5.4</a> below).</p>
 </div>
 </div>
 <div class="sect4">
@@ -3080,7 +3080,7 @@ the syntax in this section is not part of dADL
 <p>The full set of equivalences appears below. Raw cADL is stored in the text-based form, to remove any difficulties with representation of symbols, to avoid difficulties of authoring cADL text in normal text editors which do not supply such symbols, and to aid reading in English. However, the symbolic form might be more widely used due to the use of tools, and formatting in HTML and other documentary formats, and may be more comfortable for non-English speakers and those with formal mathematical backgrounds. This document uses both conventions. The use of symbols or text is completely a matter of taste, and no meaning whatsoever is lost by completely ignoring one or other format according to one&#8217;s personal preference.</p>
 </div>
 <div class="paragraph">
-<p>In the standard cADL documented in this section, literal leaf values (such as the regular expression <code>/..*/</code> in the above example) are always constraints on a set of 'standard' widely-accepted primitive types, as described in the section <a href="#_dadl_data_adl">Section 4</a>.</p>
+<p>In the standard cADL documented in this section, literal leaf values (such as the regular expression <code>/..*/</code> in the above example) are always constraints on a set of 'standard' widely-accepted primitive types, as described in <a href="#_dadl_data_adl">Section 4</a>.</p>
 </div>
 </div>
 <div class="sect2">
@@ -3537,13 +3537,13 @@ be ambiguous i.e. has sibling nodes.</p>
 </div>
 </div>
 <div class="paragraph">
-<p>Logically, all non-unique parent nodes of an identified node must also be identified back to the root node. The primary function of node identifiers is in forming paths, enabling cADL nodes to be unambiguously referred to. The node identifier can also perform a second function, that of giving a design-time meaning to the node, by equating the node identifier to some description. Thus, in the example shown in section <a href="#_complex_objects">Section 5.3.1</a>, the <code>ELEMENT</code> node is identified by the code <code>[at0010]</code>, which can be designated elsewhere in an archetype as meaning "diastolic blood pressure".</p>
+<p>Logically, all non-unique parent nodes of an identified node must also be identified back to the root node. The primary function of node identifiers is in forming paths, enabling cADL nodes to be unambiguously referred to. The node identifier can also perform a second function, that of giving a design-time meaning to the node, by equating the node identifier to some description. Thus, in the example shown in <a href="#_complex_objects">Section 5.3.1</a>, the <code>ELEMENT</code> node is identified by the code <code>[at0010]</code>, which can be designated elsewhere in an archetype as meaning "diastolic blood pressure".</p>
 </div>
 <div class="paragraph">
 <p>Node ids are required only where it is necessary to create paths, for example in <code>use_node</code> statements. However, the underlying reference model might have stronger requirements. The <a href="http://www.openehr.org/programs/specification/releases/currentbaseline#RM">openEHR EHR information models</a> for example require that all node types which inherit from the class <code>LOCATABLE</code> have both a <code><em>archetype_node_id</em></code> and a runtime <code><em>name</em></code> attribute. Only data types (such as <code>QUANTITY</code>, <code>CODED_TEXT</code>) and their constituent types are exempt.</p>
 </div>
 <div class="paragraph">
-<p>Paths are used in cADL to refer to cADL nodes, and are expressed in the ADL path syntax, described in detail in section <a href="#_adl_paths">Section 7</a>. ADL paths have the same alternating object/attribute structure implied in the general hierarchical structure of cADL, obeying the pattern <code>TYPE/attribute/TYPE/attribute/&#8230;&#8203;</code>.</p>
+<p>Paths are used in cADL to refer to cADL nodes, and are expressed in the ADL path syntax, described in detail in <a href="#_adl_paths">Section 7</a>. ADL paths have the same alternating object/attribute structure implied in the general hierarchical structure of cADL, obeying the pattern <code>TYPE/attribute/TYPE/attribute/&#8230;&#8203;</code>.</p>
 </div>
 <div class="paragraph principle">
 <p><strong>Paths</strong> in cADL always refer to object nodes, and can only be constructed through nodes having node ids, or nodes which are the only child object of a single-cardinality attribute.</p>
@@ -3699,7 +3699,7 @@ it, as in the following example.</p>
 <div class="sect3">
 <h4 id="_archetype_slots"><a class="anchor" href="#_archetype_slots"></a>5.3.8. Archetype Slots</h4>
 <div class="paragraph">
-<p>At any point in a cADL definition, a constraint can be defined that allows other archetypes to be used, rather than defining the desired constraints inline. This is known as an archetype 'slot' or 'chaining point', i.e. a connection point whose allowable 'fillers' are constrained by a set of statements, written in the ADL assertion language (described in the <a href="#_assertions">Section 6</a> section).</p>
+<p>At any point in a cADL definition, a constraint can be defined that allows other archetypes to be used, rather than defining the desired constraints inline. This is known as an archetype 'slot' or 'chaining point', i.e. a connection point whose allowable 'fillers' are constrained by a set of statements, written in the ADL assertion language (described in <a href="#_assertions">Section 6</a>).</p>
 </div>
 <div class="paragraph">
 <p>An archetype slot is defined in terms of two lists of assertions statements defining which archetypes are allowed and/or which are excluded from filling that slot.</p>
@@ -3786,7 +3786,7 @@ short_concept_name</pre>
 <p>The value set could be simply enumerated within the archetype, for example using the <code>C_CODE_PHRASE</code> type defined in the openEHR Archetype Profile; this will work perfectly well, but has at least two limitations. Firstly, the intended set of values allowed for the attribute may change over time (e.g. as has happened with 'types of hepatitis' since 1980), requiring the archetype to be updated. With a large repository of archetypes, each containing coded term constraints, this approach is likely to be unsustainable and error-prone. Secondly, the best means of defining the value set is in general not likely to be via enumeration of the individual terms, but in the form of a semantic expression that can be evaluated against the terminology. This is because the value set is typically logically specified in terms of inclusions, exclusions, conjunctions and disjunctions of general categories.</p>
 </div>
 <div class="paragraph">
-<p>Consider for example the value set logically defined as "any bacterial infection of the lung". The possible values would be codes from a target terminology, corresponding to numerous strains of pneumococcus, staphlycoccus and so on, but not including species that are never found in the lung. Rather than enumerate the list of codes corresponding to this value set (which is likely to be quite large), the archetype author is more likely to rely on semantic links within the terminology to express the set; a query such as 'is-a bacteria and has-site lung' might be definable against the terminology (such as <a href="http://www.ihtsdo.org">SNOMED CT</a> or the <a href="http://www.who.int/classifications/icd/en/">WHO ICD10</a> terminology).</p>
+<p>Consider for example the value set logically defined as "any bacterial infection of the lung". The possible values would be codes from a target terminology, corresponding to numerous strains of pneumococcus, staphlycoccus and so on, but not including species that are never found in the lung. Rather than enumerate the list of codes corresponding to this value set (which is likely to be quite large), the archetype author is more likely to rely on semantic links within the terminology to express the set; a query such as 'is-a bacteria and has-site lung' might be definable against the terminology (such as <a href="http://www.snomed.org">SNOMED CT</a> or the <a href="http://www.who.int/classifications/icd/en/">WHO ICD10</a> terminology).</p>
 </div>
 <div class="paragraph">
 <p>In a similar way, other value sets, including for quantitative values, are likely to be specified by queries or formal expressions, and evaluated by an external knowledge service. Examples include "any
@@ -3884,7 +3884,7 @@ primitive types in cADL are expressed without type names, and omitting one level
 </div>
 </div>
 <div class="paragraph">
-<p>The first example constrains the runtime value of the <code><em>species</em></code> attribute of some object to take the value "platypus"; the second constrains it be either "platypus" or "kangaroo", and so on. <strong>In almost all cases, this kind of string constraint should be avoided</strong>, since it usually renders the body of the archetype language-dependent. Exceptions are proper names (e.g. "NHS", "Apgar"), product tradenames (but note even these are typically different in different language locales, even if the different names are not literally translations of each other). The preferred way of constraining string attributes in a language independent way is with local <code>[ac]</code> codes. See Section <a href="#_local_constraint_codes">Section 8.2.3</a>.</p>
+<p>The first example constrains the runtime value of the <code><em>species</em></code> attribute of some object to take the value "platypus"; the second constrains it be either "platypus" or "kangaroo", and so on. <strong>In almost all cases, this kind of string constraint should be avoided</strong>, since it usually renders the body of the archetype language-dependent. Exceptions are proper names (e.g. "NHS", "Apgar"), product tradenames (but note even these are typically different in different language locales, even if the different names are not literally translations of each other). The preferred way of constraining string attributes in a language independent way is with local <code>[ac]</code> codes. See <a href="#_local_constraint_codes">Section 8.2.3</a>.</p>
 </div>
 </div>
 <div class="sect4">
@@ -3909,7 +3909,7 @@ primitive types in cADL are expressed without type names, and omitting one level
 </div>
 </div>
 <div class="paragraph">
-<p>The rules for including special characters within strings are described in section <a href="#_file_encoding_and_character_quoting">Section 3</a>.</p>
+<p>The rules for including special characters within strings are described in <a href="#_file_encoding_and_character_quoting">Section 3</a>.</p>
 </div>
 <div class="paragraph">
 <p>The regular expression patterns supported in cADL are as follows.</p>
@@ -5528,7 +5528,7 @@ ontology
 </div>
 </div>
 <div class="paragraph">
-<p>The multi-axial identifier identifies archetypes in a global space. The syntax of the identifier is described in section <a href="#Archetype Identification">[Archetype Identification]</a> in <a href="https://specifications.openehr.org/releases/1.0.2/architecture/am/archetype_system.pdf">The openEHR Archetype System</a>.</p>
+<p>The multi-axial identifier identifies archetypes in a global space. The syntax of the identifier is described in <a href="#Archetype Identification">[Archetype Identification]</a> in <a href="https://specifications.openehr.org/releases/1.0.2/architecture/am/archetype_system.pdf">The openEHR Archetype System</a>.</p>
 </div>
 </div>
 <div class="sect3">
@@ -5802,7 +5802,7 @@ some non-conforming ADL tools in the past created archetypes without a <code>lan
 </div>
 </div>
 <div class="paragraph">
-<p>In the above, the node identifier <code>[at0000]</code> is assigned a meaning such as "clinical problem" in the archetype terminology section. The subsequent lines express a constraint on the runtime <em>name</em> attribute, using the internal code <code>[ac0001]</code> . The constraint <code>[ac0001]</code> is also defined in the archetype terminology section with a formal statement meaning "any clinical problem type", which could clearly evaluate to thousands of possible values, such as "diabetes", "arthritis" and so on. As a result, in the runtime data, the node identifier corresponding to "clinical problem" and the actual problem type chosen at runtime by a user, e.g. "diabetes", can both be found. This enables querying to find all nodes with meaning "problem", or all nodes describing the problem "diabetes". Internal <code>[acNNNN]</code> codes are described in he section <a href="#_local_constraint_codes">Section 8.2.3</a>.</p>
+<p>In the above, the node identifier <code>[at0000]</code> is assigned a meaning such as "clinical problem" in the archetype terminology section. The subsequent lines express a constraint on the runtime <em>name</em> attribute, using the internal code <code>[ac0001]</code> . The constraint <code>[ac0001]</code> is also defined in the archetype terminology section with a formal statement meaning "any clinical problem type", which could clearly evaluate to thousands of possible values, such as "diabetes", "arthritis" and so on. As a result, in the runtime data, the node identifier corresponding to "clinical problem" and the actual problem type chosen at runtime by a user, e.g. "diabetes", can both be found. This enables querying to find all nodes with meaning "problem", or all nodes describing the problem "diabetes". Internal <code>[acNNNN]</code> codes are described in he <a href="#_local_constraint_codes">Section 8.2.3</a>.</p>
 </div>
 </div>
 </div>

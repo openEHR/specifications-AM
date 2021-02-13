@@ -283,7 +283,7 @@ References with no namespace will remain legal, since there should be no computa
 
 === Supporting Archetype-based Querying
 
-Querying of data in openEHR systems is assumed to be based on archetype 'path-sets', i.e. the set of paths extracted from an operational (flat-form) archetype. The paths are a slight simplification of standard X-paths. Two querying methods have been described to date, AQL and a-path, both making this assumption (see <<openehr_query_aql>> ).
+Querying of data in openEHR systems is assumed to be based on archetype 'path-sets', i.e. the set of paths extracted from an operational (flat-form) archetype. The paths are a slight simplification of standard X-paths. Two querying methods have been described to date, {openehr_query_aql}[AQL^] and a-path, both making this assumption.
 
 Based on this assumption, given an archetype X used to create data, the following archetypes could be used for querying:
 
@@ -301,7 +301,7 @@ To address this situation, one of the following strategies is required:
 
 The second approach can be considered a generalisation of recording just the current archetype identifier, i.e. the 'lineage' for non-specialised archetypes evaluates to just that archetype id, and for specialised archteypes, it will be a list. This specification assumes that the second is used.
 
-The simplest form of this would be as a list of operational identifiers, e.g.
+The simplest form of this would be as a list of operational identifiers, e.g.:
 
 --------
     au.gov.nehta::openEHR-EHR-EVALUATION.genetic_diagnosis.v1.12.9,
@@ -322,13 +322,13 @@ A formal definition of reference catering to the above requirements is as follow
 
 === Optimisations
 
-In normal archetype-based data, both basic references and additional lineage information might be repeated throughout a given component, such as an openEHR or ISO 13606 `COMPOSITION` . Consider a `COMPOSITION` documenting problems & diagnoses of the patient, where each problem is recorded using the archetype
+In normal archetype-based data, both basic references and additional lineage information might be repeated throughout a given component, such as an openEHR or ISO 13606 `COMPOSITION`. Consider a `COMPOSITION` documenting problems & diagnoses of the patient, where each problem is recorded using the archetype
 
 --------
     uk.nhs.royalfree.clinical::openEHR-EHR-EVALUATION.diagnosis.v2.15.0
 --------
 
-whose lineage is:
+whose lineage is as follows:
 
 --------
     org.openehr::openEHR-EHR-EVALUATION.diagnosis.v1.29.0
@@ -361,7 +361,7 @@ A second question to consider is whether any parts of the identifiers could be r
 * a data extractor that transforms source data, say in openEHR form, to a standard form, say in ISO 13606 form. The archetype identifiers embedded in the latter data will be the original openEHR archetype identifiers (the extractor does not create new archetypes to do its transformation work);
 * a product that is directly based on another standard, such as ISO 13606 but uses the published library of openEHR archetypes.
 
-Similarly, in the case of the class, the data may easily be based on a descendant (e.g. the `POINT_EVENT` class in openEHR) of the class mentioned in the archetype (e.g. `EVENT` ).
+Similarly, in the case of the class, the data may easily be based on a descendant (e.g. the `POINT_EVENT` class in openEHR) of the class mentioned in the archetype (e.g. `EVENT`).
 
 We therefore assume that although some of the above assumptions might be available in very particular environments, they cannot be safely made in general, particularly since it can never be predicted where data may be shared.
 

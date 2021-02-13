@@ -509,11 +509,11 @@ An example which shows the difference between design-time meanings associated wi
     }
 --------
 
-In the above, the node identifier `[id1]` is assigned a meaning such as "clinical problem" in the archetype terminology section. The subsequent lines express a constraint on the runtime _name_ attribute, using the internal code `[ac1]` . The constraint `[ac1]` is also defined in the archetype terminology section with a formal statement meaning "any clinical problem type", which could clearly evaluate to thousands of possible values, such as "diabetes", "arthritis" and so on. As a result, in the runtime data, the node identifier corresponding to "clinical problem" and the actual problem type chosen at runtime by a user, e.g. "diabetes", can both be found. This enables querying to find all nodes with meaning "problem", or all nodes describing the problem "diabetes". Internal `[acNNNN]` codes are described in he section <<Local Constraint Codes>>.
+In the above, the node identifier `[id1]` is assigned a meaning such as "clinical problem" in the archetype terminology section. The subsequent lines express a constraint on the runtime _name_ attribute, using the internal code `[ac1]` . The constraint `[ac1]` is also defined in the archetype terminology section with a formal statement meaning "any clinical problem type", which could clearly evaluate to thousands of possible values, such as "diabetes", "arthritis" and so on. As a result, in the runtime data, the node identifier corresponding to "clinical problem" and the actual problem type chosen at runtime by a user, e.g. "diabetes", can both be found. This enables querying to find all nodes with meaning "problem", or all nodes describing the problem "diabetes". Internal `[acNNNN]` codes are described in he <<Local Constraint Codes>>.
 
 == Rules Section
 
-NOTE: the syntax of this section should not yet be considered stable, as it depends on the openEHR Expression Language, which is still be stabilised.
+NOTE: the syntax of this section should not yet be considered stable, as it depends on the openEHR Expression Language, which is still being stabilised.
 
 The `rules` section in an ADL archetype contains assertions which relate to the entire archetype, and can be used to make statements which are not possible within the block structure of the `definition` section. Any constraint that references more than one property is in this category, as are most constraints containing mathematical or logical formulae. Archetype assertions are a subset of the openEHR rules, described in the {openehr_expression}[openEHR Expression Language specification^].
 

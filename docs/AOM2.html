@@ -1869,7 +1869,7 @@ first names last name, organisation &lt;organisation email address&gt;</pre>
 <p>The archetype definition is the main definitional part of an archetype and is an instance of a <code>C_COMPLEX_OBJECT</code> . This means that the root of the constraint structure of an archetype always takes the form of a constraint on a non-primitive object type.</p>
 </div>
 <div class="paragraph">
-<p>The terminology section of an archetype is represented by its own classes, and is what allows archetypes to be natural language- and terminology-neutral. It is described in detail in the <a href="#terminology_package">Figure 23</a>.</p>
+<p>The terminology section of an archetype is represented by its own classes, and is what allows archetypes to be natural language- and terminology-neutral. It is described in detail in <a href="#terminology_package">Figure 23</a>.</p>
 </div>
 <div class="paragraph">
 <p>An archetype may include one or more rules. Rules are statements expressed in a subset of predicate logic, which can be used to state constraints on multiple parts of an object. They are not needed to constrain single attributes or objects (since this can be done with an appopriate <code>C_ATTRIBUTE</code> or <code>C_OBJECT</code> ), but are necessary for constraints referring to more than one attribute, such as a constraint that 'systolic pressure should be &gt;= diastolic pressure' in a blood pressure measurement archetype. They can also be used to declare variables, including external data query results, and make other constraints dependent on a variable value, e.g. the gender of the record subject.</p>
@@ -2589,7 +2589,7 @@ an_id: <code>String[1]</code><br>
 <p>All node types include two functions that formalise the notion of conformance of a specialised archetype to a parent archetype. Both functions take an argument which must be a corresponding node in a parent archetype, not necessarily the immediate parent. A 'corresponding' node is one found at the same or a congruent path. A congruent path is one in which one or more at-codes have been redefined in the specialised archetype.</p>
 </div>
 <div class="paragraph">
-<p>The <code><em>c_conforms_to</em></code> function returns True if the node on which it is called is a valid specialisation of the 'other' node. The <code><em>c_congruent_to</em></code> function returns True if the node on which it is called is the same as the other node, with the possible exception of a redefined at-code. The latter may happen due to the need to restrict the domain meaning of node to a meaning narrower than that of the same node in the parent. The formal semantics of both functions are given in the section <a href="AOM2.htm#50487317_85899">See Class Definitions</a>.</p>
+<p>The <code><em>c_conforms_to</em></code> function returns True if the node on which it is called is a valid specialisation of the 'other' node. The <code><em>c_congruent_to</em></code> function returns True if the node on which it is called is the same as the other node, with the possible exception of a redefined at-code. The latter may happen due to the need to restrict the domain meaning of node to a meaning narrower than that of the same node in the parent. The formal semantics of both functions are given in <a href="#_class_definitions_2">Section 4.5</a>.</p>
 </div>
 </div>
 <div class="sect4">
@@ -2867,7 +2867,7 @@ an_id: <code>String[1]</code><br>
 </ul>
 </div>
 <div class="paragraph">
-<p>A way of configuring this on a per-RM basis is described in the section <a href="#_rm_primitive_type_equivalences">Section 10.3</a> below.</p>
+<p>A way of configuring this on a per-RM basis is described in the <a href="#_rm_primitive_type_equivalences">Section 10.3</a> below.</p>
 </div>
 <div class="sect4">
 <h5 id="_assumed_value"><a class="anchor" href="#_assumed_value"></a>4.2.7.1. Assumed_value</h5>
@@ -2875,7 +2875,7 @@ an_id: <code>String[1]</code><br>
 <p>The <code><em>assumed_value</em></code> attribute is useful for archetypes containing any optional constraint. and provides an ability to define a value that can be assumed for a data item for which no data is found at execution time. If populated, it can contain a single at-code that must be in the local value set referred to by the ac-code in the <code><em>constraint</em></code> attribute.</p>
 </div>
 <div class="paragraph">
-<p>For example, an archetype for the concept 'blood pressure measurement' might contain an optional protocol section containing a data point for patient position, with choices 'lying', 'sitting' and 'standing'. Since the section is optional, data could be created according to the archetype which does not contain the protocol section. However, a blood pressure cannot be taken without the patient in some position, so clearly there is an implied value for patient position. Amongst clinicians, basic assumptions are nearly always made for such things: in general practice, the position could always safely be assumed to be "sitting" if not otherwise stated; in the hospital setting, "lying" would be the normal assumption. The assumed_value feature of archetypes allows such assumptions to be explicitly stated so that all users/systems know what value to assume when optional items are not included in the data.</p>
+<p>For example, an archetype for the concept 'blood pressure measurement' might contain an optional protocol section containing a data point for patient position, with choices 'lying', 'sitting' and 'standing'. Since the section is optional, data could be created according to the archetype which does not contain the protocol section. However, a blood pressure cannot be taken without the patient in some position, so clearly there is an implied value for patient position. Amongst clinicians, basic assumptions are nearly always made for such things: in general practice, the position could always safely be assumed to be 'sitting' if not otherwise stated; in the hospital setting, 'lying' would be the normal assumption. The <code><em>assumed_value</em></code> feature of archetypes allows such assumptions to be explicitly stated so that all users/systems know what value to assume when optional items are not included in the data.</p>
 </div>
 <div class="paragraph">
 <p>Note that the notion of assumed values is distinct from that of 'default values'. The latter notion is that of a default 'pre-filled' value that is provided (normally in a local context by a template) for a data item that is to be filled in by the user, but which is typically the same in many cases. Default values are thus simply an efficiency mechanism for users. As a result, default values do appear in data, while assumed values don&#8217;t.</p>
@@ -5761,7 +5761,7 @@ other: <code>C_SECOND_ORDER[1]</code><br>
 <div class="sect2">
 <h3 id="_overview_4"><a class="anchor" href="#_overview_4"></a>5.1. Overview</h3>
 <div class="paragraph">
-<p>The AOM <code>rules</code> package builds upon a subset of the <code>org.openehr.base.expressions</code> package described in the <a href="https://specifications.openehr.org/releases/BASE/Release-1.0.4/expression.html" target="_blank" rel="noopener">openEHR Expression Language specification</a>, and adds a small number of classes to express leaf reference types specific to archetypes. This enables expressions to be declared within archetypes that:</p>
+<p>The AOM <code>rules</code> package builds upon a subset of the <code>org.openehr.base.expressions</code> package described in the <a href="https://specifications.openehr.org/releases/BASE/Release-1.0.4/expression.html" target="_blank" rel="noopener">'original' openEHR Expression Language</a>, and adds a small number of classes to express leaf reference types specific to archetypes. This enables expressions to be declared within archetypes that:</p>
 </div>
 <div class="ulist">
 <ul>
@@ -5780,7 +5780,7 @@ other: <code>C_SECOND_ORDER[1]</code><br>
 <p>The general use of expressions in an archetype is in the <code>rules</code> section, where both variable declarataions and assertions are used to express object constraints ranging across multiple nodes, i.e. constraints that can&#8217;t be expressed 'inline' within the main <code>definition</code> section structure. In both of these places, their role is to constrain something <em>inside</em> the current archetype.</p>
 </div>
 <div class="paragraph">
-<p>Constraints on external resources such as terminologies are expressed in the constraint binding part in the archetype <code>terminology</code>, described in the <a href="#_terminology_package">Section 6</a> section. The AOM <code>rules</code> package is illustrated below.</p>
+<p>Constraints on external resources such as terminologies are expressed in the constraint binding part in the archetype <code>terminology</code>, described in <a href="#_terminology_package">Section 6</a>. The AOM <code>rules</code> package is illustrated below.</p>
 </div>
 <div id="rules_package" class="imageblock text-center text-center">
 <div class="content">
@@ -6032,7 +6032,7 @@ other: <code>C_SECOND_ORDER[1]</code><br>
 <p><code><em>value_sets</em></code>: optional structure defining value-set relationships for locally defined value sets. Each value set is identified by an ac-code and has as members one or more at-codes.</p>
 </li>
 <li>
-<p><code><em>terminology_extracts</em></code>: an optional structure containing extracts from external terminologies such as <a href="http://www.ihtsdo.org">SNOMED CT</a>, <a href="http://www.who.int/classifications/icd/en/">ICDx</a>, or any local terminology. These extracts include the codes and preferred term rubrics, enabling the terms to be used for both display purposes. This structure is normally only used for templates, enabling small value sets for which no external reference set or subset is defined to be captured locally in the template.</p>
+<p><code><em>terminology_extracts</em></code>: an optional structure containing extracts from external terminologies such as <a href="http://www.snomed.org">SNOMED CT</a>, <a href="http://www.who.int/classifications/icd/en/">ICDx</a>, or any local terminology. These extracts include the codes and preferred term rubrics, enabling the terms to be used for both display purposes. This structure is normally only used for templates, enabling small value sets for which no external reference set or subset is defined to be captured locally in the template.</p>
 </li>
 </ul>
 </div>
@@ -6846,7 +6846,7 @@ Hash of keys ("text", "description" etc) and corresponding values.</p>
 <h2 id="_templates"><a class="anchor" href="#_templates"></a>9. Templates</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Within the Archetype formalism, a template is used to aggregate and refine archetypes, to produce a structure corresponding to a particular data set. Templates thus provide a way to use archetypes for specific purposes, while the archetypes contain <em>possible</em> data items, not linked to specific purposes. See the <a href="https://specifications.openehr.org/releases/AM/Release-2.1.0/ADL2.html#_templates">ADL2 specification, Templates section</a> for a detailed description of template semantics.</p>
+<p>Within the Archetype formalism, a template is used to aggregate and refine archetypes, to produce a structure corresponding to a particular data set. Templates thus provide a way to use archetypes for specific purposes, while the archetypes contain <em>possible</em> data items, not linked to specific purposes. See the <a href="https://specifications.openehr.org/releases/AM/Release-2.1.0/ADL2.html#_templates" target="_blank" rel="noopener">ADL2 specification, Templates section</a> for a detailed description of template semantics.</p>
 </div>
 <div class="paragraph">
 <p>Templates are formally defined as specialised archetypes, via the <code>TEMPLATE</code> and <code>TEMPLATE_OVERLAY</code> classes shown in <a href="#archetype_package">Figure 6</a>. This means that all the formal characteristics of a template are defined by the openEHR Archetype Object Model (AOM) and Archetype Definition Language (ADL) specifications apply to templates. This includes the meta-data (inherited from the <code>AUTHORED_RESOURCE</code> class), specialisation semantics (templates can be specialised into other templates), <code>terminology</code> section (allowing multi-lingual local term definitions and external terminology bindings) as well as the <code>rules</code> and <code>annotations</code> sections.</p>
@@ -6860,7 +6860,7 @@ Hash of keys ("text", "description" etc) and corresponding values.</p>
 <div class="ulist">
 <ul>
 <li>
-<p>slot-filling - achieved by specialisation, as described in the <a href="https://specifications.openehr.org/releases/AM/Release-2.1.0/ADL2.html#_slot_filling_and_redefinition">ADL specification</a>;</p>
+<p>slot-filling - achieved by specialisation, as described in the <a href="https://specifications.openehr.org/releases/AM/Release-2.1.0/ADL2.html#_slot_filling_and_redefinition" target="_blank" rel="noopener">ADL specification</a>;</p>
 </li>
 <li>
 <p>specifying <code>{0..0}</code> constraints to remove elements not needed from the referenced archetypes;</p>
@@ -7208,7 +7208,7 @@ Hash of keys ("text", "description" etc) and corresponding values.</p>
 <div class="sect3">
 <h4 id="_configuration_file"><a class="anchor" href="#_configuration_file"></a>10.1.5. Configuration File</h4>
 <div class="paragraph">
-<p>Instances of the above classes can be expressed in an ODIN format file, as a convenient way of defining configuration for tools. Examples of such files used for the <a href="https://www.openehr.org/downloads/ADLworkbench">openEHR ADL Workbench</a> tool can be found in the <a href="https://github.com/openEHR/adl-tools/tree/master/apps/resources/aom_profiles">Github project for the tool</a>.</p>
+<p>Instances of the above classes can be expressed in an ODIN format file, as a convenient way of defining configuration for tools. Examples of such files used for the <a href="https://www.openehr.org/downloads/ADLworkbench" target="_blank" rel="noopener">openEHR ADL Workbench</a> tool can be found in the <a href="https://github.com/openEHR/adl-tools/tree/master/apps/resources/aom_profiles">Github project for the tool</a>.</p>
 </div>
 </div>
 </div>
@@ -7362,7 +7362,7 @@ Hash of keys ("text", "description" etc) and corresponding values.</p>
 <div class="sect2">
 <h3 id="_aom_lifecycle_state_mappings"><a class="anchor" href="#_aom_lifecycle_state_mappings"></a>10.5. AOM Lifecycle State Mappings</h3>
 <div class="paragraph">
-<p>Another kind of useful mapping adjustment that can help to make tools process archetypes in a more homogeneous way is to do with the AOM life-cycle states, which are standardised in the <a href="https://specifications.openehr.org/releases/AM/Release-2.1.0/Identification.html">openEHR Archetype Identification specification</a>. These states denote the state of a whole archetype in its authoring life cycle. Historically however there were no standard names, with the consequence that various archetype tools implement their own local lifecycle state names. To adjust for this the <code><em>aom_lifecycle_mappings</em></code> property in the <code>AOM_PROFILE</code> class can be used. These mappings have the effect of replacing the current value of the <code><em>lifecycle_state</em></code> property of the <code>RESOURCE_DESCRIPTION</code> instance of a parsed archetype with an openEHR standard state name. A typical example of the <code>description</code> section of an archetype with a local lifecycle state name is below.</p>
+<p>Another kind of useful mapping adjustment that can help to make tools process archetypes in a more homogeneous way is to do with the AOM life-cycle states, which are standardised in the <a href="https://specifications.openehr.org/releases/AM/Release-2.1.0/Identification.html" target="_blank" rel="noopener">openEHR Archetype Identification specification</a>. These states denote the state of a whole archetype in its authoring life cycle. Historically however there were no standard names, with the consequence that various archetype tools implement their own local lifecycle state names. To adjust for this the <code><em>aom_lifecycle_mappings</em></code> property in the <code>AOM_PROFILE</code> class can be used. These mappings have the effect of replacing the current value of the <code><em>lifecycle_state</em></code> property of the <code>RESOURCE_DESCRIPTION</code> instance of a parsed archetype with an openEHR standard state name. A typical example of the <code>description</code> section of an archetype with a local lifecycle state name is below.</p>
 </div>
 <div class="listingblock">
 <div class="content">

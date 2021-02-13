@@ -36,7 +36,7 @@ Some of the textual keywords in this example can be more efficiently rendered us
 
 The full set of equivalences appears below. Raw cADL is stored in the text-based form, to remove any difficulties with representation of symbols, to avoid difficulties of authoring cADL text in normal text editors which do not supply such symbols, and to aid reading in English. However, the symbolic form might be more widely used due to the use of tools, and formatting in HTML and other documentary formats, and may be more comfortable for non-English speakers and those with formal mathematical backgrounds. This document uses both conventions. The use of symbols or text is completely a matter of taste, and no meaning whatsoever is lost by completely ignoring one or other format according to one's personal preference.
 
-In the standard cADL documented in this section, literal leaf values (such as the regular expression `/..*/` in the above example) are always constraints on a set of 'standard' widely-accepted primitive types, as described in the section <<dADL - Data ADL>>.
+In the standard cADL documented in this section, literal leaf values (such as the regular expression `/..*/` in the above example) are always constraints on a set of 'standard' widely-accepted primitive types, as described in <<dADL - Data ADL>>.
 
 == Basics
 
@@ -391,11 +391,11 @@ members[at0104]/title
 members[at0105]/title
 --------
 
-Logically, all non-unique parent nodes of an identified node must also be identified back to the root node. The primary function of node identifiers is in forming paths, enabling cADL nodes to be unambiguously referred to. The node identifier can also perform a second function, that of giving a design-time meaning to the node, by equating the node identifier to some description. Thus, in the example shown in section <<Complex Objects>>, the `ELEMENT` node is identified by the code `[at0010]`, which can be designated elsewhere in an archetype as meaning "diastolic blood pressure".
+Logically, all non-unique parent nodes of an identified node must also be identified back to the root node. The primary function of node identifiers is in forming paths, enabling cADL nodes to be unambiguously referred to. The node identifier can also perform a second function, that of giving a design-time meaning to the node, by equating the node identifier to some description. Thus, in the example shown in <<Complex Objects>>, the `ELEMENT` node is identified by the code `[at0010]`, which can be designated elsewhere in an archetype as meaning "diastolic blood pressure".
 
 Node ids are required only where it is necessary to create paths, for example in `use_node` statements. However, the underlying reference model might have stronger requirements. The http://www.openehr.org/programs/specification/releases/currentbaseline#RM[openEHR EHR information models] for example require that all node types which inherit from the class `LOCATABLE` have both a `_archetype_node_id_` and a runtime `_name_` attribute. Only data types (such as `QUANTITY`, `CODED_TEXT`) and their constituent types are exempt. 
 
-Paths are used in cADL to refer to cADL nodes, and are expressed in the ADL path syntax, described in detail in section <<ADL Paths>>. ADL paths have the same alternating object/attribute structure implied in the general hierarchical structure of cADL, obeying the pattern `TYPE/attribute/TYPE/attribute/...`.
+Paths are used in cADL to refer to cADL nodes, and are expressed in the ADL path syntax, described in detail in <<ADL Paths>>. ADL paths have the same alternating object/attribute structure implied in the general hierarchical structure of cADL, obeying the pattern `TYPE/attribute/TYPE/attribute/...`.
 
 [.principle]
 *Paths* in cADL always refer to object nodes, and can only be constructed through nodes having node ids, or nodes which are the only child object of a single-cardinality attribute.
@@ -534,7 +534,7 @@ Like any other object node, a node defined using an internal reference has `occu
 
 === Archetype Slots
 
-At any point in a cADL definition, a constraint can be defined that allows other archetypes to be used, rather than defining the desired constraints inline. This is known as an archetype 'slot' or 'chaining point', i.e. a connection point whose allowable 'fillers' are constrained by a set of statements, written in the ADL assertion language (described in the <<Assertions>> section).
+At any point in a cADL definition, a constraint can be defined that allows other archetypes to be used, rather than defining the desired constraints inline. This is known as an archetype 'slot' or 'chaining point', i.e. a connection point whose allowable 'fillers' are constrained by a set of statements, written in the ADL assertion language (described in <<Assertions>>).
 
 An archetype slot is defined in terms of two lists of assertions statements defining which archetypes are allowed and/or which are excluded from filling that slot.
 
@@ -680,7 +680,7 @@ A String-valued attribute can be constrained by a list of strings (using the dAD
     species ∈ {"platypus", "kangaroo", "wombat"}
 --------
 
-The first example constrains the runtime value of the `_species_` attribute of some object to take the value "platypus"; the second constrains it be either "platypus" or "kangaroo", and so on. *In almost all cases, this kind of string constraint should be avoided*, since it usually renders the body of the archetype language-dependent. Exceptions are proper names (e.g. "NHS", "Apgar"), product tradenames (but note even these are typically different in different language locales, even if the different names are not literally translations of each other). The preferred way of constraining string attributes in a language independent way is with local `[ac]` codes. See Section <<Local Constraint Codes>>.
+The first example constrains the runtime value of the `_species_` attribute of some object to take the value "platypus"; the second constrains it be either "platypus" or "kangaroo", and so on. *In almost all cases, this kind of string constraint should be avoided*, since it usually renders the body of the archetype language-dependent. Exceptions are proper names (e.g. "NHS", "Apgar"), product tradenames (but note even these are typically different in different language locales, even if the different names are not literally translations of each other). The preferred way of constraining string attributes in a language independent way is with local `[ac]` codes. See <<Local Constraint Codes>>.
 
 ==== Regular Expression
 
@@ -701,7 +701,7 @@ The first two are identical, indicating that the attribute value must match the 
     units ∈ {^km/h|mi/h^}
 --------
 
-The rules for including special characters within strings are described in section <<File Encoding and Character Quoting>>.
+The rules for including special characters within strings are described in <<File Encoding and Character Quoting>>.
 
 The regular expression patterns supported in cADL are as follows.
 
