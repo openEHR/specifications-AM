@@ -198,7 +198,7 @@ A way of configuring this on a per-RM basis is described in <<RM Primitive Type 
 
 The `_assumed_value_` attribute is useful for archetypes containing any optional constraint. and provides an ability to define a value that can be assumed for a data item for which no data is found at execution time. If populated, it can contain a single at-code that must be in the local value set referred to by the ac-code in the `_constraint_` attribute.
 
-For example, an archetype for the concept 'blood pressure measurement' might contain an optional protocol section containing a data point for patient position, with choices 'lying', 'sitting' and 'standing'. Since the section is optional, data could be created according to the archetype which does not contain the protocol section. However, a blood pressure cannot be taken without the patient in some position, so clearly there is an implied value for patient position. Amongst clinicians, basic assumptions are nearly always made for such things: in general practice, the position could always safely be assumed to be "sitting" if not otherwise stated; in the hospital setting, "lying" would be the normal assumption. The assumed_value feature of archetypes allows such assumptions to be explicitly stated so that all users/systems know what value to assume when optional items are not included in the data.
+For example, an archetype for the concept 'blood pressure measurement' might contain an optional protocol section containing a data point for patient position, with choices 'lying', 'sitting' and 'standing'. Since the section is optional, data could be created according to the archetype which does not contain the protocol section. However, a blood pressure cannot be taken without the patient in some position, so clearly there is an implied value for patient position. Amongst clinicians, basic assumptions are nearly always made for such things: in general practice, the position could always safely be assumed to be 'sitting' if not otherwise stated; in the hospital setting, 'lying' would be the normal assumption. The `_assumed_value_` feature of archetypes allows such assumptions to be explicitly stated so that all users/systems know what value to assume when optional items are not included in the data.
 
 Note that the notion of assumed values is distinct from that of 'default values'. The latter notion is that of a default 'pre-filled' value that is provided (normally in a local context by a template) for a data item that is to be filled in by the user, but which is typically the same in many cases. Default values are thus simply an efficiency mechanism for users. As a result, default values do appear in data, while assumed values don't.
 
@@ -847,20 +847,20 @@ The following functions implement those of the same names in `C_PRIMITIVE_OBJECT
 [source,eiffel]
 ---------
 c_value_conforms_to (other: C_ORDERED): Boolean
-        -- True if this node is a strict subset of `other'
+        -- True if this node is a strict subset of `other`
     do
         Result := other.any_allowed or
-            for all c in constraint |
-                there_exists oc in other.constraint | oc.contains (c)
+            for_all c:constraint |
+                there_exists oc:other.constraint | oc.contains (c)
             end
     end
 
 c_value_congruent_to (C_ORDERED): Boolean
-        -- True if this node is the same as `other'
+        -- True if this node is the same as `other`
     do
         Result := constraint.count = other.constraint.count and
-            across constraint as ivl_csr all
-                ivl_csr.item.is_equal (other.constraint.i_th (ivl_csr.cursor_index))
+            for_all c:constraint |
+                c.is_equal (other.constraint.i_th (constraint.index_of(c)))
             end
     end
 ---------
@@ -876,7 +876,7 @@ The following functions redefine those of the same names in `C_ORDERED` and form
 [source,eiffel]
 ---------
 c_value_conforms_to (other: C_TEMPORAL): Boolean
-        -- True if this node is a strict subset of `other'
+        -- True if this node is a strict subset of `other`
     do
         Result := precursor (other) and
             other.pattern_constraint.is_empty or
@@ -885,7 +885,7 @@ c_value_conforms_to (other: C_TEMPORAL): Boolean
     end
 
 c_value_congruent_to (other: C_TEMPORAL): Boolean
-        -- True if this node's value constraint is the same as that of `other'
+        -- True if this node's value constraint is the same as that of `other`
     do
         Result := precursor (other) and
             pattern_constraint ~ other.pattern_constraint
@@ -913,6 +913,9 @@ c_value_conforms_to (other: C_TERMINOLOGY_CODE): Boolean
     do
         if other.any_allowed then
             Result := True
+            
+        -- if both constraints are ac-codes, compare the value-set expansions if the
+        -- terminology constraint strengths are both `required`
         elseif is_valid_value_set_code (constraint) and is_valid_value_set_code (other.constraint) then
             -- firstly, check if the other value-set is empty, which means there is no value-set, 
             -- i.e. no constraint, which means that this object's value set automatically conforms.
@@ -920,10 +923,12 @@ c_value_conforms_to (other: C_TERMINOLOGY_CODE): Boolean
             if not other_vset.is_empty then
                 this_vset := value_set_expanded
                 Result := codes_conformant (constraint, other.constraint) and then
-                    for_all v in this_vset | other_vset.has (v)
+                    for_all v: this_vset | other_vset.has (v)
             else
                 Result := True
             end
+            
+        -- otherwise it's at-codes, so we just check lexical conformance
         else
             Result := codes_conformant (constraint, other.constraint)
         end
@@ -934,12 +939,15 @@ c_value_congruent_to (other: C_TERMINOLOGY_CODE): Boolean
     local
         this_vset, other_vset: like value_set_expanded
     do
+        -- if both constraints are ac-codes, compare the value-set expansions
         if is_valid_value_set_code (constraint) and is_valid_value_set_code (other.constraint) then
             this_vset := value_set_expanded
             other_vset := other.value_set_expanded
             Result := constraint.is_equal (other.constraint) and then
                 this_vset.count = other_vset.count and then
-                    for_all v in this_vset | other_vset.has (v)
+                    for_all v: this_vset | other_vset.has (v)
+
+        -- otherwise it's at-codes, so we just compare them literally
         else
             Result := constraint.is_equal (other.constraint)
         end
@@ -986,18 +994,18 @@ c_conforms_to (other: C_ATTRIBUTE_TUPLE; rmcc: FUNCTION<<a_type, other_type: Str
         -- True if this node is a subset of, or the same as `other'
     do
         Result :=
-            for_all t in tuples |
-                there_exists ot in other.tuples | t.c_conforms_to (ot, rmcc)
+            for_all t: tuples |
+                there_exists ot: other.tuples | t.c_conforms_to (ot, rmcc)
             or else tuples.count < other.tuples.count and
-                for_all t in tuples |
-                    there_exists ot in other.tuples | t.c_congruent_to (ot)
+                for_all t: tuples |
+                    there_exists ot: other.tuples | t.c_congruent_to (ot)
     end
 
 c_congruent_to (other: C_ATTRIBUTE_TUPLE): BOOLEAN
         -- True if Current adds no further constraints with respect to `other'
     do
-        Result := for_all t in tuples |
-            there_exists ot in other.tuples | t.c_congruent_to (ot)
+        Result := for_all t: tuples |
+            there_exists ot: other.tuples | t.c_congruent_to (ot)
     end
 --------
 

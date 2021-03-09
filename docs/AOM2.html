@@ -1187,7 +1187,7 @@ Includes detailed input and review from:</p>
 <div class="ulist">
 <ul>
 <li>
-<p>Thomas Beale, Ars Semantica, UK; openEHR Foundation Management Board</p>
+<p>Thomas Beale, Ars Semantica, UK; openEHR International Board.</p>
 </li>
 </ul>
 </div>
@@ -1221,7 +1221,7 @@ Includes detailed input and review from:</p>
 <p>Joey Coyle MD, PhD, Intermountain Healthcare, New York</p>
 </li>
 <li>
-<p>Borut Fabjan, Program Manager, Marand, Slovenia</p>
+<p>Borut Fabjan, Program Manager, Better d.o.o., Slovenia</p>
 </li>
 <li>
 <p>Sebastian Garde PhD, Ocean Informatics, UK</p>
@@ -1245,7 +1245,7 @@ Includes detailed input and review from:</p>
 <p>Shinji Kobayashi PhD, Kyoto University EHR research unit, Japan</p>
 </li>
 <li>
-<p>Bostjan Lah, Architect, Marand, Slovenia</p>
+<p>Bostjan Lah, Architect, Better d.o.o., Slovenia</p>
 </li>
 <li>
 <p>Patrick Langford, NeuronSong LLC, Utah, USA</p>
@@ -2602,14 +2602,14 @@ lang: <code><a href="/releases/BASE/latest/foundation_types.html#_string_class" 
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><strong>component_terminologies</strong>: <code><a href="/releases/BASE/latest/foundation_types.html#_hash_class">Hash<sup></a>&lt;<a href="/releases/BASE/latest/foundation_types.html#_string_class">String</sup></a>,<a href="#_archetype_terminology_class">ARCHETYPE_TERMINOLOGY</a>&gt;</code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p>Compendium of flattened terminologies of archetypes externally referenced from this archetype, keyed by archetype identifier. This will almost always be present in a template.</p>
+<p>Compendium of flattened terminologies of archetypes  referenced from this template, keyed by archetype identifier. This will almost always be present in a template.</p>
 </div></div></td>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><strong>terminology_extracts</strong>: <code><a href="/releases/BASE/latest/foundation_types.html#_hash_class">Hash<sup></a>&lt;<a href="/releases/BASE/latest/foundation_types.html#_string_class">String</sup></a>,<a href="#_archetype_terminology_class">ARCHETYPE_TERMINOLOGY</a>&gt;</code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p>Directory of term definitions as a two-level  table. The outer hash keys are term codes,  e.g. "at4", and the inner hash key are term  attribute names, e.g. "text", "description" etc.</p>
+<p>Compendium of flattened terminology extracts (i.e. from external terminologies) from archetypes referenced from this template, keyed by archetype identifier.</p>
 </div></div></td>
 </tr>
 <tr>
@@ -3094,7 +3094,7 @@ an_id: <code><a href="/releases/BASE/latest/foundation_types.html#_string_class"
 <p>The <code><em>assumed_value</em></code> attribute is useful for archetypes containing any optional constraint. and provides an ability to define a value that can be assumed for a data item for which no data is found at execution time. If populated, it can contain a single at-code that must be in the local value set referred to by the ac-code in the <code><em>constraint</em></code> attribute.</p>
 </div>
 <div class="paragraph">
-<p>For example, an archetype for the concept 'blood pressure measurement' might contain an optional protocol section containing a data point for patient position, with choices 'lying', 'sitting' and 'standing'. Since the section is optional, data could be created according to the archetype which does not contain the protocol section. However, a blood pressure cannot be taken without the patient in some position, so clearly there is an implied value for patient position. Amongst clinicians, basic assumptions are nearly always made for such things: in general practice, the position could always safely be assumed to be "sitting" if not otherwise stated; in the hospital setting, "lying" would be the normal assumption. The assumed_value feature of archetypes allows such assumptions to be explicitly stated so that all users/systems know what value to assume when optional items are not included in the data.</p>
+<p>For example, an archetype for the concept 'blood pressure measurement' might contain an optional protocol section containing a data point for patient position, with choices 'lying', 'sitting' and 'standing'. Since the section is optional, data could be created according to the archetype which does not contain the protocol section. However, a blood pressure cannot be taken without the patient in some position, so clearly there is an implied value for patient position. Amongst clinicians, basic assumptions are nearly always made for such things: in general practice, the position could always safely be assumed to be 'sitting' if not otherwise stated; in the hospital setting, 'lying' would be the normal assumption. The <code><em>assumed_value</em></code> feature of archetypes allows such assumptions to be explicitly stated so that all users/systems know what value to assume when optional items are not included in the data.</p>
 </div>
 <div class="paragraph">
 <p>Note that the notion of assumed values is distinct from that of 'default values'. The latter notion is that of a default 'pre-filled' value that is provided (normally in a local context by a template) for a data item that is to be filled in by the user, but which is typically the same in many cases. Default values are thus simply an efficiency mechanism for users. As a result, default values do appear in data, while assumed values don&#8217;t.</p>
@@ -3144,7 +3144,7 @@ The second case in theory could be done using an ac-code referring to a value se
 <div class="sect4">
 <h5 id="_constraint_strengths"><a class="anchor" href="#_constraint_strengths"></a>4.2.8.2. Constraint Strengths</h5>
 <div class="paragraph">
-<p>Uniquely in the AOM, a Terminology code constraint may not be required, and may instead be considered informal. This is achieved via the attribute <code><em>constraint_status</em></code> which indicates either that the constraint is <code>required</code> (i.e. the data item must formally conform to the constraint), or three levels of informal constraint, namely <code>extensible (1) | preferred (2) | example (3)</code>. This particular model of constraint 'strength' follows the <a href="https://www.hl7.org/fhir/terminologies.html#strength" target="_blank" rel="noopener">HL7 FHIR 'binding strengths' model</a>. The convenience function <code><em>constraint_required</em>()</code> can be used to determine if the constraint is formal, i.e. if <code><em>constraint_status</em></code> has the value <code>required (0)</code> or else is not set.</p>
+<p>Uniquely in the AOM, a Terminology code constraint may not be required, and may instead be considered informal. This is achieved via the attribute <code><em>constraint_status</em></code> which indicates either that the constraint is <code>required (0)</code> (i.e. the data item must formally conform to the constraint), or three levels of informal constraint, namely <code>extensible (1) | preferred (2) | example (3)</code>. This particular model of constraint 'strength' follows the <a href="https://www.hl7.org/fhir/terminologies.html#strength" target="_blank" rel="noopener">HL7 FHIR 'binding strengths' model</a>. The convenience function <code><em>constraint_required</em>()</code> can be used to determine if the constraint is formal, i.e. if <code><em>constraint_status</em></code> has the value <code>required (0)</code> or else is not set.</p>
 </div>
 <div class="paragraph">
 <p>The informal constraint feature in <code>C_TERMINOLOGY_CODE</code> is provided to address the common real-world mismatch between local terminology use and more centrally defined archetypes. The enumeration values of 0 - 3 are designed such that the <code>required</code> constraint status (value = 0) is considered the default. Additionally, the <code><em>constraint_status</em></code> attribute is optional, and will not be present in archetypes authored with tools not including this feature. Accordingly, the <code><em>constraint_required</em>()</code> function returns <code>True</code> if <code><em>constraint_status</em></code> is Void. This means that in all archetypes containing <code>C_TERMINOLOGY_CODE</code> nodes with no <code><em>constraint_status</em></code>, such nodes are considered to express a formally required constraint.</p>
@@ -4460,7 +4460,7 @@ other: <code><a href="#_c_complex_object_class">C_COMPLEX_OBJECT</a>[1]</code><b
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>includes</strong>: <code><a href="/releases/BASE/latest/foundation_types.html#_list_class" target="_blank" rel="noopener">List</a>&lt;<a href="#_archetype_id_constraint_class">ARCHETYPE_ID_CONSTRAINT</a>&gt;</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>includes</strong>: <code><a href="/releases/BASE/latest/foundation_types.html#_list_class">List<sup></a>&lt;<a href="/releases/LANG/latest/bmm.html#_bmm_assertion_class">BMM_ASSERTION</sup></a>&gt;</code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>List of constraints defining other archetypes that could be included at this point.</p>
 </div></div></td>
@@ -5211,20 +5211,20 @@ other: <code><a href="#_c_ordered_class">C_ORDERED</a>[1]</code><br>
 <div class="listingblock">
 <div class="content">
 <pre class="pygments highlight"><code data-lang="eiffel"><span></span><span class="tok-n">c_value_conforms_to</span> <span class="tok-p">(</span><span class="tok-n">other</span><span class="tok-p">:</span> <span class="tok-nc">C_ORDERED</span><span class="tok-p">):</span> <span class="tok-n">Boolean</span>
-        <span class="tok-c1">-- True if this node is a strict subset of `other&#39;</span>
+        <span class="tok-c1">-- True if this node is a strict subset of `other`</span>
     <span class="tok-kr">do</span>
         <span class="tok-kc">Result</span> <span class="tok-o">:=</span> <span class="tok-n">other</span><span class="tok-p">.</span><span class="tok-n">any_allowed</span> <span class="tok-ow">or</span>
-            <span class="tok-n">for</span> <span class="tok-kr">all</span> <span class="tok-n">c</span> <span class="tok-n">in</span> <span class="tok-n">constraint</span> <span class="tok-o">|</span>
-                <span class="tok-n">there_exists</span> <span class="tok-n">oc</span> <span class="tok-n">in</span> <span class="tok-n">other</span><span class="tok-p">.</span><span class="tok-n">constraint</span> <span class="tok-o">|</span> <span class="tok-n">oc</span><span class="tok-p">.</span><span class="tok-n">contains</span> <span class="tok-p">(</span><span class="tok-n">c</span><span class="tok-p">)</span>
+            <span class="tok-n">for_all</span> <span class="tok-n">c</span><span class="tok-p">:</span><span class="tok-n">constraint</span> <span class="tok-o">|</span>
+                <span class="tok-n">there_exists</span> <span class="tok-n">oc</span><span class="tok-p">:</span><span class="tok-n">other</span><span class="tok-p">.</span><span class="tok-n">constraint</span> <span class="tok-o">|</span> <span class="tok-n">oc</span><span class="tok-p">.</span><span class="tok-n">contains</span> <span class="tok-p">(</span><span class="tok-n">c</span><span class="tok-p">)</span>
             <span class="tok-kr">end</span>
     <span class="tok-kr">end</span>
 
 <span class="tok-n">c_value_congruent_to</span> <span class="tok-p">(</span><span class="tok-nc">C_ORDERED</span><span class="tok-p">):</span> <span class="tok-n">Boolean</span>
-        <span class="tok-c1">-- True if this node is the same as `other&#39;</span>
+        <span class="tok-c1">-- True if this node is the same as `other`</span>
     <span class="tok-kr">do</span>
         <span class="tok-kc">Result</span> <span class="tok-o">:=</span> <span class="tok-n">constraint</span><span class="tok-p">.</span><span class="tok-n">count</span> <span class="tok-o">=</span> <span class="tok-n">other</span><span class="tok-p">.</span><span class="tok-n">constraint</span><span class="tok-p">.</span><span class="tok-n">count</span> <span class="tok-ow">and</span>
-            <span class="tok-kr">across</span> <span class="tok-n">constraint</span> <span class="tok-kr">as</span> <span class="tok-n">ivl_csr</span> <span class="tok-kr">all</span>
-                <span class="tok-n">ivl_csr</span><span class="tok-p">.</span><span class="tok-n">item</span><span class="tok-p">.</span><span class="tok-n">is_equal</span> <span class="tok-p">(</span><span class="tok-n">other</span><span class="tok-p">.</span><span class="tok-n">constraint</span><span class="tok-p">.</span><span class="tok-n">i_th</span> <span class="tok-p">(</span><span class="tok-n">ivl_csr</span><span class="tok-p">.</span><span class="tok-n">cursor_index</span><span class="tok-p">))</span>
+            <span class="tok-n">for_all</span> <span class="tok-n">c</span><span class="tok-p">:</span><span class="tok-n">constraint</span> <span class="tok-o">|</span>
+                <span class="tok-n">c</span><span class="tok-p">.</span><span class="tok-n">is_equal</span> <span class="tok-p">(</span><span class="tok-n">other</span><span class="tok-p">.</span><span class="tok-n">constraint</span><span class="tok-p">.</span><span class="tok-n">i_th</span> <span class="tok-p">(</span><span class="tok-n">constraint</span><span class="tok-p">.</span><span class="tok-n">index_of</span><span class="tok-p">(</span><span class="tok-n">c</span><span class="tok-p">)))</span>
             <span class="tok-kr">end</span>
     <span class="tok-kr">end</span></code></pre>
 </div>
@@ -5442,7 +5442,7 @@ other: <code><a href="#_c_ordered_class">C_ORDERED</a>[1]</code><br>
 <div class="listingblock">
 <div class="content">
 <pre class="pygments highlight"><code data-lang="eiffel"><span></span><span class="tok-n">c_value_conforms_to</span> <span class="tok-p">(</span><span class="tok-n">other</span><span class="tok-p">:</span> <span class="tok-nc">C_TEMPORAL</span><span class="tok-p">):</span> <span class="tok-n">Boolean</span>
-        <span class="tok-c1">-- True if this node is a strict subset of `other&#39;</span>
+        <span class="tok-c1">-- True if this node is a strict subset of `other`</span>
     <span class="tok-kr">do</span>
         <span class="tok-kc">Result</span> <span class="tok-o">:=</span> <span class="tok-kc">precursor</span> <span class="tok-p">(</span><span class="tok-n">other</span><span class="tok-p">)</span> <span class="tok-ow">and</span>
             <span class="tok-n">other</span><span class="tok-p">.</span><span class="tok-n">pattern_constraint</span><span class="tok-p">.</span><span class="tok-n">is_empty</span> <span class="tok-ow">or</span>
@@ -5451,7 +5451,7 @@ other: <code><a href="#_c_ordered_class">C_ORDERED</a>[1]</code><br>
     <span class="tok-kr">end</span>
 
 <span class="tok-n">c_value_congruent_to</span> <span class="tok-p">(</span><span class="tok-n">other</span><span class="tok-p">:</span> <span class="tok-nc">C_TEMPORAL</span><span class="tok-p">):</span> <span class="tok-n">Boolean</span>
-        <span class="tok-c1">-- True if this node&#39;s value constraint is the same as that of `other&#39;</span>
+        <span class="tok-c1">-- True if this node&#39;s value constraint is the same as that of `other`</span>
     <span class="tok-kr">do</span>
         <span class="tok-kc">Result</span> <span class="tok-o">:=</span> <span class="tok-kc">precursor</span> <span class="tok-p">(</span><span class="tok-n">other</span><span class="tok-p">)</span> <span class="tok-ow">and</span>
             <span class="tok-n">pattern_constraint</span> <span class="tok-o">~</span> <span class="tok-n">other</span><span class="tok-p">.</span><span class="tok-n">pattern_constraint</span>
@@ -6124,10 +6124,12 @@ other: <code><a href="#_c_terminology_code_class">C_TERMINOLOGY_CODE</a>[1]</cod
             <span class="tok-kr">if</span> <span class="tok-ow">not</span> <span class="tok-n">other_vset</span><span class="tok-p">.</span><span class="tok-n">is_empty</span> <span class="tok-kr">then</span>
                 <span class="tok-n">this_vset</span> <span class="tok-o">:=</span> <span class="tok-n">value_set_expanded</span>
                 <span class="tok-kc">Result</span> <span class="tok-o">:=</span> <span class="tok-n">codes_conformant</span> <span class="tok-p">(</span><span class="tok-n">constraint</span><span class="tok-p">,</span> <span class="tok-n">other</span><span class="tok-p">.</span><span class="tok-n">constraint</span><span class="tok-p">)</span> <span class="tok-ow">and then</span>
-                    <span class="tok-n">for_all</span> <span class="tok-n">v</span> <span class="tok-n">in</span> <span class="tok-n">this_vset</span> <span class="tok-o">|</span> <span class="tok-n">other_vset</span><span class="tok-p">.</span><span class="tok-n">has</span> <span class="tok-p">(</span><span class="tok-n">v</span><span class="tok-p">)</span>
+                    <span class="tok-n">for_all</span> <span class="tok-n">v</span><span class="tok-p">:</span> <span class="tok-n">this_vset</span> <span class="tok-o">|</span> <span class="tok-n">other_vset</span><span class="tok-p">.</span><span class="tok-n">has</span> <span class="tok-p">(</span><span class="tok-n">v</span><span class="tok-p">)</span>
             <span class="tok-kr">else</span>
                 <span class="tok-kc">Result</span> <span class="tok-o">:=</span> <span class="tok-kc">True</span>
             <span class="tok-kr">end</span>
+
+        <span class="tok-c1">-- otherwise it&#39;s at-codes, so we just check lexical conformance</span>
         <span class="tok-kr">else</span>
             <span class="tok-kc">Result</span> <span class="tok-o">:=</span> <span class="tok-n">codes_conformant</span> <span class="tok-p">(</span><span class="tok-n">constraint</span><span class="tok-p">,</span> <span class="tok-n">other</span><span class="tok-p">.</span><span class="tok-n">constraint</span><span class="tok-p">)</span>
         <span class="tok-kr">end</span>
@@ -6138,12 +6140,15 @@ other: <code><a href="#_c_terminology_code_class">C_TERMINOLOGY_CODE</a>[1]</cod
     <span class="tok-kr">local</span>
         <span class="tok-n">this_vset</span><span class="tok-p">,</span> <span class="tok-n">other_vset</span><span class="tok-p">:</span> <span class="tok-kr">like</span> <span class="tok-n">value_set_expanded</span>
     <span class="tok-kr">do</span>
+        <span class="tok-c1">-- if both constraints are ac-codes, compare the value-set expansions</span>
         <span class="tok-kr">if</span> <span class="tok-n">is_valid_value_set_code</span> <span class="tok-p">(</span><span class="tok-n">constraint</span><span class="tok-p">)</span> <span class="tok-ow">and</span> <span class="tok-n">is_valid_value_set_code</span> <span class="tok-p">(</span><span class="tok-n">other</span><span class="tok-p">.</span><span class="tok-n">constraint</span><span class="tok-p">)</span> <span class="tok-kr">then</span>
             <span class="tok-n">this_vset</span> <span class="tok-o">:=</span> <span class="tok-n">value_set_expanded</span>
             <span class="tok-n">other_vset</span> <span class="tok-o">:=</span> <span class="tok-n">other</span><span class="tok-p">.</span><span class="tok-n">value_set_expanded</span>
             <span class="tok-kc">Result</span> <span class="tok-o">:=</span> <span class="tok-n">constraint</span><span class="tok-p">.</span><span class="tok-n">is_equal</span> <span class="tok-p">(</span><span class="tok-n">other</span><span class="tok-p">.</span><span class="tok-n">constraint</span><span class="tok-p">)</span> <span class="tok-ow">and then</span>
                 <span class="tok-n">this_vset</span><span class="tok-p">.</span><span class="tok-n">count</span> <span class="tok-o">=</span> <span class="tok-n">other_vset</span><span class="tok-p">.</span><span class="tok-n">count</span> <span class="tok-ow">and then</span>
-                    <span class="tok-n">for_all</span> <span class="tok-n">v</span> <span class="tok-n">in</span> <span class="tok-n">this_vset</span> <span class="tok-o">|</span> <span class="tok-n">other_vset</span><span class="tok-p">.</span><span class="tok-n">has</span> <span class="tok-p">(</span><span class="tok-n">v</span><span class="tok-p">)</span>
+                    <span class="tok-n">for_all</span> <span class="tok-n">v</span><span class="tok-p">:</span> <span class="tok-n">this_vset</span> <span class="tok-o">|</span> <span class="tok-n">other_vset</span><span class="tok-p">.</span><span class="tok-n">has</span> <span class="tok-p">(</span><span class="tok-n">v</span><span class="tok-p">)</span>
+
+        <span class="tok-c1">-- otherwise it&#39;s at-codes, so we just compare them literally</span>
         <span class="tok-kr">else</span>
             <span class="tok-kc">Result</span> <span class="tok-o">:=</span> <span class="tok-n">constraint</span><span class="tok-p">.</span><span class="tok-n">is_equal</span> <span class="tok-p">(</span><span class="tok-n">other</span><span class="tok-p">.</span><span class="tok-n">constraint</span><span class="tok-p">)</span>
         <span class="tok-kr">end</span>
@@ -6424,18 +6429,18 @@ other: <code><a href="#_c_second_order_class">C_SECOND_ORDER</a>[1]</code><br>
         <span class="tok-c1">-- True if this node is a subset of, or the same as `other&#39;</span>
     <span class="tok-kr">do</span>
         <span class="tok-kc">Result</span> <span class="tok-o">:=</span>
-            <span class="tok-n">for_all</span> <span class="tok-n">t</span> <span class="tok-n">in</span> <span class="tok-n">tuples</span> <span class="tok-o">|</span>
-                <span class="tok-n">there_exists</span> <span class="tok-n">ot</span> <span class="tok-n">in</span> <span class="tok-n">other</span><span class="tok-p">.</span><span class="tok-n">tuples</span> <span class="tok-o">|</span> <span class="tok-n">t</span><span class="tok-p">.</span><span class="tok-n">c_conforms_to</span> <span class="tok-p">(</span><span class="tok-n">ot</span><span class="tok-p">,</span> <span class="tok-n">rmcc</span><span class="tok-p">)</span>
+            <span class="tok-n">for_all</span> <span class="tok-n">t</span><span class="tok-p">:</span> <span class="tok-n">tuples</span> <span class="tok-o">|</span>
+                <span class="tok-n">there_exists</span> <span class="tok-n">ot</span><span class="tok-p">:</span> <span class="tok-n">other</span><span class="tok-p">.</span><span class="tok-n">tuples</span> <span class="tok-o">|</span> <span class="tok-n">t</span><span class="tok-p">.</span><span class="tok-n">c_conforms_to</span> <span class="tok-p">(</span><span class="tok-n">ot</span><span class="tok-p">,</span> <span class="tok-n">rmcc</span><span class="tok-p">)</span>
             <span class="tok-ow">or else</span> <span class="tok-n">tuples</span><span class="tok-p">.</span><span class="tok-n">count</span> <span class="tok-o">&lt;</span> <span class="tok-n">other</span><span class="tok-p">.</span><span class="tok-n">tuples</span><span class="tok-p">.</span><span class="tok-n">count</span> <span class="tok-ow">and</span>
-                <span class="tok-n">for_all</span> <span class="tok-n">t</span> <span class="tok-n">in</span> <span class="tok-n">tuples</span> <span class="tok-o">|</span>
-                    <span class="tok-n">there_exists</span> <span class="tok-n">ot</span> <span class="tok-n">in</span> <span class="tok-n">other</span><span class="tok-p">.</span><span class="tok-n">tuples</span> <span class="tok-o">|</span> <span class="tok-n">t</span><span class="tok-p">.</span><span class="tok-n">c_congruent_to</span> <span class="tok-p">(</span><span class="tok-n">ot</span><span class="tok-p">)</span>
+                <span class="tok-n">for_all</span> <span class="tok-n">t</span><span class="tok-p">:</span> <span class="tok-n">tuples</span> <span class="tok-o">|</span>
+                    <span class="tok-n">there_exists</span> <span class="tok-n">ot</span><span class="tok-p">:</span> <span class="tok-n">other</span><span class="tok-p">.</span><span class="tok-n">tuples</span> <span class="tok-o">|</span> <span class="tok-n">t</span><span class="tok-p">.</span><span class="tok-n">c_congruent_to</span> <span class="tok-p">(</span><span class="tok-n">ot</span><span class="tok-p">)</span>
     <span class="tok-kr">end</span>
 
 <span class="tok-n">c_congruent_to</span> <span class="tok-p">(</span><span class="tok-n">other</span><span class="tok-p">:</span> <span class="tok-nc">C_ATTRIBUTE_TUPLE</span><span class="tok-p">):</span> <span class="tok-nc">BOOLEAN</span>
         <span class="tok-c1">-- True if Current adds no further constraints with respect to `other&#39;</span>
     <span class="tok-kr">do</span>
-        <span class="tok-kc">Result</span> <span class="tok-o">:=</span> <span class="tok-n">for_all</span> <span class="tok-n">t</span> <span class="tok-n">in</span> <span class="tok-n">tuples</span> <span class="tok-o">|</span>
-            <span class="tok-n">there_exists</span> <span class="tok-n">ot</span> <span class="tok-n">in</span> <span class="tok-n">other</span><span class="tok-p">.</span><span class="tok-n">tuples</span> <span class="tok-o">|</span> <span class="tok-n">t</span><span class="tok-p">.</span><span class="tok-n">c_congruent_to</span> <span class="tok-p">(</span><span class="tok-n">ot</span><span class="tok-p">)</span>
+        <span class="tok-kc">Result</span> <span class="tok-o">:=</span> <span class="tok-n">for_all</span> <span class="tok-n">t</span><span class="tok-p">:</span> <span class="tok-n">tuples</span> <span class="tok-o">|</span>
+            <span class="tok-n">there_exists</span> <span class="tok-n">ot</span><span class="tok-p">:</span> <span class="tok-n">other</span><span class="tok-p">.</span><span class="tok-n">tuples</span> <span class="tok-o">|</span> <span class="tok-n">t</span><span class="tok-p">.</span><span class="tok-n">c_congruent_to</span> <span class="tok-p">(</span><span class="tok-n">ot</span><span class="tok-p">)</span>
     <span class="tok-kr">end</span></code></pre>
 </div>
 </div>
@@ -6729,7 +6734,7 @@ other: <code><a href="#_c_second_order_class">C_SECOND_ORDER</a>[1]</code><br>
 <p><code><em>value_sets</em></code>: optional structure defining value-set relationships for locally defined value sets. Each value set is identified by an ac-code and has as members one or more at-codes.</p>
 </li>
 <li>
-<p><code><em>terminology_extracts</em></code>: an optional structure containing extracts from external terminologies such as <a href="http://www.ihtsdo.org" target="_blank" rel="noopener">SNOMED CT</a>, <a href="http://www.who.int/classifications/icd/en/" target="_blank" rel="noopener">ICDx</a>, or any local terminology. These extracts include the codes and preferred term rubrics, enabling the terms to be used for both display purposes. This structure is normally only used for templates, enabling small value sets for which no external reference set or subset is defined to be captured locally in the template.</p>
+<p><code><em>terminology_extracts</em></code>: an optional structure containing extracts from external terminologies such as <a href="http://www.snomed.org" target="_blank" rel="noopener">SNOMED CT</a>, <a href="http://www.who.int/classifications/icd/en/" target="_blank" rel="noopener">ICDx</a>, or any local terminology. These extracts include the codes and preferred term rubrics, enabling the terms to be used for both display purposes. This structure is normally only used for templates, enabling small value sets for which no external reference set or subset is defined to be captured locally in the template.</p>
 </li>
 </ul>
 </div>
@@ -8205,7 +8210,7 @@ Hash of keys ("text", "description" etc) and corresponding values.</p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2020-07-27 10:37:15 +0100
+Last updated 2021-01-25 15:45:23 UTC
 </div>
 </div>
 <link rel="stylesheet" href="https://specifications.openehr.org/styles/pygments-default.css">
