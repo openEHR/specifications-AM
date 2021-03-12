@@ -522,7 +522,7 @@
 <tr>
 <td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><a href="https://specifications.openehr.org/tickets/SPECPUB-7" target="_blank" rel="noopener">SPECPUB-7</a>: Convert citations to bibtex form.</p>
+<p><a href="https://specifications.openehr.org/tickets/SPECPUB-7" target="_blank" rel="noopener">SPECPUB-7</a>. Convert citations to bibtex form.</p>
 </div></div></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">T Beale</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">15 Dec 2019</p></td>
@@ -536,6 +536,9 @@
  J Zeilstra,<br>
  T Beale</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">09 Aug 2019</p></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top" colspan="4"><p class="tableblock"><strong>AM Release 2.2.0</strong></p></th>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">2.2.0</p></td>
@@ -5005,11 +5008,14 @@ other: <code><a href="#_c_boolean_class">C_BOOLEAN</a>[1]</code><br>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Meaning</strong></p></th>
 </tr>
 <tr>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>1..1<br>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1<br>
 (redefined)</strong></p></th>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><strong>constraint</strong>: <code><a href="/releases/BASE/latest/foundation_types.html#_list_class">List<sup></a>&lt;<a href="/releases/BASE/latest/foundation_types.html#_string_class">String</sup></a>&gt;</code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>String constraint - a list of literal strings and / or regular expression strings delimited by the ‘/’ character.</p>
+</div>
+<div class="paragraph">
+<p>To represent no constraint, use an empty list, or alternatively, a regex 'any' pattern, i.e. <code>/.*/</code>.</p>
 </div></div></td>
 </tr>
 <tr>
@@ -5056,7 +5062,7 @@ a_value: <code><a href="/releases/BASE/latest/foundation_types.html#_string_clas
 <br>
 <em>Post</em>: <code>Result = constraint.is_empty or else constraint.count = 1 and constraint.first.is_equal (Regex_any_string)</code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p>True if any value (i.e. instance) of the reference model type would be allowed. Redefined in descendants.</p>
+<p>True if <code><em>constraint</em></code> is empty or else contains one String for the regex 'any' pattern.</p>
 </div></div></td>
 </tr>
 <tr>
@@ -5260,11 +5266,14 @@ other: <code><a href="#_c_ordered_class">C_ORDERED</a>[1]</code><br>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Meaning</strong></p></th>
 </tr>
 <tr>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>1..1<br>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1<br>
 (redefined)</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>constraint</strong>: <code><a href="/releases/BASE/latest/foundation_types.html#_interval_class">Interval<sup></a>&lt;<a href="/releases/BASE/latest/foundation_types.html#_integer_class">Integer</sup></a>&gt;</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>constraint</strong>: <code><a href="/releases/BASE/latest/foundation_types.html#_list_class">List<sup></a>&lt;<a href="/releases/BASE/latest/foundation_types.html#_interval_class">Interval</sup></a>&lt;<a href="/releases/BASE/latest/foundation_types.html#_integer_class" target="_blank" rel="noopener">Integer</a>&gt;&gt;</code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p>Formal constraint on <code>Integer</code>, in the form of <code>List&lt;Interval&lt;Integer&gt;&gt;</code>.</p>
+<p>Formal constraint on <code>Integer</code>, in the form of one or more <code>Interval&lt;Integer&gt;</code>.</p>
+</div>
+<div class="paragraph">
+<p>To represent no constraint, use an empty list.</p>
 </div></div></td>
 </tr>
 <tr>
@@ -5315,11 +5324,14 @@ other: <code><a href="#_c_ordered_class">C_ORDERED</a>[1]</code><br>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Meaning</strong></p></th>
 </tr>
 <tr>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>1..1<br>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1<br>
 (redefined)</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>constraint</strong>: <code><a href="/releases/BASE/latest/foundation_types.html#_interval_class">Interval<sup></a>&lt;<a href="/releases/BASE/latest/foundation_types.html#_real_class">Real</sup></a>&gt;</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>constraint</strong>: <code><a href="/releases/BASE/latest/foundation_types.html#_list_class">List<sup></a>&lt;<a href="/releases/BASE/latest/foundation_types.html#_interval_class">Interval</sup></a>&lt;<a href="/releases/BASE/latest/foundation_types.html#_real_class" target="_blank" rel="noopener">Real</a>&gt;&gt;</code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p>Formal constraint on <code>Real</code>, in the form of <code>List&lt;Interval&lt;Real&gt;&gt;</code>.</p>
+<p>Formal constraint on <code>Real</code>, in the form of one or more <code>Interval&lt;Real&gt;</code>.</p>
+</div>
+<div class="paragraph">
+<p>To represent no constraint, use an empty list.</p>
 </div></div></td>
 </tr>
 <tr>
@@ -5494,9 +5506,12 @@ other: <code><a href="#_c_ordered_class">C_ORDERED</a>[1]</code><br>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1<br>
 (redefined)</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>constraint</strong>: <code><a href="/releases/BASE/latest/foundation_types.html#_interval_class">Interval<sup></a>&lt;<a href="/releases/BASE/latest/foundation_types.html#_iso8601_date_class">Iso8601_date</sup></a>&gt;</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>constraint</strong>: <code><a href="/releases/BASE/latest/foundation_types.html#_list_class">List<sup></a>&lt;<a href="/releases/BASE/latest/foundation_types.html#_interval_class">Interval</sup></a>&lt;<a href="/releases/BASE/latest/foundation_types.html#_iso8601_date_class" target="_blank" rel="noopener">Iso8601_date</a>&gt;&gt;</code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p>Formal constraint on the assumed primitive <code>Iso8601_date</code> type, in the form of List of <code>Interval&lt;Iso8601_date&gt;</code>, i.e. one or more intervals of <code>Iso8601_date</code>.</p>
+<p>Formal constraint on the assumed primitive <code>Iso8601_date</code> type, in the form of one or more <code>Interval&lt;Iso8601_date&gt;</code>.</p>
+</div>
+<div class="paragraph">
+<p>For a pattern constraint or no constraint, use an empty list.</p>
 </div></div></td>
 </tr>
 <tr>
@@ -5584,9 +5599,12 @@ other: <code><a href="#_c_ordered_class">C_ORDERED</a>[1]</code><br>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1<br>
 (redefined)</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>constraint</strong>: <code><a href="/releases/BASE/latest/foundation_types.html#_interval_class">Interval<sup></a>&lt;<a href="/releases/BASE/latest/foundation_types.html#_iso8601_time_class">Iso8601_time</sup></a>&gt;</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>constraint</strong>: <code><a href="/releases/BASE/latest/foundation_types.html#_list_class">List<sup></a>&lt;<a href="/releases/BASE/latest/foundation_types.html#_interval_class">Interval</sup></a>&lt;<a href="/releases/BASE/latest/foundation_types.html#_iso8601_time_class" target="_blank" rel="noopener">Iso8601_time</a>&gt;&gt;</code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p>Formal constraint on the assumed primitive <code>Iso8601_time</code> type, in the form of List of <code>Interval&lt;Iso8601_time&gt;</code>, i.e. one or more intervals of <code>Iso8601_time</code>.</p>
+<p>Formal constraint on the assumed primitive <code>Iso8601_time</code> type, in the form of one or more <code>Interval&lt;Iso8601_time&gt;</code>.</p>
+</div>
+<div class="paragraph">
+<p>For a pattern constraint or no constraint, use an empty list.</p>
 </div></div></td>
 </tr>
 <tr>
@@ -5681,9 +5699,12 @@ other: <code><a href="#_c_ordered_class">C_ORDERED</a>[1]</code><br>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1<br>
 (redefined)</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>constraint</strong>: <code><a href="/releases/BASE/latest/foundation_types.html#_interval_class">Interval<sup></a>&lt;<a href="/releases/BASE/latest/foundation_types.html#_iso8601_date_time_class">Iso8601_date_time</sup></a>&gt;</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>constraint</strong>: <code><a href="/releases/BASE/latest/foundation_types.html#_list_class">List<sup></a>&lt;<a href="/releases/BASE/latest/foundation_types.html#_interval_class">Interval</sup></a>&lt;<a href="/releases/BASE/latest/foundation_types.html#_iso8601_date_time_class" target="_blank" rel="noopener">Iso8601_date_time</a>&gt;&gt;</code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p>Formal constraint on the assumed primitive <code>Iso8601_date_time</code> type, in the form of List of <code>Interval&lt;Iso8601_date_time&gt;</code>, i.e. one or more intervals of <code>Iso8601_date_time</code>.</p>
+<p>Formal constraint on the assumed primitive <code>Iso8601_date_time</code> type, in the form of one or more <code>Interval&lt;Iso8601_date_time&gt;</code>.</p>
+</div>
+<div class="paragraph">
+<p>For a pattern constraint or no constraint, use an empty list.</p>
 </div></div></td>
 </tr>
 <tr>
@@ -5805,9 +5826,12 @@ other: <code><a href="#_c_ordered_class">C_ORDERED</a>[1]</code><br>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1<br>
 (redefined)</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>constraint</strong>: <code><a href="/releases/BASE/latest/foundation_types.html#_interval_class">Interval<sup></a>&lt;<a href="/releases/BASE/latest/foundation_types.html#_iso8601_duration_class">Iso8601_duration</sup></a>&gt;</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>constraint</strong>: <code><a href="/releases/BASE/latest/foundation_types.html#_list_class">List<sup></a>&lt;<a href="/releases/BASE/latest/foundation_types.html#_interval_class">Interval</sup></a>&lt;<a href="/releases/BASE/latest/foundation_types.html#_iso8601_duration_class" target="_blank" rel="noopener">Iso8601_duration</a>&gt;&gt;</code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p>Formal constraint on the assumed primitive <code>Iso8601_duration</code> type, in the form of List of <code>Interval&lt;Iso8601_duration&gt;</code>, i.e. one or more intervals of <code>Iso8601_duration</code>.</p>
+<p>Formal constraint on the assumed primitive <code>Iso8601_duration</code> type, in the form of one or more <code>Interval&lt;Iso8601_duration&gt;</code>.</p>
+</div>
+<div class="paragraph">
+<p>For a pattern constraint or no constraint, use an empty list.</p>
 </div></div></td>
 </tr>
 <tr>
@@ -5940,6 +5964,9 @@ other: <code><a href="#_c_ordered_class">C_ORDERED</a>[1]</code><br>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><strong>constraint</strong>: <code><a href="/releases/BASE/latest/foundation_types.html#_string_class" target="_blank" rel="noopener">String</a></code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>Type of individual constraint - a single string that can either be a local at-code, or a local ac-code signifying a locally defined value set. If an ac-code, assumed_value may contain an at-code from the value set of the ac-code.</p>
+</div>
+<div class="paragraph">
+<p>Use an empty string for no constraint.</p>
 </div></div></td>
 </tr>
 <tr>
@@ -6014,7 +6041,7 @@ a_value: <code><a href="/releases/BASE/latest/foundation_types.html#_terminology
 <br>
 <em>Post</em>: <code>Result := constraint.is_empty</code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p>True if any value (i.e. instance) of the reference model type would be allowed. Redefined in descendants.</p>
+<p>True if <code><em>constraint</em></code> is empty.</p>
 </div></div></td>
 </tr>
 <tr>
@@ -6117,6 +6144,9 @@ other: <code><a href="#_c_terminology_code_class">C_TERMINOLOGY_CODE</a>[1]</cod
     <span class="tok-kr">do</span>
         <span class="tok-kr">if</span> <span class="tok-n">other</span><span class="tok-p">.</span><span class="tok-n">any_allowed</span> <span class="tok-kr">then</span>
             <span class="tok-kc">Result</span> <span class="tok-o">:=</span> <span class="tok-kc">True</span>
+
+        <span class="tok-c1">-- if both constraints are ac-codes, compare the value-set expansions if the</span>
+        <span class="tok-c1">-- terminology constraint strengths are both `required`</span>
         <span class="tok-kr">elseif</span> <span class="tok-n">is_valid_value_set_code</span> <span class="tok-p">(</span><span class="tok-n">constraint</span><span class="tok-p">)</span> <span class="tok-ow">and</span> <span class="tok-n">is_valid_value_set_code</span> <span class="tok-p">(</span><span class="tok-n">other</span><span class="tok-p">.</span><span class="tok-n">constraint</span><span class="tok-p">)</span> <span class="tok-kr">then</span>
             <span class="tok-c1">-- firstly, check if the other value-set is empty, which means there is no value-set,</span>
             <span class="tok-c1">-- i.e. no constraint, which means that this object&#39;s value set automatically conforms.</span>
@@ -7785,24 +7815,24 @@ Hash of keys ("text", "description" etc) and corresponding values.</p>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Meaning</strong></p></th>
 </tr>
 <tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>1..1</strong></p></th>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>profile_name</strong>: <code><a href="/releases/BASE/latest/foundation_types.html#_string_class" target="_blank" rel="noopener">String</a></code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Name of this profile, usually based on the publisher it pertains to e.g. "openEHR", "cdisc", etc.</p>
+</div></div></td>
+</tr>
+<tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><strong>aom_rm_type_substitutions</strong>: <code><a href="/releases/BASE/latest/foundation_types.html#_hash_class">Hash<sup></a>&lt;<a href="/releases/BASE/latest/foundation_types.html#_string_class">String</sup></a>, <a href="/releases/BASE/latest/foundation_types.html#_string_class" target="_blank" rel="noopener">String</a>&gt;</code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p>Allowed type substitutions: Actual RM type names keyed by AOM built-in types which can subsitute for them in an archetype. E.g. <code>&lt;value = "String", key = "ISO8601_DATE"&gt;</code> means that if RM property <code>TYPE.<em>some_property</em></code> is of type <code>String</code>, an <code>ISO8601_DATE</code> is allowed at that position in the archetype.</p>
+<p>Allowed type substitutions: Actual RM type names keyed by AOM built-in types which can subsitute for them in an archetype. E.g. <code>&lt;key = "ISO8601_DATE", value = "String"&gt;</code> means that if RM property <code>TYPE.<em>some_property</em></code> is of type <code>String</code>, an <code>ISO8601_DATE</code> is allowed at that position in the archetype.</p>
 </div></div></td>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><strong>aom_lifecycle_mappings</strong>: <code><a href="/releases/BASE/latest/foundation_types.html#_hash_class">Hash<sup></a>&lt;<a href="/releases/BASE/latest/foundation_types.html#_string_class">String</sup></a>, <a href="/releases/BASE/latest/foundation_types.html#_string_class" target="_blank" rel="noopener">String</a>&gt;</code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p>List of mappings of lifecycle state names used in archetypes to AOM lifecycle state names. value = AOM lifecycle state; key = source lifecycle state.</p>
-</div></div></td>
-</tr>
-<tr>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>1..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>profile_name</strong>: <code><a href="/releases/BASE/latest/foundation_types.html#_string_class" target="_blank" rel="noopener">String</a></code></p></td>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p>Name of this profile, usually based on the publisher it pertains to e.g. "openEHR", "cdisc", etc.</p>
+<p>List of mappings of lifecycle state names used in archetypes to AOM lifecycle state names: key = source lifecycle state; value = AOM lifecycle state.</p>
 </div></div></td>
 </tr>
 <tr>
@@ -7821,7 +7851,7 @@ Hash of keys ("text", "description" etc) and corresponding values.</p>
 <div class="ulist">
 <ul>
 <li>
-<p>value	key</p>
+<p><code>value</code>	<code>key</code></p>
 </li>
 <li>
 <p>"Real"	"Double"</p>
@@ -8210,7 +8240,7 @@ Hash of keys ("text", "description" etc) and corresponding values.</p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2021-01-25 15:45:23 UTC
+Last updated 2021-03-09 11:12:16 UTC
 </div>
 </div>
 <link rel="stylesheet" href="https://specifications.openehr.org/styles/pygments-default.css">

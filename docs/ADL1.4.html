@@ -948,7 +948,7 @@
 <div class="title">Note</div>
 </td>
 <td class="content">
-this specification is a re-formatted issue of the <a href="https://specifications.openehr.org/releases/1.0.2/architecture/am/adl1.4.pdf" target="_blank" rel="noopener">original ADL 1.4 Specification from openEHR Release 1.0.2</a>. There are slight changes in formatting, citations and other references, corrections to typographical errors and changed syntax colourisation due to the use of more modern language-based syntax colourisers in the publishing tools.
+this specification is a re-formatted issue of the <a href="https://specifications.openehr.org/releases/1.0.2/architecture/am/adl.pdf" target="_blank" rel="noopener">original ADL 1.4 Specification from openEHR Release 1.0.2</a>. There are slight changes in formatting, citations and other references, corrections to typographical errors and changed syntax colourisation due to the use of more modern language-based syntax colourisers in the publishing tools.
 </td>
 </tr>
 </table>
@@ -1328,7 +1328,7 @@ the structure, as shown in the following example:</p>
 </ul>
 </div>
 <div class="paragraph">
-<p>URIs (a data type in ODIN) are assumed to be 'percent-encoded' according to <a href="https://www.ietf.org/rfc/rfc3986" target="_blank" rel="noopener">IETF RFC 3986</a>, which applies to all characters outside the 'unreserved set'. The unreserved set is:</p>
+<p>URIs (a data type in ODIN) are assumed to be 'percent-encoded' according to <a href="https://tools.ietf.org/html/rfc3986" target="_blank" rel="noopener">IETF RFC 3986</a>, which applies to all characters outside the 'unreserved set'. The unreserved set is:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -1360,7 +1360,7 @@ the structure, as shown in the following example:</p>
 <p><code>\uHHHH</code> - 4 hex digits which will be the same (possibly 0-filled on the left) as the unicode code-point number expressed in hexadecimal; this applies to unicode codepoints in the range <code>U+0000</code> - <code>U+FFFF</code> (the 'base multi-lingual plane', BMP);</p>
 </li>
 <li>
-<p><code>\uHHHHHHHH</code> - 8 hex digits to encode unicode code-points in the range <code>U+10000</code> through <code>U+10FFFF</code> (non-BMP planes); the algorithm is described in <a href="https://www.ietf.org/html/rfc2781" target="_blank" rel="noopener">IETF RFC 2781</a>.</p>
+<p><code>\uHHHHHHHH</code> - 8 hex digits to encode unicode code-points in the range <code>U+10000</code> through <code>U+10FFFF</code> (non-BMP planes); the algorithm is described in <a href="https://tools.ietf.org/html/rfc2781" target="_blank" rel="noopener">IETF RFC 2781</a>.</p>
 </li>
 </ul>
 </div>
@@ -2268,7 +2268,7 @@ http://www.mozilla.org/products/firefox/upgrade/?application=thunderbird</pre>
 </div>
 </div>
 <div class="paragraph">
-<p>Encoding of special characters in URIs follows the <a href="https://www.ietf.org/rfc/rfc3986" target="_blank" rel="noopener">IETF RFC 3986</a>, as described under <a href="#_file_encoding_and_character_quoting">Section 3</a>.</p>
+<p>Encoding of special characters in URIs follows the <a href="https://tools.ietf.org/html/rfc3986" target="_blank" rel="noopener">IETF RFC 3986</a>, as described under <a href="#_file_encoding_and_character_quoting">Section 3</a>.</p>
 </div>
 </div>
 <div class="sect4">
@@ -3792,7 +3792,7 @@ short_concept_name</pre>
 <p>The value set could be simply enumerated within the archetype, for example using the <code>C_CODE_PHRASE</code> type defined in the openEHR Archetype Profile; this will work perfectly well, but has at least two limitations. Firstly, the intended set of values allowed for the attribute may change over time (e.g. as has happened with 'types of hepatitis' since 1980), requiring the archetype to be updated. With a large repository of archetypes, each containing coded term constraints, this approach is likely to be unsustainable and error-prone. Secondly, the best means of defining the value set is in general not likely to be via enumeration of the individual terms, but in the form of a semantic expression that can be evaluated against the terminology. This is because the value set is typically logically specified in terms of inclusions, exclusions, conjunctions and disjunctions of general categories.</p>
 </div>
 <div class="paragraph">
-<p>Consider for example the value set logically defined as "any bacterial infection of the lung". The possible values would be codes from a target terminology, corresponding to numerous strains of pneumococcus, staphlycoccus and so on, but not including species that are never found in the lung. Rather than enumerate the list of codes corresponding to this value set (which is likely to be quite large), the archetype author is more likely to rely on semantic links within the terminology to express the set; a query such as 'is-a bacteria and has-site lung' might be definable against the terminology (such as <a href="http://www.ihtsdo.org">SNOMED CT</a> or the <a href="http://www.who.int/classifications/icd/en/">WHO ICD10</a> terminology).</p>
+<p>Consider for example the value set logically defined as "any bacterial infection of the lung". The possible values would be codes from a target terminology, corresponding to numerous strains of pneumococcus, staphlycoccus and so on, but not including species that are never found in the lung. Rather than enumerate the list of codes corresponding to this value set (which is likely to be quite large), the archetype author is more likely to rely on semantic links within the terminology to express the set; a query such as 'is-a bacteria and has-site lung' might be definable against the terminology (such as <a href="http://www.snomed.org">SNOMED CT</a> or the <a href="http://www.who.int/classifications/icd/en/">WHO ICD10</a> terminology).</p>
 </div>
 <div class="paragraph">
 <p>In a similar way, other value sets, including for quantitative values, are likely to be specified by queries or formal expressions, and evaluated by an external knowledge service. Examples include "any

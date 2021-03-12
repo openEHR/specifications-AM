@@ -15,10 +15,12 @@ h|*Attributes*
 ^h|*Signature*
 ^h|*Meaning*
 
-h|*1..1 +
+h|*0..1 +
 (redefined)*
 |*constraint*: `link:/releases/BASE/{base_release}/foundation_types.html#_list_class[List^]<link:/releases/BASE/{base_release}/foundation_types.html#_string_class[String^]>`
 a|String constraint - a list of literal strings and / or regular expression strings delimited by the ‘/’ character.
+
+To represent no constraint, use an empty list, or alternatively, a regex 'any' pattern, i.e. `/.*/`.
 
 h|*0..1 +
 (redefined)*
@@ -50,7 +52,7 @@ h|*1..1 +
 |*any_allowed* (): `link:/releases/BASE/{base_release}/foundation_types.html#_boolean_class[Boolean^]` +
  +
 __Post__: `Result = constraint.is_empty or else constraint.count = 1 and constraint.first.is_equal (Regex_any_string)`
-a|True if any value (i.e. instance) of the reference model type would be allowed. Redefined in descendants.
+a|True if `_constraint_` is empty or else contains one String for the regex 'any' pattern.
 
 h|*1..1 +
 (effected)*
