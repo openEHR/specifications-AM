@@ -9,25 +9,27 @@ h|*Description*
 2+a|Constraint on complex objects, i.e. any object that consists of other object constraints.
 
 h|*Inherit*
-2+|`C_DEFINED_OBJECT`
+2+|`<<_c_defined_object_class,C_DEFINED_OBJECT>>`
 
 h|*Attributes*
 ^h|*Signature*
 ^h|*Meaning*
 
 h|*0..1*
-|*attributes*: `List<C_ATTRIBUTE>`
+|*attributes*: `link:/releases/BASE/{base_release}/foundation_types.html#_list_class[List^]<<<_c_attribute_class,C_ATTRIBUTE>>>`
 a|List of constraints on attributes of the reference model type represented by this object.
 
 h|*0..1*
-|*attribute_tuples*: `List<C_ATTRIBUTE_TUPLE>`
+|*attribute_tuples*: `link:/releases/BASE/{base_release}/foundation_types.html#_list_class[List^]<<<_c_attribute_tuple_class,C_ATTRIBUTE_TUPLE>>>`
 a|List of attribute tuple constraints under this object constraint, if any.
 h|*Functions*
 ^h|*Signature*
 ^h|*Meaning*
 
-h|(effected)
-|*any_allowed* (): `Boolean` +
-*_Post_*: `Result = attributes.is_empty and not is_prohibited`
+h|*1..1 +
+(effected)*
+|*any_allowed* (): `link:/releases/BASE/{base_release}/foundation_types.html#_boolean_class[Boolean^]` +
+ +
+__Post__: `Result = attributes.is_empty and not is_prohibited`
 a|True if any value (i.e. instance) of the reference model type would be allowed. Redefined in descendants.
 |===

@@ -9,7 +9,7 @@ h|*Description*
 2+a|Constraint on instances of `Boolean`. Both attributes cannot be set to False, since this would mean that the Boolean value being constrained cannot be `True` or `False`.
 
 h|*Inherit*
-2+|`C_PRIMITIVE_OBJECT`
+2+|`<<_c_primitive_object_class,C_PRIMITIVE_OBJECT>>`
 
 h|*Attributes*
 ^h|*Signature*
@@ -17,40 +17,45 @@ h|*Attributes*
 
 h|*0..1 +
 (redefined)*
-|*constraint*: `List<Boolean>`
+|*constraint*: `link:/releases/BASE/{base_release}/foundation_types.html#_list_class[List^]<link:/releases/BASE/{base_release}/foundation_types.html#_boolean_class[Boolean^]>`
 a|Boolean constraint - a list of Boolean values.
 
 h|*0..1 +
 (redefined)*
-|*assumed_value*: `Boolean`
+|*assumed_value*: `link:/releases/BASE/{base_release}/foundation_types.html#_boolean_class[Boolean^]`
 a|Assumed Boolean value.
 
 h|*1..1 +
 (redefined)*
-|*default_value*: `Boolean`
+|*default_value*: `link:/releases/BASE/{base_release}/foundation_types.html#_boolean_class[Boolean^]`
 a|Default Boolean value.
 h|*Functions*
 ^h|*Signature*
 ^h|*Meaning*
 
-h|(effected)
-|*prototype_value* (): `Boolean`
+h|*1..1 +
+(effected)*
+|*prototype_value* (): `link:/releases/BASE/{base_release}/foundation_types.html#_boolean_class[Boolean^]`
 a|Prototype Boolean value.
 
-h|(effected)
-|*any_allowed* (): `Boolean` +
-*_Post_*: `Result = constraint.is_empty`
+h|*1..1 +
+(effected)*
+|*any_allowed* (): `link:/releases/BASE/{base_release}/foundation_types.html#_boolean_class[Boolean^]` +
+ +
+__Post__: `Result = constraint.is_empty`
 a|True if any value (i.e. instance) of the reference model type would be allowed. Redefined in descendants.
 
-h|(effected)
+h|*1..1 +
+(effected)*
 |*c_value_conforms_to* ( +
-other: `C_BOOLEAN[1]` +
-): `Boolean`
+other: `<<_c_boolean_class,C_BOOLEAN>>[1]` +
+): `link:/releases/BASE/{base_release}/foundation_types.html#_boolean_class[Boolean^]`
 a|True if `_other.any_allowed_` or else every constraint in the `_constraint_` list exists in the `_other.constraint_`.
 
-h|(effected)
+h|*1..1 +
+(effected)*
 |*c_value_congruent_to* ( +
-other: `C_BOOLEAN[1]` +
-): `Boolean`
+other: `<<_c_boolean_class,C_BOOLEAN>>[1]` +
+): `link:/releases/BASE/{base_release}/foundation_types.html#_boolean_class[Boolean^]`
 a|True if the items in `_constraint_` are equal in number and identical pair-wise with those in `_other.constraint_`.
 |===

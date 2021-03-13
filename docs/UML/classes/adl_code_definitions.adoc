@@ -13,15 +13,15 @@ h|*Constants*
 ^h|*Meaning*
 
 h|*1..1*
-|*Id_code_leader*: `String{nbsp}={nbsp}"id"`
+|*Id_code_leader*: `link:/releases/BASE/{base_release}/foundation_types.html#_string_class[String^]{nbsp}={nbsp}"id"`
 a|String leader of ‘identifier’ codes, i.e. codes used to identify archteype nodes.
 
 h|*1..1*
-|*Value_code_leader*: `String{nbsp}={nbsp}"at"`
+|*Value_code_leader*: `link:/releases/BASE/{base_release}/foundation_types.html#_string_class[String^]{nbsp}={nbsp}"at"`
 a|String leader of ‘value’ codes, i.e. codes used to identify codes values, including value set members.
 
 h|*1..1*
-|*Value_set_code_leader*: `String{nbsp}={nbsp}"ac"`
+|*Value_set_code_leader*: `link:/releases/BASE/{base_release}/foundation_types.html#_string_class[String^]{nbsp}={nbsp}"ac"`
 a|String leader of ‘value set’ codes, i.e. codes used to identify value sets.
 
 h|*1..1*
@@ -29,68 +29,72 @@ h|*1..1*
 a|Character used to separate numeric parts of codes belonging to different specialisation levels.
 
 h|*1..1*
-|*Code_regex_pattern*: `String{nbsp}={nbsp}"(0&#124;[1-9][0-9]&#42;)(\.(0&#124;[1-9][0-9]&#42;))&#42;"`
+|*Code_regex_pattern*: `link:/releases/BASE/{base_release}/foundation_types.html#_string_class[String^]{nbsp}={nbsp}"(0&#124;[1-9][0-9]&#42;)(\.(0&#124;[1-9][0-9]&#42;))&#42;"`
 a|Regex used to define the legal numeric part of any archetype code. Corresponds to the simple pattern of dotted numbers, as used in typical multi-level numbering schemes.
 
 h|*1..1*
-|*Root_code_regex_pattern*: `String{nbsp}={nbsp}"^id1(\.1)&#42;$"`
+|*Root_code_regex_pattern*: `link:/releases/BASE/{base_release}/foundation_types.html#_string_class[String^]{nbsp}={nbsp}"^id1(\.1)&#42;$"`
 a|Regex pattern of the root id code of any archetype. Corresponds to codes of the form id1, id1.1, id1.1.1 etc..
 
 h|*1..1*
-|*Primitive_node_id*: `String{nbsp}={nbsp}"id9999"`
+|*Primitive_node_id*: `link:/releases/BASE/{base_release}/foundation_types.html#_string_class[String^]{nbsp}={nbsp}"id9999"`
 a|Code id used for C_PRIMITIVE_OBJECT nodes on creation.
 h|*Functions*
 ^h|*Signature*
 ^h|*Meaning*
 
-h|
+h|*1..1*
 |*codes_conformant* ( +
-a_child_code: `String[1]`, +
-a_parent_code: `String[1]` +
-): `Boolean`
+a_child_code: `link:/releases/BASE/{base_release}/foundation_types.html#_string_class[String^][1]`, +
+a_parent_code: `link:/releases/BASE/{base_release}/foundation_types.html#_string_class[String^][1]` +
+): `link:/releases/BASE/{base_release}/foundation_types.html#_boolean_class[Boolean^]`
 a|True if a_child_code conforms to a_parent_code in the sense of specialisation, i.e. is a_child_code the same as or more specialised than a_parent_code.
 
-h|
+h|*1..1*
 |*is_adl_code* ( +
-a_code: `String[1]` +
-): `Boolean` +
-*_Post_*: `Result = is_id_code (a_code) or else is_value_code (a_code) or else is_value_set_code (a_code)`
+a_code: `link:/releases/BASE/{base_release}/foundation_types.html#_string_class[String^][1]` +
+): `link:/releases/BASE/{base_release}/foundation_types.html#_boolean_class[Boolean^]` +
+ +
+__Post__: `Result = is_id_code (a_code) or else is_value_code (a_code) or else is_value_set_code (a_code)`
 a|True if a_code is any kind of ADL archetype local code.
 
-h|
+h|*1..1*
 |*is_id_code* ( +
-a_code: `String[1]` +
-): `Boolean` +
-*_Post_*: `Result = a_code.starts_with (Id_code_leader)`
+a_code: `link:/releases/BASE/{base_release}/foundation_types.html#_string_class[String^][1]` +
+): `link:/releases/BASE/{base_release}/foundation_types.html#_boolean_class[Boolean^]` +
+ +
+__Post__: `Result = a_code.starts_with (Id_code_leader)`
 a|True if a_code is an 'id' code.
 
-h|
+h|*1..1*
 |*is_value_code* ( +
-a_code: `String[1]` +
-): `Boolean` +
-*_Post_*: `Result = a_code.starts_with (Value_code_leader)`
+a_code: `link:/releases/BASE/{base_release}/foundation_types.html#_string_class[String^][1]` +
+): `link:/releases/BASE/{base_release}/foundation_types.html#_boolean_class[Boolean^]` +
+ +
+__Post__: `Result = a_code.starts_with (Value_code_leader)`
 a|True if a_code is an 'at' code, i.e. a code representing a single terminology item.
 
-h|
+h|*1..1*
 |*is_value_set_code* ( +
-a_code: `String[1]` +
-): `Boolean` +
-*_Post_*: `Result = a_code.starts_with (Value_set_code_leader)`
+a_code: `link:/releases/BASE/{base_release}/foundation_types.html#_string_class[String^][1]` +
+): `link:/releases/BASE/{base_release}/foundation_types.html#_boolean_class[Boolean^]` +
+ +
+__Post__: `Result = a_code.starts_with (Value_set_code_leader)`
 a|True if a_code is an 'ac' code, i.e. a code referring to a terminologyvalue set.
 
-h|
+h|*1..1*
 |*is_redefined_code* ( +
-a_code: `String[1]` +
-): `Boolean`
+a_code: `link:/releases/BASE/{base_release}/foundation_types.html#_string_class[String^][1]` +
+): `link:/releases/BASE/{base_release}/foundation_types.html#_boolean_class[Boolean^]`
 a|A code has been specialised if there is a non-zero code index anywhere above the last index e.g.
 
 * at0.0.1 -> False
 * at1.0.1 -> True
 
-h|
+h|*1..1*
 |*code_exists_at_level* ( +
-a-code: `String[1]`, +
-a_level: `Integer[1]` +
-): `Boolean`
+a-code: `link:/releases/BASE/{base_release}/foundation_types.html#_string_class[String^][1]`, +
+a_level: `link:/releases/BASE/{base_release}/foundation_types.html#_integer_class[Integer^][1]` +
+): `link:/releases/BASE/{base_release}/foundation_types.html#_boolean_class[Boolean^]`
 a|Is `a_code' valid at level `a_level' or less, i.e. if we remove its trailing specialised part corresponding to specialisation below `a_level', and then any trailing '.0' pieces, do we end up with a valid code? If so it means that the code corresponds to a real node from `a_level' or higher.
 |===
