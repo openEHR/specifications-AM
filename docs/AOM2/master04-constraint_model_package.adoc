@@ -127,14 +127,14 @@ Along with `C_ATTRIBUTE`, `C_COMPLEX_OBJECT` is the key structuring type of the 
 
 Constraints on primitive types are defined by the classes inheriting from `C_PRIMITIVE_OBJECT` , i.e. `C_STRING` , `C_INTEGER` and so on. The primitive types are represented in such a way as to accommodate both 'tuple' constraints and logically unary constraints, using a tuple array whose members are each a primitive constraint corresponding to each primitive type. Tuple constraints are second order constraints, described below, enable covarying constraints to be stated. In the unary case, the constraint is the first member of a tuple array.
 
-`C_PRIMITIVE_OBJECT` instances are created with a fixed id-code `ADL_CODE_DEFINITIONS._primitive_node_id_` as the value of `_node_id_` (see <<ADL_CODE_DEFINITIONS Class>>). For this reason, no node identifier needs to be supplied in a syntax or serialised form of an archetype, including ADL.
+`C_PRIMITIVE_OBJECT` instances represented in {openehr_am_adl2}[ADL 'short' form^] are created with a fixed id-code `ADL_CODE_DEFINITIONS._primitive_node_id_` as the value of `_node_id_` (see <<ADL_CODE_DEFINITIONS Class>>). For regularly structured `C_PRIMITIVE_OBJECT` instances, a normal node identifier is required.
 
-The primitive constraint for each primitive type may itself be complex. Its RM type is given by the type of the `_constraint_` accessor in each `C_PRIMITIVE_OBJECT` descendant and is summarised in the following table.
+The primitive constraint for each primitive type may itself be complex. Its Reference Model (RM) type is given by the type of the `_constraint_` accessor in each `C_PRIMITIVE_OBJECT` descendant and is summarised in the following table. 
 
 [[primitive-types,Primitive Types]]
 [width="100%",cols="1,1,2,3",options="header",]
 |===========
-|AOM type             |RM Primitive type       |AOM Primitive constrainer type |Explanation
+|AOM type             |RM primitive type       |AOM primitive constrainer type |Explanation
 |`C_BOOLEAN`          |`Boolean`               |`List <Boolean>`               |Can represent one or two Boolean values, enabling the logical constraints 
                                                                                 'true', 'false' and 'true or false' to be expressed.
 |`C_STRING`           |`String`                |`List <String>`                |A list of possible string values, which may include regular expressions, 
@@ -162,7 +162,7 @@ The primitive constraint for each primitive type may itself be complex. Its RM t
 |`C_TIME`             |`Time`                  |`List <Interval<Time>>` +
                                                 OR +
                                                 String (ADL pattern)           |As for Temporal types with T = `Time`
-|`C_DATE_TIME`        |`Date_time` OR `DateTime` |`List <Interval<Date_time>>` +
+|`C_DATE_TIME`        |`Date_time`             |`List <Interval<Date_time>>` +
                                                 OR +
                                                  String (ADL pattern)          |As for Temporal types with T = `Date_time`
 |`C_DURATION`         |`Duration`              |`List <Interval<Duration>>` +
@@ -170,15 +170,14 @@ The primitive constraint for each primitive type may itself be complex. Its RM t
                                                 String (ADL pattern)           |As for Temporal types with T = `Duration`
 |===========
 
-Note in the above that the `C_DATE_TIME` AOM type is assumed by default to apply to data items of the RM types `DateTime` and `Date_time`, including any variations in case.
+The RM primitive types listed above are assumed to exist (possibly with different names) within any RM used as the basis for creating archetypes. Where any do not exist - e.g. if there are no date/time types in a particular RM - no archetype constraints can be defined for such nodes. Where the types have different names, name mapping can be performed as described in <<RM Primitive Type Equivalences>> below.
 
-In order to accommodate concrete type variants that are used in common type systems, the following RM type matching should be considered to occur by default:
+This facility can be used to effect the following mappings from `C_PRIMITIVE_OBJECT` descendants (`C_STRING`, `C_INTEGER` etc) to the types found in any particular RM.
 
 * `String` variants: in addition to matching `String`, `C_STRING` should match `StringN` and `String_N` instances, to accommodate RM types such as `String8`, `String_32` etc;
 * `Integer` variants: in addition to matching `Integer`, `C_INTEGER` should match `IntegerN` and `Integer_N`, to accommodate RM types such as `Integer_16`, `Integer64` etc;
-* `Real` variants: in addition to matching `Real`, `C_REAL` should match `RealN` and `Real_N` and `Double`, to accommodate RM types such as `Real_32`, `Real64` and `Double`.
-
-A way of configuring this on a per-RM basis is described in the <<RM Primitive Type Equivalences>> below.
+* `Real` variants: in addition to matching `Real`, `C_REAL` should match `RealN` and `Real_N` and `Double`, to accommodate RM types such as `Real_32`, `Real64` and `Double`;
+* `Date_time` variants: typical names for `Date_time` such as `DateTime`, `TimeStamp` etc should be mapped to `C_DATE`.
 
 ==== Assumed_value
 

@@ -3523,8 +3523,10 @@ Only set if it overrides the parent archetype in the case of specialised archety
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>1..1</strong></p></th>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><strong>node_id</strong>: <code>String</code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p>Semantic identifier of this node, used to dis-tinguish sibling nodes. All nodes must have a node_id; for nodes under a container <code>C_ATTRIBUTE</code>, the id must be an id-code must be defined in the archetype terminology. For valid structures, all node ids are id-codes.
-For <code>C_PRIMITIVE_OBJECTs</code>, it will have the special value <code>Primitive_node_id</code>.</p>
+<p>Semantic identifier of this node, used to distinguish sibling nodes. All nodes must have a <code><em>node_id</em></code>; for nodes under a container <code>C_ATTRIBUTE</code>, the id must be an id-code must be defined in the archetype terminology. For valid structures, all node ids are id-codes.</p>
+</div>
+<div class="paragraph">
+<p>For <code>C_PRIMITIVE_OBJECTs</code> represented in ADL inline form, this attribute will have the special value <code>Primitive_node_id</code>; otherwise it will have the node id read during parsing.</p>
 </div></div></td>
 </tr>
 <tr>
@@ -4334,6 +4336,9 @@ other: <code>C_OBJECT[1]</code><br>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Description</strong></p></th>
 <td class="tableblock halign-left valign-top" colspan="2"><div class="content"><div class="paragraph">
 <p>Parent of types representing constraints on primitive types.</p>
+</div>
+<div class="paragraph">
+<p>Instances of this type represented in ADL inline form, the <code><em>node_id</em></code> attribute will have the special value <code>Primitive_node_id</code>; otherwise it will have the node id read during parsing.</p>
 </div></div></td>
 </tr>
 <tr>
@@ -4643,6 +4648,9 @@ other: <code>C_BOOLEAN[1]</code><br>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><strong>constraint</strong>: <code>List&lt;String&gt;</code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>String constraint - a list of literal strings and / or regular expression strings delimited by the ‘/’ character.</p>
+</div>
+<div class="paragraph">
+<p>To represent no constraint, use an empty list, or alternatively, a regex 'any' pattern, i.e. <code>/.*/</code>.</p>
 </div></div></td>
 </tr>
 <tr>
@@ -4873,7 +4881,10 @@ other: <code>C_ORDERED[1]</code><br>
 (redefined)</strong></p></th>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><strong>constraint</strong>: <code>List&lt;Interval&lt;Integer&gt;&gt;</code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p>Formal constraint on <code>Integer</code>, in the form of <code>List&lt;Interval&lt;Integer&gt;&gt;</code>.</p>
+<p>Formal constraint on <code>Integer</code>, in the form of one or more <code>Interval&lt;Integer&gt;</code>.</p>
+</div>
+<div class="paragraph">
+<p>To represent no constraint, use an empty list.</p>
 </div></div></td>
 </tr>
 </tbody>
@@ -4912,7 +4923,10 @@ other: <code>C_ORDERED[1]</code><br>
 (redefined)</strong></p></th>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><strong>constraint</strong>: <code>List&lt;Interval&lt;Real&gt;&gt;</code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p>Formal constraint on <code>Real</code>, in the form of <code>List&lt;Interval&lt;Real&gt;&gt;</code>.</p>
+<p>Formal constraint on <code>Real</code>, in the form of one or more <code>Interval&lt;Real&gt;</code>.</p>
+</div>
+<div class="paragraph">
+<p>To represent no constraint, use an empty list.</p>
 </div></div></td>
 </tr>
 </tbody>
@@ -5064,7 +5078,10 @@ other: <code>C_ORDERED[1]</code><br>
 (redefined)</strong></p></th>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><strong>constraint</strong>: <code>List&lt;Interval&lt;IDate&gt;&gt;</code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p>Formal constraint on an assumed primitive <code>Date</code> type, in the form of List of <code>Interval&lt;Date&gt;</code>, i.e. one or more intervals of Date.</p>
+<p>Formal constraint on the assumed primitive <code>Date</code> type, in the form of one or more <code>Interval&lt;Date&gt;</code>.</p>
+</div>
+<div class="paragraph">
+<p>For a pattern constraint or no constraint, use an empty list.</p>
 </div></div></td>
 </tr>
 <tr>
@@ -5135,7 +5152,10 @@ other: <code>C_ORDERED[1]</code><br>
 (redefined)</strong></p></th>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><strong>constraint</strong>: <code>List&lt;Interval&lt;ITime&gt;&gt;</code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p>Formal constraint on assumed primitive type Time, in the form of a List of Interval&lt;Time&gt;, i.e. one or more intervals of Time.</p>
+<p>Formal constraint on the assumed primitive <code>Time</code> type, in the form of one or more <code>Interval&lt;Time&gt;</code>.</p>
+</div>
+<div class="paragraph">
+<p>For a pattern constraint or no constraint, use an empty list.</p>
 </div></div></td>
 </tr>
 <tr>
@@ -5213,7 +5233,10 @@ other: <code>C_ORDERED[1]</code><br>
 (redefined)</strong></p></th>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><strong>constraint</strong>: <code>List&lt;Interval&lt;IDate_time&gt;&gt;</code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p>Formal constraint on assumed primitive type <code>Date_time</code>, in the form of List of <code>Interval&lt;Date_time&gt;</code>, i.e. one or more intervals of Date_time.</p>
+<p>Formal constraint on the assumed primitive <code>Date_time</code> type, in the form of one or more <code>Interval&lt;Date_time&gt;</code>.</p>
+</div>
+<div class="paragraph">
+<p>For a pattern constraint or no constraint, use an empty list.</p>
 </div></div></td>
 </tr>
 <tr>
@@ -5308,7 +5331,10 @@ other: <code>C_ORDERED[1]</code><br>
 (redefined)</strong></p></th>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><strong>constraint</strong>: <code>List&lt;Interval&lt;IDuration&gt;&gt;</code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p>Formal constraint on assumed primitive type <code>Duration</code>, in the form of List of <code>Interval&lt;Duration&gt;</code>, i.e. one or more intervals of <code>Duration</code>.</p>
+<p>Formal constraint on assumed primitive type <code>Duration</code>, in the form of one or more intervals of <code>Duration</code>.</p>
+</div>
+<div class="paragraph">
+<p>For a pattern constraint or no constraint, use an empty list.</p>
 </div></div></td>
 </tr>
 <tr>
