@@ -9,33 +9,35 @@ h|*Description*
 2+a|Object representing a constraint on an atttribute tuple, i.e. a group of attributes that are constrained together. Typically used for representing co-varying constraints like {units, range} constraints.
 
 h|*Inherit*
-2+|`C_SECOND_ORDER`
+2+|`<<_c_second_order_class,C_SECOND_ORDER>>`
 
 h|*Attributes*
 ^h|*Signature*
 ^h|*Meaning*
 
 h|*0..1*
-|*tuples*: `List<C_PRIMITIVE_TUPLE>`
+|*tuples*: `link:/releases/BASE/{base_release}/foundation_types.html#_list_class[List^]<<<_c_primitive_tuple_class,C_PRIMITIVE_TUPLE>>>`
 a|Tuple definitions.
 
 h|*0..1 +
 (redefined)*
-|*members*: `List<C_ATTRIBUTE>`
+|*members*: `link:/releases/BASE/{base_release}/foundation_types.html#_list_class[List^]<<<_c_attribute_class,C_ATTRIBUTE>>>`
 a|List of `C_ATTRIBUTEs` forming the definition of the tuple.
 h|*Functions*
 ^h|*Signature*
 ^h|*Meaning*
 
-h|(effected)
+h|*1..1 +
+(effected)*
 |*c_conforms_to* ( +
-other: `C_SECOND_ORDER[1]` +
-): `Boolean`
+other: `<<_c_second_order_class,C_SECOND_ORDER>>[1]` +
+): `link:/releases/BASE/{base_release}/foundation_types.html#_boolean_class[Boolean^]`
 a|True if constraints represented by this node, ignoring any sub-parts, are narrower or the same as other. Typically used during validation of specialised archetype nodes.
 
-h|(effected)
+h|*1..1 +
+(effected)*
 |*c_congruent_to* ( +
-other: `C_SECOND_ORDER[1]` +
-): `Boolean`
+other: `<<_c_second_order_class,C_SECOND_ORDER>>[1]` +
+): `link:/releases/BASE/{base_release}/foundation_types.html#_boolean_class[Boolean^]`
 a|True if constraints represented by this node contain no further redefinitions with respect to the node other. Typically used to test if an inherited node locally contains any constraints.
 |===

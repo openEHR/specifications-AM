@@ -11,7 +11,7 @@ h|*Description*
 There is no validity flag for `_hour_`, since it must always be by definition mandatory in order to have a sensible time at all. Syntax expressions of instances of this class include `“HH:??:xx”` (time with optional minutes and seconds not allowed).
 
 h|*Inherit*
-2+|`C_TEMPORAL`
+2+|`<<_c_temporal_class,C_TEMPORAL>>`
 
 h|*Attributes*
 ^h|*Signature*
@@ -19,28 +19,30 @@ h|*Attributes*
 
 h|*0..1 +
 (redefined)*
-|*constraint*: `List<Interval<Iso8601_time>>`
-a|Formal constraint on the assumed primitive `Iso8601_time` type, in the form of List of `Interval<Iso8601_time>`, i.e. one or more intervals of `Iso8601_time`.
+|*constraint*: `link:/releases/BASE/{base_release}/foundation_types.html#_list_class[List^]<link:/releases/BASE/{base_release}/foundation_types.html#_interval_class[Interval^]<link:/releases/BASE/{base_release}/foundation_types.html#_iso8601_time_class[Iso8601_time^]>>`
+a|Formal constraint on the assumed primitive `Iso8601_time` type, in the form of one or more  `Interval<Iso8601_time>`.
+
+For a pattern constraint or no constraint, use an empty list.
 h|*Functions*
 ^h|*Signature*
 ^h|*Meaning*
 
-h|
-|*minute_validity* (): `VALIDITY_KIND`
+h|*1..1*
+|*minute_validity* (): `link:/releases/BASE/{base_release}/base_types.html#_validity_kind_enumeration[VALIDITY_KIND^]`
 a|Validity of minute in constrained time.
 
-h|
-|*second_validity* (): `VALIDITY_KIND`
+h|*1..1*
+|*second_validity* (): `link:/releases/BASE/{base_release}/base_types.html#_validity_kind_enumeration[VALIDITY_KIND^]`
 a|Validity of second in constrained time.
 
-h|
-|*millisecond_validity* (): `VALIDITY_KIND`
+h|*1..1*
+|*millisecond_validity* (): `link:/releases/BASE/{base_release}/base_types.html#_validity_kind_enumeration[VALIDITY_KIND^]`
 a|Validity of millisecond in constrained time.
 
-h|
-|*timezone_validity* (): `VALIDITY_KIND`
+h|*1..1*
+|*timezone_validity* (): `link:/releases/BASE/{base_release}/base_types.html#_validity_kind_enumeration[VALIDITY_KIND^]`
 a|Validity of timezone in constrained date.
 
 h|*Invariants*
-2+a|*_Pattern_validity_*: `pattern /= Void implies valid_iso8601_time_constraint_pattern (pattern)`
+2+a|__Pattern_validity__: `pattern /= Void implies valid_iso8601_time_constraint_pattern (pattern)`
 |===

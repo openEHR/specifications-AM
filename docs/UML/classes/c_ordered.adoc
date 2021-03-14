@@ -1,9 +1,9 @@
-=== C_ORDERED<T> Class
+=== C_ORDERED Class
 
 [cols="^1,3,5"]
 |===
 h|*Class*
-2+^h|*_C_ORDERED<T> (abstract)_*
+2+^h|*__C_ORDERED<T> (abstract)__*
 
 h|*Description*
 2+a|Abstract parent of primitive constrainer classes based on `Ordered` base types, i.e. types like `Integer`, `Real`, and the Date/Time types. The model constraint is a List of Intervals, which may include point Intervals, and acts as a efficient and formally tractable representation of any number of point values and/or contiguous intervals of an ordered value domain.
@@ -13,7 +13,7 @@ In its simplest form, the constraint accessor returns just a single point `Inter
 The next simplest form is a single proper `Interval <T>` (i.e. normal two-sided or half-open interval). The most complex form is a list of any combination of point and proper intervals.
 
 h|*Inherit*
-2+|`C_PRIMITIVE_OBJECT`
+2+|`<<_c_primitive_object_class,C_PRIMITIVE_OBJECT>>`
 
 h|*Attributes*
 ^h|*Signature*
@@ -21,26 +21,30 @@ h|*Attributes*
 
 h|*0..1 +
 (redefined)*
-|*constraint*: `List<Interval>`
+|*constraint*: `link:/releases/BASE/{base_release}/foundation_types.html#_list_class[List^]<link:/releases/BASE/{base_release}/foundation_types.html#_interval_class[Interval^]>`
 a|Constraint in the form of a List of Intervals of the parameter type T. Concrete types generated in descendants via template binding.
 h|*Functions*
 ^h|*Signature*
 ^h|*Meaning*
 
-h|(effected)
-|*any_allowed* (): `Boolean` +
-*_Post_*: `Result = constraint.is_empty`
+h|*1..1 +
+(effected)*
+|*any_allowed* (): `link:/releases/BASE/{base_release}/foundation_types.html#_boolean_class[Boolean^]` +
+ +
+__Post__: `Result = constraint.is_empty`
 a|True if any value (i.e. instance) of the reference model type would be allowed. Redefined in descendants.
 
-h|(effected)
+h|*1..1 +
+(effected)*
 |*c_value_conforms_to* ( +
-other: `C_ORDERED[1]` +
-): `Boolean`
+other: `<<_c_ordered_class,C_ORDERED>>[1]` +
+): `link:/releases/BASE/{base_release}/foundation_types.html#_boolean_class[Boolean^]`
 a|True if `_other.any_allowed_` or else for every constraint in the `_constraint_` list there is a constraint in `_other.constraint_` that contains it.
 
-h|(effected)
+h|*1..1 +
+(effected)*
 |*c_value_congruent_to* ( +
-other: `C_ORDERED[1]` +
-): `Boolean`
+other: `<<_c_ordered_class,C_ORDERED>>[1]` +
+): `link:/releases/BASE/{base_release}/foundation_types.html#_boolean_class[Boolean^]`
 a|True if the items in `_constraint_` are equal in number and identical pair-wise with those in `_other.constraint_`.
 |===

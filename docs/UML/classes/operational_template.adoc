@@ -11,29 +11,29 @@ h|*Description*
 An operational template is used for generating and validating RM-canonical instance data, and also as a source artefact for generating other downstream technical artefacts, including XML schemas, APIs and UI form definitions.
 
 h|*Inherit*
-2+|`AUTHORED_ARCHETYPE`
+2+|`<<_authored_archetype_class,AUTHORED_ARCHETYPE>>`
 
 h|*Attributes*
 ^h|*Signature*
 ^h|*Meaning*
 
 h|*0..1*
-|*component_terminologies*: `Hash<String, ARCHETYPE_TERMINOLOGY>`
+|*component_terminologies*: `link:/releases/BASE/{base_release}/foundation_types.html#_string_class[String^]`
 a|Compendium of flattened terminologies of archetypes externally referenced from this archetype, keyed by archetype identifier. This will almost always be present in a template.
 
 h|*0..1*
-|*terminology_extracts*: `Hash<String,ARCHETYPE_TERMINOLOGY>`
+|*terminology_extracts*: `link:/releases/BASE/{base_release}/foundation_types.html#_hash_class[Hash^]<link:/releases/BASE/{base_release}/foundation_types.html#_string_class[String^],<<_archetype_terminology_class,ARCHETYPE_TERMINOLOGY>>>`
 a|Directory of term definitions as a two-level  table. The outer hash keys are term codes,  e.g. "at4", and the inner hash key are term  attribute names, e.g. "text", "description" etc.
 h|*Functions*
 ^h|*Signature*
 ^h|*Meaning*
 
-h|
+h|*1..1*
 |*component_terminology* ( +
-an_id: `String[1]` +
-): `ARCHETYPE_TERMINOLOGY`
+an_id: `link:/releases/BASE/{base_release}/foundation_types.html#_string_class[String^][1]` +
+): `<<_archetype_terminology_class,ARCHETYPE_TERMINOLOGY>>`
 a|
 
 h|*Invariants*
-2+a|*_Specialisation_validity_*: `is_specialised`
+2+a|__Specialisation_validity__: `is_specialised`
 |===

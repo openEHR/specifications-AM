@@ -9,7 +9,7 @@ h|*Description*
 2+a|Class representing a single object tuple instance in a tuple constraint. Each such instance is a vector of object constraints, where each member (each `C_PRIMITIVE_OBJECT`) corresponds to one of the `C_ATTRIBUTEs` referred to by the owning `C_ATTRIBUTE_TUPLE`.
 
 h|*Inherit*
-2+|`C_SECOND_ORDER`
+2+|`<<_c_second_order_class,C_SECOND_ORDER>>`
 
 h|*Attributes*
 ^h|*Signature*
@@ -17,21 +17,23 @@ h|*Attributes*
 
 h|*1..1 +
 (redefined)*
-|*members*: `List<C_PRIMITIVE_OBJECT>`
+|*members*: `link:/releases/BASE/{base_release}/foundation_types.html#_list_class[List^]<<<_c_primitive_object_class,C_PRIMITIVE_OBJECT>>>`
 a|Object constraint members of this tuple group.
 h|*Functions*
 ^h|*Signature*
 ^h|*Meaning*
 
-h|(effected)
+h|*1..1 +
+(effected)*
 |*c_conforms_to* ( +
-other: `C_SECOND_ORDER[1]` +
-): `Boolean`
+other: `<<_c_second_order_class,C_SECOND_ORDER>>[1]` +
+): `link:/releases/BASE/{base_release}/foundation_types.html#_boolean_class[Boolean^]`
 a|True if constraints represented by this node, ignoring any sub-parts, are narrower or the same as other. Typically used during validation of specialised archetype nodes.
 
-h|(effected)
+h|*1..1 +
+(effected)*
 |*c_congruent_to* ( +
-other: `C_SECOND_ORDER[1]` +
-): `Boolean`
+other: `<<_c_second_order_class,C_SECOND_ORDER>>[1]` +
+): `link:/releases/BASE/{base_release}/foundation_types.html#_boolean_class[Boolean^]`
 a|True if constraints represented by this node contain no further redefinitions with respect to the node other. Typically used to test if an inherited node locally contains any constraints.
 |===

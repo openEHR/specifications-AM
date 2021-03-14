@@ -3,7 +3,7 @@
 [cols="^1,3,5"]
 |===
 h|*Class*
-2+^h|*_P_ARCHETYPE (abstract)_*
+2+^h|*__P_ARCHETYPE (abstract)__*
 
 h|*Description*
 2+a|Archetype equivalent to ARCHETYPED class in Common reference model. Defines semantics of identfication, lifecycle, versioning, composition and specialisation.
@@ -15,26 +15,26 @@ h|*Attributes*
 ^h|*Meaning*
 
 h|*0..1*
-|*parent_archetype_id*: `String`
+|*parent_archetype_id*: `link:/releases/BASE/{base_release}/foundation_types.html#_string_class[String^]`
 a|Identifier of the specialisation parent of this archetype.
 
 h|*1..1*
-|*archetype_id*: `P_ARCHETYPE_HRID`
+|*archetype_id*: `<<_p_archetype_hrid_class,P_ARCHETYPE_HRID>>`
 a|Identifier of this archetype.
 
 h|*1..1*
-|*is_differential*: `Boolean`
+|*is_differential*: `link:/releases/BASE/{base_release}/foundation_types.html#_boolean_class[Boolean^]`
 a|Flag indicating whether this archetype is differential or flat in its contents. Top-level source archetypes have this flag set to True.
 
 h|*1..1*
-|*definition*: `P_C_COMPLEX_OBJECT`
+|*definition*: `<<_p_c_complex_object_class,P_C_COMPLEX_OBJECT>>`
 a|Root node of the definition of this archetype.
 
 h|*1..1*
-|*terminology*: `P_ARCHETYPE_TERMINOLOGY`
+|*terminology*: `<<_p_archetype_terminology_class,P_ARCHETYPE_TERMINOLOGY>>`
 a|The terminology of the archetype.
 
 h|*0..1*
-|*rules*: `List<DL_STATEMENT>`
+|*rules*: `link:/releases/BASE/{base_release}/foundation_types.html#_list_class[List^]<link:/releases/LANG/{lang_release}/bmm.html#_bmm_statement_class[BMM_STATEMENT^]>`
 a|Rules relating to this archetype. Statements are expressed in first order predicate logic, and usually refer to at least two attributes.
 |===

@@ -3,7 +3,7 @@
 [cols="^1,3,5"]
 |===
 h|*Class*
-2+^h|*_P_AUTHORED_RESOURCE (abstract)_*
+2+^h|*__P_AUTHORED_RESOURCE (abstract)__*
 
 h|*Description*
 2+a|Abstract idea of an online resource created by a human author.
@@ -13,26 +13,26 @@ h|*Attributes*
 ^h|*Meaning*
 
 h|*1..1*
-|*original_language*: `String`
+|*original_language*: `link:/releases/BASE/{base_release}/foundation_types.html#_string_class[String^]`
 a|Language in which this resource was initially authored. Although there is no language primacy of resources overall, the language of original authoring is required to ensure natural language translations can preserve quality. Language is relevant in both the description and ontology sections.
 
 h|*0..1*
-|*is_controlled*: `Boolean`
+|*is_controlled*: `link:/releases/BASE/{base_release}/foundation_types.html#_boolean_class[Boolean^]`
 a|True if this resource is under any kind of change control (even file copying), in which case revision history is created.
 
 h|*0..1*
-|*translations*: `List<TRANSLATION_DETAILS>`
+|*translations*: `link:/releases/BASE/{base_release}/foundation_types.html#_list_class[List^]<link:/releases/BASE/{base_release}/resource.html#_translation_details_class[TRANSLATION_DETAILS^]>`
 a|List of details for each natural translation made of this resource, keyed by language. For each translation listed here, there must be corresponding sections in all language-dependent parts of the resource. The original_language does not appear in this list.
 
 h|*0..1*
-|*description*: `RESOURCE_DESCRIPTION`
+|*description*: `link:/releases/BASE/{base_release}/resource.html#_resource_description_class[RESOURCE_DESCRIPTION^]`
 a|Description and lifecycle information of the resource.
 
 h|*0..1*
-|*uid*: `String`
+|*uid*: `link:/releases/BASE/{base_release}/foundation_types.html#_string_class[String^]`
 a|Unique identifier of the family of archetypes having the same interface identifier (same major version).
 
 h|*0..1*
-|*annotations*: `Hash<String, Hash<String, String>>`
+|*annotations*: `link:/releases/BASE/{base_release}/foundation_types.html#_hash_class[Hash^]<link:/releases/BASE/{base_release}/foundation_types.html#_string_class[String^], link:/releases/BASE/{base_release}/foundation_types.html#_hash_class[Hash^]<link:/releases/BASE/{base_release}/foundation_types.html#_string_class[String^], link:/releases/BASE/{base_release}/foundation_types.html#_string_class[String^]>>`
 a|Annotations on individual items within the resource, keyed by path. The inner table takes the form of a Hash table of String values keyed by String tags.
 |===

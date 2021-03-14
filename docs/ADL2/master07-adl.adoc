@@ -515,43 +515,53 @@ In the above, the node identifier `[id1]` is assigned a meaning such as "clinica
 
 == Rules Section
 
-The `rules` section in an ADL archetype contains _statements_ which relate to the entire archetype, and can be used to make statements which are not possible within the block structure of the `definition` section. Any constraint that references more than one property is in this category, as are most constraints containing mathematical or logical formulae. Archetype rule section statements are a subset of the {openehr_expression_language}[openEHR Expression Language (EL)].
+The `rules` section in an ADL archetype contains assertions which relate to the entire archetype, and can be used to make statements which are not possible within the block structure of the `definition` section. Any constraint that references more than one property is in this category, as are most constraints containing mathematical or logical formulae. Archetype assertions are a subset of the openEHR rules, described in the {openehr_expression}[openEHR Expression Language specification^].
 
-Rule section statements invariably need to reference elements in the main definition path of the archetype. This done via EL external variables ('$' variables) which are separately mapped to archetype paths in a `data_bindings` section. Rule section statements are used to express various kinds of constraint, as described below.
+Semantically, an assertion is a first order predicate logic statement which can be evaluated to a Boolean result at runtime. Objects and properties are referred to using paths within an assertion.
+
+A reference to an object in data, including a leaf value, is expressed using an archetype path. All such paths are absolute (i.e. contain a leading '/') and are understood to be with respect to the root of the current archetype.
+
+Types of assertions used in archetypes include:
+
+* _arithmetic identities_: constraints involving more than one node in an archetype, such as an assertion stating that the sum of the five 0-2 value scores in an Apgar test (heartrate, breathing, muscle tone, reflex, colour) is equal to the Apgar total, recorded in a sixth node;
+* _mathematical formulae_: constraints involving a mathematical formulae that relate various items together, e.g. the pulse pressure and mean arterial pressure formulae used in cardiology;
+* _value-dependent existence_: in some cases optional archetype nodes are intended to be mandatory (or occasionally non-existent) if some other element within the same archetype has a specific value, for example a sub-tree that records details of 'tobacco use' may be considered mandatory if an earlier Boolean node representing 'tobacco user?' has a positive value.
+
+Each of these is described below.
 
 === Arithmetic Identities
 
-A basic type of statement is to assert that the value of one archetype element at runtime is related to the values of other elements. The following example specifies the summation of an Apgar score total from its parts, all assumed to be defined as distinct nodes within the archetype. The `$apgar_total_value`, `$apgar_heartrate_value` etc are EL variables bound to the relevant paths within the main archetype definition.
+Assertions can be stated that make explicit intended arithmetic identities among value nodes in an archetype. For example, in an archetype representing {wikipedia}Apgar_score[Apgar Score], five values should sum to equal the total. This can be expressed as the following assertions:
 
-[source, adl]
-----
+--------
 rules
-    check $apgar_total_value = $apgar_heartrate_value + $apgar_breathing_value + $apgar_reflex_value + $apgar_muscle_value + $apgar_colour_value
+	$respiratory_effort: Integer := /data[id3]/events[id4]/data[id2]/items[id10]/value[id39]/value
+    $heart_rate: Integer := /data[id3]/events[id4]/data[id2]/items[id6]/value[id40]/value
+    $muscle_tone: Integer := /data[id3]/events[id4]/data[id2]/items[id14]/value[id41]/value
+    $reflex_irritability: Integer := /data[id3]/events[id4]/data[id2]/items[id18]/value[id42]/value
+    $skin_colour: Integer := /data[id3]/events[id4]/data[id2]/items[id22]/value[id43]/value
+    $apgar_score: Integer := /data[id3]/events[id4]/data[id2]/items[id26]/value[id44]/magnitude
     
-data_bindings
-    content_bindings = <
-        ["apgar_breathing_value"] = <"/data[id3]/events[id4]/data[id2]/items[id10]/value[id39]/value">
-        ["apgar_heartrate_value"] = <"/data[id3]/events[id4]/data[id2]/items[id6]/value[id40]/value">
-        ["apgar_muscle_value"] = <"/data[id3]/events[id4]/data[id2]/items[id14]/value[id41]/value">
-        ["apgar_reflex_value"] = <"/data[id3]/events[id4]/data[id2]/items[id18]/value[id42]/value">
-        ["apgar_colour_value"] = <"/data[id3]/events[id4]/data[id2]/items[id22]/value[id43]/value">
-        ["apgar_total_value"] = <"/data[id3]/events[id4]/data[id2]/items[id26]/value[id44]/magnitude">
-    >
-----
+    Apgar_total: $apgar_score = $respiratory_effort + $heart_rate + $muscle_tone + $reflex_irritability + $skin_colour
+--------
 
-The statement above assumes that the data element specified by the `$apgar_total_value` location is being set externally, i.e. the above _does not set_ the total value, it just checks that whatever value is there correlates properly to its inputs.
+=== Mathematical Formulae
 
-The following example specifies the relationship between systolic, diastolic and mean arterial pressure (MAP), and also between pulse pressure and the systolic and diastolic values.
+The following ADL example shows a `rules` section containing the Blood Pressure MAP and Pulse pressure formulae expressed using references to the relevant input and output values in the archetype.
 
-[source, adl]
-----
+--------
 rules
-    check $map_bp_value = $diastolic_bp_value + 0.33 * ($systolic_bp_value - $diastolic_bp_value)
+    $pulse_pressure: Real := /data[id2]/events[id7]/data[id4]/items[id1008]/value/magnitude
+    $map: Real := /data[id2]/events[id7]/data[id4]/items[id1007]/value/magnitude
+    $systolic_value: Real := /data[id2]/events[id7]/data[id4]/items[id5]/value/magnitude
+    $diastolic_value: Real := /data[id2]/events[id7]/data[id4]/items[id6]/value/magnitude
     
-    check $pulse_pressure_bp_value = $systolic_bp_value - $diastolic_bp_value
-----
+	mean_arterial_pressure: $map = $diastolic_value + 0.33 * ($systolic_value - $diastolic_value)
+    
+	pulse_pressure: $pulse_pressure = $systolic_value - $diastolic_value
+--------
 
-As for the previous example, the variables are mapped to the relevant archetype paths in the `data_bindings` section. These statements can be visualised in tools, e.g. as follows in the {openehr_awb}[ADL Workbench].
+These assertions can be visualised in tools, e.g. as follows in the {openehr_awb}[ADL Workbench].
 
 [.text-center]
 .ADL assertion examples
@@ -559,15 +569,15 @@ image::{images_uri}/assertions_bp_map_pp.png[id=assertions_bp_map_pp.png, align=
 
 === Value-dependent Existence
 
-A useful kind of statement is to assert that a particular part of an archetype exists if related element is defined and has a certain value. For example, the need might be to require a sub-tree of details to do with tobacco use be filled out at runtime if the data element representing smoking status is `True`. To do this, the following construct can be used:
+One specific type of logical expression that is commonly required in archetypes is used to state the mandation (or otherwise) of certain data points as conditional on another specific data point. An example is an archetype that documents Tobacco use. This will normally contain a data point representing substance 'use status', which may have values such as 'never used', 'occasional user', 'frequent user', etc; and another set of data points quantifying the use. Clearly, if the 'use status' is 'never', the latter set of data is not needed; conversely, if 'use status' is any other value, the quantifying data items are needed. To make them mandatory if the 'use status' is any value other than 'never used', rules like the following can be used.
 
-[source, adl]
-----
+--------
 rules
-    check $is_smoker = True implies defined ($smoking_details)
-----
-
-This makes used of both the EL `check` statement and the `defined()` predicate (a type of expression).
+    $substance_use_status: Boolean := /data[id2]/items[id3]/value[id18]
+    $substance_use_data: Object_ref := /data[id2]/items[id8]
+    
+    Substance_use: $substance_use_status /= [at17] implies exists /data[id2]/items[id8]  -- [at17] = 'never used'
+--------
 
 == RM Overlay Section
 
