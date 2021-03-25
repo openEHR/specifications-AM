@@ -131,9 +131,9 @@ Along with `C_ATTRIBUTE`, `C_COMPLEX_OBJECT` is the key structuring type of the 
 
 Constraints on primitive types are defined by the descendants of `C_PRIMITIVE_OBJECT`, i.e. `C_STRING` , `C_INTEGER` and so on. The primitive constraint types are represented in such a way as to accommodate both 'tuple' constraints and logically unary constraints, using a tuple array (`C_PRIMITIVE_TUPLE._members_`) whose members are each a primitive constraint corresponding to each primitive type in the tuple. Tuple constraints are second order constraints, described below, enabling covarying constraints to be stated. In the unary case, the constraint is the first member of a tuple array.
 
-`C_PRIMITIVE_OBJECT` instances are created with a fixed id-code `ADL_CODE_DEFINITIONS._primitive_node_id_` as the value of `_node_id_` (see <<ADL_CODE_DEFINITIONS Class>>). For this reason, no node identifier needs to be supplied in a syntax or serialised form of an archetype, including ADL.
+`C_PRIMITIVE_OBJECT` instances represented in {openehr_am_adl2}[ADL 'short' form^] are created with a fixed id-code `ADL_CODE_DEFINITIONS._primitive_node_id_` as the value of `_node_id_` (see <<ADL_CODE_DEFINITIONS Class>>). For regularly structured `C_PRIMITIVE_OBJECT` instances, a normal node identifier is required.
 
-The primitive constraint for each primitive type may itself be complex. Its formal type is the type of the `_constraint_` accessor in each `C_PRIMITIVE_OBJECT` descendant. The use of the constrainer types for each RM type is summarised in the following table.
+The primitive constraint for each primitive type may itself be complex. Its formal type is the type of the `_constraint_` accessor in each `C_PRIMITIVE_OBJECT` descendant. The use of the constrainer types for each assumed primitive RM type is summarised in the following table.
 
 [[primitive-types,Primitive Types]]
 [width="100%",cols="1,1,2,3",options="header",]
@@ -148,13 +148,13 @@ The primitive constraint for each primitive type may itself be complex. Its form
                                                                                 latter case, the constraint refers to either a locally defined value set 
                                                                                 or (via a binding) an external value set.
 |Descendants of +
- `Ordered`            |`C_ORDERED`             |`List <Interval<T->Ordered>>`  |A single value (which is a point interval), a list of values 
+ `Ordered`            |`C_ORDERED`             |`List <Interval<T:Ordered>>`  |A single value (which is a point interval), a list of values 
                                                                                 (list of point intervals), a list of intervals, which may be mixed proper 
                                                                                 and point intervals.
 |`Integer`            |`C_INTEGER`             |`List <Interval<Integer>>`     |As for Ordered type, with T = `Integer`
 |`Real`               |`C_REAL`                |`List <Interval<Real>>`        |As for Ordered type, with T = `Real`
 |Descendants of + 
-`Temporal`            |`C_TEMPORAL`            |`List <Interval<T->Temporal>>` +
+`Temporal`            |`C_TEMPORAL`            |`List <Interval<T:Temporal>>` +
                                                 OR +
                                                 `String` (ADL pattern)         |As for ordered types, with T being an sub-type type of `Temporal`, an 
                                                                                 ancestor of the assumed Date/time primitive types., with the addition of a 
@@ -178,21 +178,20 @@ The primitive constraint for each primitive type may itself be complex. Its form
                        to RM type               |`List<T>` or `List<Interval<T>>` +
                                                 for Ordered types                |Members of List value match any value in constraint list
 
-|`Interval<T->Ordered>`|`C_PRIMITIVE_ORDERED` +
+|`Interval<T:Ordered>`|`C_PRIMITIVE_ORDERED` +
                        descendant appropriate +
                        to RM type              |`List<Interval<T>>`              |Interval value matches any (Interval) value in constraint list
                                                 
 |===========
 
-Note in the above that the `C_DATE_TIME` AOM type is assumed by default to apply to data items of the RM types `DateTime` and `Date_time`, including any variations in case.
+The RM primitive types listed above are assumed to exist (possibly with different names) within any RM used as the basis for creating archetypes. Where any do not exist - e.g. if there are no date/time types in a particular RM - no archetype constraints can be defined for such nodes. Where the types have different names, name mapping can be performed as described in <<RM Primitive Type Equivalences>> below.
 
-In order to accommodate concrete type variants that are used in common type systems, the following RM type matching should be considered to occur by default:
+This facility can be used to effect the following mappings from `C_PRIMITIVE_OBJECT` descendants (`C_STRING`, `C_INTEGER` etc) to the types found in any particular RM.
 
 * `String` variants: in addition to matching `String`, `C_STRING` should match `StringN` and `String_N` instances, to accommodate RM types such as `String8`, `String_32` etc;
 * `Integer` variants: in addition to matching `Integer`, `C_INTEGER` should match `IntegerN` and `Integer_N`, to accommodate RM types such as `Integer_16`, `Integer64` etc;
-* `Real` variants: in addition to matching `Real`, `C_REAL` should match `RealN` and `Real_N` and `Double`, to accommodate RM types such as `Real_32`, `Real64` and `Double`.
-
-A way of configuring this on a per-RM basis is described in <<RM Primitive Type Equivalences>> below.
+* `Real` variants: in addition to matching `Real`, `C_REAL` should match `RealN` and `Real_N` and `Double`, to accommodate RM types such as `Real_32`, `Real64` and `Double`;
+* `Date_time` variants: typical names for `Date_time` such as `DateTime`, `TimeStamp` etc should be mapped to `C_DATE`.
 
 ==== Assumed_value
 

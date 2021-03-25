@@ -18,12 +18,14 @@ Since primitive objects constitute the terminal nodes in an archetype, constrain
 
 While constraints on complex types follow the rules described so far, constraints on attributes of primitive types in cADL may be expressed in a shorter form, without type names, and omitting one level of braces, as follows:
 
+[source, cadl]
 ----
     some_attr matches {<some_pattern>}
 ----
 
 rather than:
 
+[source, cadl]
 ----
     some_attr matches {
         PRIMITIVE_TYPE[id3] matches {<some_pattern>}
@@ -67,7 +69,6 @@ If the `Primitive_node_id` is used, a specialisation may use the brief form, as 
 
     -- in specialisation child
     some_attr matches {"match me"}
-
 ----
 
 === Assumed Values

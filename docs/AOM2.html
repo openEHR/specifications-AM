@@ -2942,10 +2942,10 @@ an_id: <code><a href="/releases/BASE/latest/foundation_types.html#_string_class"
 <p>Constraints on primitive types are defined by the descendants of <code>C_PRIMITIVE_OBJECT</code>, i.e. <code>C_STRING</code> , <code>C_INTEGER</code> and so on. The primitive constraint types are represented in such a way as to accommodate both 'tuple' constraints and logically unary constraints, using a tuple array (<code>C_PRIMITIVE_TUPLE.<em>members</em></code>) whose members are each a primitive constraint corresponding to each primitive type in the tuple. Tuple constraints are second order constraints, described below, enabling covarying constraints to be stated. In the unary case, the constraint is the first member of a tuple array.</p>
 </div>
 <div class="paragraph">
-<p><code>C_PRIMITIVE_OBJECT</code> instances are created with a fixed id-code <code>ADL_CODE_DEFINITIONS.<em>primitive_node_id</em></code> as the value of <code><em>node_id</em></code> (see <a href="#_adl_code_definitions_class">Section 2.3.3</a>). For this reason, no node identifier needs to be supplied in a syntax or serialised form of an archetype, including ADL.</p>
+<p><code>C_PRIMITIVE_OBJECT</code> instances represented in <a href="https://specifications.openehr.org/releases/AM/latest/ADL2.html" target="_blank" rel="noopener">ADL 'short' form</a> are created with a fixed id-code <code>ADL_CODE_DEFINITIONS.<em>primitive_node_id</em></code> as the value of <code><em>node_id</em></code> (see <a href="#_adl_code_definitions_class">Section 2.3.3</a>). For regularly structured <code>C_PRIMITIVE_OBJECT</code> instances, a normal node identifier is required.</p>
 </div>
 <div class="paragraph">
-<p>The primitive constraint for each primitive type may itself be complex. Its formal type is the type of the <code><em>constraint</em></code> accessor in each <code>C_PRIMITIVE_OBJECT</code> descendant. The use of the constrainer types for each RM type is summarised in the following table.</p>
+<p>The primitive constraint for each primitive type may itself be complex. Its formal type is the type of the <code><em>constraint</em></code> accessor in each <code>C_PRIMITIVE_OBJECT</code> descendant. The use of the constrainer types for each assumed primitive RM type is summarised in the following table.</p>
 </div>
 <table id="primitive-types" class="tableblock frame-all grid-all stretch">
 <colgroup>
@@ -2990,7 +2990,7 @@ an_id: <code><a href="/releases/BASE/latest/foundation_types.html#_string_class"
 <td class="tableblock halign-left valign-top"><p class="tableblock">Descendants of<br>
  <code>Ordered</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>C_ORDERED</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>List &lt;Interval&lt;T&#8594;Ordered&gt;&gt;</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>List &lt;Interval&lt;T:Ordered&gt;&gt;</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">A single value (which is a point interval), a list of values
                                                                                 (list of point intervals), a list of intervals, which may be mixed proper
                                                                                 and point intervals.</p></td>
@@ -3011,7 +3011,7 @@ an_id: <code><a href="/releases/BASE/latest/foundation_types.html#_string_class"
 <td class="tableblock halign-left valign-top"><p class="tableblock">Descendants of<br>
 <code>Temporal</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>C_TEMPORAL</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>List &lt;Interval&lt;T&#8594;Temporal&gt;&gt;</code><br>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>List &lt;Interval&lt;T:Temporal&gt;&gt;</code><br>
                                                 OR<br>
                                                 <code>String</code> (ADL pattern)</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">As for ordered types, with T being an sub-type type of <code>Temporal</code>, an
@@ -3060,7 +3060,7 @@ an_id: <code><a href="/releases/BASE/latest/foundation_types.html#_string_class"
 <td class="tableblock halign-left valign-top"><p class="tableblock">Members of List value match any value in constraint list</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Interval&lt;T&#8594;Ordered&gt;</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Interval&lt;T:Ordered&gt;</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>C_PRIMITIVE_ORDERED</code><br>
                        descendant appropriate<br>
                        to RM type</p></td>
@@ -3070,10 +3070,10 @@ an_id: <code><a href="/releases/BASE/latest/foundation_types.html#_string_class"
 </tbody>
 </table>
 <div class="paragraph">
-<p>Note in the above that the <code>C_DATE_TIME</code> AOM type is assumed by default to apply to data items of the RM types <code>DateTime</code> and <code>Date_time</code>, including any variations in case.</p>
+<p>The RM primitive types listed above are assumed to exist (possibly with different names) within any RM used as the basis for creating archetypes. Where any do not exist - e.g. if there are no date/time types in a particular RM - no archetype constraints can be defined for such nodes. Where the types have different names, name mapping can be performed as described in <a href="#_rm_primitive_type_equivalences">Section 11.4</a> below.</p>
 </div>
 <div class="paragraph">
-<p>In order to accommodate concrete type variants that are used in common type systems, the following RM type matching should be considered to occur by default:</p>
+<p>This facility can be used to effect the following mappings from <code>C_PRIMITIVE_OBJECT</code> descendants (<code>C_STRING</code>, <code>C_INTEGER</code> etc) to the types found in any particular RM.</p>
 </div>
 <div class="ulist">
 <ul>
@@ -3084,12 +3084,12 @@ an_id: <code><a href="/releases/BASE/latest/foundation_types.html#_string_class"
 <p><code>Integer</code> variants: in addition to matching <code>Integer</code>, <code>C_INTEGER</code> should match <code>IntegerN</code> and <code>Integer_N</code>, to accommodate RM types such as <code>Integer_16</code>, <code>Integer64</code> etc;</p>
 </li>
 <li>
-<p><code>Real</code> variants: in addition to matching <code>Real</code>, <code>C_REAL</code> should match <code>RealN</code> and <code>Real_N</code> and <code>Double</code>, to accommodate RM types such as <code>Real_32</code>, <code>Real64</code> and <code>Double</code>.</p>
+<p><code>Real</code> variants: in addition to matching <code>Real</code>, <code>C_REAL</code> should match <code>RealN</code> and <code>Real_N</code> and <code>Double</code>, to accommodate RM types such as <code>Real_32</code>, <code>Real64</code> and <code>Double</code>;</p>
+</li>
+<li>
+<p><code>Date_time</code> variants: typical names for <code>Date_time</code> such as <code>DateTime</code>, <code>TimeStamp</code> etc should be mapped to <code>C_DATE</code>.</p>
 </li>
 </ul>
-</div>
-<div class="paragraph">
-<p>A way of configuring this on a per-RM basis is described in <a href="#_rm_primitive_type_equivalences">Section 11.4</a> below.</p>
 </div>
 <div class="sect4">
 <h5 id="_assumed_value"><a class="anchor" href="#_assumed_value"></a>4.2.7.1. Assumed_value</h5>
@@ -3794,8 +3794,10 @@ Only set if it overrides the parent archetype in the case of specialised archety
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>1..1</strong></p></th>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><strong>node_id</strong>: <code><a href="/releases/BASE/latest/foundation_types.html#_string_class" target="_blank" rel="noopener">String</a></code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p>Semantic identifier of this node, used to dis-tinguish sibling nodes. All nodes must have a <code><em>node_id</em></code>; for nodes under a container <code>C_ATTRIBUTE</code>, the id must be an id-code must be defined in the archetype terminology. For valid structures, all node ids are id-codes.
-For <code>C_PRIMITIVE_OBJECTs</code>, it will have the special value <code>Primitive_node_id</code>.</p>
+<p>Semantic identifier of this node, used to dis-tinguish sibling nodes. All nodes must have a <code><em>node_id</em></code>; for nodes under a container <code>C_ATTRIBUTE</code>, the id must be an id-code must be defined in the archetype terminology. For valid structures, all node ids are id-codes.</p>
+</div>
+<div class="paragraph">
+<p>For <code>C_PRIMITIVE_OBJECTs</code> represented in ADL inline form, this attribute will have the special value <code>Primitive_node_id</code>; otherwise it will have the node id read during parsing.</p>
 </div></div></td>
 </tr>
 <tr>
@@ -4246,6 +4248,12 @@ a_value: <code><a href="/releases/BASE/latest/foundation_types.html#_any_class" 
 <p>True if there is an assumed value.</p>
 </div></div></td>
 </tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Invariants</strong></p></th>
+<td class="tableblock halign-left valign-top" colspan="2"><div class="content"><div class="paragraph">
+<p><em>Inv_valid_default_value</em>: <code>valid_value (default_value)</code></p>
+</div></div></td>
+</tr>
 </tbody>
 </table>
 </div>
@@ -4473,7 +4481,7 @@ other: <code><a href="#_c_complex_object_class">C_COMPLEX_OBJECT</a>[1]</code><b
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>excludes</strong>: <code><a href="/releases/BASE/latest/foundation_types.html#_list_class" target="_blank" rel="noopener">List</a>&lt;<a href="#_archetype_id_constraint_class">ARCHETYPE_ID_CONSTRAINT</a>&gt;</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>excludes</strong>: <code><a href="/releases/BASE/latest/foundation_types.html#_list_class">List<sup></a>&lt;<a href="/releases/LANG/latest/bmm.html#_bmm_assertion_class">BMM_ASSERTION</sup></a>&gt;</code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>List of constraints defining other archetypes that cannot be included at this point.</p>
 </div></div></td>
@@ -4693,6 +4701,9 @@ other: <code><a href="#_c_object_class">C_OBJECT</a>[1]</code><br>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Description</strong></p></th>
 <td class="tableblock halign-left valign-top" colspan="2"><div class="content"><div class="paragraph">
 <p>Parent of types representing constraints on primitive types.</p>
+</div>
+<div class="paragraph">
+<p>Instances of this type represented in ADL inline form, the <code><em>node_id</em></code> attribute will have the special value <code>Primitive_node_id</code>; otherwise it will have the node id read during parsing.</p>
 </div></div></td>
 </tr>
 <tr>
@@ -4800,6 +4811,12 @@ other: <code><a href="#_c_primitive_object_class">C_PRIMITIVE_OBJECT</a>[1]</cod
 ): <code><a href="/releases/BASE/latest/foundation_types.html#_boolean_class" target="_blank" rel="noopener">Boolean</a></code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>True if this node expresses the same value constraint as <code>other</code>. Effected in descendants.</p>
+</div></div></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Invariants</strong></p></th>
+<td class="tableblock halign-left valign-top" colspan="2"><div class="content"><div class="paragraph">
+<p><em>Inv_valid_assumed_value</em>: <code>valid_value (assumed_value)</code></p>
 </div></div></td>
 </tr>
 </tbody>
