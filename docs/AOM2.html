@@ -6016,6 +6016,13 @@ other: <code><a href="#_c_ordered_class">C_ORDERED</a>[1]</code><br>
 </div></div></td>
 </tr>
 <tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>1..1</strong></p></th>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>effective_constraint_status</strong> (): <code><a href="/releases/BASE/latest/foundation_types.html#_integer_class" target="_blank" rel="noopener">Integer</a></code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Return the effective integer value of the <code><em>constraint_status</em></code> field; if it is null, return 0, i.e. <code>required</code>.</p>
+</div></div></td>
+</tr>
+<tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><strong>value_set_expanded</strong> (): <code><a href="/releases/BASE/latest/foundation_types.html#_list_class">List<sup></a>&lt;<a href="/releases/BASE/latest/foundation_types.html#_string_class">String</sup></a>&gt;</code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
@@ -6071,7 +6078,7 @@ a_value: <code><a href="/releases/BASE/latest/foundation_types.html#_terminology
 other: <code><a href="#_c_terminology_code_class">C_TERMINOLOGY_CODE</a>[1]</code><br>
 ): <code><a href="/releases/BASE/latest/foundation_types.html#_boolean_class" target="_blank" rel="noopener">Boolean</a></code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p>True if <code><em>other.any_allowed</em></code> or else every constraint in the <code><em>constraint</em></code> list exists in the <code><em>other.constraint</em></code>.</p>
+<p>True if <code><em>other.any_allowed</em></code> or else every constraint in the <code><em>constraint</em></code> list exists in the <code><em>other.constraint</em></code>, and <code><em>effective_constraint_status()</em></code> is &lt;= <code><em>other.effective_constraint_status()</em></code>.</p>
 </div></div></td>
 </tr>
 <tr>
@@ -6081,7 +6088,7 @@ other: <code><a href="#_c_terminology_code_class">C_TERMINOLOGY_CODE</a>[1]</cod
 other: <code><a href="#_c_terminology_code_class">C_TERMINOLOGY_CODE</a>[1]</code><br>
 ): <code><a href="/releases/BASE/latest/foundation_types.html#_boolean_class" target="_blank" rel="noopener">Boolean</a></code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p>True if <code><em>constraint</em></code> and <code><em>other.constraint</em></code> are both value-set ids, and expand to identical value sets, or else are identical value codes.</p>
+<p>True if <code><em>constraint</em></code> and <code><em>other.constraint</em></code> are both value-set ids, and expand to identical value sets, or else are identical value codes; and <code><em>effective_constraint_status()</em></code> = <code><em>other.effective_constraint_status()</em></code>.</p>
 </div></div></td>
 </tr>
 </tbody>

@@ -50,6 +50,10 @@ h|*1..1*
 |*constraint_required* (): `link:/releases/BASE/{base_release}/foundation_types.html#_boolean_class[Boolean^]`
 a|True if `_constraint_status_` is defined and equals `required` OR if Void. I.e. in archetypes where `C_TERMINOLOGY_CODE` instances have no `_constraint_status_`, the `required` status is assumed, which applies to all legacy archetypes.
 
+h|*1..1*
+|*effective_constraint_status* (): `link:/releases/BASE/{base_release}/foundation_types.html#_integer_class[Integer^]`
+a|Return the effective integer value of the `_constraint_status_` field; if it is null, return 0, i.e. `required`.
+
 h|*0..1*
 |*value_set_expanded* (): `link:/releases/BASE/{base_release}/foundation_types.html#_list_class[List^]<link:/releases/BASE/{base_release}/foundation_types.html#_string_class[String^]>`
 a|Effective set of at-code values corresponding to an ac-code for a locally defined value set. Not defined for ac-codes that have no local value set.
@@ -86,12 +90,12 @@ h|*1..1 +
 |*c_value_conforms_to* ( +
 other: `<<_c_terminology_code_class,C_TERMINOLOGY_CODE>>[1]` +
 ): `link:/releases/BASE/{base_release}/foundation_types.html#_boolean_class[Boolean^]`
-a|True if `_other.any_allowed_` or else every constraint in the `_constraint_` list exists in the `_other.constraint_`.
+a|True if `_other.any_allowed_` or else every constraint in the `_constraint_` list exists in the `_other.constraint_`, and `_effective_constraint_status()_` is \<= `_other.effective_constraint_status()_`.
 
 h|*1..1 +
 (effected)*
 |*c_value_congruent_to* ( +
 other: `<<_c_terminology_code_class,C_TERMINOLOGY_CODE>>[1]` +
 ): `link:/releases/BASE/{base_release}/foundation_types.html#_boolean_class[Boolean^]`
-a|True if `_constraint_` and `_other.constraint_` are both value-set ids, and expand to identical value sets, or else are identical value codes.
+a|True if `_constraint_` and `_other.constraint_` are both value-set ids, and expand to identical value sets, or else are identical value codes; and `_effective_constraint_status()_` = `_other.effective_constraint_status()_`.
 |===
