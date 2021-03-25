@@ -1,11 +1,13 @@
 = Archetype Rules
 
+NOTE: the meta-model of rules has changed from the previous release of ADL/AOM, and is now based on the BMM Expressions meta-model.
+
 == Overview
 
 Rules are represented in archetypes as BMM simple statements (`BMM_SIMPLE_STATEMENT`), whose subtypes `BMM_ASSERTION` and `BMM_ASSIGNMENT` supply the concrete forms of allowed rules. BMM assertions in turn use Boolean-valued expressions defined by the `LANG::org.openehr.bmm.expressions` package described in the {openehr_bmm}[BMM Expression Model^]. The following UML view illustrates.
 
 [.text-center]
 .am.aom2 Rules
-image::{uml_diagrams_uri}/AM-aom2-rules.svg[id=aom_rules, align="center"]
+image::{uml_diagrams_uri}/AM-aom2.rules.svg[id=aom_rules, align="center"]
 
 The BMM assertion structure resolves to the generic Boolean-returning expression meta-type `EL_BOOLEAN_EXPRESSION`, instances of which may include references to any bound variable, as described in the {openehr_am_adl2}#_rules_section[ADL2 specification^].
