@@ -3155,6 +3155,9 @@ The second case in theory could be done using an ac-code referring to a value se
 <div class="paragraph">
 <p>For the non-required settings of <code><em>constraint_status</em></code>, a data instance value may be a non-matching terminology code, including from another terminology. It might also be a plain text (i.e. not coded), in which case it will not be matched by a <code>C_TERMINOLOGY_CODE</code> archetype node, but an archetype node corresponding to the relevant RM type. In openEHR, this would usually be <code>DV_TEXT</code>. To allow for coded text or text matching therefore, at least 2 sibling archetype nodes are required, with one containing the appropriately configured <code>C_TERMINOLOGY_CODE</code>, and another representing a text-only constraint.</p>
 </div>
+<div class="paragraph">
+<p>With respect to redefinition in specialised archetypes, the constraint strength may be redefined to be stronger, i.e. the enumeration value must be lower. Thus, a term constraint with strength of <code>preferred (2)</code> can be redefined to a strength of <code>required (0)</code>.</p>
+</div>
 </div>
 <div class="sect4">
 <h5 id="_terminology_code_resolution"><a class="anchor" href="#_terminology_code_resolution"></a>4.2.8.3. Terminology Code Resolution</h5>
@@ -6140,10 +6143,16 @@ other: <code><a href="#_c_terminology_code_class">C_TERMINOLOGY_CODE</a>[1]</cod
 <pre class="pygments highlight"><code data-lang="eiffel"><span></span><span class="tok-n">c_value_conforms_to</span> <span class="tok-p">(</span><span class="tok-n">other</span><span class="tok-p">:</span> <span class="tok-nc">C_TERMINOLOGY_CODE</span><span class="tok-p">):</span> <span class="tok-n">Boolean</span>
         <span class="tok-c1">-- True if this node expresses a value constraint that conforms to that of `other&#39;</span>
     <span class="tok-kr">local</span>
-        <span class="tok-n">this_vset</span><span class="tok-p">,</span> <span class="tok-n">other_vset</span><span class="tok-p">:</span> <span class="tok-kr">like</span> <span class="tok-n">value_set_expanded</span>
+        <span class="tok-n">this_vset</span><span class="tok-p">,</span> <span class="tok-n">other_vset</span><span class="tok-p">:</span> <span class="tok-n">List</span><span class="tok-o">&lt;</span><span class="tok-n">String</span><span class="tok-o">&gt;</span>
     <span class="tok-kr">do</span>
         <span class="tok-kr">if</span> <span class="tok-n">other</span><span class="tok-p">.</span><span class="tok-n">any_allowed</span> <span class="tok-kr">then</span>
             <span class="tok-kc">Result</span> <span class="tok-o">:=</span> <span class="tok-kc">True</span>
+
+        <span class="tok-c1">-- check that constraint_status is valid. The following order hold down the specialisation</span>
+        <span class="tok-c1">-- lineage, from lowest to highest: example (3) → preferred (2) → exensible (1) → required (0);</span>
+        <span class="tok-c1">-- numerically, specialisation child must be &lt;= parent</span>
+        <span class="tok-kr">elseif</span> <span class="tok-n">effective_constraint_status</span> <span class="tok-o">&gt;</span> <span class="tok-n">other</span><span class="tok-p">.</span><span class="tok-n">effective_constraint_status</span> <span class="tok-kr">then</span>
+            <span class="tok-kc">Result</span> <span class="tok-o">:=</span> <span class="tok-kc">False</span>
 
         <span class="tok-c1">-- if both constraints are ac-codes, compare the value-set expansions if the</span>
         <span class="tok-c1">-- terminology constraint strengths are both `required`</span>
@@ -6168,7 +6177,7 @@ other: <code><a href="#_c_terminology_code_class">C_TERMINOLOGY_CODE</a>[1]</cod
 <span class="tok-n">c_value_congruent_to</span> <span class="tok-p">(</span><span class="tok-n">other</span><span class="tok-p">:</span> <span class="tok-nc">C_TERMINOLOGY_CODE</span><span class="tok-p">):</span> <span class="tok-n">Boolean</span>
         <span class="tok-c1">-- True if this node&#39;s value constraint is the same as that of `other&#39;</span>
     <span class="tok-kr">local</span>
-        <span class="tok-n">this_vset</span><span class="tok-p">,</span> <span class="tok-n">other_vset</span><span class="tok-p">:</span> <span class="tok-kr">like</span> <span class="tok-n">value_set_expanded</span>
+        <span class="tok-n">this_vset</span><span class="tok-p">,</span> <span class="tok-n">other_vset</span><span class="tok-p">:</span> <span class="tok-n">List</span><span class="tok-o">&lt;</span><span class="tok-n">String</span><span class="tok-o">&gt;</span>
     <span class="tok-kr">do</span>
         <span class="tok-c1">-- if both constraints are ac-codes, compare the value-set expansions</span>
         <span class="tok-kr">if</span> <span class="tok-n">is_valid_value_set_code</span> <span class="tok-p">(</span><span class="tok-n">constraint</span><span class="tok-p">)</span> <span class="tok-ow">and</span> <span class="tok-n">is_valid_value_set_code</span> <span class="tok-p">(</span><span class="tok-n">other</span><span class="tok-p">.</span><span class="tok-n">constraint</span><span class="tok-p">)</span> <span class="tok-kr">then</span>
@@ -6182,6 +6191,9 @@ other: <code><a href="#_c_terminology_code_class">C_TERMINOLOGY_CODE</a>[1]</cod
         <span class="tok-kr">else</span>
             <span class="tok-kc">Result</span> <span class="tok-o">:=</span> <span class="tok-n">constraint</span><span class="tok-p">.</span><span class="tok-n">is_equal</span> <span class="tok-p">(</span><span class="tok-n">other</span><span class="tok-p">.</span><span class="tok-n">constraint</span><span class="tok-p">)</span>
         <span class="tok-kr">end</span>
+
+        <span class="tok-c1">-- make sure constraint status is identical</span>
+        <span class="tok-kc">Result</span> <span class="tok-o">:=</span> <span class="tok-kc">Result</span> <span class="tok-ow">and</span> <span class="tok-n">effective_constraint_status</span> <span class="tok-o">=</span> <span class="tok-n">other</span><span class="tok-p">.</span><span class="tok-n">effective_constraint_status</span>
     <span class="tok-kr">end</span></code></pre>
 </div>
 </div>
