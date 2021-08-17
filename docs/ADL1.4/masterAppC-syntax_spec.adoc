@@ -3,13 +3,15 @@
 
 The normative specification of the ADL1.4 syntax is expressed in Antlr4 as a series of component grammars, shown below. This has been tested with the Antlr4.5 implementation available from http://www.antlr.org[Antlr.org^]. The source files are available on Github in the {openehr_adl_antlr}/tree/master/src/main/antlr/adl14[adl-antlr repository^]. The ODIN grammar used in ADL archetypes described in the {openehr_odin}[openEHR ODIN specification^].
 
+NOTE: this form of Antlr grammars is non-modal and mixed (i.e. parsers and lexers in same files). This will be changed in the next version to separated files and modal lexing, to deal better with ODIN embedded in ADL and related issues.
+
 == ADL Outer Syntax
 
 The following grammar expresses the outer syntax of ADL, i.e. the top-level structure of section keywords and initial identification lines in an ADL text.
 
 [source, antlr-java]
 --------
-include::{grammar_dir}/adl14/adl.g4[]
+include::{grammar_dir}/adl/adl14.g4[]
 --------
 
 == cADL Syntax
@@ -18,7 +20,7 @@ The following grammar expresses the syntax of cADL composite types, i.e. the lan
 
 [source, antlr-java]
 --------
-include::{grammar_dir}/adl14/cadl.g4[]
+include::{grammar_dir}/adl/cadl14.g4[]
 --------
 
 == cADL Primitives Syntax
@@ -27,16 +29,7 @@ The following grammar defines the syntax of cADL primitives, which are used by c
 
 [source, antlr-java]
 --------
-include::{grammar_dir}/adl14/cadl_primitives.g4[]
---------
-
-== ADL Keywords
-
-The following grammar defines the lexer patterns for ADL keywords.
-
-[source, antlr-java]
---------
-include::{grammar_dir}/adl14/adl_keywords.g4[]
+include::{grammar_dir}/adl/cadl14_primitives.g4[]
 --------
 
 == Rules Syntax
@@ -45,7 +38,7 @@ The following grammar defines the syntax that may appear in the `rules` section 
 
 [source, antlr-java]
 --------
-include::{grammar_dir}/adl14/adl_rules.g4[]
+include::{grammar_dir}/adl/base_expressions.g4[]
 --------
 
 == ODIN structures
@@ -54,7 +47,7 @@ The following grammar defines the syntax for ODIN structures.
 
 [source, antlr-java]
 --------
-include::{grammar_dir}/adl14/odin.g4[]
+include::{grammar_dir}/adl/odin.g4[]
 --------
 
 == ODIN value types
@@ -63,25 +56,7 @@ The following grammar defines the syntax for the terminal types in ADL, which ar
 
 [source, antlr-java]
 --------
-include::{grammar_dir}/adl14/odin_values.g4[]
---------
-
-== Base Expressions
-
-The following grammar defines syntax of expressions.
-
-[source, antlr-java]
---------
-include::{grammar_dir}/adl14/base_expressions.g4[]
---------
-
-== Base Patterns
-
-The following grammar defines syntax of generic base patterns.
-
-[source, antlr-java]
---------
-include::{grammar_dir}/adl14/base_patterns.g4[]
+include::{grammar_dir}/adl/odin_values.g4[]
 --------
 
 == Base Lexer
@@ -90,5 +65,5 @@ The following grammar defines common lexical entities.
 
 [source, antlr-java]
 --------
-include::{grammar_dir}/adl14/base_lexer.g4[]
+include::{grammar_dir}/adl/base_lexer.g4[]
 --------
