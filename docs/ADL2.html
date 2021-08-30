@@ -285,23 +285,23 @@
 <li><a href="#_rm_visibility">7.12.1. RM Visibility</a></li>
 </ul>
 </li>
-<li><a href="#_annotations_section">7.13. Annotations Section</a></li>
-<li><a href="#_terminology_section">7.14. Terminology Section</a>
+<li><a href="#_terminology_section">7.13. Terminology Section</a>
 <ul class="sectlevel3">
-<li><a href="#_overview_5">7.14.1. Overview</a></li>
-<li><a href="#_term_definitions_sub_section">7.14.2. Term_definitions Sub-section</a></li>
-<li><a href="#_value_sets_sub_section">7.14.3. Value_sets Sub-section</a></li>
-<li><a href="#_term_bindings_sub_section">7.14.4. Term_bindings Sub-section</a></li>
-<li><a href="#_deprecated_terminology_section_features">7.14.5. Deprecated Terminology Section Features</a>
+<li><a href="#_overview_5">7.13.1. Overview</a></li>
+<li><a href="#_term_definitions_sub_section">7.13.2. Term_definitions Sub-section</a></li>
+<li><a href="#_value_sets_sub_section">7.13.3. Value_sets Sub-section</a></li>
+<li><a href="#_term_bindings_sub_section">7.13.4. Term_bindings Sub-section</a></li>
+<li><a href="#_deprecated_terminology_section_features">7.13.5. Deprecated Terminology Section Features</a>
 <ul class="sectlevel4">
-<li><a href="#_at_codes_as_identifiers">7.14.5.1. At-codes as identifiers</a></li>
-<li><a href="#_terminologies_avalable_sub_section">7.14.5.2. Terminologies_avalable sub-section</a></li>
-<li><a href="#_separated_defnitions_and_bindings_sub_sections">7.14.5.3. Separated defnitions and bindings sub-sections</a></li>
-<li><a href="#_term_definitions_structure">7.14.5.4. Term_definitions Structure</a></li>
+<li><a href="#_at_codes_as_identifiers">7.13.5.1. At-codes as identifiers</a></li>
+<li><a href="#_terminologies_avalable_sub_section">7.13.5.2. Terminologies_avalable sub-section</a></li>
+<li><a href="#_separated_defnitions_and_bindings_sub_sections">7.13.5.3. Separated defnitions and bindings sub-sections</a></li>
+<li><a href="#_term_definitions_structure">7.13.5.4. Term_definitions Structure</a></li>
 </ul>
 </li>
 </ul>
 </li>
+<li><a href="#_annotations_section">7.14. Annotations Section</a></li>
 </ul>
 </li>
 <li><a href="#_terminology_integration">8. Terminology Integration</a>
@@ -512,7 +512,7 @@
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a id="latest_issue"></a>2.2.0</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://specifications.openehr.org/tickets/SPECAM-63" target="_blank" rel="noopener">SPECAM-63</a>. Add <code>rm_visibility</code> top-level section to state hide/show and RM attribute aliasing.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://specifications.openehr.org/tickets/SPECAM-63" target="_blank" rel="noopener">SPECAM-63</a>. Add <code>rm_overlay</code> top-level section with <code>rm_visibility</code> sub-section to state hide/show and RM attribute aliasing.</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">I McNicoll,<br>
  S L Bakke,<br>
  B Fabjan,<br>
@@ -1573,7 +1573,7 @@ the structure, as shown in the following example:</p>
 <h2 id="_overview"><a class="anchor" href="#_overview"></a>2. Overview</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>ADL uses three syntaxes, cADL (constraint form of ADL), ODIN (Object Data Instance Notation), and a version of first-order predicate logic (FOPL), to express constraints on data which are instances of an underlying information model, which may be expressed in UML, relational form, or in a programming language. ADL itself is a very simple 'glue' syntax, which uses two other syntaxes for expressing structured constraints and data, respectively. The cADL syntax is used to express the archetype <code>definition</code> section, while the ODIN syntax is used to express data which appears in the <code>language</code>, <code>description</code>, and <code>terminology</code> sections of an ADL archetype. The top-level structure of an ADL archetype is shown in the figure below.</p>
+<p>ADL uses three syntaxes, cADL (constraint form of ADL), ODIN (Object Data Instance Notation), and openEHR Expression Language (EL), to express constraints on data which are instances of an underlying information model, which may be expressed in UML, relational form, or in a programming language. ADL itself is a very simple 'glue' syntax, which uses two other syntaxes for expressing structured constraints and data, respectively. The cADL syntax is used to express the archetype <code>definition</code> section, while the ODIN syntax is used to express data which appears in the <code>language</code>, <code>description</code>, and <code>terminology</code> sections of an ADL archetype. The top-level structure of an ADL archetype is shown in the figure below.</p>
 </div>
 <div class="paragraph">
 <p>This main part of this document describes cADL and ADL path syntax, before going on to describe the combined ADL syntax, archetypes, specialisation, terminology integration and templates.</p>
@@ -4517,7 +4517,9 @@ that allowing the <code>W</code> designator to be used with the other designator
 <span class="tok-w">    </span><span class="tok-s">&#39;definition&#39;</span><span class="tok-w"></span>
 <span class="tok-w">        </span><span class="tok-nv">c_complex_object</span><span class="tok-w"></span>
 <span class="tok-w">    </span><span class="tok-o">(</span><span class="tok-s">&#39;rules&#39;</span><span class="tok-w"></span>
-<span class="tok-w">        </span><span class="tok-nv">assertion</span><span class="tok-o">+)?</span><span class="tok-w"></span>
+<span class="tok-w">        </span><span class="tok-nv">el_text</span><span class="tok-o">)?</span><span class="tok-w"></span>
+<span class="tok-w">    </span><span class="tok-o">(</span><span class="tok-s">&#39;rm_overlay&#39;</span><span class="tok-w"></span>
+<span class="tok-w">        </span><span class="tok-nv">oding_text</span><span class="tok-o">)?</span><span class="tok-w"></span>
 <span class="tok-w">    </span><span class="tok-s">&#39;terminology&#39;</span><span class="tok-w"></span>
 <span class="tok-w">        </span><span class="tok-nv">odin_text</span><span class="tok-w"></span>
 <span class="tok-w">    </span><span class="tok-o">(</span><span class="tok-s">&#39;annotations&#39;</span><span class="tok-w"></span>
@@ -4551,9 +4553,9 @@ that allowing the <code>W</code> designator to be used with the other designator
 <span class="tok-w">    </span><span class="tok-s">&#39;definition&#39;</span><span class="tok-w"></span>
 <span class="tok-w">        </span><span class="tok-nv">c_complex_object</span><span class="tok-w"></span>
 <span class="tok-w">    </span><span class="tok-o">(</span><span class="tok-s">&#39;rules&#39;</span><span class="tok-w"></span>
-<span class="tok-w">        </span><span class="tok-nv">assertion</span><span class="tok-o">+</span><span class="tok-w"></span>
-<span class="tok-w">    </span><span class="tok-s">&#39;data_bindings&#39;</span><span class="tok-w"></span>
-<span class="tok-w">        </span><span class="tok-nv">oding_text</span><span class="tok-o">)?</span><span class="tok-w"></span>
+<span class="tok-w">        </span><span class="tok-nv">el_text</span><span class="tok-o">)?</span><span class="tok-w"></span>
+<span class="tok-w">    </span><span class="tok-o">(</span><span class="tok-s">&#39;rm_overlay&#39;</span><span class="tok-w"></span>
+<span class="tok-w">        </span><span class="tok-nv">odin_text</span><span class="tok-o">)?</span><span class="tok-w"></span>
 <span class="tok-w">    </span><span class="tok-s">&#39;terminology&#39;</span><span class="tok-w"></span>
 <span class="tok-w">        </span><span class="tok-nv">odin_text</span><span class="tok-w"></span>
 <span class="tok-w">    </span><span class="tok-o">(</span><span class="tok-s">&#39;annotations&#39;</span><span class="tok-w"></span>
@@ -4573,9 +4575,9 @@ that allowing the <code>W</code> designator to be used with the other designator
 <span class="tok-w">    </span><span class="tok-s">&#39;definition&#39;</span><span class="tok-w"></span>
 <span class="tok-w">        </span><span class="tok-nv">c_complex_object</span><span class="tok-w"></span>
 <span class="tok-w">    </span><span class="tok-o">(</span><span class="tok-s">&#39;rules&#39;</span><span class="tok-w"></span>
-<span class="tok-w">        </span><span class="tok-nv">assertion</span><span class="tok-o">+</span><span class="tok-w"></span>
-<span class="tok-w">    </span><span class="tok-s">&#39;data_bindings&#39;</span><span class="tok-w"></span>
-<span class="tok-w">        </span><span class="tok-nv">oding_text</span><span class="tok-o">)?</span><span class="tok-w"></span>
+<span class="tok-w">        </span><span class="tok-nv">el_text</span><span class="tok-o">)?</span><span class="tok-w"></span>
+<span class="tok-w">    </span><span class="tok-o">(</span><span class="tok-s">&#39;rm_overlay&#39;</span><span class="tok-w"></span>
+<span class="tok-w">        </span><span class="tok-nv">odin_text</span><span class="tok-o">)?</span><span class="tok-w"></span>
 <span class="tok-w">    </span><span class="tok-s">&#39;terminology&#39;</span><span class="tok-w"></span>
 <span class="tok-w">        </span><span class="tok-nv">odin_text</span><span class="tok-w"></span>
 <span class="tok-w">    </span><span class="tok-p">;</span><span class="tok-w"></span></code></pre>
@@ -4595,9 +4597,9 @@ that allowing the <code>W</code> designator to be used with the other designator
 <span class="tok-w">    </span><span class="tok-s">&#39;definition&#39;</span><span class="tok-w"></span>
 <span class="tok-w">        </span><span class="tok-nv">c_complex_object</span><span class="tok-w"></span>
 <span class="tok-w">    </span><span class="tok-o">(</span><span class="tok-s">&#39;rules&#39;</span><span class="tok-w"></span>
-<span class="tok-w">        </span><span class="tok-nv">assertion</span><span class="tok-o">+</span><span class="tok-w"></span>
-<span class="tok-w">    </span><span class="tok-s">&#39;data_bindings&#39;</span><span class="tok-w"></span>
-<span class="tok-w">        </span><span class="tok-nv">oding_text</span><span class="tok-o">)?</span><span class="tok-w"></span>
+<span class="tok-w">        </span><span class="tok-nv">el_text</span><span class="tok-o">)?</span><span class="tok-w"></span>
+<span class="tok-w">    </span><span class="tok-o">(</span><span class="tok-s">&#39;rm_overlay&#39;</span><span class="tok-w"></span>
+<span class="tok-w">        </span><span class="tok-nv">odin_text</span><span class="tok-o">)?</span><span class="tok-w"></span>
 <span class="tok-w">    </span><span class="tok-s">&#39;terminology&#39;</span><span class="tok-w"></span>
 <span class="tok-w">        </span><span class="tok-nv">odin_text</span><span class="tok-w"></span>
 <span class="tok-w">    </span><span class="tok-o">(</span><span class="tok-s">&#39;annotations&#39;</span><span class="tok-w"></span>
@@ -5306,10 +5308,10 @@ the evolution toward separation of data context paths and expressions will enabl
 <div class="sect3">
 <h4 id="_rm_visibility"><a class="anchor" href="#_rm_visibility"></a>7.12.1. RM Visibility</h4>
 <div class="paragraph">
-<p>One of the basic characteristics of any underlying information model which may be archetyped is that its class attributes are already named, typically in English, if the model is internationally shared or standardised. Archetyping solves effective renaming and language-independence of object nodes, via the mechanism of id-codes, but attribute names are by default unchangeable and mono-lingual. Experience in archetype-based modelling has shown that renaming of RM attributes within the context of an archetype is a common need, usually because the attribute name chosen in the original model is not sufficiently specific for the users of a particular archetype. An example is the <a href="https://specifications.openehr.org/releases/RM/latest/ehr.html#\_composition_package" target="_blank" rel="noopener">openEHR class <code>COMPOSITION</code></a>, which has an attribute <code><em>composer</em></code>. For particular archetypes corresponding to specific sub-domains in healthcare, or specific geographies, a preferable name may be <code><em>author</em></code>; additionally, any such name (even the original) may be needed in multiple languages.</p>
+<p>One of the basic characteristics of any underlying information model which may be archetyped is that its class attributes are already named, typically in English, if the model is internationally shared or standardised. Archetyping solves effective renaming and language-independence of object nodes, via the mechanism of id-codes, but attribute names are by default unchangeable and mono-lingual. Experience in archetype-based modelling has shown that renaming of RM attributes within the context of an archetype is a common need, usually because the attribute name chosen in the original model is not sufficiently specific for some users of a particular archetype. An example is the <a href="https://specifications.openehr.org/releases/RM/latest/ehr.html#\_composition_package" target="_blank" rel="noopener">openEHR class <code>COMPOSITION</code></a>, which has an attribute <code><em>composer</em></code>. For particular archetypes corresponding to specific sub-domains in healthcare, or specific geographies, a preferable name may be <code><em>author</em></code>; additionally, any such name (even the original) may be needed in multiple languages.</p>
 </div>
 <div class="paragraph">
-<p>In ADL, re-labelling of RM attributes is called <em>aliasing</em>, and is achieved by mentioning an RM attribute path in the archetype and associating an alias with it, in the form of an 'ad-code' ('ad' denotes 'attribute identifier'). Aliasing may apply to any RM attribute path (constrained or unconstrained) in the archetype.</p>
+<p>In ADL, re-labelling of RM attributes is called <em>aliasing</em>, and is achieved by mentioning an RM attribute path in the archetype and associating an alias with it, in the form of an at-code, defined according to the usual rules of specialisation. Aliasing may apply to any valid RM path in the archetype, i.e. any path through RM objects referenced in the archetype. If archetype-specific nodes are referenced in a path, the settings relate to those paths only in the data, but if not, the settings relate to any matching RM path through the data.</p>
 </div>
 <div class="paragraph">
 <p>A second need, related to the above, is that archetype modellers sometimes need to know what elements are already in an information model, so they don&#8217;t try to remodel them again as redundant object nodes. In a simple implementation of an archetype authoring tool, attributes not so far archetyped will be all hidden, perhaps with a possibility of showing them all. However, commonly, finer-grained control is needed whereby particular attributes, possibly only on <em>particular object nodes</em> need to be made visible in a modelling tool, in order to indicate they need not be modelled.</p>
@@ -5326,7 +5328,7 @@ the evolution toward separation of data context paths and expressions will enabl
     <span class="tok-nc">rm_visibility</span> <span class="tok-o">=</span> <span class="tok-p">&lt;</span>
         <span class="tok-p">[</span><span class="tok-s">&quot;/path/to[id4]/archetype/node[id213]/path/to/rm/attribute&quot;</span><span class="tok-p">]</span> <span class="tok-o">=</span> <span class="tok-p">&lt;</span>
             <span class="tok-nc">visibility</span> <span class="tok-o">=</span> <span class="tok-p">&lt;</span><span class="tok-s">&quot;show&quot;</span><span class="tok-p">&gt;</span>
-            <span class="tok-nc">alias</span> <span class="tok-o">=</span> <span class="tok-p">&lt;[</span><span class="tok-nd">local</span><span class="tok-p">::</span><span class="tok-nd">ad12</span><span class="tok-p">]&gt;</span>
+            <span class="tok-nc">alias</span> <span class="tok-o">=</span> <span class="tok-p">&lt;[</span><span class="tok-nd">local</span><span class="tok-p">::</span><span class="tok-nd">at12</span><span class="tok-p">]&gt;</span>
         <span class="tok-p">&gt;</span>
         <span class="tok-p">[</span><span class="tok-s">&quot;/path/to[id5]/archetype/node[id64]/path/to/rm/attribute&quot;</span><span class="tok-p">]</span> <span class="tok-o">=</span> <span class="tok-p">&lt;</span>
             <span class="tok-nc">visibility</span> <span class="tok-o">=</span> <span class="tok-p">&lt;</span><span class="tok-s">&quot;hide&quot;</span><span class="tok-p">&gt;</span>
@@ -5336,14 +5338,14 @@ the evolution toward separation of data context paths and expressions will enabl
 <span class="tok-nc">terminology</span>
     <span class="tok-nc">term_definitions</span> <span class="tok-o">=</span> <span class="tok-p">&lt;</span>
         <span class="tok-p">[</span><span class="tok-s">&quot;en&quot;</span><span class="tok-p">]</span> <span class="tok-o">=</span> <span class="tok-p">&lt;</span>
-            <span class="tok-p">[</span><span class="tok-s">&quot;ad12&quot;</span><span class="tok-p">]</span> <span class="tok-o">=</span> <span class="tok-p">&lt;</span>
+            <span class="tok-p">[</span><span class="tok-s">&quot;at12&quot;</span><span class="tok-p">]</span> <span class="tok-o">=</span> <span class="tok-p">&lt;</span>
                 <span class="tok-nc">text</span> <span class="tok-o">=</span> <span class="tok-p">&lt;</span><span class="tok-s">&quot;name in English&quot;</span><span class="tok-p">&gt;</span>
                 <span class="tok-nc">description</span> <span class="tok-o">=</span> <span class="tok-p">&lt;</span><span class="tok-s">&quot;description in English&quot;</span><span class="tok-p">&gt;</span>
             <span class="tok-p">&gt;</span>
             <span class="tok-p">...</span>
         <span class="tok-p">&gt;</span>
         <span class="tok-p">[</span><span class="tok-s">&quot;de&quot;</span><span class="tok-p">]</span> <span class="tok-o">=</span> <span class="tok-p">&lt;</span>
-            <span class="tok-p">[</span><span class="tok-s">&quot;ad12&quot;</span><span class="tok-p">]</span> <span class="tok-o">=</span> <span class="tok-p">&lt;</span>
+            <span class="tok-p">[</span><span class="tok-s">&quot;at12&quot;</span><span class="tok-p">]</span> <span class="tok-o">=</span> <span class="tok-p">&lt;</span>
                 <span class="tok-nc">text</span> <span class="tok-o">=</span> <span class="tok-p">&lt;</span><span class="tok-s">&quot;name in German&quot;</span><span class="tok-p">&gt;</span>
                 <span class="tok-nc">description</span> <span class="tok-o">=</span> <span class="tok-p">&lt;</span><span class="tok-s">&quot;description in German&quot;</span><span class="tok-p">&gt;</span>
             <span class="tok-p">&gt;</span>
@@ -5355,86 +5357,9 @@ the evolution toward separation of data context paths and expressions will enabl
 </div>
 </div>
 <div class="sect2">
-<h3 id="_annotations_section"><a class="anchor" href="#_annotations_section"></a>7.13. Annotations Section</h3>
-<div class="paragraph">
-<p>The <code>annotations</code> section of an archetype or template provides a place for ad hoc node-level meta-data to be added. This can be used during the design phase to track dependencies, design decisions, and specific resource references.</p>
-</div>
-<div class="paragraph">
-<p>Annotations are divided into major named groups. Currently a <code>documentation</code> group is defined, intended for documentary (i.e. human-readable text) annotations. Other groups are likely to be defined in the future for various kinds of processing, where the annotations may be formal expressions or code fragments.</p>
-</div>
-<div class="paragraph">
-<p>Each annotation is keyed by a path, and may have any number of tagged elements. The path key can either be:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>the path of the archetype node being annotated, or</p>
-</li>
-<li>
-<p>a pure RM path</p>
-</li>
-</ul>
-</div>
-<div class="paragraph">
-<p>The usual case is the first, since annotations mainly relate to nodes in an archetype. However, it may be the case that within the context of the archetype, there is a need to refer to a part of the Reference Model type on which the archetype is based (<code>OBSERVATION</code>, <code>EVALUATION</code> etc) that <em>is not</em> constrained within the archetype, in order to indicate how it is to be understood within that archetyped structure (remember that an archetype does not need to constrain all possible paths of an information model class, but that such structures may nevertheless be instantiated).</p>
-</div>
-<div class="paragraph">
-<p>A typical <code>annotations</code> section looks as follows (<a href="https://github.com/openEHR/adl-archetypes/blob/master/ADL2-reference/features/description/annotations/openEHR-EHR-EVALUATION.annotations_1st_child.v1.adls">archetype source</a>). The <code>/subject</code> path is a non-constrained 'RM path'.</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="pygments highlight"><code data-lang="adl"><span></span><span class="tok-c">--</span>
-<span class="tok-c">-- Extract from test archetype openEHR-EHR-EVALUATION.annotations_1st_child.v1.0.0</span>
-<span class="tok-c">--</span>
-<span class="tok-gh">definition</span>
-    <span class="tok-nc">EVALUATION</span><span class="tok-p">[</span><span class="tok-nd">id1.1</span><span class="tok-p">]</span> <span class="tok-o">matches </span><span class="tok-p">{</span>    <span class="tok-c">-- Exclusion statement - Adverse Reaction</span>
-        <span class="tok-p">/</span><span class="tok-nc">data</span><span class="tok-p">[</span><span class="tok-nd">id2</span><span class="tok-p">]/</span><span class="tok-nc">items</span><span class="tok-p"> </span><span class="tok-o">matches </span><span class="tok-p">{</span>
-            <span class="tok-p">...</span>
-            <span class="tok-nc">ELEMENT</span><span class="tok-p">[</span><span class="tok-nd">id0.8</span><span class="tok-p">]</span> <span class="tok-kt">occurrences </span><span class="tok-o">matches </span><span class="tok-p">{</span><span class="tok-m">0..1</span><span class="tok-p">}</span> <span class="tok-o">matches </span><span class="tok-p">{</span>    <span class="tok-c">-- No known allergic reaction to</span>
-                <span class="tok-nc">value</span> <span class="tok-o">matches </span><span class="tok-p">{</span>
-                    <span class="tok-nc">DV_TEXT</span><span class="tok-p">[</span><span class="tok-nd">id0.6</span><span class="tok-p">]</span>
-                <span class="tok-p">}</span>
-            <span class="tok-p">}</span>
-            <span class="tok-p">...</span>
-            <span class="tok-nc">ELEMENT</span><span class="tok-p">[</span><span class="tok-nd">id0.10</span><span class="tok-p">]</span> <span class="tok-kt">occurrences </span><span class="tok-o">matches </span><span class="tok-p">{</span><span class="tok-m">0..1</span><span class="tok-p">}</span> <span class="tok-o">matches </span><span class="tok-p">{</span>    <span class="tok-c">-- No known intolerance to</span>
-                <span class="tok-nc">value</span> <span class="tok-o">matches </span><span class="tok-p">{</span>
-                    <span class="tok-nc">DV_TEXT</span><span class="tok-p">[</span><span class="tok-nd">id0.8</span><span class="tok-p">]</span>     <span class="tok-c">-- No known allergic reaction to</span>
-                <span class="tok-p">}</span>
-            <span class="tok-p">}</span>
-        <span class="tok-p">}</span>
-    <span class="tok-p">}</span>
-
-<span class="tok-gh">terminology</span>
-    <span class="tok-p">...</span>
-
-<span class="tok-gh">annotations</span>
-    <span class="tok-nc">documentation</span> <span class="tok-o">=</span> <span class="tok-p">&lt;</span>
-        <span class="tok-p">[</span><span class="tok-s">&quot;en&quot;</span><span class="tok-p">]</span> <span class="tok-o">=</span> <span class="tok-p">&lt;</span>
-            <span class="tok-p">[</span><span class="tok-s">&quot;/subject&quot;</span><span class="tok-p">]</span> <span class="tok-o">=</span> <span class="tok-p">&lt;</span>
-                <span class="tok-p">[</span><span class="tok-s">&quot;design note&quot;</span><span class="tok-p">]</span> <span class="tok-o">=</span> <span class="tok-p">&lt;</span><span class="tok-s">&quot;xxxxxx&quot;</span><span class="tok-p">&gt;</span>
-            <span class="tok-p">&gt;</span>
-            <span class="tok-p">[</span><span class="tok-s">&quot;/data[id2]/items[id0.8]&quot;</span><span class="tok-p">]</span> <span class="tok-o">=</span> <span class="tok-p">&lt;</span>
-                <span class="tok-p">[</span><span class="tok-s">&quot;design note&quot;</span><span class="tok-p">]</span> <span class="tok-o">=</span> <span class="tok-p">&lt;</span><span class="tok-s">&quot;this is a design note on allergic reaction&quot;</span><span class="tok-p">&gt;</span>
-                <span class="tok-p">[</span><span class="tok-s">&quot;requirements note&quot;</span><span class="tok-p">]</span> <span class="tok-o">=</span> <span class="tok-p">&lt;</span><span class="tok-s">&quot;this is a requirements note on allergic reaction&quot;</span><span class="tok-p">&gt;</span>
-                <span class="tok-p">[</span><span class="tok-s">&quot;medline ref&quot;</span><span class="tok-p">]</span> <span class="tok-o">=</span> <span class="tok-p">&lt;</span><span class="tok-s">&quot;this is a medline ref on allergic reaction&quot;</span><span class="tok-p">&gt;</span>
-            <span class="tok-p">&gt;</span>
-            <span class="tok-p">[</span><span class="tok-s">&quot;/data[id2]/items[id0.10]&quot;</span><span class="tok-p">]</span> <span class="tok-o">=</span> <span class="tok-p">&lt;</span>
-                <span class="tok-p">[</span><span class="tok-s">&quot;design note&quot;</span><span class="tok-p">]</span> <span class="tok-o">=</span> <span class="tok-p">&lt;</span><span class="tok-s">&quot;this is a design note on intelerance&quot;</span><span class="tok-p">&gt;</span>
-                <span class="tok-p">[</span><span class="tok-s">&quot;requirements note&quot;</span><span class="tok-p">]</span> <span class="tok-o">=</span> <span class="tok-p">&lt;</span><span class="tok-s">&quot;this is a requirements note on intolerance&quot;</span><span class="tok-p">&gt;</span>
-                <span class="tok-p">[</span><span class="tok-s">&quot;national data dictionary&quot;</span><span class="tok-p">]</span> <span class="tok-o">=</span> <span class="tok-p">&lt;</span><span class="tok-s">&quot;NDD ref for intolerance&quot;</span><span class="tok-p">&gt;</span>
-            <span class="tok-p">&gt;</span>
-        <span class="tok-p">&gt;</span>
-    <span class="tok-p">&gt;</span></code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>Because annotations are defined as a separate section, they can be easily removed in production versions of an archetype or template, and ignored in the generation of digital signatures.</p>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_terminology_section"><a class="anchor" href="#_terminology_section"></a>7.14. Terminology Section</h3>
+<h3 id="_terminology_section"><a class="anchor" href="#_terminology_section"></a>7.13. Terminology Section</h3>
 <div class="sect3">
-<h4 id="_overview_5"><a class="anchor" href="#_overview_5"></a>7.14.1. Overview</h4>
+<h4 id="_overview_5"><a class="anchor" href="#_overview_5"></a>7.13.1. Overview</h4>
 <div class="paragraph">
 <p>This section describes the syntax of the <code>terminology</code> section of an archetype. The following section, <a href="#_terminology_integration">Section 8</a> describes the semantics.</p>
 </div>
@@ -5473,7 +5398,7 @@ the evolution toward separation of data context paths and expressions will enabl
 </div>
 </div>
 <div class="sect3">
-<h4 id="_term_definitions_sub_section"><a class="anchor" href="#_term_definitions_sub_section"></a>7.14.2. Term_definitions Sub-section</h4>
+<h4 id="_term_definitions_sub_section"><a class="anchor" href="#_term_definitions_sub_section"></a>7.13.2. Term_definitions Sub-section</h4>
 <div class="paragraph">
 <p>The <code>term_definitions</code> section is mandatory, and must contain definitions for all terms requiring them, in all translations in use in the archetype. Terms requiring definitions include:</p>
 </div>
@@ -5580,7 +5505,7 @@ the evolution toward separation of data context paths and expressions will enabl
 </div>
 </div>
 <div class="sect3">
-<h4 id="_value_sets_sub_section"><a class="anchor" href="#_value_sets_sub_section"></a>7.14.3. Value_sets Sub-section</h4>
+<h4 id="_value_sets_sub_section"><a class="anchor" href="#_value_sets_sub_section"></a>7.13.3. Value_sets Sub-section</h4>
 <div class="paragraph">
 <p>The second part is the value set contents. This can be defined either as an 'internal' value set consisting of at-codes, or else as being a value set defined in an external terminology and referenced via a binding. An internal value set is defined using an entry in the <code>value_sets</code> sub-section for the <code>ac</code> code, containing a list of at-code member values. Each of those members must have its own definition in the <code>term_definitions</code> section. The following shows the structures required.</p>
 </div>
@@ -5605,7 +5530,7 @@ the evolution toward separation of data context paths and expressions will enabl
 </div>
 </div>
 <div class="sect3">
-<h4 id="_term_bindings_sub_section"><a class="anchor" href="#_term_bindings_sub_section"></a>7.14.4. Term_bindings Sub-section</h4>
+<h4 id="_term_bindings_sub_section"><a class="anchor" href="#_term_bindings_sub_section"></a>7.13.4. Term_bindings Sub-section</h4>
 <div class="paragraph">
 <p>A value set and/or its constituent terms may also have 'bindings' to externally defined terms and values sets. Object node id-codes may also have bindings, establishing external codings for the names of elements in an archetype. Binding is achieved in the <code>term_bindings</code> sub-section. Bindings are grouped under the target terminology they relate to, and each one consists of a key and a target. There are variations of each.</p>
 </div>
@@ -5732,15 +5657,15 @@ the evolution toward separation of data context paths and expressions will enabl
 </div>
 </div>
 <div class="sect3">
-<h4 id="_deprecated_terminology_section_features"><a class="anchor" href="#_deprecated_terminology_section_features"></a>7.14.5. Deprecated Terminology Section Features</h4>
+<h4 id="_deprecated_terminology_section_features"><a class="anchor" href="#_deprecated_terminology_section_features"></a>7.13.5. Deprecated Terminology Section Features</h4>
 <div class="sect4">
-<h5 id="_at_codes_as_identifiers"><a class="anchor" href="#_at_codes_as_identifiers"></a>7.14.5.1. At-codes as identifiers</h5>
+<h5 id="_at_codes_as_identifiers"><a class="anchor" href="#_at_codes_as_identifiers"></a>7.13.5.1. At-codes as identifiers</h5>
 <div class="paragraph">
 <p>In ADL 2, at-codes are used only as code values, not node identifiers. Id-codes are used for the latter purpose. This provides a clear separation between node 'names' and node 'values', for the kind of nodes whose values are coded terms.</p>
 </div>
 </div>
 <div class="sect4">
-<h5 id="_terminologies_avalable_sub_section"><a class="anchor" href="#_terminologies_avalable_sub_section"></a>7.14.5.2. Terminologies_avalable sub-section</h5>
+<h5 id="_terminologies_avalable_sub_section"><a class="anchor" href="#_terminologies_avalable_sub_section"></a>7.13.5.2. Terminologies_avalable sub-section</h5>
 <div class="paragraph">
 <p>In ADL 1.4, a <code>terminologies_available</code> header statement was required to identify all terminologies for which <code>term_bindings</code> sections have been written. For example:</p>
 </div>
@@ -5754,13 +5679,13 @@ the evolution toward separation of data context paths and expressions will enabl
 </div>
 </div>
 <div class="sect4">
-<h5 id="_separated_defnitions_and_bindings_sub_sections"><a class="anchor" href="#_separated_defnitions_and_bindings_sub_sections"></a>7.14.5.3. Separated defnitions and bindings sub-sections</h5>
+<h5 id="_separated_defnitions_and_bindings_sub_sections"><a class="anchor" href="#_separated_defnitions_and_bindings_sub_sections"></a>7.13.5.3. Separated defnitions and bindings sub-sections</h5>
 <div class="paragraph">
 <p>In ADL 1.4, there were two separate definitions sections, <code>term_definitions</code> and <code>constraint_definitions</code>, used to defined <code>at</code> and <code>ac</code> codes respectively. In ADL 2, these are merged into one <code>term_definitions</code> section, containing the definitions for <code>id</code>, <code>at</code> and <code>ac</code> codes. Similarly there were bindings sections, <code>term_bindings ` and `constraint_bindings</code>. These have been merged into one <code>term_bindings</code> section.</p>
 </div>
 </div>
 <div class="sect4">
-<h5 id="_term_definitions_structure"><a class="anchor" href="#_term_definitions_structure"></a>7.14.5.4. Term_definitions Structure</h5>
+<h5 id="_term_definitions_structure"><a class="anchor" href="#_term_definitions_structure"></a>7.13.5.4. Term_definitions Structure</h5>
 <div class="paragraph">
 <p>The following shows the structure of the terminology section used in ADL 1.4 archetypes. The extra <code>items</code> attribute notes are removed by ADL 2 tools, and should be considered deprecated.</p>
 </div>
@@ -5777,6 +5702,83 @@ the evolution toward separation of data context paths and expressions will enabl
 </div>
 </div>
 </div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_annotations_section"><a class="anchor" href="#_annotations_section"></a>7.14. Annotations Section</h3>
+<div class="paragraph">
+<p>The <code>annotations</code> section of an archetype or template provides a place for ad hoc node-level meta-data to be added. This can be used during the design phase to track dependencies, design decisions, and specific resource references.</p>
+</div>
+<div class="paragraph">
+<p>Annotations are divided into major named groups. Currently a <code>documentation</code> group is defined, intended for documentary (i.e. human-readable text) annotations. Other groups are likely to be defined in the future for various kinds of processing, where the annotations may be formal expressions or code fragments.</p>
+</div>
+<div class="paragraph">
+<p>Each annotation is keyed by a path, and may have any number of tagged elements. The path key can either be:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>the path of the archetype node being annotated, or</p>
+</li>
+<li>
+<p>a pure RM path</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>The usual case is the first, since annotations mainly relate to nodes in an archetype. However, it may be the case that within the context of the archetype, there is a need to refer to a part of the Reference Model type on which the archetype is based (<code>OBSERVATION</code>, <code>EVALUATION</code> etc) that <em>is not</em> constrained within the archetype, in order to indicate how it is to be understood within that archetyped structure (remember that an archetype does not need to constrain all possible paths of an information model class, but that such structures may nevertheless be instantiated).</p>
+</div>
+<div class="paragraph">
+<p>A typical <code>annotations</code> section looks as follows (<a href="https://github.com/openEHR/adl-archetypes/blob/master/ADL2-reference/features/description/annotations/openEHR-EHR-EVALUATION.annotations_1st_child.v1.adls">archetype source</a>). The <code>/subject</code> path is a non-constrained 'RM path'.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="pygments highlight"><code data-lang="adl"><span></span><span class="tok-c">--</span>
+<span class="tok-c">-- Extract from test archetype openEHR-EHR-EVALUATION.annotations_1st_child.v1.0.0</span>
+<span class="tok-c">--</span>
+<span class="tok-gh">definition</span>
+    <span class="tok-nc">EVALUATION</span><span class="tok-p">[</span><span class="tok-nd">id1.1</span><span class="tok-p">]</span> <span class="tok-o">matches </span><span class="tok-p">{</span>    <span class="tok-c">-- Exclusion statement - Adverse Reaction</span>
+        <span class="tok-p">/</span><span class="tok-nc">data</span><span class="tok-p">[</span><span class="tok-nd">id2</span><span class="tok-p">]/</span><span class="tok-nc">items</span><span class="tok-p"> </span><span class="tok-o">matches </span><span class="tok-p">{</span>
+            <span class="tok-p">...</span>
+            <span class="tok-nc">ELEMENT</span><span class="tok-p">[</span><span class="tok-nd">id0.8</span><span class="tok-p">]</span> <span class="tok-kt">occurrences </span><span class="tok-o">matches </span><span class="tok-p">{</span><span class="tok-m">0..1</span><span class="tok-p">}</span> <span class="tok-o">matches </span><span class="tok-p">{</span>    <span class="tok-c">-- No known allergic reaction to</span>
+                <span class="tok-nc">value</span> <span class="tok-o">matches </span><span class="tok-p">{</span>
+                    <span class="tok-nc">DV_TEXT</span><span class="tok-p">[</span><span class="tok-nd">id0.6</span><span class="tok-p">]</span>
+                <span class="tok-p">}</span>
+            <span class="tok-p">}</span>
+            <span class="tok-p">...</span>
+            <span class="tok-nc">ELEMENT</span><span class="tok-p">[</span><span class="tok-nd">id0.10</span><span class="tok-p">]</span> <span class="tok-kt">occurrences </span><span class="tok-o">matches </span><span class="tok-p">{</span><span class="tok-m">0..1</span><span class="tok-p">}</span> <span class="tok-o">matches </span><span class="tok-p">{</span>    <span class="tok-c">-- No known intolerance to</span>
+                <span class="tok-nc">value</span> <span class="tok-o">matches </span><span class="tok-p">{</span>
+                    <span class="tok-nc">DV_TEXT</span><span class="tok-p">[</span><span class="tok-nd">id0.8</span><span class="tok-p">]</span>     <span class="tok-c">-- No known allergic reaction to</span>
+                <span class="tok-p">}</span>
+            <span class="tok-p">}</span>
+        <span class="tok-p">}</span>
+    <span class="tok-p">}</span>
+
+<span class="tok-gh">terminology</span>
+    <span class="tok-p">...</span>
+
+<span class="tok-gh">annotations</span>
+    <span class="tok-nc">documentation</span> <span class="tok-o">=</span> <span class="tok-p">&lt;</span>
+        <span class="tok-p">[</span><span class="tok-s">&quot;en&quot;</span><span class="tok-p">]</span> <span class="tok-o">=</span> <span class="tok-p">&lt;</span>
+            <span class="tok-p">[</span><span class="tok-s">&quot;/subject&quot;</span><span class="tok-p">]</span> <span class="tok-o">=</span> <span class="tok-p">&lt;</span>
+                <span class="tok-p">[</span><span class="tok-s">&quot;design note&quot;</span><span class="tok-p">]</span> <span class="tok-o">=</span> <span class="tok-p">&lt;</span><span class="tok-s">&quot;xxxxxx&quot;</span><span class="tok-p">&gt;</span>
+            <span class="tok-p">&gt;</span>
+            <span class="tok-p">[</span><span class="tok-s">&quot;/data[id2]/items[id0.8]&quot;</span><span class="tok-p">]</span> <span class="tok-o">=</span> <span class="tok-p">&lt;</span>
+                <span class="tok-p">[</span><span class="tok-s">&quot;design note&quot;</span><span class="tok-p">]</span> <span class="tok-o">=</span> <span class="tok-p">&lt;</span><span class="tok-s">&quot;this is a design note on allergic reaction&quot;</span><span class="tok-p">&gt;</span>
+                <span class="tok-p">[</span><span class="tok-s">&quot;requirements note&quot;</span><span class="tok-p">]</span> <span class="tok-o">=</span> <span class="tok-p">&lt;</span><span class="tok-s">&quot;this is a requirements note on allergic reaction&quot;</span><span class="tok-p">&gt;</span>
+                <span class="tok-p">[</span><span class="tok-s">&quot;medline ref&quot;</span><span class="tok-p">]</span> <span class="tok-o">=</span> <span class="tok-p">&lt;</span><span class="tok-s">&quot;this is a medline ref on allergic reaction&quot;</span><span class="tok-p">&gt;</span>
+            <span class="tok-p">&gt;</span>
+            <span class="tok-p">[</span><span class="tok-s">&quot;/data[id2]/items[id0.10]&quot;</span><span class="tok-p">]</span> <span class="tok-o">=</span> <span class="tok-p">&lt;</span>
+                <span class="tok-p">[</span><span class="tok-s">&quot;design note&quot;</span><span class="tok-p">]</span> <span class="tok-o">=</span> <span class="tok-p">&lt;</span><span class="tok-s">&quot;this is a design note on intelerance&quot;</span><span class="tok-p">&gt;</span>
+                <span class="tok-p">[</span><span class="tok-s">&quot;requirements note&quot;</span><span class="tok-p">]</span> <span class="tok-o">=</span> <span class="tok-p">&lt;</span><span class="tok-s">&quot;this is a requirements note on intolerance&quot;</span><span class="tok-p">&gt;</span>
+                <span class="tok-p">[</span><span class="tok-s">&quot;national data dictionary&quot;</span><span class="tok-p">]</span> <span class="tok-o">=</span> <span class="tok-p">&lt;</span><span class="tok-s">&quot;NDD ref for intolerance&quot;</span><span class="tok-p">&gt;</span>
+            <span class="tok-p">&gt;</span>
+        <span class="tok-p">&gt;</span>
+    <span class="tok-p">&gt;</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Because annotations are defined as a separate section, they can be easily removed in production versions of an archetype or template, and ignored in the generation of digital signatures.</p>
 </div>
 </div>
 </div>

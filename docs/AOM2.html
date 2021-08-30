@@ -470,7 +470,7 @@
 <tr>
 <td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><a href="https://specifications.openehr.org/tickets/SPECAM-63" target="_blank" rel="noopener">SPECAM-63</a>. Add <code>rm_visibility</code> top-level section to state hide/show and RM attribute aliasing.</p>
+<p><a href="https://specifications.openehr.org/tickets/SPECAM-63" target="_blank" rel="noopener">SPECAM-63</a>. Add <code>rm_overlay</code> top-level section with <code>rm_visibility</code> sub-section to state hide/show and RM attribute aliasing.</p>
 </div></div></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">I McNicoll,<br>
  S L Bakke,<br>
@@ -5605,7 +5605,7 @@ other: <code><a href="#_c_ordered_class">C_ORDERED</a>[1]</code><br>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1<br>
 (redefined)</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>assumed_value</strong>: <code><a href="/releases/BASE/latest/foundation_types.html#_terminology_code_class" target="_blank" rel="noopener">Terminology_code</a></code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>assumed_value</strong>: <code><a href="/releases/BASE/latest/base_types.html#_terminology_code_class" target="_blank" rel="noopener">Terminology_code</a></code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>Assumed Terminology code value.</p>
 </div></div></td>
@@ -5613,7 +5613,7 @@ other: <code><a href="#_c_ordered_class">C_ORDERED</a>[1]</code><br>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>1..1<br>
 (redefined)</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>default_value</strong>: <code><a href="/releases/BASE/latest/foundation_types.html#_terminology_code_class" target="_blank" rel="noopener">Terminology_code</a></code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>default_value</strong>: <code><a href="/releases/BASE/latest/base_types.html#_terminology_code_class" target="_blank" rel="noopener">Terminology_code</a></code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"></div></td>
 </tr>
 <tr>
@@ -5637,7 +5637,7 @@ other: <code><a href="#_c_ordered_class">C_ORDERED</a>[1]</code><br>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>value_set_resolved</strong> (): <code><a href="/releases/BASE/latest/foundation_types.html#_list_class">List<sup></a>&lt;<a href="/releases/BASE/latest/foundation_types.html#_terminology_code_class">Terminology_code</sup></a>&gt;</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>value_set_resolved</strong> (): <code><a href="/releases/BASE/latest/foundation_types.html#_list_class">List<sup></a>&lt;<a href="/releases/BASE/latest/base_types.html#_terminology_code_class">Terminology_code</sup></a>&gt;</code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>For locally defined value sets within individual code bindings: final set of external codes to which value set is resolved.</p>
 </div></div></td>
@@ -5646,7 +5646,7 @@ other: <code><a href="#_c_ordered_class">C_ORDERED</a>[1]</code><br>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>1..1<br>
 (effected)</strong></p></th>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><strong>valid_value</strong> (<br>
-a_value: <code><a href="/releases/BASE/latest/foundation_types.html#_terminology_code_class" target="_blank" rel="noopener">Terminology_code</a>[1]</code><br>
+a_value: <code><a href="/releases/BASE/latest/base_types.html#_terminology_code_class" target="_blank" rel="noopener">Terminology_code</a>[1]</code><br>
 ): <code><a href="/releases/BASE/latest/foundation_types.html#_boolean_class" target="_blank" rel="noopener">Boolean</a></code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>True if a <code><em>value</em></code> is valid with respect to constraint expressed in concrete instance of this type.</p>
@@ -5655,7 +5655,7 @@ a_value: <code><a href="/releases/BASE/latest/foundation_types.html#_terminology
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>1..1<br>
 (effected)</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>prototype_value</strong> (): <code><a href="/releases/BASE/latest/foundation_types.html#_terminology_code_class" target="_blank" rel="noopener">Terminology_code</a></code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>prototype_value</strong> (): <code><a href="/releases/BASE/latest/base_types.html#_terminology_code_class" target="_blank" rel="noopener">Terminology_code</a></code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>A generated prototype value from this constraint object.</p>
 </div></div></td>
@@ -6047,7 +6047,13 @@ the meta-model of rules has changed from the previous release of ADL/AOM, and is
 <div class="sect4">
 <h5 id="_validity"><a class="anchor" href="#_validity"></a>6.2.1.1. Validity</h5>
 <div class="paragraph">
-<p>If the <code><em>alias</em></code> attribute is set, the <code><em>visibility</em></code> must also be set. Normally this should be set to <code>show</code>, ahtough the value is not currently mandated, in order to allow possible extension of visibility settings beyond just <code>show</code> and <code>hide</code>.</p>
+<p>The RM overlay validity rules are as follows:</p>
+</div>
+<div class="paragraph rule">
+<p><strong>VRMVP</strong>: RM-visibility path validity. The path stated in an <code>rm_visbility</code> entry must be valid, meaning it must be valid against the RM, and if it references archetype-specific nodes, be valid against the archetype as well.</p>
+</div>
+<div class="paragraph rule">
+<p><strong>VRMVAV</strong>: RM-visibility alias validity. If the <code><em>alias</em></code> attribute is set, it must refer to an ad-code defined in the terminology.</p>
 </div>
 </div>
 </div>
@@ -6121,15 +6127,9 @@ the meta-model of rules has changed from the previous release of ADL/AOM, and is
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>alias</strong>: <code><a href="/releases/BASE/latest/foundation_types.html#_terminology_code_class" target="_blank" rel="noopener">Terminology_code</a></code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>alias</strong>: <code><a href="/releases/BASE/latest/base_types.html#_terminology_code_class" target="_blank" rel="noopener">Terminology_code</a></code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>Optional alias for the attribute referenced by the path.</p>
-</div></div></td>
-</tr>
-<tr>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Invariants</strong></p></th>
-<td class="tableblock halign-left valign-top" colspan="2"><div class="content"><div class="paragraph">
-<p><em>Inv_alias_validity</em>: <code>alias /= Void implies visibility /= Void</code></p>
 </div></div></td>
 </tr>
 </tbody>
