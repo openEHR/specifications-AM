@@ -495,13 +495,13 @@ For these reasons, terminology constraints may be relaxed from the default 'requ
 * _preferred_: the data instance preferably conforms to the value set, but may use any other code, even if the concept is represented by a code within the constraint;
 * _example_: the constraint value or value-set is provided as an illustrative example only.
 
-Formally, all three of these statuses are the same as a value constraint specifying only the RM type as being a terminology code (e.g. `DV_CODED_TEXT` from openEHR) and nothing more, which is to say, at the archetype level, validity of the data instance is achieved by supplying _any terminology code_. However, higher levels of semantic validation in tooling may be performed that do take into account which of the informal constraint statuses is actualy set in a particular situation.
+Formally, all three of these statuses are the same as a value constraint specifying only the RM type as being a terminology code (e.g. `DV_CODED_TEXT` from openEHR) and nothing more, which is to say, at the archetype level, validity of the data instance is achieved by supplying _any terminology code_. However, higher levels of semantic validation in tooling may be performed that do take into account any informal constraint status that may be set.
 
 Soft terminology constraints are typically intended to be used alongside a constraint allowing a pure text value as well, i.e. to cope with the case where no terminology code of any kind is available at runtime to express the intended value (this happens every so often in healthcare when a novel virus or pathogen is identified, but not yet incorporated into published terminologies). The ability to construct a coded-text + plain-text constraint pattern is entirely dependent on the types available in the Reference Model on which the archetypes in question are based.
 
 The _recommendation_ is that if a terminology constraint is not `required`, a plain text constraint should be supplied alongside if the RM permits, to allow for the case of unavailability of any coded term.
 
-Soft terminology constraints are specified in ADL using keywords prior to the formal constraint. Taking into account the recommendation for coded-text + text, the typical usage is as shown below. If no keyword is supplied, the meaning is `required`, although this may also be supplied as a keyword if desired.
+Soft terminology constraints are specified in ADL using keywords prior to the formal constraint. Taking into account the recommendation for coded-text + text, the typical usage is as shown below. If no keyword is supplied, the meaning is `required`, although this may also be stated using the `required` keyword if desired.
 
 [source, cadl]
 --------
