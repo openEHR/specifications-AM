@@ -476,6 +476,14 @@
 </thead>
 <tbody>
 <tr>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><a href="https://specifications.openehr.org/tickets/SPECAM-57" target="_blank" rel="noopener">SPECAM-57</a>. Adjust model of <code>ASSERTIONs</code> and rules to use Expression Language Object Model (ELOM).</p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">T Beale</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">16 Sep 2018</p></td>
+</tr>
+<tr>
 <th class="tableblock halign-center valign-top" colspan="4"><p class="tableblock"><strong>AM Release 2.3.?</strong></p></th>
 </tr>
 <tr>
@@ -543,7 +551,15 @@
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">2.2.0</p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><a href="https://specifications.openehr.org/tickets/SPECAM-63" target="_blank" rel="noopener">SPECAM-63</a>. Add <code>rm_visibility</code> top-level section to state hide/show and RM attribute aliasing.</p>
+<p><a href="https://specifications.openehr.org/tickets/SPECAM-57" target="_blank" rel="noopener">SPECAM-57</a>. Update meta-model of ASSERTIONs to use BMM Assertions.</p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">T Beale</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">10 Jun 2019</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><a href="https://specifications.openehr.org/tickets/SPECAM-63" target="_blank" rel="noopener">SPECAM-63</a>. Add <code>rm_overlay</code> top-level section with <code>rm_visibility</code> sub-section to state hide/show and RM attribute aliasing.</p>
 </div></div></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">I McNicoll,<br>
  S L Bakke,<br>
@@ -578,14 +594,6 @@
  M Pipan,<br>
  T Beale</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">21 Jan 2019</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"></td>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><a href="https://specifications.openehr.org/tickets/SPECAM-57" target="_blank" rel="noopener">SPECAM-57</a>. Adjust model of <code>ASSERTIONs</code> and rules to use Expression Language Object Model (ELOM).</p>
-</div></div></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">T Beale</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">16 Sep 2018</p></td>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top" colspan="4"><p class="tableblock"><strong>AM Release-2.1.0</strong></p></th>
@@ -2734,7 +2742,7 @@ an_id: <code><a href="/releases/BASE/latest/foundation_types.html#_string_class"
 <div class="ulist">
 <ul>
 <li>
-<p><code>C_COMPLEX_OBJECT</code> : any interior node representing a constraint on instances of some non-primitive type, e.g. <code>OBSERVATION</code> , <code>SECTION</code> ;</p>
+<p><code>C_COMPLEX_OBJECT</code> : any interior node representing a constraint on instances of some non-primitive type, e.g. <code>OBSERVATION</code>, <code>SECTION</code> ;</p>
 </li>
 <li>
 <p><code>C_ATTRIBUTE</code> : a node representing a constraint on an attribute (i.e. UML 'relationship' or 'primitive attribute') in an object type;</p>
@@ -2746,7 +2754,7 @@ an_id: <code><a href="/releases/BASE/latest/foundation_types.html#_string_class"
 <p><code>C_COMPLEX_OBJECT_PROXY</code> : a node that refers to a previously defined <code>C_COMPLEX_OBJECT</code> node in the same archetype. The reference is made using a path;</p>
 </li>
 <li>
-<p><code>ARCHETYPE_SLOT</code> : a node whose statements define a constraint that determines which other archetypes can appear at that point in the current archetype. It can be thought of like a keyhole, into which few or many keys might fit, depending on how specific its shape is. Logically it has the same semantics as a <code>C_COMPLEX_OBJECT</code> , except that the constraints are expressed in another archetype, not the current one.</p>
+<p><code>ARCHETYPE_SLOT</code> : a node whose statements define a constraint that determines which other archetypes can appear at that point in the current archetype. It can be thought of like a keyhole, into which few or many keys might fit, depending on how specific its shape is. Logically it has the same semantics as a <code>C_COMPLEX_OBJECT</code>, except that the constraints are expressed in another archetype, not the current one.</p>
 </li>
 <li>
 <p><code>C_ARCHETYPE_ROOT</code> : stands for the root node of an archetype; enables another archetype to be referenced from the present one. Used in both archetypes and templates.</p>
@@ -2754,7 +2762,7 @@ an_id: <code><a href="/releases/BASE/latest/foundation_types.html#_string_class"
 </ul>
 </div>
 <div class="paragraph">
-<p>The constraints define which configurations of reference model class instances are considered to conform to the archetype. For example, certain configurations of the classes <code>PARTY</code> , <code>ADDRESS</code> , <code>CLUSTER</code> and <code>ELEMENT</code> might be defined by a Person archetype as allowable structures for 'people with identity, contacts, and addresses'. Because the constraints allow optionality, cardinality and other choices, a given archetype usually corresponds to a set of similar configurations of objects.</p>
+<p>The constraints define which configurations of reference model class instances are considered to conform to the archetype. For example, certain configurations of the classes <code>PARTY</code>, <code>ADDRESS</code>, <code>CLUSTER</code> and <code>ELEMENT</code> might be defined by a Person archetype as allowable structures for 'people with identity, contacts, and addresses'. Because the constraints allow optionality, cardinality and other choices, a given archetype usually corresponds to a set of similar configurations of objects.</p>
 </div>
 <div id="constraint_model_primitive" class="imageblock text-center text-center">
 <div class="content">
@@ -6019,7 +6027,7 @@ other: <code><a href="#_c_ordered_class">C_ORDERED</a>[1]</code><br>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>1..1</strong></p></th>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><strong>effective_constraint_status</strong> (): <code><a href="/releases/BASE/latest/foundation_types.html#_integer_class" target="_blank" rel="noopener">Integer</a></code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p>Return the effective integer value of the <code><em>constraint_status</em></code> field; if it is null, return 0, i.e. <code>required</code>.</p>
+<p>Return the effective integer value of the <code><em>constraint_status</em></code> field if it exists. If it is null, return 0, i.e. <code>required</code>.</p>
 </div></div></td>
 </tr>
 <tr>
@@ -6549,7 +6557,7 @@ other: <code><a href="#_c_second_order_class">C_SECOND_ORDER</a>[1]</code><br>
 <div class="sect2">
 <h3 id="_overview_4"><a class="anchor" href="#_overview_4"></a>5.1. Overview</h3>
 <div class="paragraph">
-<p>Rules are represented in archetypes as BMM assertions, which in turn use Boolean-valued expressions defined by the <code>LANG::org.openehr.bmm.expressions</code> package described in the <a href="https://specifications.openehr.org/releases/LANG/latest/bmm.html" target="_blank" rel="noopener">BMM Expression Model</a>. The following UML view illustrates.</p>
+<p>Rules are represented in archetypes as BMM simple statements (<code>BMM_SIMPLE_STATEMENT</code>), whose subtypes <code>BMM_ASSERTION</code> and <code>BMM_ASSIGNMENT</code> supply the concrete forms of allowed rules. BMM assertions in turn use Boolean-valued expressions defined by the <code>LANG::org.openehr.bmm.expressions</code> package described in the <a href="https://specifications.openehr.org/releases/LANG/latest/bmm.html" target="_blank" rel="noopener">BMM Expression Model</a>. The following UML view illustrates.</p>
 </div>
 <div id="aom_rules" class="imageblock text-center text-center">
 <div class="content">
@@ -6626,7 +6634,13 @@ other: <code><a href="#_c_second_order_class">C_SECOND_ORDER</a>[1]</code><br>
 <div class="sect4">
 <h5 id="_validity"><a class="anchor" href="#_validity"></a>6.2.1.1. Validity</h5>
 <div class="paragraph">
-<p>If the <code><em>alias</em></code> attribute is set, the <code><em>visibility</em></code> must also be set. Normally this should be set to <code>show</code>, ahtough the value is not currently mandated, in order to allow possible extension of visibility settings beyond just <code>show</code> and <code>hide</code>.</p>
+<p>The RM overlay validity rules are as follows:</p>
+</div>
+<div class="paragraph rule">
+<p><strong>VRMVP</strong>: RM-visibility path validity. The path stated in an <code>rm_visbility</code> entry must be valid, meaning it must be valid against the RM, and if it references archetype-specific nodes, be valid against the archetype as well.</p>
+</div>
+<div class="paragraph rule">
+<p><strong>VRMVAV</strong>: RM-visibility alias validity. If the <code><em>alias</em></code> attribute is set, it must refer to an ad-code defined in the terminology.</p>
 </div>
 </div>
 </div>
@@ -6703,12 +6717,6 @@ other: <code><a href="#_c_second_order_class">C_SECOND_ORDER</a>[1]</code><br>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><strong>alias</strong>: <code><a href="/releases/BASE/latest/foundation_types.html#_terminology_code_class" target="_blank" rel="noopener">Terminology_code</a></code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>Optional alias for the attribute referenced by the path.</p>
-</div></div></td>
-</tr>
-<tr>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Invariants</strong></p></th>
-<td class="tableblock halign-left valign-top" colspan="2"><div class="content"><div class="paragraph">
-<p><em>Inv_alias_validity</em>: <code>alias /= Void implies visibility /= Void</code></p>
 </div></div></td>
 </tr>
 </tbody>
