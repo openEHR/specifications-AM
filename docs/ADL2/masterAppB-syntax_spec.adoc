@@ -1,7 +1,11 @@
 [appendix]
 = Syntax Specification
 
-The normative specification of the ADL syntax is expressed in Antlr4 as a series of component grammars, shown below. This has been tested with the Antlr4.5 implementation available from http://www.antlr.org[Antlr.org]. The source files are available in two locations on Github - https://github.com/openEHR/specifications-AM/tree/master/computable/grammar[ADL Antlr files]; https://github.com/openEHR/specifications-BASE/tree/master/computable/grammar[Common Antlr files]. Note that the ODIN grammar used in parts of an ADL archetype is not shown below, it can be found in the ODIN specification <<openehr_odin>>.
+// override the Antlr include URI var so as to point to the correct release
+:openehr_adl_antlr_include: {openehr_git_raw}/adl-antlr/ADL_2.0.6/src/main/antlr
+:openehr_adl_antlr: {openehr_git}/adl-antlr/ADL_2.0.6/src/main/antlr
+
+The normative specification of the ADL syntax is expressed in Antlr4 as a series of component grammars, shown below. This has been tested with the Antlr4.5 implementation available from http://www.antlr.org[Antlr.org]. The source files are available in the {openehr_adl_antlr}[ADL_2.0.6 tag of Adl-antlr^] at Github. Note that the ODIN grammar used in parts of an ADL archetype is not shown below, and can be found in the {openehr_odin}[openEHR ODIN specification^]..
 
 There are various other syntax specifications in existence.
 
@@ -21,7 +25,7 @@ The following grammar expresses the outer syntax of ADL, i.e. the top-level stru
 
 [source, antlr-java]
 --------
-include::{grammar_dir}/adl.g4[]
+include::{openehr_adl_antlr_include}/adl.g4[]
 --------
 
 == cADL Syntax
@@ -30,7 +34,7 @@ The following grammar expresses the syntax of cADL composite types, i.e. the lan
 
 [source, antlr-java]
 --------
-include::{grammar_dir}/cadl.g4[]
+include::{openehr_adl_antlr_include}/cadl.g4[] 
 --------
 
 == cADL Primitives Syntax
@@ -39,7 +43,7 @@ The following grammar defines the syntax of cADL primitives, which are used by c
 
 [source, antlr-java]
 --------
-include::{grammar_dir}/cadl_primitives.g4[]
+include::{openehr_adl_antlr_include}/cadl_primitives.g4[]
 --------
 
 == Rules Syntax
@@ -48,7 +52,7 @@ The following grammar defines the syntax that may appear in the `rules` section 
 
 [source, antlr-java]
 --------
-include::{grammar_dir}/adl_rules.g4[]
+include::{openehr_adl_antlr_include}/adl_rules.g4[]
 --------
 
 == ADL Keywords
@@ -57,7 +61,7 @@ The following grammar defines the lexer patterns for ADL keywords.
 
 [source, antlr-java]
 --------
-include::{grammar_dir}/adl_keywords.g4[]
+include::{openehr_adl_antlr_include}/adl_keywords.g4[]
 --------
 
 == ODIN value types
@@ -66,7 +70,7 @@ The following grammar defines the syntax for the terminal types in ADL, which ar
 
 [source, antlr-java]
 --------
-include::{grammar_dir}/odin_values.g4[]
+include::{openehr_adl_antlr_include}/odin_values.g4[]
 --------
 
 == Base Patterns
@@ -75,5 +79,5 @@ The following grammar defines syntax of generic base patterns.
 
 [source, antlr-java]
 --------
-include::{grammar_dir}/base_patterns.g4[]
+include::{openehr_adl_antlr_include}/base_patterns.g4[]
 --------
