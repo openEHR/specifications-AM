@@ -11,7 +11,7 @@ The following grammar expresses the outer syntax of ADL, i.e. the top-level stru
 
 [source, antlr-java]
 --------
-include::{openehr_adl_220_antlr_include}/adl/adl14.g4[]
+include::{openehr_adl_antlr_include}/adl/adl14.g4[]
 --------
 
 == cADL Syntax
@@ -20,7 +20,7 @@ The following grammar expresses the syntax of cADL composite types, i.e. the lan
 
 [source, antlr-java]
 --------
-include::{openehr_adl_220_antlr_include}/adl/cadl14.g4[]
+include::{openehr_adl_antlr_include}/adl/cadl14.g4[]
 --------
 
 == cADL Primitives Syntax
@@ -29,34 +29,25 @@ The following grammar defines the syntax of cADL primitives, which are used by c
 
 [source, antlr-java]
 --------
-include::{openehr_adl_220_antlr_include}/adl/cadl14_primitives.g4[]
+include::{openehr_adl_antlr_include}/adl/cadl14_primitives.g4[]
 --------
 
-== Rules Syntax
+== ADL Keywords
 
-The following grammar defines the syntax that may appear in the `rules` section of an archetype and also the assertions in Archetype slots.
+The following grammar defines the lexer patterns for ADL keywords.
 
 [source, antlr-java]
 --------
-include::{openehr_adl_220_antlr_include}/adl/base_expressions.g4[]
+include::{openehr_adl_antlr_include}/adl/adl_keywords.g4[]
 --------
 
-== ODIN structures
+== Base Expressions
 
-The following grammar defines the syntax for ODIN structures.
+The following grammar defines syntax of expressions.
 
 [source, antlr-java]
 --------
-include::{openehr_adl_220_antlr_include}/adl/odin.g4[]
---------
-
-== ODIN value types
-
-The following grammar defines the syntax for the terminal types in ADL, which are derived from ODIN.
-
-[source, antlr-java]
---------
-include::{openehr_adl_220_antlr_include}/adl/odin_values.g4[]
+include::{openehr_adl_antlr_include}/adl/base_expressions.g4[]
 --------
 
 == Base Lexer
@@ -65,5 +56,5 @@ The following grammar defines common lexical entities.
 
 [source, antlr-java]
 --------
-include::{openehr_adl_220_antlr_include}/adl/base_lexer.g4[]
+include::{openehr_adl_antlr_include}/adl/base_lexer.g4[]
 --------
