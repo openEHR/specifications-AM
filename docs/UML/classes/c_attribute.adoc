@@ -60,7 +60,7 @@ a|Path of this attribute with respect to owning `C_OBJECT`, including differenti
 
 h|*1..1*
 |*is_single* (): `link:/releases/BASE/{base_release}/foundation_types.html#_boolean_class[Boolean^]`
-a|True if this node logically represents a single-valued attribute. Evaluated as not is_multiple.
+a|True if this node logically represents a single-valued attribute. Evaluated as not `_is_multiple_`.
 
 h|*1..1 +
 (effected)*
@@ -82,12 +82,12 @@ rmcc: `link:/releases/BASE/{base_release}/foundation_types.html#_function_class[
  +
 __Post__: `Result = existence_conforms_to (other) and ((is_single and other.is_single) or else (is_multiple and cardinality_conforms_to (other)))`
 a|True if constraints represented by this node, ignoring any sub-parts, are narrower or the same as other.
-Typically used during validation of special-ised archetype nodes.
+Typically used during validation of specialised archetype nodes.
 
 h|*1..1 +
 (effected)*
 |*is_prohibited* (): `link:/releases/BASE/{base_release}/foundation_types.html#_boolean_class[Boolean^]` +
  +
 __Post__: `Result = existence /= Void and then existence.is_prohibited`
-a|True if this `C_ATTRIBUTE` has an existence constraint of 0..0, i.e. prohibition.
+a|True if this `C_ATTRIBUTE` has an existence constraint of `0..0`, i.e. prohibition.
 |===
