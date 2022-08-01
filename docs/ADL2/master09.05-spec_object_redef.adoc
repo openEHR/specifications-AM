@@ -514,7 +514,7 @@ The following example shows the use of `use_archetype` within a specialised arch
 --------
 
 [[_primitive_object_redefinition]]
-=== Primitive Object Redefinition
+== Primitive Object Redefinition
 
 For terminal objects (i.e. elements of the type `C_PRIMITIVE_OBJECT`) redefinition consists of:
 
@@ -522,7 +522,7 @@ For terminal objects (i.e. elements of the type `C_PRIMITIVE_OBJECT`) redefiniti
 * redefined value ranges or sets using a narrower value range or set;
 * exclusions on the previously defined value ranges or sets which have the effect of narrowing the original range or set.
 
-==== Numeric Primitive Redefinition
+=== Numeric Primitive Redefinition
 
 The following example shows a redefined real value range.
 
@@ -549,34 +549,33 @@ Specialised archetype:
     }
 --------
 
-==== Terminology Constraint Redefinition
+=== Terminology Constraint Redefinition
 
-Redefinition of a terminology constraint follows the general rule that redefinitions may only narrow constraints, not widen them, so as to preserve the instance / archetype validity relation up the specialisation lineage. With respect to terminology constraints, 'narrowing' of the terminology value or value-set may be realised in various ways, shown below. Regardless of any changes to the value constraint, narrowing must also be respected for the constraint strength. Concretely, this means that a redefined terminology constraint may narrow the constraint strength by redefining any strength declared in a parent to any 'higher' strength, where the following order holds, from lowest to highest: `example` -> `preferred` -> `exensible` -> `required`. Thus, the following redefinition from `preferred` to `required` may be made:
+Redefinition of a terminology constraint follows the golden rule that redefinitions may only narrow constraints, not widen them, so as to preserve the instance / archetype validity relation up the specialisation lineage. The golden rule holds only for formal constraints, and is modified by the possibility of <<_soft_terminology_constraint,non-binding constraint strengths>>.
+
+==== Constrain Previously Unconstrained Node
+
+The simplest form of terminology constraint specialisation is when a term constraint is used as a redefinition of a previously _unconstrained node_. This might simply be to require that a data item be of the appropriate reference model type, with no further constraint:
 
 [source, cadl]
 --------
-    -- parent archetype
-    name matches {
-        DV_CODED_TEXT[id13] matches {
-            defining_code matches {preferred [ac1]}
-        }
-    }
-
-    -- child archetype
-    name matches {
-        DV_CODED_TEXT[id13.1] matches {
-            defining_code matches {[ac1]}  -- i.e. required
-        }
+    /data[id2]/events[id3]/data[id4]/items[id22]/value ∈ {  -- cuff size
+        DV_CODED_TEXT[id14]  -- force a term of some kind
     }
 --------
 
-The value set represented by `ac1` may also be narrowed at the same time, so in the above, `ac1.1` might have been used instead.
+Alternatively, it may impose a value set, as follows:
 
-A constraint with `required` strength cannot be redefined to any other strength in a specialised archetype.
+[source, cadl]
+--------
+    /data[id2]/events[id3]/data[id4]/items[id22]/value ∈ {  -- cuff size
+        DV_CODED_TEXT[id14] matches {[ac0.1]}
+    }
+--------
 
 ==== Terminology Internal Value Set Redefinition
 
-The following example shows a redefined internal value set.
+The more typical redefinition case is when the parent node already states a terminology constraint with a value set, and the specialisation child redefines is, as per the following example.
 
 Parent archetype:
 
@@ -694,15 +693,65 @@ terminology
     >
 --------
 
-These redefinitions are assumed to be valid, although it is not directly validatable unless the terminology subset is available to the tooling.
+These redefinitions are assumed to be valid, although they are not directly validatable unless the terminology subset is available to the tooling.
 
-A third variation is when a term constraint is used as a redefinition of a previously unconstrained term code, e.g. as shown in the following fragment.
+==== Constraint Strength Redefinition
+
+Regardless of any changes to the value constraint, narrowing must also be respected for the constraint strength. Concretely, this means that a redefined terminology constraint may narrow the constraint strength by redefining any strength declared in a parent to any 'higher' strength, where the following order holds, from lowest to highest: `example` -> `preferred` -> `exensible` -> `required`. Thus, the following redefinition from `preferred` to `required` may be made:
 
 [source, cadl]
 --------
-    ELEMENT[id79] ∈ { -- cuff size
-        value ∈ {
-            DV_CODED_TEXT[id14]
+    -- parent archetype
+    name matches {
+        DV_CODED_TEXT[id13] matches {
+            defining_code matches {preferred [ac1]}
+        }
+    }
+
+    -- child archetype
+    name matches {
+        DV_CODED_TEXT[id13.1] matches {
+            defining_code matches {[ac1]}  -- i.e. required
+        }
+    }
+--------
+
+A constraint with `required` strength cannot be redefined to any other strength in a specialised archetype.
+
+NOTE: Although the standard form `defining_code matches {[ac1]}` may always be used to represent 'required' strength, it is strongly recommended that the explicity form `defining_code matches {required [ac1]}` be used in specialised archetypes, _where the constraint strength is being redefined_ (i.e. not for redefinition of a nodes where constraint strength is never mentioned).
+
+It must be kept in mind that a constraint strength other than `required` is formally equivalent to _no constraint_ - i.e. it is only a guide for tooling and human authors. The following two fragments are therefore completely equivalent.
+
+[source, cadl]
+--------
+    -- non-required constraint strength
+    name matches {
+        DV_CODED_TEXT[id13] matches {
+            defining_code matches {preferred [ac1]}
+        }
+    }
+
+    -- ... is the same as no constraint, other than RM type
+    name matches {
+        DV_CODED_TEXT[id13]
+    }
+--------
+
+This means that redefinition of a node containing a non-required constraint strength is formally speaking a redefinition of a node with no constaint on terminology code values. _The specialised node may therefore state any value set, regardless of what value set was stated in the parent_. This is true regardless of whether the constraint strength itself is redefined. For example, in the following a `preferred` strength node with value set `ac1` is redefined by another `preferred` node using a non-conforming value set `ac0.4`.
+
+[source, cadl]
+--------
+    -- parent archetype
+    name matches {
+        DV_CODED_TEXT[id13] matches {
+            defining_code matches {preferred [ac1]}
+        }
+    }
+
+    -- child archetype
+    name matches {
+        DV_CODED_TEXT[id13.1] matches {
+            defining_code matches {preferred [ac0.4]}
         }
     }
 --------

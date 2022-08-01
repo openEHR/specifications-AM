@@ -341,22 +341,27 @@
 <li><a href="#_external_reference_redefinition">9.5.7. External Reference Redefinition</a></li>
 <li><a href="#_slot_filling_and_redefinition">9.5.8. Slot Filling and Redefinition</a></li>
 <li><a href="#_unconstrained_attributes">9.5.9. Unconstrained Attributes</a></li>
-<li><a href="#_primitive_object_redefinition">9.5.10. Primitive Object Redefinition</a>
+</ul>
+</li>
+<li><a href="#_primitive_object_redefinition">9.6. Primitive Object Redefinition</a>
+<ul class="sectlevel3">
+<li><a href="#_numeric_primitive_redefinition">9.6.1. Numeric Primitive Redefinition</a></li>
+<li><a href="#_terminology_constraint_redefinition">9.6.2. Terminology Constraint Redefinition</a>
 <ul class="sectlevel4">
-<li><a href="#_numeric_primitive_redefinition">9.5.10.1. Numeric Primitive Redefinition</a></li>
-<li><a href="#_terminology_constraint_redefinition">9.5.10.2. Terminology Constraint Redefinition</a></li>
-<li><a href="#_terminology_internal_value_set_redefinition">9.5.10.3. Terminology Internal Value Set Redefinition</a></li>
-<li><a href="#_terminology_external_subset_redefinition">9.5.10.4. Terminology External Subset Redefinition</a></li>
+<li><a href="#_constrain_previously_unconstrained_node">9.6.2.1. Constrain Previously Unconstrained Node</a></li>
+<li><a href="#_terminology_internal_value_set_redefinition">9.6.2.2. Terminology Internal Value Set Redefinition</a></li>
+<li><a href="#_terminology_external_subset_redefinition">9.6.2.3. Terminology External Subset Redefinition</a></li>
+<li><a href="#_constraint_strength_redefinition">9.6.2.4. Constraint Strength Redefinition</a></li>
 </ul>
 </li>
-<li><a href="#_tuple_redefinition">9.5.11. Tuple Redefinition</a></li>
+<li><a href="#_tuple_redefinition">9.6.3. Tuple Redefinition</a></li>
 </ul>
 </li>
-<li><a href="#_rules">9.6. Rules</a></li>
-<li><a href="#_languages">9.7. Languages</a></li>
-<li><a href="#_description_section_2">9.8. Description Section</a></li>
-<li><a href="#_terminology_section_2">9.9. Terminology Section</a></li>
-<li><a href="#_bindings">9.10. Bindings</a></li>
+<li><a href="#_rules">9.7. Rules</a></li>
+<li><a href="#_languages">9.8. Languages</a></li>
+<li><a href="#_description_section_2">9.9. Description Section</a></li>
+<li><a href="#_terminology_section_2">9.10. Terminology Section</a></li>
+<li><a href="#_bindings">9.11. Bindings</a></li>
 </ul>
 </li>
 <li><a href="#_templates">10. Templates</a>
@@ -509,7 +514,7 @@
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://specifications.openehr.org/tickets/SPECAM-68" target="_blank" rel="noopener">SPECAM-68</a>. Add flexible <code><em>constraint_status</em></code> indicator to <code>C_TERMINOLOGY_CODE</code>; add related keywords to terminology constraints; see sections <a href="#_soft_terminology_constraint">Section 4.5.10.2</a> and <a href="#_terminology_constraint_redefinition">Section 9.5.10.2</a>.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://specifications.openehr.org/tickets/SPECAM-68" target="_blank" rel="noopener">SPECAM-68</a>. Add flexible <code><em>constraint_status</em></code> indicator to <code>C_TERMINOLOGY_CODE</code>; add related keywords to terminology constraints; see sections <a href="#_soft_terminology_constraint">Section 4.5.10.2</a> and <a href="#_terminology_constraint_redefinition">Section 9.6.2</a>.</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">B Fabjan,<br>
  I McNicoll,<br>
  S Garde,<br>
@@ -4213,7 +4218,7 @@ a negative sign (or equivalently, the '&lt;= 0' construction as above) is only u
 <p>The full description, including binding and resolution is provided in <a href="#_terminology_integration">Section 8</a>. This section describes only the syntax for term constraint in the <code>definition</code> section of an archetype.</p>
 </div>
 <div class="paragraph">
-<p>Terminology constraints come in both the usual 'formal' form, as well as a 'soft' form, designed to allow constraints to be treated as various kinds of preferences. These are described below. The allowed specialisations of terminology constraints are described in <a href="#_primitive_object_redefinition">Section 9.5.10</a>.</p>
+<p>Terminology constraints come in both the usual 'formal' form, as well as a 'soft' form, designed to allow constraints to be treated as various kinds of preferences. These are described below. The allowed specialisations of terminology constraints are described in <a href="#_primitive_object_redefinition">Section 9.6</a>.</p>
 </div>
 <div class="sect4">
 <h5 id="_formal_terminology_constraint"><a class="anchor" href="#_formal_terminology_constraint"></a>4.5.10.1. Formal Terminology Constraint</h5>
@@ -7430,8 +7435,9 @@ Note that in the above, the '/' is used to denote '/protocol' as a differential 
 </div>
 </div>
 </div>
-<div class="sect3">
-<h4 id="_primitive_object_redefinition"><a class="anchor" href="#_primitive_object_redefinition"></a>9.5.10. Primitive Object Redefinition</h4>
+</div>
+<div class="sect2">
+<h3 id="_primitive_object_redefinition"><a class="anchor" href="#_primitive_object_redefinition"></a>9.6. Primitive Object Redefinition</h3>
 <div class="paragraph">
 <p>For terminal objects (i.e. elements of the type <code>C_PRIMITIVE_OBJECT</code>) redefinition consists of:</p>
 </div>
@@ -7448,8 +7454,8 @@ Note that in the above, the '/' is used to denote '/protocol' as a differential 
 </li>
 </ul>
 </div>
-<div class="sect4">
-<h5 id="_numeric_primitive_redefinition"><a class="anchor" href="#_numeric_primitive_redefinition"></a>9.5.10.1. Numeric Primitive Redefinition</h5>
+<div class="sect3">
+<h4 id="_numeric_primitive_redefinition"><a class="anchor" href="#_numeric_primitive_redefinition"></a>9.6.1. Numeric Primitive Redefinition</h4>
 <div class="paragraph">
 <p>The following example shows a redefined real value range.</p>
 </div>
@@ -7479,39 +7485,38 @@ Note that in the above, the '/' is used to denote '/protocol' as a differential 
 </div>
 </div>
 </div>
-<div class="sect4">
-<h5 id="_terminology_constraint_redefinition"><a class="anchor" href="#_terminology_constraint_redefinition"></a>9.5.10.2. Terminology Constraint Redefinition</h5>
+<div class="sect3">
+<h4 id="_terminology_constraint_redefinition"><a class="anchor" href="#_terminology_constraint_redefinition"></a>9.6.2. Terminology Constraint Redefinition</h4>
 <div class="paragraph">
-<p>Redefinition of a terminology constraint follows the general rule that redefinitions may only narrow constraints, not widen them, so as to preserve the instance / archetype validity relation up the specialisation lineage. With respect to terminology constraints, 'narrowing' of the terminology value or value-set may be realised in various ways, shown below. Regardless of any changes to the value constraint, narrowing must also be respected for the constraint strength. Concretely, this means that a redefined terminology constraint may narrow the constraint strength by redefining any strength declared in a parent to any 'higher' strength, where the following order holds, from lowest to highest: <code>example</code> &#8594; <code>preferred</code> &#8594; <code>exensible</code> &#8594; <code>required</code>. Thus, the following redefinition from <code>preferred</code> to <code>required</code> may be made:</p>
+<p>Redefinition of a terminology constraint follows the golden rule that redefinitions may only narrow constraints, not widen them, so as to preserve the instance / archetype validity relation up the specialisation lineage. The golden rule holds only for formal constraints, and is modified by the possibility of <a href="#_soft_terminology_constraint">non-binding constraint strengths</a>.</p>
+</div>
+<div class="sect4">
+<h5 id="_constrain_previously_unconstrained_node"><a class="anchor" href="#_constrain_previously_unconstrained_node"></a>9.6.2.1. Constrain Previously Unconstrained Node</h5>
+<div class="paragraph">
+<p>The simplest form of terminology constraint specialisation is when a term constraint is used as a redefinition of a previously <em>unconstrained node</em>. This might simply be to require that a data item be of the appropriate reference model type, with no further constraint:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="pygments highlight"><code data-lang="cadl"><span></span>    <span class="tok-c">-- parent archetype</span>
-    <span class="tok-nc">name</span> <span class="tok-o">matches </span><span class="tok-p">{</span>
-        <span class="tok-nc">DV_CODED_TEXT</span><span class="tok-p">[</span><span class="tok-nd">id13</span><span class="tok-p">]</span> <span class="tok-o">matches </span><span class="tok-p">{</span>
-            <span class="tok-nc">defining_code</span> <span class="tok-o">matches </span><span class="tok-p">{</span><span class="tok-nc">preferred</span> <span class="tok-p">[</span><span class="tok-nd">ac1</span><span class="tok-p">]}</span>
-        <span class="tok-p">}</span>
-    <span class="tok-p">}</span>
-
-    <span class="tok-c">-- child archetype</span>
-    <span class="tok-nc">name</span> <span class="tok-o">matches </span><span class="tok-p">{</span>
-        <span class="tok-nc">DV_CODED_TEXT</span><span class="tok-p">[</span><span class="tok-nd">id13.1</span><span class="tok-p">]</span> <span class="tok-o">matches </span><span class="tok-p">{</span>
-            <span class="tok-nc">defining_code</span> <span class="tok-o">matches </span><span class="tok-p">{[</span><span class="tok-nd">ac1</span><span class="tok-p">]}</span>  <span class="tok-c">-- i.e. required</span>
-        <span class="tok-p">}</span>
+<pre class="pygments highlight"><code data-lang="cadl"><span></span>    <span class="tok-p">/</span><span class="tok-nc">data</span><span class="tok-p">[</span><span class="tok-nd">id2</span><span class="tok-p">]/</span><span class="tok-nc">events</span><span class="tok-p">[</span><span class="tok-nd">id3</span><span class="tok-p">]/</span><span class="tok-nc">data</span><span class="tok-p">[</span><span class="tok-nd">id4</span><span class="tok-p">]/</span><span class="tok-nc">items</span><span class="tok-p">[</span><span class="tok-nd">id22</span><span class="tok-p">]/</span><span class="tok-nc">value</span><span class="tok-p"> </span><span class="tok-o">∈</span> <span class="tok-p">{</span>  <span class="tok-c">-- cuff size</span>
+        <span class="tok-nc">DV_CODED_TEXT</span><span class="tok-p">[</span><span class="tok-nd">id14</span><span class="tok-p">]</span>  <span class="tok-c">-- force a term of some kind</span>
     <span class="tok-p">}</span></code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>The value set represented by <code>ac1</code> may also be narrowed at the same time, so in the above, <code>ac1.1</code> might have been used instead.</p>
+<p>Alternatively, it may impose a value set, as follows:</p>
 </div>
-<div class="paragraph">
-<p>A constraint with <code>required</code> strength cannot be redefined to any other strength in a specialised archetype.</p>
+<div class="listingblock">
+<div class="content">
+<pre class="pygments highlight"><code data-lang="cadl"><span></span>    <span class="tok-p">/</span><span class="tok-nc">data</span><span class="tok-p">[</span><span class="tok-nd">id2</span><span class="tok-p">]/</span><span class="tok-nc">events</span><span class="tok-p">[</span><span class="tok-nd">id3</span><span class="tok-p">]/</span><span class="tok-nc">data</span><span class="tok-p">[</span><span class="tok-nd">id4</span><span class="tok-p">]/</span><span class="tok-nc">items</span><span class="tok-p">[</span><span class="tok-nd">id22</span><span class="tok-p">]/</span><span class="tok-nc">value</span><span class="tok-p"> </span><span class="tok-o">∈</span> <span class="tok-p">{</span>  <span class="tok-c">-- cuff size</span>
+        <span class="tok-nc">DV_CODED_TEXT</span><span class="tok-p">[</span><span class="tok-nd">id14</span><span class="tok-p">]</span> <span class="tok-o">matches </span><span class="tok-p">{[</span><span class="tok-nd">ac0.1</span><span class="tok-p">]}</span>
+    <span class="tok-p">}</span></code></pre>
+</div>
 </div>
 </div>
 <div class="sect4">
-<h5 id="_terminology_internal_value_set_redefinition"><a class="anchor" href="#_terminology_internal_value_set_redefinition"></a>9.5.10.3. Terminology Internal Value Set Redefinition</h5>
+<h5 id="_terminology_internal_value_set_redefinition"><a class="anchor" href="#_terminology_internal_value_set_redefinition"></a>9.6.2.2. Terminology Internal Value Set Redefinition</h5>
 <div class="paragraph">
-<p>The following example shows a redefined internal value set.</p>
+<p>The more typical redefinition case is when the parent node already states a terminology constraint with a value set, and the specialisation child redefines is, as per the following example.</p>
 </div>
 <div class="paragraph">
 <p>Parent archetype:</p>
@@ -7574,7 +7579,7 @@ Note that in the above, the '/' is used to denote '/protocol' as a differential 
 </div>
 </div>
 <div class="sect4">
-<h5 id="_terminology_external_subset_redefinition"><a class="anchor" href="#_terminology_external_subset_redefinition"></a>9.5.10.4. Terminology External Subset Redefinition</h5>
+<h5 id="_terminology_external_subset_redefinition"><a class="anchor" href="#_terminology_external_subset_redefinition"></a>9.6.2.3. Terminology External Subset Redefinition</h5>
 <div class="paragraph">
 <p>A terminology external subset constraint is used to set the value set of a coded term to be one defined externally in a terminology, specified in the <code>term_definitions</code> sub-section of the <code>terminology</code> section, as shown in the following example.</p>
 </div>
@@ -7638,14 +7643,78 @@ Note that in the above, the '/' is used to denote '/protocol' as a differential 
 <div class="paragraph">
 <p>These redefinitions are assumed to be valid, although they are not directly validatable unless the terminology subset is available to the tooling.</p>
 </div>
+</div>
+<div class="sect4">
+<h5 id="_constraint_strength_redefinition"><a class="anchor" href="#_constraint_strength_redefinition"></a>9.6.2.4. Constraint Strength Redefinition</h5>
 <div class="paragraph">
-<p>A third variation is when a term constraint is used as a redefinition of a previously unconstrained term code, e.g. as shown in the following fragment.</p>
+<p>Regardless of any changes to the value constraint, narrowing must also be respected for the constraint strength. Concretely, this means that a redefined terminology constraint may narrow the constraint strength by redefining any strength declared in a parent to any 'higher' strength, where the following order holds, from lowest to highest: <code>example</code> &#8594; <code>preferred</code> &#8594; <code>exensible</code> &#8594; <code>required</code>. Thus, the following redefinition from <code>preferred</code> to <code>required</code> may be made:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="pygments highlight"><code data-lang="cadl"><span></span>    <span class="tok-nc">ELEMENT</span><span class="tok-p">[</span><span class="tok-nd">id79</span><span class="tok-p">]</span> <span class="tok-o">∈</span> <span class="tok-p">{</span> <span class="tok-c">-- cuff size</span>
-        <span class="tok-nc">value</span> <span class="tok-o">∈</span> <span class="tok-p">{</span>
-            <span class="tok-nc">DV_CODED_TEXT</span><span class="tok-p">[</span><span class="tok-nd">id14</span><span class="tok-p">]</span>
+<pre class="pygments highlight"><code data-lang="cadl"><span></span>    <span class="tok-c">-- parent archetype</span>
+    <span class="tok-nc">name</span> <span class="tok-o">matches </span><span class="tok-p">{</span>
+        <span class="tok-nc">DV_CODED_TEXT</span><span class="tok-p">[</span><span class="tok-nd">id13</span><span class="tok-p">]</span> <span class="tok-o">matches </span><span class="tok-p">{</span>
+            <span class="tok-nc">defining_code</span> <span class="tok-o">matches </span><span class="tok-p">{</span><span class="tok-nc">preferred</span> <span class="tok-p">[</span><span class="tok-nd">ac1</span><span class="tok-p">]}</span>
+        <span class="tok-p">}</span>
+    <span class="tok-p">}</span>
+
+    <span class="tok-c">-- child archetype</span>
+    <span class="tok-nc">name</span> <span class="tok-o">matches </span><span class="tok-p">{</span>
+        <span class="tok-nc">DV_CODED_TEXT</span><span class="tok-p">[</span><span class="tok-nd">id13.1</span><span class="tok-p">]</span> <span class="tok-o">matches </span><span class="tok-p">{</span>
+            <span class="tok-nc">defining_code</span> <span class="tok-o">matches </span><span class="tok-p">{[</span><span class="tok-nd">ac1</span><span class="tok-p">]}</span>  <span class="tok-c">-- i.e. required</span>
+        <span class="tok-p">}</span>
+    <span class="tok-p">}</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>A constraint with <code>required</code> strength cannot be redefined to any other strength in a specialised archetype.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Note</div>
+</td>
+<td class="content">
+Although the standard form <code>defining_code matches {[ac1]}</code> may always be used to represent 'required' strength, it is strongly recommended that the explicity form <code>defining_code matches {required [ac1]}</code> be used in specialised archetypes, <em>where the constraint strength is being redefined</em> (i.e. not for redefinition of a nodes where constraint strength is never mentioned).
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>It must be kept in mind that a constraint strength other than <code>required</code> is formally equivalent to <em>no constraint</em> - i.e. it is only a guide for tooling and human authors. The following two fragments are therefore completely equivalent.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="pygments highlight"><code data-lang="cadl"><span></span>    <span class="tok-c">-- non-required constraint strength</span>
+    <span class="tok-nc">name</span> <span class="tok-o">matches </span><span class="tok-p">{</span>
+        <span class="tok-nc">DV_CODED_TEXT</span><span class="tok-p">[</span><span class="tok-nd">id13</span><span class="tok-p">]</span> <span class="tok-o">matches </span><span class="tok-p">{</span>
+            <span class="tok-nc">defining_code</span> <span class="tok-o">matches </span><span class="tok-p">{</span><span class="tok-nc">preferred</span> <span class="tok-p">[</span><span class="tok-nd">ac1</span><span class="tok-p">]}</span>
+        <span class="tok-p">}</span>
+    <span class="tok-p">}</span>
+
+    <span class="tok-c">-- ... is the same as no constraint, other than RM type</span>
+    <span class="tok-nc">name</span> <span class="tok-o">matches </span><span class="tok-p">{</span>
+        <span class="tok-nc">DV_CODED_TEXT</span><span class="tok-p">[</span><span class="tok-nd">id13</span><span class="tok-p">]</span>
+    <span class="tok-p">}</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>This means that redefinition of a node containing a non-required constraint strength is formally speaking a redefinition of a node with no constaint on terminology code values. <em>The specialised node may therefore state any value set, regardless of what value set was stated in the parent</em>. This is true regardless of whether the constraint strength itself is redefined. For example, in the following a <code>preferred</code> strength node with value set <code>ac1</code> is redefined by another <code>preferred</code> node using a non-conforming value set <code>ac0.4</code>.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="pygments highlight"><code data-lang="cadl"><span></span>    <span class="tok-c">-- parent archetype</span>
+    <span class="tok-nc">name</span> <span class="tok-o">matches </span><span class="tok-p">{</span>
+        <span class="tok-nc">DV_CODED_TEXT</span><span class="tok-p">[</span><span class="tok-nd">id13</span><span class="tok-p">]</span> <span class="tok-o">matches </span><span class="tok-p">{</span>
+            <span class="tok-nc">defining_code</span> <span class="tok-o">matches </span><span class="tok-p">{</span><span class="tok-nc">preferred</span> <span class="tok-p">[</span><span class="tok-nd">ac1</span><span class="tok-p">]}</span>
+        <span class="tok-p">}</span>
+    <span class="tok-p">}</span>
+
+    <span class="tok-c">-- child archetype</span>
+    <span class="tok-nc">name</span> <span class="tok-o">matches </span><span class="tok-p">{</span>
+        <span class="tok-nc">DV_CODED_TEXT</span><span class="tok-p">[</span><span class="tok-nd">id13.1</span><span class="tok-p">]</span> <span class="tok-o">matches </span><span class="tok-p">{</span>
+            <span class="tok-nc">defining_code</span> <span class="tok-o">matches </span><span class="tok-p">{</span><span class="tok-nc">preferred</span> <span class="tok-p">[</span><span class="tok-nd">ac0.4</span><span class="tok-p">]}</span>
         <span class="tok-p">}</span>
     <span class="tok-p">}</span></code></pre>
 </div>
@@ -7653,7 +7722,7 @@ Note that in the above, the '/' is used to denote '/protocol' as a differential 
 </div>
 </div>
 <div class="sect3">
-<h4 id="_tuple_redefinition"><a class="anchor" href="#_tuple_redefinition"></a>9.5.11. Tuple Redefinition</h4>
+<h4 id="_tuple_redefinition"><a class="anchor" href="#_tuple_redefinition"></a>9.6.3. Tuple Redefinition</h4>
 <div class="paragraph">
 <p>Tuple constraints can be redefined by narrowing, as for other primitive constraints. A typical example is as follows.</p>
 </div>
@@ -7687,7 +7756,7 @@ Note that in the above, the '/' is used to denote '/protocol' as a differential 
 </div>
 </div>
 <div class="sect2">
-<h3 id="_rules"><a class="anchor" href="#_rules"></a>9.6. Rules</h3>
+<h3 id="_rules"><a class="anchor" href="#_rules"></a>9.7. Rules</h3>
 <div class="paragraph">
 <p>The <code>rules</code> section in an archetype consists of definitions and assertion statements. Assertions in archetypes have the effect of further reducing the instance space that conforms to an archetype by specifying relationships between values that must hold. For example the main part of an archetype may specify that the existence of a subtree, containing data points related to 'tobacco use' for example, is dependent on the value of another data point representing 'smoker?' being True.</p>
 </div>
@@ -7696,7 +7765,7 @@ Note that in the above, the '/' is used to denote '/protocol' as a differential 
 </div>
 </div>
 <div class="sect2">
-<h3 id="_languages"><a class="anchor" href="#_languages"></a>9.7. Languages</h3>
+<h3 id="_languages"><a class="anchor" href="#_languages"></a>9.8. Languages</h3>
 <div class="paragraph">
 <p>A specialised archetype or template is only required to have one language in common with its flat precursor, enabling a flat output containing this language. This supports the common situation in which an international standard archetype with numerous translations is used as a basis for further specialisation in a particular country or project. Clearly, the latter has no need of, and quite probably no capability for including all the original translations in the specialisation.</p>
 </div>
@@ -7721,7 +7790,7 @@ Note that in the above, the '/' is used to denote '/protocol' as a differential 
 </div>
 </div>
 <div class="sect2">
-<h3 id="_description_section_2"><a class="anchor" href="#_description_section_2"></a>9.8. Description Section</h3>
+<h3 id="_description_section_2"><a class="anchor" href="#_description_section_2"></a>9.9. Description Section</h3>
 <div class="paragraph">
 <p>The <code>description</code> section of a specialised archetype or template always replaces that of the parent in the flattened result. The obvious alternative would be automatic inclusion of the corresponding <code>description</code> section elements from  precursor archetypes back up the specialisation lineage. The replacement approach is justified by the thinking that the documentary view of a specialised archetype, and particular a template, in their flattened form is likely to be most useful if it consists of the descriptions created by the developers of those specialised artefacts, rather than an accumulation of copies of the documentation elements down the lineage, since tools or special visualisations could provide views of each part of the description back up the specialisation hierarchy if required.</p>
 </div>
@@ -7730,7 +7799,7 @@ Note that in the above, the '/' is used to denote '/protocol' as a differential 
 </div>
 </div>
 <div class="sect2">
-<h3 id="_terminology_section_2"><a class="anchor" href="#_terminology_section_2"></a>9.9. Terminology Section</h3>
+<h3 id="_terminology_section_2"><a class="anchor" href="#_terminology_section_2"></a>9.10. Terminology Section</h3>
 <div class="paragraph">
 <p>Specialisation in the <code>terminology</code> section manifests in terms of specialised and added terms in the <code>term_definitions</code> sub-section.</p>
 </div>
@@ -7863,7 +7932,7 @@ Note that in the above, the '/' is used to denote '/protocol' as a differential 
 </div>
 </div>
 <div class="sect2">
-<h3 id="_bindings"><a class="anchor" href="#_bindings"></a>9.10. Bindings</h3>
+<h3 id="_bindings"><a class="anchor" href="#_bindings"></a>9.11. Bindings</h3>
 <div class="paragraph">
 <p>Bindings in a specialised archetype can include a binding to an at-code or ac-code defined in the current archetype or any parent archetype. A binding may be defined that overrides one from the flat parent, in which case the binding target - a term (at-code binding) or value set (ac-code binding) should be a proper specialised concept or subset respectively of the binding they replace. Since the binding target is an external code or subset, authoring tools need a connection to an appropriate terminology service to validate the relationship.</p>
 </div>
