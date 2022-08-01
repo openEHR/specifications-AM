@@ -1629,7 +1629,7 @@ the structure, as shown in the following example:</p>
     <span class="tok-nc">INSTRUMENT</span><span class="tok-p">[</span><span class="tok-nd">id1</span><span class="tok-p">]</span> <span class="tok-o">matches </span><span class="tok-p">{</span>
         <span class="tok-nc">size</span> <span class="tok-o">matches </span><span class="tok-p">{|</span><span class="tok-mi">60</span><span class="tok-p">..</span><span class="tok-mi">120</span><span class="tok-p">|}</span>                    <span class="tok-c">-- size in cm</span>
         <span class="tok-nc">date_of_manufacture</span> <span class="tok-o">matches </span><span class="tok-p">{</span><span class="tok-ld">yyyy-mm-??</span><span class="tok-p">}</span>    <span class="tok-c">-- year &amp; month ok</span>
-        <span class="tok-nc">parts</span> <span class="tok-kt">cardinality </span><span class="tok-o">matches </span><span class="tok-p">{</span><span class="tok-m">0..*</span><span class="tok-p">}</span> <span class="tok-o">matches </span><span class="tok-p">{</span>
+        <span class="tok-nc">parts</span> <span class="tok-o">matches </span><span class="tok-p">{</span>
             <span class="tok-nc">PART</span><span class="tok-p">[</span><span class="tok-nd">id2</span><span class="tok-p">]</span> <span class="tok-o">matches </span><span class="tok-p">{</span>                     <span class="tok-c">-- neck</span>
                 <span class="tok-nc">material</span> <span class="tok-o">matches </span><span class="tok-p">{[</span><span class="tok-nd">ac1</span><span class="tok-p">]}</span>            <span class="tok-c">-- timber or nickel alloy</span>
             <span class="tok-p">}</span>
@@ -1715,7 +1715,7 @@ the structure, as shown in the following example:</p>
 <div class="ulist">
 <ul>
 <li>
-<p>the contain nothing but ASCII, i.e. unicode code-points 0 - 127; this will be the case in English- language authored archetypes containing no foreign words;</p>
+<p>they contain nothing but ASCII, i.e. unicode code-points 0 - 127; this will be the case in English- language authored archetypes containing no foreign words;</p>
 </li>
 <li>
 <p>some layer of the operating system is smart enough to do an on-the-fly conversion of characters above 127 into UTF-8, even if the archetype tool being used is designed for pure UTF-8 only;</p>
@@ -7636,7 +7636,7 @@ Note that in the above, the '/' is used to denote '/protocol' as a differential 
 </div>
 </div>
 <div class="paragraph">
-<p>These redefinitions are assumed to be valid, although it is not directly validatable unless the terminology subset is available to the tooling.</p>
+<p>These redefinitions are assumed to be valid, although they are not directly validatable unless the terminology subset is available to the tooling.</p>
 </div>
 <div class="paragraph">
 <p>A third variation is when a term constraint is used as a redefinition of a previously unconstrained term code, e.g. as shown in the following fragment.</p>
