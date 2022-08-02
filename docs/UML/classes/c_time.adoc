@@ -53,6 +53,22 @@ h|*1..1*
 |*timezone_validity* (): `link:/releases/BASE/{base_release}/base_types.html#_validity_kind_enumeration[VALIDITY_KIND^]`
 a|Validity of timezone in constrained date.
 
+h|*1..1 +
+(effected)*
+|*valid_pattern_constraint* ( +
+a_pattern: `link:/releases/BASE/{base_release}/foundation_types.html#_string_class[String^][1]` +
+): `link:/releases/BASE/{base_release}/foundation_types.html#_boolean_class[Boolean^]`
+a|Return `valid_iso8601_time_constraint_pattern (a_pattern)`
+
+h|*1..1 +
+(effected)*
+|*valid_pattern_constraint_replacement* ( +
+a_pattern: `link:/releases/BASE/{base_release}/foundation_types.html#_string_class[String^][1]`, +
+an_other_pattern: `link:/releases/BASE/{base_release}/foundation_types.html#_string_class[String^][1]` +
+): `link:/releases/BASE/{base_release}/foundation_types.html#_boolean_class[Boolean^]`
+a|Return `valid_time_constraint_replacements.has(an_other_pattern.as_upper) and then
+valid_time_constraint_replacements.item (an_other_pattern.as_upper).has (a_pattern.as_upper)`.
+
 h|*Invariants*
 2+a|__Pattern_validity__: `pattern /= Void implies valid_iso8601_time_constraint_pattern (pattern)`
 |===

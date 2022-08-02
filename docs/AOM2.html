@@ -238,26 +238,27 @@
 </li>
 <li><a href="#_c_integer_class">4.5.14. C_INTEGER Class</a></li>
 <li><a href="#_c_real_class">4.5.15. C_REAL Class</a></li>
-<li><a href="#_c_temporal_class">4.5.16. C_TEMPORAL Class</a>
+<li><a href="#_c_temporal_class">4.5.16. C_TEMPORAL Class</a></li>
+<li><a href="#_c_temporal_definitions_class">4.5.17. C_TEMPORAL_DEFINITIONS Class</a>
 <ul class="sectlevel4">
-<li><a href="#_conformance_semantics_c_temporal">4.5.16.1. Conformance semantics: C_TEMPORAL</a></li>
+<li><a href="#_conformance_semantics_c_temporal">4.5.17.1. Conformance semantics: C_TEMPORAL</a></li>
 </ul>
 </li>
-<li><a href="#_c_date_class">4.5.17. C_DATE Class</a></li>
-<li><a href="#_c_time_class">4.5.18. C_TIME Class</a></li>
-<li><a href="#_c_date_time_class">4.5.19. C_DATE_TIME Class</a></li>
-<li><a href="#_c_duration_class">4.5.20. C_DURATION Class</a></li>
-<li><a href="#_c_terminology_code_class">4.5.21. C_TERMINOLOGY_CODE Class</a></li>
-<li><a href="#_constraint_status_enumeration">4.5.22. CONSTRAINT_STATUS Enumeration</a>
+<li><a href="#_c_date_class">4.5.18. C_DATE Class</a></li>
+<li><a href="#_c_time_class">4.5.19. C_TIME Class</a></li>
+<li><a href="#_c_date_time_class">4.5.20. C_DATE_TIME Class</a></li>
+<li><a href="#_c_duration_class">4.5.21. C_DURATION Class</a></li>
+<li><a href="#_c_terminology_code_class">4.5.22. C_TERMINOLOGY_CODE Class</a></li>
+<li><a href="#_constraint_status_enumeration">4.5.23. CONSTRAINT_STATUS Enumeration</a>
 <ul class="sectlevel4">
-<li><a href="#_conformance_semantics_c_terminology_node">4.5.22.1. Conformance semantics: C_TERMINOLOGY_NODE</a></li>
+<li><a href="#_conformance_semantics_c_terminology_node">4.5.23.1. Conformance semantics: C_TERMINOLOGY_NODE</a></li>
 </ul>
 </li>
-<li><a href="#_c_second_order_class">4.5.23. C_SECOND_ORDER Class</a></li>
-<li><a href="#_c_primitive_tuple_class">4.5.24. C_PRIMITIVE_TUPLE Class</a></li>
-<li><a href="#_c_attribute_tuple_class">4.5.25. C_ATTRIBUTE_TUPLE Class</a>
+<li><a href="#_c_second_order_class">4.5.24. C_SECOND_ORDER Class</a></li>
+<li><a href="#_c_primitive_tuple_class">4.5.25. C_PRIMITIVE_TUPLE Class</a></li>
+<li><a href="#_c_attribute_tuple_class">4.5.26. C_ATTRIBUTE_TUPLE Class</a>
 <ul class="sectlevel4">
-<li><a href="#_conformance_semantics_c_second_order">4.5.25.1. Conformance semantics: C_SECOND_ORDER</a></li>
+<li><a href="#_conformance_semantics_c_second_order">4.5.26.1. Conformance semantics: C_SECOND_ORDER</a></li>
 </ul>
 </li>
 </ul>
@@ -488,11 +489,20 @@
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a id="latest_issue"></a>2.3.0</p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><a href="https://specifications.openehr.org/tickets/SPECAM-69" target="_blank" rel="noopener">SPECAM-69</a>. Support negative durations (see <a href="#_c_duration_class">Section 4.5.20</a>) (see also <a href="https://specifications.openehr.org/tickets/SPECRM-96" target="_blank" rel="noopener">SPECRM-96</a>).</p>
+<p><a href="https://specifications.openehr.org/tickets/SPECAM-75" target="_blank" rel="noopener">SPECAM-75</a>. Improve specification of constraint patterns in <code>C_TEMPORAL</code> classes (addresses problem <a href="https://specifications.openehr.org/tickets/SPECPR-374" target="_blank" rel="noopener">SPECPR-374</a>).</p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">P Pazos,<br>
+ T Beale</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a id="latest_issue_date"></a>02 Aug 2022</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><a href="https://specifications.openehr.org/tickets/SPECAM-69" target="_blank" rel="noopener">SPECAM-69</a>. Support negative durations (see <a href="#_c_duration_class">Section 4.5.21</a>) (see also <a href="https://specifications.openehr.org/tickets/SPECRM-96" target="_blank" rel="noopener">SPECRM-96</a>).</p>
 </div></div></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">P Bos,<br>
  S Garde</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a id="latest_issue_date"></a>09 Sep 2020</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">09 Sep 2020</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"></td>
@@ -502,7 +512,8 @@
 <td class="tableblock halign-left valign-top"><p class="tableblock">B Fabjan,<br>
  I McNicoll,<br>
  S Garde,<br>
- P Bos</p></td>
+ P Bos,<br>
+ T Beale</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">07 Sep 2020</p></td>
 </tr>
 <tr>
@@ -2762,7 +2773,16 @@ an_id: <code><a href="/releases/BASE/latest/foundation_types.html#_string_class"
 <div class="title">Figure 15. <code>am.aom2.constraint_model.primitive</code> Package</div>
 </div>
 <div class="paragraph">
-<p>The type-name nomenclature <code>C_XXX</code> used here is intended to be read as 'constraint on objects of type <code>XXXX&#8217;, i.e. a `C_COMPLEX_OBJECT</code> is a 'constraint on a complex object (defined by a complex reference model type)'. These type names are used below in the formal model.</p>
+<p><a href="#constraint_model_primitive_implem">Figure 16</a> below shows the detailed temporal constraint definitions, used by the <code>C_TEMPORAL</code> class and descendants in the <code>primitive</code> package above.</p>
+</div>
+<div id="constraint_model_primitive_implem" class="imageblock text-center text-center">
+<div class="content">
+<img src="UML/diagrams/AM-aom2.constraint_model.primitive-implem.svg" alt="AM aom2.constraint model.primitive implem">
+</div>
+<div class="title">Figure 16. <code>am.aom2.constraint_model.primitive-implem</code> Package</div>
+</div>
+<div class="paragraph">
+<p>The type-name nomenclature <code>C_XXX</code> used here is intended to be read as 'constraint on objects of type <code>XXXX</code> ', i.e. a <code>C_COMPLEX_OBJECT</code> is a 'constraint on a complex object (defined by a complex reference model type)'. These type names are used below in the formal model.</p>
 </div>
 </div>
 <div class="sect2">
@@ -2819,7 +2839,7 @@ an_id: <code><a href="/releases/BASE/latest/foundation_types.html#_string_class"
 <p>In the case of single-valued attributes (such as Person.date_of_birth) the children represent one or more alternative object constraints for the attribute value.</p>
 </div>
 <div class="paragraph">
-<p>For multiply-valued attributes (such as <code>Person</code>.<code><em>contacts</em></code>: <code>List&lt;Contact&gt;</code>), a cardinality constraint on the container can be defined. The constraint on child objects is essentially the same except that more than one of the alternatives can co-exist in the data. <a href="#c_attributes">Figure 16</a> illustrates the two possibilities.</p>
+<p>For multiply-valued attributes (such as <code>Person</code>.<code><em>contacts</em></code>: <code>List&lt;Contact&gt;</code>), a cardinality constraint on the container can be defined. The constraint on child objects is essentially the same except that more than one of the alternatives can co-exist in the data. <a href="#c_attributes">Figure 17</a> illustrates the two possibilities.</p>
 </div>
 <div class="paragraph">
 <p>The appearance of both <code><em>existence</em></code> and <code><em>cardinality</em></code> constraints in <code>C_ATTRIBUTE</code> deserves some explanation, especially as the meanings of these notions are often confused in object-oriented literature. An existence constraint indicates whether an object will be found in a given attribute field, while a cardinality constraint indicates what the valid membership of a container object is. <code><em>Cardinality</em></code> is only required for container objects such as <code>List&lt;T&gt;</code> , <code>Set&lt;T&gt;</code> and so on, whereas <code><em>existence</em></code> is always possible. If both are used, the meaning is as follows: the existence constraint says whether the container object will be there (at all), while the cardinality constraint says how many items must be in the container, and whether it acts logically as a list, set or bag. Both existence and cardinality are optional in the model, since they are only needed to override the settings from the reference model.</p>
@@ -2828,7 +2848,7 @@ an_id: <code><a href="/releases/BASE/latest/foundation_types.html#_string_class"
 <div class="content">
 <img src="AOM2/diagrams/c_attributes.png" alt="c attributes" width="70%">
 </div>
-<div class="title">Figure 16. C_ATTRIBUTE variants</div>
+<div class="title">Figure 17. C_ATTRIBUTE variants</div>
 </div>
 </div>
 <div class="sect3">
@@ -3208,7 +3228,7 @@ Since an archetype might not contain external terminology bindings for all (or e
 <div class="content">
 <img src="AOM2/diagrams/enumerated_type_constraint.png" alt="enumerated type constraint" width="70%">
 </div>
-<div class="title">Figure 17. Enumerated Constraint</div>
+<div class="title">Figure 18. Enumerated Constraint</div>
 </div>
 <div class="paragraph">
 <p>A parser that deserialises from an object dump format such as ODIN, JSON or XML will not need to do this.</p>
@@ -3224,7 +3244,7 @@ Since an archetype might not contain external terminology bindings for all (or e
 <p>All of the constraint semantics described above can be considered 'first order' in the sense that they define how specific object/attribute/object hierarchies are defined in the instance possibility space of some part of a reference model.</p>
 </div>
 <div class="paragraph">
-<p>Some constraints however do not fit directly within the object/attribute/object hierarchy scheme, and are considered 'second order constraints' in the archetype formalism. The 'rule' constraints ('invariants' in ADL/AOM 1.4) constitute one such group. These constraints are defined in terms of first order predicate logic statements that can refer to any number of constraint nodes within the main hierarchy. These are described in <a href="#rules_package">Figure 22</a>.</p>
+<p>Some constraints however do not fit directly within the object/attribute/object hierarchy scheme, and are considered 'second order constraints' in the archetype formalism. The 'rule' constraints ('invariants' in ADL/AOM 1.4) constitute one such group. These constraints are defined in terms of first order predicate logic statements that can refer to any number of constraint nodes within the main hierarchy. These are described in <a href="#rules_package">Figure 23</a>.</p>
 </div>
 <div class="paragraph">
 <p>Another type of second order constraint can be 'attached' to the object/attribute/object hierarchy in order to further limit structural possibilities. Although these constraints could also theoretically be expressed as rules, they are supported by direct additions to the main constraint model since they can be easily and intuitively represented inline in ADL and corresponding AOM structures.</p>
@@ -3238,7 +3258,7 @@ Since an archetype might not contain external terminology bindings for all (or e
 <div class="content">
 <img src="UML/diagrams/AM-aom2.constraint_model-tuple.svg" alt="AM aom2.constraint model tuple">
 </div>
-<div class="title">Figure 18. Tuple Constraint Model</div>
+<div class="title">Figure 19. Tuple Constraint Model</div>
 </div>
 <div class="paragraph">
 <p>In this model, the type <code>C_ATTRIBUTE_TUPLE</code> groups the co-constrained <code>C_ATTRIBUTEs</code> under a <code>C_COMPLEX_OBJECT</code>. Currently the concrete type is limited to being <code>C_PRIMITIVE_OBJECT</code> to reduce complexity, and since it caters for all known examples of tuple constraints. In principle, any <code>C_DEFINED_OBJECT</code> could be allowed, and this may change in the future.</p>
@@ -3253,13 +3273,13 @@ Since an archetype might not contain external terminology bindings for all (or e
 <div class="content">
 <img src="UML/diagrams/AM-ordinal_tuple_example.svg" alt="AM ordinal tuple example">
 </div>
-<div class="title">Figure 19. Tuple Constraint Example AOM Instances</div>
+<div class="title">Figure 20. Tuple Constraint Example AOM Instances</div>
 </div>
 <div id="tuple_constraint_example_data" class="imageblock text-center text-center">
 <div class="content">
 <img src="AOM2/diagrams/tuple_example_data.svg" alt="tuple example data">
 </div>
-<div class="title">Figure 20. Tuple Constraint Example Data</div>
+<div class="title">Figure 21. Tuple Constraint Example Data</div>
 </div>
 </div>
 <div class="sect3">
@@ -3278,7 +3298,7 @@ Since an archetype might not contain external terminology bindings for all (or e
 <div class="content">
 <img src="AOM2/diagrams/c_object_substitutions.svg" alt="c object substitutions">
 </div>
-<div class="title">Figure 21. C_Object Substitutions</div>
+<div class="title">Figure 22. C_Object Substitutions</div>
 </div>
 <div class="paragraph">
 <p>Within a specialised archetype, nodes that redefine corresponding nodes in the parent are normally of the same <code>C_OBJECT</code> type (we can think of this as a 'meta-type', since the RM type is the 'type' in the information model sense), but in some cases may also be of different <code>C_OBJECT</code> types.</p>
@@ -5431,8 +5451,224 @@ other: <code><a href="#_c_ordered_class">C_ORDERED</a>[1]</code><br>
 </tr>
 </tbody>
 </table>
+</div>
+<div class="sect3">
+<h4 id="_c_temporal_definitions_class"><a class="anchor" href="#_c_temporal_definitions_class"></a>4.5.17. C_TEMPORAL_DEFINITIONS Class</h4>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 11.1111%;">
+<col style="width: 33.3333%;">
+<col style="width: 55.5556%;">
+</colgroup>
+<tbody>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Class</strong></p></th>
+<th class="tableblock halign-center valign-top" colspan="2"><p class="tableblock"><strong>C_TEMPORAL_DEFINITIONS</strong></p></th>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Description</strong></p></th>
+<td class="tableblock halign-left valign-top" colspan="2"><div class="content"><div class="paragraph">
+<p>Definitions related to <code>C_TEMPORAL</code> constraints.</p>
+</div></div></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Attributes</strong></p></th>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Signature</strong></p></th>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Meaning</strong></p></th>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>1..1</strong></p></th>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>valid_date_constraint_patterns</strong>: <code><a href="/releases/BASE/latest/foundation_types.html#_list_class">List<sup></a>&lt;<a href="/releases/BASE/latest/foundation_types.html#_string_class">String</sup></a>&gt;</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>List of allowed date constraints. Contains the values:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="pygments highlight"><code><span></span>&quot;YYYY-MM-DD&quot;    -- full date required
+&quot;YYYY-MM-??&quot;    -- day optional
+&quot;YYYY-MM-XX&quot;    -- day prohibited
+&quot;YYYY-??-??&quot;    -- any partial or full date
+&quot;YYYY-??-XX&quot;    -- day prohibited
+&quot;YYYY-XX-XX&quot;    -- only prohibited</code></pre>
+</div>
+</div></div></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>1..1</strong></p></th>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>valid_date_constraint_replacements</strong>: <code><a href="/releases/BASE/latest/foundation_types.html#_hash_class">Hash<sup></a>&lt;<a href="/releases/BASE/latest/foundation_types.html#_string_class">String</sup></a>, <a href="/releases/BASE/latest/foundation_types.html#_list_class">List<sup></a>&lt;<a href="/releases/BASE/latest/foundation_types.html#_string_class">String</sup></a>&gt;&gt;</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>List of allowed date constraint replacements e.g. in specialised archetype. Contains the values:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>"YYYY-MM-DD": [],
+
+"YYYY-MM-??": ["YYYY-MM-DD",
+               "YYYY-MM-XX"],
+
+"YYYY-MM-XX": [],
+
+"YYYY-??-??": ["YYYY-MM-??",
+               "YYYY-MM-DD",
+               "YYYY-MM-XX",
+               "YYYY-??-XX",
+               "YYYY-XX-XX"],
+
+"YYYY-??-XX": ["YYYY-MM-XX",
+              "YYYY-XX-XX"],
+
+"YYYY-XX-XX": []</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>In the above, an empty list value indicates no replacements possible.</p>
+</div></div></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>1..1</strong></p></th>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>valid_time_constraint_patterns</strong>: <code><a href="/releases/BASE/latest/foundation_types.html#_list_class">List<sup></a>&lt;<a href="/releases/BASE/latest/foundation_types.html#_string_class">String</sup></a>&gt;</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>List of allowed time constraints. Contains the values:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="pygments highlight"><code><span></span>&quot;HH:MM:SS&quot;    -- full time required
+&quot;HH:MM:??&quot;    -- seconds optional
+&quot;HH:MM:XX&quot;    -- minutes required, seconds prohibited
+&quot;HH:??:??&quot;    -- minutes and seconds optional
+&quot;HH:??:XX&quot;    -- minutes optional, seconds prohibited</code></pre>
+</div>
+</div></div></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>1..1</strong></p></th>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>valid_time_constraint_replacements</strong>: <code><a href="/releases/BASE/latest/foundation_types.html#_hash_class">Hash<sup></a>&lt;<a href="/releases/BASE/latest/foundation_types.html#_string_class">String</sup></a>, <a href="/releases/BASE/latest/foundation_types.html#_list_class">List<sup></a>&lt;<a href="/releases/BASE/latest/foundation_types.html#_string_class">String</sup></a>&gt;&gt;</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>List of allowed time constraint replacements e.g. in specialised archetype. Contains the values:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>"HH:MM:SS": [],
+
+"HH:MM:??": ["HH:MM:SS",
+             "HH:MM:XX"],
+
+"HH:MM:XX": [],
+
+"HH-??-??": ["HH:MM:??",
+             "HH:MM:SS",
+             "HH:MM:XX",
+             "HH:??:XX"],
+
+"HH-??-XX": ["HH:MM:XX"]</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>In the above, an empty list value indicates no replacements possible.</p>
+</div></div></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>1..1</strong></p></th>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>valid_date_time_constraint_patterns</strong>: <code><a href="/releases/BASE/latest/foundation_types.html#_list_class">List<sup></a>&lt;<a href="/releases/BASE/latest/foundation_types.html#_string_class">String</sup></a>&gt;</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>List of allowed date/time constraints. Contains the values:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="pygments highlight"><code><span></span>&quot;YYYY-MM-DDTHH:MM:SS&quot;    -- full date/time required
+&quot;YYYY-MM-DDTHH:MM:??&quot;    -- seconds optional
+&quot;YYYY-MM-DDTHH:MM:XX&quot;    -- seconds prohibited
+&quot;YYYY-MM-DDTHH:??:??&quot;    -- minutes and seconds optional
+&quot;YYYY-MM-DDTHH:??:XX&quot;    -- minutes optional, seconds prohibited
+&quot;YYYY-??-??T??:??:??&quot;    -- any date/time ok</code></pre>
+</div>
+</div></div></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>1..1</strong></p></th>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>valid_date_time_constraint_replacements</strong>: <code><a href="/releases/BASE/latest/foundation_types.html#_hash_class">Hash<sup></a>&lt;<a href="/releases/BASE/latest/foundation_types.html#_string_class">String</sup></a>, <a href="/releases/BASE/latest/foundation_types.html#_list_class">List<sup></a>&lt;<a href="/releases/BASE/latest/foundation_types.html#_string_class">String</sup></a>&gt;&gt;</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>List of allowed date/time constraint replacements e.g. in specialised archetype. Contains the values:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>"YYYY-MM-DDTHH:MM:SS": [],
+
+"YYYY-MM-DDTHH:MM:??": ["YYYY-MM-DDTHH:MM:SS",
+                        "YYYY-MM-DDTHH:MM:XX"],
+
+"YYYY-MM-DDTHH:MM:XX": [],
+
+"YYYY-MM-DDTHH:??:??": ["YYYY-MM-DDTHH:??:XX",
+                        "YYYY-MM-DDTHH:MM:SS",
+                        "YYYY-MM-DDTHH:MM:??",
+                        "YYYY-MM-DDTHH:MM:XX"],
+
+"YYYY-MM-DDTHH:??:XX": ["YYYY-MM-DDTHH:MM:XX"],
+
+"YYYY-??-??T??:??:??": ["YYYY-MM-DDTHH:MM:SS",
+                        "YYYY-MM-DDTHH:MM:??",
+                        "YYYY-MM-DDTHH:MM:XX",
+                        "YYYY-MM-DDTHH:??:??",
+                        "YYYY-MM-DDTHH:??:XX"]</pre>
+</div>
+</div></div></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Functions</strong></p></th>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Signature</strong></p></th>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Meaning</strong></p></th>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>1..1</strong></p></th>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>valid_duration_constraint_replacement</strong> (<br>
+a_dur: <code><a href="/releases/BASE/latest/foundation_types.html#_string_class" target="_blank" rel="noopener">String</a>[1]</code>,<br>
+other_dur: <code><a href="/releases/BASE/latest/foundation_types.html#_string_class" target="_blank" rel="noopener">String</a>[1]</code><br>
+): <code><a href="/releases/BASE/latest/foundation_types.html#_boolean_class" target="_blank" rel="noopener">Boolean</a></code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>True if ISO8601 duration string <code><em>other_dur</em></code> contains every character element in <code><em>a_dur</em></code>. For example: 'PYD' (period with year and days only) conforms to 'PYMD', but doesn&#8217;t conform to 'PY'.</p>
+</div></div></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>1..1</strong></p></th>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>valid_iso8601_date_constraint_pattern</strong> (<br>
+s: <code><a href="/releases/BASE/latest/foundation_types.html#_string_class" target="_blank" rel="noopener">String</a>[1]</code><br>
+): <code><a href="/releases/BASE/latest/foundation_types.html#_boolean_class" target="_blank" rel="noopener">Boolean</a></code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>True if string literal like <code>"yyyy-MM-dd"</code> containing <code>"XX"</code> or <code>"??"</code> in <code>MM</code> or <code>dd</code> slots in pattern constraint is in <code><em>valid_date_constraint_patterns</em></code>.</p>
+</div></div></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>1..1</strong></p></th>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>valid_iso8601_time_constraint_pattern</strong> (<br>
+s: <code><a href="/releases/BASE/latest/foundation_types.html#_string_class" target="_blank" rel="noopener">String</a>[1]</code><br>
+): <code><a href="/releases/BASE/latest/foundation_types.html#_boolean_class" target="_blank" rel="noopener">Boolean</a></code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>True if string literal like <code>"hh:mm:ss[.ssss]"</code> containing <code>"XX"</code> or <code>"??"</code> in <code>mm</code> or <code>ss</code> slots in pattern constraint is in <code><em>valid_time_constraint_patterns</em></code>.</p>
+</div></div></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>1..1</strong></p></th>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>valid_iso8601_date_time_constraint_pattern</strong> (<br>
+s: <code><a href="/releases/BASE/latest/foundation_types.html#_string_class" target="_blank" rel="noopener">String</a>[1]</code><br>
+): <code><a href="/releases/BASE/latest/foundation_types.html#_boolean_class" target="_blank" rel="noopener">Boolean</a></code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>True if string literal in form <code>"yyyy-MM-dd hh:mm:ss[.ssss]"</code> containing <code>"XX"</code> or <code>"??"</code> in variable slots in pattern constraint is in <code><em>valid_date_time_constraint_patterns</em></code>.</p>
+</div></div></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>1..1</strong></p></th>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>valid_iso8601_duration_constraint_pattern</strong> (<br>
+s: <code><a href="/releases/BASE/latest/foundation_types.html#_string_class" target="_blank" rel="noopener">String</a>[1]</code><br>
+): <code><a href="/releases/BASE/latest/foundation_types.html#_boolean_class" target="_blank" rel="noopener">Boolean</a></code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>True if string in form <code>P[Y&#124;y][M&#124;m][W&#124;w][D&#124;d][T[H&#124;h][M&#124;m][S&#124;s]]</code> (note: allowing 'W' to be mixed in is an openEHR deviation of ISO 8601).</p>
+</div></div></td>
+</tr>
+</tbody>
+</table>
 <div class="sect4">
-<h5 id="_conformance_semantics_c_temporal"><a class="anchor" href="#_conformance_semantics_c_temporal"></a>4.5.16.1. Conformance semantics: C_TEMPORAL</h5>
+<h5 id="_conformance_semantics_c_temporal"><a class="anchor" href="#_conformance_semantics_c_temporal"></a>4.5.17.1. Conformance semantics: C_TEMPORAL</h5>
 <div class="paragraph">
 <p>The following functions redefine those of the same names in <code>C_ORDERED</code> and formally define the conformance of a node of a <code>C_TEMPORAL</code> descendant type in a specialised archetype to a corresponding node in a parent archetype, where 'corresponding' means a node found at the same or a congruent path and of the same AOM type.</p>
 </div>
@@ -5458,7 +5694,7 @@ other: <code><a href="#_c_ordered_class">C_ORDERED</a>[1]</code><br>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_c_date_class"><a class="anchor" href="#_c_date_class"></a>4.5.17. C_DATE Class</h4>
+<h4 id="_c_date_class"><a class="anchor" href="#_c_date_class"></a>4.5.18. C_DATE Class</h4>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 11.1111%;">
@@ -5542,6 +5778,28 @@ other: <code><a href="#_c_ordered_class">C_ORDERED</a>[1]</code><br>
 </div></div></td>
 </tr>
 <tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>1..1<br>
+(effected)</strong></p></th>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>valid_pattern_constraint</strong> (<br>
+a_pattern: <code><a href="/releases/BASE/latest/foundation_types.html#_string_class" target="_blank" rel="noopener">String</a>[1]</code><br>
+): <code><a href="/releases/BASE/latest/foundation_types.html#_boolean_class" target="_blank" rel="noopener">Boolean</a></code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Return <code>valid_iso8601_date_constraint_pattern (a_pattern)</code></p>
+</div></div></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>1..1<br>
+(effected)</strong></p></th>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>valid_pattern_constraint_replacement</strong> (<br>
+a_pattern: <code><a href="/releases/BASE/latest/foundation_types.html#_string_class" target="_blank" rel="noopener">String</a>[1]</code>,<br>
+an_other_pattern: <code><a href="/releases/BASE/latest/foundation_types.html#_string_class" target="_blank" rel="noopener">String</a>[1]</code><br>
+): <code><a href="/releases/BASE/latest/foundation_types.html#_boolean_class" target="_blank" rel="noopener">Boolean</a></code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Return <code>valid_date_constraint_replacements.has(an_other_pattern.as_upper) and then
+valid_date_constraint_replacements.item (an_other_pattern.as_upper).has (a_pattern.as_upper)</code>.</p>
+</div></div></td>
+</tr>
+<tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Invariants</strong></p></th>
 <td class="tableblock halign-left valign-top" colspan="2"><div class="content"><div class="paragraph">
 <p><em>Pattern_validity</em>: <code>pattern /= Void implies valid_iso8601_date_constraint_pattern(pattern)</code></p>
@@ -5551,7 +5809,7 @@ other: <code><a href="#_c_ordered_class">C_ORDERED</a>[1]</code><br>
 </table>
 </div>
 <div class="sect3">
-<h4 id="_c_time_class"><a class="anchor" href="#_c_time_class"></a>4.5.18. C_TIME Class</h4>
+<h4 id="_c_time_class"><a class="anchor" href="#_c_time_class"></a>4.5.19. C_TIME Class</h4>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 11.1111%;">
@@ -5642,6 +5900,28 @@ other: <code><a href="#_c_ordered_class">C_ORDERED</a>[1]</code><br>
 </div></div></td>
 </tr>
 <tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>1..1<br>
+(effected)</strong></p></th>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>valid_pattern_constraint</strong> (<br>
+a_pattern: <code><a href="/releases/BASE/latest/foundation_types.html#_string_class" target="_blank" rel="noopener">String</a>[1]</code><br>
+): <code><a href="/releases/BASE/latest/foundation_types.html#_boolean_class" target="_blank" rel="noopener">Boolean</a></code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Return <code>valid_iso8601_time_constraint_pattern (a_pattern)</code></p>
+</div></div></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>1..1<br>
+(effected)</strong></p></th>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>valid_pattern_constraint_replacement</strong> (<br>
+a_pattern: <code><a href="/releases/BASE/latest/foundation_types.html#_string_class" target="_blank" rel="noopener">String</a>[1]</code>,<br>
+an_other_pattern: <code><a href="/releases/BASE/latest/foundation_types.html#_string_class" target="_blank" rel="noopener">String</a>[1]</code><br>
+): <code><a href="/releases/BASE/latest/foundation_types.html#_boolean_class" target="_blank" rel="noopener">Boolean</a></code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Return <code>valid_time_constraint_replacements.has(an_other_pattern.as_upper) and then
+valid_time_constraint_replacements.item (an_other_pattern.as_upper).has (a_pattern.as_upper)</code>.</p>
+</div></div></td>
+</tr>
+<tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Invariants</strong></p></th>
 <td class="tableblock halign-left valign-top" colspan="2"><div class="content"><div class="paragraph">
 <p><em>Pattern_validity</em>: <code>pattern /= Void implies valid_iso8601_time_constraint_pattern (pattern)</code></p>
@@ -5651,7 +5931,7 @@ other: <code><a href="#_c_ordered_class">C_ORDERED</a>[1]</code><br>
 </table>
 </div>
 <div class="sect3">
-<h4 id="_c_date_time_class"><a class="anchor" href="#_c_date_time_class"></a>4.5.19. C_DATE_TIME Class</h4>
+<h4 id="_c_date_time_class"><a class="anchor" href="#_c_date_time_class"></a>4.5.20. C_DATE_TIME Class</h4>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 11.1111%;">
@@ -5756,6 +6036,28 @@ other: <code><a href="#_c_ordered_class">C_ORDERED</a>[1]</code><br>
 </div></div></td>
 </tr>
 <tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>1..1<br>
+(effected)</strong></p></th>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>valid_pattern_constraint</strong> (<br>
+a_pattern: <code><a href="/releases/BASE/latest/foundation_types.html#_string_class" target="_blank" rel="noopener">String</a>[1]</code><br>
+): <code><a href="/releases/BASE/latest/foundation_types.html#_boolean_class" target="_blank" rel="noopener">Boolean</a></code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Return <code>valid_iso8601_date_time_constraint_pattern (a_pattern)</code></p>
+</div></div></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>1..1<br>
+(effected)</strong></p></th>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>valid_pattern_constraint_replacement</strong> (<br>
+a_pattern: <code><a href="/releases/BASE/latest/foundation_types.html#_string_class" target="_blank" rel="noopener">String</a>[1]</code>,<br>
+an_other_pattern: <code><a href="/releases/BASE/latest/foundation_types.html#_string_class" target="_blank" rel="noopener">String</a>[1]</code><br>
+): <code><a href="/releases/BASE/latest/foundation_types.html#_boolean_class" target="_blank" rel="noopener">Boolean</a></code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Return <code>valid_date_time_constraint_replacements.has(an_other_pattern.as_upper) and then
+valid_date_time_constraint_replacements.item (an_other_pattern.as_upper).has (a_pattern.as_upper)</code>.</p>
+</div></div></td>
+</tr>
+<tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Invariants</strong></p></th>
 <td class="tableblock halign-left valign-top" colspan="2"><div class="content"><div class="paragraph">
 <p><em>Pattern_validity</em>: <code>pattern /= Void implies valid_iso8601_date_time_constraint_pattern(pattern)</code></p>
@@ -5765,7 +6067,7 @@ other: <code><a href="#_c_ordered_class">C_ORDERED</a>[1]</code><br>
 </table>
 </div>
 <div class="sect3">
-<h4 id="_c_duration_class"><a class="anchor" href="#_c_duration_class"></a>4.5.20. C_DURATION Class</h4>
+<h4 id="_c_duration_class"><a class="anchor" href="#_c_duration_class"></a>4.5.21. C_DURATION Class</h4>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 11.1111%;">
@@ -5889,11 +6191,32 @@ other: <code><a href="#_c_ordered_class">C_ORDERED</a>[1]</code><br>
 <p>True if seconds are allowed in the constrained Duration.</p>
 </div></div></td>
 </tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>1..1<br>
+(effected)</strong></p></th>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>valid_pattern_constraint</strong> (<br>
+a_pattern: <code><a href="/releases/BASE/latest/foundation_types.html#_string_class" target="_blank" rel="noopener">String</a>[1]</code><br>
+): <code><a href="/releases/BASE/latest/foundation_types.html#_boolean_class" target="_blank" rel="noopener">Boolean</a></code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Return <code>valid_iso8601_duration_constraint_pattern (a_pattern)</code></p>
+</div></div></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>1..1<br>
+(effected)</strong></p></th>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>valid_pattern_constraint_replacement</strong> (<br>
+a_pattern: <code><a href="/releases/BASE/latest/foundation_types.html#_string_class" target="_blank" rel="noopener">String</a>[1]</code>,<br>
+an_other_pattern: <code><a href="/releases/BASE/latest/foundation_types.html#_string_class" target="_blank" rel="noopener">String</a>[1]</code><br>
+): <code><a href="/releases/BASE/latest/foundation_types.html#_boolean_class" target="_blank" rel="noopener">Boolean</a></code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Return <code>valid_duration_constraint_replacement (a_pattern, an_other_pattern)</code>.</p>
+</div></div></td>
+</tr>
 </tbody>
 </table>
 </div>
 <div class="sect3">
-<h4 id="_c_terminology_code_class"><a class="anchor" href="#_c_terminology_code_class"></a>4.5.21. C_TERMINOLOGY_CODE Class</h4>
+<h4 id="_c_terminology_code_class"><a class="anchor" href="#_c_terminology_code_class"></a>4.5.22. C_TERMINOLOGY_CODE Class</h4>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 11.1111%;">
@@ -6008,6 +6331,18 @@ other: <code><a href="#_c_ordered_class">C_ORDERED</a>[1]</code><br>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><strong>effective_constraint_status</strong> (): <code><a href="/releases/BASE/latest/foundation_types.html#_integer_class" target="_blank" rel="noopener">Integer</a></code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>Return the effective integer value of the <code><em>constraint_status</em></code> field if it exists. If it is null, return 0, i.e. <code>required</code>.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Note</div>
+</td>
+<td class="content">
+the above logic applies to any <code>C_TERMINOLOGY_NODE</code> instance in a specialised archetype that redefines another such instance in the flat parent. I.e. no stated <code><em>constraint_status</em></code> means <code>required</code>.
+</td>
+</tr>
+</table>
 </div></div></td>
 </tr>
 <tr>
@@ -6083,7 +6418,7 @@ other: <code><a href="#_c_terminology_code_class">C_TERMINOLOGY_CODE</a>[1]</cod
 </table>
 </div>
 <div class="sect3">
-<h4 id="_constraint_status_enumeration"><a class="anchor" href="#_constraint_status_enumeration"></a>4.5.22. CONSTRAINT_STATUS Enumeration</h4>
+<h4 id="_constraint_status_enumeration"><a class="anchor" href="#_constraint_status_enumeration"></a>4.5.23. CONSTRAINT_STATUS Enumeration</h4>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 11.1111%;">
@@ -6146,7 +6481,7 @@ other: <code><a href="#_c_terminology_code_class">C_TERMINOLOGY_CODE</a>[1]</cod
 </tbody>
 </table>
 <div class="sect4">
-<h5 id="_conformance_semantics_c_terminology_node"><a class="anchor" href="#_conformance_semantics_c_terminology_node"></a>4.5.22.1. Conformance semantics: C_TERMINOLOGY_NODE</h5>
+<h5 id="_conformance_semantics_c_terminology_node"><a class="anchor" href="#_conformance_semantics_c_terminology_node"></a>4.5.23.1. Conformance semantics: C_TERMINOLOGY_NODE</h5>
 <div class="paragraph">
 <p>The following functions implement those of the same names in <code>C_PRIMITIVE_OBJECT</code> and formally define the conformance of a <code>C_TERMINOLOGY_CODE</code> node in a specialised archetype to a corresponding node in a parent archetype, where 'corresponding' means a node found at the same or a congruent path and of the same AOM type.</p>
 </div>
@@ -6216,7 +6551,7 @@ other: <code><a href="#_c_terminology_code_class">C_TERMINOLOGY_CODE</a>[1]</cod
 </div>
 </div>
 <div class="sect3">
-<h4 id="_c_second_order_class"><a class="anchor" href="#_c_second_order_class"></a>4.5.23. C_SECOND_ORDER Class</h4>
+<h4 id="_c_second_order_class"><a class="anchor" href="#_c_second_order_class"></a>4.5.24. C_SECOND_ORDER Class</h4>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 11.1111%;">
@@ -6289,7 +6624,7 @@ other: <code><a href="#_c_second_order_class">C_SECOND_ORDER</a>[1]</code><br>
 </table>
 </div>
 <div class="sect3">
-<h4 id="_c_primitive_tuple_class"><a class="anchor" href="#_c_primitive_tuple_class"></a>4.5.24. C_PRIMITIVE_TUPLE Class</h4>
+<h4 id="_c_primitive_tuple_class"><a class="anchor" href="#_c_primitive_tuple_class"></a>4.5.25. C_PRIMITIVE_TUPLE Class</h4>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 11.1111%;">
@@ -6367,7 +6702,7 @@ other: <code><a href="#_c_second_order_class">C_SECOND_ORDER</a>[1]</code><br>
 </table>
 </div>
 <div class="sect3">
-<h4 id="_c_attribute_tuple_class"><a class="anchor" href="#_c_attribute_tuple_class"></a>4.5.25. C_ATTRIBUTE_TUPLE Class</h4>
+<h4 id="_c_attribute_tuple_class"><a class="anchor" href="#_c_attribute_tuple_class"></a>4.5.26. C_ATTRIBUTE_TUPLE Class</h4>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 11.1111%;">
@@ -6451,7 +6786,7 @@ other: <code><a href="#_c_second_order_class">C_SECOND_ORDER</a>[1]</code><br>
 </tbody>
 </table>
 <div class="sect4">
-<h5 id="_conformance_semantics_c_second_order"><a class="anchor" href="#_conformance_semantics_c_second_order"></a>4.5.25.1. Conformance semantics: C_SECOND_ORDER</h5>
+<h5 id="_conformance_semantics_c_second_order"><a class="anchor" href="#_conformance_semantics_c_second_order"></a>4.5.26.1. Conformance semantics: C_SECOND_ORDER</h5>
 <div class="paragraph">
 <p>The following functions formally define the conformance interfaces of any <code>C_SECOND_ORDER</code> node in a specialised archetype to the corresponding node in a parent archetype, where 'corresponding' means a node found at the same or a congruent path.</p>
 </div>
@@ -6558,7 +6893,7 @@ other: <code><a href="#_c_second_order_class">C_SECOND_ORDER</a>[1]</code><br>
 <div class="content">
 <img src="UML/diagrams/AM-aom2.rules.svg" alt="AM aom2.rules">
 </div>
-<div class="title">Figure 22. am.aom2.rules Package</div>
+<div class="title">Figure 23. am.aom2.rules Package</div>
 </div>
 <div class="sect2">
 <h3 id="_archetype_slot_assertions"><a class="anchor" href="#_archetype_slot_assertions"></a>5.1. Archetype Slot Assertions</h3>
@@ -6761,7 +7096,7 @@ other: <code><a href="#_c_second_order_class">C_SECOND_ORDER</a>[1]</code><br>
 <div class="content">
 <img src="UML/diagrams/AM-aom2.rm_overlay.svg" alt="AM aom2.rm overlay">
 </div>
-<div class="title">Figure 23. <code>am.aom2.rm_overlay</code> package</div>
+<div class="title">Figure 24. <code>am.aom2.rm_overlay</code> package</div>
 </div>
 </div>
 <div class="sect2">
@@ -6956,7 +7291,7 @@ other: <code><a href="#_c_second_order_class">C_SECOND_ORDER</a>[1]</code><br>
 <div class="content">
 <img src="UML/diagrams/AM-aom2.terminology.svg" alt="AM aom2.terminology">
 </div>
-<div class="title">Figure 24. <code>am.aom2.terminology</code> Package</div>
+<div class="title">Figure 25. <code>am.aom2.terminology</code> Package</div>
 </div>
 <div class="paragraph">
 <p>An archetype terminology consists of the following elements.</p>
@@ -6991,13 +7326,13 @@ other: <code><a href="#_c_second_order_class">C_SECOND_ORDER</a>[1]</code><br>
 </ul>
 </div>
 <div class="paragraph">
-<p>Depending on whether the archetype is in differential or flat form, an instance of the <code>ARCHETYPE_TERMINOLOGY</code> class contains terms, constraints, bindings and terminology extracts that were respectively either introduced in the owning archetype, or all codes and bindings obtained by compressing an archetype lineage through inheritance. A typical instance structure of <code>ARCHETYPE_TERMINOLOGY</code> is illustrated in <a href="#terminology_instance">Figure 25</a>.</p>
+<p>Depending on whether the archetype is in differential or flat form, an instance of the <code>ARCHETYPE_TERMINOLOGY</code> class contains terms, constraints, bindings and terminology extracts that were respectively either introduced in the owning archetype, or all codes and bindings obtained by compressing an archetype lineage through inheritance. A typical instance structure of <code>ARCHETYPE_TERMINOLOGY</code> is illustrated in <a href="#terminology_instance">Figure 26</a>.</p>
 </div>
 <div id="terminology_instance" class="imageblock text-center text-center">
 <div class="content">
 <img src="AOM2/diagrams/terminology_instance_structure.svg" alt="terminology instance structure">
 </div>
-<div class="title">Figure 25. Terminology Instance Structure</div>
+<div class="title">Figure 26. Terminology Instance Structure</div>
 </div>
 </div>
 <div class="sect2">
@@ -7777,13 +8112,13 @@ Hash of keys ("text", "description" etc) and corresponding values.</p>
 <div class="content">
 <img src="UML/diagrams/AM-aom2.persistence-upper.svg" alt="AM aom2.persistence upper">
 </div>
-<div class="title">Figure 26. <code>am.aom2.persistence</code> Package - Serialisation AOM (upper)</div>
+<div class="title">Figure 27. <code>am.aom2.persistence</code> Package - Serialisation AOM (upper)</div>
 </div>
 <div id="P_AOM_lower" class="imageblock text-center text-center">
 <div class="content">
 <img src="UML/diagrams/AM-aom2.persistence-lower.svg" alt="AM aom2.persistence lower">
 </div>
-<div class="title">Figure 27. <code>am.aom2.persistence</code> Package - Serialisation AOM (lower)</div>
+<div class="title">Figure 28. <code>am.aom2.persistence</code> Package - Serialisation AOM (lower)</div>
 </div>
 </div>
 <div class="sect2">
@@ -7902,7 +8237,7 @@ Hash of keys ("text", "description" etc) and corresponding values.</p>
 <div class="content">
 <img src="UML/diagrams/AM-template_example_1.svg" alt="AM template example 1">
 </div>
-<div class="title">Figure 28. Template source structure example</div>
+<div class="title">Figure 29. Template source structure example</div>
 </div>
 <div class="paragraph">
 <p>The filler object specifies in its <code><em>archetype_ref</em></code> attribute the artefact being used to fill the slot (shown on the diagram as an ellipsis, for brevity). Here it is not simply the archetype <code>org.openehr::openEHR-EHR-SECTION.vital_signs_headings.v1</code>, but a specialised form of this archetype, defined as a local template overlay, whose identifier is <code>uk.nhs.clinical::openEHR-EHR-SECTION.t_encounter_report-vital_signs_headings-0001.v1</code>.</p>
@@ -8006,7 +8341,7 @@ Hash of keys ("text", "description" etc) and corresponding values.</p>
 <div class="content">
 <img src="UML/diagrams/AM-aom2.profile.svg" alt="AM aom2.profile">
 </div>
-<div class="title">Figure 29. <code>aom2.profile</code> Package</div>
+<div class="title">Figure 30. <code>aom2.profile</code> Package</div>
 </div>
 <div class="sect3">
 <h4 id="_class_definitions_3"><a class="anchor" href="#_class_definitions_3"></a>11.2.1. Class Definitions</h4>
