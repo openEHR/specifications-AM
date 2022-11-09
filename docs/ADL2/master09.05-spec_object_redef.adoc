@@ -79,9 +79,25 @@ Examples of added node identifiers:
 
 When a flat form is created, the level at which any given node was introduced or redefined is clear due to the identifier coding system.
 
-=== Occurrences Redefinition and Exclusion
+=== Occurrences Redefinition
 
-The `occurrences` constraint on an object node indicates how many instances within the data may conform to that constraint (see <<Container Attributes>>). Within container attributes, `occurrences` is usually redefined in order to make a given object mandatory rather than optional; it can also be used to exclude an object constraint. In the following example, the occurrences of the `id4` node is redefined from `{0..1}` i.e. optional, to `{1}` , i.e. mandatory.
+The `occurrences` constraint on an object node indicates how many instances within the data may conform to that constraint (see <<Container Attributes>>). Occurrences may be redefined for various reasons, including:
+
+* mandation of specific specialised objects;
+* exclusion of certain objects from the parent;
+* controlling occurrences of a specialised object to a specific range.
+
+A basic distinction should be understood prior to considering these specific cases, which is a difference between redefinition of occurrences on a single-occurrence node versus a multiple-occurrence node.
+
+A single-occurrence node is one whose effective occurrences has an upper limit of 1, i.e. it can occur either 0..1 or 1 times in data. This is the case for any object node under a single-valued attribute, as well as any object node under a container attribute, that has occurrences set to either 0..1 or 1. The occurrences of such a node can only be redefined in very limited ways, i.e. mandation or exclusion of 0..1.
+
+The situation is different for object nodes with multiple occurrences, i.e. whose effective occurrences upper limit is greater than one. The example provided above in <<Redefinition for Specialisation>> in which node `id79|panel item|` in the parent archetype is specialised into multiple nodes `id79.1`, `id79.2` etc, illustrates the standard pattern. When a parent object (the `id79` node in the parent archetype) has multiple occurrences, it defines a potential _multiplicity_ of data objects that may conform to it. When such a node is redefined into multiple specialised child nodes in a child archetype (each typically having its own occurrences constraint), the latter _specialisation set_ acts as a more precise restatement of the original multiplicity of objects. For this reason, the _collective occurrences_ of the specialised children is used to determine their validity, rather than any individual comparison of the occurrences of one specialised child to that of the parent.
+
+The formal definition of validity for occurrences in both cases is given by the VSONCO rule in the {openehr_am_aom2}#_validity_rules_3[openEHR AOM2 specification^].
+
+==== Mandation
+
+Within container attributes, `occurrences` is usually redefined in order to make a given object mandatory rather than optional. In the following example, the occurrences of the `id4` node is redefined from `{0..1}` i.e. optional, to `{1}` , i.e. mandatory.
 
 Parent (`openEHR-EHR-EVALUATION.problem.v1.0.3`):
 
@@ -109,7 +125,11 @@ Child (`openEHR-EHR-EVALUATION.problem-diagnosis.v1`):
     }
 --------
 
-In the above we can see that if the only change in the redefinition is to occurrences, the remainder of the block from the parent is not repeated in the child. Occurrences is normally only constrained on child objects of container attributes, but can be set on objects of any attribute to effect exclusion of part of the instance space. This can be useful in archetypes where a number of alternatives for a single-valued attribute have been stated, and the need is to remove some alternatives in a specialised child archetype. For example, an archetype might have the following constraint:
+In the above we can see that if the only change in the redefinition is to occurrences, the remainder of the block from the parent is not repeated in the child.
+
+==== Exclusion
+
+Occurrences is most commonly constrained on child objects of container attributes, but can be set on objects of any attribute to effect exclusion of part of the instance space. This can be useful in archetypes where a number of alternatives for a single-valued attribute have been stated, and the need is to remove some alternatives in a specialised child archetype. For example, an archetype might have the following constraint:
 
 [source, cadl]
 --------

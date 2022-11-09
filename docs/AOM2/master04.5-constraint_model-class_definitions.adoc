@@ -78,6 +78,57 @@ cardinality_conforms_to (other: C_ATTRIBUTE): Boolean
             Result := True
         end
     end
+    
+specialised_node_sets_conform_to (other: C_ATTRIBUTE): Boolean
+        -- test conformance of specialised (object) node sets to parent nodes (see VSONCO)
+        -- `other` is assumed to be the corresponding C_ATTRIBUTE in specialisation parent
+    require
+        other /= Void
+        other.is_multiple
+    do
+        Result := for_all parent_obj in other.children | 
+                    collective_occurrences_of (parent_obj, other).intersects (parent_obj.occurrences)
+    end
+    
+collective_occurrences_of (parent_object: C_OBJECT; other: C_ATTRIBUTE): Multiplicity_interval
+        -- compute collective occurrences according to VSONCO, of all object nodes under this 
+        -- attribute node that redefine `parent_object`, which is assumed to be an object node 
+        -- within `other`, the specialisation parent of this C_ATTRIBUTE
+    require
+        parent_object /= Void
+        other.is_multiple
+    do
+        -- make a 0..0 interval
+        create Result.make_prohibited
+        
+        children.do_all (
+            agent (child_co, parent_co: C_OBJECT; interval: Multiplicity_interval)
+                local
+                    child_occ: Multiplicity_interval
+                do
+                    if child_co.node_id_conforms_to (parent_co) then
+                        -- if the child object node has no occurrences, use
+                        -- that of the parent
+                        if attached child_co.occurrences as occ then
+                            child_occ := occ
+                        else
+                            child_occ := parent_co.occurrences
+                        end
+
+                        interval.set_lower (interval.lower + child_occ.lower)
+                        if child_occ.upper_unbounded then
+                            interval.set_upper_unbounded
+                        elseif not interval.upper_unbounded then
+                            interval.set_upper (interval.upper + child_occ.upper)
+                        end
+                    end
+                end (?, a_parent_co, Result)
+        )
+                
+        if cardinality /= Void and then not cardinality.upper_unbounded then
+            Result.upper := Result.upper.min (cardinality.upper)
+        end
+    end
 ---------
 
 ==== Validity Rules
@@ -115,7 +166,7 @@ The following validity rules apply to single-valued attributes, i.e when `C_ATTR
 The following validity rules apply to container attributes, i.e when `C_ATTRIBUTE._is_multiple_` is True:
 
 [.rule]
-*VACMCU*: cardinality/occurrences upper bound validity: where a cardinality with a finite upper bound is stated on an attribute, for all immediate child objects for which an occurrences constraint is stated, the occurrences must either have an open upper bound (i.e. n..*) which is interpreted as the maximum value allowed within the cardinality, or else a finite upper bound which is \<= the cardinality upper bound.
+*VACMCU*: cardinality/occurrences upper bound validity: where a cardinality with a finite upper bound is stated on an attribute, for all immediate child objects for which an occurrences constraint is stated, the occurrences must either have an open upper bound (i.e. `n..*`) which is interpreted as the maximum value allowed within the cardinality, or else a finite upper bound which is \<= the cardinality upper bound.
 
 [.rule]
 *VACMCO*: cardinality/occurrences orphans: it must be possible for at least one instance of one optional child object (i.e. an object for which the occurrences lower bound is 0) and one instance of every mandatory child object (i.e. object constraints for which the occurrences lower bound is >= 1) to be included within the cardinality range.
@@ -211,15 +262,19 @@ c_conforms_to (other: C_OBJECT; rmcc: FUNCTION<<a_type, other_type: String>, Boo
         -- as `other'. 
         -- `other' is typically from the flat parent archetype.
         -- `rmcc' is an agent (lambda) that can test an RM type's conformance to another RM type
-        -- Returns True only when the following is True:
-        --	 * rm_type_name is the same or a subtype of rm_type_name of other;
-        --	 * occurrences is same (= Void) or a sub-interval
-        --	 * node_id is the same, or redefined to a legal code at the level of the owning archetype
+        -- Returns True when the following is True:
+        --  * rm_type_name is the same or a subtype of rm_type_name of other;
+        --  * node_id is the same, or redefined to a legal code at the level of the owning archetype
+        --  * is_root or else
+        --    parent.is_multiple or else -- we do the real check from the parent C_ATTRIBUTE
+        --    parent.is_single and
+        --    occurrences is same (= Void) or a sub-interval
+        --
     do
         Result := node_id_conforms_to (other) and
-            occurrences_conforms_to (other) and
             (rm_type_name.is_case_insensitive_equal (other.rm_type_name) or else
-            rmcc (rm_type_name, other.rm_type_name))
+            rmcc (rm_type_name, other.rm_type_name)) and
+            (is_root or else parent.is_multiple or else parent.is_single and occurrences_conforms_to (other))
     end
 
 c_congruent_to (other: C_OBJECT): Boolean
@@ -243,10 +298,13 @@ c_congruent_to (other: C_OBJECT): Boolean
     end
 
 occurrences_conforms_to (other: C_OBJECT): Boolean
-    require
-        other /= Void
+        -- True if this node's occurrences conforms to other.occurrences;
+        -- `other' is assumed to be in a flat archetype.
+        -- only redefinitions of single-occurrence nodes can be dealt with here;
+        -- redefinitions of multiply-occurrences nodes
+        -- must be evaluated at the owning attribute, according to VSONCO.
     do
-        if occurrences /= Void and other.occurrences /= Void then
+        if occurrences /= Void and other.occurrences.upper = 1 then
             Result := other.occurrences.contains (occurrences)
         else
             Result := True
@@ -312,7 +370,26 @@ _Deprecated_: *VSONI* specialised archetype redefined object node identifier val
 *VSONIF* specialised archetype object node identifier validity in flat siblings: the identification (or not) of an object node in a specialised archetype must be valid with respect to any sibling object nodes in the flattened parent (see VACMI).
 
 [.rule]
-*VSONCO* specialised archetype redefine object node occurrences validity: the occurrences of a redefined object node in a specialised archetype, if stated, must conform to the occurrences in the corresponding node in the flat parent archetype by either being identical, or being wholly contained by the latter.
+*VSONCO* specialised archetype object node occurrences redefinition validity:
+
+For object node(s) redefining a single-occurrences node in the specialisation flat parent (i.e. a node having occurrences upper bound = 1), the child node(s) occurrences interval(s) must be wholly contained within that of the parent, i.e. narrower. If there are multiple such nodes, each is an alternative, and only one can be applied at runtime.
+
+For nodes specialising a multiple-occurrences parent node (which will always be within a container attribute), any or all such nodes might apply to data at runtime. Consequently, it is the collective occurrences of all such nodes, that must be compared to the occurrences of the parent - no assumption is made that the occurrences of any specific redefining node on its own need conform to that of the redefined node.
+
+Formally, the _collective occurrences_ interval of all nodes in a _specialised node set_ must _intersect_ with the flattened occurrences interval of the corresponding parent node, for each object in the set to be valid. If there is no intersection, the occurrences of all members of the set is considered invalid.
+
+A _specialised node set_ is the set of nodes in a flat child archetype that specializes a multiple-occurrences parent node, which may include the parent node itself if it appears in the flattened archetype.
+
+The _collective occurrences_ of a specialised node set is computed as the interval consisting of:
+
+* lower bound = the sum of the lower bounds of the occurrences of the members of the specialised node set;
+* upper bound = minimum of:
+** sum of upper bounds of the occurrences of the members of the specialised node set; where any of the upper bounds is unbounded, the sum is unbounded;
+** upper bound of the flattened cardinality of the containing attribute.
+
+For any member of the specialised node set that does not have a local occurrences override, the occurrences is that of the redefined parent node.
+
+A consequence of the intersection rule and the priority of the cardinality of the owning attribute is that the occurrences of any node in a specialisation set may have an unbounded upper limit (i.e. `*`) even if the upper bound of the cardinality of the owning attribute is finite.
 
 [.rule]
 *VSONPT* specialised archetype prohibited object node AOM type validity: the occurrences of a redefined object node in a specialised archetype, may only be prohibited (i.e. \{0}) if the matching node in the parent is of the same AOM type.

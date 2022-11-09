@@ -4,11 +4,12 @@
 <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="generator" content="Asciidoctor 2.0.10">
+<meta name="generator" content="Asciidoctor 2.0.17">
 <meta name="description" content="openEHR Archetype Object Model 2 (AOM2) (ISO 13606-2:2019)">
 <meta name="keywords" content="EHR, ADL, AOM, health records, archetypes, constraint language, ISO 13606, openehr">
 <title>Archetype Object Model 2 (AOM2)</title>
 <link rel="stylesheet" href="https://specifications.openehr.org/styles/openehr.css">
+<link rel="stylesheet" href="https://specifications.openehr.org/styles/pygments-default.css">
 </head>
 <body class="book toc2 toc-left">
 <div id="header">
@@ -489,11 +490,24 @@
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a id="latest_issue"></a>2.3.0</p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><a href="https://specifications.openehr.org/tickets/SPECAM-76" target="_blank" rel="noopener">SPECAM-76</a>. Correct VSONCO rule for redefinition of nodes with multiple occurrences (addresses problem <a href="https://specifications.openehr.org/tickets/SPECPR-374" target="_blank" rel="noopener">SPECPR-374</a>).</p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">P Bos,<br>
+ S Garde,<br>
+ I McNicoll,<br>
+ P Pazos,<br>
+ J Holslag,<br>
+ T Beale</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a id="latest_issue_date"></a>09 Nov 2022</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p><a href="https://specifications.openehr.org/tickets/SPECAM-75" target="_blank" rel="noopener">SPECAM-75</a>. Improve specification of constraint patterns in <code>C_TEMPORAL</code> classes (addresses problem <a href="https://specifications.openehr.org/tickets/SPECPR-374" target="_blank" rel="noopener">SPECPR-374</a>).</p>
 </div></div></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">P Pazos,<br>
  T Beale</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a id="latest_issue_date"></a>02 Aug 2022</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">02 Aug 2022</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"></td>
@@ -3701,6 +3715,57 @@ Typically used during validation of specialised archetype nodes.</p>
         <span class="tok-kr">else</span>
             <span class="tok-kc">Result</span> <span class="tok-o">:=</span> <span class="tok-kc">True</span>
         <span class="tok-kr">end</span>
+    <span class="tok-kr">end</span>
+
+<span class="tok-n">specialised_node_sets_conform_to</span> <span class="tok-p">(</span><span class="tok-n">other</span><span class="tok-p">:</span> <span class="tok-nc">C_ATTRIBUTE</span><span class="tok-p">):</span> <span class="tok-n">Boolean</span>
+        <span class="tok-c1">-- test conformance of specialised (object) node sets to parent nodes (see VSONCO)</span>
+        <span class="tok-c1">-- `other` is assumed to be the corresponding C_ATTRIBUTE in specialisation parent</span>
+    <span class="tok-kr">require</span>
+        <span class="tok-n">other</span> <span class="tok-o">/=</span> <span class="tok-kc">Void</span>
+        <span class="tok-n">other</span><span class="tok-p">.</span><span class="tok-n">is_multiple</span>
+    <span class="tok-kr">do</span>
+        <span class="tok-kc">Result</span> <span class="tok-o">:=</span> <span class="tok-n">for_all</span> <span class="tok-n">parent_obj</span> <span class="tok-n">in</span> <span class="tok-n">other</span><span class="tok-p">.</span><span class="tok-n">children</span> <span class="tok-o">|</span>
+                    <span class="tok-n">collective_occurrences_of</span> <span class="tok-p">(</span><span class="tok-n">parent_obj</span><span class="tok-p">,</span> <span class="tok-n">other</span><span class="tok-p">).</span><span class="tok-n">intersects</span> <span class="tok-p">(</span><span class="tok-n">parent_obj</span><span class="tok-p">.</span><span class="tok-n">occurrences</span><span class="tok-p">)</span>
+    <span class="tok-kr">end</span>
+
+<span class="tok-n">collective_occurrences_of</span> <span class="tok-p">(</span><span class="tok-n">parent_object</span><span class="tok-p">:</span> <span class="tok-nc">C_OBJECT</span><span class="tok-p">;</span> <span class="tok-n">other</span><span class="tok-p">:</span> <span class="tok-nc">C_ATTRIBUTE</span><span class="tok-p">):</span> <span class="tok-n">Multiplicity_interval</span>
+        <span class="tok-c1">-- compute collective occurrences according to VSONCO, of all object nodes under this</span>
+        <span class="tok-c1">-- attribute node that redefine `parent_object`, which is assumed to be an object node</span>
+        <span class="tok-c1">-- within `other`, the specialisation parent of this C_ATTRIBUTE</span>
+    <span class="tok-kr">require</span>
+        <span class="tok-n">parent_object</span> <span class="tok-o">/=</span> <span class="tok-kc">Void</span>
+        <span class="tok-n">other</span><span class="tok-p">.</span><span class="tok-n">is_multiple</span>
+    <span class="tok-kr">do</span>
+        <span class="tok-c1">-- make a 0..0 interval</span>
+        <span class="tok-kr">create</span> <span class="tok-kc">Result</span><span class="tok-p">.</span><span class="tok-n">make_prohibited</span>
+
+        <span class="tok-n">children</span><span class="tok-p">.</span><span class="tok-n">do_all</span> <span class="tok-p">(</span>
+            <span class="tok-kr">agent</span> <span class="tok-p">(</span><span class="tok-n">child_co</span><span class="tok-p">,</span> <span class="tok-n">parent_co</span><span class="tok-p">:</span> <span class="tok-nc">C_OBJECT</span><span class="tok-p">;</span> <span class="tok-n">interval</span><span class="tok-p">:</span> <span class="tok-n">Multiplicity_interval</span><span class="tok-p">)</span>
+                <span class="tok-kr">local</span>
+                    <span class="tok-n">child_occ</span><span class="tok-p">:</span> <span class="tok-n">Multiplicity_interval</span>
+                <span class="tok-kr">do</span>
+                    <span class="tok-kr">if</span> <span class="tok-n">child_co</span><span class="tok-p">.</span><span class="tok-n">node_id_conforms_to</span> <span class="tok-p">(</span><span class="tok-n">parent_co</span><span class="tok-p">)</span> <span class="tok-kr">then</span>
+                        <span class="tok-c1">-- if the child object node has no occurrences, use</span>
+                        <span class="tok-c1">-- that of the parent</span>
+                        <span class="tok-kr">if</span> <span class="tok-kr">attached</span> <span class="tok-n">child_co</span><span class="tok-p">.</span><span class="tok-n">occurrences</span> <span class="tok-kr">as</span> <span class="tok-n">occ</span> <span class="tok-kr">then</span>
+                            <span class="tok-n">child_occ</span> <span class="tok-o">:=</span> <span class="tok-n">occ</span>
+                        <span class="tok-kr">else</span>
+                            <span class="tok-n">child_occ</span> <span class="tok-o">:=</span> <span class="tok-n">parent_co</span><span class="tok-p">.</span><span class="tok-n">occurrences</span>
+                        <span class="tok-kr">end</span>
+
+                        <span class="tok-n">interval</span><span class="tok-p">.</span><span class="tok-n">set_lower</span> <span class="tok-p">(</span><span class="tok-n">interval</span><span class="tok-p">.</span><span class="tok-n">lower</span> <span class="tok-o">+</span> <span class="tok-n">child_occ</span><span class="tok-p">.</span><span class="tok-n">lower</span><span class="tok-p">)</span>
+                        <span class="tok-kr">if</span> <span class="tok-n">child_occ</span><span class="tok-p">.</span><span class="tok-n">upper_unbounded</span> <span class="tok-kr">then</span>
+                            <span class="tok-n">interval</span><span class="tok-p">.</span><span class="tok-n">set_upper_unbounded</span>
+                        <span class="tok-kr">elseif</span> <span class="tok-ow">not</span> <span class="tok-n">interval</span><span class="tok-p">.</span><span class="tok-n">upper_unbounded</span> <span class="tok-kr">then</span>
+                            <span class="tok-n">interval</span><span class="tok-p">.</span><span class="tok-n">set_upper</span> <span class="tok-p">(</span><span class="tok-n">interval</span><span class="tok-p">.</span><span class="tok-n">upper</span> <span class="tok-o">+</span> <span class="tok-n">child_occ</span><span class="tok-p">.</span><span class="tok-n">upper</span><span class="tok-p">)</span>
+                        <span class="tok-kr">end</span>
+                    <span class="tok-kr">end</span>
+                <span class="tok-kr">end</span> <span class="tok-p">(</span><span class="tok-o">?</span><span class="tok-p">,</span> <span class="tok-n">a_parent_co</span><span class="tok-p">,</span> <span class="tok-kc">Result</span><span class="tok-p">)</span>
+        <span class="tok-p">)</span>
+
+        <span class="tok-kr">if</span> <span class="tok-n">cardinality</span> <span class="tok-o">/=</span> <span class="tok-kc">Void</span> <span class="tok-ow">and then</span> <span class="tok-ow">not</span> <span class="tok-n">cardinality</span><span class="tok-p">.</span><span class="tok-n">upper_unbounded</span> <span class="tok-kr">then</span>
+            <span class="tok-kc">Result</span><span class="tok-p">.</span><span class="tok-n">upper</span> <span class="tok-o">:=</span> <span class="tok-kc">Result</span><span class="tok-p">.</span><span class="tok-n">upper</span><span class="tok-p">.</span><span class="tok-n">min</span> <span class="tok-p">(</span><span class="tok-n">cardinality</span><span class="tok-p">.</span><span class="tok-n">upper</span><span class="tok-p">)</span>
+        <span class="tok-kr">end</span>
     <span class="tok-kr">end</span></code></pre>
 </div>
 </div>
@@ -3744,7 +3809,7 @@ Typically used during validation of specialised archetype nodes.</p>
 <p>The following validity rules apply to container attributes, i.e when <code>C_ATTRIBUTE.<em>is_multiple</em></code> is True:</p>
 </div>
 <div class="paragraph rule">
-<p><strong>VACMCU</strong>: cardinality/occurrences upper bound validity: where a cardinality with a finite upper bound is stated on an attribute, for all immediate child objects for which an occurrences constraint is stated, the occurrences must either have an open upper bound (i.e. n..*) which is interpreted as the maximum value allowed within the cardinality, or else a finite upper bound which is &lt;= the cardinality upper bound.</p>
+<p><strong>VACMCU</strong>: cardinality/occurrences upper bound validity: where a cardinality with a finite upper bound is stated on an attribute, for all immediate child objects for which an occurrences constraint is stated, the occurrences must either have an open upper bound (i.e. <code>n..*</code>) which is interpreted as the maximum value allowed within the cardinality, or else a finite upper bound which is &lt;= the cardinality upper bound.</p>
 </div>
 <div class="paragraph rule">
 <p><strong>VACMCO</strong>: cardinality/occurrences orphans: it must be possible for at least one instance of one optional child object (i.e. an object for which the occurrences lower bound is 0) and one instance of every mandatory child object (i.e. object constraints for which the occurrences lower bound is &gt;= 1) to be included within the cardinality range.</p>
@@ -3899,7 +3964,7 @@ other: <code><a href="#_archetype_constraint_class">ARCHETYPE_CONSTRAINT</a>[1]<
 other: <code><a href="#_c_object_class">C_OBJECT</a>[1]</code><br>
 ): <code><a href="/releases/BASE/latest/foundation_types.html#_boolean_class" target="_blank" rel="noopener">Boolean</a></code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p>True if this node <code><em>occurrences</em></code> conforms to <code><em>other.occurrences</em></code>; `other' is assumed to be in a flat archetype.</p>
+<p>True if this node <code><em>occurrences</em></code> conforms to <code><em>other.occurrences</em></code>; <code>other</code> is assumed to be in a flat archetype.</p>
 </div>
 <div class="hdlist">
 <div class="title">Parameters<br></div>
@@ -4075,15 +4140,19 @@ other: <code><a href="#_c_object_class">C_OBJECT</a>[1]</code><br>
         <span class="tok-c1">-- as `other&#39;.</span>
         <span class="tok-c1">-- `other&#39; is typically from the flat parent archetype.</span>
         <span class="tok-c1">-- `rmcc&#39; is an agent (lambda) that can test an RM type&#39;s conformance to another RM type</span>
-        <span class="tok-c1">-- Returns True only when the following is True:</span>
-        <span class="tok-c1">--	 * rm_type_name is the same or a subtype of rm_type_name of other;</span>
-        <span class="tok-c1">--	 * occurrences is same (= Void) or a sub-interval</span>
-        <span class="tok-c1">--	 * node_id is the same, or redefined to a legal code at the level of the owning archetype</span>
+        <span class="tok-c1">-- Returns True when the following is True:</span>
+        <span class="tok-c1">--  * rm_type_name is the same or a subtype of rm_type_name of other;</span>
+        <span class="tok-c1">--  * node_id is the same, or redefined to a legal code at the level of the owning archetype</span>
+        <span class="tok-c1">--  * is_root or else</span>
+        <span class="tok-c1">--    parent.is_multiple or else -- we do the real check from the parent C_ATTRIBUTE</span>
+        <span class="tok-c1">--    parent.is_single and</span>
+        <span class="tok-c1">--    occurrences is same (= Void) or a sub-interval</span>
+        <span class="tok-c1">--</span>
     <span class="tok-kr">do</span>
         <span class="tok-kc">Result</span> <span class="tok-o">:=</span> <span class="tok-n">node_id_conforms_to</span> <span class="tok-p">(</span><span class="tok-n">other</span><span class="tok-p">)</span> <span class="tok-ow">and</span>
-            <span class="tok-n">occurrences_conforms_to</span> <span class="tok-p">(</span><span class="tok-n">other</span><span class="tok-p">)</span> <span class="tok-ow">and</span>
             <span class="tok-p">(</span><span class="tok-n">rm_type_name</span><span class="tok-p">.</span><span class="tok-n">is_case_insensitive_equal</span> <span class="tok-p">(</span><span class="tok-n">other</span><span class="tok-p">.</span><span class="tok-n">rm_type_name</span><span class="tok-p">)</span> <span class="tok-ow">or else</span>
-            <span class="tok-n">rmcc</span> <span class="tok-p">(</span><span class="tok-n">rm_type_name</span><span class="tok-p">,</span> <span class="tok-n">other</span><span class="tok-p">.</span><span class="tok-n">rm_type_name</span><span class="tok-p">))</span>
+            <span class="tok-n">rmcc</span> <span class="tok-p">(</span><span class="tok-n">rm_type_name</span><span class="tok-p">,</span> <span class="tok-n">other</span><span class="tok-p">.</span><span class="tok-n">rm_type_name</span><span class="tok-p">))</span> <span class="tok-ow">and</span>
+            <span class="tok-p">(</span><span class="tok-n">is_root</span> <span class="tok-ow">or else</span> <span class="tok-n">parent</span><span class="tok-p">.</span><span class="tok-n">is_multiple</span> <span class="tok-ow">or else</span> <span class="tok-n">parent</span><span class="tok-p">.</span><span class="tok-n">is_single</span> <span class="tok-ow">and</span> <span class="tok-n">occurrences_conforms_to</span> <span class="tok-p">(</span><span class="tok-n">other</span><span class="tok-p">))</span>
     <span class="tok-kr">end</span>
 
 <span class="tok-n">c_congruent_to</span> <span class="tok-p">(</span><span class="tok-n">other</span><span class="tok-p">:</span> <span class="tok-nc">C_OBJECT</span><span class="tok-p">):</span> <span class="tok-n">Boolean</span>
@@ -4107,10 +4176,13 @@ other: <code><a href="#_c_object_class">C_OBJECT</a>[1]</code><br>
     <span class="tok-kr">end</span>
 
 <span class="tok-n">occurrences_conforms_to</span> <span class="tok-p">(</span><span class="tok-n">other</span><span class="tok-p">:</span> <span class="tok-nc">C_OBJECT</span><span class="tok-p">):</span> <span class="tok-n">Boolean</span>
-    <span class="tok-kr">require</span>
-        <span class="tok-n">other</span> <span class="tok-o">/=</span> <span class="tok-kc">Void</span>
+        <span class="tok-c1">-- True if this node&#39;s occurrences conforms to other.occurrences;</span>
+        <span class="tok-c1">-- `other&#39; is assumed to be in a flat archetype.</span>
+        <span class="tok-c1">-- only redefinitions of single-occurrence nodes can be dealt with here;</span>
+        <span class="tok-c1">-- redefinitions of multiply-occurrences nodes</span>
+        <span class="tok-c1">-- must be evaluated at the owning attribute, according to VSONCO.</span>
     <span class="tok-kr">do</span>
-        <span class="tok-kr">if</span> <span class="tok-n">occurrences</span> <span class="tok-o">/=</span> <span class="tok-kc">Void</span> <span class="tok-ow">and</span> <span class="tok-n">other</span><span class="tok-p">.</span><span class="tok-n">occurrences</span> <span class="tok-o">/=</span> <span class="tok-kc">Void</span> <span class="tok-kr">then</span>
+        <span class="tok-kr">if</span> <span class="tok-n">occurrences</span> <span class="tok-o">/=</span> <span class="tok-kc">Void</span> <span class="tok-ow">and</span> <span class="tok-n">other</span><span class="tok-p">.</span><span class="tok-n">occurrences</span><span class="tok-p">.</span><span class="tok-n">upper</span> <span class="tok-o">=</span> <span class="tok-mi">1</span> <span class="tok-kr">then</span>
             <span class="tok-kc">Result</span> <span class="tok-o">:=</span> <span class="tok-n">other</span><span class="tok-p">.</span><span class="tok-n">occurrences</span><span class="tok-p">.</span><span class="tok-n">contains</span> <span class="tok-p">(</span><span class="tok-n">occurrences</span><span class="tok-p">)</span>
         <span class="tok-kr">else</span>
             <span class="tok-kc">Result</span> <span class="tok-o">:=</span> <span class="tok-kc">True</span>
@@ -4178,7 +4250,48 @@ other: <code><a href="#_c_object_class">C_OBJECT</a>[1]</code><br>
 <p><strong>VSONIF</strong> specialised archetype object node identifier validity in flat siblings: the identification (or not) of an object node in a specialised archetype must be valid with respect to any sibling object nodes in the flattened parent (see VACMI).</p>
 </div>
 <div class="paragraph rule">
-<p><strong>VSONCO</strong> specialised archetype redefine object node occurrences validity: the occurrences of a redefined object node in a specialised archetype, if stated, must conform to the occurrences in the corresponding node in the flat parent archetype by either being identical, or being wholly contained by the latter.</p>
+<p><strong>VSONCO</strong> specialised archetype object node occurrences redefinition validity:</p>
+</div>
+<div class="paragraph">
+<p>For object node(s) redefining a single-occurrences node in the specialisation flat parent (i.e. a node having occurrences upper bound = 1), the child node(s) occurrences interval(s) must be wholly contained within that of the parent, i.e. narrower. If there are multiple such nodes, each is an alternative, and only one can be applied at runtime.</p>
+</div>
+<div class="paragraph">
+<p>For nodes specialising a multiple-occurrences parent node (which will always be within a container attribute), any or all such nodes might apply to data at runtime. Consequently, it is the collective occurrences of all such nodes, that must be compared to the occurrences of the parent - no assumption is made that the occurrences of any specific redefining node on its own need conform to that of the redefined node.</p>
+</div>
+<div class="paragraph">
+<p>Formally, the <em>collective occurrences</em> interval of all nodes in a <em>specialised node set</em> must <em>intersect</em> with the flattened occurrences interval of the corresponding parent node, for each object in the set to be valid. If there is no intersection, the occurrences of all members of the set is considered invalid.</p>
+</div>
+<div class="paragraph">
+<p>A <em>specialised node set</em> is the set of nodes in a flat child archetype that specializes a multiple-occurrences parent node, which may include the parent node itself if it appears in the flattened archetype.</p>
+</div>
+<div class="paragraph">
+<p>The <em>collective occurrences</em> of a specialised node set is computed as the interval consisting of:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>lower bound = the sum of the lower bounds of the occurrences of the members of the specialised node set;</p>
+</li>
+<li>
+<p>upper bound = minimum of:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>sum of upper bounds of the occurrences of the members of the specialised node set; where any of the upper bounds is unbounded, the sum is unbounded;</p>
+</li>
+<li>
+<p>upper bound of the flattened cardinality of the containing attribute.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>For any member of the specialised node set that does not have a local occurrences override, the occurrences is that of the redefined parent node.</p>
+</div>
+<div class="paragraph">
+<p>A consequence of the intersection rule and the priority of the cardinality of the owning attribute is that the occurrences of any node in a specialisation set may have an unbounded upper limit (i.e. <code>*</code>) even if the upper bound of the cardinality of the owning attribute is finite.</p>
 </div>
 <div class="paragraph rule">
 <p><strong>VSONPT</strong> specialised archetype prohibited object node AOM type validity: the occurrences of a redefined object node in a specialised archetype, may only be prohibited (i.e. {0}) if the matching node in the parent is of the same AOM type.</p>
@@ -8800,6 +8913,5 @@ Hash of keys ("text", "description" etc) and corresponding values.</p>
 Last updated 2022-08-02 12:20:05 +0100
 </div>
 </div>
-<link rel="stylesheet" href="https://specifications.openehr.org/styles/pygments-default.css">
 </body>
 </html>
