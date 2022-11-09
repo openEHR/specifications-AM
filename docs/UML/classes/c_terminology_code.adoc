@@ -62,6 +62,8 @@ h|*1..1*
 |*effective_constraint_status* (): `link:/releases/BASE/{base_release}/foundation_types.html#_integer_class[Integer^]`
 a|Return the effective integer value of the `_constraint_status_` field if it exists. If it is null, return 0, i.e. `required`.
 
+NOTE: the above logic applies to any `C_TERMINOLOGY_NODE` instance in a specialised archetype that redefines another such instance in the flat parent. I.e. no stated `_constraint_status_` means `required`.
+
 h|*0..1*
 |*value_set_expanded* (): `link:/releases/BASE/{base_release}/foundation_types.html#_list_class[List^]<link:/releases/BASE/{base_release}/foundation_types.html#_string_class[String^]>`
 a|Effective set of at-code values corresponding to an ac-code for a locally defined value set. Not defined for ac-codes that have no local value set.
