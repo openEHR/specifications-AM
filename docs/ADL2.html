@@ -334,7 +334,12 @@
 <li><a href="#_adding_nodes">9.5.1.1. Adding Nodes</a></li>
 </ul>
 </li>
-<li><a href="#_occurrences_redefinition_and_exclusion">9.5.2. Occurrences Redefinition and Exclusion</a></li>
+<li><a href="#_occurrences_redefinition">9.5.2. Occurrences Redefinition</a>
+<ul class="sectlevel4">
+<li><a href="#_mandation">9.5.2.1. Mandation</a></li>
+<li><a href="#_exclusion">9.5.2.2. Exclusion</a></li>
+</ul>
+</li>
 <li><a href="#_single_and_multiple_specialisation_when_does_cloning_occur">9.5.3. Single and Multiple Specialisation - When does Cloning Occur?</a></li>
 <li><a href="#_exhaustive_and_non_exhaustive_redefinition">9.5.4. Exhaustive and Non-Exhaustive Redefinition</a></li>
 <li><a href="#_reference_model_type_refinement">9.5.5. Reference Model Type Refinement</a></li>
@@ -6915,9 +6920,39 @@ Note that in the above, the '/' is used to denote '/protocol' as a differential 
 </div>
 </div>
 <div class="sect3">
-<h4 id="_occurrences_redefinition_and_exclusion"><a class="anchor" href="#_occurrences_redefinition_and_exclusion"></a>9.5.2. Occurrences Redefinition and Exclusion</h4>
+<h4 id="_occurrences_redefinition"><a class="anchor" href="#_occurrences_redefinition"></a>9.5.2. Occurrences Redefinition</h4>
 <div class="paragraph">
-<p>The <code>occurrences</code> constraint on an object node indicates how many instances within the data may conform to that constraint (see <a href="#_container_attributes">Section 4.3.3</a>). Within container attributes, <code>occurrences</code> is usually redefined in order to make a given object mandatory rather than optional; it can also be used to exclude an object constraint. In the following example, the occurrences of the <code>id4</code> node is redefined from <code>{0..1}</code> i.e. optional, to <code>{1}</code> , i.e. mandatory.</p>
+<p>The <code>occurrences</code> constraint on an object node indicates how many instances within the data may conform to that constraint (see <a href="#_container_attributes">Section 4.3.3</a>). Occurrences may be redefined for various reasons, including:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>mandation of specific specialised objects;</p>
+</li>
+<li>
+<p>exclusion of certain objects from the parent;</p>
+</li>
+<li>
+<p>controlling occurrences of a specialised object to a specific range.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>A basic distinction should be understood prior to considering these specific cases, which is a difference between redefinition of occurrences on a single-occurrence node versus a multiple-occurrence node.</p>
+</div>
+<div class="paragraph">
+<p>A single-occurrence node is one whose effective occurrences has an upper limit of 1, i.e. it can occur either 0..1 or 1 times in data. This is the case for any object node under a single-valued attribute, as well as any object node under a container attribute, that has occurrences set to either 0..1 or 1. The occurrences of such a node can only be redefined in very limited ways, i.e. mandation or exclusion of 0..1.</p>
+</div>
+<div class="paragraph">
+<p>The situation is different for object nodes with multiple occurrences, i.e. whose effective occurrences upper limit is greater than one. The example provided above in <a href="#redefinition_for_specialisation">Section 9.3.2</a> in which node <code>id79|panel item|</code> in the parent archetype is specialised into multiple nodes <code>id79.1</code>, <code>id79.2</code> etc, illustrates the standard pattern. When a parent object (the <code>id79</code> node in the parent archetype) has multiple occurrences, it defines a potential <em>multiplicity</em> of data objects that may conform to it. When such a node is redefined into multiple specialised child nodes in a child archetype (each typically having its own occurrences constraint), the latter <em>specialisation set</em> acts as a more precise restatement of the original multiplicity of objects. For this reason, the <em>collective occurrences</em> of the specialised children is used to determine their validity, rather than any individual comparison of the occurrences of one specialised child to that of the parent.</p>
+</div>
+<div class="paragraph">
+<p>The formal definition of validity for occurrences in both cases is given by the VSONCO rule in the <a href="https://specifications.openehr.org/releases/AM/latest/AOM2.html#_validity_rules_3" target="_blank" rel="noopener">openEHR AOM2 specification</a>.</p>
+</div>
+<div class="sect4">
+<h5 id="_mandation"><a class="anchor" href="#_mandation"></a>9.5.2.1. Mandation</h5>
+<div class="paragraph">
+<p>Within container attributes, <code>occurrences</code> is usually redefined in order to make a given object mandatory rather than optional. In the following example, the occurrences of the <code>id4</code> node is redefined from <code>{0..1}</code> i.e. optional, to <code>{1}</code> , i.e. mandatory.</p>
 </div>
 <div class="paragraph">
 <p>Parent (<code>openEHR-EHR-EVALUATION.problem.v1.0.3</code>):</p>
@@ -6948,7 +6983,13 @@ Note that in the above, the '/' is used to denote '/protocol' as a differential 
 </div>
 </div>
 <div class="paragraph">
-<p>In the above we can see that if the only change in the redefinition is to occurrences, the remainder of the block from the parent is not repeated in the child. Occurrences is normally only constrained on child objects of container attributes, but can be set on objects of any attribute to effect exclusion of part of the instance space. This can be useful in archetypes where a number of alternatives for a single-valued attribute have been stated, and the need is to remove some alternatives in a specialised child archetype. For example, an archetype might have the following constraint:</p>
+<p>In the above we can see that if the only change in the redefinition is to occurrences, the remainder of the block from the parent is not repeated in the child.</p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_exclusion"><a class="anchor" href="#_exclusion"></a>9.5.2.2. Exclusion</h5>
+<div class="paragraph">
+<p>Occurrences is most commonly constrained on child objects of container attributes, but can be set on objects of any attribute to effect exclusion of part of the instance space. This can be useful in archetypes where a number of alternatives for a single-valued attribute have been stated, and the need is to remove some alternatives in a specialised child archetype. For example, an archetype might have the following constraint:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -6988,6 +7029,7 @@ Note that in the above, the '/' is used to denote '/protocol' as a differential 
 </div>
 <div class="paragraph">
 <p>If the whole attribute is to be removed, this can be done by redefining existence to <code>{0}</code>, as described in <a href="#_existence_redefinition_mandation_and_exclusion">Section 9.4.1</a>.</p>
+</div>
 </div>
 </div>
 <div class="sect3">
