@@ -183,43 +183,43 @@
 <li><a href="#_archetype_constraint_class">4.5.1. ARCHETYPE_CONSTRAINT Class</a></li>
 <li><a href="#_c_attribute_class">4.5.2. C_ATTRIBUTE Class</a>
 <ul class="sectlevel4">
-<li><a href="#_conformance_semantics">4.5.2.1. Conformance Semantics</a></li>
-<li><a href="#_validity_rules_2">4.5.2.2. Validity Rules</a></li>
+<li><a href="#_conformance_semantics_c_attribute">4.5.2.1. Conformance Semantics: C_ATTRIBUTE</a></li>
+<li><a href="#_validity_rules_c_attribute">4.5.2.2. Validity Rules: C_ATTRIBUTE</a></li>
 </ul>
 </li>
 <li><a href="#_c_object_class">4.5.3. C_OBJECT Class</a></li>
 <li><a href="#_sibling_order_class">4.5.4. SIBLING_ORDER Class</a>
 <ul class="sectlevel4">
 <li><a href="#_occurrences_inferencing_rules">4.5.4.1. Occurrences inferencing rules</a></li>
-<li><a href="#_conformance_semantics_2">4.5.4.2. Conformance semantics</a></li>
-<li><a href="#_validity_rules_3">4.5.4.3. Validity Rules</a></li>
+<li><a href="#_conformance_semantics_c_object">4.5.4.2. Conformance Semantics: C_OBJECT</a></li>
+<li><a href="#_validity_rules_c_object">4.5.4.3. Validity Rules: C_OBJECT</a></li>
 </ul>
 </li>
 <li><a href="#_c_defined_object_class">4.5.5. C_DEFINED_OBJECT Class</a></li>
 <li><a href="#_c_complex_object_class">4.5.6. C_COMPLEX_OBJECT Class</a>
 <ul class="sectlevel4">
-<li><a href="#_validity_rules_4">4.5.6.1. Validity Rules</a></li>
+<li><a href="#_validity_rules_c_complex_object">4.5.6.1. Validity Rules: C_COMPLEX_OBJECT</a></li>
 </ul>
 </li>
 <li><a href="#_c_archetype_root_class">4.5.7. C_ARCHETYPE_ROOT Class</a>
 <ul class="sectlevel4">
-<li><a href="#_validity_rules_5">4.5.7.1. Validity Rules</a></li>
+<li><a href="#_validity_rules_c_archetype_root">4.5.7.1. Validity Rules: C_ARCHETYPE_ROOT</a></li>
 </ul>
 </li>
 <li><a href="#_archetype_slot_class">4.5.8. ARCHETYPE_SLOT Class</a>
 <ul class="sectlevel4">
-<li><a href="#_validity_rules_6">4.5.8.1. Validity Rules</a></li>
+<li><a href="#_validity_rules_archetype_slot">4.5.8.1. Validity Rules: ARCHETYPE_SLOT</a></li>
 </ul>
 </li>
 <li><a href="#_c_complex_object_proxy_class">4.5.9. C_COMPLEX_OBJECT_PROXY Class</a>
 <ul class="sectlevel4">
-<li><a href="#_validity_rules_7">4.5.9.1. Validity Rules</a></li>
+<li><a href="#_validity_rules_c_complex_object_proxy">4.5.9.1. Validity Rules: C_COMPLEX_OBJECT_PROXY</a></li>
 </ul>
 </li>
 <li><a href="#_c_primitive_object_class">4.5.10. C_PRIMITIVE_OBJECT Class</a>
 <ul class="sectlevel4">
-<li><a href="#_validity_rules_8">4.5.10.1. Validity Rules</a></li>
-<li><a href="#_conformance_semantics_c_primitive_object">4.5.10.2. Conformance semantics: C_PRIMITIVE_OBJECT</a></li>
+<li><a href="#_validity_rules_c_primitive_object">4.5.10.1. Validity Rules: C_PRIMITIVE_OBJECT</a></li>
+<li><a href="#_conformance_semantics_c_primitive_object">4.5.10.2. Conformance Semantics: C_PRIMITIVE_OBJECT</a></li>
 </ul>
 </li>
 <li><a href="#_c_boolean_class">4.5.11. C_BOOLEAN Class</a>
@@ -315,7 +315,7 @@
 <li><a href="#_value_set_class">7.3.3. VALUE_SET Class</a></li>
 <li><a href="#_archetype_term_class">7.3.4. ARCHETYPE_TERM Class</a>
 <ul class="sectlevel4">
-<li><a href="#_validity_rules_9">7.3.4.1. Validity Rules</a></li>
+<li><a href="#_validity_rules_2">7.3.4.1. Validity Rules</a></li>
 </ul>
 </li>
 </ul>
@@ -490,7 +490,7 @@
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a id="latest_issue"></a>2.3.0</p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><a href="https://specifications.openehr.org/tickets/SPECAM-76" target="_blank" rel="noopener">SPECAM-76</a>. Correct VSONCO rule for redefinition of nodes with multiple occurrences (addresses problem <a href="https://specifications.openehr.org/tickets/SPECPR-374" target="_blank" rel="noopener">SPECPR-374</a>).</p>
+<p><a href="https://specifications.openehr.org/tickets/SPECAM-76" target="_blank" rel="noopener">SPECAM-76</a>. Correct <a href="#VSONCO">[VSONCO]</a> rule for redefinition of nodes with multiple occurrences; added <a href="#_conformance_semantics_c_attribute"><code>collective_occurrences()</code> conformance function</a> (addresses problem <a href="https://specifications.openehr.org/tickets/SPECPR-374" target="_blank" rel="noopener">SPECPR-374</a>).</p>
 </div></div></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">P Bos,<br>
  S Garde,<br>
@@ -3641,7 +3641,7 @@ Typically used during validation of specialised archetype nodes.</p>
 </tbody>
 </table>
 <div class="sect4">
-<h5 id="_conformance_semantics"><a class="anchor" href="#_conformance_semantics"></a>4.5.2.1. Conformance Semantics</h5>
+<h5 id="_conformance_semantics_c_attribute"><a class="anchor" href="#_conformance_semantics_c_attribute"></a>4.5.2.1. Conformance Semantics: C_ATTRIBUTE</h5>
 <div class="paragraph">
 <p>The following functions formally define the conformance interfaces of any <code>ARCHETYPE_CONSTRAINT</code> node in a specialised archetype to the corresponding node in a parent archetype, where 'corresponding' means a node found at the same or a congruent path.</p>
 </div>
@@ -3717,17 +3717,6 @@ Typically used during validation of specialised archetype nodes.</p>
         <span class="tok-kr">end</span>
     <span class="tok-kr">end</span>
 
-<span class="tok-n">specialised_node_sets_conform_to</span> <span class="tok-p">(</span><span class="tok-n">other</span><span class="tok-p">:</span> <span class="tok-nc">C_ATTRIBUTE</span><span class="tok-p">):</span> <span class="tok-n">Boolean</span>
-        <span class="tok-c1">-- test conformance of specialised (object) node sets to parent nodes (see VSONCO)</span>
-        <span class="tok-c1">-- `other` is assumed to be the corresponding C_ATTRIBUTE in specialisation parent</span>
-    <span class="tok-kr">require</span>
-        <span class="tok-n">other</span> <span class="tok-o">/=</span> <span class="tok-kc">Void</span>
-        <span class="tok-n">other</span><span class="tok-p">.</span><span class="tok-n">is_multiple</span>
-    <span class="tok-kr">do</span>
-        <span class="tok-kc">Result</span> <span class="tok-o">:=</span> <span class="tok-n">for_all</span> <span class="tok-n">parent_obj</span> <span class="tok-n">in</span> <span class="tok-n">other</span><span class="tok-p">.</span><span class="tok-n">children</span> <span class="tok-o">|</span>
-                    <span class="tok-n">collective_occurrences_of</span> <span class="tok-p">(</span><span class="tok-n">parent_obj</span><span class="tok-p">,</span> <span class="tok-n">other</span><span class="tok-p">).</span><span class="tok-n">intersects</span> <span class="tok-p">(</span><span class="tok-n">parent_obj</span><span class="tok-p">.</span><span class="tok-n">occurrences</span><span class="tok-p">)</span>
-    <span class="tok-kr">end</span>
-
 <span class="tok-n">collective_occurrences_of</span> <span class="tok-p">(</span><span class="tok-n">parent_object</span><span class="tok-p">:</span> <span class="tok-nc">C_OBJECT</span><span class="tok-p">;</span> <span class="tok-n">other</span><span class="tok-p">:</span> <span class="tok-nc">C_ATTRIBUTE</span><span class="tok-p">):</span> <span class="tok-n">Multiplicity_interval</span>
         <span class="tok-c1">-- compute collective occurrences according to VSONCO, of all object nodes under this</span>
         <span class="tok-c1">-- attribute node that redefine `parent_object`, which is assumed to be an object node</span>
@@ -3771,7 +3760,7 @@ Typically used during validation of specialised archetype nodes.</p>
 </div>
 </div>
 <div class="sect4">
-<h5 id="_validity_rules_2"><a class="anchor" href="#_validity_rules_2"></a>4.5.2.2. Validity Rules</h5>
+<h5 id="_validity_rules_c_attribute"><a class="anchor" href="#_validity_rules_c_attribute"></a>4.5.2.2. Validity Rules: C_ATTRIBUTE</h5>
 <div class="paragraph">
 <p>The validity rules are as follows:</p>
 </div>
@@ -4129,7 +4118,7 @@ other: <code><a href="#_c_object_class">C_OBJECT</a>[1]</code><br>
 </div>
 </div>
 <div class="sect4">
-<h5 id="_conformance_semantics_2"><a class="anchor" href="#_conformance_semantics_2"></a>4.5.4.2. Conformance semantics</h5>
+<h5 id="_conformance_semantics_c_object"><a class="anchor" href="#_conformance_semantics_c_object"></a>4.5.4.2. Conformance Semantics: C_OBJECT</h5>
 <div class="paragraph">
 <p>The following functions, which implement the precursors from <code>ARCHETYPE_CONSTRAINT</code> formally define the conformance of a <code>C_OBJECT</code> node in a specialised archetype to the corresponding node in a parent archetype, where 'corresponding' means a node found at the same or a congruent path. Note that the pre-conditions from the precursors are understood as inherited.</p>
 </div>
@@ -4209,7 +4198,7 @@ other: <code><a href="#_c_object_class">C_OBJECT</a>[1]</code><br>
 </div>
 </div>
 <div class="sect4">
-<h5 id="_validity_rules_3"><a class="anchor" href="#_validity_rules_3"></a>4.5.4.3. Validity Rules</h5>
+<h5 id="_validity_rules_c_object"><a class="anchor" href="#_validity_rules_c_object"></a>4.5.4.3. Validity Rules: C_OBJECT</h5>
 <div class="paragraph">
 <p>The validity rules for all <code>C_OBJECTs</code> are as follows:</p>
 </div>
@@ -4249,7 +4238,7 @@ other: <code><a href="#_c_object_class">C_OBJECT</a>[1]</code><br>
 <div class="paragraph rule">
 <p><strong>VSONIF</strong> specialised archetype object node identifier validity in flat siblings: the identification (or not) of an object node in a specialised archetype must be valid with respect to any sibling object nodes in the flattened parent (see VACMI).</p>
 </div>
-<div class="paragraph rule">
+<div id="VSONCO" class="paragraph rule">
 <p><strong>VSONCO</strong> specialised archetype object node occurrences redefinition validity:</p>
 </div>
 <div class="paragraph">
@@ -4487,7 +4476,7 @@ other: <code><a href="#_c_complex_object_class">C_COMPLEX_OBJECT</a>[1]</code><b
 </tbody>
 </table>
 <div class="sect4">
-<h5 id="_validity_rules_4"><a class="anchor" href="#_validity_rules_4"></a>4.5.6.1. Validity Rules</h5>
+<h5 id="_validity_rules_c_complex_object"><a class="anchor" href="#_validity_rules_c_complex_object"></a>4.5.6.1. Validity Rules: C_COMPLEX_OBJECT</h5>
 <div class="paragraph">
 <p>The validity rules for <code>C_COMPLEX_OBJECTs</code> are as follows:</p>
 </div>
@@ -4549,7 +4538,7 @@ other: <code><a href="#_c_complex_object_class">C_COMPLEX_OBJECT</a>[1]</code><b
 </tbody>
 </table>
 <div class="sect4">
-<h5 id="_validity_rules_5"><a class="anchor" href="#_validity_rules_5"></a>4.5.7.1. Validity Rules</h5>
+<h5 id="_validity_rules_c_archetype_root"><a class="anchor" href="#_validity_rules_c_archetype_root"></a>4.5.7.1. Validity Rules: C_ARCHETYPE_ROOT</h5>
 <div class="paragraph">
 <p>The following validity rules apply to <code>C_ARCHETYPE_ROOT</code> objects:</p>
 </div>
@@ -4640,7 +4629,7 @@ other: <code><a href="#_c_complex_object_class">C_COMPLEX_OBJECT</a>[1]</code><b
 </tbody>
 </table>
 <div class="sect4">
-<h5 id="_validity_rules_6"><a class="anchor" href="#_validity_rules_6"></a>4.5.8.1. Validity Rules</h5>
+<h5 id="_validity_rules_archetype_slot"><a class="anchor" href="#_validity_rules_archetype_slot"></a>4.5.8.1. Validity Rules: ARCHETYPE_SLOT</h5>
 <div class="paragraph">
 <p>The validity rules for <code>ARCHETYPE_SLOTs</code> are as follows:</p>
 </div>
@@ -4764,7 +4753,7 @@ other: <code><a href="#_c_object_class">C_OBJECT</a>[1]</code><br>
 </tbody>
 </table>
 <div class="sect4">
-<h5 id="_validity_rules_7"><a class="anchor" href="#_validity_rules_7"></a>4.5.9.1. Validity Rules</h5>
+<h5 id="_validity_rules_c_complex_object_proxy"><a class="anchor" href="#_validity_rules_c_complex_object_proxy"></a>4.5.9.1. Validity Rules: C_COMPLEX_OBJECT_PROXY</h5>
 <div class="paragraph">
 <p>The following validity rules applies to internal references:</p>
 </div>
@@ -4920,7 +4909,7 @@ other: <code><a href="#_c_primitive_object_class">C_PRIMITIVE_OBJECT</a>[1]</cod
 </tbody>
 </table>
 <div class="sect4">
-<h5 id="_validity_rules_8"><a class="anchor" href="#_validity_rules_8"></a>4.5.10.1. Validity Rules</h5>
+<h5 id="_validity_rules_c_primitive_object"><a class="anchor" href="#_validity_rules_c_primitive_object"></a>4.5.10.1. Validity Rules: C_PRIMITIVE_OBJECT</h5>
 <div class="paragraph">
 <p>Validity rules applying to all <code>C_PRIMITIVE_OBJECT</code> types are as follows:</p>
 </div>
@@ -4929,7 +4918,7 @@ other: <code><a href="#_c_primitive_object_class">C_PRIMITIVE_OBJECT</a>[1]</cod
 </div>
 </div>
 <div class="sect4">
-<h5 id="_conformance_semantics_c_primitive_object"><a class="anchor" href="#_conformance_semantics_c_primitive_object"></a>4.5.10.2. Conformance semantics: C_PRIMITIVE_OBJECT</h5>
+<h5 id="_conformance_semantics_c_primitive_object"><a class="anchor" href="#_conformance_semantics_c_primitive_object"></a>4.5.10.2. Conformance Semantics: C_PRIMITIVE_OBJECT</h5>
 <div class="paragraph">
 <p>The following functions redefine those of the same names from <code>C_OBJECT</code>, and formally define the conformance of a node of a <code>C_PRIMITIVE_OBJECT</code> descendant type in a specialised archetype to a corresponding node in a parent archetype, where 'corresponding' means a node found at the same or a congruent path and of the same AOM type.</p>
 </div>
@@ -7825,7 +7814,7 @@ Hash of keys ("text", "description" etc) and corresponding values.</p>
 </tbody>
 </table>
 <div class="sect4">
-<h5 id="_validity_rules_9"><a class="anchor" href="#_validity_rules_9"></a>7.3.4.1. Validity Rules</h5>
+<h5 id="_validity_rules_2"><a class="anchor" href="#_validity_rules_2"></a>7.3.4.1. Validity Rules</h5>
 <div class="paragraph">
 <p>The following validity rules apply to instances of this class in an archetype:</p>
 </div>

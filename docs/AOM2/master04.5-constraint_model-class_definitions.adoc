@@ -4,7 +4,7 @@ include::{uml_export_dir}/classes/archetype_constraint.adoc[]
 
 include::{uml_export_dir}/classes/c_attribute.adoc[]
 
-==== Conformance Semantics
+==== Conformance Semantics: C_ATTRIBUTE
 
 The following functions formally define the conformance interfaces of any `ARCHETYPE_CONSTRAINT` node in a specialised archetype to the corresponding node in a parent archetype, where 'corresponding' means a node found at the same or a congruent path.
 
@@ -78,18 +78,7 @@ cardinality_conforms_to (other: C_ATTRIBUTE): Boolean
             Result := True
         end
     end
-    
-specialised_node_sets_conform_to (other: C_ATTRIBUTE): Boolean
-        -- test conformance of specialised (object) node sets to parent nodes (see VSONCO)
-        -- `other` is assumed to be the corresponding C_ATTRIBUTE in specialisation parent
-    require
-        other /= Void
-        other.is_multiple
-    do
-        Result := for_all parent_obj in other.children | 
-                    collective_occurrences_of (parent_obj, other).intersects (parent_obj.occurrences)
-    end
-    
+
 collective_occurrences_of (parent_object: C_OBJECT; other: C_ATTRIBUTE): Multiplicity_interval
         -- compute collective occurrences according to VSONCO, of all object nodes under this 
         -- attribute node that redefine `parent_object`, which is assumed to be an object node 
@@ -131,7 +120,7 @@ collective_occurrences_of (parent_object: C_OBJECT; other: C_ATTRIBUTE): Multipl
     end
 ---------
 
-==== Validity Rules
+==== Validity Rules: C_ATTRIBUTE
 
 The validity rules are as follows:
 
@@ -251,7 +240,7 @@ object_multiplicity (rm_type_name, rm_property_path: String): Multiplicity_inter
 
 How this is concretely implemented depends on the modelling environment. One possible RM model implementation is described in the {openehr_bmm}[openEHR Basic meta-model (BMM) specification^].
 
-==== Conformance semantics
+==== Conformance Semantics: C_OBJECT
 
 The following functions, which implement the precursors from `ARCHETYPE_CONSTRAINT` formally define the conformance of a `C_OBJECT` node in a specialised archetype to the corresponding node in a parent archetype, where 'corresponding' means a node found at the same or a congruent path. Note that the pre-conditions from the precursors are understood as inherited.
 
@@ -330,7 +319,7 @@ node_reuse_congruent (other: C_OBJECT): Boolean
 
 ---------
 
-==== Validity Rules
+==== Validity Rules: C_OBJECT
 
 The validity rules for all `C_OBJECTs` are as follows:
 
@@ -369,7 +358,7 @@ _Deprecated_: *VSONI* specialised archetype redefined object node identifier val
 [.rule]
 *VSONIF* specialised archetype object node identifier validity in flat siblings: the identification (or not) of an object node in a specialised archetype must be valid with respect to any sibling object nodes in the flattened parent (see VACMI).
 
-[.rule]
+[.rule,id=VSONCO]
 *VSONCO* specialised archetype object node occurrences redefinition validity:
 
 For object node(s) redefining a single-occurrences node in the specialisation flat parent (i.e. a node having occurrences upper bound = 1), the child node(s) occurrences interval(s) must be wholly contained within that of the parent, i.e. narrower. If there are multiple such nodes, each is an alternative, and only one can be applied at runtime.
@@ -406,7 +395,7 @@ A consequence of the intersection rule and the priority of the cardinality of th
 include::{uml_export_dir}/classes/c_defined_object.adoc[]
 include::{uml_export_dir}/classes/c_complex_object.adoc[]
 
-==== Validity Rules
+==== Validity Rules: C_COMPLEX_OBJECT
 
 The validity rules for `C_COMPLEX_OBJECTs` are as follows:
 
@@ -415,7 +404,7 @@ The validity rules for `C_COMPLEX_OBJECTs` are as follows:
 
 include::{uml_export_dir}/classes/c_archetype_root.adoc[]
 
-==== Validity Rules
+==== Validity Rules: C_ARCHETYPE_ROOT
 
 The following validity rules apply to `C_ARCHETYPE_ROOT` objects:
 
@@ -441,7 +430,7 @@ The following validity rules apply to a `C_ARCHETYPE_ROOT` that specialises a `A
 
 include::{uml_export_dir}/classes/archetype_slot.adoc[]
 
-==== Validity Rules
+==== Validity Rules: ARCHETYPE_SLOT
 
 The validity rules for `ARCHETYPE_SLOTs` are as follows:
 
@@ -485,7 +474,7 @@ The following validity rules apply to `ARCHETYPE_SLOTs` defined as the specialis
 
 include::{uml_export_dir}/classes/c_complex_object_proxy.adoc[]
 
-==== Validity Rules
+==== Validity Rules: C_COMPLEX_OBJECT_PROXY
 
 The following validity rules applies to internal references:
 
@@ -502,14 +491,14 @@ The following validity rule applies to the redefinition of an internal reference
 
 include::{uml_export_dir}/classes/c_primitive_object.adoc[]
 
-==== Validity Rules
+==== Validity Rules: C_PRIMITIVE_OBJECT
 
 Validity rules applying to all `C_PRIMITIVE_OBJECT` types are as follows:
 
 [.rule]
 *VOBAV* object node assumed value validity: the value of an assumed value must fall within the value space defined by the constraint to which it is attached.
 
-==== Conformance semantics: C_PRIMITIVE_OBJECT
+==== Conformance Semantics: C_PRIMITIVE_OBJECT
 
 The following functions redefine those of the same names from `C_OBJECT`, and formally define the conformance of a node of a `C_PRIMITIVE_OBJECT` descendant type in a specialised archetype to a corresponding node in a parent archetype, where 'corresponding' means a node found at the same or a congruent path and of the same AOM type.
 
