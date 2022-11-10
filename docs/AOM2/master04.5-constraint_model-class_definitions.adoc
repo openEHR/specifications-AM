@@ -124,53 +124,53 @@ collective_occurrences_of (parent_object: C_OBJECT; other: C_ATTRIBUTE): Multipl
 
 The validity rules are as follows:
 
-[.rule]
+[.rule,id=VCARM]
 *VCARM*: attribute name reference model validity: an attribute name introducing an attribute constraint block must be defined in the underlying information model as an attribute (stored or computed) of the type which introduces the enclosing object block.
 
-[.rule]
+[.rule,id=VCAEX]
 *VCAEX*: archetype attribute reference model existence conformance: the existence of an attribute, if set, must conform, i.e. be the same or narrower, to the existence of the corresponding attribute in the underlying information model.
 
-[.rule]
+[.rule,id=VCAM]
 *VCAM*: archetype attribute reference model multiplicity conformance: the multiplicity, i.e. whether an attribute is multiply- or single-valued, of an attribute must conform to that of the corresponding attribute in the underlying information model.
 
-[.rule]
+[.rule,id=VDIFV]
 *VDIFV*: archetype attribute differential path validity: an archetype may only have a differential path if it is specialised..
 
 The following validity rule applies to redefinition in a specialised archetype:
 
-[.rule]
+[.rule,id=VDIFP]
 *VDIFP*: specialised archetype attribute differential path validity: if an attribute constraint has a differential path, the path must exist in the flat parent, and also be valid with respect to the reference model, i.e. in the sense that it corresponds to a legal potential construction of objects.
 
-[.rule]
+[.rule,id=VSANCE]
 *VSANCE*: specialised archetype attribute node existence conformance: the existence of a redefined attribute node in a specialised archetype, if stated, must conform to the existence of the corresponding node in the flat parent archetype, by having an identical range, or a range wholly contained by the latter.
 
-[.rule]
+[.rule,id=VSAM]
 *VSAM*: specialised archetype attribute multiplicity conformance: the multiplicity, i.e. whether an attribute is multiply- or single-valued, of a redefined attribute must conform to that of the corresponding attribute in the parent archetype.
 
 The following validity rules apply to single-valued attributes, i.e when `C_ATTRIBUTE._is_multiple_` is False:
 
-[.rule]
+[.rule,id=VACSO]
 *VACSO*: single-valued attribute child object occurrences validity: the occurrences of a child object of a single-valued attribute cannot have an upper limit greater than 1.
 
 The following validity rules apply to container attributes, i.e when `C_ATTRIBUTE._is_multiple_` is True:
 
-[.rule]
+[.rule,id=VACMCU]
 *VACMCU*: cardinality/occurrences upper bound validity: where a cardinality with a finite upper bound is stated on an attribute, for all immediate child objects for which an occurrences constraint is stated, the occurrences must either have an open upper bound (i.e. `n..*`) which is interpreted as the maximum value allowed within the cardinality, or else a finite upper bound which is \<= the cardinality upper bound.
 
-[.rule]
+[.rule,id=VACMCO]
 *VACMCO*: cardinality/occurrences orphans: it must be possible for at least one instance of one optional child object (i.e. an object for which the occurrences lower bound is 0) and one instance of every mandatory child object (i.e. object constraints for which the occurrences lower bound is >= 1) to be included within the cardinality range.
 
-[.rule]
+[.rule,id=VCACA]
 *VCACA*: archetype attribute reference model cardinality conformance: the cardinality of an attribute must conform, i.e. be the same or narrower, to the cardinality of the corresponding attribute in the underlying information model.
 
 The following validity warnings apply to container attributes, i.e when `C_ATTRIBUTE._is_multiple_` is True:
 
-[.rule]
+[.rule,id=WACMCL]
 *WACMCL*: cardinality/occurrences lower bound validity: where a cardinality with a finite upper bound is stated on an attribute, for all immediate child objects for which an occurrences constraint is stated, the sum of occurrences lower bounds should be lower than the cardinality upper limit.
 
 The following validity rule applies to cardinality redefinition in a specialised archetype:
 
-[.rule]
+[.rule,id=VSANCC]
 *VSANCC*: specialised archetype attribute node cardinality conformance: the cardinality of a redefined (multiply-valued) attribute node in a specialised archetype, if stated, must conform to the cardinality of the corresponding node in the flat parent archetype by either being identical, or being wholly contained by the latter.
 
 include::{uml_export_dir}/classes/c_object.adoc[]
@@ -323,27 +323,27 @@ node_reuse_congruent (other: C_OBJECT): Boolean
 
 The validity rules for all `C_OBJECTs` are as follows:
 
-[.rule]
+[.rule,id=VCORM]
 *VCORM* object constraint type name existence: a type name introducing an object constraint block must be defined in the underlying information model.
 
-[.rule]
+[.rule,id=VCORMT]
 *VCORMT* object constraint type validity: a type name introducing an object constraint block must be the same as or conform to the type stated in the underlying information model of its owning attribute.
 
-[.rule]
+[.rule,id=VCOCD]
 *VCOCD* object constraint definition validity: an object constraint block consists of one of the following (depending on subtype): an 'any' constraint; a reference; an inline definition of sub-constraints, or nothing, in the case where occurrences is set to `{0}`.
 
-[.rule]
+[.rule,id=VCOID]
 *VCOID* object node identifier validity: every object node must have a node identifier.
 
-[.rule]
+[.rule,id=VCOSU]
 *VCOSU* object node identifier validity: every object node must be unique within the archetype.
 
 The following validity rules govern `C_OBJECTs` in specialised archetypes.
 
-[.rule]
+[.rule,id=VSONT]
 *VSONT* specialised archetype object node meta-type conformance: the meta-type of a redefined object node (i.e. the AOM node type such as `C_COMPLEX_OBJECT` etc) in a specialised archetype must be the same as that of the corresponding node in the flat parent, with the following exceptions: a `C_COMPLEX_OBJECT` with no child attributes may be redefined by a node of any AOM type except `C_PRIMITIVE_OBJECT`; a `C_COMPLEX_OBJECT_PROXY`, may be redefined by a `C_COMPLEX_OBJECT`; an `ARCHTEYPE_SLOT` may be redefined by `C_ARCHETYPE_ROOT` (i.e. 'slot-filling'). See also validity rules VDSSID and VARXID.
 
-[.rule]
+[.rule,id=VSONCT]
 *VSONCT* specialised archetype object node reference type conformance: the reference model type of a redefined object node in a specialised archetype must conform to the reference model type in the corresponding node in the flat parent archetype by either being identical, or conforming via an inheritance relationship in the relevant reference model.
 
 [.deprecated]
@@ -352,10 +352,10 @@ _Deprecated_: *VSONIR* specialised archetype redefined object node identifier co
 [.deprecated]
 _Deprecated_: *VSONI* specialised archetype redefined object node identifier validity: if an object node in a specialised archetype is a redefinition of a node in the flat parent according to VSONIR, and the parent node carries a node identifier, it must carry a node identifier specalised at the level of the child archetype. Otherwise it must carry the same node identifier (or none) as the corresponding parent node.
 
-[.rule]
+[.rule,id=VSONIN]
 *VSONIN* specialised archetype new object node identifier validity: if an object node in a specialised archetype is a new node with respect to the flat parent, and it carries a node identifier, the identifier must be a 'new' node identifier, specalised at the level of the child archetype.
 
-[.rule]
+[.rule,id=VSONIF]
 *VSONIF* specialised archetype object node identifier validity in flat siblings: the identification (or not) of an object node in a specialised archetype must be valid with respect to any sibling object nodes in the flattened parent (see VACMI).
 
 [.rule,id=VSONCO]
@@ -383,13 +383,13 @@ A consequence of the intersection rule and the priority of the cardinality of th
 [.rule]
 *VSONPT* specialised archetype prohibited object node AOM type validity: the occurrences of a redefined object node in a specialised archetype, may only be prohibited (i.e. \{0}) if the matching node in the parent is of the same AOM type.
 
-[.rule]
+[.rule,id=VSONPI]
 *VSONPI* specialised archetype prohibited object node AOM node id validity: a redefined object node in a specialised archetype with occurrences matching \{0} must have exactly the same `_node_id_` as the node in the flat parent being redefined.
 
-[.rule]
+[.rule,id=VSONPO]
 *VSONPO* specialised archetype object node prohibited occurrences validity: the occurrences of a new (i.e. having no corresponding node in the parent flat) object node in a specialised archetype, if stated, may not be 'prohibited', i.e. \{0}, since prohibition only makes sense for an existing node.
 
-[.rule]
+[.rule,id=VSSM]
 *VSSM* specialised archetype sibling order validity: the sibling order node id-code used in a sibling marker in a specialised archetype must refer to a node found within the same container in the flat parent archetype, or a specialised version of any such node, redefined in the current archetype.
 
 include::{uml_export_dir}/classes/c_defined_object.adoc[]
@@ -399,7 +399,7 @@ include::{uml_export_dir}/classes/c_complex_object.adoc[]
 
 The validity rules for `C_COMPLEX_OBJECTs` are as follows:
 
-[.rule]
+[.rule,id=VCATU]
 *VCATU* attribute uniqueness: sibling attributes occurring within an object node must be uniquely named with respect to each other, in the same way as for class definitions in an object reference model.
 
 include::{uml_export_dir}/classes/c_archetype_root.adoc[]
@@ -408,24 +408,24 @@ include::{uml_export_dir}/classes/c_archetype_root.adoc[]
 
 The following validity rules apply to `C_ARCHETYPE_ROOT` objects:
 
-[.rule]
+[.rule,id=VARXNC]
 *VARXNC* external reference node identifier validity: if the external reference object is a redefinition of either a slot node, or another external reference node, the `_node_id_` of the object must conform to (i.e. be the same or a child of) the `_node_id_` of the corresponding parent node.
 
-[.rule]
+[.rule,id=VARXAV]
 *VARXAV* external reference node archetype reference validity: if the reference object is a redefinition of another external reference node, the `_archetype_ref_` of the object must match a real archetype that has as an ancestor the archetype matched by the archetype reference mentioned in the corresponding parent node.
 
-[.rule]
+[.rule,id=VARXTV]
 *VARXTV* external reference type validity: the reference model type of the reference object archetype identifier must be identical, or conform to the type of the slot, if there is one, in the parent archetype, or else to the reference model type of the attribute in the flat parent under which the reference object appears in the child archetype.
 
-[.rule]
+[.rule,id=VARXR]
 *VARXR* external reference refers to resolvable artefact: the archetype reference must refer to an artefact that can be found in the current repository.
 
 The following validity rules apply to a `C_ARCHETYPE_ROOT` that specialises a `ARCHETYPE_SLOT` in the flat parent archetype:
 
-[.rule]
+[.rule,id=VARXS]
 *VARXS* external reference slot conformance: where an archetype reference redefines an archetype slot in the flat parent, it must conform to the archetype slot node by being of a reference model type from the same reference model as the current archetype.
 
-[.rule]
+[.rule,id=VARXID]
 *VARXID* external reference slot filling id validity: an external reference node defined as a filler for a slot in the parent archetype must have a node id that is a specialisation of that of the slot.
 
 include::{uml_export_dir}/classes/archetype_slot.adoc[]
@@ -434,13 +434,13 @@ include::{uml_export_dir}/classes/archetype_slot.adoc[]
 
 The validity rules for `ARCHETYPE_SLOTs` are as follows:
 
-[.rule]
+[.rule,id=VDFAI]
 *VDFAI* archetype identifier validity in definition. Any archetype identifier mentioned in an archetype slot in the definition section must conform to the published openEHR specification for archetype identifiers.
 
-[.rule]
+[.rule,id=VDSIV]
 *VDSIV* archetype slot 'include' constraint validity. The 'include' constraint in an archetype slot must conform to the slot constraint validity rules.
 
-[.rule]
+[.rule,id=VDSEV]
 *VDSEV* archetype slot 'exclude' constraint validity. The 'exclude' constraint in an archetype slot must conform to the slot constraint validity rules.
 
 The slot constraint validity rules are as follows:
@@ -460,16 +460,16 @@ end
 
 The following validity rules apply to `ARCHETYPE_SLOTs` defined as the specialisation of a slot in the parent archetype:
 
-[.rule]
+[.rule,id=VDSSID]
 *VDSSID* slot redefinition child node id: a slot node in a specialised archetype that redefines a slot node in the flat parent must have an identical node id.
 
-[.rule]
+[.rule,id=VDSSM]
 *VDSSM* specialised archetype slot definition match validity. The set of archetypes matched from a library of archetypes by a specialised archetype slot definition must be a proper subset of the set matched from the same library by the parent slot definition.
 
-[.rule]
+[.rule,id=VDSSP]
 *VDSSP* specialised archetype slot definition parent validity. The flat parent of the specialisation of an archetype slot must be not be closed (is_closed = False).
 
-[.rule]
+[.rule,id=VDSSC]
 *VDSSC* specialised archetype slot definition closed validity. In the specialisation of an archetype slot, either the slot can be specified to be closed (is_closed = True) or the slot can be narrowed, but not both.
 
 include::{uml_export_dir}/classes/c_complex_object_proxy.adoc[]
@@ -478,15 +478,15 @@ include::{uml_export_dir}/classes/c_complex_object_proxy.adoc[]
 
 The following validity rules applies to internal references:
 
-[.rule]
+[.rule,id=VUNT]
 *VUNT* `use_node` reference model type validity: the reference model type mentioned in an `C_COMPLEX_OBJECT_PROXY` node must be the same as or a super-type (according to the reference model) of the reference model type of the node referred to.
 
-[.rule]
+[.rule,id=VUNP]
 *VUNP* `use_node` path validity: the path mentioned in a use_node statement must refer to an object node defined elsewhere in the same archetype or any of its specialisation parent archetypes, that is not itself an internal reference node, and which carries a node identifier if one is needed at the reference point.
 
 The following validity rule applies to the redefinition of an internal reference in a specialised archetype:
 
-[.rule]
+[.rule,id=VSUNT]
 *VSUNT* use_node specialisation parent validity: a `C_COMPLEX_OBJECT_PROXY` node may be redefined in a specialised archetype by another `C_COMPLEX_OBJECT_PROXY` (e.g. in order to redefine occurrences), or by a `C_COMPLEX_OBJECT` structure that legally redefines the target `C_COMPLEX_OBJECT` node referred to by the reference.
 
 include::{uml_export_dir}/classes/c_primitive_object.adoc[]
@@ -495,7 +495,7 @@ include::{uml_export_dir}/classes/c_primitive_object.adoc[]
 
 Validity rules applying to all `C_PRIMITIVE_OBJECT` types are as follows:
 
-[.rule]
+[.rule,id=VOBAV]
 *VOBAV* object node assumed value validity: the value of an assumed value must fall within the value space defined by the constraint to which it is attached.
 
 ==== Conformance Semantics: C_PRIMITIVE_OBJECT

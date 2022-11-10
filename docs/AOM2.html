@@ -3764,58 +3764,58 @@ Typically used during validation of specialised archetype nodes.</p>
 <div class="paragraph">
 <p>The validity rules are as follows:</p>
 </div>
-<div class="paragraph rule">
+<div id="VCARM" class="paragraph rule">
 <p><strong>VCARM</strong>: attribute name reference model validity: an attribute name introducing an attribute constraint block must be defined in the underlying information model as an attribute (stored or computed) of the type which introduces the enclosing object block.</p>
 </div>
-<div class="paragraph rule">
+<div id="VCAEX" class="paragraph rule">
 <p><strong>VCAEX</strong>: archetype attribute reference model existence conformance: the existence of an attribute, if set, must conform, i.e. be the same or narrower, to the existence of the corresponding attribute in the underlying information model.</p>
 </div>
-<div class="paragraph rule">
+<div id="VCAM" class="paragraph rule">
 <p><strong>VCAM</strong>: archetype attribute reference model multiplicity conformance: the multiplicity, i.e. whether an attribute is multiply- or single-valued, of an attribute must conform to that of the corresponding attribute in the underlying information model.</p>
 </div>
-<div class="paragraph rule">
+<div id="VDIFV" class="paragraph rule">
 <p><strong>VDIFV</strong>: archetype attribute differential path validity: an archetype may only have a differential path if it is specialised..</p>
 </div>
 <div class="paragraph">
 <p>The following validity rule applies to redefinition in a specialised archetype:</p>
 </div>
-<div class="paragraph rule">
+<div id="VDIFP" class="paragraph rule">
 <p><strong>VDIFP</strong>: specialised archetype attribute differential path validity: if an attribute constraint has a differential path, the path must exist in the flat parent, and also be valid with respect to the reference model, i.e. in the sense that it corresponds to a legal potential construction of objects.</p>
 </div>
-<div class="paragraph rule">
+<div id="VSANCE" class="paragraph rule">
 <p><strong>VSANCE</strong>: specialised archetype attribute node existence conformance: the existence of a redefined attribute node in a specialised archetype, if stated, must conform to the existence of the corresponding node in the flat parent archetype, by having an identical range, or a range wholly contained by the latter.</p>
 </div>
-<div class="paragraph rule">
+<div id="VSAM" class="paragraph rule">
 <p><strong>VSAM</strong>: specialised archetype attribute multiplicity conformance: the multiplicity, i.e. whether an attribute is multiply- or single-valued, of a redefined attribute must conform to that of the corresponding attribute in the parent archetype.</p>
 </div>
 <div class="paragraph">
 <p>The following validity rules apply to single-valued attributes, i.e when <code>C_ATTRIBUTE.<em>is_multiple</em></code> is False:</p>
 </div>
-<div class="paragraph rule">
+<div id="VACSO" class="paragraph rule">
 <p><strong>VACSO</strong>: single-valued attribute child object occurrences validity: the occurrences of a child object of a single-valued attribute cannot have an upper limit greater than 1.</p>
 </div>
 <div class="paragraph">
 <p>The following validity rules apply to container attributes, i.e when <code>C_ATTRIBUTE.<em>is_multiple</em></code> is True:</p>
 </div>
-<div class="paragraph rule">
+<div id="VACMCU" class="paragraph rule">
 <p><strong>VACMCU</strong>: cardinality/occurrences upper bound validity: where a cardinality with a finite upper bound is stated on an attribute, for all immediate child objects for which an occurrences constraint is stated, the occurrences must either have an open upper bound (i.e. <code>n..*</code>) which is interpreted as the maximum value allowed within the cardinality, or else a finite upper bound which is &lt;= the cardinality upper bound.</p>
 </div>
-<div class="paragraph rule">
+<div id="VACMCO" class="paragraph rule">
 <p><strong>VACMCO</strong>: cardinality/occurrences orphans: it must be possible for at least one instance of one optional child object (i.e. an object for which the occurrences lower bound is 0) and one instance of every mandatory child object (i.e. object constraints for which the occurrences lower bound is &gt;= 1) to be included within the cardinality range.</p>
 </div>
-<div class="paragraph rule">
+<div id="VCACA" class="paragraph rule">
 <p><strong>VCACA</strong>: archetype attribute reference model cardinality conformance: the cardinality of an attribute must conform, i.e. be the same or narrower, to the cardinality of the corresponding attribute in the underlying information model.</p>
 </div>
 <div class="paragraph">
 <p>The following validity warnings apply to container attributes, i.e when <code>C_ATTRIBUTE.<em>is_multiple</em></code> is True:</p>
 </div>
-<div class="paragraph rule">
+<div id="WACMCL" class="paragraph rule">
 <p><strong>WACMCL</strong>: cardinality/occurrences lower bound validity: where a cardinality with a finite upper bound is stated on an attribute, for all immediate child objects for which an occurrences constraint is stated, the sum of occurrences lower bounds should be lower than the cardinality upper limit.</p>
 </div>
 <div class="paragraph">
 <p>The following validity rule applies to cardinality redefinition in a specialised archetype:</p>
 </div>
-<div class="paragraph rule">
+<div id="VSANCC" class="paragraph rule">
 <p><strong>VSANCC</strong>: specialised archetype attribute node cardinality conformance: the cardinality of a redefined (multiply-valued) attribute node in a specialised archetype, if stated, must conform to the cardinality of the corresponding node in the flat parent archetype by either being identical, or being wholly contained by the latter.</p>
 </div>
 </div>
@@ -4202,28 +4202,28 @@ other: <code><a href="#_c_object_class">C_OBJECT</a>[1]</code><br>
 <div class="paragraph">
 <p>The validity rules for all <code>C_OBJECTs</code> are as follows:</p>
 </div>
-<div class="paragraph rule">
+<div id="VCORM" class="paragraph rule">
 <p><strong>VCORM</strong> object constraint type name existence: a type name introducing an object constraint block must be defined in the underlying information model.</p>
 </div>
-<div class="paragraph rule">
+<div id="VCORMT" class="paragraph rule">
 <p><strong>VCORMT</strong> object constraint type validity: a type name introducing an object constraint block must be the same as or conform to the type stated in the underlying information model of its owning attribute.</p>
 </div>
-<div class="paragraph rule">
+<div id="VCOCD" class="paragraph rule">
 <p><strong>VCOCD</strong> object constraint definition validity: an object constraint block consists of one of the following (depending on subtype): an 'any' constraint; a reference; an inline definition of sub-constraints, or nothing, in the case where occurrences is set to <code>{0}</code>.</p>
 </div>
-<div class="paragraph rule">
+<div id="VCOID" class="paragraph rule">
 <p><strong>VCOID</strong> object node identifier validity: every object node must have a node identifier.</p>
 </div>
-<div class="paragraph rule">
+<div id="VCOSU" class="paragraph rule">
 <p><strong>VCOSU</strong> object node identifier validity: every object node must be unique within the archetype.</p>
 </div>
 <div class="paragraph">
 <p>The following validity rules govern <code>C_OBJECTs</code> in specialised archetypes.</p>
 </div>
-<div class="paragraph rule">
+<div id="VSONT" class="paragraph rule">
 <p><strong>VSONT</strong> specialised archetype object node meta-type conformance: the meta-type of a redefined object node (i.e. the AOM node type such as <code>C_COMPLEX_OBJECT</code> etc) in a specialised archetype must be the same as that of the corresponding node in the flat parent, with the following exceptions: a <code>C_COMPLEX_OBJECT</code> with no child attributes may be redefined by a node of any AOM type except <code>C_PRIMITIVE_OBJECT</code>; a <code>C_COMPLEX_OBJECT_PROXY</code>, may be redefined by a <code>C_COMPLEX_OBJECT</code>; an <code>ARCHTEYPE_SLOT</code> may be redefined by <code>C_ARCHETYPE_ROOT</code> (i.e. 'slot-filling'). See also validity rules VDSSID and VARXID.</p>
 </div>
-<div class="paragraph rule">
+<div id="VSONCT" class="paragraph rule">
 <p><strong>VSONCT</strong> specialised archetype object node reference type conformance: the reference model type of a redefined object node in a specialised archetype must conform to the reference model type in the corresponding node in the flat parent archetype by either being identical, or conforming via an inheritance relationship in the relevant reference model.</p>
 </div>
 <div class="paragraph deprecated">
@@ -4232,10 +4232,10 @@ other: <code><a href="#_c_object_class">C_OBJECT</a>[1]</code><br>
 <div class="paragraph deprecated">
 <p><em>Deprecated</em>: <strong>VSONI</strong> specialised archetype redefined object node identifier validity: if an object node in a specialised archetype is a redefinition of a node in the flat parent according to VSONIR, and the parent node carries a node identifier, it must carry a node identifier specalised at the level of the child archetype. Otherwise it must carry the same node identifier (or none) as the corresponding parent node.</p>
 </div>
-<div class="paragraph rule">
+<div id="VSONIN" class="paragraph rule">
 <p><strong>VSONIN</strong> specialised archetype new object node identifier validity: if an object node in a specialised archetype is a new node with respect to the flat parent, and it carries a node identifier, the identifier must be a 'new' node identifier, specalised at the level of the child archetype.</p>
 </div>
-<div class="paragraph rule">
+<div id="VSONIF" class="paragraph rule">
 <p><strong>VSONIF</strong> specialised archetype object node identifier validity in flat siblings: the identification (or not) of an object node in a specialised archetype must be valid with respect to any sibling object nodes in the flattened parent (see VACMI).</p>
 </div>
 <div id="VSONCO" class="paragraph rule">
@@ -4285,13 +4285,13 @@ other: <code><a href="#_c_object_class">C_OBJECT</a>[1]</code><br>
 <div class="paragraph rule">
 <p><strong>VSONPT</strong> specialised archetype prohibited object node AOM type validity: the occurrences of a redefined object node in a specialised archetype, may only be prohibited (i.e. {0}) if the matching node in the parent is of the same AOM type.</p>
 </div>
-<div class="paragraph rule">
+<div id="VSONPI" class="paragraph rule">
 <p><strong>VSONPI</strong> specialised archetype prohibited object node AOM node id validity: a redefined object node in a specialised archetype with occurrences matching {0} must have exactly the same <code><em>node_id</em></code> as the node in the flat parent being redefined.</p>
 </div>
-<div class="paragraph rule">
+<div id="VSONPO" class="paragraph rule">
 <p><strong>VSONPO</strong> specialised archetype object node prohibited occurrences validity: the occurrences of a new (i.e. having no corresponding node in the parent flat) object node in a specialised archetype, if stated, may not be 'prohibited', i.e. {0}, since prohibition only makes sense for an existing node.</p>
 </div>
-<div class="paragraph rule">
+<div id="VSSM" class="paragraph rule">
 <p><strong>VSSM</strong> specialised archetype sibling order validity: the sibling order node id-code used in a sibling marker in a specialised archetype must refer to a node found within the same container in the flat parent archetype, or a specialised version of any such node, redefined in the current archetype.</p>
 </div>
 </div>
@@ -4480,7 +4480,7 @@ other: <code><a href="#_c_complex_object_class">C_COMPLEX_OBJECT</a>[1]</code><b
 <div class="paragraph">
 <p>The validity rules for <code>C_COMPLEX_OBJECTs</code> are as follows:</p>
 </div>
-<div class="paragraph rule">
+<div id="VCATU" class="paragraph rule">
 <p><strong>VCATU</strong> attribute uniqueness: sibling attributes occurring within an object node must be uniquely named with respect to each other, in the same way as for class definitions in an object reference model.</p>
 </div>
 </div>
@@ -4542,25 +4542,25 @@ other: <code><a href="#_c_complex_object_class">C_COMPLEX_OBJECT</a>[1]</code><b
 <div class="paragraph">
 <p>The following validity rules apply to <code>C_ARCHETYPE_ROOT</code> objects:</p>
 </div>
-<div class="paragraph rule">
+<div id="VARXNC" class="paragraph rule">
 <p><strong>VARXNC</strong> external reference node identifier validity: if the external reference object is a redefinition of either a slot node, or another external reference node, the <code><em>node_id</em></code> of the object must conform to (i.e. be the same or a child of) the <code><em>node_id</em></code> of the corresponding parent node.</p>
 </div>
-<div class="paragraph rule">
+<div id="VARXAV" class="paragraph rule">
 <p><strong>VARXAV</strong> external reference node archetype reference validity: if the reference object is a redefinition of another external reference node, the <code><em>archetype_ref</em></code> of the object must match a real archetype that has as an ancestor the archetype matched by the archetype reference mentioned in the corresponding parent node.</p>
 </div>
-<div class="paragraph rule">
+<div id="VARXTV" class="paragraph rule">
 <p><strong>VARXTV</strong> external reference type validity: the reference model type of the reference object archetype identifier must be identical, or conform to the type of the slot, if there is one, in the parent archetype, or else to the reference model type of the attribute in the flat parent under which the reference object appears in the child archetype.</p>
 </div>
-<div class="paragraph rule">
+<div id="VARXR" class="paragraph rule">
 <p><strong>VARXR</strong> external reference refers to resolvable artefact: the archetype reference must refer to an artefact that can be found in the current repository.</p>
 </div>
 <div class="paragraph">
 <p>The following validity rules apply to a <code>C_ARCHETYPE_ROOT</code> that specialises a <code>ARCHETYPE_SLOT</code> in the flat parent archetype:</p>
 </div>
-<div class="paragraph rule">
+<div id="VARXS" class="paragraph rule">
 <p><strong>VARXS</strong> external reference slot conformance: where an archetype reference redefines an archetype slot in the flat parent, it must conform to the archetype slot node by being of a reference model type from the same reference model as the current archetype.</p>
 </div>
-<div class="paragraph rule">
+<div id="VARXID" class="paragraph rule">
 <p><strong>VARXID</strong> external reference slot filling id validity: an external reference node defined as a filler for a slot in the parent archetype must have a node id that is a specialisation of that of the slot.</p>
 </div>
 </div>
@@ -4633,13 +4633,13 @@ other: <code><a href="#_c_complex_object_class">C_COMPLEX_OBJECT</a>[1]</code><b
 <div class="paragraph">
 <p>The validity rules for <code>ARCHETYPE_SLOTs</code> are as follows:</p>
 </div>
-<div class="paragraph rule">
+<div id="VDFAI" class="paragraph rule">
 <p><strong>VDFAI</strong> archetype identifier validity in definition. Any archetype identifier mentioned in an archetype slot in the definition section must conform to the published openEHR specification for archetype identifiers.</p>
 </div>
-<div class="paragraph rule">
+<div id="VDSIV" class="paragraph rule">
 <p><strong>VDSIV</strong> archetype slot 'include' constraint validity. The 'include' constraint in an archetype slot must conform to the slot constraint validity rules.</p>
 </div>
-<div class="paragraph rule">
+<div id="VDSEV" class="paragraph rule">
 <p><strong>VDSEV</strong> archetype slot 'exclude' constraint validity. The 'exclude' constraint in an archetype slot must conform to the slot constraint validity rules.</p>
 </div>
 <div class="paragraph">
@@ -4661,16 +4661,16 @@ other: <code><a href="#_c_complex_object_class">C_COMPLEX_OBJECT</a>[1]</code><b
 <div class="paragraph">
 <p>The following validity rules apply to <code>ARCHETYPE_SLOTs</code> defined as the specialisation of a slot in the parent archetype:</p>
 </div>
-<div class="paragraph rule">
+<div id="VDSSID" class="paragraph rule">
 <p><strong>VDSSID</strong> slot redefinition child node id: a slot node in a specialised archetype that redefines a slot node in the flat parent must have an identical node id.</p>
 </div>
-<div class="paragraph rule">
+<div id="VDSSM" class="paragraph rule">
 <p><strong>VDSSM</strong> specialised archetype slot definition match validity. The set of archetypes matched from a library of archetypes by a specialised archetype slot definition must be a proper subset of the set matched from the same library by the parent slot definition.</p>
 </div>
-<div class="paragraph rule">
+<div id="VDSSP" class="paragraph rule">
 <p><strong>VDSSP</strong> specialised archetype slot definition parent validity. The flat parent of the specialisation of an archetype slot must be not be closed (is_closed = False).</p>
 </div>
-<div class="paragraph rule">
+<div id="VDSSC" class="paragraph rule">
 <p><strong>VDSSC</strong> specialised archetype slot definition closed validity. In the specialisation of an archetype slot, either the slot can be specified to be closed (is_closed = True) or the slot can be narrowed, but not both.</p>
 </div>
 </div>
@@ -4757,16 +4757,16 @@ other: <code><a href="#_c_object_class">C_OBJECT</a>[1]</code><br>
 <div class="paragraph">
 <p>The following validity rules applies to internal references:</p>
 </div>
-<div class="paragraph rule">
+<div id="VUNT" class="paragraph rule">
 <p><strong>VUNT</strong> <code>use_node</code> reference model type validity: the reference model type mentioned in an <code>C_COMPLEX_OBJECT_PROXY</code> node must be the same as or a super-type (according to the reference model) of the reference model type of the node referred to.</p>
 </div>
-<div class="paragraph rule">
+<div id="VUNP" class="paragraph rule">
 <p><strong>VUNP</strong> <code>use_node</code> path validity: the path mentioned in a use_node statement must refer to an object node defined elsewhere in the same archetype or any of its specialisation parent archetypes, that is not itself an internal reference node, and which carries a node identifier if one is needed at the reference point.</p>
 </div>
 <div class="paragraph">
 <p>The following validity rule applies to the redefinition of an internal reference in a specialised archetype:</p>
 </div>
-<div class="paragraph rule">
+<div id="VSUNT" class="paragraph rule">
 <p><strong>VSUNT</strong> use_node specialisation parent validity: a <code>C_COMPLEX_OBJECT_PROXY</code> node may be redefined in a specialised archetype by another <code>C_COMPLEX_OBJECT_PROXY</code> (e.g. in order to redefine occurrences), or by a <code>C_COMPLEX_OBJECT</code> structure that legally redefines the target <code>C_COMPLEX_OBJECT</code> node referred to by the reference.</p>
 </div>
 </div>
@@ -4913,7 +4913,7 @@ other: <code><a href="#_c_primitive_object_class">C_PRIMITIVE_OBJECT</a>[1]</cod
 <div class="paragraph">
 <p>Validity rules applying to all <code>C_PRIMITIVE_OBJECT</code> types are as follows:</p>
 </div>
-<div class="paragraph rule">
+<div id="VOBAV" class="paragraph rule">
 <p><strong>VOBAV</strong> object node assumed value validity: the value of an assumed value must fall within the value space defined by the constraint to which it is attached.</p>
 </div>
 </div>
