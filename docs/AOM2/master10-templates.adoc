@@ -6,7 +6,7 @@ Within the Archetype formalism, a template is used to aggregate and refine arche
 
 Templates are formally defined as specialised archetypes, via the `TEMPLATE` and `TEMPLATE_OVERLAY` classes shown in <<archetype_package>>. This means that all the formal characteristics of a template are defined by the openEHR Archetype Object Model (AOM) and Archetype Definition Language (ADL) specifications apply to templates. This includes the meta-data (inherited from the `AUTHORED_RESOURCE` class), specialisation semantics (templates can be specialised into other templates), `terminology` section (allowing multi-lingual local term definitions and external terminology bindings) as well as the `rules` and `annotations` sections.
 
-Since a template is a specialised archetype, it cannot change the semantics of archetypes it specialises, since it obeys the same rules as any other specialised archetype. Accordingly, all data created due to the use of templates are guaranteed to conform to the referenced archetypes, as well as the underlying reference model.
+Since a template is a specialised archetype, it cannot change the semantics of archetypes it specialises, and it consequently obeys the same rules as any other specialised archetype. Accordingly, all data created due to the use of templates are guaranteed to conform to the referenced archetypes, as well as the underlying reference model.
 
 However, the mode of use of the AOM and ADL in a template is slightly different from the typical archetype. Firstly, the following features are commonly used in templates but not generally in archetypes:
 
@@ -18,7 +18,7 @@ However, the mode of use of the AOM and ADL in a template is slightly different 
 
 Secondly, specialisation in templates is usually only of existing nodes defined in the flat parent, i.e. no new nodes are added. If new data nodes are required in the template context, appropriate specialised archetypes should be created to define them, prior to use in the final template.
 
-These variations are not formally required by the ADL/AOM formalism, but are intended to be realised instead by tooling that recognises archetypes and templates via the leading ADL keyword (ADL files) or serialisation type marker (other serialisation types). This approach simpifies life for tool builders, since a single standardised compiler will always compile any archetype or template.
+These variations are not formally required by the ADL/AOM formalism, but are intended to be realised instead by tooling that recognises archetypes and templates via the leading ADL keyword (ADL files) or serialisation type marker (other serialisation types). This approach simplifies life for tool builders, since a single standardised compiler will always compile any archetype or template.
 
 Because a template generally refers to a number of archetypes due to slot-filling - i.e. the root archetype plus component archetypes mentioned as slot-fillers - and also usually defines further constraints on the root and component archetypes, the referenced entities end up being of three types:
 
@@ -61,7 +61,7 @@ Templates are identified using normal ADL multi-axial identifiers and GUIDs, jus
 
 * `template`: use a concept identifier based on the archetype prepended with `t_`;
 * `template_overlay`: use a concept identifier consisting of the concatenation of:
-** the root template identifier (incuding the `t_`);
+** the root template identifier (including the '`t_`');
 ** the concept identifier of the specialisation parent archetype of the overlay;
 ** a final `_N`, where 'N' is an integer.
 

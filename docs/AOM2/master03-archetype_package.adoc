@@ -24,7 +24,7 @@ image::{diagrams_uri}/archetype_hrid_structure.svg[id=archetype_hrid_structure, 
 
 For specialised archetypes, the `_parent_archetype_id_` is also required. This is a string `_reference_` to an archetype, and is normally the 'interface' form of the id, i.e. down to the major version only. In some circumstances, it is useful to include the minor and patch version numbers as well.
 
-An important aspect of identification relates to the rules governing when when the HRID namespace changes or is retained, with respect to when 'moves' or 'forks' occur. Its value is always the same as one of the `_original_namespace_` and `_custodian_namespace_` properties inherited from `AUTHORED_RESOURCE._description_` (or both, in the case where they are the same). A full explanation of the identification system and rules is given in the openEHR {openehr_am_id}[Archetype Identification specification^].
+An important aspect of identification relates to the rules governing when the HRID namespace changes or is retained, with respect to when 'moves' or 'forks' occur. Its value is always the same as one of the `_original_namespace_` and `_custodian_namespace_` properties inherited from `AUTHORED_RESOURCE._description_` (or both, in the case where they are the same). A full explanation of the identification system and rules is given in the openEHR {openehr_am_id}[Archetype Identification specification^].
 
 === Machine Identifiers
 
@@ -159,7 +159,7 @@ The archetype definition is the main definitional part of an archetype and is an
 
 The terminology section of an archetype is represented by its own classes, and is what allows archetypes to be natural language- and terminology-neutral. It is described in detail in <<_terminology_package>>.
 
-An archetype may include one or more rules. Rules are statements expressed in a subset of predicate logic, which can be used to state constraints on multiple parts of an object. They are not needed to constrain single attributes or objects (since this can be done with an appopriate `C_ATTRIBUTE` or `C_OBJECT` ), but are necessary for constraints referring to more than one attribute, such as a constraint that 'systolic pressure should be >= diastolic pressure' in a blood pressure measurement archetype. They can also be used to declare variables, including external data query results, and make other constraints dependent on a variable value, e.g. the gender of the record subject.
+An archetype may include one or more rules. Rules are statements expressed in a subset of predicate logic, which can be used to state constraints on multiple parts of an object. They are not needed to constrain single attributes or objects (since this can be done with an appropriate `C_ATTRIBUTE` or `C_OBJECT` ), but are necessary for constraints referring to more than one attribute, such as a constraint that 'systolic pressure should be >= diastolic pressure' in a blood pressure measurement archetype. They can also be used to declare variables, including external data query results, and make other constraints dependent on a variable value, e.g. the gender of the record subject.
 
 Lastly, the annotations section, inherited from the `AUTHORED_RESOURCE` class, can be included as required. This section is of particular relevance to archetypes and templates, and is used to document individual nodes within an archetype or template, and/or nodes in reference model data, that may not be constrained in the archetype, but whose specific use in the archetyped data needs to be documented. In the former case, the annotations are keyed by an archetype path, while in the latter case, by a reference model path.
 
@@ -195,12 +195,12 @@ More details of template development, representation and semantics are described
 
 == Class Descriptions
 
-include::{uml_export_dir}/classes/archetype.adoc[]
-include::{uml_export_dir}/classes/authored_archetype.adoc[]
-include::{uml_export_dir}/classes/archetype_hrid.adoc[]
-include::{uml_export_dir}/classes/template.adoc[]
-include::{uml_export_dir}/classes/template_overlay.adoc[]
-include::{uml_export_dir}/classes/operational_template.adoc[]
+include::{uml_export_dir}/classes/{pkg}archetype.adoc[]
+include::{uml_export_dir}/classes/{pkg}authored_archetype.adoc[]
+include::{uml_export_dir}/classes/{pkg}archetype_hrid.adoc[]
+include::{uml_export_dir}/classes/{pkg}template.adoc[]
+include::{uml_export_dir}/classes/{pkg}template_overlay.adoc[]
+include::{uml_export_dir}/classes/{pkg}operational_template.adoc[]
 
 == Validity Rules
 
@@ -225,7 +225,7 @@ The following validity rules apply to all varieties of `ARCHETYPE` object:
 *VATDA*: value set assumed value code validity. Each value code (at-code) used as an assumed_value for a value set in a term constraint in the archetype definition must exist in the value set definition in the terminology for the identified value set.
 
 [.rule]
-*VETDF*: external term validity. Each external term used within the archetype definition must exist in the relevant terminology (subject to tool accesibility; codes for inaccessible terminologies should be flagged with a warning indicating that no verification was possible).
+*VETDF*: external term validity. Each external term used within the archetype definition must exist in the relevant terminology (subject to tool accessibility; codes for inaccessible terminologies should be flagged with a warning indicating that no verification was possible).
 
 [.rule]
 *VOTM*: terminology translations validity. Translations must exist for `term_definitions` and `constraint_definitions` sections for all languages defined in the `description` / `translations` sections.

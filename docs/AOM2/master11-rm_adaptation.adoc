@@ -4,13 +4,13 @@
 
 So far ADL has been presented as an abstract formal language that defines legal information structures based on a reference model (RM). In real world applications, we need to consider where reference models come from, and the question of harmonising or otherwise integrating archetypes based on different but related RMs.
 
-One of the common problems in most domains is that competing reference models exist, typically defined by standards bodies such as ISO, CEN, ASTM, and/or other open standards bodies such as W3C and OASIS. For a given topic, e.g. 'cancer study trials' or 'Electronic Health Record' there can often be multiple information models that could be used as a basis for archetyping. Due to political pressures, national requiremenents or preferences and variety of other non-technical factors, it is quite likely that archetypes will be authored within a domain based on multiple competing reference models that are reasonably similar without being easily machine inter-convertible.
+One of the common problems in most domains is that competing reference models exist, typically defined by standards bodies such as ISO, CEN, ASTM, and/or other open standards bodies such as W3C and OASIS. For a given topic, e.g. 'cancer study trials' or 'Electronic Health Record' there can often be multiple information models that could be used as a basis for archetyping. Due to political pressures, national requirements or preferences and variety of other non-technical factors, it is quite likely that archetypes will be authored within a domain based on multiple competing reference models that are reasonably similar without being easily machine inter-convertible.
 
 Since archetypes are generally authored by domain experts, the entities they represent tend to come from a homogeneous model space, with reference models being a technical detail that may not even be visible to the archetype author. Nevertheless, due to the above-mentioned factors, authors in different localities or jurisdictions may have no choice but to model the same entity, for example 'complete blood count' based on two or more different reference models.
 
 This creates a potential problem of competing libraries of archetypes trying to model the same information entities in slightly different but incompatible ways. This tends to needlessly split groups of domain modellers into disparate communities, when in fact they are modelling the same things.
 
-In order to alleviate some of the problems caused by this situation, some of the measures described below, which are outside the AOM proper, can be applied to enable archetypes and RMs treated to be treated more uniformly. 
+In order to alleviate some problems caused by this situation, some measures described below, which are outside the AOM proper, can be applied to enable archetypes and RMs treated to be treated more uniformly.
 
 == AOM Profile Configuration
 
@@ -22,9 +22,9 @@ image::{uml_diagrams_uri}/AM-aom2.profile.svg[id=aom_profile, align="center"]
 
 === Class Definitions
 
-include::{uml_export_dir}/classes/aom_profile.adoc[]
-include::{uml_export_dir}/classes/aom_type_mapping.adoc[]
-include::{uml_export_dir}/classes/aom_property_mapping.adoc[]
+include::{uml_export_dir}/classes/{pkg}aom_profile.adoc[]
+include::{uml_export_dir}/classes/{pkg}aom_type_mapping.adoc[]
+include::{uml_export_dir}/classes/{pkg}aom_property_mapping.adoc[]
 
 === Configuration File
 
@@ -32,7 +32,7 @@ Instances of the above classes can be expressed in an ODIN format file, as a con
 
 == Mapping RM Entities to AOM Entities
 
-One adjustment that can be made is to indicate equivalences between RM entities and AOM built-in types. This can be illustrated by a common situation in health, where multiple RMs have concretely different models of the 'coded term' notion. Semantically, these are all the same, and the correspond to the AOM built-in type `TERMINOLOGY_CODE`. However, there is nothing that can be stated in an ADL archetype that can indicate this relationship, with the result that ADL tools can't infer that a certain type, e.g. openEHR's `CODE_PHRASE` or ISO 13606's `CODED_TEXT` are equivalents of the `TERMINOLOGY_CODE` type in the AOM.
+One adjustment that can be made is to indicate equivalences between RM entities and AOM built-in types. This can be illustrated by a common situation in health, where multiple RMs have concretely different models of the 'coded term' notion. Semantically, these are all the same, and correspond to the AOM built-in type `TERMINOLOGY_CODE`. However, there is nothing that can be stated in an ADL archetype that can indicate this relationship, with the result that ADL tools can't infer that a certain type, e.g. openEHR's `CODE_PHRASE` or ISO 13606's `CODED_TEXT` are equivalents of the `TERMINOLOGY_CODE` type in the AOM.
 
 The mapping is achieved by using the `_aom_rm_type_mappings_` property of the `AOM_PROFILE` type, which enables equivalences between complex classes and properties to be described.
 
@@ -87,7 +87,7 @@ aom_rm_type_mappings = <
 >
 --------
 
-The value of creating these mappings is that they inform tooling that constraints on the types `CODE_PHRASE` in openEHR archetypes, and `CODED_TEXT` in CIMI archetypes are to be understood as equivalent to contraints on the primitive AOM type `TERMINOLOGY_CODE`. This can be detected by the tool, and computed with, for example, with specific visualisation. Without this configuration, the archetype constraints are still correct, but the ADL tooling doesn't treat them as different from any other RM complex type.
+The value of creating these mappings is that they inform tooling that constraints on the types `CODE_PHRASE` in openEHR archetypes, and `CODED_TEXT` in CIMI archetypes are to be understood as equivalent to constraints on the primitive AOM type `TERMINOLOGY_CODE`. This can be detected by the tool, and computed with, for example, with specific visualisation. Without this configuration, the archetype constraints are still correct, but the ADL tooling doesn't treat them as different from any other RM complex type.
 
 Using class and property mappings can enable more sophisticated archetype comparison and potentially even harmonisation, as well as more intelligent data comparison.
 
@@ -127,9 +127,9 @@ The following CADL fragment provides an example.
 
 == RM Type Substitutions
 
-Occasionally there are type mismatches between the RM type and the AOM type we would like to use, or has been used in an archetype. For example, the RM may have a `String` attribute in some class that represents an ISO 8601 date. It is possible to use the AOM constrainer type `C_DATE` instead of `C_STRING`, to obtain more a meaningful constraint.
+Occasionally there are type mismatches between the RM type and the AOM type we would like to use, or has been used in an archetype. For example, the RM may have a `String` attribute in some class that represents an ISO 8601 date. It is possible to use the AOM constrainer type `C_DATE` instead of `C_STRING`, to obtain a more meaningful constraint.
  
-Another use is where the archetype has been written with an integer constrant (i.e. a `C_INTEGER`) but the RM has a `Real` or `Double` type in the corresponding place. This can also be accommodated.
+Another use is where the archetype has been written with an integer constraint (i.e. a `C_INTEGER`) but the RM has a `Real` or `Double` type in the corresponding place. This can also be accommodated.
 
 These differences can be corrected by using the `_aom_type_substitutions_` configuration table defined in the `AOM_PROFILE` class. The following is an example of using this facility to enable primitive type matching for openEHR archetypes.
 
@@ -148,7 +148,7 @@ aom_rm_type_substitutions = <
 >
 --------
 
-The effect of these mappings is that literal values in an archetype that parse as the left hand side type (`ISO8601_DATE` etc) etc will be silently mapped to the right hand RM type (`String` etc). The following example shows a native ISO Duration field that is mapped to an RM String value.
+The effect of these mappings is that literal values in an archetype that parse as the left-hand side type (`ISO8601_DATE` etc.) will be silently mapped to the right hand RM type (`String` etc). The following example shows a native ISO Duration field that is mapped to an RM String value.
 
 [source, cadl]
 --------
@@ -214,7 +214,7 @@ Normally this kind of change should be written into the archetype, so that it is
 
 == Facilities for RM Visualisation
 
-Various meta-attributes may be added to an AOM profile in order to affect the behaviour of archetyping tools and processing. These are not required for correct functioning of tools, but are typically needed to make models comprehensible. Without them, there will no difference between primitive types such as `Any`, `Integer` etc, business types (e.g. things like `Person`, etc), and business-level data types (e.g. `CodedText`, `Quantity` etc).
+Various meta-attributes may be added to an AOM profile in order to affect the behaviour of archetyping tools and processing. These are not required for correct functioning of tools, but are typically needed to make models comprehensible. Without them, there will be no difference between primitive types such as `Any`, `Integer` etc., business types (e.g. things like `Person`, etc.), and business-level data types (e.g. `CodedText`, `Quantity` etc).
 
 [source, odin]
 --------
@@ -235,7 +235,7 @@ This attribute, if defined, must be defined in the same schema that defines the 
 
 === archetype_data_value_parent_class
 
-The `archetype_data_value_parent_class` attribute defines a base class from the Reference Model whose descendants are considered to be 'logical data types' (i.e. of some higher level than the built-in primitive types `String`, `Integer` etc). This attribute is optional, even if the RM does have such a class, and is only used to help tooling provide more intelligent display, e.g. in statistical reports.
+The `archetype_data_value_parent_class` attribute defines a base class from the Reference Model whose descendants are considered to be 'logical data types' (i.e. of some higher level than the built-in primitive types `String`, `Integer` etc). This attribute is optional, even if the RM does have such a class, and is only used to help tooling to provide more intelligent display, e.g. in statistical reports.
 
 This attribute, if defined, must be defined in the same schema that defines the referenced class.
 

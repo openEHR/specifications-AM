@@ -22,7 +22,7 @@ The `_any_allowed_` function defined on some node types indicates that any value
 
 === Attribute Nodes
 
-Constraints on reference model attributes, including computed attributes (represented by functions with no aguments in most programming languages), are represented by instances of `C_ATTRIBUTE` . The expressible constraints include:
+Constraints on reference model attributes, including computed attributes (represented by functions with no arguments in most programming languages), are represented by instances of `C_ATTRIBUTE`. The expressible constraints include:
 
 * `_is_multiple_`: a flag that indicates whether the `C_ATTRIBUTE` is constraining a multiply-valued (i.e. container) RM attribute or a single-valued one;
 * `_existence_`: whether the corresponding instance (defined by the `_rm_attribute_name_` attribute) must exist;
@@ -102,11 +102,11 @@ Along with `C_ATTRIBUTE`, `C_COMPLEX_OBJECT` is the key structuring type of the 
 
 === Primitive Types (C_PRIMITIVE_OBJECT descendants)
 
-Constraints on primitive types are defined by the descendants of `C_PRIMITIVE_OBJECT`, i.e. `C_STRING` , `C_INTEGER` and so on. The primitive constraint types are represented in such a way as to accommodate both 'tuple' constraints and logically unary constraints, using a tuple array (`C_PRIMITIVE_TUPLE._members_`) whose members are each a primitive constraint corresponding to each primitive type in the tuple. Tuple constraints are second order constraints, described below, enabling covarying constraints to be stated. In the unary case, the constraint is the first member of a tuple array.
+Constraints on primitive types are defined by the descendants of `C_PRIMITIVE_OBJECT`, i.e. `C_STRING` , `C_INTEGER` and so on. The primitive constraint types are represented in such a way as to accommodate both 'tuple' constraints and logically unary constraints, using a tuple array (`C_PRIMITIVE_TUPLE._members_`) whose members are each a primitive constraint corresponding to each primitive type in the tuple. Tuple constraints are second order constraints, described below, enabling co-varying constraints to be stated. In the unary case, the constraint is the first member of a tuple array.
 
 `C_PRIMITIVE_OBJECT` instances represented in {openehr_am_adl2}[ADL 'short' form^] are created with a fixed id-code `ADL_CODE_DEFINITIONS._primitive_node_id_` as the value of `_node_id_` (see <<ADL_CODE_DEFINITIONS Class>>). For regularly structured `C_PRIMITIVE_OBJECT` instances, a normal node identifier is required.
 
-The primitive constraint for each primitive type may itself be complex. Its formal type is the type of the `_constraint_` accessor in each `C_PRIMITIVE_OBJECT` descendant. The use of the constrainer types for each assumed primitive RM type is summarised in the following table.
+The primitive constraint for each primitive type may itself be complex. Its formal type is the type of the `_constraint_` accessor in each `C_PRIMITIVE_OBJECT` descendant. The use of constrainer types for each assumed primitive RM type is summarised in the following table.
 
 [[primitive-types,Primitive Types]]
 [width="100%",cols="1,1,2,3",options="header",]
@@ -184,7 +184,7 @@ A `C_TERMINOLOGY_CODE` instance in an archetype is structurally simple: it can o
 
 * a single ac-code, referring to either a value-set defined in the archetype terminology or bound to an external value set or ref set;
 ** in this case, an additional at-code may be included as an assumed value; the at-code must come from the locally defined value set;
-* a single at-code, repesenting a single possible value. 
+* a single at-code, representing a single possible value.
 
 NOTE: The second case in theory could be done using an ac-code referring to a value set containing a single value, but there seems little value in this extra verbiage, and little cost in providing the single-member value set short cut.
 
@@ -208,11 +208,11 @@ When an archetype is deployed in the form of an operational template, the intern
 
 These functions would normally be implemented as 'lambdas' or 'agents', in order to obtain access to the target terminologies.
 
-NOTE: Since an archetype might not contain external terminology bindings for all (or even any) of its terminological constraints, a 'resolved' archetype will usually contain at-codes in its cADL definition. These at-codes would be treated as real coded terms in any implementation that was creating data, and as a consequence, archetype at-codes could occur in real data, as described in the the Terminology Integration section of the ADL specification. 
+NOTE: Since an archetype might not contain external terminology bindings for all (or even any) of its terminological constraints, a 'resolved' archetype will usually contain at-codes in its cADL definition. These at-codes would be treated as real coded terms in any implementation that was creating data, and as a consequence, archetype at-codes could occur in real data, as described in the Terminology Integration section of the ADL specification.
 
 === Constraints on Enumeration Types
 
-Enumeration types in the reference model are assumed to have semantics expected in UML, and mainstream programming languages, i.e. to be a distinct type based on a primitive type, normally Integer or String. Each such type consists of a set of values from the domain of its underlying type, thus, a set of Integer, String or other primitive values. Each of these values is assumed to be named in the manner of a symbolic constant. Although stricly speaking UML doesn't require an enumerated type to be based on an underlying primitive type, programming languages do, hence the assumption here that values from the domain of such a type are involved.
+Enumeration types in the reference model are assumed to have semantics expected in UML, and mainstream programming languages, i.e. to be a distinct type based on a primitive type, normally Integer or String. Each such type consists of a set of values from the domain of its underlying type, thus, a set of Integer, String or other primitive values. Each of these values is assumed to be named in the manner of a symbolic constant. Although strictly speaking UML doesn't require an enumerated type to be based on an underlying primitive type, programming languages do, hence the assumption here that values from the domain of such a type are involved.
 
 A constraint on an enumerated type therefore consists of an AOM instance of a `C_PRIMITIVE` descendant, almost always `C_INTEGER` or `C_STRING` . The flag `_is_enumerated_type_constraint_` defined on `C_PRIMITIVE` indicates that a given `C_PRIMITIVE` is a constrainer for an enumerated type.
 

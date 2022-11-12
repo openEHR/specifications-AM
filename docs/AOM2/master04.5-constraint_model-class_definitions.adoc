@@ -1,8 +1,8 @@
 == Class Definitions
 
-include::{uml_export_dir}/classes/archetype_constraint.adoc[]
+include::{uml_export_dir}/classes/{pkg}archetype_constraint.adoc[]
 
-include::{uml_export_dir}/classes/c_attribute.adoc[]
+include::{uml_export_dir}/classes/{pkg}c_attribute.adoc[]
 
 ==== Conformance Semantics: C_ATTRIBUTE
 
@@ -173,8 +173,8 @@ The following validity rule applies to cardinality redefinition in a specialised
 [.rule,id=VSANCC]
 *VSANCC*: specialised archetype attribute node cardinality conformance: the cardinality of a redefined (multiply-valued) attribute node in a specialised archetype, if stated, must conform to the cardinality of the corresponding node in the flat parent archetype by either being identical, or being wholly contained by the latter.
 
-include::{uml_export_dir}/classes/c_object.adoc[]
-include::{uml_export_dir}/classes/sibling_order.adoc[]
+include::{uml_export_dir}/classes/{pkg}c_object.adoc[]
+include::{uml_export_dir}/classes/{pkg}sibling_order.adoc[]
 
 ==== Occurrences inferencing rules
 
@@ -341,7 +341,7 @@ The validity rules for all `C_OBJECTs` are as follows:
 The following validity rules govern `C_OBJECTs` in specialised archetypes.
 
 [.rule,id=VSONT]
-*VSONT* specialised archetype object node meta-type conformance: the meta-type of a redefined object node (i.e. the AOM node type such as `C_COMPLEX_OBJECT` etc) in a specialised archetype must be the same as that of the corresponding node in the flat parent, with the following exceptions: a `C_COMPLEX_OBJECT` with no child attributes may be redefined by a node of any AOM type except `C_PRIMITIVE_OBJECT`; a `C_COMPLEX_OBJECT_PROXY`, may be redefined by a `C_COMPLEX_OBJECT`; an `ARCHTEYPE_SLOT` may be redefined by `C_ARCHETYPE_ROOT` (i.e. 'slot-filling'). See also validity rules VDSSID and VARXID.
+*VSONT* specialised archetype object node meta-type conformance: the meta-type of a redefined object node (i.e. the AOM node type such as `C_COMPLEX_OBJECT` etc) in a specialised archetype must be the same as that of the corresponding node in the flat parent, with the following exceptions: a `C_COMPLEX_OBJECT` with no child attributes may be redefined by a node of any AOM type except `C_PRIMITIVE_OBJECT`; a `C_COMPLEX_OBJECT_PROXY`, may be redefined by a `C_COMPLEX_OBJECT`; an `ARCHETYPE_SLOT` may be redefined by `C_ARCHETYPE_ROOT` (i.e. 'slot-filling'). See also validity rules VDSSID and VARXID.
 
 [.rule,id=VSONCT]
 *VSONCT* specialised archetype object node reference type conformance: the reference model type of a redefined object node in a specialised archetype must conform to the reference model type in the corresponding node in the flat parent archetype by either being identical, or conforming via an inheritance relationship in the relevant reference model.
@@ -350,10 +350,10 @@ The following validity rules govern `C_OBJECTs` in specialised archetypes.
 _Deprecated_: *VSONIR* specialised archetype redefined object node identifier condition: the node identifier of an object node in a specialised archetype that is a redefinition of a node in the flat parent must be redefined if any of reference model type, node identifier definition in the terminology, or occurrences of the immediate object constraint is redefined, with the exception of occurrences being redefined to \{0}, i.e. exclusion.
 
 [.deprecated]
-_Deprecated_: *VSONI* specialised archetype redefined object node identifier validity: if an object node in a specialised archetype is a redefinition of a node in the flat parent according to VSONIR, and the parent node carries a node identifier, it must carry a node identifier specalised at the level of the child archetype. Otherwise it must carry the same node identifier (or none) as the corresponding parent node.
+_Deprecated_: *VSONI* specialised archetype redefined object node identifier validity: if an object node in a specialised archetype is a redefinition of a node in the flat parent according to VSONIR, and the parent node carries a node identifier, it must carry a node identifier specialised at the level of the child archetype. Otherwise it must carry the same node identifier (or none) as the corresponding parent node.
 
 [.rule,id=VSONIN]
-*VSONIN* specialised archetype new object node identifier validity: if an object node in a specialised archetype is a new node with respect to the flat parent, and it carries a node identifier, the identifier must be a 'new' node identifier, specalised at the level of the child archetype.
+*VSONIN* specialised archetype new object node identifier validity: if an object node in a specialised archetype is a new node with respect to the flat parent, and it carries a node identifier, the identifier must be a 'new' node identifier, specialised at the level of the child archetype.
 
 [.rule,id=VSONIF]
 *VSONIF* specialised archetype object node identifier validity in flat siblings: the identification (or not) of an object node in a specialised archetype must be valid with respect to any sibling object nodes in the flattened parent (see VACMI).
@@ -392,8 +392,8 @@ A consequence of the intersection rule and the priority of the cardinality of th
 [.rule,id=VSSM]
 *VSSM* specialised archetype sibling order validity: the sibling order node id-code used in a sibling marker in a specialised archetype must refer to a node found within the same container in the flat parent archetype, or a specialised version of any such node, redefined in the current archetype.
 
-include::{uml_export_dir}/classes/c_defined_object.adoc[]
-include::{uml_export_dir}/classes/c_complex_object.adoc[]
+include::{uml_export_dir}/classes/{pkg}c_defined_object.adoc[]
+include::{uml_export_dir}/classes/{pkg}c_complex_object.adoc[]
 
 ==== Validity Rules: C_COMPLEX_OBJECT
 
@@ -402,7 +402,7 @@ The validity rules for `C_COMPLEX_OBJECTs` are as follows:
 [.rule,id=VCATU]
 *VCATU* attribute uniqueness: sibling attributes occurring within an object node must be uniquely named with respect to each other, in the same way as for class definitions in an object reference model.
 
-include::{uml_export_dir}/classes/c_archetype_root.adoc[]
+include::{uml_export_dir}/classes/{pkg}c_archetype_root.adoc[]
 
 ==== Validity Rules: C_ARCHETYPE_ROOT
 
@@ -428,7 +428,7 @@ The following validity rules apply to a `C_ARCHETYPE_ROOT` that specialises a `A
 [.rule,id=VARXID]
 *VARXID* external reference slot filling id validity: an external reference node defined as a filler for a slot in the parent archetype must have a node id that is a specialisation of that of the slot.
 
-include::{uml_export_dir}/classes/archetype_slot.adoc[]
+include::{uml_export_dir}/classes/{pkg}archetype_slot.adoc[]
 
 ==== Validity Rules: ARCHETYPE_SLOT
 
@@ -472,7 +472,7 @@ The following validity rules apply to `ARCHETYPE_SLOTs` defined as the specialis
 [.rule,id=VDSSC]
 *VDSSC* specialised archetype slot definition closed validity. In the specialisation of an archetype slot, either the slot can be specified to be closed (is_closed = True) or the slot can be narrowed, but not both.
 
-include::{uml_export_dir}/classes/c_complex_object_proxy.adoc[]
+include::{uml_export_dir}/classes/{pkg}c_complex_object_proxy.adoc[]
 
 ==== Validity Rules: C_COMPLEX_OBJECT_PROXY
 
@@ -489,7 +489,7 @@ The following validity rule applies to the redefinition of an internal reference
 [.rule,id=VSUNT]
 *VSUNT* use_node specialisation parent validity: a `C_COMPLEX_OBJECT_PROXY` node may be redefined in a specialised archetype by another `C_COMPLEX_OBJECT_PROXY` (e.g. in order to redefine occurrences), or by a `C_COMPLEX_OBJECT` structure that legally redefines the target `C_COMPLEX_OBJECT` node referred to by the reference.
 
-include::{uml_export_dir}/classes/c_primitive_object.adoc[]
+include::{uml_export_dir}/classes/{pkg}c_primitive_object.adoc[]
 
 ==== Validity Rules: C_PRIMITIVE_OBJECT
 
@@ -542,7 +542,7 @@ constrained_typename: String
     end
 ---------
 
-include::{uml_export_dir}/classes/c_boolean.adoc[]
+include::{uml_export_dir}/classes/{pkg}c_boolean.adoc[]
 
 ==== Conformance semantics: C_BOOLEAN
 
@@ -567,7 +567,7 @@ c_value_congruent_to (other: C_BOOLEAN): Boolean
 
 ---------
 
-include::{uml_export_dir}/classes/c_string.adoc[]
+include::{uml_export_dir}/classes/{pkg}c_string.adoc[]
 
 ==== Conformance semantics: C_STRING
 
@@ -593,7 +593,7 @@ c_value_congruent_to (other: C_STRING): Boolean
     end
 ---------
 
-include::{uml_export_dir}/classes/c_ordered.adoc[]
+include::{uml_export_dir}/classes/{pkg}c_ordered.adoc[]
 
 ==== Conformance semantics: C_ORDERED
 
@@ -620,10 +620,10 @@ c_value_congruent_to (C_ORDERED): Boolean
     end
 ---------
 
-include::{uml_export_dir}/classes/c_integer.adoc[]
-include::{uml_export_dir}/classes/c_real.adoc[]
-include::{uml_export_dir}/classes/c_temporal.adoc[]
-include::{uml_export_dir}/classes/c_temporal_definitions.adoc[]
+include::{uml_export_dir}/classes/{pkg}c_integer.adoc[]
+include::{uml_export_dir}/classes/{pkg}c_real.adoc[]
+include::{uml_export_dir}/classes/{pkg}c_temporal.adoc[]
+include::{uml_export_dir}/classes/{pkg}c_temporal_definitions.adoc[]
 
 ==== Conformance semantics: C_TEMPORAL
 
@@ -649,12 +649,12 @@ c_value_congruent_to (other: C_TEMPORAL): Boolean
 
 ---------
 
-include::{uml_export_dir}/classes/c_date.adoc[]
-include::{uml_export_dir}/classes/c_time.adoc[]
-include::{uml_export_dir}/classes/c_date_time.adoc[]
-include::{uml_export_dir}/classes/c_duration.adoc[]
-include::{uml_export_dir}/classes/c_terminology_code.adoc[]
-include::{uml_export_dir}/classes/constraint_status.adoc[]
+include::{uml_export_dir}/classes/{pkg}c_date.adoc[]
+include::{uml_export_dir}/classes/{pkg}c_time.adoc[]
+include::{uml_export_dir}/classes/{pkg}c_date_time.adoc[]
+include::{uml_export_dir}/classes/{pkg}c_duration.adoc[]
+include::{uml_export_dir}/classes/{pkg}c_terminology_code.adoc[]
+include::{uml_export_dir}/classes/{pkg}constraint_status.adoc[]
 
 ==== Conformance semantics: C_TERMINOLOGY_NODE
 
@@ -724,9 +724,9 @@ c_value_congruent_to (other: C_TERMINOLOGY_CODE): Boolean
 
 ---------
 
-include::{uml_export_dir}/classes/c_second_order.adoc[]
-include::{uml_export_dir}/classes/c_primitive_tuple.adoc[]
-include::{uml_export_dir}/classes/c_attribute_tuple.adoc[]
+include::{uml_export_dir}/classes/{pkg}c_second_order.adoc[]
+include::{uml_export_dir}/classes/{pkg}c_primitive_tuple.adoc[]
+include::{uml_export_dir}/classes/{pkg}c_attribute_tuple.adoc[]
 
 ==== Conformance semantics: C_SECOND_ORDER
 

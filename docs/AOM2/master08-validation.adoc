@@ -15,7 +15,7 @@ This section provides a guide for validation, flattening and diffing, based on t
 
 == Validation
 
-Validation is best implemented in a multi-pass fashion, with more basic kinds of errors being check first. The ADL Workbench implements three validation phases as described below.
+Validation is best implemented in a multi-pass fashion, with more basic kinds of errors being checked first. The ADL Workbench implements three validation phases as described below.
 
 === Phase 1 - Basic Integrity
 
@@ -24,7 +24,7 @@ The following validation can be performed on an archetype mostly without referen
 ==== Basic checks
 
 * check match of root RM type with RM type mentioned in identifier (VARDT);
-* valid root id code for specialistion level (VARCN);
+* valid root id code for specialisation level (VARCN);
 * any missing mandatory parts, e.g. `terminology` section (STCNT);
 * check that specialisation depth is one greater than specialisation depth of parent (VACSD);
 
@@ -41,10 +41,10 @@ The following validation can be performed on an archetype mostly without referen
 
 ==== Basic Terminology Validation
 
-* validate terminology code formats and speialisation depths (VATCV, VTSD);
+* validate terminology code formats and specialisation depths (VATCV, VTSD);
 * validate terminology languages - check all at-codes and ac-codes found in all languages (VTLC);
 * validate terminology bindings - check that all terms and paths mentioned in bindings exist in terminology and definition (VTTBK, VTCBK, VETDF);
-* validate terminology value_sets - check that every code in terminology value set definitions is in the terminology, with no duplications (VTVSID, VTVSMD, VTVSUQ);
+* validate terminology value-sets - check that every code in terminology value set definitions is in the terminology, with no duplications (VTVSID, VTVSMD, VTVSUQ);
 
 ==== Various Structure Validation
 

@@ -37,7 +37,7 @@ image::{diagrams_uri}/archetype_parsing_process.png[id=archetype_parsing_process
 
 As shown in the figure, the definition part of the in-memory archetype consists of alternate layers of object and attribute constrainer nodes, each containing the next level of nodes. In this document, the word 'attribute' refers to any data property of a class, regardless of whether regarded as a 'relationship' (i.e. association, aggregation, or composition) or 'primitive' (i.e. value) attribute in an object model. At the leaves are primitive object constrainer nodes constraining primitive types such as `String`, `Integer` etc. There are also nodes that represent internal references to other nodes, constraint reference nodes that refer to a text constraint in the constraint binding part of the archetype ontology, and archetype constraint nodes, which represent constraints on other archetypes allowed to appear at a given point. The full list of concrete node types is as follows:
 
-`C_COMPLEX_OBJECT`:: any interior node representing a constraint on instances of some nonprimitive type, e.g. `ENTRY`, `SECTION`;
+`C_COMPLEX_OBJECT`:: any interior node representing a constraint on instances of some non-primitive type, e.g. `ENTRY`, `SECTION`;
 `C_ATTRIBUTE`:: a node representing a constraint on an attribute (i.e. UML 'relationship' or 'primitive attribute') in an object type;
 `C_PRIMITIVE_OBJECT`:: an node representing a constraint on a primitive (built-in) object type; 
 `ARCHETYPE_INTERNAL_REF`:: a node that refers to a previously defined object node in the same archetype. The reference is made using a path;
@@ -52,11 +52,11 @@ There are no linguistic entities at all in the `definition` part of an archetype
 
 === Archetype Specialisation
 
-Archetypes can be specialised. The formal rules of specialisation are described in the openEHR Archetype Semantics document (forthcoming), but in essence are easy to understand. Briefly, an archetype is considered a specialisation of another archetype if it mentions that archetype as its parent, and only makes changes to its definition such that its constraints are 'narrower' than those of the parent. Any data created via the use of the specialised archetype is thus conformant both to it and its parent. This notion of specialisation corresponds to the idea of 'substitubility', applied to data.
+Archetypes can be specialised. The formal rules of specialisation are described in the openEHR Archetype Semantics document (forthcoming), but in essence are easy to understand. Briefly, an archetype is considered a specialisation of another archetype if it mentions that archetype as its parent, and only makes changes to its definition such that its constraints are 'narrower' than those of the parent. Any data created via the use of the specialised archetype is thus conformant both to it and its parent. This notion of specialisation corresponds to the idea of 'substitutability', applied to data.
 
 Every archetype has a 'specialisation depth'. Archetypes with no specialisation parent have depth 0, and specialised archetypes add one level to their depth for each step down a hierarchy required to reach them.
 
 === Archetype Composition
 
-It the interests of re-use and clarity of modelling, archetypes can be composed to form larger structures semantically equivalent to a single large archetype. Composition allows two things to occur: for archetypes to be defined according to natural 'levels' or encapsulations of information, and for the reuse of smaller archetypes by a multitude of others. Archetype slots are the means of composition, and are themselves defined in terms of constraints.
+In the interests of re-use and clarity of modelling, archetypes can be composed to form larger structures semantically equivalent to a single large archetype. Composition allows two things to occur: for archetypes to be defined according to natural 'levels' or encapsulations of information, and for the reuse of smaller archetypes by a multitude of others. Archetype slots are the means of composition, and are themselves defined in terms of constraints.
 

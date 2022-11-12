@@ -1,6 +1,6 @@
 == Object Redefinition
 
-Object redefinition can occur for any object constraint in the parent archeype, and can include redefinition of node identifier, occurrences, reference model type. For certain kinds of object constraints, specific kinds of redefinition are possible.
+Object redefinition can occur for any object constraint in the parent archetype, and can include redefinition of node identifier, occurrences, reference model type. For certain kinds of object constraints, specific kinds of redefinition are possible.
 
 === Node Identifiers
 
@@ -143,7 +143,7 @@ Occurrences is most commonly constrained on child objects of container attribute
     }
 --------
 
-and the intention is to remove the `DV_INTERVAL<*>` alternatives. This is achieved by redefining the enclosing object to removed the relevant types:
+and the intention is to remove the `DV_INTERVAL<*>` alternatives. This is achieved by redefining the enclosing object to remove the relevant types:
 
 [source, cadl]
 --------
@@ -184,7 +184,7 @@ The first case corresponds to the situation where the 'effective occurrences' of
 
 In any multiple specialisation situation, there is a question of whether the original node being specialised (e.g. `id79` and `id2` in the examples above) remains available for further redefinition in subsequent child archetypes, or do the redefinition children _exhaustively_ define the instance space for the given parent node?
 
-Should these children be considered exhaustive? One point of view says so, since all subsequently discovered varieties of hepatitis (C, D, E, etc) would now become children of 'hepatitis non-A non-B'. However this is likely to be sub-optimal, since now the category 'hepatitis non-A non-B' probably exists solely because of the order in which the various hepatitis virus tests were perfected. Therefore an alternative argument would say that the categories 'hepatitis C', 'hepatitis D' etc should be defined directly below 'hepatitis', as if 'hepatitis non-A non-B' had never existed. Under this argument, the children would not be declared, even when they are theoretically exhaustive.
+Should these children be considered exhaustive? One point of view says so, since all subsequently discovered varieties of hepatitis (C, D, E, etc) would now become children of 'hepatitis non-A non-B'. However, this is likely to be sub-optimal, since now the category 'hepatitis non-A non-B' probably exists solely because of the order in which the various hepatitis virus tests were perfected. Therefore an alternative argument would say that the categories 'hepatitis C', 'hepatitis D' etc should be defined directly below 'hepatitis', as if 'hepatitis non-A non-B' had never existed. Under this argument, the children would not be declared, even when they are theoretically exhaustive.
 
 This kind of argument comes up time and again, and the need for catch-all categories (archetype nodes) and the possibility of future discoveries cannot be predicted. Even in situations such as a lab result (e.g. cholesterol), where the list of analytes seem to be known and fixed, experience of clinical modellers has shown that there is nevertheless no guarantee of not needing another data point, perhaps for something other than an analyte.
 
@@ -227,7 +227,7 @@ Without the above specification, a deeper child archetype could then redefine bo
 
 === Reference Model Type Refinement
 
-The type of an object may be redefined to one of its subtypes as defined by the reference model. A typical example of where this occurs in archetypes based on the openEHR reference model is when `ELEMENT._value_` is constrained to `*` in a parent archetype, meaning 'no further constraint on its RM type of `DATA_VALUE`, but is then constrained in a specialised archetype to subtypes of `DATA_VALUE`, e.g. `DV_QUANTITY` or `DV_PROPORTION` (see {openehr_rm_data_types}[openEHR Data Types^]). The following figure containts a simplified extract of the data values part of the openEHR reference model, and is the basis for the examples below.
+The type of an object may be redefined to one of its subtypes as defined by the reference model. A typical example of where this occurs in archetypes based on the openEHR reference model is when `ELEMENT._value_` is constrained to `*` in a parent archetype, meaning 'no further constraint on its RM type of `DATA_VALUE`, but is then constrained in a specialised archetype to subtypes of `DATA_VALUE`, e.g. `DV_QUANTITY` or `DV_PROPORTION` (see {openehr_rm_data_types}[openEHR Data Types^]). The following figure contains a simplified extract of the data values part of the openEHR reference model, and is the basis for the examples below.
 
 [.text-center]
 .Example Reference Model type structure
@@ -278,7 +278,7 @@ Specialised archetype:
     }
 --------
 
-In the same manner, an object node can be specialised into more than one subtype, where each such constraint selects a mutually exclusive subset of the instance space. The following example shows a specialisation of the `DV_AMOUNT` constraint above into two subtyped constraints.
+In the same manner, an object node can be specialised into more than one subtype, where each such constraint selects a mutually exclusive subset of the instance space. The following example shows a specialisation of the `DV_AMOUNT` constraint above into two sub-typed constraints.
 
 [source, cadl]
 --------
@@ -344,7 +344,7 @@ terminology
     >
 --------
 
-All of the above specialisation based on reference model subtypes can be applied in the same way to identified object constraints.
+All of the above specialisations based on reference model subtypes can be applied in the same way to identified object constraints.
 
 === Internal Reference (Proxy Object) Redefinition
 
@@ -408,7 +408,7 @@ Remembering that the parent archetype is essentially just definition two sibling
     }
 --------
 
-There is one subtlety to do with redefinition of occurrences of a use_node target: if it is redefined to have occurrences matches `{0}` (normally only in a template), then the effect of this is the same on any use_node reference definitions, unless they define occurrences locally at the reference point. The chance of this actually occurring appears vaninshingly small, since by the time 'exclusion' occurrence redefinition is being done in templates, use_node object definitions are most likely to have been locally overridden anyway.
+There is one subtlety to do with redefinition of occurrences of a use_node target: if it is redefined to have occurrences matches `{0}` (normally only in a template), then the effect of this is the same on any use_node reference definitions, unless they define occurrences locally at the reference point. The chance of this actually occurring appears vanishingly small, since by the time 'exclusion' occurrence redefinition is being done in templates, use_node object definitions are most likely to have been locally overridden anyway.
 
 Lastly, one further type of redefinition appears technically possible, but seems of no utility, and is therefore not part of ADL:
 
@@ -451,7 +451,7 @@ The following example shows a slot from a `SECTION` archetype for the 'history_m
     }
 --------
 
-This slot specification allows `EVALUATION` archetypes for the concepts 'clinical synopsis', various kinds of 'exclusions' and 'problems', and 'injury' to be used, and no others. The following fragment of ADL shows how the slot is filled in a template, using the keyword `use_archetype`. In this syntax, the node identification is a variation on the normal archetype id-codes. Within the template, the identifier of the used archetype is also the identifier of that node. However, the original at-code (if defined) must also be mentioned, so as to indicate which slot the used archetype is filling. Templates may also be used to fill slots in the same way. Thus, in the following example, two archetypes and a template are designated to fill the id2 slot defined in the above fragment of ADL. The slot definition is not mentioned, so it remains unchanged, i.e. 'open'.
+This slot specification allows `EVALUATION` archetypes for the concepts 'clinical synopsis', various kinds of 'exclusions' and 'problems', and 'injury' to be used, and no others. The following fragment of ADL shows how the slot is filled in a template, using the keyword `use_archetype`. In this syntax, the node identification is a variation on the normal archetype id-codes. Within the template, the identifier of the used archetype is also the identifier of that node. However, the original at-code (if defined) must also be mentioned, to indicate which slot the used archetype is filling. Templates may also be used to fill slots in the same way. Thus, in the following example, two archetypes and a template are designated to fill the id2 slot defined in the above fragment of ADL. The slot definition is not mentioned, so it remains unchanged, i.e. 'open'.
 
 [source, cadl]
 --------
@@ -571,7 +571,7 @@ Specialised archetype:
 
 === Terminology Constraint Redefinition
 
-Redefinition of a terminology constraint follows the golden rule that redefinitions may only narrow constraints, not widen them, so as to preserve the instance / archetype validity relation up the specialisation lineage. The golden rule holds only for formal constraints, and is modified by the possibility of <<_soft_terminology_constraint,non-binding constraint strengths>>.
+Redefinition of a terminology constraint follows the golden rule that redefinitions may only narrow constraints, not widen them, to preserve the instance / archetype validity relation up the specialisation lineage. The golden rule holds only for formal constraints, and is modified by the possibility of <<_soft_terminology_constraint,non-binding constraint strengths>>.
 
 ==== Constrain Previously Unconstrained Node
 
@@ -738,7 +738,7 @@ Regardless of any changes to the value constraint, narrowing must also be respec
 
 A constraint with `required` strength cannot be redefined to any other strength in a specialised archetype.
 
-NOTE: Although the standard form `defining_code matches {[ac1]}` may always be used to represent 'required' strength, it is strongly recommended that the explicity form `defining_code matches {required [ac1]}` be used in specialised archetypes, _where the constraint strength is being redefined_ (i.e. not for redefinition of a nodes where constraint strength is never mentioned).
+NOTE: Although the standard form `defining_code matches {[ac1]}` may always be used to represent 'required' strength, it is strongly recommended that the explicit form `defining_code matches {required [ac1]}` be used in specialised archetypes, _where the constraint strength is being redefined_ (i.e. not for redefinition of a nodes where constraint strength is never mentioned).
 
 It must be kept in mind that a constraint strength other than `required` is formally equivalent to _no constraint_ - i.e. it is only a guide for tooling and human authors. The following two fragments are therefore completely equivalent.
 
@@ -757,7 +757,7 @@ It must be kept in mind that a constraint strength other than `required` is form
     }
 --------
 
-This means that redefinition of a node containing a non-required constraint strength is formally speaking a redefinition of a node with no constaint on terminology code values. _The specialised node may therefore state any value set, regardless of what value set was stated in the parent_. This is true regardless of whether the constraint strength itself is redefined. For example, in the following a `preferred` strength node with value set `ac1` is redefined by another `preferred` node using a non-conforming value set `ac0.4`.
+This means that redefinition of a node containing a non-required constraint strength is formally speaking a redefinition of a node with no constraint on terminology code values. _The specialised node may therefore state any value set, regardless of what value set was stated in the parent_. This is true regardless of whether the constraint strength itself is redefined. For example, in the following a `preferred` strength node with value set `ac1` is redefined by another `preferred` node using a non-conforming value set `ac0.4`.
 
 [source, cadl]
 --------

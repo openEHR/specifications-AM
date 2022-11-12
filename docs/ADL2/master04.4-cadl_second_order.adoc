@@ -2,7 +2,7 @@
 
 === Tuple Constraints
 
-In realistic data, it is not uncommon to need to need to constrain multiple object properties that covary in a specific way. A simple example is the need to state range constraints on a temperature, represented as an openEHR `DV_QUANTITY` type, for both Centigrade and Fahrenheit scales. The default way to do this in ADL is as follows (the `DV_QUANTITY` class has `_property_`, `_units_` and `_magnitude_` attributes):
+In realistic data, it is not uncommon to need to constrain multiple object properties that co-vary in a specific way. A simple example is the need to state range constraints on a temperature, represented as an openEHR `DV_QUANTITY` type, for both Centigrade and Fahrenheit scales. The default way to do this in ADL is as follows (the `DV_QUANTITY` class has `_property_`, `_units_` and `_magnitude_` attributes):
 
 [source, cadl]
 --------
@@ -35,7 +35,7 @@ The covarying requirement could be met using assertions like the following in th
 
 However, this seems obscure for what is logically a very simple kind of constraint.
 
-A generic solution that can be used in the main `definition` section involves treating covarying properties formally as tuples, and providing syntax to express constraints on tuples. The following syntax achieves this:
+A generic solution that can be used in the main `definition` section involves treating co-varying properties formally as tuples, and providing syntax to express constraints on tuples. The following syntax achieves this:
 
 [source, cadl]
 --------
@@ -76,7 +76,7 @@ Another way to attempt to represent the effect of covarying constraints might be
 --------
 
 [.deprecated]
-*Deprecated*: In the openEHR ADL 1.4 Archetype Profile, a custom constrainer type `C_DV_QUANTITY` was used to to provide the above constraint. However, this is specific to the Reference Model type, and does not solve similar constraints occurring in other types. This type and also the `C_DV_ORDINAL` type have been removed from ADL 2 altogether.
+*Deprecated*: In the openEHR ADL 1.4 Archetype Profile, a custom constrainer type `C_DV_QUANTITY` was used to provide the above constraint. However, this is specific to the Reference Model type, and does not solve similar constraints occurring in other types. This type and also the `C_DV_ORDINAL` type have been removed from ADL 2 altogether.
 
 This same syntax will work for tuples of 3 or more co-varying properties. It does involve some extra work for compiler implementers, but this only needs to be performed once to support any use of tuple constraints, regardless of Reference Model type.
 
@@ -117,7 +117,7 @@ A constraint on the openEHR `DV_ORDINAL` type provides another example of the ut
     }
 --------
 
-By the use of tuple constraint, almost the same thing can be chieved much more efficiently. We can write:
+By the use of tuple constraint, almost the same thing can be achieved much more efficiently. We can write:
 
 [source, cadl]
 --------
@@ -191,7 +191,7 @@ Within a container attribute, any number of object constraints may be defined. T
 
 NOTE: although block-style indenting is used to express group blocks, the `group` constraint is not itself a structural object node, only a pure grouping mechanism.
 
-In the above, the group is used to state a logical choice of methodology representations, each defined by one of the three constraints within the group. The `group` construct includes both `cardinality` and `occurrences` qualifier constraints. The former indicates the size and ordering of the group, in the same way as a cardinality constraint does for the overall contents of a container attribute. The latter defines the repeatability of the group. If the group `occurrences` upper limit is above 1, it means that the sub group may repeat, with each repetition respecting the order and size defined by the group cardinality.
+In the above, the group is used to state a logical choice of methodology representations, each defined by one of the three constraints within the group. The `group` construct includes both `cardinality` and `occurrences` qualifier constraints. The former indicates the size and ordering of the group, in the same way as a cardinality constraint does for the overall contents of a container attribute. The latter defines the repeatability of the group. If the group `occurrences` upper limit is above 1, it means that the sub-group may repeat, with each repetition respecting the order and size defined by the group cardinality.
 
 [.principle]
 A `group` constraint may be used to delimit a subset of objects within the total list of object constraints defined within a container attribute. A cardinality must be stated, defining size, ordering and uniqueness of the subset. An occurrences defining the repeatability of the subset must also be stated. Group constraints can be nested.
