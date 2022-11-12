@@ -13,11 +13,11 @@ h|*Attributes*
 ^h|*Meaning*
 
 h|*1..1*
-|*term_codes*: `org.openehr.base.foundation_types.List<String>`
+|*term_codes*: `List<String>`
 a|List of all term codes in the ontology. Most of these correspond to “at” codes in an ADL archetype, which are the node_ids on C_OBJECT descendants. There may be an extra one, if a different term is used as the overall archetype concept from that used as the node_id of the outermost C_OBJECT in the definition part.
 
 h|*1..1*
-|*constraint_codes*: `org.openehr.base.foundation_types.List<String>`
+|*constraint_codes*: `List<String>`
 a|List of all term codes in the ontology. These correspond to the “ac” codes in an ADL archetype, or equivalently, the CONSTRAINT_REF.reference values in the archetype definition.
 
 h|*1..1*
@@ -25,7 +25,7 @@ h|*1..1*
 a|Archetype which owns this terminology.
 
 h|*0..1*
-|*terminologies_available*: `org.openehr.base.foundation_types.List<String>`
+|*terminologies_available*: `List<String>`
 a|List of terminologies to which term or constraint bindings exist in this terminology.
 
 h|*1..1*
@@ -33,7 +33,7 @@ h|*1..1*
 a|Specialisation depth of this archetype. Unspecialised archetypes have depth 0, with each additional level of specialisation adding 1 to the specialisation_depth.
 
 h|*1..1*
-|*term_attribute_names*: `org.openehr.base.foundation_types.List<String>`
+|*term_attribute_names*: `List<String>`
 a|
 h|*Functions*
 ^h|*Signature*
@@ -87,7 +87,7 @@ h|*1..1*
 |*term_binding* ( +
 a_terminology: `String[1]`, +
 a_code: `String[1]` +
-): `link:/releases/RM/1.4/data_types.html#_code_phrase_class[CODE_PHRASE^]` +
+): `link:/releases/RM/{rm_release}/data_types.html#_code_phrase_class[CODE_PHRASE^]` +
  +
 __Pre__: `has_term_binding (a_terminology_id, a_code)`
 a|Binding of constraint corresponding to a_code in target external terminology a_terminology_id, as a string, which is usually a formal query expression.

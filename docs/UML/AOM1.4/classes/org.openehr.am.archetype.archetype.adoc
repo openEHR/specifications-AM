@@ -9,7 +9,7 @@ h|*Description*
 2+a|Archetype equivalent to ARCHETYPED class in Common reference model. Defines semantics of identfication, lifecycle, versioning, composition and specialisation.
 
 h|*Inherit*
-2+|`link:/releases/AM/1.4/common.html#_authored_resource_class[AUTHORED_RESOURCE^]`
+2+|`link:/releases/BASE/{base_release}/resource.html#_authored_resource_class[AUTHORED_RESOURCE^]`
 
 h|*Attributes*
 ^h|*Signature*
@@ -28,24 +28,25 @@ h|*0..1*
 a|ADL version if archetype was read in from an ADL sharable archetype.
 
 h|*1..1*
-|*archetype_id*: `link:/releases/AM/1.4/support.html#_archetype_id_class[ARCHETYPE_ID^]`
+|*archetype_id*: `link:/releases/RM/{rm_release}/support.html#_archetype_id_class[ARCHETYPE_ID^]`
 a|Multi-axial identifier of this archetype in archetype space.
-
-h|*0..1*
-|*uid*: `link:/releases/AM/1.4/support.html#_hier_object_id_class[HIER_OBJECT_ID^]`
-a|OID identifier of this archetype.
 
 h|*1..1*
 |*concept*: `String`
 a|The normative meaning of the archetype as a whole, expressed as a local archetype code, typically “at0000”.
 
 h|*0..1*
-|*parent_archetype_id*: `link:/releases/AM/1.4/support.html#_archetype_id_class[ARCHETYPE_ID^]`
+|*parent_archetype_id*: `link:/releases/RM/{rm_release}/support.html#_archetype_id_class[ARCHETYPE_ID^]`
 a|Identifier of the specialisation parent of this archetype.
 
 h|*0..1*
-|*invariants*: `org.openehr.base.foundation_types.List<<<_assertion_class,ASSERTION>>>`
+|*invariants*: `List<<<_assertion_class,ASSERTION>>>`
 a|Invariant statements about this object. Statements are expressed in first order predicate logic, and usually refer to at least two attributes.
+
+h|*0..1 +
+(redefined)*
+|*uid*: `link:/releases/RM/{rm_release}/support.html#_hier_object_id_class[HIER_OBJECT_ID^]`
+a|OID identifier of this archetype.
 h|*Functions*
 ^h|*Signature*
 ^h|*Meaning*
@@ -59,13 +60,13 @@ __post-condition__: `Result.is_equal (definition.node_id)`
 a|The concept name of the archetype in language a_lang; corresponds to the term definition of the concept attribute in the archetype ontology.
 
 h|*1..1*
-|*physical_paths* (): `org.openehr.base.foundation_types.List<String>`
+|*physical_paths* (): `List<String>`
 a|Set of language-independent paths extracted from archetype. Paths obey Xpath-like syntax and are formed from alternations of C_OBJECT.node_id and C_ATTRIBUTE.rm_attribute_name values.
 
 h|*1..1*
 |*logical_paths* ( +
 lang: `String[1]` +
-): `org.openehr.base.foundation_types.List<String>`
+): `List<String>`
 a|Set of language-dependent paths extracted from archetype. Paths obey the same syntax as physical_paths, but with node_ids replaced by their meanings from the ontology.
 
 h|*1..1*

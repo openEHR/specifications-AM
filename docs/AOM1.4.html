@@ -766,7 +766,7 @@ Source projects can be found at the <a href="https://github.com/openEHR" target=
 <p>The model described here is a pure object-oriented model that can be used with archetype parsers and software that manipulates archetypes. It is independent of any particular linguistic expression of an archetype, such as ADL or OWL, and can therefore be used with any kind of parser.</p>
 </div>
 <div class="paragraph">
-<p>It is dependent on the <a href="https://specifications.openehr.org/releases/1.0.2/architecture/rm/support_im.pdf" target="_blank" rel="noopener">openEHR Release 1.0.2 Support IM</a> (<code>assumed_types</code> and <code>identifiers</code> packages), a small number of the openEHR Data Types (<a href="https://specifications.openehr.org/releases/1.0.2/architecture/rm/data_types_im.pdf" target="_blank" rel="noopener">openEHR Release 1.0.2 Data Types IM</a>), and the <code>resource</code> package from the <a href="https://specifications.openehr.org/releases/1.0.2/architecture/rm/common_im.pdf" target="_blank" rel="noopener">openEHR Release 1.0.2 Common IM</a>. These dependencies are shown for convenience in the <a href="#_reference_model_dependencies">Appendix C</a> appendix.</p>
+<p>It is dependent on the <a href="https://specifications.openehr.org/releases/RM/Release-1.0.3/support.html" target="_blank" rel="noopener">openEHR Release 1.0.3 Support IM</a> (<code>assumed_types</code> and <code>identifiers</code> packages), a small number of the openEHR Data Types (<a href="https://specifications.openehr.org/releases/RM/Release-1.0.3/data_types.html" target="_blank" rel="noopener">openEHR Release 1.0.3 Data Types IM</a>), and the <code>resource</code> package from the <a href="https://specifications.openehr.org/releases/RM/Release-1.0.3/common.html" target="_blank" rel="noopener">openEHR Release 1.0.3 Common IM</a>. These dependencies are shown for convenience in the <a href="#_reference_model_dependencies">Appendix C</a> appendix.</p>
 </div>
 <div class="sect3">
 <h4 id="_archetypes_as_objects"><a class="anchor" href="#_archetypes_as_objects"></a>2.3.1. Archetypes as Objects</h4>
@@ -879,7 +879,7 @@ Source projects can be found at the <a href="https://github.com/openEHR" target=
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Inherit</strong></p></th>
-<td class="tableblock halign-left valign-top" colspan="2"><p class="tableblock"><code><a href="/releases/AM/1.4/common.html#_authored_resource_class" target="_blank" rel="noopener">AUTHORED_RESOURCE</a></code></p></td>
+<td class="tableblock halign-left valign-top" colspan="2"><p class="tableblock"><code><a href="/releases/BASE/latest/resource.html#_authored_resource_class" target="_blank" rel="noopener">AUTHORED_RESOURCE</a></code></p></td>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Attributes</strong></p></th>
@@ -909,16 +909,9 @@ Source projects can be found at the <a href="https://github.com/openEHR" target=
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>1..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>archetype_id</strong>: <code><a href="/releases/AM/1.4/support.html#_archetype_id_class" target="_blank" rel="noopener">ARCHETYPE_ID</a></code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>archetype_id</strong>: <code><a href="/releases/RM/latest/support.html#_archetype_id_class" target="_blank" rel="noopener">ARCHETYPE_ID</a></code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>Multi-axial identifier of this archetype in archetype space.</p>
-</div></div></td>
-</tr>
-<tr>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>uid</strong>: <code><a href="/releases/AM/1.4/support.html#_hier_object_id_class" target="_blank" rel="noopener">HIER_OBJECT_ID</a></code></p></td>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p>OID identifier of this archetype.</p>
 </div></div></td>
 </tr>
 <tr>
@@ -930,16 +923,24 @@ Source projects can be found at the <a href="https://github.com/openEHR" target=
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>parent_archetype_id</strong>: <code><a href="/releases/AM/1.4/support.html#_archetype_id_class" target="_blank" rel="noopener">ARCHETYPE_ID</a></code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>parent_archetype_id</strong>: <code><a href="/releases/RM/latest/support.html#_archetype_id_class" target="_blank" rel="noopener">ARCHETYPE_ID</a></code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>Identifier of the specialisation parent of this archetype.</p>
 </div></div></td>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>invariants</strong>: <code>org.openehr.base.foundation_types.List&lt;<a href="#_assertion_class">ASSERTION</a>&gt;</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>invariants</strong>: <code>List&lt;<a href="#_assertion_class">ASSERTION</a>&gt;</code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>Invariant statements about this object. Statements are expressed in first order predicate logic, and usually refer to at least two attributes.</p>
+</div></div></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1<br>
+(redefined)</strong></p></th>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>uid</strong>: <code><a href="/releases/RM/latest/support.html#_hier_object_id_class" target="_blank" rel="noopener">HIER_OBJECT_ID</a></code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>OID identifier of this archetype.</p>
 </div></div></td>
 </tr>
 <tr>
@@ -960,7 +961,7 @@ a_lang: <code>String[1]</code><br>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>1..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>physical_paths</strong> (): <code>org.openehr.base.foundation_types.List&lt;String&gt;</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>physical_paths</strong> (): <code>List&lt;String&gt;</code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>Set of language-independent paths extracted from archetype. Paths obey Xpath-like syntax and are formed from alternations of C_OBJECT.node_id and C_ATTRIBUTE.rm_attribute_name values.</p>
 </div></div></td>
@@ -969,7 +970,7 @@ a_lang: <code>String[1]</code><br>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>1..1</strong></p></th>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><strong>logical_paths</strong> (<br>
 lang: <code>String[1]</code><br>
-): <code>org.openehr.base.foundation_types.List&lt;String&gt;</code></p></td>
+): <code>List&lt;String&gt;</code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>Set of language-dependent paths extracted from archetype. Paths obey the same syntax as physical_paths, but with node_ids replaced by their meanings from the ontology.</p>
 </div></div></td>
@@ -1347,14 +1348,14 @@ a_path: <code>String[1]</code><br>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>1..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>existence</strong>: <code><a href="/releases/BASE/1.4/structure.html#_interval_class" target="_blank" rel="noopener">Interval</a>&lt;Integer&gt;</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>existence</strong>: <code><a href="/releases/BASE/latest/base_types.html#_interval_class" target="_blank" rel="noopener">Interval</a>&lt;Integer&gt;</code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>Constraint on every attribute, regardless of whether it is singular or of a container type, which indicates whether its target object exists or not (i.e. is mandatory or not).</p>
 </div></div></td>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>children</strong>: <code>org.openehr.base.foundation_types.List&lt;<a href="#_c_object_class">C_OBJECT</a>&gt;</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>children</strong>: <code>List&lt;<a href="#_c_object_class">C_OBJECT</a>&gt;</code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>Child C_OBJECT nodes. Each such node represents a constraint on the type of this attribute in its reference model. Multiples occur both for multiple items in the case of container attributes, and alternatives in the case of singular attributes.</p>
 </div></div></td>
@@ -1424,7 +1425,7 @@ a_path: <code>String[1]</code><br>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>alternatives</strong> (): <code>org.openehr.base.foundation_types.List&lt;<a href="#_c_object_class">C_OBJECT</a>&gt;</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>alternatives</strong> (): <code>List&lt;<a href="#_c_object_class">C_OBJECT</a>&gt;</code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>List of alternative constraints for the single child of this attribute within the data.</p>
 </div></div></td>
@@ -1474,7 +1475,7 @@ a_path: <code>String[1]</code><br>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>members</strong> (): <code>org.openehr.base.foundation_types.List&lt;<a href="#_c_object_class">C_OBJECT</a>&gt;</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>members</strong> (): <code>List&lt;<a href="#_c_object_class">C_OBJECT</a>&gt;</code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>List of constraints representing members of the container value of this attribute within the data. Semantics of the uniqueness and ordering of items in the container are given by the cardinality.</p>
 </div></div></td>
@@ -1514,7 +1515,7 @@ a_path: <code>String[1]</code><br>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>1..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>interval</strong>: <code><a href="/releases/BASE/1.4/structure.html#_interval_class" target="_blank" rel="noopener">Interval</a>&lt;Integer&gt;</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>interval</strong>: <code><a href="/releases/BASE/latest/base_types.html#_interval_class" target="_blank" rel="noopener">Interval</a>&lt;Integer&gt;</code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>The interval of this cardinality.</p>
 </div></div></td>
@@ -1599,7 +1600,7 @@ a_path: <code>String[1]</code><br>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>1..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>occurrences</strong>: <code><a href="/releases/BASE/1.4/structure.html#_interval_class" target="_blank" rel="noopener">Interval</a>&lt;Integer&gt;</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>occurrences</strong>: <code><a href="/releases/BASE/latest/base_types.html#_interval_class" target="_blank" rel="noopener">Interval</a>&lt;Integer&gt;</code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>Occurrences of this object node in the data, under the owning attribute. Upper limit can only be greater than 1 if owning attribute has a cardinality of more than 1).</p>
 </div></div></td>
@@ -1645,7 +1646,7 @@ For C_PRIMITIVE_OBJECTs, it will have the special value Primitive_node_id.</p>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>assumed_value</strong>: <code><a href="/releases/BASE/1.4/assumed_types.html#_any_class" target="_blank" rel="noopener">Any</a></code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>assumed_value</strong>: <code><a href="/releases/BASE/latest/base_types.html#_any_class" target="_blank" rel="noopener">Any</a></code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>Value to be assumed if none sent in data.</p>
 </div></div></td>
@@ -1659,7 +1660,7 @@ For C_PRIMITIVE_OBJECTs, it will have the special value Primitive_node_id.</p>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>1..1<br>
 (abstract)</strong></p></th>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><strong>valid_value</strong> (<br>
-a_value: <code><a href="/releases/BASE/1.4/assumed_types.html#_any_class" target="_blank" rel="noopener">Any</a>[1]</code><br>
+a_value: <code><a href="/releases/BASE/latest/base_types.html#_any_class" target="_blank" rel="noopener">Any</a>[1]</code><br>
 ): <code>Boolean</code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>True if a_value is valid with respect to constraint expressed in concrete instance of this type.</p>
@@ -1668,7 +1669,7 @@ a_value: <code><a href="/releases/BASE/1.4/assumed_types.html#_any_class" target
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>1..1<br>
 (abstract)</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>prototype_value</strong> (): <code><a href="/releases/BASE/1.4/assumed_types.html#_any_class" target="_blank" rel="noopener">Any</a></code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>prototype_value</strong> (): <code><a href="/releases/BASE/latest/base_types.html#_any_class" target="_blank" rel="noopener">Any</a></code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>Generate a prototype value from this constraint object.</p>
 </div></div></td>
@@ -1683,7 +1684,7 @@ a_value: <code><a href="/releases/BASE/1.4/assumed_types.html#_any_class" target
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1<br>
 (abstract)</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>default_value</strong> (): <code><a href="/releases/BASE/1.4/assumed_types.html#_any_class" target="_blank" rel="noopener">Any</a></code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>default_value</strong> (): <code><a href="/releases/BASE/latest/base_types.html#_any_class" target="_blank" rel="noopener">Any</a></code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>Generate a default value from this constraint object.</p>
 </div></div></td>
@@ -1737,7 +1738,7 @@ a_value: <code><a href="/releases/BASE/1.4/assumed_types.html#_any_class" target
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>attributes</strong>: <code>org.openehr.base.foundation_types.List&lt;<a href="#_c_attribute_class">C_ATTRIBUTE</a>&gt;</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>attributes</strong>: <code>List&lt;<a href="#_c_attribute_class">C_ATTRIBUTE</a>&gt;</code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>List of constraints on attributes of the reference model type represented by this object.</p>
 </div></div></td>
@@ -1920,14 +1921,14 @@ a_value: <code><a href="/releases/BASE/1.4/assumed_types.html#_any_class" target
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>includes</strong>: <code>org.openehr.base.foundation_types.List&lt;<a href="#_assertion_class">ASSERTION</a>&gt;</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>includes</strong>: <code>List&lt;<a href="#_assertion_class">ASSERTION</a>&gt;</code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>List of constraints defining other archetypes that could be included at this point.</p>
 </div></div></td>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>excludes</strong>: <code>org.openehr.base.foundation_types.List&lt;<a href="#_assertion_class">ASSERTION</a>&gt;</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>excludes</strong>: <code>List&lt;<a href="#_assertion_class">ASSERTION</a>&gt;</code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>List of constraints defining other archetypes that cannot be included at this point.</p>
 </div></div></td>
@@ -2037,7 +2038,7 @@ archetype.</p>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>1..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>reference</strong>: <code><a href="/releases/BASE/1.4/assumed_types.html#_string_class" target="_blank" rel="noopener">String</a></code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>reference</strong>: <code><a href="/releases/BASE/latest/base_types.html#_string_class" target="_blank" rel="noopener">String</a></code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>Reference to a constraint in the archetype local ontology.</p>
 </div></div></td>
@@ -2152,7 +2153,7 @@ archetype.</p>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>variables</strong>: <code>org.openehr.base.foundation_types.List&lt;<a href="#_assertion_variable_class">ASSERTION_VARIABLE</a>&gt;</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>variables</strong>: <code>List&lt;<a href="#_assertion_variable_class">ASSERTION_VARIABLE</a>&gt;</code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>Definitions of variables used in the assertion expression.</p>
 </div></div></td>
@@ -2259,7 +2260,7 @@ archetype.</p>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>1..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>item</strong>: <code><a href="/releases/BASE/1.4/assumed_types.html#_any_class" target="_blank" rel="noopener">Any</a></code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>item</strong>: <code><a href="/releases/BASE/latest/base_types.html#_any_class" target="_blank" rel="noopener">Any</a></code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>The value referred to; a manifest constant, an attribute path (in the form of a String), or for the right-hand side of a ‘matches’ node, a constraint, often a C_PRIMITIVE_OBJECT.</p>
 </div></div></td>
@@ -2645,7 +2646,7 @@ archetype.</p>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>assumed_value</strong>: <code><a href="/releases/BASE/1.4/assumed_types.html#_any_class" target="_blank" rel="noopener">Any</a></code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>assumed_value</strong>: <code><a href="/releases/BASE/latest/base_types.html#_any_class" target="_blank" rel="noopener">Any</a></code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>Value to be assumed if none sent in data.</p>
 </div></div></td>
@@ -2658,7 +2659,7 @@ archetype.</p>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>1..1<br>
 (abstract)</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>default_value</strong> (): <code><a href="/releases/BASE/1.4/assumed_types.html#_any_class" target="_blank" rel="noopener">Any</a></code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>default_value</strong> (): <code><a href="/releases/BASE/latest/base_types.html#_any_class" target="_blank" rel="noopener">Any</a></code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>Generate a default value from this constraint object.</p>
 </div></div></td>
@@ -2675,7 +2676,7 @@ archetype.</p>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>1..1<br>
 (abstract)</strong></p></th>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><strong>valid_value</strong> (<br>
-a_value: <code><a href="/releases/BASE/1.4/assumed_types.html#_any_class" target="_blank" rel="noopener">Any</a>[1]</code><br>
+a_value: <code><a href="/releases/BASE/latest/base_types.html#_any_class" target="_blank" rel="noopener">Any</a>[1]</code><br>
 ): <code>Boolean</code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>True if a_value is valid with respect to constraint expressed in concrete instance of this type.</p>
@@ -2735,7 +2736,7 @@ a_value: <code><a href="/releases/BASE/1.4/assumed_types.html#_any_class" target
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1<br>
 (redefined)</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>assumed_value</strong>: <code><a href="/releases/BASE/1.4/assumed_types.html#_boolean_class" target="_blank" rel="noopener">Boolean</a></code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>assumed_value</strong>: <code><a href="/releases/BASE/latest/base_types.html#_boolean_class" target="_blank" rel="noopener">Boolean</a></code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>The value to assume if this item is not included in data, due to being part of an optional structure.</p>
 </div></div></td>
@@ -2780,7 +2781,7 @@ a_value: <code><a href="/releases/BASE/1.4/assumed_types.html#_any_class" target
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>list</strong>: <code>org.openehr.base.foundation_types.List&lt;String&gt;</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>list</strong>: <code>List&lt;String&gt;</code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>Set of Strings specifying constraint.</p>
 </div></div></td>
@@ -2795,7 +2796,7 @@ a_value: <code><a href="/releases/BASE/1.4/assumed_types.html#_any_class" target
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1<br>
 (redefined)</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>assumed_value</strong>: <code><a href="/releases/BASE/1.4/assumed_types.html#_string_class" target="_blank" rel="noopener">String</a></code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>assumed_value</strong>: <code><a href="/releases/BASE/latest/base_types.html#_string_class" target="_blank" rel="noopener">String</a></code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>The value to assume if this item is not included in data, due to being part of an optional structure.</p>
 </div></div></td>
@@ -2848,14 +2849,14 @@ a_value: <code>String[1]</code><br>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>list</strong>: <code>org.openehr.base.foundation_types.List&lt;Integer&gt;</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>list</strong>: <code>List&lt;Integer&gt;</code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>Set of Integers specifying constraint.</p>
 </div></div></td>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>range</strong>: <code><a href="/releases/BASE/1.4/structure.html#_interval_class" target="_blank" rel="noopener">Interval</a>&lt;Integer&gt;</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>range</strong>: <code><a href="/releases/BASE/latest/base_types.html#_interval_class" target="_blank" rel="noopener">Interval</a>&lt;Integer&gt;</code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>Range of Integers specifying constraint.</p>
 </div></div></td>
@@ -2863,7 +2864,7 @@ a_value: <code>String[1]</code><br>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1<br>
 (redefined)</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>assumed_value</strong>: <code><a href="/releases/BASE/1.4/assumed_types.html#_integer_class" target="_blank" rel="noopener">Integer</a></code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>assumed_value</strong>: <code><a href="/releases/BASE/latest/base_types.html#_integer_class" target="_blank" rel="noopener">Integer</a></code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>The value to assume if this item is not included in data, due to being part of an optional structure.</p>
 </div></div></td>
@@ -2901,14 +2902,14 @@ a_value: <code>String[1]</code><br>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>list</strong>: <code>org.openehr.base.foundation_types.List&lt;Real&gt;</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>list</strong>: <code>List&lt;Real&gt;</code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>Set of Reals specifying constraint.</p>
 </div></div></td>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>range</strong>: <code><a href="/releases/BASE/1.4/structure.html#_interval_class" target="_blank" rel="noopener">Interval</a>&lt;Real&gt;</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>range</strong>: <code><a href="/releases/BASE/latest/base_types.html#_interval_class" target="_blank" rel="noopener">Interval</a>&lt;Real&gt;</code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>Range of Real specifying constraint.</p>
 </div></div></td>
@@ -2916,7 +2917,7 @@ a_value: <code>String[1]</code><br>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1<br>
 (redefined)</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>assumed_value</strong>: <code><a href="/releases/BASE/1.4/assumed_types.html#_real_class" target="_blank" rel="noopener">Real</a></code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>assumed_value</strong>: <code><a href="/releases/BASE/latest/base_types.html#_real_class" target="_blank" rel="noopener">Real</a></code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>The value to assume if this item is not included in data, due to being part of an optional structure.</p>
 </div></div></td>
@@ -2954,28 +2955,28 @@ a_value: <code>String[1]</code><br>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>day_validity</strong>: <code><a href="/releases/BASE/1.4/VALIDITY_KIND.html#_validity_kind_enumeration" target="_blank" rel="noopener">VALIDITY_KIND</a></code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>day_validity</strong>: <code><a href="/releases/BASE/latest/definitions.html#_validity_kind_enumeration" target="_blank" rel="noopener">VALIDITY_KIND</a></code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>Validity of day in constrained date.</p>
 </div></div></td>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>month_validity</strong>: <code><a href="/releases/BASE/1.4/VALIDITY_KIND.html#_validity_kind_enumeration" target="_blank" rel="noopener">VALIDITY_KIND</a></code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>month_validity</strong>: <code><a href="/releases/BASE/latest/definitions.html#_validity_kind_enumeration" target="_blank" rel="noopener">VALIDITY_KIND</a></code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>Validity of month in constrained date.</p>
 </div></div></td>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>timezone_validity</strong>: <code><a href="/releases/BASE/1.4/VALIDITY_KIND.html#_validity_kind_enumeration" target="_blank" rel="noopener">VALIDITY_KIND</a></code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>timezone_validity</strong>: <code><a href="/releases/BASE/latest/definitions.html#_validity_kind_enumeration" target="_blank" rel="noopener">VALIDITY_KIND</a></code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>Validity of timezone in constrained date.</p>
 </div></div></td>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>range</strong>: <code><a href="/releases/BASE/1.4/structure.html#_interval_class">Interval<sup></a>&lt;<a href="/releases/BASE/1.4/assumed_types.html#_date_class">Date</sup></a>&gt;</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>range</strong>: <code><a href="/releases/BASE/latest/base_types.html#_interval_class">Interval<sup></a>&lt;<a href="/releases/BASE/latest/base_types.html#_date_class">Date</sup></a>&gt;</code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>Interval of Dates specifying constraint.</p>
 </div></div></td>
@@ -2983,7 +2984,7 @@ a_value: <code>String[1]</code><br>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1<br>
 (redefined)</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>assumed_value</strong>: <code><a href="/releases/BASE/1.4/assumed_types.html#_date_class" target="_blank" rel="noopener">Date</a></code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>assumed_value</strong>: <code><a href="/releases/BASE/latest/base_types.html#_date_class" target="_blank" rel="noopener">Date</a></code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>The value to assume if this item is not included in data, due to being part of an optional structure.</p>
 </div></div></td>
@@ -3039,35 +3040,35 @@ a_value: <code>String[1]</code><br>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>minute_validity</strong>: <code><a href="/releases/BASE/1.4/VALIDITY_KIND.html#_validity_kind_enumeration" target="_blank" rel="noopener">VALIDITY_KIND</a></code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>minute_validity</strong>: <code><a href="/releases/BASE/latest/definitions.html#_validity_kind_enumeration" target="_blank" rel="noopener">VALIDITY_KIND</a></code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>Validity of minute in constrained time.</p>
 </div></div></td>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>second_validity</strong>: <code><a href="/releases/BASE/1.4/VALIDITY_KIND.html#_validity_kind_enumeration" target="_blank" rel="noopener">VALIDITY_KIND</a></code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>second_validity</strong>: <code><a href="/releases/BASE/latest/definitions.html#_validity_kind_enumeration" target="_blank" rel="noopener">VALIDITY_KIND</a></code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>Validity of second in constrained time.</p>
 </div></div></td>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>millisecond_validity</strong>: <code><a href="/releases/BASE/1.4/VALIDITY_KIND.html#_validity_kind_enumeration" target="_blank" rel="noopener">VALIDITY_KIND</a></code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>millisecond_validity</strong>: <code><a href="/releases/BASE/latest/definitions.html#_validity_kind_enumeration" target="_blank" rel="noopener">VALIDITY_KIND</a></code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>Validity of millisecond in constrained time.</p>
 </div></div></td>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>timezone_validity</strong>: <code><a href="/releases/BASE/1.4/VALIDITY_KIND.html#_validity_kind_enumeration" target="_blank" rel="noopener">VALIDITY_KIND</a></code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>timezone_validity</strong>: <code><a href="/releases/BASE/latest/definitions.html#_validity_kind_enumeration" target="_blank" rel="noopener">VALIDITY_KIND</a></code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>Validity of timezone in constrained date.</p>
 </div></div></td>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>range</strong>: <code><a href="/releases/BASE/1.4/structure.html#_interval_class">Interval<sup></a>&lt;<a href="/releases/BASE/1.4/assumed_types.html#_time_class">Time</sup></a>&gt;</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>range</strong>: <code><a href="/releases/BASE/latest/base_types.html#_interval_class">Interval<sup></a>&lt;<a href="/releases/BASE/latest/base_types.html#_time_class">Time</sup></a>&gt;</code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>Interval of Times specifying constraint.</p>
 </div></div></td>
@@ -3075,7 +3076,7 @@ a_value: <code>String[1]</code><br>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1<br>
 (redefined)</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>assumed_value</strong>: <code><a href="/releases/BASE/1.4/assumed_types.html#_time_class" target="_blank" rel="noopener">Time</a></code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>assumed_value</strong>: <code><a href="/releases/BASE/latest/base_types.html#_time_class" target="_blank" rel="noopener">Time</a></code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>The value to assume if this item is not included in data, due to being part of an optional structure.</p>
 </div></div></td>
@@ -3149,56 +3150,56 @@ a_value: <code>String[1]</code><br>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>month_validity</strong>: <code><a href="/releases/BASE/1.4/VALIDITY_KIND.html#_validity_kind_enumeration" target="_blank" rel="noopener">VALIDITY_KIND</a></code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>month_validity</strong>: <code><a href="/releases/BASE/latest/definitions.html#_validity_kind_enumeration" target="_blank" rel="noopener">VALIDITY_KIND</a></code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>Validity of month in constrained date.</p>
 </div></div></td>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>day_validity</strong>: <code><a href="/releases/BASE/1.4/VALIDITY_KIND.html#_validity_kind_enumeration" target="_blank" rel="noopener">VALIDITY_KIND</a></code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>day_validity</strong>: <code><a href="/releases/BASE/latest/definitions.html#_validity_kind_enumeration" target="_blank" rel="noopener">VALIDITY_KIND</a></code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>Validity of day in constrained date.</p>
 </div></div></td>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>hour_validity</strong>: <code><a href="/releases/BASE/1.4/VALIDITY_KIND.html#_validity_kind_enumeration" target="_blank" rel="noopener">VALIDITY_KIND</a></code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>hour_validity</strong>: <code><a href="/releases/BASE/latest/definitions.html#_validity_kind_enumeration" target="_blank" rel="noopener">VALIDITY_KIND</a></code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>Validity of hour in constrained time.</p>
 </div></div></td>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>minute_validity</strong>: <code><a href="/releases/BASE/1.4/VALIDITY_KIND.html#_validity_kind_enumeration" target="_blank" rel="noopener">VALIDITY_KIND</a></code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>minute_validity</strong>: <code><a href="/releases/BASE/latest/definitions.html#_validity_kind_enumeration" target="_blank" rel="noopener">VALIDITY_KIND</a></code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>Validity of minute in constrained time.</p>
 </div></div></td>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>second_validity</strong>: <code><a href="/releases/BASE/1.4/VALIDITY_KIND.html#_validity_kind_enumeration" target="_blank" rel="noopener">VALIDITY_KIND</a></code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>second_validity</strong>: <code><a href="/releases/BASE/latest/definitions.html#_validity_kind_enumeration" target="_blank" rel="noopener">VALIDITY_KIND</a></code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>Validity of second in constrained time.</p>
 </div></div></td>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>millisecond_valdity</strong>: <code><a href="/releases/BASE/1.4/VALIDITY_KIND.html#_validity_kind_enumeration" target="_blank" rel="noopener">VALIDITY_KIND</a></code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>millisecond_valdity</strong>: <code><a href="/releases/BASE/latest/definitions.html#_validity_kind_enumeration" target="_blank" rel="noopener">VALIDITY_KIND</a></code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>Validity of millisecond in constrained time.</p>
 </div></div></td>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>timezone_valdity</strong>: <code><a href="/releases/BASE/1.4/VALIDITY_KIND.html#_validity_kind_enumeration" target="_blank" rel="noopener">VALIDITY_KIND</a></code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>timezone_valdity</strong>: <code><a href="/releases/BASE/latest/definitions.html#_validity_kind_enumeration" target="_blank" rel="noopener">VALIDITY_KIND</a></code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>Validity of timezone in constrained date.</p>
 </div></div></td>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>range</strong>: <code><a href="/releases/BASE/1.4/structure.html#_interval_class">Interval<sup></a>&lt;<a href="/releases/BASE/1.4/assumed_types.html#_date_time_class">Date_time</sup></a>&gt;</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>range</strong>: <code><a href="/releases/BASE/latest/base_types.html#_interval_class">Interval<sup></a>&lt;<a href="/releases/BASE/latest/base_types.html#_date_time_class">Date_time</sup></a>&gt;</code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>Range of Date_times specifying constraint.</p>
 </div></div></td>
@@ -3206,7 +3207,7 @@ a_value: <code>String[1]</code><br>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1<br>
 (redefined)</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>assumed_value</strong>: <code><a href="/releases/BASE/1.4/assumed_types.html#_date_time_class" target="_blank" rel="noopener">Date_time</a></code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>assumed_value</strong>: <code><a href="/releases/BASE/latest/base_types.html#_date_time_class" target="_blank" rel="noopener">Date_time</a></code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>The value to assume if this item is not included in data, due to being part of an optional structure.</p>
 </div></div></td>
@@ -3388,7 +3389,7 @@ a_value: <code>String[1]</code><br>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>range</strong>: <code><a href="/releases/BASE/1.4/structure.html#_interval_class">Interval<sup></a>&lt;<a href="/releases/BASE/1.4/assumed_types.html#_duration_class">Duration</sup></a>&gt;</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>range</strong>: <code><a href="/releases/BASE/latest/base_types.html#_interval_class">Interval<sup></a>&lt;<a href="/releases/BASE/latest/base_types.html#_duration_class">Duration</sup></a>&gt;</code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>Range of Durations specifying constraint.</p>
 </div></div></td>
@@ -3396,7 +3397,7 @@ a_value: <code>String[1]</code><br>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1<br>
 (redefined)</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>assumed_value</strong>: <code><a href="/releases/BASE/1.4/assumed_types.html#_duration_class" target="_blank" rel="noopener">Duration</a></code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>assumed_value</strong>: <code><a href="/releases/BASE/latest/base_types.html#_duration_class" target="_blank" rel="noopener">Duration</a></code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>The value to assume if this item is not included in data, due to being part of an optional structure.</p>
 </div></div></td>
@@ -3500,14 +3501,14 @@ a_value: <code>String[1]</code><br>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>1..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>term_codes</strong>: <code>org.openehr.base.foundation_types.List&lt;String&gt;</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>term_codes</strong>: <code>List&lt;String&gt;</code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>List of all term codes in the ontology. Most of these correspond to “at” codes in an ADL archetype, which are the node_ids on C_OBJECT descendants. There may be an extra one, if a different term is used as the overall archetype concept from that used as the node_id of the outermost C_OBJECT in the definition part.</p>
 </div></div></td>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>1..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>constraint_codes</strong>: <code>org.openehr.base.foundation_types.List&lt;String&gt;</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>constraint_codes</strong>: <code>List&lt;String&gt;</code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>List of all term codes in the ontology. These correspond to the “ac” codes in an ADL archetype, or equivalently, the CONSTRAINT_REF.reference values in the archetype definition.</p>
 </div></div></td>
@@ -3521,7 +3522,7 @@ a_value: <code>String[1]</code><br>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>terminologies_available</strong>: <code>org.openehr.base.foundation_types.List&lt;String&gt;</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>terminologies_available</strong>: <code>List&lt;String&gt;</code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>List of terminologies to which term or constraint bindings exist in this terminology.</p>
 </div></div></td>
@@ -3535,7 +3536,7 @@ a_value: <code>String[1]</code><br>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>1..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>term_attribute_names</strong>: <code>org.openehr.base.foundation_types.List&lt;String&gt;</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>term_attribute_names</strong>: <code>List&lt;String&gt;</code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"></div></td>
 </tr>
 <tr>
@@ -3610,7 +3611,7 @@ a_lang: <code>String[1]</code><br>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><strong>term_binding</strong> (<br>
 a_terminology: <code>String[1]</code>,<br>
 a_code: <code>String[1]</code><br>
-): <code><a href="/releases/RM/1.4/data_types.html#_code_phrase_class" target="_blank" rel="noopener">CODE_PHRASE</a></code><br>
+): <code><a href="/releases/RM/latest/data_types.html#_code_phrase_class" target="_blank" rel="noopener">CODE_PHRASE</a></code><br>
 <br>
 <em>Pre</em>: <code>has_term_binding (a_terminology_id, a_code)</code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
@@ -3687,7 +3688,7 @@ a_code: <code>String[1]</code><br>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>items</strong>: <code><a href="/releases/BASE/1.4/structure.html#_hash_class" target="_blank" rel="noopener">Hash</a>&lt;String, String&gt;</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>items</strong>: <code><a href="/releases/BASE/latest/base_types.html#_hash_class" target="_blank" rel="noopener">Hash</a>&lt;String, String&gt;</code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>Hash of keys (“text”, “description” etc) and corresponding values.
 Hash of keys ("text", "description" etc) and corresponding values.</p>
@@ -3700,7 +3701,7 @@ Hash of keys ("text", "description" etc) and corresponding values.</p>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>keys</strong> (): <code>org.openehr.base.foundation_types.List&lt;String&gt;</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>keys</strong> (): <code>List&lt;String&gt;</code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>List of all keys used in this term.</p>
 </div></div></td>
