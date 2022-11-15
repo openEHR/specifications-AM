@@ -2152,7 +2152,7 @@ It is the parent class of all concrete types of archetype.</p>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>parent_archetype_id</strong>: <code>String</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>parent_archetype_id</strong>: <code><a href="/releases/BASE/latest/foundation_types.html#_string_class" target="_blank" rel="noopener">String</a></code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>Archetype reference of the specialisation parent of this archetype, if applicable. May take the form of an archetype interface identifier, i.e. the identifier up to the major version only, or may be a full archetype identifier.</p>
 </div></div></td>
@@ -2166,7 +2166,7 @@ It is the parent class of all concrete types of archetype.</p>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>1..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>is_differential</strong>: <code>Boolean</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>is_differential</strong>: <code><a href="/releases/BASE/latest/foundation_types.html#_boolean_class" target="_blank" rel="noopener">Boolean</a></code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>Flag indicating whether this archetype is differential or flat in its contents. Top-level source archetypes have this flag set to True.</p>
 </div></div></td>
@@ -2204,7 +2204,7 @@ It is the parent class of all concrete types of archetype.</p>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>1..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>concept_code</strong> (): <code>String</code><br>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>concept_code</strong> (): <code><a href="/releases/BASE/latest/foundation_types.html#_string_class" target="_blank" rel="noopener">String</a></code><br>
 <br>
 <em>post-condition</em>: <code>Result.is_equal (definition.node_id)</code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
@@ -2213,7 +2213,7 @@ It is the parent class of all concrete types of archetype.</p>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>1..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>physical_paths</strong> (): <code><a href="/releases/BASE/latest/foundation_types.html#_list_class" target="_blank" rel="noopener">List</a>&lt;String&gt;</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>physical_paths</strong> (): <code><a href="/releases/BASE/latest/foundation_types.html#_list_class">List<sup></a>&lt;<a href="/releases/BASE/latest/foundation_types.html#_string_class">String</sup></a>&gt;</code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>Set of language-independent paths extracted from archetype. Paths obey Xpath-like syntax and are formed from alternations of <code>C_OBJECT.<em>node_id</em></code> and <code>C_ATTRIBUTE.<em>rm_attribute_name</em></code> values.</p>
 </div></div></td>
@@ -2221,15 +2221,15 @@ It is the parent class of all concrete types of archetype.</p>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>1..1</strong></p></th>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><strong>logical_paths</strong> (<br>
-lang: <code>String[1]</code><br>
-): <code><a href="/releases/BASE/latest/foundation_types.html#_list_class" target="_blank" rel="noopener">List</a>&lt;String&gt;</code></p></td>
+lang: <code><a href="/releases/BASE/latest/foundation_types.html#_string_class" target="_blank" rel="noopener">String</a>[1]</code><br>
+): <code><a href="/releases/BASE/latest/foundation_types.html#_list_class">List<sup></a>&lt;<a href="/releases/BASE/latest/foundation_types.html#_string_class">String</sup></a>&gt;</code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>Set of language-dependent paths extracted from archetype. Paths obey the same syntax as physical_paths, but with node_ids replaced by their meanings from the terminology.</p>
 </div></div></td>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>1..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>specialisation_depth</strong> (): <code>Integer</code><br>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>specialisation_depth</strong> (): <code><a href="/releases/BASE/latest/foundation_types.html#_integer_class" target="_blank" rel="noopener">Integer</a></code><br>
 <br>
 <em>post-condition</em>: <code>Result = terminology.specialisation_depth</code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
@@ -2238,7 +2238,7 @@ lang: <code>String[1]</code><br>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>1..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>is_specialised</strong> (): <code>Boolean</code><br>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>is_specialised</strong> (): <code><a href="/releases/BASE/latest/foundation_types.html#_boolean_class" target="_blank" rel="noopener">Boolean</a></code><br>
 <br>
 <em>post-condition</em>: <code>Result implies parent_archetype_hrid /= Void</code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
@@ -2290,7 +2290,7 @@ lang: <code>String[1]</code><br>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>adl_version</strong>: <code>String</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>adl_version</strong>: <code><a href="/releases/BASE/latest/foundation_types.html#_string_class" target="_blank" rel="noopener">String</a></code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>ADL version if archetype was read in from an ADL sharable archetype.</p>
 </div></div></td>
@@ -2304,14 +2304,14 @@ lang: <code>String[1]</code><br>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>1..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>rm_release</strong>: <code>String</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>rm_release</strong>: <code><a href="/releases/BASE/latest/foundation_types.html#_string_class" target="_blank" rel="noopener">String</a></code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>Semver.org compatible release of the most recent reference model release on which the archetype in its current version is based. This does not imply conformance only to this release, since an archetype may be valid with respect to multiple releases of a reference model.</p>
 </div></div></td>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>1..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>is_generated</strong>: <code>Boolean</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>is_generated</strong>: <code><a href="/releases/BASE/latest/foundation_types.html#_boolean_class" target="_blank" rel="noopener">Boolean</a></code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>If True, indicates that this artefact was machine-generated from some other source, in which case, tools would expect to overwrite this artefact on a new generation. Editing tools should set this value to False when a user starts to manually edit an archetype.</p>
 </div></div></td>
@@ -2368,42 +2368,42 @@ lang: <code>String[1]</code><br>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>namespace</strong>: <code>String</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>namespace</strong>: <code><a href="/releases/BASE/latest/foundation_types.html#_string_class" target="_blank" rel="noopener">String</a></code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>Reverse domain name namespace identifier.</p>
 </div></div></td>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>1..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>rm_publisher</strong>: <code>String</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>rm_publisher</strong>: <code><a href="/releases/BASE/latest/foundation_types.html#_string_class" target="_blank" rel="noopener">String</a></code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>Name of the Reference Model publisher.</p>
 </div></div></td>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>1..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>rm_package</strong>: <code>String</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>rm_package</strong>: <code><a href="/releases/BASE/latest/foundation_types.html#_string_class" target="_blank" rel="noopener">String</a></code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>Name of the package in whose reachability graph the <code><em>rm_class</em></code> class is found (there can be more than one possibility in many reference models).</p>
 </div></div></td>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>1..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>rm_class</strong>: <code>String</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>rm_class</strong>: <code><a href="/releases/BASE/latest/foundation_types.html#_string_class" target="_blank" rel="noopener">String</a></code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>Name of the root class of this archetype.</p>
 </div></div></td>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>1..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>concept_id</strong>: <code>String</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>concept_id</strong>: <code><a href="/releases/BASE/latest/foundation_types.html#_string_class" target="_blank" rel="noopener">String</a></code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>The short concept name of the archetype as used in the multi-axial <code><em>archetype_hrid</em></code>.</p>
 </div></div></td>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>1..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>release_version</strong>: <code>String</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>release_version</strong>: <code><a href="/releases/BASE/latest/foundation_types.html#_string_class" target="_blank" rel="noopener">String</a></code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>The full numeric version of this archetype consisting of 3 parts, e.g. <code>"1.8.2"</code>. The <code><em>archetype_hrid</em></code> feature includes only the major version.</p>
 </div></div></td>
@@ -2433,7 +2433,7 @@ lang: <code>String[1]</code><br>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>1..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>build_count</strong>: <code>String</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>build_count</strong>: <code><a href="/releases/BASE/latest/foundation_types.html#_string_class" target="_blank" rel="noopener">String</a></code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>The build count since last increment of any version part.</p>
 </div></div></td>
@@ -2445,42 +2445,42 @@ lang: <code>String[1]</code><br>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>1..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>semantic_id</strong> (): <code>String</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>semantic_id</strong> (): <code><a href="/releases/BASE/latest/foundation_types.html#_string_class" target="_blank" rel="noopener">String</a></code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>The 'interface' form of the HRID, i.e. down to the major version.</p>
 </div></div></td>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>1..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>physical_id</strong> (): <code>String</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>physical_id</strong> (): <code><a href="/releases/BASE/latest/foundation_types.html#_string_class" target="_blank" rel="noopener">String</a></code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>The 'physical' form of the HRID, i.e. with complete version information specified by <code><em>version_id()</em></code>.</p>
 </div></div></td>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>1..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>version_id</strong> (): <code>String</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>version_id</strong> (): <code><a href="/releases/BASE/latest/foundation_types.html#_string_class" target="_blank" rel="noopener">String</a></code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>Full version identifier string, based on <code><em>release_version</em></code>, <code><em>version_status</em></code>, and <code><em>build_count</em></code> e.g. <code>"1.8.2-rc.4"</code>.</p>
 </div></div></td>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>1..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>major_version</strong> (): <code>String</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>major_version</strong> (): <code><a href="/releases/BASE/latest/foundation_types.html#_string_class" target="_blank" rel="noopener">String</a></code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>Major version of this archetype, extracted from <code><em>release_version</em></code>.</p>
 </div></div></td>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>1..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>minor_version</strong> (): <code>String</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>minor_version</strong> (): <code><a href="/releases/BASE/latest/foundation_types.html#_string_class" target="_blank" rel="noopener">String</a></code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>Minor version of this archetype, extracted from <code><em>release_version</em></code>.</p>
 </div></div></td>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>1..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>patch_version</strong> (): <code>String</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>patch_version</strong> (): <code><a href="/releases/BASE/latest/foundation_types.html#_string_class" target="_blank" rel="noopener">String</a></code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>Patch version of this archetype, extracted from <code><em>release_version</em></code>. Equivalent to patch version in patch version in <code>semver.org</code> sytem.</p>
 </div></div></td>
@@ -3407,7 +3407,7 @@ Since an archetype might not contain external terminology bindings for all (or e
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>1..1<br>
 (abstract)</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>is_prohibited</strong> (): <code>Boolean</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>is_prohibited</strong> (): <code><a href="/releases/BASE/latest/foundation_types.html#_boolean_class" target="_blank" rel="noopener">Boolean</a></code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>True if this node is prohibited. Implemented in subtypes.</p>
 </div></div></td>
@@ -3415,15 +3415,15 @@ Since an archetype might not contain external terminology bindings for all (or e
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>1..1</strong></p></th>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><strong>has_path</strong> (<br>
-a_path: <code>String[1]</code><br>
-): <code>Boolean</code></p></td>
+a_path: <code><a href="/releases/BASE/latest/foundation_types.html#_string_class" target="_blank" rel="noopener">String</a>[1]</code><br>
+): <code><a href="/releases/BASE/latest/foundation_types.html#_boolean_class" target="_blank" rel="noopener">Boolean</a></code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>True if the relative path <code><em>a_path</em></code> exists at this node.</p>
 </div></div></td>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>1..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>path</strong> (): <code>String</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>path</strong> (): <code><a href="/releases/BASE/latest/foundation_types.html#_string_class" target="_blank" rel="noopener">String</a></code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>Path of this node relative to root of archetype.</p>
 </div></div></td>
@@ -3468,7 +3468,7 @@ other: <code><a href="#_archetype_constraint_class">ARCHETYPE_CONSTRAINT</a>[1]<
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>1..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>is_second_order_constrained</strong> (): <code>Boolean</code><br>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>is_second_order_constrained</strong> (): <code><a href="/releases/BASE/latest/foundation_types.html#_boolean_class" target="_blank" rel="noopener">Boolean</a></code><br>
 <br>
 <em>Post</em>: <code>soc_parent /= Void or else (parent /= Void and then parent.is_second_order_constrained)</code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
@@ -3477,14 +3477,14 @@ other: <code><a href="#_archetype_constraint_class">ARCHETYPE_CONSTRAINT</a>[1]<
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>1..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>is_root</strong> (): <code>Boolean</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>is_root</strong> (): <code><a href="/releases/BASE/latest/foundation_types.html#_boolean_class" target="_blank" rel="noopener">Boolean</a></code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>True if this node is the root of the tree.</p>
 </div></div></td>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>1..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>is_leaf</strong> (): <code>Boolean</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>is_leaf</strong> (): <code><a href="/releases/BASE/latest/foundation_types.html#_boolean_class" target="_blank" rel="noopener">Boolean</a></code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>True if this node is a terminal node in the tree structure, i.e. having no child nodes.</p>
 </div></div></td>
@@ -3522,7 +3522,7 @@ other: <code><a href="#_archetype_constraint_class">ARCHETYPE_CONSTRAINT</a>[1]<
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>1..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>rm_attribute_name</strong>: <code>String</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>rm_attribute_name</strong>: <code><a href="/releases/BASE/latest/foundation_types.html#_string_class" target="_blank" rel="noopener">String</a></code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>Reference model attribute within the enclosing type represented by a <code>C_OBJECT</code>.</p>
 </div></div></td>
@@ -3543,7 +3543,7 @@ other: <code><a href="#_archetype_constraint_class">ARCHETYPE_CONSTRAINT</a>[1]<
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>differential_path</strong>: <code>String</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>differential_path</strong>: <code><a href="/releases/BASE/latest/foundation_types.html#_string_class" target="_blank" rel="noopener">String</a></code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>Path to the parent object of this attribute (i.e. doesn’t include the name of this attribute). Used only for attributes in differential form, specialised archetypes. Enables only the re-defined parts of a specialised archetype to be expressed, at the path where they occur.</p>
 </div></div></td>
@@ -3557,7 +3557,7 @@ other: <code><a href="#_archetype_constraint_class">ARCHETYPE_CONSTRAINT</a>[1]<
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>1..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>is_multiple</strong>: <code>Boolean</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>is_multiple</strong>: <code><a href="/releases/BASE/latest/foundation_types.html#_boolean_class" target="_blank" rel="noopener">Boolean</a></code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>Flag indicating whether this attribute constraint is on a container (i.e. multiply-valued) attribute.</p>
 </div></div></td>
@@ -3569,7 +3569,7 @@ other: <code><a href="#_archetype_constraint_class">ARCHETYPE_CONSTRAINT</a>[1]<
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>1..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>any_allowed</strong> (): <code>Boolean</code><br>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>any_allowed</strong> (): <code><a href="/releases/BASE/latest/foundation_types.html#_boolean_class" target="_blank" rel="noopener">Boolean</a></code><br>
 <br>
 <em>Post</em>: <code>Result := children.is_empty and not is_prohibited</code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
@@ -3578,7 +3578,7 @@ other: <code><a href="#_archetype_constraint_class">ARCHETYPE_CONSTRAINT</a>[1]<
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>1..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>is_mandatory</strong> (): <code>Boolean</code><br>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>is_mandatory</strong> (): <code><a href="/releases/BASE/latest/foundation_types.html#_boolean_class" target="_blank" rel="noopener">Boolean</a></code><br>
 <br>
 <em>Post</em>: <code>Result = existence /= Void and then existence.is_mandatory</code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
@@ -3587,14 +3587,14 @@ other: <code><a href="#_archetype_constraint_class">ARCHETYPE_CONSTRAINT</a>[1]<
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>1..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>rm_attribute_path</strong> (): <code>String</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>rm_attribute_path</strong> (): <code><a href="/releases/BASE/latest/foundation_types.html#_string_class" target="_blank" rel="noopener">String</a></code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>Path of this attribute with respect to owning <code>C_OBJECT</code>, including differential path where applicable.</p>
 </div></div></td>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>1..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>is_single</strong> (): <code>Boolean</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>is_single</strong> (): <code><a href="/releases/BASE/latest/foundation_types.html#_boolean_class" target="_blank" rel="noopener">Boolean</a></code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>True if this node logically represents a single-valued attribute. Evaluated as not <code><em>is_multiple</em></code>.</p>
 </div></div></td>
@@ -3604,7 +3604,7 @@ other: <code><a href="#_archetype_constraint_class">ARCHETYPE_CONSTRAINT</a>[1]<
 (effected)</strong></p></th>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><strong>c_congruent_to</strong> (<br>
 other: <code><a href="#_archetype_constraint_class">ARCHETYPE_CONSTRAINT</a>[1]</code><br>
-): <code>Boolean</code><br>
+): <code><a href="/releases/BASE/latest/foundation_types.html#_boolean_class" target="_blank" rel="noopener">Boolean</a></code><br>
 <br>
 <em>Post</em>: <code>Result = existence = Void and is_single and other.is_single) or (is_multiple and other.is_multiple and cardinality = Void</code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
@@ -3620,7 +3620,7 @@ other: <code><a href="#_archetype_constraint_class">ARCHETYPE_CONSTRAINT</a>[1]<
 <td class="tableblock halign-left valign-top"><p class="tableblock"><strong>c_conforms_to</strong> (<br>
 other: <code><a href="#_archetype_constraint_class">ARCHETYPE_CONSTRAINT</a>[1]</code>,<br>
 rmcc: <code><a href="/releases/BASE/latest/foundation_types.html#_function_class">FUNCTION<sup></a>&lt;<a href="/releases/BASE/latest/foundation_types.html#_boolean_class">Boolean</sup></a>, <a href="/releases/BASE/latest/foundation_types.html#_tuple2_class">TUPLE2<sup></a>&lt;<a href="/releases/BASE/latest/foundation_types.html#_string_class">String</sup></a>, <a href="/releases/BASE/latest/foundation_types.html#_string_class" target="_blank" rel="noopener">String</a>&gt;&gt;[1]</code><br>
-): <code>Boolean</code><br>
+): <code><a href="/releases/BASE/latest/foundation_types.html#_boolean_class" target="_blank" rel="noopener">Boolean</a></code><br>
 <br>
 <em>Post</em>: <code>Result = existence_conforms_to (other) and is_single and other.is_single) or else (is_multiple and cardinality_conforms_to (other)</code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
@@ -3631,7 +3631,7 @@ Typically used during validation of specialised archetype nodes.</p>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>1..1<br>
 (effected)</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>is_prohibited</strong> (): <code>Boolean</code><br>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>is_prohibited</strong> (): <code><a href="/releases/BASE/latest/foundation_types.html#_boolean_class" target="_blank" rel="noopener">Boolean</a></code><br>
 <br>
 <em>Post</em>: <code>Result = existence /= Void and then existence.is_prohibited</code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
@@ -3850,7 +3850,7 @@ Typically used during validation of specialised archetype nodes.</p>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>1..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>rm_type_name</strong>: <code>String</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>rm_type_name</strong>: <code><a href="/releases/BASE/latest/foundation_types.html#_string_class" target="_blank" rel="noopener">String</a></code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>Reference model type that this node corresponds to.</p>
 </div></div></td>
@@ -3865,7 +3865,7 @@ Only set if it overrides the parent archetype in the case of specialised archety
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>1..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>node_id</strong>: <code>String</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>node_id</strong>: <code><a href="/releases/BASE/latest/foundation_types.html#_string_class" target="_blank" rel="noopener">String</a></code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>Semantic identifier of this node, used to dis-tinguish sibling nodes. All nodes must have a <code><em>node_id</em></code>; for nodes under a container <code>C_ATTRIBUTE</code>, the id must be an id-code must be defined in the archetype terminology. For valid structures, all node ids are id-codes.</p>
 </div>
@@ -3875,7 +3875,7 @@ Only set if it overrides the parent archetype in the case of specialised archety
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>is_deprecated</strong>: <code>Boolean</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>is_deprecated</strong>: <code><a href="/releases/BASE/latest/foundation_types.html#_boolean_class" target="_blank" rel="noopener">Boolean</a></code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>True if this node and by implication all sub-nodes are deprecated for use.</p>
 </div></div></td>
@@ -3894,7 +3894,7 @@ Only set if it overrides the parent archetype in the case of specialised archety
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>1..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>specialisation_depth</strong> (): <code>Integer</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>specialisation_depth</strong> (): <code><a href="/releases/BASE/latest/foundation_types.html#_integer_class" target="_blank" rel="noopener">Integer</a></code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>Level of specialisation of this archetype node, based on its <code><em>node_id</em></code>. The value 0 corresponds to non-specialised, 1 to first-level specialisation and so on. The level is the same as the number of ‘.’ characters in the node_id code. If <code><em>node_id</em></code> is not set, the return value is -1, signifying that the specialisation level should be determined from the nearest parent <code>C_OBJECT</code> node having a node_id.</p>
 </div></div></td>
@@ -3915,7 +3915,7 @@ Only set if it overrides the parent archetype in the case of specialised archety
 <td class="tableblock halign-left valign-top"><p class="tableblock"><strong>c_conforms_to</strong> (<br>
 other: <code><a href="#_c_object_class">C_OBJECT</a>[1]</code>,<br>
 rmcc: <code><a href="/releases/BASE/latest/foundation_types.html#_function_class">FUNCTION<sup></a>&lt;<a href="/releases/BASE/latest/foundation_types.html#_boolean_class">Boolean</sup></a>, <a href="/releases/BASE/latest/foundation_types.html#_tuple2_class">TUPLE2<sup></a>&lt;<a href="/releases/BASE/latest/foundation_types.html#_string_class">String</sup></a>, <a href="/releases/BASE/latest/foundation_types.html#_string_class" target="_blank" rel="noopener">String</a>&gt;&gt;[1]</code><br>
-): <code>Boolean</code></p></td>
+): <code><a href="/releases/BASE/latest/foundation_types.html#_boolean_class" target="_blank" rel="noopener">Boolean</a></code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>True if constraints represented by this node, ignoring any sub-parts, are narrower or the same as other.
 Typically used during validation of specialised archetype nodes.</p>
@@ -3939,7 +3939,7 @@ Typically used during validation of specialised archetype nodes.</p>
 (effected)</strong></p></th>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><strong>c_congruent_to</strong> (<br>
 other: <code><a href="#_archetype_constraint_class">ARCHETYPE_CONSTRAINT</a>[1]</code><br>
-): <code>Boolean</code></p></td>
+): <code><a href="/releases/BASE/latest/foundation_types.html#_boolean_class" target="_blank" rel="noopener">Boolean</a></code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>True if constraints represented by this node contain no further redefinitions with respect to the node <code><em>other</em></code>, with the exception of <code><em>node_id</em></code> redefinition in <code>C_OBJECT</code> nodes.</p>
 </div>
@@ -3951,7 +3951,7 @@ other: <code><a href="#_archetype_constraint_class">ARCHETYPE_CONSTRAINT</a>[1]<
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>1..1</strong></p></th>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><strong>occurrences_conforms_to</strong> (<br>
 other: <code><a href="#_c_object_class">C_OBJECT</a>[1]</code><br>
-): <code>Boolean</code></p></td>
+): <code><a href="/releases/BASE/latest/foundation_types.html#_boolean_class" target="_blank" rel="noopener">Boolean</a></code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>True if this node <code><em>occurrences</em></code> conforms to <code><em>other.occurrences</em></code>; <code>other</code> is assumed to be in a flat archetype.</p>
 </div>
@@ -3973,7 +3973,7 @@ other: <code><a href="#_c_object_class">C_OBJECT</a>[1]</code><br>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>1..1</strong></p></th>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><strong>node_id_conforms_to</strong> (<br>
 other: <code><a href="#_c_object_class">C_OBJECT</a>[1]</code><br>
-): <code>Boolean</code><br>
+): <code><a href="/releases/BASE/latest/foundation_types.html#_boolean_class" target="_blank" rel="noopener">Boolean</a></code><br>
 <br>
 <em>Post</em>: <code>Result = codes_conformant (node_id, other.node_id)</code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
@@ -3983,7 +3983,7 @@ other: <code><a href="#_c_object_class">C_OBJECT</a>[1]</code><br>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>1..1<br>
 (effected)</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>is_prohibited</strong> (): <code>Boolean</code><br>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>is_prohibited</strong> (): <code><a href="/releases/BASE/latest/foundation_types.html#_boolean_class" target="_blank" rel="noopener">Boolean</a></code><br>
 <br>
 <em>Post</em>: <code>Result = occurrences /= Void and then occurrences.is_prohibited</code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
@@ -4022,14 +4022,14 @@ other: <code><a href="#_c_object_class">C_OBJECT</a>[1]</code><br>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>1..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>is_before</strong>: <code>Boolean</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>is_before</strong>: <code><a href="/releases/BASE/latest/foundation_types.html#_boolean_class" target="_blank" rel="noopener">Boolean</a></code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>True if the order relationship is ‘before’, if False, it is ‘after’.</p>
 </div></div></td>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>1..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>sibling_node_id</strong>: <code>String</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>sibling_node_id</strong>: <code><a href="/releases/BASE/latest/foundation_types.html#_string_class" target="_blank" rel="noopener">String</a></code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>Node identifier of sibling before or after which this node should come.</p>
 </div></div></td>
@@ -4041,7 +4041,7 @@ other: <code><a href="#_c_object_class">C_OBJECT</a>[1]</code><br>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>1..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>is_after</strong> (): <code>Boolean</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>is_after</strong> (): <code><a href="/releases/BASE/latest/foundation_types.html#_boolean_class" target="_blank" rel="noopener">Boolean</a></code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>True if the order relationship is <code><em>after</em></code>, computed as the negation of <code><em>is_before</em></code>.</p>
 </div></div></td>
@@ -4339,7 +4339,7 @@ other: <code><a href="#_c_object_class">C_OBJECT</a>[1]</code><br>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>1..1<br>
 (abstract)</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>any_allowed</strong> (): <code>Boolean</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>any_allowed</strong> (): <code><a href="/releases/BASE/latest/foundation_types.html#_boolean_class" target="_blank" rel="noopener">Boolean</a></code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>True if any value (i.e. instance) of the reference model type would be allowed. Redefined in descendants.</p>
 </div></div></td>
@@ -4364,7 +4364,7 @@ a_value: <code><a href="/releases/BASE/latest/foundation_types.html#_any_class" 
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>1..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>has_default_value</strong> (): <code>Boolean</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>has_default_value</strong> (): <code><a href="/releases/BASE/latest/foundation_types.html#_boolean_class" target="_blank" rel="noopener">Boolean</a></code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>True if there is an assumed value.</p>
 </div></div></td>
@@ -4441,7 +4441,7 @@ a_value: <code><a href="/releases/BASE/latest/foundation_types.html#_any_class" 
 <td class="tableblock halign-left valign-top"><p class="tableblock"><strong>c_conforms_to</strong> (<br>
 other: <code><a href="#_c_complex_object_class">C_COMPLEX_OBJECT</a>[1]</code>,<br>
 rmcc: <code><a href="/releases/BASE/latest/foundation_types.html#_function_class">FUNCTION<sup></a>&lt;<a href="/releases/BASE/latest/foundation_types.html#_boolean_class">Boolean</sup></a>, <a href="/releases/BASE/latest/foundation_types.html#_tuple2_class">TUPLE2<sup></a>&lt;<a href="/releases/BASE/latest/foundation_types.html#_string_class">String</sup></a>, <a href="/releases/BASE/latest/foundation_types.html#_string_class" target="_blank" rel="noopener">String</a>&gt;&gt;[1]</code><br>
-): <code>Boolean</code></p></td>
+): <code><a href="/releases/BASE/latest/foundation_types.html#_boolean_class" target="_blank" rel="noopener">Boolean</a></code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>True if constraints represented by this node, ignoring any sub-parts, are narrower or the same as other.
 Typically used during validation of specialised archetype nodes.</p>
@@ -4465,7 +4465,7 @@ Typically used during validation of specialised archetype nodes.</p>
 (effected)</strong></p></th>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><strong>c_congruent_to</strong> (<br>
 other: <code><a href="#_c_complex_object_class">C_COMPLEX_OBJECT</a>[1]</code><br>
-): <code>Boolean</code></p></td>
+): <code><a href="/releases/BASE/latest/foundation_types.html#_boolean_class" target="_blank" rel="noopener">Boolean</a></code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>True if constraints represented by this node contain no further redefinitions with respect to the node <code><em>other</em></code>, with the exception of <code><em>node_id</em></code> redefinition in <code>C_OBJECT</code> nodes.</p>
 </div>
@@ -4530,7 +4530,7 @@ other: <code><a href="#_c_complex_object_class">C_COMPLEX_OBJECT</a>[1]</code><b
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>1..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>archetype_ref</strong>: <code>String</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>archetype_ref</strong>: <code><a href="/releases/BASE/latest/foundation_types.html#_string_class" target="_blank" rel="noopener">String</a></code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>Reference to archetype is being used to fill a slot or redefine an external reference. Typically an 'interface' archetype id, i.e. identifier with partial version information.</p>
 </div></div></td>
@@ -4609,7 +4609,7 @@ other: <code><a href="#_c_complex_object_class">C_COMPLEX_OBJECT</a>[1]</code><b
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>1..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>is_closed</strong>: <code>Boolean</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>is_closed</strong>: <code><a href="/releases/BASE/latest/foundation_types.html#_boolean_class" target="_blank" rel="noopener">Boolean</a></code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>True if this slot specification in this artefact is closed to further filling either in further specialisations or at runtime. Default value False, i.e. unless explicitly set, a slot remains open.</p>
 </div></div></td>
@@ -4621,7 +4621,7 @@ other: <code><a href="#_c_complex_object_class">C_COMPLEX_OBJECT</a>[1]</code><b
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>1..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>any_allowed</strong> (): <code>Boolean</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>any_allowed</strong> (): <code><a href="/releases/BASE/latest/foundation_types.html#_boolean_class" target="_blank" rel="noopener">Boolean</a></code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>True if no constraints stated, and slot is not closed.</p>
 </div></div></td>
@@ -4705,7 +4705,7 @@ other: <code><a href="#_c_complex_object_class">C_COMPLEX_OBJECT</a>[1]</code><b
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>1..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>target_path</strong>: <code>String</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>target_path</strong>: <code><a href="/releases/BASE/latest/foundation_types.html#_string_class" target="_blank" rel="noopener">String</a></code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>Reference to an object node using archetype path notation.</p>
 </div></div></td>
@@ -4717,7 +4717,7 @@ other: <code><a href="#_c_complex_object_class">C_COMPLEX_OBJECT</a>[1]</code><b
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>1..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>use_target_occurrences</strong> (): <code>Boolean</code><br>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>use_target_occurrences</strong> (): <code><a href="/releases/BASE/latest/foundation_types.html#_boolean_class" target="_blank" rel="noopener">Boolean</a></code><br>
 <br>
 <em>Post</em>: <code>Result = (occurrences = Void)</code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
@@ -4729,7 +4729,7 @@ other: <code><a href="#_c_complex_object_class">C_COMPLEX_OBJECT</a>[1]</code><b
 (redefined)</strong></p></th>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><strong>occurrences_conforms_to</strong> (<br>
 other: <code><a href="#_c_object_class">C_OBJECT</a>[1]</code><br>
-): <code>Boolean</code></p></td>
+): <code><a href="/releases/BASE/latest/foundation_types.html#_boolean_class" target="_blank" rel="noopener">Boolean</a></code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>True if this node occurrences conforms to <code><em>other.occurrences</em></code>; <code><em>other</em></code> is assumed to be in a flat archetype.</p>
 </div>
@@ -4811,7 +4811,7 @@ other: <code><a href="#_c_object_class">C_OBJECT</a>[1]</code><br>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>is_enumerated_type_constraint</strong>: <code>Boolean</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>is_enumerated_type_constraint</strong>: <code><a href="/releases/BASE/latest/foundation_types.html#_boolean_class" target="_blank" rel="noopener">Boolean</a></code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>True if this object represents a constraint on an enumerated type from the reference model, where the latter is assumed to be based on a primitive type, generally Integer or String.</p>
 </div></div></td>
@@ -4830,14 +4830,14 @@ other: <code><a href="#_c_object_class">C_OBJECT</a>[1]</code><br>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>1..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>has_assumed_value</strong> (): <code>Boolean</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>has_assumed_value</strong> (): <code><a href="/releases/BASE/latest/foundation_types.html#_boolean_class" target="_blank" rel="noopener">Boolean</a></code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>True if there is an assumed value.</p>
 </div></div></td>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>1..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>constrained_typename</strong> (): <code>String</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>constrained_typename</strong> (): <code><a href="/releases/BASE/latest/foundation_types.html#_string_class" target="_blank" rel="noopener">String</a></code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>Generate name of native type that is constrained by this <code>C_XXX</code> type. For most types, it is the <code>C_XXX</code> typename without the <code>C_</code>, i.e. <code>XXX</code>. E.g. <code>C_INTEGER</code> &#8594; <code>Integer</code>. For the date/time types the mapping is different.</p>
 </div></div></td>
@@ -4848,7 +4848,7 @@ other: <code><a href="#_c_object_class">C_OBJECT</a>[1]</code><br>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><strong>c_conforms_to</strong> (<br>
 other: <code><a href="#_c_primitive_object_class">C_PRIMITIVE_OBJECT</a>[1]</code>,<br>
 rmcc: <code><a href="/releases/BASE/latest/foundation_types.html#_function_class">FUNCTION<sup></a>&lt;<a href="/releases/BASE/latest/foundation_types.html#_boolean_class">Boolean</sup></a>, <a href="/releases/BASE/latest/foundation_types.html#_tuple2_class">TUPLE2<sup></a>&lt;<a href="/releases/BASE/latest/foundation_types.html#_string_class">String</sup></a>, <a href="/releases/BASE/latest/foundation_types.html#_string_class" target="_blank" rel="noopener">String</a>&gt;&gt;[1]</code><br>
-): <code>Boolean</code></p></td>
+): <code><a href="/releases/BASE/latest/foundation_types.html#_boolean_class" target="_blank" rel="noopener">Boolean</a></code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>True if constraints represented by this node, ignoring any sub-parts, are narrower or the same as other.
 Typically used during validation of specialised archetype nodes.</p>
@@ -4872,7 +4872,7 @@ Typically used during validation of specialised archetype nodes.</p>
 (abstract)</strong></p></th>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><strong>c_value_conforms_to</strong> (<br>
 other: <code><a href="#_c_primitive_object_class">C_PRIMITIVE_OBJECT</a>[1]</code><br>
-): <code>Boolean</code></p></td>
+): <code><a href="/releases/BASE/latest/foundation_types.html#_boolean_class" target="_blank" rel="noopener">Boolean</a></code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>True if this node expresses a value constraint that conforms to that of <code>other</code>. Effected in descendants.</p>
 </div></div></td>
@@ -4882,7 +4882,7 @@ other: <code><a href="#_c_primitive_object_class">C_PRIMITIVE_OBJECT</a>[1]</cod
 (effected)</strong></p></th>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><strong>c_congruent_to</strong> (<br>
 other: <code><a href="#_c_primitive_object_class">C_PRIMITIVE_OBJECT</a>[1]</code><br>
-): <code>Boolean</code></p></td>
+): <code><a href="/releases/BASE/latest/foundation_types.html#_boolean_class" target="_blank" rel="noopener">Boolean</a></code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>True if constraints represented by this node contain no further redefinitions with respect to the node <code><em>other</em></code>, with the exception of <code><em>node_id</em></code> redefinition in <code>C_OBJECT</code> nodes.</p>
 </div>
@@ -4895,7 +4895,7 @@ other: <code><a href="#_c_primitive_object_class">C_PRIMITIVE_OBJECT</a>[1]</cod
 (abstract)</strong></p></th>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><strong>c_value_congruent_to</strong> (<br>
 other: <code><a href="#_c_primitive_object_class">C_PRIMITIVE_OBJECT</a>[1]</code><br>
-): <code>Boolean</code></p></td>
+): <code><a href="/releases/BASE/latest/foundation_types.html#_boolean_class" target="_blank" rel="noopener">Boolean</a></code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>True if this node expresses the same value constraint as <code>other</code>. Effected in descendants.</p>
 </div></div></td>
@@ -6694,7 +6694,7 @@ other: <code><a href="#_c_terminology_code_class">C_TERMINOLOGY_CODE</a>[1]</cod
 <td class="tableblock halign-left valign-top"><p class="tableblock"><strong>c_conforms_to</strong> (<br>
 other: <code><a href="#_c_second_order_class">C_SECOND_ORDER</a>[1]</code>,<br>
 rmcc: <code><a href="/releases/BASE/latest/foundation_types.html#_function_class">FUNCTION<sup></a>&lt;<a href="/releases/BASE/latest/foundation_types.html#_boolean_class">Boolean</sup></a>, <a href="/releases/BASE/latest/foundation_types.html#_tuple2_class">TUPLE2<sup></a>&lt;<a href="/releases/BASE/latest/foundation_types.html#_string_class">String</sup></a>, <a href="/releases/BASE/latest/foundation_types.html#_string_class" target="_blank" rel="noopener">String</a>&gt;&gt;[1]</code><br>
-): <code>Boolean</code></p></td>
+): <code><a href="/releases/BASE/latest/foundation_types.html#_boolean_class" target="_blank" rel="noopener">Boolean</a></code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>True if constraints represented by this node, ignoring any sub-parts, are narrower or the same as other. Typically used during validation of specialised archetype nodes.</p>
 </div>
@@ -6717,7 +6717,7 @@ rmcc: <code><a href="/releases/BASE/latest/foundation_types.html#_function_class
 (abstract)</strong></p></th>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><strong>c_congruent_to</strong> (<br>
 other: <code><a href="#_c_second_order_class">C_SECOND_ORDER</a>[1]</code><br>
-): <code>Boolean</code></p></td>
+): <code><a href="/releases/BASE/latest/foundation_types.html#_boolean_class" target="_blank" rel="noopener">Boolean</a></code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>True if constraints represented by this node contain no further redefinitions with respect to the node other. Typically used to test if an inherited node locally contains any constraints.</p>
 </div></div></td>
@@ -6772,7 +6772,7 @@ other: <code><a href="#_c_second_order_class">C_SECOND_ORDER</a>[1]</code><br>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><strong>c_conforms_to</strong> (<br>
 other: <code><a href="#_c_primitive_tuple_class">C_PRIMITIVE_TUPLE</a>[1]</code>,<br>
 rmcc: <code><a href="/releases/BASE/latest/foundation_types.html#_function_class">FUNCTION<sup></a>&lt;<a href="/releases/BASE/latest/foundation_types.html#_boolean_class">Boolean</sup></a>, <a href="/releases/BASE/latest/foundation_types.html#_tuple2_class">TUPLE2<sup></a>&lt;<a href="/releases/BASE/latest/foundation_types.html#_string_class">String</sup></a>, <a href="/releases/BASE/latest/foundation_types.html#_string_class" target="_blank" rel="noopener">String</a>&gt;&gt;[1]</code><br>
-): <code>Boolean</code></p></td>
+): <code><a href="/releases/BASE/latest/foundation_types.html#_boolean_class" target="_blank" rel="noopener">Boolean</a></code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>True if constraints represented by this node, ignoring any sub-parts, are narrower or the same as other. Typically used during validation of specialised archetype nodes.</p>
 </div>
@@ -6795,7 +6795,7 @@ rmcc: <code><a href="/releases/BASE/latest/foundation_types.html#_function_class
 (effected)</strong></p></th>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><strong>c_congruent_to</strong> (<br>
 other: <code><a href="#_c_second_order_class">C_SECOND_ORDER</a>[1]</code><br>
-): <code>Boolean</code></p></td>
+): <code><a href="/releases/BASE/latest/foundation_types.html#_boolean_class" target="_blank" rel="noopener">Boolean</a></code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>True if constraints represented by this node contain no further redefinitions with respect to the node other. Typically used to test if an inherited node locally contains any constraints.</p>
 </div></div></td>
@@ -6857,7 +6857,7 @@ other: <code><a href="#_c_second_order_class">C_SECOND_ORDER</a>[1]</code><br>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><strong>c_conforms_to</strong> (<br>
 other: <code><a href="#_c_attribute_tuple_class">C_ATTRIBUTE_TUPLE</a>[1]</code>,<br>
 rmcc: <code><a href="/releases/BASE/latest/foundation_types.html#_function_class">FUNCTION<sup></a>&lt;<a href="/releases/BASE/latest/foundation_types.html#_boolean_class">Boolean</sup></a>, <a href="/releases/BASE/latest/foundation_types.html#_tuple2_class">TUPLE2<sup></a>&lt;<a href="/releases/BASE/latest/foundation_types.html#_string_class">String</sup></a>, <a href="/releases/BASE/latest/foundation_types.html#_string_class" target="_blank" rel="noopener">String</a>&gt;&gt;[1]</code><br>
-): <code>Boolean</code></p></td>
+): <code><a href="/releases/BASE/latest/foundation_types.html#_boolean_class" target="_blank" rel="noopener">Boolean</a></code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>True if constraints represented by this node, ignoring any sub-parts, are narrower or the same as other. Typically used during validation of specialised archetype nodes.</p>
 </div>
@@ -6880,7 +6880,7 @@ rmcc: <code><a href="/releases/BASE/latest/foundation_types.html#_function_class
 (effected)</strong></p></th>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><strong>c_congruent_to</strong> (<br>
 other: <code><a href="#_c_second_order_class">C_SECOND_ORDER</a>[1]</code><br>
-): <code>Boolean</code></p></td>
+): <code><a href="/releases/BASE/latest/foundation_types.html#_boolean_class" target="_blank" rel="noopener">Boolean</a></code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>True if constraints represented by this node contain no further redefinitions with respect to the node other. Typically used to test if an inherited node locally contains any constraints.</p>
 </div></div></td>
@@ -7169,7 +7169,7 @@ other: <code><a href="#_c_second_order_class">C_SECOND_ORDER</a>[1]</code><br>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>1..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>path</strong>: <code>String</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>path</strong>: <code><a href="/releases/BASE/latest/foundation_types.html#_string_class" target="_blank" rel="noopener">String</a></code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>The path to the archetype node.</p>
 </div></div></td>
@@ -7288,7 +7288,7 @@ other: <code><a href="#_c_second_order_class">C_SECOND_ORDER</a>[1]</code><br>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>rm_visibility</strong>: <code><a href="/releases/BASE/latest/foundation_types.html#_hash_class" target="_blank" rel="noopener">Hash</a>&lt;String,<a href="#_rm_attribute_visibility_class">RM_ATTRIBUTE_VISIBILITY</a>&gt;</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>rm_visibility</strong>: <code><a href="/releases/BASE/latest/foundation_types.html#_hash_class">Hash<sup></a>&lt;<a href="/releases/BASE/latest/foundation_types.html#_string_class">String</sup></a>,<a href="#_rm_attribute_visibility_class">RM_ATTRIBUTE_VISIBILITY</a>&gt;</code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>Optional structure in which visibility and aliasing of reference model elements can be specified. Key is path to an RM attribute, which is typically formed from a path to an archetyped node concatenated with a further pure RM attribute path; may also refer to a non-archetyped attribute.</p>
 </div></div></td>
@@ -7490,35 +7490,35 @@ other: <code><a href="#_c_second_order_class">C_SECOND_ORDER</a>[1]</code><br>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>1..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>is_differential</strong>: <code>Boolean</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>is_differential</strong>: <code><a href="/releases/BASE/latest/foundation_types.html#_boolean_class" target="_blank" rel="noopener">Boolean</a></code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>True if this terminology only contains terms relating to a differential specialisation of the owning artefact, rather than a complete set.</p>
 </div></div></td>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>1..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>original_language</strong>: <code>String</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>original_language</strong>: <code><a href="/releases/BASE/latest/foundation_types.html#_string_class" target="_blank" rel="noopener">String</a></code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>Original language of the terminology, as set at artefact creation or parsing time; must be a code in the ISO 639-1 2 character language code-set.</p>
 </div></div></td>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>1..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>concept_code</strong>: <code>String</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>concept_code</strong>: <code><a href="/releases/BASE/latest/foundation_types.html#_string_class" target="_blank" rel="noopener">String</a></code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>Term code defining the meaning of the artefact as a whole, and always used as the id-code on the root node of the artefact. Must be defined in the <code><em>term_definitions</em></code> property.</p>
 </div></div></td>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>1..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>term_definitions</strong>: <code>org.openehr.am.aom2.Hash&lt;String, org.openehr.am.aom2.Hash&lt;String, <a href="#_archetype_term_class">ARCHETYPE_TERM</a>&gt;&gt;</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>term_definitions</strong>: <code>Hash&lt;String, Hash&lt;String, <a href="#_archetype_term_class">ARCHETYPE_TERM</a>&gt;&gt;</code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>Directory of term definitions as a two-level table. The outer hash keys are language codes, e.g. <code>"en"</code>, <code>"de"</code>, while the inner hash keys are term codes, e.g. <code>"id17"</code>, <code>"at4"</code>.</p>
 </div></div></td>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>term_bindings</strong>: <code>org.openehr.am.aom2.Hash &lt;String, org.openehr.am.aom2.Hash&lt;String, <a href="/releases/BASE/latest/foundation_types.html#_uri_class" target="_blank" rel="noopener">Uri</a>&gt;&gt;</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>term_bindings</strong>: <code>Hash &lt;String, Hash&lt;String, <a href="/releases/BASE/latest/foundation_types.html#_uri_class" target="_blank" rel="noopener">Uri</a>&gt;&gt;</code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>Directory of bindings to external terminology codes and value sets, as a two-level table. The outer hash keys are terminology ids, e.g. <code>"SNOMED_CT"</code>, and the inner hash keys are constraint codes, e.g. <code>"at4"</code>, <code>"ac13"</code> or paths. The indexed <code>Uri</code> objects represent references to externally defined resources, either terms, ontology concepts, or terminology subsets / ref-sets.</p>
 </div></div></td>
@@ -7539,7 +7539,7 @@ other: <code><a href="#_c_second_order_class">C_SECOND_ORDER</a>[1]</code><br>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>terminology_extracts</strong>: <code>org.openehr.am.aom2.Hash&lt;String, org.openehr.am.aom2.Hash&lt;String, <a href="#_archetype_term_class">ARCHETYPE_TERM</a>&gt;&gt;</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>terminology_extracts</strong>: <code>Hash&lt;String, Hash&lt;String, <a href="#_archetype_term_class">ARCHETYPE_TERM</a>&gt;&gt;</code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>Directory of extracts of external terminologies, as a two-level table. The outer hash keys are terminology ids, e.g. <code>"SNOMED_CT"</code>, while the inner hash keys are term codes or code-phrases from the relevant terminology, e.g. <code>"10094842"</code>.</p>
 </div></div></td>
@@ -7551,28 +7551,28 @@ other: <code><a href="#_c_second_order_class">C_SECOND_ORDER</a>[1]</code><br>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>1..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>specialisation_depth</strong> (): <code>Integer</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>specialisation_depth</strong> (): <code><a href="/releases/BASE/latest/foundation_types.html#_integer_class" target="_blank" rel="noopener">Integer</a></code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>Specialisation depth of this artefact. Unspecialised artefacts have depth 0, with each additional level of specialisation adding 1 to the specialisation_depth.</p>
 </div></div></td>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>1..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>id_codes</strong> (): <code><a href="/releases/BASE/latest/foundation_types.html#_list_class" target="_blank" rel="noopener">List</a>&lt;String&gt;</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>id_codes</strong> (): <code><a href="/releases/BASE/latest/foundation_types.html#_list_class">List<sup></a>&lt;<a href="/releases/BASE/latest/foundation_types.html#_string_class">String</sup></a>&gt;</code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>List of all id codes in the terminology., i.e. the 'id' codes in an ADL archetype, which are the <code><em>node_id</em></code> values on <code>C_OBJECT</code> descendants.</p>
 </div></div></td>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>value_codes</strong> (): <code><a href="/releases/BASE/latest/foundation_types.html#_list_class" target="_blank" rel="noopener">List</a>&lt;String&gt;</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>value_codes</strong> (): <code><a href="/releases/BASE/latest/foundation_types.html#_list_class">List<sup></a>&lt;<a href="/releases/BASE/latest/foundation_types.html#_string_class">String</sup></a>&gt;</code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>List of all value term codes in the terminology, i.e. the 'at' codes in an ADL archetype, which are used as possible values on terminological constrainer nodes.</p>
 </div></div></td>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>value_set_codes</strong> (): <code><a href="/releases/BASE/latest/foundation_types.html#_list_class" target="_blank" rel="noopener">List</a>&lt;String&gt;</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>value_set_codes</strong> (): <code><a href="/releases/BASE/latest/foundation_types.html#_list_class">List<sup></a>&lt;<a href="/releases/BASE/latest/foundation_types.html#_string_class">String</sup></a>&gt;</code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>List of all value set codes in the terminology defining value sets. These correspond to the 'ac' codes in an ADL archetype.</p>
 </div></div></td>
@@ -7580,8 +7580,8 @@ other: <code><a href="#_c_second_order_class">C_SECOND_ORDER</a>[1]</code><br>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>1..1</strong></p></th>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><strong>has_language</strong> (<br>
-a_lang: <code>String[1]</code><br>
-): <code>Boolean</code></p></td>
+a_lang: <code><a href="/releases/BASE/latest/foundation_types.html#_string_class" target="_blank" rel="noopener">String</a>[1]</code><br>
+): <code><a href="/releases/BASE/latest/foundation_types.html#_boolean_class" target="_blank" rel="noopener">Boolean</a></code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>True if language <code><em>a_lang</em></code> is present in archetype terminology.</p>
 </div></div></td>
@@ -7589,7 +7589,7 @@ a_lang: <code>String[1]</code><br>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>1..1</strong></p></th>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><strong>has_terminology</strong> (<br>
-a_terminology_id: <code>String[1]</code><br>
+a_terminology_id: <code><a href="/releases/BASE/latest/foundation_types.html#_string_class" target="_blank" rel="noopener">String</a>[1]</code><br>
 ): <code><a href="/releases/BASE/latest/foundation_types.html#_boolean_class" target="_blank" rel="noopener">Boolean</a></code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>True if there are bindings to terminology <code><em>a_terminology_id</em></code> present.
@@ -7599,7 +7599,7 @@ True if terminology `a_terminology' is present in archetype ontology.</p>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>1..1</strong></p></th>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><strong>has_term_code</strong> (<br>
-a_code: <code>String[1]</code><br>
+a_code: <code><a href="/releases/BASE/latest/foundation_types.html#_string_class" target="_blank" rel="noopener">String</a>[1]</code><br>
 ): <code><a href="/releases/BASE/latest/foundation_types.html#_boolean_class" target="_blank" rel="noopener">Boolean</a></code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>True if code <code><em>a_code</em></code> defined in this terminology.</p>
@@ -7608,8 +7608,8 @@ a_code: <code>String[1]</code><br>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>1..1</strong></p></th>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><strong>term_definition</strong> (<br>
-a_lang: <code>String[1]</code>,<br>
-a_code: <code>String[1]</code><br>
+a_lang: <code><a href="/releases/BASE/latest/foundation_types.html#_string_class" target="_blank" rel="noopener">String</a>[1]</code>,<br>
+a_code: <code><a href="/releases/BASE/latest/foundation_types.html#_string_class" target="_blank" rel="noopener">String</a>[1]</code><br>
 ): <code><a href="#_archetype_term_class">ARCHETYPE_TERM</a></code><br>
 <br>
 <em>Pre</em>: <code>has_term-definition (a_lang, a_code)</code></p></td>
@@ -7620,8 +7620,8 @@ a_code: <code>String[1]</code><br>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>1..1</strong></p></th>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><strong>term_binding</strong> (<br>
-a_terminology: <code>String[1]</code>,<br>
-a_code: <code>String[1]</code><br>
+a_terminology: <code><a href="/releases/BASE/latest/foundation_types.html#_string_class" target="_blank" rel="noopener">String</a>[1]</code>,<br>
+a_code: <code><a href="/releases/BASE/latest/foundation_types.html#_string_class" target="_blank" rel="noopener">String</a>[1]</code><br>
 ): <code><a href="/releases/BASE/latest/foundation_types.html#_uri_class" target="_blank" rel="noopener">Uri</a></code><br>
 <br>
 <em>Pre</em>: <code>has_term_binding (a_terminology_id, a_code)</code></p></td>
@@ -7631,7 +7631,7 @@ a_code: <code>String[1]</code><br>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>1..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>terminologies_available</strong> (): <code><a href="/releases/BASE/latest/foundation_types.html#_list_class" target="_blank" rel="noopener">List</a>&lt;String&gt;</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>terminologies_available</strong> (): <code><a href="/releases/BASE/latest/foundation_types.html#_list_class">List<sup></a>&lt;<a href="/releases/BASE/latest/foundation_types.html#_string_class">String</sup></a>&gt;</code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>List of terminologies to which term or constraint bindings exist in this terminology, computed from bindings.</p>
 </div></div></td>
@@ -7639,8 +7639,8 @@ a_code: <code>String[1]</code><br>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>1..1</strong></p></th>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><strong>terminology_extract_term</strong> (<br>
-a_terminology_id: <code>String[1]</code>,<br>
-a_code: <code>String[1]</code><br>
+a_terminology_id: <code><a href="/releases/BASE/latest/foundation_types.html#_string_class" target="_blank" rel="noopener">String</a>[1]</code>,<br>
+a_code: <code><a href="/releases/BASE/latest/foundation_types.html#_string_class" target="_blank" rel="noopener">String</a>[1]</code><br>
 ): <code><a href="#_archetype_term_class">ARCHETYPE_TERM</a></code><br>
 <br>
 <em>Pre</em>: <code>has_terminology_extract (a_terminology_id) and has_terminology_extract_code (a_code)</code></p></td>
@@ -7651,15 +7651,15 @@ a_code: <code>String[1]</code><br>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>1..1</strong></p></th>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><strong>has_terminology_extract</strong> (<br>
-a_terminology_id: <code>String[1]</code><br>
-): <code>Boolean</code></p></td>
+a_terminology_id: <code><a href="/releases/BASE/latest/foundation_types.html#_string_class" target="_blank" rel="noopener">String</a>[1]</code><br>
+): <code><a href="/releases/BASE/latest/foundation_types.html#_boolean_class" target="_blank" rel="noopener">Boolean</a></code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>True if there is a provided terminology extract present.</p>
 </div></div></td>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>1..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>languages_available</strong> (): <code><a href="/releases/BASE/latest/foundation_types.html#_list_class" target="_blank" rel="noopener">List</a>&lt;String&gt;</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>languages_available</strong> (): <code><a href="/releases/BASE/latest/foundation_types.html#_list_class">List<sup></a>&lt;<a href="/releases/BASE/latest/foundation_types.html#_string_class">String</sup></a>&gt;</code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>List of languages in which terms in this terminology are available.</p>
 </div></div></td>
@@ -7717,14 +7717,14 @@ a_terminology_id: <code>String[1]</code><br>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>1..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>id</strong>: <code>String</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>id</strong>: <code><a href="/releases/BASE/latest/foundation_types.html#_string_class" target="_blank" rel="noopener">String</a></code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>Code of source term of this relation.</p>
 </div></div></td>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>1..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>members</strong>: <code><a href="/releases/BASE/latest/foundation_types.html#_list_class" target="_blank" rel="noopener">List</a>&lt;String&gt;</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>members</strong>: <code><a href="/releases/BASE/latest/foundation_types.html#_list_class">List<sup></a>&lt;<a href="/releases/BASE/latest/foundation_types.html#_string_class">String</sup></a>&gt;</code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>List of target terms in this relation.</p>
 </div></div></td>
@@ -7784,21 +7784,21 @@ a_terminology_id: <code>String[1]</code><br>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>1..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>code</strong>: <code>String</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>code</strong>: <code><a href="/releases/BASE/latest/foundation_types.html#_string_class" target="_blank" rel="noopener">String</a></code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>Code of this term.</p>
 </div></div></td>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>1..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>text</strong>: <code>String</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>text</strong>: <code><a href="/releases/BASE/latest/foundation_types.html#_string_class" target="_blank" rel="noopener">String</a></code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>Short term text, typically for display.</p>
 </div></div></td>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>1..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>description</strong>: <code>String</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>description</strong>: <code><a href="/releases/BASE/latest/foundation_types.html#_string_class" target="_blank" rel="noopener">String</a></code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>Full description text.</p>
 </div></div></td>
@@ -8475,7 +8475,7 @@ Hash of keys ("text", "description" etc) and corresponding values.</p>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>1..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>profile_name</strong>: <code>String</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>profile_name</strong>: <code><a href="/releases/BASE/latest/foundation_types.html#_string_class" target="_blank" rel="noopener">String</a></code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>Name of this profile, usually based on the publisher it pertains to e.g. "openEHR", "cdisc", etc.</p>
 </div></div></td>
@@ -8506,7 +8506,7 @@ Hash of keys ("text", "description" etc) and corresponding values.</p>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>aom_rm_type_mappings</strong>: <code><a href="/releases/BASE/latest/foundation_types.html#_hash_class" target="_blank" rel="noopener">Hash</a>&lt;String,<a href="#_aom_type_mapping_class">AOM_TYPE_MAPPING</a>&gt;</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>aom_rm_type_mappings</strong>: <code><a href="/releases/BASE/latest/foundation_types.html#_hash_class">Hash<sup></a>&lt;<a href="/releases/BASE/latest/foundation_types.html#_string_class">String</sup></a>,<a href="#_aom_type_mapping_class">AOM_TYPE_MAPPING</a>&gt;</code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>Mappings from AOM built-in types to actual types in RM: whenever the type name is encountered in an archetype, it is mapped to a specific RM type.</p>
 </div></div></td>
@@ -8560,21 +8560,21 @@ Hash of keys ("text", "description" etc) and corresponding values.</p>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>1..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>source_class_name</strong>: <code>String</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>source_class_name</strong>: <code><a href="/releases/BASE/latest/foundation_types.html#_string_class" target="_blank" rel="noopener">String</a></code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>Name of the AOM type being mapped to an RM type.</p>
 </div></div></td>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>1..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>target_class_name</strong>: <code>String</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>target_class_name</strong>: <code><a href="/releases/BASE/latest/foundation_types.html#_string_class" target="_blank" rel="noopener">String</a></code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>Name of the RM type in the mapping.</p>
 </div></div></td>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>property_mappings</strong>: <code><a href="/releases/BASE/latest/foundation_types.html#_hash_class" target="_blank" rel="noopener">Hash</a>&lt;String,<a href="#_aom_property_mapping_class">AOM_PROPERTY_MAPPING</a>&gt;</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>property_mappings</strong>: <code><a href="/releases/BASE/latest/foundation_types.html#_hash_class">Hash<sup></a>&lt;<a href="/releases/BASE/latest/foundation_types.html#_string_class">String</sup></a>,<a href="#_aom_property_mapping_class">AOM_PROPERTY_MAPPING</a>&gt;</code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>List of mappings of properties of this type to another type.</p>
 </div></div></td>
@@ -8608,14 +8608,14 @@ Hash of keys ("text", "description" etc) and corresponding values.</p>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>1..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>source_property_name</strong>: <code>String</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>source_property_name</strong>: <code><a href="/releases/BASE/latest/foundation_types.html#_string_class" target="_blank" rel="noopener">String</a></code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>Name of property in source class.</p>
 </div></div></td>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>1..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>target_property_name</strong>: <code>String</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>target_property_name</strong>: <code><a href="/releases/BASE/latest/foundation_types.html#_string_class" target="_blank" rel="noopener">String</a></code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>Name of property in target class.</p>
 </div></div></td>
