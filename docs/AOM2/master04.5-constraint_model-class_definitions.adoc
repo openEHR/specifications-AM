@@ -79,7 +79,8 @@ cardinality_conforms_to (other: C_ATTRIBUTE): Boolean
         end
     end
 
-collective_occurrences_of (parent_object: C_OBJECT; other: C_ATTRIBUTE): Multiplicity_interval
+collective_occurrences_of (parent_object: C_OBJECT;
+            rm_prop_mult: FUNCTION <<rm_type_name, rm_property_path: String>, Multiplicity_interval>): Multiplicity_interval
         -- compute collective occurrences according to VSONCO, of all object nodes under this 
         -- attribute node that redefine `parent_object`, which is assumed to be an object node 
         -- within `other`, the specialisation parent of this C_ATTRIBUTE
@@ -91,18 +92,15 @@ collective_occurrences_of (parent_object: C_OBJECT; other: C_ATTRIBUTE): Multipl
         create Result.make_prohibited
         
         children.do_all (
-            agent (child_co, parent_co: C_OBJECT; interval: Multiplicity_interval)
+            agent (child_co, parent_co: C_OBJECT;
+                    rm_prop_mult: FUNCTION <<rm_type_name, rm_property_path: String>, Multiplicity_interval>;
+                    interval: Multiplicity_interval)
                 local
                     child_occ: Multiplicity_interval
                 do
                     if child_co.node_id_conforms_to (parent_co) then
-                        -- if the child object node has no occurrences, use
-                        -- that of the parent
-                        if attached child_co.occurrences as occ then
-                            child_occ := occ
-                        else
-                            child_occ := parent_co.occurrences
-                        end
+                        -- child object node may have no occurrences
+                        child_occ := child_obj.effective_occurrences (rm_prop_mult)
 
                         interval.set_lower (interval.lower + child_occ.lower)
                         if child_occ.upper_unbounded then
@@ -111,11 +109,11 @@ collective_occurrences_of (parent_object: C_OBJECT; other: C_ATTRIBUTE): Multipl
                             interval.set_upper (interval.upper + child_occ.upper)
                         end
                     end
-                end (?, a_parent_co, Result)
+                end (?, a_parent_co, rm_prop_mult, Result)
         )
                 
         if cardinality /= Void and then not cardinality.upper_unbounded then
-            Result.upper := Result.upper.min (cardinality.upper)
+            Result.set_upper (if Result.upper_unbounded then cardinality.upper else Result.upper.min (cardinality.upper) end)
         end
     end
 ---------

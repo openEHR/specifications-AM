@@ -3717,7 +3717,8 @@ Typically used during validation of specialised archetype nodes.</p>
         <span class="tok-kr">end</span>
     <span class="tok-kr">end</span>
 
-<span class="tok-n">collective_occurrences_of</span> <span class="tok-p">(</span><span class="tok-n">parent_object</span><span class="tok-p">:</span> <span class="tok-nc">C_OBJECT</span><span class="tok-p">;</span> <span class="tok-n">other</span><span class="tok-p">:</span> <span class="tok-nc">C_ATTRIBUTE</span><span class="tok-p">):</span> <span class="tok-n">Multiplicity_interval</span>
+<span class="tok-n">collective_occurrences_of</span> <span class="tok-p">(</span><span class="tok-n">parent_object</span><span class="tok-p">:</span> <span class="tok-nc">C_OBJECT</span><span class="tok-p">;</span>
+            <span class="tok-n">rm_prop_mult</span><span class="tok-p">:</span> <span class="tok-nc">FUNCTION</span> <span class="tok-o">&lt;&lt;</span><span class="tok-n">rm_type_name</span><span class="tok-p">,</span> <span class="tok-n">rm_property_path</span><span class="tok-p">:</span> <span class="tok-n">String</span><span class="tok-o">&gt;</span><span class="tok-p">,</span> <span class="tok-n">Multiplicity_interval</span><span class="tok-o">&gt;</span><span class="tok-p">):</span> <span class="tok-n">Multiplicity_interval</span>
         <span class="tok-c1">-- compute collective occurrences according to VSONCO, of all object nodes under this</span>
         <span class="tok-c1">-- attribute node that redefine `parent_object`, which is assumed to be an object node</span>
         <span class="tok-c1">-- within `other`, the specialisation parent of this C_ATTRIBUTE</span>
@@ -3729,18 +3730,15 @@ Typically used during validation of specialised archetype nodes.</p>
         <span class="tok-kr">create</span> <span class="tok-kc">Result</span><span class="tok-p">.</span><span class="tok-n">make_prohibited</span>
 
         <span class="tok-n">children</span><span class="tok-p">.</span><span class="tok-n">do_all</span> <span class="tok-p">(</span>
-            <span class="tok-kr">agent</span> <span class="tok-p">(</span><span class="tok-n">child_co</span><span class="tok-p">,</span> <span class="tok-n">parent_co</span><span class="tok-p">:</span> <span class="tok-nc">C_OBJECT</span><span class="tok-p">;</span> <span class="tok-n">interval</span><span class="tok-p">:</span> <span class="tok-n">Multiplicity_interval</span><span class="tok-p">)</span>
+            <span class="tok-kr">agent</span> <span class="tok-p">(</span><span class="tok-n">child_co</span><span class="tok-p">,</span> <span class="tok-n">parent_co</span><span class="tok-p">:</span> <span class="tok-nc">C_OBJECT</span><span class="tok-p">;</span>
+                    <span class="tok-n">rm_prop_mult</span><span class="tok-p">:</span> <span class="tok-nc">FUNCTION</span> <span class="tok-o">&lt;&lt;</span><span class="tok-n">rm_type_name</span><span class="tok-p">,</span> <span class="tok-n">rm_property_path</span><span class="tok-p">:</span> <span class="tok-n">String</span><span class="tok-o">&gt;</span><span class="tok-p">,</span> <span class="tok-n">Multiplicity_interval</span><span class="tok-o">&gt;</span><span class="tok-p">;</span>
+                    <span class="tok-n">interval</span><span class="tok-p">:</span> <span class="tok-n">Multiplicity_interval</span><span class="tok-p">)</span>
                 <span class="tok-kr">local</span>
                     <span class="tok-n">child_occ</span><span class="tok-p">:</span> <span class="tok-n">Multiplicity_interval</span>
                 <span class="tok-kr">do</span>
                     <span class="tok-kr">if</span> <span class="tok-n">child_co</span><span class="tok-p">.</span><span class="tok-n">node_id_conforms_to</span> <span class="tok-p">(</span><span class="tok-n">parent_co</span><span class="tok-p">)</span> <span class="tok-kr">then</span>
-                        <span class="tok-c1">-- if the child object node has no occurrences, use</span>
-                        <span class="tok-c1">-- that of the parent</span>
-                        <span class="tok-kr">if</span> <span class="tok-kr">attached</span> <span class="tok-n">child_co</span><span class="tok-p">.</span><span class="tok-n">occurrences</span> <span class="tok-kr">as</span> <span class="tok-n">occ</span> <span class="tok-kr">then</span>
-                            <span class="tok-n">child_occ</span> <span class="tok-o">:=</span> <span class="tok-n">occ</span>
-                        <span class="tok-kr">else</span>
-                            <span class="tok-n">child_occ</span> <span class="tok-o">:=</span> <span class="tok-n">parent_co</span><span class="tok-p">.</span><span class="tok-n">occurrences</span>
-                        <span class="tok-kr">end</span>
+                        <span class="tok-c1">-- child object node may have no occurrences</span>
+                        <span class="tok-n">child_occ</span> <span class="tok-o">:=</span> <span class="tok-n">child_obj</span><span class="tok-p">.</span><span class="tok-n">effective_occurrences</span> <span class="tok-p">(</span><span class="tok-n">rm_prop_mult</span><span class="tok-p">)</span>
 
                         <span class="tok-n">interval</span><span class="tok-p">.</span><span class="tok-n">set_lower</span> <span class="tok-p">(</span><span class="tok-n">interval</span><span class="tok-p">.</span><span class="tok-n">lower</span> <span class="tok-o">+</span> <span class="tok-n">child_occ</span><span class="tok-p">.</span><span class="tok-n">lower</span><span class="tok-p">)</span>
                         <span class="tok-kr">if</span> <span class="tok-n">child_occ</span><span class="tok-p">.</span><span class="tok-n">upper_unbounded</span> <span class="tok-kr">then</span>
@@ -3749,11 +3747,11 @@ Typically used during validation of specialised archetype nodes.</p>
                             <span class="tok-n">interval</span><span class="tok-p">.</span><span class="tok-n">set_upper</span> <span class="tok-p">(</span><span class="tok-n">interval</span><span class="tok-p">.</span><span class="tok-n">upper</span> <span class="tok-o">+</span> <span class="tok-n">child_occ</span><span class="tok-p">.</span><span class="tok-n">upper</span><span class="tok-p">)</span>
                         <span class="tok-kr">end</span>
                     <span class="tok-kr">end</span>
-                <span class="tok-kr">end</span> <span class="tok-p">(</span><span class="tok-o">?</span><span class="tok-p">,</span> <span class="tok-n">a_parent_co</span><span class="tok-p">,</span> <span class="tok-kc">Result</span><span class="tok-p">)</span>
+                <span class="tok-kr">end</span> <span class="tok-p">(</span><span class="tok-o">?</span><span class="tok-p">,</span> <span class="tok-n">a_parent_co</span><span class="tok-p">,</span> <span class="tok-n">rm_prop_mult</span><span class="tok-p">,</span> <span class="tok-kc">Result</span><span class="tok-p">)</span>
         <span class="tok-p">)</span>
 
         <span class="tok-kr">if</span> <span class="tok-n">cardinality</span> <span class="tok-o">/=</span> <span class="tok-kc">Void</span> <span class="tok-ow">and then</span> <span class="tok-ow">not</span> <span class="tok-n">cardinality</span><span class="tok-p">.</span><span class="tok-n">upper_unbounded</span> <span class="tok-kr">then</span>
-            <span class="tok-kc">Result</span><span class="tok-p">.</span><span class="tok-n">upper</span> <span class="tok-o">:=</span> <span class="tok-kc">Result</span><span class="tok-p">.</span><span class="tok-n">upper</span><span class="tok-p">.</span><span class="tok-n">min</span> <span class="tok-p">(</span><span class="tok-n">cardinality</span><span class="tok-p">.</span><span class="tok-n">upper</span><span class="tok-p">)</span>
+            <span class="tok-kc">Result</span><span class="tok-p">.</span><span class="tok-n">set_upper</span> <span class="tok-p">(</span><span class="tok-kr">if</span> <span class="tok-kc">Result</span><span class="tok-p">.</span><span class="tok-n">upper_unbounded</span> <span class="tok-kr">then</span> <span class="tok-n">cardinality</span><span class="tok-p">.</span><span class="tok-n">upper</span> <span class="tok-kr">else</span> <span class="tok-kc">Result</span><span class="tok-p">.</span><span class="tok-n">upper</span><span class="tok-p">.</span><span class="tok-n">min</span> <span class="tok-p">(</span><span class="tok-n">cardinality</span><span class="tok-p">.</span><span class="tok-n">upper</span><span class="tok-p">)</span> <span class="tok-kr">end</span><span class="tok-p">)</span>
         <span class="tok-kr">end</span>
     <span class="tok-kr">end</span></code></pre>
 </div>
