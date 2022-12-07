@@ -174,7 +174,7 @@ For example, an archetype for the concept 'blood pressure measurement' might con
 
 Note that the notion of assumed values is distinct from that of 'default values'. The latter notion is that of a default 'pre-filled' value that is provided (normally in a local context by a template) for a data item that is to be filled in by the user, but which is typically the same in many cases. Default values are thus simply an efficiency mechanism for users. As a result, default values do appear in data, while assumed values don't.
 
-=== Terminology Constraints (C_TERMINOLOGY_CODE)
+=== Terminology Constraints
 
 ==== Formal Definition
 
@@ -188,6 +188,7 @@ A `C_TERMINOLOGY_CODE` instance in an archetype is structurally simple: it can o
 
 NOTE: The second case in theory could be done using an ac-code referring to a value set containing a single value, but there seems little value in this extra verbiage, and little cost in providing the single-member value set short cut.
 
+[#constraint_strengths]
 ==== Constraint Strengths
 
 Uniquely in the AOM, a Terminology code constraint may not be required, and may instead be considered informal. This is achieved via the attribute `_constraint_status_` which indicates either that the constraint is `required (0)` (i.e. the data item must formally conform to the constraint), or three levels of informal constraint, namely `extensible (1) | preferred (2) | example (3)`. This particular model of constraint 'strength' follows the {hl7_fhir_binding_strengths}[HL7 FHIR 'binding strengths' model^]. The convenience function `_constraint_required_()` can be used to determine if the constraint is formal, i.e. if `_constraint_status_` has the value `required (0)` or else is not set.
@@ -209,6 +210,35 @@ When an archetype is deployed in the form of an operational template, the intern
 These functions would normally be implemented as 'lambdas' or 'agents', in order to obtain access to the target terminologies.
 
 NOTE: Since an archetype might not contain external terminology bindings for all (or even any) of its terminological constraints, a 'resolved' archetype will usually contain at-codes in its cADL definition. These at-codes would be treated as real coded terms in any implementation that was creating data, and as a consequence, archetype at-codes could occur in real data, as described in the Terminology Integration section of the ADL specification.
+
+[#date_time_constraints]
+=== Date/Time Constraints
+
+The openEHR architecture assumes that primitive types representing 'date', 'time' and 'date_time' exist within every development environment, however such types or classes may be named. Within openEHR, these primitive types are named `Iso8601_date` etc., and are defined in the {openehr_base_latest_foundation_types}[openEHR Foundation Types Specification^].
+
+As described in the {openehr_am_adl2}#_constraints_on_dates_times_and_durations[openEHR ADL2 specification^], these types are constrained using either value intervals or patterns. Both kinds of constraint are formally represented by the classes <<_c_date_class,`C_DATE`>>, <<_c_time_class,`C_TIME`>> and <<_c_date_time_class,`C_DATE_TIME`>>. (A fourth time-related type, 'Duration' is constrained somewhat differently by the AOM class `C_DURATION`).
+
+ADL2 value range constraints, such as the date range `|2004-05-20..2005-05-19|` are represented in the relevant constrainer meta-class (in this case `C_DATE`) by an attribute of the form `constraint: List<Interval<Iso8601_date>>`. Similarly, an ADL2 date/time range constraint such as `|<2005-05-19T23:59:59|` is represented by `C_DATE_TIME.constraint` of type `List<Interval<Iso8601_date_time>>`. The `List<>` structure allows such constraints to include more than one disjoint range.
+
+The other means of expressing constraints in ADL2 is via patterns based on the {iso_8601}[ISO 8601^] extended syntax form (i.e. the form that uses '-' and ':' characters in dates and times, respectively). These allow partial dates and times to be stated. Thus, the time constraint `hh:??:XX` means: any time consisting of hours, optional minutes, and no seconds. A full table of such constraint patterns is provided in the {openehr_am_adl2}#_patterns[ADL2 specification^].
+
+Pattern constraints are represented within the AOM classes `C_DATE` etc. via the attribute `pattern_constraint: String`, inherited from the abstract class `C_TEMPORAL`. Validity may be checked using features defined on the class <<_c_temporal_definitions_class,`C_TEMPORAL_DEFINITIONS`>>, such as `valid_date_constraint_patterns`, and also `valid_date_constraint_replacements`, for checking redefinitions within specialised archetypes.
+
+Date/time pattern constraints are computationally represented via functions like `month_validity(): VALIDITY_KIND`, defined on <<_c_date_class,`C_DATE`>>, <<_c_time_class,`C_TIME`>> and <<_c_date_time_class,`C_DATE_TIME`>>, where `VALIDITY_KIND` is an enumeration type defined in the {openehr_base_latest_base_types}[openEHR Base Types^]. The lexical elements of the patterns are mapped to the values of `VALIDITY_KIND` as follows:
+
+* `yyyy` , `mm`, `dd` -> `VALIDITY_KIND.mandatory`
+* `hh` , `mm`, `ss` -> `VALIDITY_KIND.mandatory`
+* `??` -> `VALIDITY_KIND.optional`
+* `XX` -> `VALIDITY_KIND.prohibited`
+
+Accordingly, the '??' within the date constrainer pattern `yyyy-??-XX` maps to the result `optional` of the function `C_DATE.month_validity()`.
+
+[#duration_constraints]
+=== Duration Constraints
+
+Duration constraints follow the same general approach as Date/time constraints, such that the <<_c_duration_class,`C_DURATION`>> meta-class provides a range constraint attribute `constraint: List<Interval<Iso8601_duration>>` as well as the inherited attribute `pattern_constraint: String` to represent pattern constraints. These are described in {openehr_am_adl2}#_duration_constraints[openEHR ADL2 specification^].
+
+However, the pattern constraints are of a simpler form, and do not use the `??` or `XX` lexical elements. The pattern interpretation functions defined on <<_c_duration_class,`C_DURATION`>> are therefore of the form `years_allowed: (): Boolean`, `months_allowed: (): Boolean`. Validity of duration pattern constraints may be checked using relevant functions defined on <<_c_temporal_definitions_class,`C_TEMPORAL_DEFINITIONS`>>.
 
 === Constraints on Enumeration Types
 

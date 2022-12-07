@@ -161,14 +161,16 @@
 <li><a href="#_assumed_value">4.2.7.1. Assumed_value</a></li>
 </ul>
 </li>
-<li><a href="#_terminology_constraints_c_terminology_code">4.2.8. Terminology Constraints (C_TERMINOLOGY_CODE)</a>
+<li><a href="#_terminology_constraints">4.2.8. Terminology Constraints</a>
 <ul class="sectlevel4">
 <li><a href="#_formal_definition">4.2.8.1. Formal Definition</a></li>
-<li><a href="#_constraint_strengths">4.2.8.2. Constraint Strengths</a></li>
+<li><a href="#constraint_strengths">4.2.8.2. Constraint Strengths</a></li>
 <li><a href="#_terminology_code_resolution">4.2.8.3. Terminology Code Resolution</a></li>
 </ul>
 </li>
-<li><a href="#_constraints_on_enumeration_types">4.2.9. Constraints on Enumeration Types</a></li>
+<li><a href="#date_time_constraints">4.2.9. Date/Time Constraints</a></li>
+<li><a href="#duration_constraints">4.2.10. Duration Constraints</a></li>
+<li><a href="#_constraints_on_enumeration_types">4.2.11. Constraints on Enumeration Types</a></li>
 </ul>
 </li>
 <li><a href="#_second_order_constraints">4.3. Second Order Constraints</a>
@@ -503,11 +505,11 @@
 <tr>
 <td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><a href="https://specifications.openehr.org/tickets/SPECAM-75" target="_blank" rel="noopener">SPECAM-75</a>. Improve specification of constraint patterns in <code>C_TEMPORAL</code> classes (addresses problem <a href="https://specifications.openehr.org/tickets/SPECPR-374" target="_blank" rel="noopener">SPECPR-374</a>).</p>
+<p><a href="https://specifications.openehr.org/tickets/SPECAM-75" target="_blank" rel="noopener">SPECAM-75</a>. Improve specification of constraint patterns in <code>C_TEMPORAL</code> classes (addresses problem <a href="https://specifications.openehr.org/tickets/SPECPR-374" target="_blank" rel="noopener">SPECPR-374</a>). Added <a href="#date_time_constraints">Section 4.2.9</a> and <a href="#duration_constraints">Section 4.2.10</a>.</p>
 </div></div></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">P Pazos,<br>
  T Beale</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">02 Aug 2022</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">12 Dec 2022</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"></td>
@@ -3138,7 +3140,7 @@ an_id: <code>String[1]</code><br>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_terminology_constraints_c_terminology_code"><a class="anchor" href="#_terminology_constraints_c_terminology_code"></a>4.2.8. Terminology Constraints (C_TERMINOLOGY_CODE)</h4>
+<h4 id="_terminology_constraints"><a class="anchor" href="#_terminology_constraints"></a>4.2.8. Terminology Constraints</h4>
 <div class="sect4">
 <h5 id="_formal_definition"><a class="anchor" href="#_formal_definition"></a>4.2.8.1. Formal Definition</h5>
 <div class="paragraph">
@@ -3178,7 +3180,7 @@ The second case in theory could be done using an ac-code referring to a value se
 </div>
 </div>
 <div class="sect4">
-<h5 id="_constraint_strengths"><a class="anchor" href="#_constraint_strengths"></a>4.2.8.2. Constraint Strengths</h5>
+<h5 id="constraint_strengths"><a class="anchor" href="#constraint_strengths"></a>4.2.8.2. Constraint Strengths</h5>
 <div class="paragraph">
 <p>Uniquely in the AOM, a Terminology code constraint may not be required, and may instead be considered informal. This is achieved via the attribute <code><em>constraint_status</em></code> which indicates either that the constraint is <code>required (0)</code> (i.e. the data item must formally conform to the constraint), or three levels of informal constraint, namely <code>extensible (1) | preferred (2) | example (3)</code>. This particular model of constraint 'strength' follows the <a href="https://www.hl7.org/fhir/terminologies.html#strength" target="_blank" rel="noopener">HL7 FHIR 'binding strengths' model</a>. The convenience function <code><em>constraint_required</em>()</code> can be used to determine if the constraint is formal, i.e. if <code><em>constraint_status</em></code> has the value <code>required (0)</code> or else is not set.</p>
 </div>
@@ -3228,7 +3230,56 @@ Since an archetype might not contain external terminology bindings for all (or e
 </div>
 </div>
 <div class="sect3">
-<h4 id="_constraints_on_enumeration_types"><a class="anchor" href="#_constraints_on_enumeration_types"></a>4.2.9. Constraints on Enumeration Types</h4>
+<h4 id="date_time_constraints"><a class="anchor" href="#date_time_constraints"></a>4.2.9. Date/Time Constraints</h4>
+<div class="paragraph">
+<p>The openEHR architecture assumes that primitive types representing 'date', 'time' and 'date_time' exist within every development environment, however such types or classes may be named. Within openEHR, these primitive types are named <code>Iso8601_date</code> etc., and are defined in the <a href="https://specifications.openehr.org/releases/BASE/latest/foundation_types.html" target="_blank" rel="noopener">openEHR Foundation Types Specification</a>.</p>
+</div>
+<div class="paragraph">
+<p>As described in the <a href="https://specifications.openehr.org/releases/AM/latest/ADL2.html#_constraints_on_dates_times_and_durations" target="_blank" rel="noopener">openEHR ADL2 specification</a>, these types are constrained using either value intervals or patterns. Both kinds of constraint are formally represented by the classes <a href="#_c_date_class"><code>C_DATE</code></a>, <a href="#_c_time_class"><code>C_TIME</code></a> and <a href="#_c_date_time_class"><code>C_DATE_TIME</code></a>. (A fourth time-related type, 'Duration' is constrained somewhat differently by the AOM class <code>C_DURATION</code>).</p>
+</div>
+<div class="paragraph">
+<p>ADL2 value range constraints, such as the date range <code>|2004-05-20..2005-05-19|</code> are represented in the relevant constrainer meta-class (in this case <code>C_DATE</code>) by an attribute of the form <code>constraint: List&lt;Interval&lt;Iso8601_date&gt;&gt;</code>. Similarly, an ADL2 date/time range constraint such as <code>|&lt;2005-05-19T23:59:59|</code> is represented by <code>C_DATE_TIME.constraint</code> of type <code>List&lt;Interval&lt;Iso8601_date_time&gt;&gt;</code>. The <code>List&lt;&gt;</code> structure allows such constraints to include more than one disjoint range.</p>
+</div>
+<div class="paragraph">
+<p>The other means of expressing constraints in ADL2 is via patterns based on the <a href="https://en.wikipedia.org/wiki/ISO_8601" target="_blank" rel="noopener">ISO 8601</a> extended syntax form (i.e. the form that uses '-' and ':' characters in dates and times, respectively). These allow partial dates and times to be stated. Thus, the time constraint <code>hh:??:XX</code> means: any time consisting of hours, optional minutes, and no seconds. A full table of such constraint patterns is provided in the <a href="https://specifications.openehr.org/releases/AM/latest/ADL2.html#_patterns" target="_blank" rel="noopener">ADL2 specification</a>.</p>
+</div>
+<div class="paragraph">
+<p>Pattern constraints are represented within the AOM classes <code>C_DATE</code> etc. via the attribute <code>pattern_constraint: String</code>, inherited from the abstract class <code>C_TEMPORAL</code>. Validity may be checked using features defined on the class <a href="#_c_temporal_definitions_class"><code>C_TEMPORAL_DEFINITIONS</code></a>, such as <code>valid_date_constraint_patterns</code>, and also <code>valid_date_constraint_replacements</code>, for checking redefinitions within specialised archetypes.</p>
+</div>
+<div class="paragraph">
+<p>Date/time pattern constraints are computationally represented via functions like <code>month_validity(): VALIDITY_KIND</code>, defined on <a href="#_c_date_class"><code>C_DATE</code></a>, <a href="#_c_time_class"><code>C_TIME</code></a> and <a href="#_c_date_time_class"><code>C_DATE_TIME</code></a>, where <code>VALIDITY_KIND</code> is an enumeration type defined in the <a href="https://specifications.openehr.org/releases/BASE/latest/base_types.html" target="_blank" rel="noopener">openEHR Base Types</a>. The lexical elements of the patterns are mapped to the values of <code>VALIDITY_KIND</code> as follows:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>yyyy</code> , <code>mm</code>, <code>dd</code> &#8594; <code>VALIDITY_KIND.mandatory</code></p>
+</li>
+<li>
+<p><code>hh</code> , <code>mm</code>, <code>ss</code> &#8594; <code>VALIDITY_KIND.mandatory</code></p>
+</li>
+<li>
+<p><code>??</code> &#8594; <code>VALIDITY_KIND.optional</code></p>
+</li>
+<li>
+<p><code>XX</code> &#8594; <code>VALIDITY_KIND.prohibited</code></p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Accordingly, the '??' within the date constrainer pattern <code>yyyy-??-XX</code> maps to the result <code>optional</code> of the function <code>C_DATE.month_validity()</code>.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="duration_constraints"><a class="anchor" href="#duration_constraints"></a>4.2.10. Duration Constraints</h4>
+<div class="paragraph">
+<p>Duration constraints follow the same general approach as Date/time constraints, such that the <a href="#_c_duration_class"><code>C_DURATION</code></a> meta-class provides a range constraint attribute <code>constraint: List&lt;Interval&lt;Iso8601_duration&gt;&gt;</code> as well as the inherited attribute <code>pattern_constraint: String</code> to represent pattern constraints. These are described in <a href="https://specifications.openehr.org/releases/AM/latest/ADL2.html#_duration_constraints" target="_blank" rel="noopener">openEHR ADL2 specification</a>.</p>
+</div>
+<div class="paragraph">
+<p>However, the pattern constraints are of a simpler form, and do not use the <code>??</code> or <code>XX</code> lexical elements. The pattern interpretation functions defined on <a href="#_c_duration_class"><code>C_DURATION</code></a> are therefore of the form <code>years_allowed: (): Boolean</code>, <code>months_allowed: (): Boolean</code>. Validity of duration pattern constraints may be checked using relevant functions defined on <a href="#_c_temporal_definitions_class"><code>C_TEMPORAL_DEFINITIONS</code></a>.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_constraints_on_enumeration_types"><a class="anchor" href="#_constraints_on_enumeration_types"></a>4.2.11. Constraints on Enumeration Types</h4>
 <div class="paragraph">
 <p>Enumeration types in the reference model are assumed to have semantics expected in UML, and mainstream programming languages, i.e. to be a distinct type based on a primitive type, normally Integer or String. Each such type consists of a set of values from the domain of its underlying type, thus, a set of Integer, String or other primitive values. Each of these values is assumed to be named in the manner of a symbolic constant. Although strictly speaking UML doesn&#8217;t require an enumerated type to be based on an underlying primitive type, programming languages do, hence the assumption here that values from the domain of such a type are involved.</p>
 </div>
