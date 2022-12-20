@@ -235,7 +235,7 @@
 </li>
 <li><a href="#_constraints_on_dates_times_and_durations">5.4.6. Constraints on Dates, Times and Durations</a>
 <ul class="sectlevel4">
-<li><a href="#_date_time_and_datetime">5.4.6.1. Date, Time and Date/Time</a></li>
+<li><a href="#date_time_constraint_patterns">5.4.6.1. Date, Time and Date/Time</a></li>
 <li><a href="#_duration_constraints">5.4.6.2. Duration Constraints</a></li>
 </ul>
 </li>
@@ -498,20 +498,30 @@
 </thead>
 <tbody>
 <tr>
-<th class="tableblock halign-center valign-top" colspan="4"><p class="tableblock"><strong>AM Release 2.?.? (unreleased)</strong></p></th>
+<th class="tableblock halign-center valign-top" colspan="4"><p class="tableblock"><strong>AM Release 2.3.?</strong></p></th>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a id="latest_issue"></a>1.4.4</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a id="latest_issue"></a>1.4.5</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://specifications.openehr.org/tickets/SPECAM-75" target="_blank" rel="noopener">SPECAM-75</a>. Improve specification of constraint patterns (addresses problem <a href="https://specifications.openehr.org/tickets/SPECPR-374" target="_blank" rel="noopener">SPECPR-374</a>). Modified <a href="#date_time_constraint_patterns">Section 5.4.6.1</a> to include timezone constraints.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">P Pazos,<br>
+T Beale</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a id="latest_issue_date"></a>20 Dec 2022</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1.4.4</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://specifications.openehr.org/tickets/SPECAM-69" target="_blank" rel="noopener">SPECAM-69</a>. Support negative durations (see also <a href="https://specifications.openehr.org/tickets/SPECRM-96" target="_blank" rel="noopener">SPECRM-96</a>); add examples in <a href="#_duration_constraints">Section 5.4.6.2</a>.</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">P Bos,<br>
  S Garde</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a id="latest_issue_date"></a>09 Sep 2020</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">09 Sep 2020</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">1.4.3</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://specifications.openehr.org/tickets/SPECPUB-7" target="_blank" rel="noopener">SPECPUB-7</a>: Convert citations to bibtex form.</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">T Beale</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">15 Dec 2019</p></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top" colspan="4"><p class="tableblock"><strong>AM Release 2.2.0</strong></p></th>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top" colspan="4"><p class="tableblock"><strong>AM Release 2.1.0</strong></p></th>
@@ -4172,25 +4182,28 @@ primitive types in cADL are expressed without type names, and omitting one level
 <p>Dates, times, date/times and durations may all be constrained in three ways: using a list of values, using intervals, and using patterns. The first two ways allow values to be constrained to actual date, time etc values, while the last allows values to be constrained on the basis of which parts of the date, time etc are present or missing, regardless of value. The pattern method is described first, since patterns can also be used in lists and intervals.</p>
 </div>
 <div class="sect4">
-<h5 id="_date_time_and_datetime"><a class="anchor" href="#_date_time_and_datetime"></a>5.4.6.1. Date, Time and Date/Time</h5>
+<h5 id="date_time_constraint_patterns"><a class="anchor" href="#date_time_constraint_patterns"></a>5.4.6.1. Date, Time and Date/Time</h5>
 <div class="sect5">
 <h6 id="_patterns"><a class="anchor" href="#_patterns"></a>Patterns</h6>
 <div class="paragraph">
-<p>Dates, times, and date/times (i.e. timestamps), can be constrained using patterns based on the <a href="https://en.wikipedia.org/wiki/ISO_8601" target="_blank" rel="noopener">ISO 8601 date/time syntax</a>, which indicate which parts of the date or time must be supplied. A constraint pattern is formed from the abstract pattern <code>yyyy-mm-ddThh:mm:ss</code> (itself formed by translating each field of an ISO 8601 date/time into a letter representing its type), with either <code>?</code> (meaning optional) or <code>X</code> (not allowed) characters substituted in appropriate places. The syntax of legal patterns is shown by the following lexical rules:</p>
+<p>Dates, times, and date/times (i.e. timestamps), can be constrained using patterns based on the <a href="https://en.wikipedia.org/wiki/ISO_8601" target="_blank" rel="noopener">ISO 8601 date/time syntax</a>, which indicate which parts of the date or time must be supplied. A constraint pattern is formed from the abstract pattern <code>yyyy-mm-ddThh:mm:ss</code> (itself formed by translating each field of an ISO 8601 date/time into a letter representing its type), with either <code>?</code> (meaning optional) or <code>X</code> (not allowed) characters substituted in appropriate places. Timezone may be indicated as being required by the addition of a patterns of the form <code>+hh:mm</code>, <code>+hhmm</code>, <code>-hh</code> or <code>Z</code> (UTC, i.e. equivalent of <code>+0000</code>).</p>
+</div>
+<div class="paragraph">
+<p>The syntax of legal patterns is given by the following lexical rules (Antlr4):</p>
 </div>
 <div class="listingblock">
 <div class="content">
 <pre class="pygments highlight"><code data-lang="antlr-java"><span></span><span class="tok-nl">DATE_CONSTRAINT_PATTERN</span><span class="tok-w">      </span><span class="tok-p">:</span><span class="tok-w"> </span><span class="tok-no">YEAR_PATTERN</span><span class="tok-w"> </span><span class="tok-s1">&#39;-&#39;</span><span class="tok-w"> </span><span class="tok-no">MONTH_PATTERN</span><span class="tok-w"> </span><span class="tok-s1">&#39;-&#39;</span><span class="tok-w"> </span><span class="tok-no">DAY_PATTERN</span><span class="tok-w"> </span><span class="tok-p">;</span><span class="tok-w"></span>
-<span class="tok-nl">TIME_CONSTRAINT_PATTERN</span><span class="tok-w">      </span><span class="tok-p">:</span><span class="tok-w"> </span><span class="tok-no">HOUR_PATTERN</span><span class="tok-w"> </span><span class="tok-s1">&#39;:&#39;</span><span class="tok-w"> </span><span class="tok-no">MINUTE_PATTERN</span><span class="tok-w"> </span><span class="tok-s1">&#39;:&#39;</span><span class="tok-w"> </span><span class="tok-no">SECOND_PATTERN</span><span class="tok-w"> </span><span class="tok-p">;</span><span class="tok-w"></span>
+<span class="tok-nl">TIME_CONSTRAINT_PATTERN</span><span class="tok-w">      </span><span class="tok-p">:</span><span class="tok-w"> </span><span class="tok-no">HOUR_PATTERN</span><span class="tok-w"> </span><span class="tok-s1">&#39;:&#39;</span><span class="tok-w"> </span><span class="tok-no">MINUTE_PATTERN</span><span class="tok-w"> </span><span class="tok-s1">&#39;:&#39;</span><span class="tok-w"> </span><span class="tok-no">SECOND_PATTERN</span><span class="tok-w"> </span><span class="tok-no">TZ_PATTERN</span><span class="tok-o">?</span><span class="tok-w"> </span><span class="tok-p">;</span><span class="tok-w"></span>
 <span class="tok-nl">DATE_TIME_CONSTRAINT_PATTERN</span><span class="tok-w"> </span><span class="tok-p">:</span><span class="tok-w"> </span><span class="tok-no">DATE_CONSTRAINT_PATTERN</span><span class="tok-w"> </span><span class="tok-s1">&#39;T&#39;</span><span class="tok-w"> </span><span class="tok-no">TIME_CONSTRAINT_PATTERN</span><span class="tok-w"> </span><span class="tok-p">;</span><span class="tok-w"></span>
 
-<span class="tok-c">// date time pattern</span><span class="tok-w"></span>
-<span class="tok-k">fragment</span><span class="tok-w"> </span><span class="tok-nl">YEAR_PATTERN</span><span class="tok-w">   </span><span class="tok-p">:</span><span class="tok-w"> </span><span class="tok-o">(</span><span class="tok-w"> </span><span class="tok-s1">&#39;yyy&#39;</span><span class="tok-w"> </span><span class="tok-s1">&#39;y&#39;</span><span class="tok-o">?</span><span class="tok-w"> </span><span class="tok-o">)</span><span class="tok-w"> </span><span class="tok-o">|</span><span class="tok-w"> </span><span class="tok-o">(</span><span class="tok-w"> </span><span class="tok-s1">&#39;YYY&#39;</span><span class="tok-w"> </span><span class="tok-s1">&#39;Y&#39;</span><span class="tok-o">?</span><span class="tok-w"> </span><span class="tok-o">)</span><span class="tok-w"> </span><span class="tok-p">;</span><span class="tok-w"></span>
+<span class="tok-k">fragment</span><span class="tok-w"> </span><span class="tok-nl">YEAR_PATTERN</span><span class="tok-w">   </span><span class="tok-p">:</span><span class="tok-w"> </span><span class="tok-s1">&#39;yyyy&#39;</span><span class="tok-w"> </span><span class="tok-o">|</span><span class="tok-w"> </span><span class="tok-s1">&#39;YYYY&#39;</span><span class="tok-w"> </span><span class="tok-o">|</span><span class="tok-w"> </span><span class="tok-s1">&#39;yyy&#39;</span><span class="tok-w"> </span><span class="tok-o">|</span><span class="tok-w"> </span><span class="tok-s1">&#39;YYY&#39;</span><span class="tok-w"> </span><span class="tok-p">;</span><span class="tok-w"></span>
 <span class="tok-k">fragment</span><span class="tok-w"> </span><span class="tok-nl">MONTH_PATTERN</span><span class="tok-w">  </span><span class="tok-p">:</span><span class="tok-w"> </span><span class="tok-s1">&#39;mm&#39;</span><span class="tok-w"> </span><span class="tok-o">|</span><span class="tok-w"> </span><span class="tok-s1">&#39;MM&#39;</span><span class="tok-w"> </span><span class="tok-o">|</span><span class="tok-w"> </span><span class="tok-s1">&#39;??&#39;</span><span class="tok-w"> </span><span class="tok-o">|</span><span class="tok-w"> </span><span class="tok-s1">&#39;XX&#39;</span><span class="tok-w"> </span><span class="tok-o">|</span><span class="tok-w"> </span><span class="tok-s1">&#39;xx&#39;</span><span class="tok-w"> </span><span class="tok-p">;</span><span class="tok-w"></span>
 <span class="tok-k">fragment</span><span class="tok-w"> </span><span class="tok-nl">DAY_PATTERN</span><span class="tok-w">    </span><span class="tok-p">:</span><span class="tok-w"> </span><span class="tok-s1">&#39;dd&#39;</span><span class="tok-w"> </span><span class="tok-o">|</span><span class="tok-w"> </span><span class="tok-s1">&#39;DD&#39;</span><span class="tok-w"> </span><span class="tok-o">|</span><span class="tok-w"> </span><span class="tok-s1">&#39;??&#39;</span><span class="tok-w"> </span><span class="tok-o">|</span><span class="tok-w"> </span><span class="tok-s1">&#39;XX&#39;</span><span class="tok-w"> </span><span class="tok-o">|</span><span class="tok-w"> </span><span class="tok-s1">&#39;xx&#39;</span><span class="tok-w">  </span><span class="tok-p">;</span><span class="tok-w"></span>
 <span class="tok-k">fragment</span><span class="tok-w"> </span><span class="tok-nl">HOUR_PATTERN</span><span class="tok-w">   </span><span class="tok-p">:</span><span class="tok-w"> </span><span class="tok-s1">&#39;hh&#39;</span><span class="tok-w"> </span><span class="tok-o">|</span><span class="tok-w"> </span><span class="tok-s1">&#39;HH&#39;</span><span class="tok-w"> </span><span class="tok-o">|</span><span class="tok-w"> </span><span class="tok-s1">&#39;??&#39;</span><span class="tok-w"> </span><span class="tok-o">|</span><span class="tok-w"> </span><span class="tok-s1">&#39;XX&#39;</span><span class="tok-w"> </span><span class="tok-o">|</span><span class="tok-w"> </span><span class="tok-s1">&#39;xx&#39;</span><span class="tok-w">  </span><span class="tok-p">;</span><span class="tok-w"></span>
 <span class="tok-k">fragment</span><span class="tok-w"> </span><span class="tok-nl">MINUTE_PATTERN</span><span class="tok-w"> </span><span class="tok-p">:</span><span class="tok-w"> </span><span class="tok-s1">&#39;mm&#39;</span><span class="tok-w"> </span><span class="tok-o">|</span><span class="tok-w"> </span><span class="tok-s1">&#39;MM&#39;</span><span class="tok-w"> </span><span class="tok-o">|</span><span class="tok-w"> </span><span class="tok-s1">&#39;??&#39;</span><span class="tok-w"> </span><span class="tok-o">|</span><span class="tok-w"> </span><span class="tok-s1">&#39;XX&#39;</span><span class="tok-w"> </span><span class="tok-o">|</span><span class="tok-w"> </span><span class="tok-s1">&#39;xx&#39;</span><span class="tok-w">  </span><span class="tok-p">;</span><span class="tok-w"></span>
-<span class="tok-k">fragment</span><span class="tok-w"> </span><span class="tok-nl">SECOND_PATTERN</span><span class="tok-w"> </span><span class="tok-p">:</span><span class="tok-w"> </span><span class="tok-s1">&#39;ss&#39;</span><span class="tok-w"> </span><span class="tok-o">|</span><span class="tok-w"> </span><span class="tok-s1">&#39;SS&#39;</span><span class="tok-w"> </span><span class="tok-o">|</span><span class="tok-w"> </span><span class="tok-s1">&#39;??&#39;</span><span class="tok-w"> </span><span class="tok-o">|</span><span class="tok-w"> </span><span class="tok-s1">&#39;XX&#39;</span><span class="tok-w"> </span><span class="tok-o">|</span><span class="tok-w"> </span><span class="tok-s1">&#39;xx&#39;</span><span class="tok-w">  </span><span class="tok-p">;</span><span class="tok-w"></span></code></pre>
+<span class="tok-k">fragment</span><span class="tok-w"> </span><span class="tok-nl">SECOND_PATTERN</span><span class="tok-w"> </span><span class="tok-p">:</span><span class="tok-w"> </span><span class="tok-s1">&#39;ss&#39;</span><span class="tok-w"> </span><span class="tok-o">|</span><span class="tok-w"> </span><span class="tok-s1">&#39;SS&#39;</span><span class="tok-w"> </span><span class="tok-o">|</span><span class="tok-w"> </span><span class="tok-s1">&#39;??&#39;</span><span class="tok-w"> </span><span class="tok-o">|</span><span class="tok-w"> </span><span class="tok-s1">&#39;XX&#39;</span><span class="tok-w"> </span><span class="tok-o">|</span><span class="tok-w"> </span><span class="tok-s1">&#39;xx&#39;</span><span class="tok-w">  </span><span class="tok-p">;</span><span class="tok-w"></span>
+<span class="tok-k">fragment</span><span class="tok-w"> </span><span class="tok-nl">TZ_PATTERN</span><span class="tok-w">     </span><span class="tok-p">:</span><span class="tok-w"> </span><span class="tok-s1">&#39;±&#39;</span><span class="tok-w"> </span><span class="tok-o">(</span><span class="tok-s1">&#39;hh&#39;</span><span class="tok-w"> </span><span class="tok-o">|</span><span class="tok-w"> </span><span class="tok-s1">&#39;HH&#39;</span><span class="tok-o">)</span><span class="tok-w"> </span><span class="tok-o">(</span><span class="tok-s1">&#39;:&#39;</span><span class="tok-o">?</span><span class="tok-w"> </span><span class="tok-o">(</span><span class="tok-s1">&#39;mm&#39;</span><span class="tok-w"> </span><span class="tok-o">|</span><span class="tok-w"> </span><span class="tok-s1">&#39;MM&#39;</span><span class="tok-o">))?</span><span class="tok-w"> </span><span class="tok-p">;</span><span class="tok-w"></span></code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -4317,25 +4330,58 @@ primitive types in cADL are expressed without type names, and omitting one level
 <p>In the above patterns, the 'yyyy' etc match strings can be replaced by literal date/time numbers. For example, <code>yyyy-??-XX</code> could be transformed into <code>1995-??-XX</code> to mean any partial date in 1995.</p>
 </div>
 <div class="paragraph">
-<p>An assumed value can be used with any of the above as follows: <code>yyyy-??-??; 1970-01-01</code>.</p>
+<p>Any of the above may be modified to require a timezone by appending one of the following timezone constraint patterns:</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 20%;">
+<col style="width: 80%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Pattern</th>
+<th class="tableblock halign-left valign-top">Explanation</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">±hh</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">hours-only timezone modifier required, commencing with '+' or '-'; 'Z' also allowed</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">±hh:mm</p></td>
+<td class="tableblock halign-left valign-top" rowspan="2"><p class="tableblock">full timezone modifier required, commencing with '+' or '-'; 'Z' also allowed</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">±hhmm</p></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph">
+<p>An assumed value can be used with any of the above using the semi-colon separator, as follows, e.g. <code>yyyy-??-??; 1970-01-01</code>. If there is a timezone constraint, the assumed value must include a valid timezone, i.e. <code>yyyy-mm-dd±hh; 1970-01-01+02</code>.</p>
 </div>
 </div>
 <div class="sect5">
 <h6 id="_intervals"><a class="anchor" href="#_intervals"></a>Intervals</h6>
 <div class="paragraph">
-<p>Dates, times and date/times can also be constrained using intervals. Each date, time etc in an interval may be a literal date, time etc value. Examples of such constraints:</p>
+<p>Dates, times and date/times can also be constrained using intervals. Each date, time or date/time in an interval may be a literal value. Examples of such constraints:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="pygments highlight"><code data-lang="cadl"><span></span>    <span class="tok-p">|</span><span class="tok-mi">1995</span><span class="tok-err">-??-XX</span><span class="tok-p">|</span>                                <span class="tok-c">-- any partial date in 199</span>
-    <span class="tok-p">|</span><span class="tok-ld">09:30:00</span><span class="tok-p">|</span>                                  <span class="tok-c">-- exactly 9:30 am</span>
-    <span class="tok-p">|&lt; </span><span class="tok-ld">09:30:00</span><span class="tok-p">|</span>                                <span class="tok-c">-- any time before 9:30 am</span>
-    <span class="tok-p">|&lt;= </span><span class="tok-ld">09:30:00</span><span class="tok-p">|</span>                               <span class="tok-c">-- any time at or before 9:30 am</span>
-    <span class="tok-p">|&gt; </span><span class="tok-ld">09:30:00</span><span class="tok-p">|</span>                                <span class="tok-c">-- any time after 9:30 am</span>
-    <span class="tok-p">|&gt;= </span><span class="tok-ld">09:30:00</span><span class="tok-p">|</span>                               <span class="tok-c">-- any time at or after 9:30 am</span>
-    <span class="tok-p">|</span><span class="tok-ld">2004-05-20</span><span class="tok-p">..</span><span class="tok-ld">2004-06-02</span><span class="tok-p">|</span>                    <span class="tok-c">-- a date range</span>
-    <span class="tok-p">|</span><span class="tok-ld">2004-05-20T00:00:00</span><span class="tok-p">..</span><span class="tok-ld">2005-05-19T23:59:59</span><span class="tok-p">|</span>  <span class="tok-c">-- a date/time range</span></code></pre>
+<pre class="pygments highlight"><code data-lang="cadl"><span></span>    <span class="tok-p">|</span><span class="tok-ld">09:30:00</span><span class="tok-p">|</span>                                    <span class="tok-c">-- exactly 9:30 am</span>
+    <span class="tok-p">|&lt; </span><span class="tok-ld">09:30:00</span><span class="tok-p">|</span>                                  <span class="tok-c">-- any time before 9:30 am</span>
+    <span class="tok-p">|&lt;= </span><span class="tok-ld">09:30:00</span><span class="tok-p">|</span>                                 <span class="tok-c">-- any time at or before 9:30 am</span>
+    <span class="tok-p">|&gt; </span><span class="tok-ld">09:30:00</span><span class="tok-p">|</span>                                  <span class="tok-c">-- any time after 9:30 am</span>
+    <span class="tok-p">|&gt; </span><span class="tok-ld">09:30:00+0200</span><span class="tok-p">|</span>                             <span class="tok-c">-- any time after 9:30 am in UTC+0200 timezone</span>
+    <span class="tok-p">|&gt;= </span><span class="tok-ld">09:30:00</span><span class="tok-p">|</span>                                 <span class="tok-c">-- any time at or after 9:30 am</span>
+    <span class="tok-p">|</span><span class="tok-ld">2004-05-20</span><span class="tok-p">..</span><span class="tok-ld">2004-06-02</span><span class="tok-p">|</span>                      <span class="tok-c">-- a date range</span>
+    <span class="tok-p">|</span><span class="tok-ld">2004-05-20T00:00:00</span><span class="tok-p">..</span><span class="tok-ld">2005-05-19T23:59:59</span><span class="tok-p">|</span>    <span class="tok-c">-- a date/time range</span>
+    <span class="tok-p">|&gt;= </span><span class="tok-ld">09:30:00</span><span class="tok-p">|;</span><span class="tok-ld">09:30:00</span>                        <span class="tok-c">-- any time at or after 9:30 am; assume 9:30 am</span>
+    <span class="tok-p">|</span><span class="tok-ld">2004-05-20T00:00:00Z</span><span class="tok-p">..</span><span class="tok-ld">2005-05-19T23:59:59Z</span><span class="tok-p">|</span>  <span class="tok-c">-- a date/time range in UTC timezone</span></code></pre>
 </div>
+</div>
+<div class="paragraph">
+<p>Within any interval containing two literal date/time values (i.e. not one-sided intervals), if a timezone is used on one, it must be used on both, to ensure comparability. The timezones need not be identical.</p>
 </div>
 </div>
 </div>
@@ -4344,7 +4390,7 @@ primitive types in cADL are expressed without type names, and omitting one level
 <div class="sect5">
 <h6 id="_patterns_2"><a class="anchor" href="#_patterns_2"></a>Patterns</h6>
 <div class="paragraph">
-<p>Patterns based on ISO 8601 can be used to constraint durations in the same way as for Date/time types. The lexical rule for the pattern is:</p>
+<p>Patterns based on ISO 8601 can be used to constraint durations in the same way as for Date/time types. The lexical rule for the pattern is (Antlr4):</p>
 </div>
 <div class="listingblock">
 <div class="content">

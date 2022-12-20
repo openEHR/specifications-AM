@@ -5922,13 +5922,6 @@ s: <code>String[1]</code><br>
 </div></div></td>
 </tr>
 <tr>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>1..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>timezone_validity</strong> (): <code><a href="/releases/BASE/latest/base_types.html#_validity_kind_enumeration" target="_blank" rel="noopener">VALIDITY_KIND</a></code></p></td>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p>Validity of timezone in constrained date.</p>
-</div></div></td>
-</tr>
-<tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>1..1<br>
 (effected)</strong></p></th>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><strong>valid_pattern_constraint</strong> (<br>
@@ -6047,7 +6040,7 @@ valid_date_constraint_replacements.item (an_other_pattern.as_upper).has (a_patte
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>1..1</strong></p></th>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><strong>timezone_validity</strong> (): <code><a href="/releases/BASE/latest/base_types.html#_validity_kind_enumeration" target="_blank" rel="noopener">VALIDITY_KIND</a></code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p>Validity of timezone in constrained date.</p>
+<p>Validity of timezone in constrained time.</p>
 </div></div></td>
 </tr>
 <tr>
@@ -6145,6 +6138,28 @@ valid_time_constraint_replacements.item (an_other_pattern.as_upper).has (a_patte
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Meaning</strong></p></th>
 </tr>
 <tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>1..1<br>
+(effected)</strong></p></th>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>valid_pattern_constraint</strong> (<br>
+a_pattern: <code>String[1]</code><br>
+): <code>Boolean</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Return <code>valid_iso8601_date_time_constraint_pattern (a_pattern)</code></p>
+</div></div></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>1..1<br>
+(effected)</strong></p></th>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>valid_pattern_constraint_replacement</strong> (<br>
+a_pattern: <code>String[1]</code>,<br>
+an_other_pattern: <code>String[1]</code><br>
+): <code>Boolean</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Return <code>valid_date_time_constraint_replacements.has(an_other_pattern.as_upper) and then
+valid_date_time_constraint_replacements.item (an_other_pattern.as_upper).has (a_pattern.as_upper)</code>.</p>
+</div></div></td>
+</tr>
+<tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>1..1</strong></p></th>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><strong>month_validity</strong> (): <code><a href="/releases/BASE/latest/base_types.html#_validity_kind_enumeration" target="_blank" rel="noopener">VALIDITY_KIND</a></code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
@@ -6156,13 +6171,6 @@ valid_time_constraint_replacements.item (an_other_pattern.as_upper).has (a_patte
 <td class="tableblock halign-left valign-top"><p class="tableblock"><strong>day_validity</strong> (): <code><a href="/releases/BASE/latest/base_types.html#_validity_kind_enumeration" target="_blank" rel="noopener">VALIDITY_KIND</a></code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>Validity of day in constrained date.</p>
-</div></div></td>
-</tr>
-<tr>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>1..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>timezone_validity</strong> (): <code><a href="/releases/BASE/latest/base_types.html#_validity_kind_enumeration" target="_blank" rel="noopener">VALIDITY_KIND</a></code></p></td>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p>Validity of timezone in constrained date.</p>
 </div></div></td>
 </tr>
 <tr>
@@ -6187,25 +6195,10 @@ valid_time_constraint_replacements.item (an_other_pattern.as_upper).has (a_patte
 </div></div></td>
 </tr>
 <tr>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>1..1<br>
-(effected)</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>valid_pattern_constraint</strong> (<br>
-a_pattern: <code>String[1]</code><br>
-): <code>Boolean</code></p></td>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>1..1</strong></p></th>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>timezone_validity</strong> (): <code><a href="/releases/BASE/latest/base_types.html#_validity_kind_enumeration" target="_blank" rel="noopener">VALIDITY_KIND</a></code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p>Return <code>valid_iso8601_date_time_constraint_pattern (a_pattern)</code></p>
-</div></div></td>
-</tr>
-<tr>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>1..1<br>
-(effected)</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>valid_pattern_constraint_replacement</strong> (<br>
-a_pattern: <code>String[1]</code>,<br>
-an_other_pattern: <code>String[1]</code><br>
-): <code>Boolean</code></p></td>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p>Return <code>valid_date_time_constraint_replacements.has(an_other_pattern.as_upper) and then
-valid_date_time_constraint_replacements.item (an_other_pattern.as_upper).has (a_pattern.as_upper)</code>.</p>
+<p>Validity of timezone in constrained date/time.</p>
 </div></div></td>
 </tr>
 <tr>
