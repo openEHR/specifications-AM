@@ -849,7 +849,7 @@ Dates, times, date/times and durations may all be constrained in three ways: usi
 
 ===== Patterns
 
-Dates, times, and date/times (i.e. timestamps), can be constrained using patterns based on the {iso_8601}[ISO 8601 date/time syntax^], which indicate which parts of the date or time must be supplied. A constraint pattern is formed from the abstract pattern `yyyy-mm-ddThh:mm:ss` (itself formed by translating each field of an ISO 8601 date/time into a letter representing its type), with either `?` (meaning optional) or `X` (not allowed) characters substituted in appropriate places. Timezone may be indicated as being required by the addition of a patterns of the form `+hh:mm`, `+hhmm`, `-hh` or `Z` (UTC, i.e. equivalent of `+0000`).
+Dates, times, and date/times (i.e. timestamps), can be constrained using patterns based on the {iso_8601}[ISO 8601 date/time syntax^], which indicate which parts of the date or time must be supplied. A constraint pattern is formed from the abstract pattern `yyyy-mm-ddThh:mm:ss` (itself formed by translating each field of an ISO 8601 date/time into a letter representing its type), with either `?` (meaning optional) or `X` (not allowed) characters substituted in appropriate places. Timezone may be indicated as being _required_ by the addition of a patterns such as `+hh:mm`, `+hhmm`, and `-hh`. The `Z` (UTC, i.e. equivalent of `+0000`) timezone modifier can always be used when any such pattern is specified (see <<#timezone_constraints,table below>>).
 
 NOTE: there is no way to state that timezone information be _prohibited_.
 
@@ -910,6 +910,7 @@ In the above patterns, the 'yyyy' etc match strings can be replaced by literal d
 
 Any of the time or date/time (but not date) patterns above may be modified to require a timezone by appending one of the following timezone constraint patterns:
 
+[#timezone_constraints]
 [cols="1,4",options="header"]
 |===================================================================================
 |Pattern   |Explanation
@@ -919,6 +920,8 @@ Any of the time or date/time (but not date) patterns above may be modified to re
 |===================================================================================
 
 It is assumed that any time or date/time datum that includes timezone is correctly constructed to include the effect of summer time.
+
+The absence of a timezone constraint indicates that a timezone modifier is optional.
 
 An assumed value can be used with any of the above using the semi-colon separator, as follows, e.g. `yyyy-??-??; 1970-01-01`. If there is a timezone constraint, the assumed value must include a valid timezone, i.e. `yyyy-mm-dd±hh; 1970-01-01+02`.
 
