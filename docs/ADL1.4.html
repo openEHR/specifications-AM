@@ -501,11 +501,17 @@
 <th class="tableblock halign-center valign-top" colspan="4"><p class="tableblock"><strong>AM Release 2.3.?</strong></p></th>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a id="latest_issue"></a>1.4.5</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a id="latest_issue"></a>1.4.6</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://specifications.openehr.org/tickets/SPECAM-84" target="_blank" rel="noopener">SPECAM-84</a>. Fix typos in AOM, ADL 1.4.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">R Kavanagh</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a id="latest_issue_date"></a>03 Apr 2023</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1.4.5</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://specifications.openehr.org/tickets/SPECAM-75" target="_blank" rel="noopener">SPECAM-75</a>. Improve specification of constraint patterns (addresses problem <a href="https://specifications.openehr.org/tickets/SPECPR-374" target="_blank" rel="noopener">SPECPR-374</a>). Modified <a href="#date_time_constraint_patterns">Section 5.4.6.1</a> to include timezone constraints.</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">P Pazos,<br>
 T Beale</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a id="latest_issue_date"></a>20 Dec 2022</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">20 Dec 2022</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">1.4.4</p></td>
@@ -1118,7 +1124,7 @@ for users requiring the most recent form of ADL and archteype technology in gene
 <div class="sect3">
 <h4 id="_semantics"><a class="anchor" href="#_semantics"></a>2.1.3. Semantics</h4>
 <div class="paragraph">
-<p>As a parsable syntax, ADL has a formal relationship with structural models such as those expressed in UML, according to the scheme of the following figure. Here we can see that ADL documents are parsed into a network of objects (often known as a ‘parse tree’) which are themselves defined by a formal, abstract object model (see The <a href="https://specifications.openehr.org/releases/AM/latest/ADL1.4.html" target="_blank" rel="noopener">openEHR Archetype Object Model 1.4</a>. Such a model can in turn be reexpressed as any number of concrete models, such as in a programming language, XML-schema or OMG IDL.</p>
+<p>As a parsable syntax, ADL has a formal relationship with structural models such as those expressed in UML, according to the scheme of the following figure. Here we can see that ADL documents are parsed into a network of objects (often known as a ‘parse tree’) which are themselves defined by a formal, abstract object model (see The <a href="https://specifications.openehr.org/releases/AM/latest/ADL1.4.html" target="_blank" rel="noopener">openEHR Archetype Object Model 1.4</a>. Such a model can in turn be re-expressed as any number of concrete models, such as in a programming language, XML-schema or OMG IDL.</p>
 </div>
 <div class="paragraph">
 <p>While ADL syntax remains the primary abstract formalism for expressing archetypes, the AOM defines the semantics of an archetype, in particular relationships which must hold true between the parts of an archetype for it to be valid as a whole.</p>
@@ -1312,7 +1318,7 @@ the structure, as shown in the following example:</p>
 <div class="sect4">
 <h5 id="_revision_history_section"><a class="anchor" href="#_revision_history_section"></a>2.4.3.3. Revision History Section</h5>
 <div class="paragraph">
-<p>Revision history is now recorded in a separate section of the archetype, both to logically separate it from the archetype descriptive details, and to facilitate automatic processing by version control systems in which archtypes may be stored. This section is included at the end of the archetype because it is in general a monotonically growing section.</p>
+<p>Revision history is now recorded in a separate section of the archetype, both to logically separate it from the archetype descriptive details, and to facilitate automatic processing by version control systems in which archetypes may be stored. This section is included at the end of the archetype because it is in general a monotonically growing section.</p>
 </div>
 </div>
 <div class="sect4">
@@ -1331,7 +1337,7 @@ the structure, as shown in the following example:</p>
 <div class="sect2">
 <h3 id="_file_encoding"><a class="anchor" href="#_file_encoding"></a>3.1. File Encoding</h3>
 <div class="paragraph">
-<p>Because ADL files are inherently likely to contain multiple languages due to internationalised authoring and translation, they must be capable of accommodating characters from any language. ADL files do not explicitly indicate an encoding because they are assumed to be in UTF-8 encoding of unicode.  For ideographic and script-oriented languuages, this is a necessity.</p>
+<p>Because ADL files are inherently likely to contain multiple languages due to internationalised authoring and translation, they must be capable of accommodating characters from any language. ADL files do not explicitly indicate an encoding because they are assumed to be in UTF-8 encoding of unicode.  For ideographic and script-oriented languages, this is a necessity.</p>
 </div>
 <div class="paragraph">
 <p>There are three places in ADL files where non-ASCII characters can occur:</p>
@@ -1396,7 +1402,7 @@ the structure, as shown in the following example:</p>
 <div class="sect2">
 <h3 id="_special_character_sequences"><a class="anchor" href="#_special_character_sequences"></a>3.2. Special Character Sequences</h3>
 <div class="paragraph">
-<p>In strings and characters, characters not in the lower ASCII (0-127) range should be UTF-8 encoded, with the exception of quoted single- and double quotes, and some non-printing characters, for which the following customary quoted forms are allowed (but not required):</p>
+<p>In strings and characters, characters not in the lower ASCII (0-127) range should be UTF-8 encoded, with the exception of quoted single- and double-quotes, and some non-printing characters, for which the following customary quoted forms are allowed (but not required):</p>
 </div>
 <div class="ulist">
 <ul>
@@ -1421,13 +1427,13 @@ the structure, as shown in the following example:</p>
 </ul>
 </div>
 <div class="paragraph">
-<p>Any other character combination starting with a backslash is illiegal; to get the effect of a literal backslash, the <code>\\</code> sequence should always be used.</p>
+<p>Any other character combination starting with a backslash is illegal; to get the effect of a literal backslash, the <code>\\</code> sequence should always be used.</p>
 </div>
 <div class="paragraph">
 <p>Typically in a normal string, including multi-line paragraphs as used in ODIN, only <code>\\</code> and <code>\"</code> are likely to be necessary, since all of the others can be accommodated in their literal forms; the same goes for single characters - only <code>\\</code> and <code>\'</code> are likely to commonly occur. However, some authors may prefer to use <code>\n</code> and <code>\t</code> to make intended formatting clearer, or to allow for text editors that do not react properly to such characters. Parsers should therefore support the above list.</p>
 </div>
 <div class="paragraph">
-<p>In regular expressions (only used in cADL string constraints), there will typically be backslashescaped characters from the above list as well as other patterns like <code>\s</code> (whitspace) and <code>\d</code> (decimal digit), according to the <a href="https://perldoc.perl.org/perlre.html" target="_blank" rel="noopener">PERL regular expression specification</a>. These should not be treated as anything other than literal strings, since they are processed by a regular expression parser.</p>
+<p>In regular expressions (only used in cADL string constraints), there will typically be backslash-escaped characters from the above list as well as other patterns like <code>\s</code> (whitespace) and <code>\d</code> (decimal digit), according to the <a href="https://perldoc.perl.org/perlre.html" target="_blank" rel="noopener">PERL regular expression specification</a>. These should not be treated as anything other than literal strings, since they are processed by a regular expression parser.</p>
 </div>
 </div>
 </div>
@@ -1464,7 +1470,7 @@ the structure, as shown in the following example:</p>
 <p>In the above the attribute names <code>person</code> , <code>name</code> , <code>address</code> etc, and the type <code>List&lt;PERSON&gt;</code> are all assumed to come from an information model. The <code>[01234]</code> and <code>[01235]</code> tags identify container items.</p>
 </div>
 <div class="paragraph">
-<p>The basic design principle of dADL is to be able to represent data in a way that is both machine-processible and human readable, while making the fewest assumptions possible about the information model to which the data conforms. To this end, type names are optional; often, only attribute names and values are explicitly shown. No syntactical assumptions are made about whether the underlying model is relational, object-oriented or what it actually looks like. More than one information model can be compatible with the same dADL-expressed data. The UML semantics of composition/aggregation and association are expressible, as are shared objects. Literal leaf values are only of 'standard' widely recognised types, i.e. Integer, Real, Boolean, String, Character and a range of Date/time types. In standard dADL, all complex types are expressed structurally.</p>
+<p>The basic design principle of dADL is to be able to represent data in a way that is both machine-processable and human readable, while making the fewest assumptions possible about the information model to which the data conforms. To this end, type names are optional; often, only attribute names and values are explicitly shown. No syntactical assumptions are made about whether the underlying model is relational, object-oriented or what it actually looks like. More than one information model can be compatible with the same dADL-expressed data. The UML semantics of composition/aggregation and association are expressible, as are shared objects. Literal leaf values are only of 'standard' widely recognised types, i.e. Integer, Real, Boolean, String, Character and a range of Date/time types. In standard dADL, all complex types are expressed structurally.</p>
 </div>
 <div class="paragraph">
 <p>A common question about dADL is why it is needed, when there is already XML? To start with, this question highlights the widespread misconception about XML, namely that because it can be read by a text editor, it is intended for humans. In fact, XML is designed for machine processing, and is textual to guarantee its interoperability. Realistic examples of XML (e.g. XML-schema instance, OWL-RDF ontologies) are generally unreadable for humans. dADL is on the other hand designed as a human-writable and readable formalism that is also machine processable; it may be thought of as an <em>abstract syntax for object-oriented data</em>. dADL also differs from XML by:</p>
@@ -1486,7 +1492,7 @@ the structure, as shown in the following example:</p>
 </ul>
 </div>
 <div class="paragraph">
-<p>Of course, this does not prevent XML exchange syntaxes being used for dADL, and indeed the conversion to XML instance is rather straighforward. Details on the XML expression of dADL and use of Xpath expressions is described in <a href="#_expression_of_dadl_in_xml">Section 4.7</a>.</p>
+<p>Of course, this does not prevent XML exchange syntaxes being used for dADL, and indeed the conversion to XML instance is rather straightforward. Details on the XML expression of dADL and use of Xpath expressions is described in <a href="#_expression_of_dadl_in_xml">Section 4.7</a>.</p>
 </div>
 <div class="paragraph">
 <p>The dADL syntax as described above has a number of useful characteristics that enable the extensive use of paths to navigate it, and express references. These include:</p>
@@ -1689,7 +1695,7 @@ the structure, as shown in the following example:</p>
 </div>
 </div>
 <div class="paragraph">
-<p>In the above structure, each "&lt;&gt;" encloses an instance of some type. The hierarchical structure corresponds to the part-of relationship between objects, otherwise known as <em>composition</em> and <em>aggregation</em> relationships in object-oriented formalisms such as UML (the difference between the two is usually described as being "sub-objects related by aggregation can have independent lifetimes, whereas sub-objects related by composition have co-termimal lifetimes and are always destroyed with the parent"; dADL does not differentiate between the two, since it is the business of a model, not the data, to express such semantics). Associations between instances in dADL are also representable by references, and are described in <a href="#_associations_and_shared_objects">Section 4.4.6</a>.</p>
+<p>In the above structure, each "&lt;&gt;" encloses an instance of some type. The hierarchical structure corresponds to the part-of relationship between objects, otherwise known as <em>composition</em> and <em>aggregation</em> relationships in object-oriented formalisms such as UML (the difference between the two is usually described as being "sub-objects related by aggregation can have independent lifetimes, whereas sub-objects related by composition have co-terminal lifetimes and are always destroyed with the parent"; dADL does not differentiate between the two, since it is the business of a model, not the data, to express such semantics). Associations between instances in dADL are also representable by references, and are described in <a href="#_associations_and_shared_objects">Section 4.4.6</a>.</p>
 </div>
 <div class="sect4">
 <h5 id="_outer_delimiters"><a class="anchor" href="#_outer_delimiters"></a>4.4.1.1. Outer Delimiters</h5>
@@ -2354,7 +2360,7 @@ http://www.mozilla.org/products/firefox/upgrade/?application=thunderbird</pre>
 <div class="sect2">
 <h3 id="_plug_in_syntaxes"><a class="anchor" href="#_plug_in_syntaxes"></a>4.6. Plug-in Syntaxes</h3>
 <div class="paragraph">
-<p>Using the dADL syntax, any object structure can be serialised. In some cases, the requirement is to express some part of the structure in an abstract syntax, rather than in the more literal seriliased object form of dADL. dADL provides for this possibility by allowing the value of any object (i.e. what appears between any matching pair of <code>&lt;&gt;</code> delimiters) to be expressed in some other syntax, known as a "plug-in" syntax. Plug-in syntaxes are indicated in dADL in a similar way as typed objects, i.e. by the use of the syntax type in parentheses preceding the <code>&lt;&gt;</code> block. For a plug-in section, the &lt;&gt; delimiters are modified to <code>&lt;# #&gt;</code>, to allow for easier parser design, and easier recognition of such blocks by human readers. The general form is as follows:</p>
+<p>Using the dADL syntax, any object structure can be serialised. In some cases, the requirement is to express some part of the structure in an abstract syntax, rather than in the more literal serialised object form of dADL. dADL provides for this possibility by allowing the value of any object (i.e. what appears between any matching pair of <code>&lt;&gt;</code> delimiters) to be expressed in some other syntax, known as a "plug-in" syntax. Plug-in syntaxes are indicated in dADL in a similar way as typed objects, i.e. by the use of the syntax type in parentheses preceding the <code>&lt;&gt;</code> block. For a plug-in section, the &lt;&gt; delimiters are modified to <code>&lt;# #&gt;</code>, to allow for easier parser design, and easier recognition of such blocks by human readers. The general form is as follows:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -2517,7 +2523,7 @@ http://www.mozilla.org/products/firefox/upgrade/?application=thunderbird</pre>
 <div class="sect2">
 <h3 id="_syntax_specification"><a class="anchor" href="#_syntax_specification"></a>4.8. Syntax Specification</h3>
 <div class="paragraph">
-<p>The grammar and lexical specification for the standard dADL syntax is shown below. This grammar is implemented using lex (.l file) and yacc (.y file) specifications for in the Eiffel programming environment. The current release of these files is available at <a href="https://github.com/openEHR/adl-tools/tree/Release-1.4/libraries/common_libs/src/structures/syntax/dadl/parser" target="_blank" rel="noopener">Tag <code>Release-1.4</code> of the adl-tools Github repository</a>. The .l and .y files can be converted for use in another yacc/lexbased programming environment. The dADL production rules are also available as an <a href="https://github.com/openEHR/adl-tools/blob/Release-1.4/libraries/common_libs/src/structures/syntax/dadl/parser/dadl2_validator.html" target="_blank" rel="noopener">HTML document</a>.</p>
+<p>The grammar and lexical specification for the standard dADL syntax is shown below. This grammar is implemented using lex (.l file) and yacc (.y file) specifications for in the Eiffel programming environment. The current release of these files is available at <a href="https://github.com/openEHR/adl-tools/tree/Release-1.4/libraries/common_libs/src/structures/syntax/dadl/parser" target="_blank" rel="noopener">Tag <code>Release-1.4</code> of the adl-tools Github repository</a>. The .l and .y files can be converted for use in another yacc/lex-based programming environment. The dADL production rules are also available as an <a href="https://github.com/openEHR/adl-tools/blob/Release-1.4/libraries/common_libs/src/structures/syntax/dadl/parser/dadl2_validator.html" target="_blank" rel="noopener">HTML document</a>.</p>
 </div>
 <div class="sect3">
 <h4 id="_grammar"><a class="anchor" href="#_grammar"></a>4.8.1. Grammar</h4>
@@ -3522,14 +3528,14 @@ the syntax in this section is not part of dADL
 <div class="sect3">
 <h4 id="_object_node_identification_and_paths"><a class="anchor" href="#_object_node_identification_and_paths"></a>5.3.6. Object Node Identification and Paths</h4>
 <div class="paragraph">
-<p>In many of the examples above, some of the object node typenames are followed by a node identifier, shown in brackets.</p>
+<p>In many of the examples above, some of the object node type-names are followed by a node identifier, shown in brackets.</p>
 </div>
 <div class="paragraph principle">
 <p>Node identifiers are required for any object node which is intended to be addressable elsewhere in the cADL text, or in the runtime system and which would otherwise
 be ambiguous i.e. has sibling nodes.</p>
 </div>
 <div class="paragraph">
-<p>In the following example, the <code>PERSON</code> type does not require an identifier, since no sibling node exists at the same level, and unambigous paths can be formed:</p>
+<p>In the following example, the <code>PERSON</code> type does not require an identifier, since no sibling node exists at the same level, and unambiguous paths can be formed:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -3814,17 +3820,17 @@ short_concept_name</pre>
 <p>The value set could be simply enumerated within the archetype, for example using the <code>C_CODE_PHRASE</code> type defined in the openEHR Archetype Profile; this will work perfectly well, but has at least two limitations. Firstly, the intended set of values allowed for the attribute may change over time (e.g. as has happened with 'types of hepatitis' since 1980), requiring the archetype to be updated. With a large repository of archetypes, each containing coded term constraints, this approach is likely to be unsustainable and error-prone. Secondly, the best means of defining the value set is in general not likely to be via enumeration of the individual terms, but in the form of a semantic expression that can be evaluated against the terminology. This is because the value set is typically logically specified in terms of inclusions, exclusions, conjunctions and disjunctions of general categories.</p>
 </div>
 <div class="paragraph">
-<p>Consider for example the value set logically defined as "any bacterial infection of the lung". The possible values would be codes from a target terminology, corresponding to numerous strains of pneumococcus, staphlycoccus and so on, but not including species that are never found in the lung. Rather than enumerate the list of codes corresponding to this value set (which is likely to be quite large), the archetype author is more likely to rely on semantic links within the terminology to express the set; a query such as 'is-a bacteria and has-site lung' might be definable against the terminology (such as <a href="http://www.snomed.org">SNOMED CT</a> or the <a href="http://www.who.int/classifications/icd/en/">WHO ICD10</a> terminology).</p>
+<p>Consider for example the value set logically defined as "any bacterial infection of the lung". The possible values would be codes from a target terminology, corresponding to numerous strains of pneumococcus, staphylococcus and so on, but not including species that are never found in the lung. Rather than enumerate the list of codes corresponding to this value set (which is likely to be quite large), the archetype author is more likely to rely on semantic links within the terminology to express the set; a query such as 'is-a bacteria and has-site lung' might be definable against the terminology (such as <a href="http://www.snomed.org">SNOMED CT</a> or the <a href="http://www.who.int/classifications/icd/en/">WHO ICD10</a> terminology).</p>
 </div>
 <div class="paragraph">
 <p>In a similar way, other value sets, including for quantitative values, are likely to be specified by queries or formal expressions, and evaluated by an external knowledge service. Examples include "any
 unit of pressure" and "normal range values for serum sodium".</p>
 </div>
 <div class="paragraph">
-<p>In all such cases, expressing the constraint could be done by including the query or other formal expression within the archetype itself. However, experience shows that this is problematic in various ways. Firstly, there is little if any standardisation in such formal value set expressions or queries for use with knowledge services; two archetype authors could easily create competing syntactical expressions for the same logical constraint. A second problem is that errors might be made in the query expression itself, or the expression may be correct at the time of authoring, but need subsequent adjustment as the relevant knowledge resource grows and changes. The consequence of this is the same as for a value set enumerated inline - it is unlikely to be sustainable for large numbers of archetyes. These problems are not accidental: a query with respect to a terminological, ontological or other knowledge resource is most likely to be authored correctly by maintainers or experts of the knowledge resource, rather than archetype authors; it may well be altered over time due to improvements in the query formalism itself.</p>
+<p>In all such cases, expressing the constraint could be done by including the query or other formal expression within the archetype itself. However, experience shows that this is problematic in various ways. Firstly, there is little if any standardisation in such formal value set expressions or queries for use with knowledge services; two archetype authors could easily create competing syntactical expressions for the same logical constraint. A second problem is that errors might be made in the query expression itself, or the expression may be correct at the time of authoring, but need subsequent adjustment as the relevant knowledge resource grows and changes. The consequence of this is the same as for a value set enumerated inline - it is unlikely to be sustainable for large numbers of archetypes. These problems are not accidental: a query with respect to a terminological, ontological or other knowledge resource is most likely to be authored correctly by maintainers or experts of the knowledge resource, rather than archetype authors; it may well be altered over time due to improvements in the query formalism itself.</p>
 </div>
 <div class="paragraph">
-<p>The solution adopted in ADL is to store only <em>identifiers</em> of query expressions which when evaluated return a required value set, while query expressions are assumed to be stored in a query repository, or some part of the relevant knowedge service. Rather than store external identifiers inline in a cADL text, the ADL approach is to store a 'placeholder' internal code of the form <code>[acNNNN]</code>, e.g. <code>[ac0012]</code>. Codes of this form are defined in the archetype ontology section, and can be mapped to query identifiers for one or more knowledge resources. This approach would allow a single 'ac' code to be defined for the value set.</p>
+<p>The solution adopted in ADL is to store only <em>identifiers</em> of query expressions which when evaluated return a required value set, while query expressions are assumed to be stored in a query repository, or some part of the relevant knowledge service. Rather than store external identifiers inline in a cADL text, the ADL approach is to store a 'placeholder' internal code of the form <code>[acNNNN]</code>, e.g. <code>[ac0012]</code>. Codes of this form are defined in the archetype ontology section, and can be mapped to query identifiers for one or more knowledge resources. This approach would allow a single 'ac' code to be defined for the value set.</p>
 </div>
 </div>
 <div class="sect3">
@@ -5438,7 +5444,7 @@ The following example illustrates the use of variables in an invariant block:</p
 <div class="sect2">
 <h3 id="_relationship_with_w3c_xpath"><a class="anchor" href="#_relationship_with_w3c_xpath"></a>7.2. Relationship with W3C Xpath</h3>
 <div class="paragraph">
-<p>The ADL path syntax is semantically a subset of the Xpath query language, with a few syntactic shortcuts to reduce the verbosity of the most common cases. Xpath differentiates between "children" and "attributes" sub-items of an object due to the difference in XML between Elements (true sub-objects) and Attributes (tag-embedded primitive values). In ADL, as with any pure object formalism, there is no such distinction, and all subparts of any object are referenced in the manner of Xpath children; in particular, in the Xpath abbreviated syntax, the key <code>child::</code> does not need to be used.</p>
+<p>The ADL path syntax is semantically a subset of the Xpath query language, with a few syntactic shortcuts to reduce the verbosity of the most common cases. Xpath differentiates between "children" and "attributes" sub-items of an object due to the difference in XML between Elements (true sub-objects) and Attributes (tag-embedded primitive values). In ADL, as with any pure object formalism, there is no such distinction, and all sub-parts of any object are referenced in the manner of Xpath children; in particular, in the Xpath abbreviated syntax, the key <code>child::</code> does not need to be used.</p>
 </div>
 <div class="paragraph">
 <p>ADL does not distinguish attributes from children, and also assumes the node_id attribute. Thus, the following expressions are legal for cADL structures:</p>
@@ -5476,7 +5482,7 @@ The following example illustrates the use of variables in an invariant block:</p
 <div class="sect3">
 <h4 id="_grammar_4"><a class="anchor" href="#_grammar_4"></a>7.3.1. Grammar</h4>
 <div class="paragraph">
-<p>The following provides the assertion parser production rules (yacc specification). Note that because of interdependcies with path and assertion production rules, practical implementations may have to include all production rules in one parser.</p>
+<p>The following provides the assertion parser production rules (yacc specification). Note that because of interdependencies with path and assertion production rules, practical implementations may have to include all production rules in one parser.</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -5874,7 +5880,7 @@ some non-conforming ADL tools in the past created archetypes without a <code>lan
 <div class="sect3">
 <h4 id="_design_time_and_run_time_paths"><a class="anchor" href="#_design_time_and_run_time_paths"></a>8.4.1. Design-time and Run-time paths</h4>
 <div class="paragraph">
-<p>All non-unique sibling nodes in a cADL text that correspond to nodes in data which might be referred to from elsewhere in the archetype (via <code>use_node</code>), or might be queryied at runtime, require a node identifier. It is preferable to assign a 'design-time meaning', enabling paths and queries to be expressed using logical meanings rather than meaningless identifiers. When data are created according to the <code>definition</code> section of an archetype, the archetype node identifiers can be written into the data, providing a reliable way of finding data nodes, regardless of what other runtime names might have been chosen by the user for the node in question. There are two reasons for doing this. Firstly, querying cannot rely on runtime names of nodes (e.g. names like "sys BP", "systolic bp", "sys blood press." entered by a doctor are unreliable for querying); secondly, it allows runtime data retrieved from a persistence mechanism to be re-associated with the cADL structure which was used to create it.</p>
+<p>All non-unique sibling nodes in a cADL text that correspond to nodes in data which might be referred to from elsewhere in the archetype (via <code>use_node</code>), or might be queried at runtime, require a node identifier. It is preferable to assign a 'design-time meaning', enabling paths and queries to be expressed using logical meanings rather than meaningless identifiers. When data are created according to the <code>definition</code> section of an archetype, the archetype node identifiers can be written into the data, providing a reliable way of finding data nodes, regardless of what other runtime names might have been chosen by the user for the node in question. There are two reasons for doing this. Firstly, querying cannot rely on runtime names of nodes (e.g. names like "sys BP", "systolic bp", "sys blood press." entered by a doctor are unreliable for querying); secondly, it allows runtime data retrieved from a persistence mechanism to be re-associated with the cADL structure which was used to create it.</p>
 </div>
 <div class="paragraph">
 <p>An example which shows the difference between design-time meanings associated with node identifiers and runtime names is the following, from a <code>SECTION</code> archetype representing the problem/SOAP headings (a simple heading structure commonly used by clinicians to record patient contacts under top-level headings corresponding to the patient&#8217;s problem(s), and under each problem heading, the headings "subjective", "objective", "assessment", and "plan").</p>
@@ -5980,7 +5986,7 @@ some ADL tools in the past created archetypes with <code>primary_language</code>
 <div class="sect3">
 <h4 id="_term_definitions_section"><a class="anchor" href="#_term_definitions_section"></a>8.6.3. Term_definitions Section</h4>
 <div class="paragraph">
-<p>This section is where all archetype local terms (that is, terms of the form <code>[atNNNN]</code>) are defined. The following example shows an extract from the English and German term definitions for the archetype local terms in a problem/SOAP headings archetype. Each term is defined using a structure of name/value pairs, and mustat least include the names "text" and "description", which are akin to the usual rubric, and full definition found in terminologies like SNOMED-CT. Each term object is then included in the appropriate language list of term definitions, as shown in the example below.</p>
+<p>This section is where all archetype local terms (that is, terms of the form <code>[atNNNN]</code>) are defined. The following example shows an extract from the English and German term definitions for the archetype local terms in a problem/SOAP headings archetype. Each term is defined using a structure of name/value pairs, and must at least include the names "text" and "description", which are akin to the usual rubric, and full definition found in terminologies like SNOMED-CT. Each term object is then included in the appropriate language list of term definitions, as shown in the example below.</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -6472,7 +6478,7 @@ the use of <code>items</code> in the above is historical in ADL, and will be cha
 <div class="title">Figure 7. C_QTY class</div>
 </div>
 <div class="paragraph">
-<p>The question now is how to express a constraint corresponding to this class in an ADL archetype. The solution is logical, and uses standard ADL. Consider that a particular constraint on a <code>QTY</code> must be an instance of the <code>C_QTY</code> type. An instance of any class can be expressed in ADL using the dADL sytnax (ADL’s object serialisation syntax) at the appropriate point in the archetype, as follows:</p>
+<p>The question now is how to express a constraint corresponding to this class in an ADL archetype. The solution is logical, and uses standard ADL. Consider that a particular constraint on a <code>QTY</code> must be an instance of the <code>C_QTY</code> type. An instance of any class can be expressed in ADL using the dADL syntax (ADL’s object serialisation syntax) at the appropriate point in the archetype, as follows:</p>
 </div>
 <div class="listingblock">
 <div class="content">

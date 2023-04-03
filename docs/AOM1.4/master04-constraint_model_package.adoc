@@ -4,7 +4,7 @@
 
 The figure below illustrates the class model of an archetype definition. This model is completely generic, and is designed to express the semantics of constraints on instances of classes which are themselves described in UML (or a similar object-oriented meta-model). Accordingly, the major abstractions in this model correspond to major abstractions in object-oriented formalisms, including several variations of the notion of 'object' and the notion of 'attribute'. The notion of 'object' rather than 'class' or 'type' is used because archetypes are about constraints on data (i.e. 'instances', or 'objects') rather than models, which are constructed from 'classes'.
 
-An informal way of understanding the model is as follows. An archetype definition is an instance of a `C_COMPLEX_OBJECT`, which can be thought of as expressing constraints on a object that is of some particular reference model type (recorded in the attribute rm_type_name), and which is larger than a simple instance of a primitive type such as `String` or `Integer`. The constraints define what configurations of reference model class instances are considered to conform to the archetype. For example, certain configurations of the classes `PARTY`, `ADDRESS`, `CLUSTER` and `ELEMENT` might be defined by a `Person` archetype as allowable structures for 'people with identity, contacts, and addresses'. Because the constraints allow optionality, cardinality and other choices, a given archetype usually corresponds to a set of similar configurations of objects. At the leaf nodes of an archetype definition are `C_PRIMITIVE_OBJECT` nodes, defining the constraints on leaf values of objects, i.e. `Integers`, `Strings` etc.
+An informal way of understanding the model is as follows. An archetype definition is an instance of a `C_COMPLEX_OBJECT`, which can be thought of as expressing constraints on an object that is of some particular reference model type (recorded in the attribute rm_type_name), and which is larger than a simple instance of a primitive type such as `String` or `Integer`. The constraints define what configurations of reference model class instances are considered to conform to the archetype. For example, certain configurations of the classes `PARTY`, `ADDRESS`, `CLUSTER` and `ELEMENT` might be defined by a `Person` archetype as allowable structures for 'people with identity, contacts, and addresses'. Because the constraints allow optionality, cardinality and other choices, a given archetype usually corresponds to a set of similar configurations of objects. At the leaf nodes of an archetype definition are `C_PRIMITIVE_OBJECT` nodes, defining the constraints on leaf values of objects, i.e. `Integers`, `Strings` etc.
 
 [.text-center]
 .aom14.archetype.constraint_model Package
@@ -16,7 +16,7 @@ The effect of the model is to create archetype description structures that are a
 
 === All Node Types
 
-A small number of properties are defined for all node types. The path feature computes the path to the current node from the root of the archetype, while the has_path function indicates whether a given path can be found in an archetype. The is_valid function indicates whether the current node and all subnodes are internally valid according to the semantics of this archetype model. The is_subset_of function is used for comparison between corresponding nodes from different archetypes, in order to asert specialisation.
+A small number of properties are defined for all node types. The path feature computes the path to the current node from the root of the archetype, while the has_path function indicates whether a given path can be found in an archetype. The is_valid function indicates whether the current node and all sub-nodes are internally valid according to the semantics of this archetype model. The is_subset_of function is used for comparison between corresponding nodes from different archetypes, in order to asert specialisation.
 
 === Attribute Node Types
 
@@ -49,7 +49,7 @@ The `C_DEFINED_OBJECT` subtype corresponds to the category of `C_OBJECTs` that a
 
 ===== Any_allowed
 
-The `_any_allowed_` function a node indicates that any value permitted by the reference model for the attribute or type in question is allowed by the archetype; its use permits the logical idea of a completely "open" constraint to be simply expressed, avoiding the need for any further substructure. `_Any_allowed_` is effected in subtypes to indicate in concrete terms when it is True, usually related to Void attribute values.
+The `_any_allowed_` function of a node indicates that any value permitted by the reference model for the attribute or type in question is allowed by the archetype; its use permits the logical idea of a completely "open" constraint to be simply expressed, avoiding the need for any further substructure. `_Any_allowed_` is effected in subtypes to indicate in concrete terms when it is True, usually related to Void attribute values.
 
 ===== Assumed_value
 
@@ -63,7 +63,7 @@ The `_valid_value_` function tests a reference model object for conformance to t
 
 ===== Default_value
 
-This function is used to generate a reasonable default value of the reference object being constrained by a given node. This allows archteype-based software to build a 'prototype' object from an archetype which can serve as the initial version of the object being constrained, assuming it is being created new by user activity (e.g. via a GUI application). Implementation of this function will usually involve use of reflection libraries or similar.
+This function is used to generate a reasonable default value of the reference object being constrained by a given node. This allows archetype-based software to build a 'prototype' object from an archetype which can serve as the initial version of the object being constrained, assuming it is being created new by user activity (e.g. via a GUI application). Implementation of this function will usually involve use of reflection libraries or similar.
 
 ==== Complex Objects (C_COMPLEX_OBJECT)
 
@@ -75,7 +75,7 @@ Constraints on primitive types are defined by the classes inheriting from `C_PRI
 
 ==== Domain-specific Extensions (C_DOMAIN_TYPE)
 
-The main part of the archetype constraint model allows any type in a reference model to be archetyped - i.e. constrained - in a standard way, which is to say, by a regular cascade of `C_COMPLEX_OBJECT` / `C_ATTRIBUTE` / `C_PRIMITIVE_OBJECT` objects. This generally works well, especially for 'outer' container types in models. However, it occurs reasonably often that lower level logical 'leaf' types need special constraint semantics that are not conveniently achieved with the standard aproach. To enable such classes to be integrated into the generic constraint model, the class `C_DOMAIN_TYPE` is included. This enables the creation of specific `C_` classes, inheriting from
+The main part of the archetype constraint model allows any type in a reference model to be archetyped - i.e. constrained - in a standard way, which is to say, by a regular cascade of `C_COMPLEX_OBJECT` / `C_ATTRIBUTE` / `C_PRIMITIVE_OBJECT` objects. This generally works well, especially for 'outer' container types in models. However, it occurs reasonably often that lower level logical 'leaf' types need special constraint semantics that are not conveniently achieved with the standard approach. To enable such classes to be integrated into the generic constraint model, the class `C_DOMAIN_TYPE` is included. This enables the creation of specific `C_` classes, inheriting from
 `C_DOMAIN_TYPE`, which represent custom semantics for particular reference model types. For example, a class called `C_QUANTITY` might be created which has different constraint semantics from the default effect of a `C_COMPLEX_OBJECT` / `C_ATTRIBUTE` cascade representing such constraints in the generic way (i.e. systematically based on the reference model). An example of domain-specific extension classes is shown in the section <<Domain-specific Extension Example>>.
 
 ==== Reference Objects (C_REFERENCE_OBJECT)
@@ -92,7 +92,7 @@ See {openehr_am_adl14}#_placeholder_constraints[Placeholder constraints] in the 
 
 === Assertions
 
-The `C_ATTRIBUTE` and subtypes of `C_OBJECT` enable constraints to be expressed in a structural fashion such that any constraint concerning a single attribute may be expressed, including recursively. In addition to this, any instance of a `C_COMPLEX_OBJECT` may include one or more invariants. Invariants are statements in a form of predicate logic, which can also be used to state constraints on parts of an object. They are not needed to constrain single attributes (since this can be done with an appopriate `C_ATTRIBUTE`), but are necessary for constraints referring to more than one attribute, such as a constraint that 'systolic pressure should be >= diastolic pressure' in a blood pressure measurement archetype. Invariants are expressed using a syntax derived from the OMG's OCL syntax (adapted for use with objects rather than classes).
+The `C_ATTRIBUTE` and subtypes of `C_OBJECT` enable constraints to be expressed in a structural fashion such that any constraint concerning a single attribute may be expressed, including recursively. In addition to this, any instance of a `C_COMPLEX_OBJECT` may include one or more invariants. Invariants are statements in a form of predicate logic, which can also be used to state constraints on parts of an object. They are not needed to constrain single attributes (since this can be done with an appropriate `C_ATTRIBUTE`), but are necessary for constraints referring to more than one attribute, such as a constraint that 'systolic pressure should be >= diastolic pressure' in a blood pressure measurement archetype. Invariants are expressed using a syntax derived from the OMG's OCL syntax (adapted for use with objects rather than classes).
 
 Assertions are also used in `ARCHETYPE_SLOTs`, in order to express the 'included' and 'excluded' archetypes for the slot. In this case, each assertion is an expression that refers to parts of other archetypes, such as its identifier (e.g. 'include archetypes with short_concept_name matching xxxx'). Assertions are modelled here as a generic expression tree of unary prefix and binary infix operators. Examples of archetype slots in ADL syntax are given in the openEHR ADL document.
 

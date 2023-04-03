@@ -2,7 +2,7 @@
 
 == File Encoding
 
-Because ADL files are inherently likely to contain multiple languages due to internationalised authoring and translation, they must be capable of accommodating characters from any language. ADL files do not explicitly indicate an encoding because they are assumed to be in UTF-8 encoding of unicode.  For ideographic and script-oriented languuages, this is a necessity.
+Because ADL files are inherently likely to contain multiple languages due to internationalised authoring and translation, they must be capable of accommodating characters from any language. ADL files do not explicitly indicate an encoding because they are assumed to be in UTF-8 encoding of unicode.  For ideographic and script-oriented languages, this is a necessity.
 
 There are three places in ADL files where non-ASCII characters can occur:
 
@@ -33,7 +33,7 @@ Thus, while *the only officially designated encoding for ADL and its constituent
 
 == Special Character Sequences
 
-In strings and characters, characters not in the lower ASCII (0-127) range should be UTF-8 encoded, with the exception of quoted single- and double quotes, and some non-printing characters, for which the following customary quoted forms are allowed (but not required):
+In strings and characters, characters not in the lower ASCII (0-127) range should be UTF-8 encoded, with the exception of quoted single- and double-quotes, and some non-printing characters, for which the following customary quoted forms are allowed (but not required):
 
 * `\r` - carriage return
 * `\n` - linefeed
@@ -42,9 +42,9 @@ In strings and characters, characters not in the lower ASCII (0-127) range shoul
 * `\"` - literal double quote
 * `\'` - literal single quote
 
-Any other character combination starting with a backslash is illiegal; to get the effect of a literal backslash, the `\\` sequence should always be used.
+Any other character combination starting with a backslash is illegal; to get the effect of a literal backslash, the `\\` sequence should always be used.
 
 Typically in a normal string, including multi-line paragraphs as used in ODIN, only `\\` and `\"` are likely to be necessary, since all of the others can be accommodated in their literal forms; the same goes for single characters - only `\\` and `\'` are likely to commonly occur. However, some authors may prefer to use `\n` and `\t` to make intended formatting clearer, or to allow for text editors that do not react properly to such characters. Parsers should therefore support the above list.
 
-In regular expressions (only used in cADL string constraints), there will typically be backslashescaped characters from the above list as well as other patterns like `\s` (whitspace) and `\d` (decimal digit), according to the {perl_regex}[PERL regular expression specification^]. These should not be treated as anything other than literal strings, since they are processed by a regular expression parser.
+In regular expressions (only used in cADL string constraints), there will typically be backslash-escaped characters from the above list as well as other patterns like `\s` (whitespace) and `\d` (decimal digit), according to the {perl_regex}[PERL regular expression specification^]. These should not be treated as anything other than literal strings, since they are processed by a regular expression parser.
 

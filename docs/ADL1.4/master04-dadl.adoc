@@ -26,7 +26,7 @@ person = (List<PERSON>) <
 
 In the above the attribute names `person` , `name` , `address` etc, and the type `List<PERSON>` are all assumed to come from an information model. The `[01234]` and `[01235]` tags identify container items.
 
-The basic design principle of dADL is to be able to represent data in a way that is both machine-processible and human readable, while making the fewest assumptions possible about the information model to which the data conforms. To this end, type names are optional; often, only attribute names and values are explicitly shown. No syntactical assumptions are made about whether the underlying model is relational, object-oriented or what it actually looks like. More than one information model can be compatible with the same dADL-expressed data. The UML semantics of composition/aggregation and association are expressible, as are shared objects. Literal leaf values are only of 'standard' widely recognised types, i.e. Integer, Real, Boolean, String, Character and a range of Date/time types. In standard dADL, all complex types are expressed structurally.
+The basic design principle of dADL is to be able to represent data in a way that is both machine-processable and human readable, while making the fewest assumptions possible about the information model to which the data conforms. To this end, type names are optional; often, only attribute names and values are explicitly shown. No syntactical assumptions are made about whether the underlying model is relational, object-oriented or what it actually looks like. More than one information model can be compatible with the same dADL-expressed data. The UML semantics of composition/aggregation and association are expressible, as are shared objects. Literal leaf values are only of 'standard' widely recognised types, i.e. Integer, Real, Boolean, String, Character and a range of Date/time types. In standard dADL, all complex types are expressed structurally.
 
 A common question about dADL is why it is needed, when there is already XML? To start with, this question highlights the widespread misconception about XML, namely that because it can be read by a text editor, it is intended for humans. In fact, XML is designed for machine processing, and is textual to guarantee its interoperability. Realistic examples of XML (e.g. XML-schema instance, OWL-RDF ontologies) are generally unreadable for humans. dADL is on the other hand designed as a human-writable and readable formalism that is also machine processable; it may be thought of as an _abstract syntax for object-oriented data_. dADL also differs from XML by:
 
@@ -35,7 +35,7 @@ A common question about dADL is why it is needed, when there is already XML? To 
 * not using the confusing XML notion of ‘attributes’ and ‘elements’ to represent what are essentially object properties;
 * requiring half the space of the equivalent XML.
 
-Of course, this does not prevent XML exchange syntaxes being used for dADL, and indeed the conversion to XML instance is rather straighforward. Details on the XML expression of dADL and use of Xpath expressions is described in <<_expression_of_dadl_in_xml>>.
+Of course, this does not prevent XML exchange syntaxes being used for dADL, and indeed the conversion to XML instance is rather straightforward. Details on the XML expression of dADL and use of Xpath expressions is described in <<_expression_of_dadl_in_xml>>.
 
 The dADL syntax as described above has a number of useful characteristics that enable the extensive use of paths to navigate it, and express references. These include:
 
@@ -161,7 +161,7 @@ attr_1 = <
 attr_8 = <...>
 --------
 
-In the above structure, each "<>" encloses an instance of some type. The hierarchical structure corresponds to the part-of relationship between objects, otherwise known as _composition_ and _aggregation_ relationships in object-oriented formalisms such as UML (the difference between the two is usually described as being "sub-objects related by aggregation can have independent lifetimes, whereas sub-objects related by composition have co-termimal lifetimes and are always destroyed with the parent"; dADL does not differentiate between the two, since it is the business of a model, not the data, to express such semantics). Associations between instances in dADL are also representable by references, and are described in <<_associations_and_shared_objects>>.
+In the above structure, each "<>" encloses an instance of some type. The hierarchical structure corresponds to the part-of relationship between objects, otherwise known as _composition_ and _aggregation_ relationships in object-oriented formalisms such as UML (the difference between the two is usually described as being "sub-objects related by aggregation can have independent lifetimes, whereas sub-objects related by composition have co-terminal lifetimes and are always destroyed with the parent"; dADL does not differentiate between the two, since it is the business of a model, not the data, to express such semantics). Associations between instances in dADL are also representable by references, and are described in <<_associations_and_shared_objects>>.
 
 ==== Outer Delimiters
 
@@ -700,7 +700,7 @@ White space may be freely used or avoided in lists, i.e. the following two lists
 
 == Plug-in Syntaxes
 
-Using the dADL syntax, any object structure can be serialised. In some cases, the requirement is to express some part of the structure in an abstract syntax, rather than in the more literal seriliased object form of dADL. dADL provides for this possibility by allowing the value of any object (i.e. what appears between any matching pair of `<>` delimiters) to be expressed in some other syntax, known as a "plug-in" syntax. Plug-in syntaxes are indicated in dADL in a similar way as typed objects, i.e. by the use of the syntax type in parentheses preceding the `<>` block. For a plug-in section, the <> delimiters are modified to `<# #>`, to allow for easier parser design, and easier recognition of such blocks by human readers. The general form is as follows:
+Using the dADL syntax, any object structure can be serialised. In some cases, the requirement is to express some part of the structure in an abstract syntax, rather than in the more literal serialised object form of dADL. dADL provides for this possibility by allowing the value of any object (i.e. what appears between any matching pair of `<>` delimiters) to be expressed in some other syntax, known as a "plug-in" syntax. Plug-in syntaxes are indicated in dADL in a similar way as typed objects, i.e. by the use of the syntax type in parentheses preceding the `<>` block. For a plug-in section, the <> delimiters are modified to `<# #>`, to allow for easier parser design, and easier recognition of such blocks by human readers. The general form is as follows:
 
 ----
 attr_name = (syntax) <#
@@ -842,7 +842,7 @@ maps to:
 
 == Syntax Specification
 
-The grammar and lexical specification for the standard dADL syntax is shown below. This grammar is implemented using lex (.l file) and yacc (.y file) specifications for in the Eiffel programming environment. The current release of these files is available at https://github.com/openEHR/adl-tools/tree/Release-1.4/libraries/common_libs/src/structures/syntax/dadl/parser[Tag `Release-1.4` of the adl-tools Github repository^]. The .l and .y files can be converted for use in another yacc/lexbased programming environment. The dADL production rules are also available as an https://github.com/openEHR/adl-tools/blob/Release-1.4/libraries/common_libs/src/structures/syntax/dadl/parser/dadl2_validator.html[HTML document^].
+The grammar and lexical specification for the standard dADL syntax is shown below. This grammar is implemented using lex (.l file) and yacc (.y file) specifications for in the Eiffel programming environment. The current release of these files is available at https://github.com/openEHR/adl-tools/tree/Release-1.4/libraries/common_libs/src/structures/syntax/dadl/parser[Tag `Release-1.4` of the adl-tools Github repository^]. The .l and .y files can be converted for use in another yacc/lex-based programming environment. The dADL production rules are also available as an https://github.com/openEHR/adl-tools/blob/Release-1.4/libraries/common_libs/src/structures/syntax/dadl/parser/dadl2_validator.html[HTML document^].
 
 === Grammar
 
