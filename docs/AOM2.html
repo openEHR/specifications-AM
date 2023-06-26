@@ -8527,14 +8527,14 @@ Hash of keys ("text", "description" etc) and corresponding values.</p>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><strong>archetype_parent_class</strong>: <code>String</code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p>States a class from the Reference Model that provides archetyping capability in RM data structures. This attribute is optional, and there need be no such class in the RM. In the openEHR and ISO 13606 Reference Models, this class exists, (<code>LOCATABLE</code>, and <code>RECORD_COMPONENT</code> respectively). Defining it here has the effect in tools that the class tree under which archetypes are arranged contains only RM classes inheriting from this class, e.g. <code>LOCATABLE</code> classes in the case of openEHR. If nothing is set here, all classes in the RM are assumed as candidates for archetypes.</p>
+<p>States a class from the Reference Model that provides archetyping capability in RM data structures. This attribute is optional, and there need be no such class in the RM. Defining it here has the effect in tools that the class tree under which archetypes are arranged contains only RM classes inheriting from this class.</p>
 </div></div></td>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><strong>archetype_data_value_parent_class</strong>: <code>String</code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p>This attribute defines a base class from the Reference Model whose descendants are considered to be 'logical data types' (i.e. of some higher level than the built-in primitive types String, Integer etc). This attribute is optional, even if the RM does have such a class, and is only used to help tooling to provide more intelligent display.</p>
+<p>This attribute defines a base class from the Reference Model whose descendants are considered to be 'logical data types', i.e. of some higher level than the built-in primitive types String, Integer etc. This attribute is optional, even if the RM does have such a class, and is only used to help tooling to provide more intelligent display.</p>
 </div></div></td>
 </tr>
 <tr>
@@ -8548,7 +8548,7 @@ Hash of keys ("text", "description" etc) and corresponding values.</p>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><strong>archetype_visualise_descendants_of</strong>: <code><a href="/releases/BASE/latest/foundation_types.html#_string_class" target="_blank" rel="noopener">String</a></code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p>If <code><em>archetype_parent_class</em></code> is not set, designate a class whose descendants should be made visible in tree and grid renderings of the archetype definition. For openEHR and CEN this class is normally the same as the <code><em>archetype_parent_class</em></code>, i.e. <code>LOCATABLE</code> and <code>RECORD_COMPONENT</code> respectively. It is typically set for CEN, because <code><em>archetype_parent_class</em></code> may not be stated, due to demographic types not inheriting from it.</p>
+<p>If <code><em>archetype_parent_class</em></code> is not set, designate a class whose descendants should be made visible in tree and grid renderings of the archetype definition.</p>
 </div></div></td>
 </tr>
 <tr>
@@ -8918,17 +8918,11 @@ Hash of keys ("text", "description" etc) and corresponding values.</p>
 <div class="paragraph">
 <p>The <code>archetype_parent_class</code> attribute defines a base class from the Reference Model that provides archetyping capability in RM data structures. It is optional, and there need be no such class in the RM. In the openEHR and ISO 13606 Reference Models, this class exists, (<code>LOCATABLE</code>, and <code>RECORD_COMPONENT</code> respectively). Defining it here has the effect in tools that the class tree under which archetypes are arranged contains only RM classes inheriting from this class, e.g. <code>LOCATABLE</code> classes in the case of openEHR. If nothing is set here, all classes in the RM are assumed as candidates for archetypes.</p>
 </div>
-<div class="paragraph">
-<p>This attribute, if defined, must be defined in the same schema that defines the referenced class.</p>
-</div>
 </div>
 <div class="sect3">
 <h4 id="_archetype_data_value_parent_class"><a class="anchor" href="#_archetype_data_value_parent_class"></a>11.7.2. archetype_data_value_parent_class</h4>
 <div class="paragraph">
 <p>The <code>archetype_data_value_parent_class</code> attribute defines a base class from the Reference Model whose descendants are considered to be 'logical data types' (i.e. of some higher level than the built-in primitive types <code>String</code>, <code>Integer</code> etc). This attribute is optional, even if the RM does have such a class, and is only used to help tooling to provide more intelligent display, e.g. in statistical reports.</p>
-</div>
-<div class="paragraph">
-<p>This attribute, if defined, must be defined in the same schema that defines the referenced class.</p>
 </div>
 </div>
 <div class="sect3">
@@ -8952,9 +8946,6 @@ Hash of keys ("text", "description" etc) and corresponding values.</p>
 </div>
 <div class="paragraph">
 <p>The 'EHR' in the above is an 'RM package closure', i.e. the name of an RM package whose class closure by reachability provides the set of classes that may be archetyped in the 'EHR' namespace. The reason for this is somewhat subtle: consider that if you want archetypes based on classes defined directly within a package P, and you also define these archetypes that re-use other archetypes based on more basic types like openEHR&#8217;s <code>CLUSTER</code> or similar (typically not defined in the head package), then you will inevitably have archetypes based on <code>CLUSTER</code> only for use with EHR archetypes e.g. archetypes based on <code>OBSERVATION</code>. However, you may well create archetypes based on <code>CLUSTER</code> only for use with e.g. top-level archetypes from the demographic package. The archetype_namespace setting is used to define the root id namespaces  for archetypes, allowing low-level archetypes to be designated for use with one or other high-level archetype. E.g. <code>openEHR-EHR-CLUSTER.bp_position.v1</code> would be used only with <code>openEHR-EHR-OBSERVATION.bp_measurement.vX</code>, or similar, and most likely not with any <code>openEHR-DEMOGRAPHIC-XXXX.yyyy.vN</code> archetype. Note that in openEHR, there is nothing to prevent such cross-namespace reuse - it is just a design guideline.</p>
-</div>
-<div class="paragraph">
-<p>This attribute, must be defined in the same schema that defines the referenced package(s).</p>
 </div>
 </div>
 </div>
