@@ -24,7 +24,7 @@ The following validation can be performed on an archetype mostly without referen
 ==== Basic checks
 
 * check match of root RM type with RM type mentioned in identifier (VARDT);
-* valid root id code for specialisation level (VARCN);
+* valid root at code (id code) for specialisation level (VARCN);
 * any missing mandatory parts, e.g. `terminology` section (STCNT);
 * check that specialisation depth is one greater than specialisation depth of parent (VACSD);
 
@@ -115,7 +115,7 @@ These validations are carried out after successful generation of the flat form o
 
 Flattening is conceptually a simple operation - the overlaying of a differential child archetype onto a flat parent . Concretely, it is a somewhat sophisticated operation, since it has to take into account a number of specifics allowed by ADL and the AOM, including:
 
-* differential paths, including ones that contain overridden id-codes;
+* differential paths, including ones that contain overridden at-codes (id-codes);
 * nodes in the child can override nodes of different AOM types in the parent in specific circumstances;
 * sibling ordering markers;
 * overlays with cloning: where more than one child specialisation node exists for a single parent complex structure, the parent structure will be cloned before each overlay;

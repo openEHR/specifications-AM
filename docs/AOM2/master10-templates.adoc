@@ -32,11 +32,19 @@ The first two of these are explicitly identified and published artefacts, and ca
 
 In order to better explain the template artefact structure, an example is described below. Assume the logical structure required is as shown below. This shows three archetypes of specific RM types, that should be chained together by slot-filling at specific paths, to form a final template. The template also adds further constraints via overlays.
 
+at-coded example:
+
+* `org.openehr::openEHR-EHR-COMPOSITION.encounter_report.v1 / content[at0004]`
+** `org.openehr::openEHR-EHR-SECTION.vital_signs_headings.v1 / items [at0001]`
+*** `org.openehr::openEHR-EHR-EVALUATION.problem_description.v1`
+
+id-coded example:
+
 * `org.openehr::openEHR-EHR-COMPOSITION.encounter_report.v1 / content[id5]`
 ** `org.openehr::openEHR-EHR-SECTION.vital_signs_headings.v1 / items [id2]`
 *** `org.openehr::openEHR-EHR-EVALUATION.problem_description.v1`
 
-The actual template structure needed to achieve this is shown below. The archetype `org.openehr::openEHR-EHR-COMPOSITION.encounter_report.v1` is shown at the top right. This is templated (i.e. specialised) by the template `uk.nhs.clinical::openEHR-EHR-COMPOSITION.t_encounter_report.v1` at the top left. The template performs the job of filling the `id5` slot in the root archetype by specialising the slot. The specialised version adds a filler object (designated with the `C_ARCHETYPE_ROOT` instance) and also overrides the original `ARCHETYPE_SLOT` instance to close the slot to any further filling, either by further templating or at runtime.
+The actual template structure needed to achieve this is shown below. The archetype `org.openehr::openEHR-EHR-COMPOSITION.encounter_report.v1` is shown at the top right. This is templated (i.e. specialised) by the template `uk.nhs.clinical::openEHR-EHR-COMPOSITION.t_encounter_report.v1` at the top left. The template performs the job of filling the `at0004` (`id5`) slot in the root archetype by specialising the slot. The specialised version adds a filler object (designated with the `C_ARCHETYPE_ROOT` instance) and also overrides the original `ARCHETYPE_SLOT` instance to close the slot to any further filling, either by further templating or at runtime.
 
 [.text-center]
 .Template source structure example
@@ -44,14 +52,14 @@ image::{uml_diagrams_uri}/AM-template_example_1.svg[id=AOM-template_example_1, a
 
 The filler object specifies in its `_archetype_ref_` attribute the artefact being used to fill the slot (shown on the diagram as an ellipsis, for brevity). Here it is not simply the archetype `org.openehr::openEHR-EHR-SECTION.vital_signs_headings.v1`, but a specialised form of this archetype, defined as a local template overlay, whose identifier is `uk.nhs.clinical::openEHR-EHR-SECTION.t_encounter_report-vital_signs_headings-0001.v1`.
 
-The same kind of redefinition occurs within this `SECTION` template overlay. The `id7` slot node from the original archetype (`org.openehr::openEHR-EHR-SECTION.vital_signs_headings.v1`) is redefined by the `C_ARCHETYPE_ROOT` node in the template overlay. The overlay would normally add other constraints of its own - typically removing unwanted items and mandating other items from the specialisation parent archetypes - not shown here.
+The same kind of redefinition occurs within this `SECTION` template overlay. The `at0006` (`id7`) slot node from the original archetype (`org.openehr::openEHR-EHR-SECTION.vital_signs_headings.v1`) is redefined by the `C_ARCHETYPE_ROOT` node in the template overlay. The overlay would normally add other constraints of its own - typically removing unwanted items and mandating other items from the specialisation parent archetypes - not shown here.
 
 The source template is thus constructed of two artefacts, namely:
 
 * the 'template', i.e. the template root;
 * an internal 'template overlay' component.
 
-These are connected together in the flattening operation as part of Operational Template generation; at that point, the `C_COMPLEX_OBJECT` root node of the template overlay (lower left) is overlaid on the `id5.1` `C_ARCHETYPE_ROOT` node of the template, forming a single large archetype structure.
+These are connected together in the flattening operation as part of Operational Template generation; at that point, the `C_COMPLEX_OBJECT` root node of the template overlay (lower left) is overlaid on the `at0004.1` (`id5.1`) `C_ARCHETYPE_ROOT` node of the template, forming a single large archetype structure.
 
 It is not always the case that the components of a template must be internal. Within the template environment, lower level reference model classes may be templated in their own right, and such templates simply reused in the new template being constructed. In this case, the outer template may contain both its own internal template components, and other templates.
 

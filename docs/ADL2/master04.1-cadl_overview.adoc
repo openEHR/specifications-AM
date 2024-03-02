@@ -4,6 +4,22 @@
 
 cADL is a block-structured syntax which enables constraints on data defined by object-oriented information models to be expressed in archetypes or other knowledge definition formalisms. It is most useful for defining the specific allowable configurations of data whose instances conform to very general object models. The general appearance of cADL is illustrated by the following example:
 
+.at-coded ADL2 archetype
+[source, cadl]
+--------
+    PERSON[at0000] matches {                                -- constraint on a PERSON instance
+        name matches {                                   -- constraint on PERSON.name
+            TEXT[at0001] matches {/.+/}                     -- any non-empty string
+        }
+        addresses cardinality matches {1..*} matches {   -- constraint on
+            ADDRESS[at0002] matches {                       -- PERSON.addresses
+                -- etc --
+            }
+        }
+    }
+--------
+
+.id-coded ADL2 archetype
 [source, cadl]
 --------
     PERSON[id1] matches {                                -- constraint on a PERSON instance
@@ -20,6 +36,22 @@ cADL is a block-structured syntax which enables constraints on data defined by o
 
 Some of the textual keywords in this example can be more efficiently rendered using common mathematical logic symbols. In the following example, the `matches` keyword have been replaced by an equivalent symbol:
 
+.at-coded ADL2 archetype
+[source, cadl]
+--------
+    PERSON[at0000] ∈ {                            -- constraint on a PERSON instance
+        name ∈ {                               -- constraint on PERSON.name
+            TEXT[at0001] ∈ {/..*/}                -- any non-empty string
+        }
+        addresses cardinality ∈ {1..*} ∈ {     -- constraint on
+            ADDRESS[at0002] ∈ {                   -- PERSON.addresses
+                -- etc --
+            }
+        }
+    }
+--------
+
+.id-coded ADL2 archetype
 [source, cadl]
 --------
     PERSON[id1] ∈ {                            -- constraint on a PERSON instance

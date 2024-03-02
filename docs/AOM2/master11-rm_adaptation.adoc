@@ -111,6 +111,23 @@ rm_primitive_type_equivalences = <
 
 The following CADL fragment provides an example.
 
+
+.at-coded ADL2 archetype
+[source, cadl]
+--------
+    ELEMENT[at0004] occurrences matches {0..1} matches {	-- Systolic
+        value matches {
+            DV_QUANTITY[at9054] matches {
+                property matches {[at9055]}
+                magnitude matches {|0.0..<1000.0|}  --  parses as AOM C_REAL, but is Double in RM
+                precision matches {0}
+                units matches {"mm[Hg]"}
+            }
+        }
+    }
+--------
+
+.id-coded ADL2 archetype
 [source, cadl]
 --------
     ELEMENT[id5] occurrences matches {0..1} matches {	-- Systolic
@@ -150,6 +167,19 @@ aom_rm_type_substitutions = <
 
 The effect of these mappings is that literal values in an archetype that parse as the left-hand side type (`ISO8601_DATE` etc.) will be silently mapped to the right hand RM type (`String` etc). The following example shows a native ISO Duration field that is mapped to an RM String value.
 
+.at-coded ADL2 archetype
+[source, cadl]
+--------
+    INTERVAL_EVENT[at1042] occurrences matches {0..1} matches {	-- 24 hour average
+        width matches {
+            DV_DURATION[at9064] matches {
+                value matches {PT24H}  --  parses as AOM ISO8601_DURATION, but is String in RM
+            }
+        }
+    }
+--------
+
+.id-coded ADL2 archetype
 [source, cadl]
 --------
     INTERVAL_EVENT[id1043] occurrences matches {0..1} matches {	-- 24 hour average 

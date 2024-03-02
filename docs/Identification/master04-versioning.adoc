@@ -87,12 +87,12 @@ Archetype signature &#x225d;    Set of `<path, RM type, AOM constraint>` for eve
 
 The paths, RM types and formal constraints are what other system components assume about an archetype, and what must therefore be maintained for a non-breaking change.
 
-Consider first the paths. An archetype path is a formal path through a hierarchical structure whose nodes are named by Reference Model class attributes, and in the case of object nodes, by id-codes. Any given path must be a legal path through an instance structure constructable by the Reference Model on which it is based. This implies two things:
+Consider first the paths. An archetype path is a formal path through a hierarchical structure whose nodes are named by Reference Model class attributes, and in the case of object nodes, by at-codes (id-codes). Any given path must be a legal path through an instance structure constructable by the Reference Model on which it is based. This implies two things:
 
 * the order and naming of nodes down the hierarchy is determined by the RM;
 * the type of every object is determined by the RM;
 
-Further, each node is made unique by the use of archetype id-codes (at-codes in ADL 1.4 archetypes) which distinguish sibling child objects under any attribute node. Where there are siblings (there need not always be), these codes must be defined in the archetype terminology by domain semantic definitions (e.g. 'serum sodium', 'O2 saturation level').
+Further, each node is made unique by the use of archetype at-codes (id-codes) (in ADL 1.4 at-codes) which distinguish sibling child objects under any attribute node. Where there are siblings (there need not always be), these codes must be defined in the archetype terminology by domain semantic definitions (e.g. 'serum sodium', 'O2 saturation level').
 
 Typical archetype paths look as follows:
 
@@ -100,16 +100,23 @@ Typical archetype paths look as follows:
 .Typical Paths
 image::{diagrams_uri}/paths.png[id=typical_paths, align="center", width=90%]
 
-The RM attribute names and node id-codes are visible within the paths (left-hand column). The node RM types implied in the paths are shown in the middle column. The first path thus corresponds to the object model reference `OBSERVATION`.`_data._events.data.items_`, and happens to be of type `ITEM`. 
+The RM attribute names and node at-codes (id-codes) are visible within the paths (left-hand column). The node RM types implied in the paths are shown in the middle column. The first path thus corresponds to the object model reference `OBSERVATION`.`_data._events.data.items_`, and happens to be of type `ITEM`.
 
 We can show the highlighted path with code rubrics included:
 
+.at-coded archetype
+[source, cadl]
+--------
+/data[at0001]/events[at0002|Any event|]/data[at0003]/items[at0078.11|PaO2|]
+--------
+
+.id-coded archetype
 [source, cadl]
 --------
 /data[id2]/events[id3|Any event|]/data[id4]/items[id79.11|PaO2|]
 --------
 
-Here `id79.11` is defined as 'PaO2', for which the description is 'Oxygen partial pressure in arterial blood'. This defined the domain meaning of the node at this path.
+Here `at0078.11` (`id79.11`) is defined as 'PaO2', for which the description is 'Oxygen partial pressure in arterial blood'. This defined the domain meaning of the node at this path.
 
 Paths and types constitute the structure of the archetype. In addition, the constraints (as defined by the Archetype Object Model) at each node - other than RM types - must be taken into account. These consist of constraints on values, cardinalities and occurrences.
 
@@ -117,9 +124,9 @@ Paths and types constitute the structure of the archetype. In addition, the cons
 
 Semver-style versioning relies on the notion of _interface conformance_ between putative versions of the same logical artefact. Based on the above, we can say that _an archetype interface is preserved_ if:
 
-* for an existing path, nothing changes - no change in hierarchy or lexical id-code;
+* for an existing path, nothing changes - no change in hierarchy or lexical at-code (id-code);
 * in the path set, no paths are deleted;
-* no change in domain meaning for id-codes used in the path;
+* no change in domain meaning for at-codes (id-codes) used in the path;
 * RM type of object nodes is the same or an ancestor (i.e. super-type) of the original type;
 * the constraint(s) at each path are either identical or wider than the original.
 
@@ -134,7 +141,7 @@ Examples of breaking changes are:
 * removal of mandatory data points or groups;
 * removal of nodes (paths);
 * move of nodes to different sub-tree;
-* change of domain definition of id-code;
+* change of domain definition of at-code (id-code);
 * narrowing of any constraint, including RM type of a node.
 
 Any such change necessarily requires a new major version. 

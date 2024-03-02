@@ -21,6 +21,24 @@ For nodes carrying a node identifier, the specialisation level is always equal t
 
 Because ADL is a block-structured language, the redefinition of nodes deep in the parent structure normally requires descending into the structure. Since it is common to want to further constrain only nodes deep within a structure in specialised archetype, a more convenient way is provided in ADL to do this using a _specialisation path_, illustrated by the following example:
 
+.at-coded ADL2 archetype
+[source, cadl]
+--------
+    OBSERVATION[at0000.1] ∈ {                                   -- Thyroid function tests
+        /data[at0001]/events[at0002]/data[at0003]/items ∈ {
+                ELEMENT[at0078.2] occurrences ∈ {0..1} ∈ {    -- TSH
+                    value ∈ {
+                        DV_QUANTITY[at9000.7] ∈ { ... }
+                    }
+                }
+                ELEMENT[at0078.7] occurrences ∈ {0..1} ∈ {...} -- Free T3
+                ...
+            }
+        }
+    }
+--------
+
+.id-coded ADL2 archetype
 [source, cadl]
 --------
     OBSERVATION[id1.1] ∈ {                                   -- Thyroid function tests
@@ -37,18 +55,25 @@ Because ADL is a block-structured language, the redefinition of nodes deep in th
     }
 --------
 
-In this fragment, a path is used rather than an attribute name. A path can be used in this manner only if no further constraints are required 'on the way' into the deep structure, with the exception of id-code overrides (since these can be syntactically accommodated within the path).
+In this fragment, a path is used rather than an attribute name. A path can be used in this manner only if no further constraints are required 'on the way' into the deep structure, with the exception of at-code (id-code) overrides (since these can be syntactically accommodated within the path).
 
 The rules for specialisation paths are as follows.
 
 * A specialisation path is constructed down to the first attribute having any child objects to be further constrained in the present archetype.
-* All path segments must carry an id-code predicate.
+* All path segments must carry an at-code (id-code) predicate.
 * The shortest useful path that can be used is `/` followed by an attribute name from the top level class being constrained by the archetype.
 
 === Path Congruence
 
 Any node in an archetype can unambiguously be located by its archetype path. For example, the text value of the 'problem' node of the `openEHR-EHR-EVALUATION.problem.v1` archetype shown at the top of the example in <<Redefinition for Specialisation>> is:
 
+.at-coded ADL2 archetype
+[source, cadl]
+--------
+    /data[at0001]/items[at0002]/value
+--------
+
+.id-coded ADL2 archetype
 [source, cadl]
 --------
     /data[id2]/items[id3]/value
@@ -56,6 +81,13 @@ Any node in an archetype can unambiguously be located by its archetype path. For
 
 Similarly the path to the redefined version of the same node in the `openEHR-EHR-EVALUATION.problem-diagnosis.v1` archetype at the bottom of the same figure is:
 
+.at-coded ADL2 archetype
+[source, cadl]
+--------
+    /data[at0001]/items[at0002.1]/value
+--------
+
+.id-coded ADL2 archetype
 [source, cadl]
 --------
     /data[id2]/items[id3.1]/value

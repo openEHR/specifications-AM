@@ -104,7 +104,7 @@ Along with `C_ATTRIBUTE`, `C_COMPLEX_OBJECT` is the key structuring type of the 
 
 Constraints on primitive types are defined by the descendants of `C_PRIMITIVE_OBJECT`, i.e. `C_STRING` , `C_INTEGER` and so on. The primitive constraint types are represented in such a way as to accommodate both 'tuple' constraints and logically unary constraints, using a tuple array (`C_PRIMITIVE_TUPLE._members_`) whose members are each a primitive constraint corresponding to each primitive type in the tuple. Tuple constraints are second order constraints, described below, enabling co-varying constraints to be stated. In the unary case, the constraint is the first member of a tuple array.
 
-`C_PRIMITIVE_OBJECT` instances represented in {openehr_am_adl2}[ADL 'short' form^] are created with a fixed id-code `ADL_CODE_DEFINITIONS._primitive_node_id_` as the value of `_node_id_` (see <<ADL_CODE_DEFINITIONS Class>>). For regularly structured `C_PRIMITIVE_OBJECT` instances, a normal node identifier is required.
+`C_PRIMITIVE_OBJECT` instances represented in {openehr_am_adl2}[ADL 'short' form^] are created with a fixed at-code (id-code) `ADL_CODE_DEFINITIONS._primitive_node_id_` as the value of `_node_id_` (see <<ADL_CODE_DEFINITIONS Class>>). For regularly structured `C_PRIMITIVE_OBJECT` instances, a normal node identifier is required.
 
 The primitive constraint for each primitive type may itself be complex. Its formal type is the type of the `_constraint_` accessor in each `C_PRIMITIVE_OBJECT` descendant. The use of constrainer types for each assumed primitive RM type is summarised in the following table.
 
