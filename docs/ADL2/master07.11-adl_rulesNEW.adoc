@@ -12,6 +12,29 @@ Since multiple data instances may conform to a single archetype structure or sub
 
 The symbols used in rule expressions are defined in two sub-sections under a dedicated archetype `symbols` section: `symbol_definitions` (optional) and `symbol_bindings` (mandatory). The definitions are of the same form as the archetype term definitions and serve the same purpose, i.e. to provide multi-lingual natural language definitions that may be used in tool user interfaces. In each term, a `symbol` attribute may be used to define a translation of the symbol itseld, which may be used They are optional since they are not needed to perform either path mapping or runtime execution.
 
+.openEHR archetype
+[source, adl]
+----
+symbols
+    symbol_definitions = <
+        ["en"] = <
+           ["apgar_respiratory_value"] = <
+               text = <"Apgar score respiratory value">
+           >
+        >
+        ["nl"] = <
+           ["apgar_respiratory_value"] = <
+               text = <"Apgar score ademhalingswaarde">
+               symbol = <"apgar_score_ademhalingswaarde">
+           >
+        >
+    >
+    symbol_bindings = <
+        ["apgar_respiratory_value"] = <"/data[at0002]/events/data[at0001]/items[at0009]/value[at9001]/value">
+    >
+----
+
+.ADL2 original archetype
 [source, adl]
 ----
 symbols
@@ -41,6 +64,114 @@ The following sub-sections describe common categories of rule used in archetypes
 
 A common need is to assert an arithmetic relationship among various values located at different paths within an archetype. The following example specifies the summation of an Apgar score total from its parts, each defined as distinct nodes within the archetype. The `apgar_total_value`, `apgar_heartrate_value` etc are EL variables bound to the relevant paths within the main archetype definition.
 
+.openEHR archetype
+[source, adl]
+----
+archetype (adl_version=2.x.x; rm_release=1.0.3; generated; uid=f27fac48-3acb-4061-9619-c783fd8346ab)
+  openEHR-EHR-OBSERVATION.apgar.v1.0.1
+
+description
+  lifecycle_state = <"unmanaged">
+  original_author = <...>
+  details = <...>
+    
+definition
+  OBSERVATION[at0000] ∈ {  -- Apgar score
+    data ∈ {
+      HISTORY[at0002] ∈ {
+        events ∈ {
+          POINT_EVENT[at0003] occurrences ∈ {0..1} ∈ { -- 2 minutes
+            offset ∈ {
+              DV_DURATION[at9000] ∈ {
+                value ∈ {PT1M}
+              }
+            }
+            data ∈ {
+              ITEM_LIST[at0001] ∈ {
+                items ∈ {
+                  ELEMENT[at0009] occurrences ∈ {0..1} ∈ {
+                    value ∈ {
+                      DV_ORDINAL[at9001] ∈ {
+                        [value, symbol] ∈ { -- apgar_respiratory_value
+                          [{0}, {[at0010]}],
+                          [{1}, {[at0011]}],
+                          [{2}, {[at0012]}]
+                        }
+                      }
+                    }
+                  }
+                  ELEMENT[at0005] occurrences ∈ {0..1} ∈ {...} -- apgar_heartrate_value
+                  ELEMENT[at0013] occurrences ∈ {0..1} ∈ {...} -- apgar_muscle_tone_value
+                  ELEMENT[at0017] occurrences ∈ {0..1} ∈ {...} -- apgar_reflex_value
+                  ELEMENT[at0021] occurrences ∈ {0..1} ∈ {...} -- apgar_skin_colour_value
+                  ELEMENT[at0025] occurrences ∈ {0..1} ∈ {
+                    value ∈ {
+                      DV_COUNT[at9002] ∈ {
+                        magnitude ∈ {|0..10|} -- apgar_total_value
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+          POINT_EVENT[at0026] occurrences ∈ {0..1} ∈ { -- 2 minutes
+            offset ∈ {
+              DV_DURATION[at9003] ∈ {
+                value ∈ {PT2M}
+              }
+            }
+            data ∈ {
+              use_node ITEM_LIST[at0049] /data[at0002]/events[at0003]/data[at0001]
+            }
+          }
+          POINT_EVENT[at0027] occurrences matches {0..1} matches {...}  -- 3 minutes
+          POINT_EVENT[at0028] occurrences matches {0..1} matches {...}  -- 5 minutes
+          POINT_EVENT[at0031] occurrences matches {0..1} matches {...}  -- 10 minuten
+                }
+            }
+        }
+    }
+  
+rules
+  check apgar_total_value = apgar_heartrate_value + apgar_respiratory_value + 
+        apgar_reflex_value + apgar_muscle_tone_value + apgar_skin_colour_value
+    
+symbols
+  symbol_definitions = <
+    ["en"] = <
+       ["apgar_respiratory_value"] = <
+           text = <"Apgar score respiratory value">
+       >
+       ["apgar_heartrate_value"] = <
+           text = <"Apgar score heartrate value">
+       >
+       ["apgar_muscle_tone_value"] = <
+           text = <"Apgar score muscle tone value">
+       >
+       ["apgar_reflex_value"] = <
+           text = <"Apgar score reflex value">
+       >
+       ["apgar_skin_colour_value"] = <
+           text = <"Apgar score skin_colour value">
+       >
+       ["apgar_total_value"] = <
+           text = <"Apgar score total value">
+       >
+    >
+
+    symbol_bindings = <
+      ["apgar_respiratory_value"] =   <"/data[at0002]/events/data[at0001]/items[at0009]/value[at9001]/value">
+      ["apgar_heartrate_value"] =     <"/data[at0002]/events/data[at0001]/items[at0005]/value/value">
+      ["apgar_muscle_tone_value"] =   <"/data[at0002]/events/data[at0001]/items[at0013]/value/value">
+      ["apgar_reflex_value"] =        <"/data[at0002]/events/data[at0001]/items[at0017]/value/value">
+      ["apgar_skin_colour_value"] =   <"/data[at0002]/events/data[at0001]/items[at0021]/value/value">
+      ["apgar_total_value"] =         <"/data[at0002]/events/data[at0001]/items[at0025]/value[at9002]/magnitude">
+    >
+  >
+----
+
+.ADL2 original archetype
 [source, adl]
 ----
 archetype (adl_version=2.0.6; rm_release=1.0.3; generated; uid=f27fac48-3acb-4061-9619-c783fd8346ab)
@@ -50,7 +181,7 @@ description
   lifecycle_state = <"unmanaged">
   original_author = <...>
   details = <...>
-    
+
 definition
   OBSERVATION[id1] ∈ {  -- Apgar score
     data ∈ {
@@ -108,11 +239,11 @@ definition
             }
         }
     }
-  
+
 rules
-  check apgar_total_value = apgar_heartrate_value + apgar_respiratory_value + 
+  check apgar_total_value = apgar_heartrate_value + apgar_respiratory_value +
         apgar_reflex_value + apgar_muscle_tone_value + apgar_skin_colour_value
-    
+
 symbols
   symbol_definitions = <
     ["en"] = <
