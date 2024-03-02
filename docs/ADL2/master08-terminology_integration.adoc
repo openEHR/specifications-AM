@@ -31,7 +31,7 @@ A final complication is to do with commercial licensing of terminology. Archetyp
 
 In sum, external terminologies address certain types of information very well, and many other elements only weakly or variably. The problem is that a good deal of the domain information modelled by archetypes is outside the areas of strength of external terminologies.
 
-Taken together, these issues necessitate a design strategy that doesn't rely in the first instance on external terminologies to provide either identifiers (names of things), values (taken individually) or explicit value sets. Instead, archetypes rely on internal coding of all identifiable elements (nodes with id-codes), as well as the availability of a mechanism for defining at least the 'small' value sets - the ac- and at-codes.
+Taken together, these issues necessitate a design strategy that doesn't rely in the first instance on external terminologies to provide either identifiers (names of things), values (taken individually) or explicit value sets. Instead, archetypes rely on internal coding of all identifiable elements (nodes with at-codes/id-codes), as well as the availability of a mechanism for defining at least the 'small' value sets - the ac- and at-codes.
 
 Connection with external terminology is managed using in the `term_binding` section described earlier, and also via transformation from archetypes and template to the deployable operational template. The sections below describe various use cases for terminology constraint, binding and deployment.
 
@@ -39,6 +39,71 @@ Connection with external terminology is managed using in the `term_binding` sect
 
 Expressing terminology constraints in cADL was briefly described in <<cADL_Terminology_Constraints>>. Constraints in the `definition` section of an archetype are only a small part of the picture. The targets of the at- and ac- codes are defined in the archetype `terminology` section, potentially with bindings to external terminology. In order to illustrate the approach clearly, the cADL example from earlier is repeated here, minus the node containing the assumed value, and this time with an extract from the terminology section.
 
+.at-coded ADL2 archetype
+[source, adl]
+--------
+--
+-- extract of openehr-ehr-EVALUATION.term_constraint_variations.v0.0.1
+--
+definition
+    ...
+        items matches {
+            ELEMENT[at0010] occurrences matches {0..1} matches {
+                name matches {
+                    DV_CODED_TEXT[at9000] matches {
+                        defining_code matches {[at0004]}        -- set name to 'Substance'
+                    }
+                }
+                value matches {
+                    DV_CODED_TEXT[at9001] matches {
+                        defining_code matches {[ac1]}        -- Type of Substance/Agent
+                    }
+                }
+            }
+            ...
+        }
+    ...    
+    
+terminology
+    term_definitions = <
+        ["en"] = <
+            ["at0010"] = <
+                text = <"Specific Substance/Agent">
+                description = <"Specific identification of the actual Substance/Agent considered to be responsible for the Adverse Reaction event.">
+            >
+            ["at0004"] = <
+                text = <"Substance">
+                description = <"Physical substance.">
+            >
+            ["ac1"] = <
+                text = <"Type of substance">
+                description = <"Type of substance that was the cause of the Adverse Reaction">
+            >
+            ["at0009"] = <
+                text = <"Pollen">
+                description = <"Pollen">
+            >
+            ["at0010"] = <
+                text = <"Insect allergen">
+                description = <"Insect allergen">
+            >
+            ["at0011"] = <
+                text = <"Animal protein">
+                description = <"Animal protein.">
+            >
+            ["at0012"] = <
+                text = <"Plant material">
+                description = <"Plant material.">
+            >
+            ["at0013"] = <
+                text = <"Dust">
+                description = <"Dust.">
+            >
+        >
+    >
+--------
+
+.id-coded ADL2 archetype
 [source, adl]
 --------
 --
@@ -61,8 +126,8 @@ definition
             }
             ...
         }
-    ...    
-    
+    ...
+
 terminology
     term_definitions = <
         ["en"] = <
@@ -102,8 +167,9 @@ terminology
     >
 --------
 
-The at- and ac- codes (and of course id-codes) in the above are defined in the archetype terminology in the normal way (noting that codes `id8` and `id55` do not need local terminology definitions, following the rules described earlier<<_node_identifiers_2>>), with various possibilities for defining and binding the value set denoted by the code `ac1`. Below is shown the first alternative: local value-set definition.
+The at- and ac- codes (and id-codes for id-coded archetypes) in the above are defined in the archetype terminology in the normal way (noting that codes `at9000` and `at9001` (`id8` and `id55`) do not need local terminology definitions, following the rules described earlier<<_node_identifiers_2>>), with various possibilities for defining and binding the value set denoted by the code `ac1`. Below is shown the first alternative: local value-set definition.
 
+.at-coded ADL2 archetype
 [source, adl]
 --------
 terminology
@@ -117,17 +183,37 @@ terminology
     value_sets = <
         ["ac1"] = <
             id = <"ac1">
+            members = <"at0009", "at0010", "at0011", "at0012", "at0013">
+        >
+    >
+--------
+
+.id-coded ADL2 archetype
+[source, adl]
+--------
+terminology
+    term_definitions = <
+        ...
+    >
+
+    --
+    -- alternative #1: purely local definition
+    --
+    value_sets = <
+        ["ac1"] = <
+            id = <"ac1">
             members = <"at10", "at11", "at12", "at13", "at14">
         >
     >
 --------
 
-The `value_sets` sub-section shows the definition of the `ac1` value set as containing the five codes `at10` - `at14` (note: this does not attempt to be clinically complete). A local value set definition is part of the archetype, and has no reliance on external terminology. For many value sets, definition in the archetype is the only option available either due to their arbitrary contents, specificity (to the archetype) or the simple practical fact that no-one has done the work to create them elsewhere.
+The `value_sets` sub-section shows the definition of the `ac1` value set as containing the five codes `at0009` - `at0013` (`at10` - `at14`) (note: this does not attempt to be clinically complete). A local value set definition is part of the archetype, and has no reliance on external terminology. For many value sets, definition in the archetype is the only option available either due to their arbitrary contents, specificity (to the archetype) or the simple practical fact that no-one has done the work to create them elsewhere.
 
 The next variation is that bindings are found for the at-codes from a terminology such as SNOMED CT. This would enable the code chosen at runtime in the system using the archetype to be mapped to a SNOMED CT code.
 
 CAUTION: it is quite common that only _some_ of the local at-codes have equivalents in the external terminology, especially if the archetype has a more fine-grained coding of the concept in question. In general, the availability of any external codes for a given internal code doesn't imply that the value set has full coverage by the terminology.
 
+.at-coded ADL2 archetype
 [source, adl]
 --------
 terminology
@@ -135,6 +221,34 @@ terminology
          ...
     >
     
+    --
+    -- alternative #2: add individual bindings to member terms
+    --
+    value_sets = <
+        ["ac1"] = <
+            id = <"ac1">
+            members = <"at0009", "at0010", "at0011", "at0012", "at0013">
+        >
+    >
+    term_bindings = <
+        ["snomed_ct"] = <
+            ["at0009"] = <http://snomed.info/id/406464007> -- Pollen allergen (substance)
+            ["at0010"] = <http://snomed.info/id/406470001> -- Insect allergen (substance)
+            ["at0011"] = <http://snomed.info/id/406472009> -- Animal protein and epidermal allergen (substance)
+            ["at0012"] = <http://snomed.info/id/410981007> -- Plant extract and epidermal allergen (substance)
+            ["at0013"] = <http://snomed.info/id/410980008> -- Dust allergen (substance)
+        >
+    >
+--------
+
+.id-coded ADL2 archetype
+[source, adl]
+--------
+terminology
+    term_definitions = <
+         ...
+    >
+
     --
     -- alternative #2: add individual bindings to member terms
     --
@@ -163,6 +277,7 @@ This provides the basis for the next variant. Assuming that an external value se
 
 It will be up to applications or infrastructure in the execution environment to determine if the required external terminology is available and should be used; if so, the local value set definition and at-code bindings can be ignored.
 
+.at-coded ADL2 archetype
 [source, adl]
 --------
 terminology
@@ -170,6 +285,35 @@ terminology
          ...
     >
     
+    --
+    -- alternative #3: add a binding for the value set itself
+    --
+    value_sets = <
+        ["ac1"] = <
+            id = <"ac1">
+            members =  <"at0009", "at0010", "at0011", "at0012", "at0013">
+        >
+    >
+    term_bindings = <
+        ["snomed_ct"] = <
+            ["ac1"] = <http://snomed.info/id/900000000000123456> -- value set binding
+            ["at0009"] = <http://snomed.info/id/406464007> -- Pollen allergen (substance)
+            ["at0010"] = <http://snomed.info/id/406470001> -- Insect allergen (substance)
+            ["at0011"] = <http://snomed.info/id/406472009> -- Animal protein and epidermal allergen (substance)
+            ["at0012"] = <http://snomed.info/id/410981007> -- Plant extract and epidermal allergen (substance)
+            ["at0013"] = <http://snomed.info/id/410980008> -- Dust allergen (substance)
+        >
+    >
+--------
+
+.id-coded ADL2 archetype
+[source, adl]
+--------
+terminology
+    term_definitions = <
+         ...
+    >
+
     --
     -- alternative #3: add a binding for the value set itself
     --
@@ -240,6 +384,27 @@ The upshot of these considerations is that the choice of which kind of term to u
 
 As described in <<cADL_Terminology_Constraints>>, constraints of the form `[acN]` and `[atN]` are replaced by `[acN@ttttt]` and `[atN@ttttt]`. A generated operational template that includes the above archetype, with the choice to use the `snomed_ct` binding's external terms made on some nodes, could include the following content.
 
+.at-coded ADL2 archetype
+[source, cadl]
+--------
+    --
+    -- extract of operational template based on openehr-ehr-EVALUATION.term_constraint_variations.v0.0.1
+    --
+    ELEMENT[at0010] occurrences matches {0..1} matches {
+        name matches {
+            DV_CODED_TEXT[at9000] matches {
+                defining_code matches {[at0004@snomed_ct]}        -- set name to 'Substance'
+            }
+        }
+        value matches {
+            DV_CODED_TEXT[at9001] matches {
+                defining_code matches {[ac1@snomed_ct]}        -- Type of Substance/Agent
+            }
+        }
+    }
+--------
+
+.id-coded ADL2 archetype
 [source, cadl]
 --------
     --

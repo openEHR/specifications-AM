@@ -8,6 +8,17 @@ All attributes mentioned in an archetype have an _existence_ constraint, indicat
 
 Parent archetype:
 
+.at-coded ADL2 archetype
+[source, cadl]
+--------
+    OBSERVATION[at0000] ∈ {                -- blood pressure measurement
+        protocol ∈ {                    -- existence not changed from reference model
+            -- etc
+        }
+    }
+--------
+
+.id-coded ADL2 archetype
 [source, cadl]
 --------
     OBSERVATION[id1] ∈ {                -- blood pressure measurement
@@ -19,6 +30,17 @@ Parent archetype:
 
 Child archetype:
 
+.at-coded ADL2 archetype
+[source, cadl]
+--------
+    OBSERVATION[at0000.1] ∈ {              -- paediatric blood pressure measurement
+        /protocol existence ∈ {1} ∈ {
+            -- etc
+        }
+    }
+--------
+
+.id-coded ADL2 archetype
 [source, cadl]
 --------
     OBSERVATION[id1.1] ∈ {              -- paediatric blood pressure measurement
@@ -30,13 +52,22 @@ Child archetype:
 
 Redefinition of existence to `{0}` by this method denotes exclusion, i.e. removal of the entire attribute (including all sub-structure) from the resulting structure. In an archetype, it is likely to indicate poor design, given that the decision to remove optional attributes is much more likely to be local, and therefore more appropriate in templates rather than archetypes; within a template it would be perfectly normal. The following example shows the protocol attribute in the above `OBSERVATION` archetype being excluded in this way:
 
+.at-coded ADL2 archetype
+[source, cadl]
+--------
+   OBSERVATION[at0000] ∈ {                -- paediatric blood pressure measurement
+        /protocol existence ∈ {0}
+    }
+--------
+
+.id-coded ADL2 archetype
 [source, cadl]
 --------
    OBSERVATION[id1] ∈ {                -- paediatric blood pressure measurement
         /protocol existence ∈ {0}
     }
 --------
- 
+
 Note that in the above, the '/' is used to denote '/protocol' as a differential path. Without the slash, the 'protocol' attribute would be considered to be trying to constrain a hitherto unconstrained attribute called 'protocol', rather than redefine a constraint already present in a parent archetype.
 
 === Multiply-valued (Container) Attributes
@@ -58,6 +89,17 @@ The following provides an example of cardinality redefinition.
 
 Parent archetype:
 
+.at-coded ADL2 archetype
+[source, cadl]
+--------
+    ITEM_LIST[at0002] ∈ {                                      -- general check list
+        items cardinality ∈ {0..*} ∈ {                      -- any number of items
+            ELEMENT[at0011] occurrences ∈ {0..*} ∈ {...}      -- generic checklist item
+        }
+    }
+--------
+
+.id-coded ADL2 archetype
 [source, cadl]
 --------
     ITEM_LIST[id3] ∈ {                                      -- general check list
@@ -69,6 +111,22 @@ Parent archetype:
 
 Child archetype:
 
+.at-coded ADL2 archetype
+[source, cadl]
+--------
+    ITEM_LIST[at0002] ∈ {                                      -- pre-operative check list
+        /items cardinality ∈ {3..10} ∈ {                    -- at least 3 mandatory items
+            ELEMENT[at0011.1] occurrences ∈ {1} ∈ {...}       -- item #1
+            ELEMENT[at0011.2] occurrences ∈ {1} ∈ {...}       -- item #2
+            ELEMENT[at0011.3] occurrences ∈ {1} ∈ {...}       -- item #3
+            ELEMENT[at0011.4] occurrences ∈ {0..1} ∈ {...}    -- item #4
+            ...
+            ELEMENT[at0011.10] occurrences ∈ {0..1} ∈ {...}   -- item #10
+        }
+    }
+--------
+
+.id-coded ADL2 archetype
 [source, cadl]
 --------
     ITEM_LIST[id3] ∈ {                                      -- pre-operative check list
@@ -87,6 +145,26 @@ Child archetype:
 
 Within container attributes, the order of objects may be significant from the point of view of domain users, i.e. the container may be considered as an ordered list. This is easy to achieve in top-level archetype, using the 'ordered' qualifier on a cardinality constraint. However, when particular node(s) are redefined into multiple specialised nodes, or new nodes added by extension, the desired order of the new nodes may be such that they should occur interspersed at particular locations among nodes defined in the parent archetype. The following text is a slightly summarised view of the items attribute from the problem archetype shown in <<redefinition_for_specialisation>>:
 
+.at-coded ADL2 archetype
+[source, cadl]
+--------
+    items cardinality ∈ {0..*; ordered} ∈ {
+        ELEMENT[at0001] occurrences ∈ {1} ∈ {...}              -- Problem
+        ELEMENT[at0002] occurrences ∈ {0..1} ∈ {...}           -- Date of initial onset
+        ELEMENT[at0003] occurrences ∈ {0..1} ∈ {...}           -- Age at initial onset
+        ELEMENT[at0004] occurrences ∈ {0..1} ∈ {...}           -- Severity
+        ELEMENT[at0008] occurrences ∈ {0..1} ∈ {...}           -- Clinical description
+        ELEMENT[at0009] occurrences ∈ {0..1} ∈ {...}           -- Date clinically received
+        CLUSTER[at0010] occurrences ∈ {0..*} ∈ {...}           -- Location
+        CLUSTER[at0013] occurrences ∈ {0..1} ∈ {...}           -- Aetiology
+        CLUSTER[at0017] occurrences ∈ {0..1} ∈ {...}           -- Occurrences or exacerb'ns
+        CLUSTER[at0025] occurrences ∈ {0..1} ∈ {...}           -- Related problems
+        ELEMENT[at0029] occurrences ∈ {0..1} ∈ {...}           -- Date of resolution
+        ELEMENT[at0030] occurrences ∈ {0..1} ∈ {...}           -- Age at resolution
+    }
+--------
+
+.id-coded ADL2 archetype
 [source, cadl]
 --------
     items cardinality ∈ {0..*; ordered} ∈ {
@@ -107,10 +185,24 @@ Within container attributes, the order of objects may be significant from the po
 
 To indicate significant ordering in the specialised problem-diagnosis archetype, the keywords ` before` and ` after` can be used, as follows:
 
+.at-coded ADL2 archetype
+[source, cadl]
+--------
+    /data[at0002]/items ∈ {
+        before [at0002]
+        ELEMENT[at0001.1] ∈ {...}                             -- Diagnosis
+        ELEMENT[at0.32] occurrences ∈ {0..1} ∈ {...}          -- Status
+        after [at0025]
+        CLUSTER[at0.35] occurrences ∈ {0..1} ∈ {...}          -- Diagnostic criteria
+        CLUSTER[at0.37] occurrences ∈ {0..1} ∈ {...}          -- Clinical Staging
+    }
+--------
+
+.id-coded ADL2 archetype
 [source, cadl]
 --------
     /data[id3]/items ∈ {
-        before [id3] 
+        before [id3]
         ELEMENT[id2.1] ∈ {...}                                -- Diagnosis
         ELEMENT[id0.32] occurrences ∈ {0..1} ∈ {...}          -- Status
         after [id26]
@@ -121,6 +213,13 @@ To indicate significant ordering in the specialised problem-diagnosis archetype,
 
 These keywords are followed by a node identifier reference, and act to anchor the location of the node definitions immediately following until the next sibling order marker or the end of the list. The following visual rendition is equivalent, but arguably less readable:
 
+.at-coded ADL2 archetype
+[source, cadl]
+--------
+    after [at0025] CLUSTER[at0.35] occurrences ∈ {0..1} ∈ {...}  -- etc
+--------
+
+.id-coded ADL2 archetype
 [source, cadl]
 --------
     after [id26] CLUSTER[id0.35] occurrences ∈ {0..1} ∈ {...}  -- etc

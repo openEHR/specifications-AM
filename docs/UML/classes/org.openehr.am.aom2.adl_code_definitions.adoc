@@ -1,9 +1,93 @@
 === ADL_CODE_DEFINITIONS Class
 
+ADL2 was initially released with code system using id-codes, at-codes and ac-codes. As this proved to hinder its widespread use in the openEHR community (due to its impact on existing openEHR RM data) a code system matching the one used in ADL1.4 was introduced as openEHR primary code system.
+The new coding system also carries original id-codes in its archetypes to preserve the original ADL2 codes.
+
+openEHR systems must support at least at-coded ADL2 archetypes.
+
 [cols="^1,3,5"]
 |===
 h|*Class*
-2+^h|*ADL_CODE_DEFINITIONS*
+2+^h|*ADL_CODE_DEFINITIONS* (at-coded ADL2)
+
+h|*Description*
+2+a|Definitions relating to the internal code system of archetypes.
+
+h|*Constants*
+^h|*Signature*
+^h|*Meaning*
+
+h|*1..1*
+|*At_code_leader*: `String{nbsp}={nbsp}"at"`
+a|String leader of ‘identifier’ codes, i.e. codes used to identify archetype nodes as well ‘value’ codes, i.e. codes used to identify codes values, including value set members.
+
+h|*1..1*
+|*Value_set_code_leader*: `String{nbsp}={nbsp}"ac"`
+a|String leader of ‘value set’ codes, i.e. codes used to identify value sets.
+
+h|*1..1*
+|*Specialisation_separator*: `char{nbsp}={nbsp}'.'`
+a|Character used to separate numeric parts of codes belonging to different specialisation levels.
+
+h|*1..1*
+|*Code_regex_pattern*: `String{nbsp}={nbsp}"(0&#124;[1-9][0-9]&#42;)(\.(0&#124;[1-9][0-9]&#42;))&#42;"`
+a|Regex used to define the legal numeric part of any archetype code. Corresponds to the simple pattern of dotted numbers, as used in typical multi-level numbering schemes.
+
+h|*1..1*
+|*Root_code_regex_pattern*: `String{nbsp}={nbsp}"^at0000(\.1)&#42;$"`
+a|Regex pattern of the root id code of any archetype. Corresponds to codes of the form `at0000`, `at0000.1`, `at0000.1.1` etc..
+
+h|*1..1*
+|*Primitive_node_id*: `String{nbsp}={nbsp}"at9999"`
+a|Code id used for `C_PRIMITIVE_OBJECT` nodes on creation.
+h|*Functions*
+^h|*Signature*
+^h|*Meaning*
+
+h|*1..1*
+|*codes_conformant* ( +
+a_child_code: `String[1]`, +
+a_parent_code: `String[1]` +
+): `Boolean`
+a|True if `_a_child_code_` conforms to `_a_parent_code_` in the sense of specialisation, i.e. is `_a_child_code_` the same as or more specialised than `_a_parent_code_`?
+
+h|*1..1*
+|*is_adl_code* ( +
+a_code: `String[1]` +
+): `Boolean` +
+ +
+__Post__: `Result = is_at_code (a_code) or else is_value_set_code (a_code)`
+a|True if `_a_code_` is any kind of ADL archetype local code.
+
+h|*1..1*
+|*is_at_code* ( +
+a_code: `String[1]` +
+): `Boolean` +
+ +
+__Post__: `Result = a_code.starts_with (At_code_leader)`
+a|True if `_a_code_` is an 'at' code.
+
+h|*1..1*
+|*is_redefined_code* ( +
+a_code: `String[1]` +
+): `Boolean`
+a|A code has been specialised if there is a non-zero code index anywhere above the last index e.g.
+
+* `at0.0.1` -> False
+* `at1.0.1` -> True
+
+h|*1..1*
+|*code_exists_at_level* ( +
+a-code: `String[1]`, +
+a_level: `Integer[1]` +
+): `Boolean`
+a|Is `_a_code_` valid at level `_a_level_` or less, i.e. if we remove its trailing specialised part corresponding to specialisation below `_a_level_`, and then any trailing '.0' pieces, do we end up with a valid code? If so it means that the code corresponds to a real node from `_a_level_` or higher.
+|===
+[cols="^1,3,5"]
+
+|===
+h|*Class*
+2+^h|*ADL_CODE_DEFINITIONS* (id-coded ADL2)
 
 h|*Description*
 2+a|Definitions relating to the internal code system of archetypes.

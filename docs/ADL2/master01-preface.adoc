@@ -65,6 +65,21 @@ For existing users of ADL or archetype development tools, the following provides
 
 The object syntax used to represent the description, terminology and annotations sections of an ADL archetype has been historically known as 'dADL' (i.e. 'data ADL'). Since this syntax is completely generic and has no specific dependency on either ADL or openEHR, it has been separated out into its own specification known as Object Data Instance Notation (ODIN).
 
+=== ADL 2.4
+
+==== Changes
+
+The primary change in version 2.4 is introduction of alternative code systems.
+ADL2 was initially released with code system using id-codes, at-codes and ac-codes.
+As this proved to hinder its widespread use in the openEHR community (due to its impact on existing openEHR RM data) a code system matching the one used in ADL 1.4 was introduced (using just at-codes and ac-codes) as openEHR primary code system.
+The new coding system also carries original ADL 2 id-codes in its archetypes as alternative codes.
+
+NOTE: Most ADL2-based tools will unlikely be upgraded to support at-coded ADL2 archetypes by the time this version is released, but with community support this is expected to change soon after the release.
+
+==== Backward Compatibility
+
+When using at-code codesystem this release is fully backward compatible with openEHR data created based on ADL 1.4 archetypes but breaks compatibility with openEHR data created based on ADL 2.0 - ADL 2.3 archetypes.
+
 === ADL 2.0
 
 ==== Changes

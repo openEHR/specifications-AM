@@ -4,6 +4,27 @@
 
 In realistic data, it is not uncommon to need to constrain multiple object properties that co-vary in a specific way. A simple example is the need to state range constraints on a temperature, represented as an openEHR `DV_QUANTITY` type, for both Centigrade and Fahrenheit scales. The default way to do this in ADL is as follows (the `DV_QUANTITY` class has `_property_`, `_units_` and `_magnitude_` attributes):
 
+.at-coded ADL2 archetype
+[source, cadl]
+--------
+    --
+    -- basic form of constraint on a Quantity type, allowing unintended combinations
+    --
+    value ∈ {
+        DV_QUANTITY [at9013] ∈ {
+            property ∈ {[openehr::151|temperature|]}
+            units ∈ {"deg F"}
+            magnitude ∈ {|32.0..212.0|}
+        }
+        DV_QUANTITY [at9014] ∈ {
+            property ∈ {[openehr::151|temperature|]}
+            units ∈ {"deg C"}
+            magnitude ∈ {|0.0..100.0|}
+        }
+    }
+--------
+
+.id-coded ADL2 archetype
 [source, cadl]
 --------
     --
@@ -37,6 +58,24 @@ However, this seems obscure for what is logically a very simple kind of constrai
 
 A generic solution that can be used in the main `definition` section involves treating co-varying properties formally as tuples, and providing syntax to express constraints on tuples. The following syntax achieves this:
 
+.at-coded ADL2 archetype
+[source, cadl]
+--------
+    --
+    -- Tuple form of constraint on a Quantity type
+    --
+    value ∈ {
+        DV_QUANTITY[at9013] ∈ {
+            property ∈ {[openehr::151|temperature|]}
+            [units, magnitude] ∈ { 
+                [{"deg F"}, {|32.0..212.0|}] ,
+                [{"deg C"}, {|0.0..100.0|}] 
+            }
+        }
+    }
+--------
+
+.id-coded ADL2 archetype
 [source, cadl]
 --------
     --
@@ -45,9 +84,9 @@ A generic solution that can be used in the main `definition` section involves tr
     value ∈ {
         DV_QUANTITY[id14] ∈ {
             property ∈ {[openehr::151|temperature|]}
-            [units, magnitude] ∈ { 
+            [units, magnitude] ∈ {
                 [{"deg F"}, {|32.0..212.0|}] ,
-                [{"deg C"}, {|0.0..100.0|}] 
+                [{"deg C"}, {|0.0..100.0|}]
             }
         }
     }
@@ -61,6 +100,22 @@ The tuple form has the advantage of expressing the additional constraint that on
 
 Another way to attempt to represent the effect of covarying constraints might be as follows, using lists of primitive values as shown below. However, there is nothing in these constraints that forces the correct associations between the `_units_` and `_magnitude_` constraints, preventing wrong combinations.
 
+.at-coded ADL2 archetype
+[source, cadl]
+--------
+    --
+    -- List form of constraint on a Quantity type, also allowing unintended combinations
+    --
+    value ∈ {
+        DV_QUANTITY[at9007] ∈ {
+            property ∈ {[openehr::151|temperature|]}
+            units ∈ {"deg F", "deg C"}
+            magnitude ∈ {|32.0..212.0|, |0.0..100.0|} 
+        }
+    }
+--------
+
+.id-coded ADL2 archetype
 [source, cadl]
 --------
     --
@@ -70,7 +125,7 @@ Another way to attempt to represent the effect of covarying constraints might be
         DV_QUANTITY[id14] ∈ {
             property ∈ {[openehr::151|temperature|]}
             units ∈ {"deg F", "deg C"}
-            magnitude ∈ {|32.0..212.0|, |0.0..100.0|} 
+            magnitude ∈ {|32.0..212.0|, |0.0..100.0|}
         }
     }
 --------
@@ -82,6 +137,43 @@ This same syntax will work for tuples of 3 or more co-varying properties. It doe
 
 A constraint on the openEHR `DV_ORDINAL` type provides another example of the utility of ADL tuples. First, a typical ordinal constraint (a scale of pass:[+, ++, +++]) with  standard ADL:
 
+.at-coded ADL2 archetype
+[source, cadl]
+--------
+    --
+    -- Basic form of constraint on an Ordinal type, allowing unintended combinations
+    --
+    ordinal_attr ∈ {
+        DV_ORDINAL[at9001] ∈ {
+            value ∈ {0}
+            symbol ∈ {
+                DV_CODED_TEXT[id4] ∈ {
+                    code ∈ {"at1"}          -- +
+                }
+            }
+        }
+        DV_ORDINAL[at9002] ∈ {
+            value ∈ {1}
+            symbol ∈ {
+                DV_CODED_TEXT[id6] ∈ {
+                    code ∈ {"at2"}          -- ++
+                        }
+                    }
+                }
+            }
+        }
+        DV_ORDINAL[at9003] ∈ {
+            value ∈ {2}
+            symbol ∈ {
+                DV_CODED_TEXT[id8] ∈ {
+                    code ∈ {"at3"}         -- +++
+                }
+            }
+        }
+    }
+--------
+
+.id-coded ADL2 archetype
 [source, cadl]
 --------
     --
@@ -119,6 +211,24 @@ A constraint on the openEHR `DV_ORDINAL` type provides another example of the ut
 
 By the use of tuple constraint, almost the same thing can be achieved much more efficiently. We can write:
 
+.at-coded ADL2 archetype
+[source, cadl]
+--------
+    --
+    -- Tuple form of constraint on an Ordinal type
+    --
+    ordinal_attr ∈ {
+        DV_ORDINAL[at9006] ∈ {
+            [value, symbol] ∈ {
+                [{0}, {[at1]}],           -- +             
+                [{1}, {[at2]}],           -- ++          
+                [{2}, {[at3]}]            -- +++           
+            }
+        }
+    }
+--------
+
+.id-coded ADL2 archetype
 [source, cadl]
 --------
     --
@@ -127,9 +237,9 @@ By the use of tuple constraint, almost the same thing can be achieved much more 
     ordinal_attr ∈ {
         DV_ORDINAL[id3] ∈ {
             [value, symbol] ∈ {
-                [{0}, {[at1]}],           -- +             
-                [{1}, {[at2]}],           -- ++          
-                [{2}, {[at3]}]            -- +++           
+                [{0}, {[at1]}],           -- +
+                [{1}, {[at2]}],           -- ++
+                [{2}, {[at3]}]            -- +++
             }
         }
     }
@@ -154,10 +264,22 @@ This hides the `DV_ORDINAL` type altogether, but as for the `C_DV_QUANTITY` exam
 
 ==== Paths in Tuple structures
 
-Unlike the basic form primitive constraint, tuple constraints introduce multiplicity, and as a consequence, paths to ther terminal objects are no longer unique. Thus, the paths `value[id4]/magnitude` (the Quantity example) and `ordinal_attr[id3]/value` (the ordinal example) could each refer to more than one primitive object.
+Unlike the basic form primitive constraint, tuple constraints introduce multiplicity, and as a consequence, paths to ther terminal objects are no longer unique. Thus, the paths `value[at9007]/magnitude` (`value[id4]/magnitude`) in the Quantity example and `ordinal_attr[at9003]/value` (`ordinal_attr[id3]/value`) in the ordinal example could each refer to more than one primitive object.
 
 This solved by allowing Xpath-style child numbering predicates in paths starting at 1, as shown below.
 
+.at-coded ADL2 archetype
+[source, cadl]
+--------
+value[9007]/magnitude[1]     -- refer to the constraint {|32.0..212.0|}
+value[9007]/magnitude[2]     -- refer to the constraint {|0.0..100.0|}
+
+ordinal_attr[at9006]/value[1]  -- refer to the constraint {0}
+ordinal_attr[at9006]/value[2]  -- refer to the constraint {1}
+ordinal_attr[at9006]/value[3]  -- refer to the constraint {2}
+--------
+
+.id-coded ADL2 archetype
 [source, cadl]
 --------
 value[id4]/magnitude[1]     -- refer to the constraint {|32.0..212.0|}
@@ -172,6 +294,25 @@ ordinal_attr[id3]/value[3]  -- refer to the constraint {2}
 
 Within a container attribute, any number of object constraints may be defined. The cardinality and occurrences constraints described above show how to control respectively, the overall container contents, and the occurrence of any particular object constraint within data. However, sometimes finer control is needed on repetition and grouping of members within the container. This can be achieved by the `group` construct, which provides an interior block where a subset of the overall container can be treated as a sub-group. The following example shows a typical used of the group construct.
 
+.at-coded ADL2 archetype
+[source, cadl]
+--------
+    ITEM_TREE[at0000] ∈ {
+        items matches {
+            ELEMENT[at0001] occurrences ∈ {1} ∈ {...}              -- Investigation type
+            ELEMENT[at0002] occurrences ∈ {0..1} ∈ {...}           -- reason
+            group cardinality ∈ {1} occurrences ∈ {0..1} ∈ {   -- Methodology
+                ELEMENT[at0005] occurrences ∈ {0..1} ∈ {...}       -- as Text
+                ELEMENT[at0006] occurrences ∈ {0..1} ∈ {...}       -- Coded
+                CLUSTER[at0007] occurrences ∈ {0..1} ∈ {...}       -- structured
+            }
+            ELEMENT[at0010] occurrences ∈ {0..1} ∈ {...}          -- (other details)
+            CLUSTER[at0011] occurrences ∈ {0..1} ∈ {...}          -- (other details)
+        }
+    }
+--------
+
+.id-coded ADL2 archetype
 [source, cadl]
 --------
     ITEM_TREE[id1] ∈ {
@@ -214,6 +355,27 @@ The use of group cardinality and occurrences constraints, coupled with the occur
 
 Group blocks can be nested, enabling subsets of subsets to be defined, as illustrated below.
 
+.at-coded ADL2 archetype
+[source, cadl]
+--------
+    items ∈ {
+        ELEMENT[at0001] occurrences ∈ {1} ∈ {...}                -- Investigation type
+        ELEMENT[at0002] occurrences ∈ {0..1} ∈ {...}             -- Investigation reason
+        group cardinality ∈ {2} occurrences ∈ {*} ∈ {         -- pick any 2 & repeat
+            ELEMENT[at0005] occurrences ∈ {0..1} ∈ {...}
+            ELEMENT[at0006] occurrences ∈ {0..1} ∈ {...}
+            CLUSTER[at0007] occurrences ∈ {0..1} ∈ {...}
+            group cardinality ∈ {1} occurrences ∈ {0..1} ∈ {  -- at least one
+                ELEMENT[at0008] occurrences ∈ {0..1} ∈ {...}
+                CLUSTER[at0009] occurrences ∈ {0..1} ∈ {...}
+            }
+        }
+        ELEMENT[at0010] occurrences ∈ {0..1} ∈ {...}            -- (other details)
+        CLUSTER[at0011] occurrences ∈ {0..1} ∈ {...}            -- (other details)
+    }
+--------
+
+.id-coded ADL2 archetype
 [source, cadl]
 --------
     items ∈ {
@@ -233,8 +395,25 @@ Group blocks can be nested, enabling subsets of subsets to be defined, as illust
     }
 --------
 
-For nested groups, the individual object nodes of the sub-group count _individually_ towards the super-group's cardinality, i.e. the group itself is not counted as a node. Thus, in the following example, any three nodes can be chosen from nodes `id6` - `id11`, with one or two of those nodes being from nodes `id9` - `id11`.
+For nested groups, the individual object nodes of the sub-group count _individually_ towards the super-group's cardinality, i.e. the group itself is not counted as a node. Thus, in the following example, any three nodes can be chosen from nodes `at0005` - `at0010` (`id6` - `id11`), with one or two of those nodes being from nodes `at0008` - `at0010` (`id9` - `id11`).
 
+.at-coded ADL2 archetype
+[source, cadl]
+--------
+    group cardinality ∈ {3} occurrences ∈ {*} ∈ {         -- pick any 3 from id6-id11 & repeat
+        ELEMENT[at0005] occurrences ∈ {0..1} ∈ {...}
+        ELEMENT[at0006] occurrences ∈ {0..1} ∈ {...}
+        CLUSTER[at0007] occurrences ∈ {0..1} ∈ {...}
+            group cardinality ∈ {1} occurrences ∈ {1..2} ∈ {  -- pick 1-2 from id9 - id11
+                ELEMENT[at0008] occurrences ∈ {0..1} ∈ {...}
+                CLUSTER[at0009] occurrences ∈ {0..1} ∈ {...}
+                ELEMENT[at0010] occurrences ∈ {0..1} ∈ {...}
+            }
+        }
+    }
+--------
+
+.id-coded ADL2 archetype
 [source, cadl]
 --------
     group cardinality ∈ {3} occurrences ∈ {*} ∈ {         -- pick any 3 from id6-id11 & repeat
@@ -264,6 +443,32 @@ The group constraint is often useful with a slot definition, in order to control
 
 It might be expected that the slot constraints needed to define this are as follows:
 
+.at-coded ADL2 archetype
+[source, cadl]
+--------
+    SECTION[at0001] occurrences ∈ {0..1} ∈ {                           -- Subjective
+        items cardinality ∈ {0..*; ordered} ∈ {
+            allow_archetype EVALUATION[at0005] occurrences ∈ {*} ∈ {   -- Problem
+                include
+                    archetype_id/value ∈ {/openEHR-EHR-EVALUATION\.problem\.v*/}
+            }
+            allow_archetype EVALUATION[at0006] occurrences ∈ {*} ∈ {   -- Diagnosis
+                include
+                    archetype_id/value ∈ {/openEHR-EHR-EVALUATION\.problem-diagnosis\.v*/}
+            }
+            allow_archetype EVALUATION[at0007] occurrences ∈ {1} ∈ {   -- Plan
+                include
+                    archetype_id/value ∈ {/openEHR-EHR-EVALUATION\.plan\.v*/}
+            }
+            allow_archetype INSTRUCTION[at0008] occurrences ∈ {1..*} ∈ {  -- Intervention
+                include
+                    archetype_id/value ∈ {/openEHR-EHR-INSTRUCTION\.(medication_order|therapy)\.v*/}
+            }
+        }
+    }
+--------
+
+.id-coded ADL2 archetype
 [source, cadl]
 --------
     SECTION[id2] occurrences ∈ {0..1} ∈ {                           -- Subjective
@@ -290,11 +495,40 @@ It might be expected that the slot constraints needed to define this are as foll
 
 The above says that the `SECTION._items_` attribute is an ordered list, and that its contents include multiple `EVALUATION` objects representing problem, diagnosis and plan, and also multiple `INSTRUCTION` objects representing interventions. The problem is now apparent. Each slot definition is set of possibilities, but we do not necessarily want to follow the slot ordering for the ordering of the archetypes chosen to fill the slots. To impose the required ordering and occurrences, we can use the group construct as follows.
 
+.at-coded ADL2 archetype
+[source, cadl]
+--------
+    SECTION[at0001] occurrences ∈ {0..1} ∈ {                             -- Subjective
+        items cardinality ∈ {0..*; ordered} ∈ {
+            group cardinality ∈ {0..1} occurrences ∈ {0..*} ∈ {                                   
+                                    -- sub-group of any number of problems & diagnoses
+                allow_archetype EVALUATION[at0005] occurrences ∈ {1} ∈ {  --Problem
+                    include
+                      archetype_id/value ∈ {/openEHR-EHR-EVALUATION\.problem\.v*/}
+                }
+                allow_archetype EVALUATION[at0006] occurrences ∈ {1} ∈ {  -- Diagnosis
+                    include
+                      archetype_id/value ∈ {/openEHR-EHR-EVALUATION\.diagnosis\.v*/}
+                }
+            }
+            allow_archetype EVALUATION[at0007] occurrences ∈ {1} ∈ {      -- Plan
+                include
+                    archetype_id/value ∈ {/openEHR-EHR-EVALUATION\.plan\.v*/}
+            }
+            allow_archetype INSTRUCTION[at0008] occurrences ∈ {1..*} ∈ {     -- Intervention
+                include
+                    archetype_id/value ∈ {/openEHR-EHR-INSTRUCTION\.(medication_order|therapy)\.v*/}
+            }
+        }
+    }
+--------
+
+.id-coded ADL2 archetype
 [source, cadl]
 --------
     SECTION[id2] occurrences ∈ {0..1} ∈ {                             -- Subjective
         items cardinality ∈ {0..*; ordered} ∈ {
-            group cardinality ∈ {0..1} occurrences ∈ {0..*} ∈ {                                   
+            group cardinality ∈ {0..1} occurrences ∈ {0..*} ∈ {
                                     -- sub-group of any number of problems & diagnoses
                 allow_archetype EVALUATION[id6] occurrences ∈ {1} ∈ {  --Problem
                     include

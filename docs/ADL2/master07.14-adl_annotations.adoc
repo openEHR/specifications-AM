@@ -13,6 +13,54 @@ The usual case is the first, since annotations mainly relate to nodes in an arch
 
 A typical `annotations` section looks as follows (https://github.com/openEHR/adl-archetypes/blob/master/ADL2-reference/features/description/annotations/openEHR-EHR-EVALUATION.annotations_1st_child.v1.adls[archetype source^]). The `/subject` path is a non-constrained 'RM path'.
 
+.at-coded ADL2 archetype
+[source, adl]
+--------
+--
+-- Extract from test archetype openEHR-EHR-EVALUATION.annotations_1st_child.v1.0.0
+--
+definition
+    EVALUATION[at0000.1] matches {    -- Exclusion statement - Adverse Reaction
+        /data[at0001]/items matches {
+            ...
+            ELEMENT[at0.8] occurrences matches {0..1} matches {    -- No known allergic reaction to
+                value matches {
+                    DV_TEXT[at9000.6]
+                }
+            }
+            ...
+            ELEMENT[at0.10] occurrences matches {0..1} matches {    -- No known intolerance to
+                value matches {
+                    DV_TEXT[at9000.8]     -- No known allergic reaction to
+                }
+            }
+        }
+    }
+
+terminology
+    ...
+    
+annotations 
+    documentation = <
+        ["en"] = <
+            ["/subject"] = <
+                ["design note"] = <"xxxxxx">
+            >
+            ["/data[at0001]/items[at0.8]"] = <
+                ["design note"] = <"this is a design note on allergic reaction">
+                ["requirements note"] = <"this is a requirements note on allergic reaction">
+                ["medline ref"] = <"this is a medline ref on allergic reaction">
+            >
+            ["/data[at0001]/items[at0.10]"] = <
+                ["design note"] = <"this is a design note on intolerance">
+                ["requirements note"] = <"this is a requirements note on intolerance">
+                ["national data dictionary"] = <"NDD ref for intolerance">
+            >
+        >
+    >
+--------
+
+.id-coded ADL2 archetype
 [source, adl]
 --------
 --
@@ -24,7 +72,7 @@ definition
             ...
             ELEMENT[id0.8] occurrences matches {0..1} matches {    -- No known allergic reaction to
                 value matches {
-                    DV_TEXT[id0.6] 
+                    DV_TEXT[id0.6]
                 }
             }
             ...
@@ -38,8 +86,8 @@ definition
 
 terminology
     ...
-    
-annotations 
+
+annotations
     documentation = <
         ["en"] = <
             ["/subject"] = <

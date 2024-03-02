@@ -10,6 +10,17 @@ In any information model, attributes are either single-valued or multiply-valued
 
 The existence constraint may be used with any attribute to further constrain the existence defined by the underlying reference model. An existence constraint indicates whether an attribute value is mandatory or optional, and is indicated by "0..1" or "1" markers at line ends in UML diagrams (and often mistakenly referred to as a "cardinality of 1..1"). Attributes defined in the reference model have an effective existence constraint, defined by the invariants (or lack thereof) of the relevant class. For example, the `_protocol_` attribute in the {openehr_rm_ehr}[openEHR EHR IM^] `OBSERVATION` class is defined in the reference model as being optional, i.e. `0..1`. An archetype may redefine this to `{1..1}`, making the attribute mandatory. Existence constraints are expressed in cADL as follows:
 
+.at-coded ADL2 archetype
+[source, cadl]
+--------
+    OBSERVATION[at0000] matches {
+        protocol existence matches {1..1} matches {
+            -- details
+        }
+    }
+--------
+
+.id-coded ADL2 archetype
 [source, cadl]
 --------
     OBSERVATION[id1] matches {
@@ -30,10 +41,11 @@ Existence is shown using the same constraint language as the rest of the archety
 
 A single-valued attribute is an attribute whose type as declared in the underlying class model is of a single object type rather than a container type such as a list or set. Single-valued attributes can be constrained with a single object constraint as shown in the following example.
 
+.at-coded ADL2 archetype
 [source, cadl]
 --------
     value matches {
-        DV_QUANTITY[id22] matches {
+        DV_QUANTITY[at9001] matches {
             magnitude matches {|0..55|}
             property matches {"velocity"}
             units matches {"mph"}                            
@@ -41,15 +53,45 @@ A single-valued attribute is an attribute whose type as declared in the underlyi
     }
 --------
 
+.id-coded ADL2 archetype
+[source, cadl]
+--------
+    value matches {
+        DV_QUANTITY[id22] matches {
+            magnitude matches {|0..55|}
+            property matches {"velocity"}
+            units matches {"mph"}
+        }
+    }
+--------
+
 Multiple alternative object constraints can also be defined, using a number of sibling blocks, as shown in the following example. Each block defines an alternative constraint, only one of which needs to be matched by the data.
 
+.at-coded ADL2 archetype
+[source, cadl]
+--------
+    value matches {
+        DV_QUANTITY[at9001] matches { -- miles per hour
+            magnitude matches {|0..55|}
+            property matches {"velocity"}
+            units matches {"mph"}                            
+        }
+        DV_QUANTITY[at9002] matches { -- km per hour
+            magnitude matches {|0..100|}
+            property matches {"velocity"}
+            units matches {"km/h"}
+        }
+    }
+--------
+
+.id-coded ADL2 archetype
 [source, cadl]
 --------
     value matches {
         DV_QUANTITY[id22] matches { -- miles per hour
             magnitude matches {|0..55|}
             property matches {"velocity"}
-            units matches {"mph"}                            
+            units matches {"mph"}
         }
         DV_QUANTITY[id23] matches { -- km per hour
             magnitude matches {|0..100|}
@@ -70,11 +112,25 @@ Two or more object constraints introduced by type names appearing after a single
 
 The cardinality of container attributes may be constrained in cADL with the `_cardinality_` constraint. Cardinality indicates limits on the number of instance members of a container types such as lists and sets. Consider the following example:
 
+.at-coded ADL2 archetype
 [source, cadl]
 --------
-    HISTORY[id2] occurrences ∈ {1} ∈ {            
+    HISTORY[at0001] occurrences ∈ {1} ∈ {
         periodic ∈ {False}
         events cardinality ∈ {*} ∈ {     
+            EVENT[at0002] occurrences ∈ {0..1} ∈ {    }           -- 1 min sample
+            EVENT[at0003] occurrences ∈ {0..1} ∈ {    }           -- 2 min sample
+            EVENT[at0004] occurrences ∈ {0..1} ∈ {    }           -- 3 min sample
+        }
+    }
+--------
+
+.id-coded ADL2 archetype
+[source, cadl]
+--------
+    HISTORY[id2] occurrences ∈ {1} ∈ {
+        periodic ∈ {False}
+        events cardinality ∈ {*} ∈ {
             EVENT[id3] occurrences ∈ {0..1} ∈ {    }           -- 1 min sample
             EVENT[id4] occurrences ∈ {0..1} ∈ {    }           -- 2 min sample
             EVENT[id5] occurrences ∈ {0..1} ∈ {    }           -- 3 min sample
@@ -118,7 +174,7 @@ Cardinality and existence constraints can co-occur, in order to indicate various
 
 ==== Node Identifiers
 
-In cADL, an entity in brackets of the form `[idN]` following a type name is used to identify an object node, i.e. a node constraint delimiting a set of instances of the type as defined by the reference model. Object nodes always commence with a type name. Although any node identifier format could be supported, the current version of ADL assumes that node identifiers are of the form of an archetype term identifier, i.e. `[idN]` , e.g. `[id42]` . Node identifiers are shown in magenta in this document.
+In cADL, an entity in brackets of the form `[atNNNN]` for at-coded archetypes or `[idN]` for id-coded archetypes following a type name is used to identify an object node, i.e. a node constraint delimiting a set of instances of the type as defined by the reference model. Object nodes always commence with a type name. Although any node identifier format could be supported, the current version of ADL assumes that node identifiers are of the form of an archetype term identifier, i.e. `[atNNNN]` for at-coded archetypes (e.g. `[at0041]`) or `[idN]` for id-coded archetypes (e.g. `[id42]`) . Node identifiers are shown in magenta in this document.
 
 The structural function of node identifiers is to allow the formation of paths:
 
@@ -132,7 +188,7 @@ All object nodes require a node identifier, guaranteeing the ability to generate
 [.principle]
 A *Node identifier* is required for every object node in an archetype.
 
-The node identifier can also perform a semantic function, that of giving a design-time meaning to the node, by equating the node identifier to some description. The use of node identifiers in archetypes is the main source of their expressive power. Each node identifier acts as a 'semantic marker' or 'override' on the node. Thus, in the example shown in <<The Underlying Information Model>>, the `ELEMENT` node is identified by the code `[id10]` , which can be designated elsewhere in an archetype as meaning "diastolic blood pressure". In this way rich meaning is given to data constructed from a limited number of object types.
+The node identifier can also perform a semantic function, that of giving a design-time meaning to the node, by equating the node identifier to some description. The use of node identifiers in archetypes is the main source of their expressive power. Each node identifier acts as a 'semantic marker' or 'override' on the node. Thus, in the example shown in <<The Underlying Information Model>>, the `ELEMENT` node is identified by the code `[at0009]` (`[id10]`) , which can be designated elsewhere in an archetype as meaning "diastolic blood pressure". In this way rich meaning is given to data constructed from a limited number of object types.
 
 *Not every object node identifier needs to be defined in the archetype terminology*: it is only mandatory for the identifiers of nodes defined under container attributes, and multiple alternative nodes under single-valued attributes. The identifiers of single object nodes defined under single-valued attributes may have terminology definitions, but don't typically need them, since the meaning is obvious from the attribute.
 
@@ -142,9 +198,20 @@ A constraint on occurrences is used only with cADL object nodes, to indicate how
 
 In the example below, three `EVENT` constraints are shown; the first one ("1 minute sample") is shown as mandatory, while the other two are optional.
 
+.at-coded ADL2 archetype
 [source, cadl]
 --------
     events cardinality ∈ {*} ∈ {     
+        EVENT[at0001] occurrences ∈ {1..1} ∈ {    }          -- 1 minute sample
+        EVENT[at0002] occurrences ∈ {0..1} ∈ {    }          -- 2 minute sample
+        EVENT[at0003] occurrences ∈ {0..1} ∈ {    }          -- 3 minute sample
+    }
+--------
+
+.id-coded ADL2 archetype
+[source, cadl]
+--------
+    events cardinality ∈ {*} ∈ {
         EVENT[id2] occurrences ∈ {1..1} ∈ {    }          -- 1 minute sample
         EVENT[id3] occurrences ∈ {0..1} ∈ {    }          -- 2 minute sample
         EVENT[id4] occurrences ∈ {0..1} ∈ {    }          -- 3 minute sample
@@ -153,16 +220,35 @@ In the example below, three `EVENT` constraints are shown; the first one ("1 min
 
 The following example expresses a constraint on instances of `GROUP` such that for `GROUPs` representing tribes, clubs and families, there can only be one "head", but there may be many members.
 
+.at-coded ADL2 archetype
+[source, cadl]
+--------
+    GROUP[at0102] ∈ {
+        kind ∈ {/tribe|family|club/}
+        members cardinality ∈ {*} ∈ {
+            PERSON[at0103] occurrences ∈ {1} ∈ {
+                title ∈ {"head"}
+                -- etc --
+            }
+            PERSON[at0104] occurrences ∈ {0..*} ∈ {
+                title ∈ {"member"}
+                -- etc --
+            }
+        }
+    }
+--------
+
+.id-coded ADL2 archetype
 [source, cadl]
 --------
     GROUP[id103] ∈ {
         kind ∈ {/tribe|family|club/}
         members cardinality ∈ {*} ∈ {
-            PERSON[id104] occurrences ∈ {1} ∈ {    
+            PERSON[id104] occurrences ∈ {1} ∈ {
                 title ∈ {"head"}
                 -- etc --
             }
-            PERSON[id105] occurrences ∈ {0..*} ∈ {    
+            PERSON[id105] occurrences ∈ {0..*} ∈ {
                 title ∈ {"member"}
                 -- etc --
             }
@@ -186,6 +272,16 @@ Where cardinality constraints are used (remembering that occurrences is always t
 
 There are two cases where it is useful to state a completely open, or 'any', constraint. The first is when it is desired to override the existence or cardinality of a property, such as in the following:
 
+.at-coded ADL2 archetype
+[source, cadl]
+--------
+    PERSON[at0001] ∈ {
+        name existence ∈ {1}
+        -- etc --
+    }
+--------
+
+.id-coded ADL2 archetype
 [source, cadl]
 --------
     PERSON[id2] ∈ {
@@ -198,6 +294,17 @@ In the above, no further `matches {}` part is required in the statement, since n
 
 The second use of "any" as a constraint value is for types, such as in the following:
 
+.at-coded ADL2 archetype
+[source, cadl]
+--------
+    ELEMENT[at0003] ∈ {          -- speed limit
+        value ∈ {
+            DV_QUANTITY[at9001]  -- type was 'DATA_VALUE' in RM
+        }
+    }
+--------
+
+.id-coded ADL2 archetype
 [source, cadl]
 --------
     ELEMENT[id4] ∈ {          -- speed limit
@@ -232,18 +339,39 @@ image::{uml_diagrams_uri}/AM-example-demographics-parties.svg[id=ADL-demographic
 
 The following cADL statement defines an instance space that includes instances of any of the concrete subtypes of the `PARTY` class within an instance of the class `XXXX` in the figure (the ellipsis indicates particular constrraints not shown here).
 
+.at-coded ADL2 archetype
 [source, cadl]
 --------
     counter_party ∈ {        
+        PARTY[at0003] ∈ { ... }
+    }
+--------
+
+.id-coded ADL2 archetype
+[source, cadl]
+--------
+    counter_party ∈ {
         PARTY[id4] ∈ { ... }
     }
 --------
 
 However, in some circumstances, it may be desirable to define a constraint that will match a particular subtype in a specific way, while other subtypes are matched by the more general rule. Under a single-valued attribute, this can be done as follows:
 
+.at-coded ADL2 archetype
 [source, cadl]
 --------
     counter_party ∈ {        
+        PARTY[at0003] ∈ { ... }
+        PERSON[at0004] ∈ {
+            date_of_birth ∈ { ... }
+        }
+    }
+--------
+
+.id-coded ADL2 archetype
+[source, cadl]
+--------
+    counter_party ∈ {
         PARTY[id4] ∈ { ... }
         PERSON[id5] ∈ {
             date_of_birth ∈ { ... }
@@ -255,9 +383,24 @@ This cADL text says that the instance value of the `_counter_party_` attribute i
 
 Under a multiply-valued attribute, the alternative subtypes are included as identified child members. The following example illustrates a constraint on the `_counter_parties_` attribute of instances of the class `YYYY` in <<ADL-demographics-parties>>.
 
+.at-coded ADL2 archetype
 [source, cadl]
 --------
     counter_parties ∈ {        
+        PERSON[at0003] ∈ {
+            date_of_birth ∈ { ... }
+        }
+        ORGANISATION[at0004] ∈ {
+            date_of_registration ∈ { ... }
+        }
+        PARTY[at0005] ∈ { ... }
+    }
+--------
+
+.id-coded ADL2 archetype
+[source, cadl]
+--------
+    counter_parties ∈ {
         PERSON[id4] ∈ {
             date_of_birth ∈ { ... }
         }
@@ -274,9 +417,20 @@ The above says that `ORGANISATION` and `PERSON` instances in the data must match
 
 In some cases it is required to remove some subtypes altogether. This is achieved by stating a constraint on the specific subtypes with `occurrences` limited to zero. The following example matches any `PARTY` instance with the exception of instances of `COMPANY` or `GROUP` subtypes.
 
+.at-coded ADL2 archetype
 [source, cadl]
 --------
     counter_party ∈ {        
+        PARTY[at0003] ∈ { ... }
+        COMPANY[at0004] occurrences ∈ {0}
+        GROUP[at0005] occurrences ∈ {0}
+    }
+--------
+
+.id-coded ADL2 archetype
+[source, cadl]
+--------
+    counter_party ∈ {
         PARTY[id4] ∈ { ... }
         COMPANY[id5] occurrences ∈ {0}
         GROUP[id6] occurrences ∈ {0}
@@ -294,10 +448,29 @@ Archetype paths are paths extracted from the definition section of an archetype,
 
 In the following example, the `PERSON` constraint node is the sole object constraint under the single-valued attribute manager:
 
+.at-coded ADL2 archetype
 [source, cadl]
 --------
     manager ∈ {
-        PERSON[id104] ∈ {    
+        PERSON[at0103] ∈ {
+            title ∈ {"head of finance", "head of engineering"}
+        }
+    }
+--------
+
+Two valid paths to the object under the `_title_` attribute are possible:
+
+[source, cadl]
+--------
+    manager[at0103]/title
+    manager/title
+--------
+
+.id-coded ADL2 archetype
+[source, cadl]
+--------
+    manager ∈ {
+        PERSON[id104] ∈ {
             title ∈ {"head of finance", "head of engineering"}
         }
     }
@@ -309,17 +482,39 @@ Two valid paths to the object under the `_title_` attribute are possible:
 --------
     manager[id104]/title
     manager/title
---------    
+--------
 
 Where there is more than one sibling node, node identifiers must be used to ensure unique referencing:
 
+.at-coded ADL2 archetype
 [source, cadl]
 --------
     employees ∈ {
-        PERSON[id104] ∈ {    
+        PERSON[at0103] ∈ {
             title ∈ {"head"}
         }
-        PERSON[id105] matches {    
+        PERSON[at0104] matches {
+            title ∈ {"member"}
+        }
+    }
+--------
+
+The paths to the respective `_title_` attributes are now:
+
+[source, cadl]
+--------
+    employees[at0103]/title
+    employees[at0104]/title
+--------
+
+.id-coded ADL2 archetype
+[source, cadl]
+--------
+    employees ∈ {
+        PERSON[id104] ∈ {
+            title ∈ {"head"}
+        }
+        PERSON[id105] matches {
             title ∈ {"member"}
         }
     }
@@ -335,11 +530,36 @@ The paths to the respective `_title_` attributes are now:
 
 The following provides another example:
 
+.at-coded ADL2 archetype
 [source, cadl]
 -------- 
-    HISTORY[id1] occurrences ∈ {1} ∈ {            
+    HISTORY[at0000] occurrences ∈ {1} ∈ {
         periodic ∈ {False}
         events cardinality ∈ {*} ∈ {     
+            EVENT[at0001] occurrences ∈ {0..1} ∈ {    }           -- 1 min sample
+            EVENT[at0002] occurrences ∈ {0..1} ∈ {    }           -- 2 min sample
+            EVENT[at0003] occurrences ∈ {0..1} ∈ {    }           -- 3 min sample
+        }
+    }
+--------
+
+The following paths can be constructed:
+
+[source, cadl]
+--------
+    /                      -- the HISTORY (root) object
+    /periodic              -- the HISTORY.periodic attribute
+    /events[at0001]        -- the 1 minute event object
+    /events[at0002]        -- the 2 minute event object
+    /events[at0003]        -- the 3 minute event object
+--------
+
+.id-coded ADL2 archetype
+[source, cadl]
+--------
+    HISTORY[id1] occurrences ∈ {1} ∈ {
+        periodic ∈ {False}
+        events cardinality ∈ {*} ∈ {
             EVENT[id2] occurrences ∈ {0..1} ∈ {    }           -- 1 min sample
             EVENT[id3] occurrences ∈ {0..1} ∈ {    }           -- 2 min sample
             EVENT[id4] occurrences ∈ {0..1} ∈ {    }           -- 3 min sample
@@ -362,8 +582,15 @@ The above paths can all be used to reference the relevant nodes within the arche
 
 Paths used in cADL are expressed in the ADL path syntax, described in detail in <<ADL Paths>>. ADL paths have the same alternating object/attribute structure implied in the general hierarchical structure of cADL, obeying the pattern `TYPE/attribute/TYPE/attribute/` ... .
 
-The examples above are _physical_ paths because they refer to object nodes using node identifier codes such as 'id4'. Physical paths can be rendered as _logical_ paths by adding the code meanings from the `terminology` section as annotations for node identifiers, if defined. Thus, the following two paths might be equivalent:
+The examples above are _physical_ paths because they refer to object nodes using node identifier codes such as 'at0003' ('id4'). Physical paths can be rendered as _logical_ paths by adding the code meanings from the `terminology` section as annotations for node identifiers, if defined. Thus, the following two paths might be equivalent:
 
+.at-coded ADL2 archetype
+--------
+    /events[at0003]                       -- the 3 minute event object
+    /events[at0003|3 minute event|]       -- the 3 minute event object
+--------
+
+.id-coded ADL2 archetype
 --------
     /events[id4]                       -- the 3 minute event object
     /events[id4|3 minute event|]       -- the 3 minute event object
@@ -375,6 +602,12 @@ The double-bar ('|xxx|') method of displaying annotations on codes is adopted fr
 
 None of the paths shown above are valid outside the cADL text in which they occur, since they do not include an identifier of the enclosing artefact, normally an archetype. To reference a cADL node in an archetype from elsewhere (e.g. another archetype or a template), the identifier of the containing itself must be prefixed to the path, as in the following example:
 
+.at-coded ADL2 archetype
+--------
+    [openehr-ehr-entry.apgar-result.v]/events[at0001]
+--------
+
+.id-coded ADL2 archetype
 --------
     [openehr-ehr-entry.apgar-result.v]/events[id2]
 --------
@@ -385,6 +618,43 @@ This kind of path expression is necessary to form the paths that occur when arch
 
 Paths for use with runtime data based on an archetype can be constructed in the same way as the paths from the archetype, and are the same except for single-valued attributes. Since in data only a single instance can appear as the value of a single-valued attribute, there is never any ambiguity in referencing it, whereas an archetype path to or through the same attribute may require a node identifier due to the possible presence of multiple alternatives. Consider the example from above:
 
+.at-coded ADL2 archetype
+[source, cadl]
+--------
+    items cardinality matches {*} matches {
+        ELEMENT[at0003] matches {  -- speed limit
+            value matches {
+                DV_QUANTITY[at9001] matches {                       -- miles per hour
+                    magnitude matches {|0..55|}
+                    property matches {"velocity"}
+                    units matches {"mph"}                            
+                }
+                DV_QUANTITY[at9002] matches {                       -- km per hour
+                    magnitude matches {|0..100|}
+                    property matches {"velocity"}
+                    units matches {"km/h"}
+                }
+            }
+        }
+    }
+--------
+
+The following archetype paths can be constructed:
+
+[source, cadl]
+--------
+    items[at0003]/value[at9001]
+    items[at0003]/value[at9002]
+--------
+
+For instance data created according to this archetype, the following runtime path can be used:
+
+[source, cadl]
+--------
+    items[at0003]/value               -- since there is only one DV_QUANTITY in the data
+--------
+
+.id-coded ADL2 archetype
 [source, cadl]
 --------
     items cardinality matches {*} matches {
@@ -393,7 +663,7 @@ Paths for use with runtime data based on an archetype can be constructed in the 
                 DV_QUANTITY[id22] matches {                       -- miles per hour
                     magnitude matches {|0..55|}
                     property matches {"velocity"}
-                    units matches {"mph"}                            
+                    units matches {"mph"}
                 }
                 DV_QUANTITY[id23] matches {                       -- km per hour
                     magnitude matches {|0..100|}
@@ -420,12 +690,20 @@ For instance data created according to this archetype, the following runtime pat
     items[id4]/value               -- since there is only one DV_QUANTITY in the data
 --------
 
-A query using this path will match the data regardless of which type of `DV_QUANTITY` object is there. However, in some circumstances, queries may need to be specific, in which case they will use the full archetype path, i.e. `items[id4]/value[id22]` or `items[id4]/value[id23]` to select only 'miles' or 'kilometres' data. This will only work if the node ids (id-codes) are in fact stored in all types of the reference model data. If for example this was not the case with the `DV_QUANTITY` type, another facet of the `DV_QUANTITY` objects from the archetype such as 'units = "km/h"' would need to be used in the query to correctly locate only metric `DV_QUANTITY` objects.
+A query using this path will match the data regardless of which type of `DV_QUANTITY` object is there. However, in some circumstances, queries may need to be specific, in which case they will use the full archetype path, i.e. `items[at0003]/value[at9001]` (`items[id4]/value[id22]`) or `items[at0003]/value[at9002]` (`items[id4]/value[id23]`) to select only 'miles' or 'kilometres' data. This will only work if the node ids (at/id-codes) are in fact stored in all types of the reference model data.
+If for example this was not the case with the `DV_QUANTITY` type (as in openEHR reference model), another facet of the `DV_QUANTITY` objects from the archetype such as 'units = "km/h"' would need to be used in the query to correctly locate only metric `DV_QUANTITY` objects.
 
 === Internal References (Proxy Constraint Objects)
 
 It is possible to define a constraint structure at a certain point to be the same as a structure defined elsewhere in the archetype, rather than copying the desired structure. This is achieved using a proxy constraint object, using the following syntax:
 
+.at-coded ADL2 archetype
+[source, cadl]
+--------
+    use_node TYPE[atNNNN] archetype_path
+--------
+
+.id-coded ADL2 archetype
 [source, cadl]
 --------
     use_node TYPE[idN] archetype_path
@@ -437,6 +715,13 @@ The path must not be in the parent path of the proxy object itself, but may be a
 
 Occurrences from the target are also assumed, or may be explicitly overridden:
 
+.at-coded ADL2 archetype
+[source, cadl]
+--------
+    use_node TYPE[at0003] occurrences ∈ {0..1} archetype_path
+--------
+
+.id-coded ADL2 archetype
 [source, cadl]
 --------
     use_node TYPE[id4] occurrences ∈ {0..1} archetype_path
@@ -449,15 +734,61 @@ A proxy constraint object allows object constraints defined elsewhere to be re-u
 
 The following example shows the definitions of the `ADDRESS` nodes for phone, fax and email for a home `CONTACT` being reused for a work `CONTACT` .
 
+.at-coded ADL2 archetype
 [source, cadl]
 --------
-    PERSON[id1] ∈ {
+    PERSON[at0000] ∈ {
         identities ∈ {            
             -- etc --
         }
         contacts cardinality ∈ {0..*} ∈ {
-            CONTACT[id2] ∈ {      -- home address
+            CONTACT[at0001] ∈ {      -- home address
                 purpose ∈ {...}        
+                addresses ∈ {...}
+            }
+            CONTACT[at0002] ∈ {      -- postal address
+                purpose ∈ {...}
+                addresses ∈ {...}
+            }
+            CONTACT[at0003] ∈ {      -- home contact
+                purpose ∈ {...}    
+                addresses cardinality ∈ {0..*} ∈ { 
+                    ADDRESS[at0004] ∈ {                            -- phone
+                        type ∈ {...}
+                        details ∈ {...}
+                    }
+                    ADDRESS[at0005] ∈ {                            -- fax
+                        type ∈ {...}
+                        details ∈ {...}
+                    }
+                    ADDRESS[at0006] ∈ {                            -- email
+                        type ∈ {...}
+                        details ∈ {...}
+                    }
+                }
+            }
+            CONTACT[at0007] ∈ {                                    -- work contact
+                purpose ∈ {...}
+                addresses cardinality ∈ {0..*} ∈ { 
+                    use_node ADDRESS[at0008] /contacts[at0003]/addresses[at0004]    -- phone
+                    use_node ADDRESS[at0009] /contacts[at0003]/addresses[at0005]   -- fax
+                    use_node ADDRESS[at0010] /contacts[at0003]/addresses[at0006]   -- email
+                }
+            }
+        }
+    }
+--------
+
+.id-coded ADL2 archetype
+[source, cadl]
+--------
+    PERSON[id1] ∈ {
+        identities ∈ {
+            -- etc --
+        }
+        contacts cardinality ∈ {0..*} ∈ {
+            CONTACT[id2] ∈ {      -- home address
+                purpose ∈ {...}
                 addresses ∈ {...}
             }
             CONTACT[id3] ∈ {      -- postal address
@@ -465,8 +796,8 @@ The following example shows the definitions of the `ADDRESS` nodes for phone, fa
                 addresses ∈ {...}
             }
             CONTACT[id4] ∈ {      -- home contact
-                purpose ∈ {...}    
-                addresses cardinality ∈ {0..*} ∈ { 
+                purpose ∈ {...}
+                addresses cardinality ∈ {0..*} ∈ {
                     ADDRESS[id5] ∈ {                            -- phone
                         type ∈ {...}
                         details ∈ {...}
@@ -483,9 +814,9 @@ The following example shows the definitions of the `ADDRESS` nodes for phone, fa
             }
             CONTACT[id8] ∈ {                                    -- work contact
                 purpose ∈ {...}
-                addresses cardinality ∈ {0..*} ∈ { 
+                addresses cardinality ∈ {0..*} ∈ {
                     use_node ADDRESS[id9] /contacts[id4]/addresses[id5]    -- phone
-                    use_node ADDRESS[id10] /contacts[id4]/addresses[id6]   -- fax 
+                    use_node ADDRESS[id10] /contacts[id4]/addresses[id6]   -- fax
                     use_node ADDRESS[id11] /contacts[id4]/addresses[id7]   -- email
                 }
             }
@@ -495,17 +826,37 @@ The following example shows the definitions of the `ADDRESS` nodes for phone, fa
 
 The following example shows the occurrences being overridden in the referring node, to enable the specification for 'phone' to be re-used, but with a different occurrences constraint.
 
+.at-coded ADL2 archetype
+[source, cadl]
+--------
+    PERSON[at0000] ∈ {
+        contacts cardinality ∈ {0..*} ∈ {
+            CONTACT[at0003] ∈ {                                   -- home contact
+                addresses cardinality ∈ {0..*} ∈ { 
+                    ADDRESS[at0004] occurrences ∈ {1} ∈ { ...}   -- phone
+                }
+            }
+            CONTACT[at0007] ∈ {                                  -- work contact
+                addresses cardinality ∈ {0..*} ∈ { 
+                    use_node ADDRESS[at0008] occurrences ∈ {0..*} /contacts[at0003]/addresses[at0004]      -- phone
+                }
+            }
+        }
+    }
+--------
+
+.id-coded ADL2 archetype
 [source, cadl]
 --------
     PERSON[id1] ∈ {
         contacts cardinality ∈ {0..*} ∈ {
             CONTACT[id4] ∈ {                                   -- home contact
-                addresses cardinality ∈ {0..*} ∈ { 
+                addresses cardinality ∈ {0..*} ∈ {
                     ADDRESS[id5] occurrences ∈ {1} ∈ { ...}   -- phone
                 }
             }
             CONTACT[id8] ∈ {                                  -- work contact
-                addresses cardinality ∈ {0..*} ∈ { 
+                addresses cardinality ∈ {0..*} ∈ {
                     use_node ADDRESS[id9] occurrences ∈ {0..*} /contacts[id4]/addresses[id5]      -- phone
                 }
             }
@@ -529,14 +880,36 @@ An external reference defines a fixed compositional connection between two arche
 
 Direct references, or external references as they will be denoted here occur for two main reasons: re-use and templating. In the first case, an archetype has originally been built using inline constraints when it is discovered that another archetype contains the same or very similar inline constraints at a similar point. As would be normal in software design, a refactoring exercise is conducted that results in the common part being created as its own, new archetype, and both original archetypes 'referring' to it. They do this using an external reference, which has syntax of the form:
 
+.at-coded ADL2 archetype
+--------
+    use_archetype TYPE[atNNNN, archetype_id] <occurrences constraint>
+--------
+
+.id-coded ADL2 archetype
 --------
     use_archetype TYPE[idN, archetype_id] <occurrences constraint>
 --------
 
-In the above, the `archetype_id` is included with the usual archetype node identifier (id-code). The usual occurrence constraints can be applied at the end.
+In the above, the `archetype_id` is included with the usual archetype node identifier (at-code/id-code). The usual occurrence constraints can be applied at the end.
 
 The following example shows sections of two parent archetypes both referring to the same child archetype. The first section is from an openEHR `INSTRUCTION` archetype to do with a medication order.
 
+.at-coded ADL2 archetype
+[source, cadl]
+--------
+    INSTRUCTION[at0000] ∈ {                                       -- Medication order
+        activities cardinality ∈ {0..*; unordered} ∈ {
+            ACTIVITY[at0001] ∈ {                                  -- Medication activity
+                action_archetype_id ∈ {/openEHR-EHR-ACTION\.medication\.v1/}
+                description ∈ {
+                    use_archetype ITEM_TREE[at0002, openEHR-EHR-ITEM_TREE.medication.v1]
+                }
+            }
+        }
+    }
+--------
+
+.id-coded ADL2 archetype
 [source, cadl]
 --------
     INSTRUCTION[id1] ∈ {                                       -- Medication order
@@ -553,6 +926,21 @@ The following example shows sections of two parent archetypes both referring to 
 
 This section is from an openEHR `ACTION` archetype defining medication administration actions.
 
+.at-coded ADL2 archetype
+[source, cadl]
+--------
+    ACTION[at0000] ∈ {                          -- Medication action
+        ism_transition ∈ {
+            ISM_TRANSITION[at0001] ∈ { ... }
+            -- ...
+        }
+        description ∈ {
+            use_archetype ITEM_TREE[at0002, openEHR-EHR-ITEM_TREE.medication.v1]
+        }
+    }
+--------
+
+.id-coded ADL2 archetype
 [source, cadl]
 --------
     ACTION[id1] ∈ {                          -- Medication action
@@ -570,6 +958,15 @@ Each of these archetypes refers to the openEHR `ITEM_TREE` archetype `openEHR-EH
 
 Following the standard object-oriented semantics of type substitutability, and also the ontological subsumption notion, specialisations of the referenced archetype (including templates) are also valid substitutions at design or runtime. At design time, this takes the form of a redefinition, e.g.:
 
+.at-coded ADL2 archetype
+[source, cadl]
+--------
+    description ∈ {
+        use_archetype ITEM_TREE[at0002.1, openEHR-EHR-ITEM_TREE.vaccine.v1]
+    }
+--------
+
+.id-coded ADL2 archetype
 [source, cadl]
 --------
     description ∈ {
@@ -585,16 +982,32 @@ The second use of external references is typically in templates, to specify an a
 
 ==== Paths
 
-Paths that terminate in external reference nodes in source-form archetypes will include only the id-codes, as in the following examples:
+Paths that terminate in external reference nodes in source-form archetypes will include only the at-codes (id-codes), as in the following examples:
 
+.at-coded ADL2 archetype
+[source, cadl]
+--------
+    /activities[at0001]/description[at0002]
+    /description[at0001]
+--------
+
+.id-coded ADL2 archetype
 [source, cadl]
 --------
     /activities[id2]/description[id3]
     /description[id2]
 --------
 
-Howver, in flattened archetypes, the corresponding paths will include the archetype identifier(s) rather than the id-codes, and may continue down through the structure of the included archetypes, as in the following example.
+However, in flattened archetypes, the corresponding paths will include the archetype identifier(s) rather than the at-codes (id-codes), and may continue down through the structure of the included archetypes, as in the following example.
 
+.at-coded ADL2 archetype
+[source, cadl]
+--------
+    /activities[at0001]/description[openEHR-EHR-ITEM_TREE.medication.v1]/...
+    /description[openEHR-EHR-ITEM_TREE.medication.v1]/...
+--------
+
+.id-coded ADL2 archetype
 [source, cadl]
 --------
     /activities[id2]/description[openEHR-EHR-ITEM_TREE.medication.v1]/...
@@ -610,6 +1023,18 @@ An archetype slot defines a constrained compositional chaining point in an arche
 
 An archetype slot is introduced with the keyword `allow_archetype` and defined in terms of two lists of assertion statements defining which archetypes are allowed and/or which are excluded from filling that slot, introduced with the keywords `include` and `exclude` , respectively. The following example illustrates the general form of an archetype slot.
 
+.at-coded ADL2 archetype
+[source, cadl]
+--------
+    allow_archetype SECTION[at0004] occurrences ∈ {0..*} ∈ {
+        include
+            -- constraints for inclusion
+        exclude
+            -- constraints for exclusion
+    }
+--------
+
+.id-coded ADL2 archetype
 [source, cadl]
 --------
     allow_archetype SECTION[id5] occurrences ∈ {0..*} ∈ {
@@ -653,6 +1078,22 @@ where `_archetype_id/value_` stands for the literal String value of the archetyp
 
 The following example shows how the "Objective" `SECTION` in a problem/SOAP headings archetype defines two slots, indicating which `OBSERVATION` and `SECTION` archetypes are allowed and excluded under the `_items_` property.
 
+.at-coded ADL2 archetype
+[source, cadl]
+--------
+    SECTION [at0000] occurrences ∈ {0..1} ∈ {                      -- objective
+        items cardinality ∈ {0..*} ∈ {
+            allow_archetype SECTION[at0001] occurrences ∈ {0..*} ∈ {
+                include
+                    archetype_id/value ∈ {/.*/}
+                exclude
+                    archetype_id/value ∈ {/openEHR-EHR-SECTION\.patient_details\..+/}
+            }
+        }
+    }
+--------
+
+.id-coded ADL2 archetype
 [source, cadl]
 --------
     SECTION [id1] occurrences ∈ {0..1} ∈ {                      -- objective
@@ -682,6 +1123,16 @@ Due to the second use, it is required that the regular expression pattern always
 
 Because identifier matching is an inherently lexical operation, subtypes of mentioned types are not matched unless explicitly stated. Consider the following example:
 
+.at-coded ADL2 archetype
+[source, cadl]
+--------
+    allow_archetype ENTRY[at0001] ∈ {    -- any kind of ENTRY
+        include
+            archetype_id/value ∈ {/openEHR-EHR-ENTRY..+\.v1/}
+    }
+--------
+
+.id-coded ADL2 archetype
 [source, cadl]
 --------
     allow_archetype ENTRY[id2] ∈ {    -- any kind of ENTRY
@@ -692,6 +1143,16 @@ Because identifier matching is an inherently lexical operation, subtypes of ment
 
 The intention is to allow any kind of `ENTRY` , but the above constraint won't have the desired effect, because the pattern `openEHR-EHR-ENTRY` is unlikely to match any actual archetypes. Instead the following kind of constraint should be used:
 
+.at-coded ADL2 archetype
+[source, cadl]
+--------
+    allow_archetype ENTRY[at0001] ∈ {    -- any kind of ENTRY
+        include
+            archetype_id/value ∈ {/openEHR-EHR-EVALUATION\..+\.v1|openEHR-EHR-OBSERVATION\..+\.v1/}
+    }
+--------
+
+.id-coded ADL2 archetype
 [source, cadl]
 --------
     allow_archetype ENTRY[id2] ∈ {    -- any kind of ENTRY
@@ -702,6 +1163,18 @@ The intention is to allow any kind of `ENTRY` , but the above constraint won't h
 
 The above would allow any `EVALUATION` and any `OBSERVATION` archetypes to be used in the slot. Note that since no exclude clause was used, the above slot definition constitutes a recommendation. To make it a hard constraint, the following would be needed:
 
+.at-coded ADL2 archetype
+[source, cadl]
+--------
+    allow_archetype ENTRY[at0001] ∈ {    -- any kind of ENTRY
+        include
+            archetype_id/value ∈ {/openEHR-EHR-EVALUATION\..+\.v1|openEHR-EHR-OBSERVATION\..+\.v1/}
+        exclude
+            archetype_id/value ∈ {/.*/}
+    }
+--------
+
+.id-coded ADL2 archetype
 [source, cadl]
 --------
     allow_archetype ENTRY[id2] ∈ {    -- any kind of ENTRY
@@ -716,8 +1189,20 @@ The above would allow any `EVALUATION` and any `OBSERVATION` archetypes to be us
 
 Other constraints are possible as well, including that the allowed archetype must contain a certain keyword, or a certain path. The latter allows archetypes to be linked together on the basis of content. For example, under a "genetic relatives" heading in a Family History Organiser archetype, the following slot constraint might be used:
 
+.at-coded ADL2 archetype
 [source, cadl]
 --------    
+    allow_archetype EVALUATION[at0001] occurrences ∈ {0..*} matches {
+        include
+            archetype_id ∈ {/openEHR-EHR-EVALUATION.family_history.v1/}
+                ∧ ∃ /subject/relationship/defining_code ->
+                ∼ ( [openehr::0] ∈ /subject/relationship/defining_code) -- self
+    }
+--------
+
+.id-coded ADL2 archetype
+[source, cadl]
+--------
     allow_archetype EVALUATION[id2] occurrences ∈ {0..*} matches {
         include
             archetype_id ∈ {/openEHR-EHR-EVALUATION.family_history.v1/}
@@ -732,11 +1217,23 @@ This says that the slot allows archetypes on the `EVALUATION` class, which eithe
 
 Slots are 'filled' in specialised archetypes or templates by the use of use_archetype statements, i.e. the same construct as for an external reference described above. The typical form of a filled slot is as follows:
 
+.at-coded ADL2 archetype
+[source, cadl]
+--------
+    SECTION[at0000] ∈ {    -- Past history
+        /items ∈ {
+            use_archetype EVALUATION[id2, org.openehr::openEHR-EHR-EVALUATION.problem.v1] 
+            use_archetype EVALUATION[id2, org.openehr::openEHR-EHR-EVALUATION.clin_synopsis.v1]
+        }
+    }
+--------
+
+.id-coded ADL2 archetype
 [source, cadl]
 --------
     SECTION[id1] ∈ {    -- Past history
         /items ∈ {
-            use_archetype EVALUATION[id2, org.openehr::openEHR-EHR-EVALUATION.problem.v1] 
+            use_archetype EVALUATION[id2, org.openehr::openEHR-EHR-EVALUATION.problem.v1]
             use_archetype EVALUATION[id2, org.openehr::openEHR-EHR-EVALUATION.clin_synopsis.v1]
         }
     }
@@ -755,9 +1252,26 @@ value set constraints:: any node whose constraint is of the form `[acN]` .
 
 Under any given attribute node, any combination of these object constraint types can co-exist, as in the following example:
 
+.at-coded ADL2 archetype
 [source, cadl]
 --------
-    SECTION[id2000] ∈ {                        
+    SECTION[at19999] ∈ {
+        items cardinality ∈ {0..*; ordered} ∈ {
+            ENTRY[at2000] ∈ {...}
+            allow_archetype ENTRY[at2001] ∈ {...}
+            use_node ENTRY[at2002] /some_path[at0003]
+            ENTRY[at2003] ∈ {...}
+            use_node ENTRY[at2004] /some_path[at1011]
+            use_node ENTRY[at2005] /some_path[at1051]
+            ENTRY[at2006] ∈ {...}
+        }
+    }
+--------
+
+.id-coded ADL2 archetype
+[source, cadl]
+--------
+    SECTION[id2000] ∈ {
         items cardinality ∈ {0..*; ordered} ∈ {
             ENTRY[id2001] ∈ {...}
             allow_archetype ENTRY[id2002] ∈ {...}

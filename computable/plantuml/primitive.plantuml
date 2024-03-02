@@ -1,0 +1,54 @@
+@startuml
+package primitive_types {
+    class "<<Value_Type>>\nBoolean " as Boolean
+    class "<<Value_Type>>\nCharacter " as Character
+    class "<<Value_Type>>\nOctet " as Octet
+    class "<<Value_Type>>\nInteger" as Integer
+    class "<<Value_Type>>\nInteger64" as Integer64
+    class "<<Value_Type>>\nReal" as Real
+    class "<<Value_Type>>\nDouble" as Double
+    class  "Ordered Numeric" as OrderedNumeric
+    class Numeric
+    class Ordered
+    class String
+    class Uri
+}
+
+package terminology {
+    class Terminology_Code
+}
+
+package time {
+    class Temporal
+    class Iso8601_type
+    class Iso8601_date
+    class Iso8601_time
+    class Iso8601_date_time
+    class Iso8601_duration
+}
+
+Any <|-- Boolean
+Any <|-- Numeric
+Numeric <|-- OrderedNumeric
+Any <|-- Ordered
+Ordered <|-- OrderedNumeric
+Any <|-- Terminology_Code
+Ordered <|-- Character
+Ordered <|-- Octet
+Ordered <|-- String
+String <|-- Uri
+
+OrderedNumeric <|-- Integer
+OrderedNumeric <|-- Integer64
+OrderedNumeric <|-- Real
+OrderedNumeric <|-- Double
+
+Ordered <|-- Temporal
+Temporal <|-- Iso8601_type
+Iso8601_type <|-- Iso8601_date
+Iso8601_type <|-- Iso8601_time
+Iso8601_type <|-- Iso8601_date_time
+Iso8601_type <|-- Iso8601_duration
+@enduml
+
+

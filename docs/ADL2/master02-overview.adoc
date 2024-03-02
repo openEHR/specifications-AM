@@ -12,6 +12,65 @@ image::{diagrams_uri}/adl_text_overview.svg[id=archetype_structure, align="cente
 
 The following is an example of a very simple archetype, giving a feel for the syntax. The main point to glean from the following is that the notion of 'guitar' is defined in terms of _constraints_ on a _generic_ model of the concept "INSTRUMENT". The names mentioned down the left-hand side of the definition section (`INSTRUMENT`, `size` etc) are alternately class and attribute names from an object model.  Each block of braces encloses a specification for some particular set of instances that conform to a specific concept, such as 'guitar' or 'neck', defined in terms of constraints on types from a generic class model. The leaf pairs of braces enclose constraints on primitive types such as `Integer`, `String`, `Boolean` and so on. 
 
+.at-coded ADL2 archetype
+[source, adl]
+--------
+archetype (adl_version=2.0.5; rm_release=1.1.5)
+    adl-test-instrument.guitar.v1.0.4
+
+language
+    original_language = <[iso_639-1::en]>
+
+definition
+    INSTRUMENT[at0000] matches {
+        size matches {|60..120|}                    -- size in cm
+        date_of_manufacture matches {yyyy-mm-??}    -- year & month ok
+        parts matches {
+            PART[at0001] matches {                  -- neck
+                material matches {[ac1]}            -- timber or nickel alloy
+            }
+            PART[at0002] matches {                  -- body
+                material matches {[at3]}            -- timber
+            }
+        }
+    }
+
+terminology
+    term_definitions = <
+        ["en"] = <
+            ["at0000"] = <
+                text = <"guitar">;
+                description = <"stringed instrument">
+            >
+            ["at0001"] = <
+                text = <"neck">;
+                description = <"neck of guitar">
+            >
+            ["at0002"] = <
+                text = <"body">;
+                description = <"body of guitar">
+            >
+            ["at0003"] = <
+                text = <"timber">;
+                description = <"straight, seasoned timber">
+            >
+            ["at0004"] = <
+                text = <"nickel alloy">;
+                description = <"frets">
+            >
+        >
+    >
+
+    value_sets = <
+        ["ac1"] = <
+            id = <"ac1">
+                members = <"at0003", "at0004">
+            >
+        >
+    >
+--------
+
+.id-coded ADL2 archetype
 [source, adl]
 --------
 archetype (adl_version=2.0.5; rm_release=1.1.5)
