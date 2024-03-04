@@ -4,7 +4,7 @@ Object redefinition can occur for any object constraint in the parent archetype,
 
 === Node Identifiers
 
-In an archetype, node identifiers ('id-codes') are mandatory on all object constraint nodes. The identifiers of those object nodes defined as children of a multiply-valued attribute and multiple alternative children of single-valued attributes (see <<Node Identifiers>>) require definitions in the archetype terminology. Definitions are optional on other single child constraints of single-valued attributes. This rule applies in specialised as well as top-level archetypes.
+In an archetype, node identifiers ('at-codes' / 'id-codes') are mandatory on all object constraint nodes. The identifiers of those object nodes defined as children of a multiply-valued attribute and multiple alternative children of single-valued attributes (see <<Node Identifiers>>) require definitions in the archetype terminology. Definitions are optional on other single child constraints of single-valued attributes. This rule applies in specialised as well as top-level archetypes.
 
 A key question is: when does a node identifier need to be redefined? There are three possible situations:
 
@@ -80,29 +80,29 @@ An example of the 3rd case above of redefinition is shown in the first archetype
 
 The syntactic form of the identifier of a redefined node is a copy of the original followed by a dot ('.'), optionally intervening instances of the pattern '0.' and then a further non-zero number, i.e.:
 
-* openEHR archetypes: `atNNNN {.0}* .N`
-* ADL2 original archetypes: `idN {.0}* .N`
+* at-coded archetypes: `atNNNN {.0}* .N`
+* id-coded archetypes: `idN {.0}* .N`
 
 This permits node identifiers from a given level to be redefined not just at the next level, but at multiple levels below.
 
 The following are examples of redefined node identifiers:
 
-* openEHR archetypes:
+* at-coded archetypes:
 ** `at0001.1`: redefinition of `at0001` at level 1 specialisation;
 ** `at0001.0.1`: redefinition of `at0001` node in level 2 specialisation archetype;
 ** `at0001.1.1`: redefinition of `at0001.1` in level 2 specialisation archetype.
-* ADL2 original archetypes:
+* id-coded archetypes:
 ** `id2.1`: redefinition of `id2` at level 1 specialisation;
 ** `id2.0.1`: redefinition of `id2` node in level 2 specialisation archetype;
 ** `id2.1.1`: redefinition of `id2.1` in level 2 specialisation archetype.
 
 The digits '1' and '2' here should not be confused with levels 1 and 2. The above identifiers based on an `at0005` (`id6`) node might easily be:
 
-* openEHR archetypes:
+* at-coded archetypes:
 ** `at0005.7`: redefinition of `at0005` in a level 1 specialisation archetype;
 ** `at0005.0.8`: redefinition of `at0005` node in a level 2 specialisation archetype;
 ** `at0005.7.8`: redefinition of `at0005.7` in a level 2 specialisation archetype.
-* ADL2 original archetypes:
+* id-coded archetypes:
 ** `id6.7`: redefinition of `id6` in a level 1 specialisation archetype;
 ** `id6.0.8`: redefinition of `id6` node in a level 2 specialisation archetype;
 ** `id6.7.8`: redefinition of `id6.7` in a level 2 specialisation archetype.
@@ -115,10 +115,10 @@ The node identifier syntax of an extension node commences with at least one inst
 
 Examples of added node identifiers:
 
-* openEHR archetypes:
+* at-coded archetypes:
 ** `at0.1`  : identifier of extension node introduced at level 1;
 ** `at0.0.1`: identifier of extension node introduced at level 2.
-* ADL2 original archetypes:
+* id-coded archetypes:
 ** `id0.1`  : identifier of extension node introduced at level 1;
 ** `id0.0.1`: identifier of extension node introduced at level 2.
 
@@ -276,7 +276,7 @@ If the whole attribute is to be removed, this can be done by redefining existenc
 
 === Single and Multiple Specialisation - When does Cloning Occur?
 
-In the <<Examples,examples shown above>> there are two types of redefinition occurring. The first shows a single node in the parent archetype redefined by a single node, both identified by `id4`. The second shows a single node in the parent redefined by multiple children. In the first example, the result of flattening is _in-place overlaying_, while in the second, it is _cloning with overlaying_. The consequence of the second type of redefinition is that the original parent node survives in its original form in the child archetype, whereas in the first, it is replaced. The reasoning behind this is that redefinition to multiple children is taken to mean that later redefinition to multiple children may occur in deeper child archetypes, and for this to occur, the original parent needs to be left intact. Conversely, the single-parent / single-child redefinition is taken to mean a logical refinement of an existing node, which should therefore be logically replaced.
+In the <<Examples,examples shown above>> there are two types of redefinition occurring. The first shows a single node in the parent archetype redefined by a single node, both identified by `at0003` (`id4`). The second shows a single node in the parent redefined by multiple children. In the first example, the result of flattening is _in-place overlaying_, while in the second, it is _cloning with overlaying_. The consequence of the second type of redefinition is that the original parent node survives in its original form in the child archetype, whereas in the first, it is replaced. The reasoning behind this is that redefinition to multiple children is taken to mean that later redefinition to multiple children may occur in deeper child archetypes, and for this to occur, the original parent needs to be left intact. Conversely, the single-parent / single-child redefinition is taken to mean a logical refinement of an existing node, which should therefore be logically replaced.
 
 The formal rule for whether cloning occurs or not is as follows:
 
@@ -289,7 +289,7 @@ The first case corresponds to the situation where the 'effective occurrences' of
 
 === Exhaustive and Non-Exhaustive Redefinition
 
-In any multiple specialisation situation, there is a question of whether the original node being specialised (e.g. `id79` and `id2` in the examples above) remains available for further redefinition in subsequent child archetypes, or do the redefinition children _exhaustively_ define the instance space for the given parent node?
+In any multiple specialisation situation, there is a question of whether the original node being specialised (e.g. `at0078` (`id79`) and `at0001` (`id2`) in the examples above) remains available for further redefinition in subsequent child archetypes, or do the redefinition children _exhaustively_ define the instance space for the given parent node?
 
 Should these children be considered exhaustive? One point of view says so, since all subsequently discovered varieties of hepatitis (C, D, E, etc) would now become children of 'hepatitis non-A non-B'. However, this is likely to be sub-optimal, since now the category 'hepatitis non-A non-B' probably exists solely because of the order in which the various hepatitis virus tests were perfected. Therefore an alternative argument would say that the categories 'hepatitis C', 'hepatitis D' etc should be defined directly below 'hepatitis', as if 'hepatitis non-A non-B' had never existed. Under this argument, the children would not be declared, even when they are theoretically exhaustive.
 
@@ -362,7 +362,7 @@ Child archetype:
     }
 --------
 
-Without the above specification, a deeper child archetype could then redefine both the original `id79` node (e.g. into `id79.0.1` , `id79.0.2`), and any of the `id79.x` nodes (e.g. `id79.1.1` , `id79.1.2`); with it, only the latter is possible. The `id79` node can thus be considered to be logically 'frozen', in a similar way to frozen class methods in some programming languages.
+Without the above specification, a deeper child archetype could then redefine both the original `at0078` (`id79`) node (e.g. into `at0078.0.1` , `at0078.0.2` (`id79.0.1` , `id79.0.2`)), and any of the `at0078.x` (`id79.x`) nodes (e.g. `at0078.1.1` , `at0078.1.2` (`id79.1.1` , `id79.1.2`)); with it, only the latter is possible. The `at0078` (`id79`) node can thus be considered to be logically 'frozen', in a similar way to frozen class methods in some programming languages.
 
 === Reference Model Type Refinement
 
@@ -751,7 +751,7 @@ The following example shows a slot from a `SECTION` archetype for the 'history_m
     }
 --------
 
-This slot specification allows `EVALUATION` archetypes for the concepts 'clinical synopsis', various kinds of 'exclusions' and 'problems', and 'injury' to be used, and no others. The following fragment of ADL shows how the slot is filled in a template, using the keyword `use_archetype`. In this syntax, the node identification is a variation on the normal archetype id-codes. Within the template, the identifier of the used archetype is also the identifier of that node. However, the original at-code (if defined) must also be mentioned, to indicate which slot the used archetype is filling. Templates may also be used to fill slots in the same way. Thus, in the following example, two archetypes and a template are designated to fill the `at0001` (`id2`) slot defined in the above fragment of ADL. The slot definition is not mentioned, so it remains unchanged, i.e. 'open'.
+This slot specification allows `EVALUATION` archetypes for the concepts 'clinical synopsis', various kinds of 'exclusions' and 'problems', and 'injury' to be used, and no others. The following fragment of ADL shows how the slot is filled in a template, using the keyword `use_archetype`. In this syntax, the node identification is a variation on the normal archetype at-codes (id-codes). Within the template, the identifier of the used archetype is also the identifier of that node. However, the original at-code (if defined) must also be mentioned, to indicate which slot the used archetype is filling. Templates may also be used to fill slots in the same way. Thus, in the following example, two archetypes and a template are designated to fill the `at0001` (`id2`) slot defined in the above fragment of ADL. The slot definition is not mentioned, so it remains unchanged, i.e. 'open'.
 
 .at-coded ADL2 archetype
 [source, cadl]

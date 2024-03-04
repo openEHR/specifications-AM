@@ -174,7 +174,7 @@ Cardinality and existence constraints can co-occur, in order to indicate various
 
 ==== Node Identifiers
 
-In cADL, an entity in brackets of the form `[atNNNN]` for openEHR archetypes or `[idN]` for ADL2 original archetypes following a type name is used to identify an object node, i.e. a node constraint delimiting a set of instances of the type as defined by the reference model. Object nodes always commence with a type name. Although any node identifier format could be supported, the current version of ADL assumes that node identifiers are of the form of an archetype term identifier, i.e. `[atNNNN]` for openEHR archetpes (e.g. `[at0041]`) or `[idN]` for ADL2 original archetypes (e.g. `[id42]`) . Node identifiers are shown in magenta in this document.
+In cADL, an entity in brackets of the form `[atNNNN]` for at-coded archetypes or `[idN]` for id-coded archetypes following a type name is used to identify an object node, i.e. a node constraint delimiting a set of instances of the type as defined by the reference model. Object nodes always commence with a type name. Although any node identifier format could be supported, the current version of ADL assumes that node identifiers are of the form of an archetype term identifier, i.e. `[atNNNN]` for at-coded archetypes (e.g. `[at0041]`) or `[idN]` for id-coded archetypes (e.g. `[id42]`) . Node identifiers are shown in magenta in this document.
 
 The structural function of node identifiers is to allow the formation of paths:
 
@@ -188,7 +188,7 @@ All object nodes require a node identifier, guaranteeing the ability to generate
 [.principle]
 A *Node identifier* is required for every object node in an archetype.
 
-The node identifier can also perform a semantic function, that of giving a design-time meaning to the node, by equating the node identifier to some description. The use of node identifiers in archetypes is the main source of their expressive power. Each node identifier acts as a 'semantic marker' or 'override' on the node. Thus, in the example shown in <<The Underlying Information Model>>, the `ELEMENT` node is identified by the code `[id10]` , which can be designated elsewhere in an archetype as meaning "diastolic blood pressure". In this way rich meaning is given to data constructed from a limited number of object types.
+The node identifier can also perform a semantic function, that of giving a design-time meaning to the node, by equating the node identifier to some description. The use of node identifiers in archetypes is the main source of their expressive power. Each node identifier acts as a 'semantic marker' or 'override' on the node. Thus, in the example shown in <<The Underlying Information Model>>, the `ELEMENT` node is identified by the code `[at0009]` (`[id10]`) , which can be designated elsewhere in an archetype as meaning "diastolic blood pressure". In this way rich meaning is given to data constructed from a limited number of object types.
 
 *Not every object node identifier needs to be defined in the archetype terminology*: it is only mandatory for the identifiers of nodes defined under container attributes, and multiple alternative nodes under single-valued attributes. The identifiers of single object nodes defined under single-valued attributes may have terminology definitions, but don't typically need them, since the meaning is obvious from the attribute.
 
@@ -890,7 +890,7 @@ Direct references, or external references as they will be denoted here occur for
     use_archetype TYPE[idN, archetype_id] <occurrences constraint>
 --------
 
-In the above, the `archetype_id` is included with the usual archetype node identifier (id-code). The usual occurrence constraints can be applied at the end.
+In the above, the `archetype_id` is included with the usual archetype node identifier (at-code/id-code). The usual occurrence constraints can be applied at the end.
 
 The following example shows sections of two parent archetypes both referring to the same child archetype. The first section is from an openEHR `INSTRUCTION` archetype to do with a medication order.
 
@@ -982,7 +982,7 @@ The second use of external references is typically in templates, to specify an a
 
 ==== Paths
 
-Paths that terminate in external reference nodes in source-form archetypes will include only the id-codes, as in the following examples:
+Paths that terminate in external reference nodes in source-form archetypes will include only the at-codes (id-codes), as in the following examples:
 
 .at-coded ADL2 archetype
 [source, cadl]
@@ -998,7 +998,7 @@ Paths that terminate in external reference nodes in source-form archetypes will 
     /description[id2]
 --------
 
-However, in flattened archetypes, the corresponding paths will include the archetype identifier(s) rather than the id-codes, and may continue down through the structure of the included archetypes, as in the following example.
+However, in flattened archetypes, the corresponding paths will include the archetype identifier(s) rather than the at-codes (id-codes), and may continue down through the structure of the included archetypes, as in the following example.
 
 .at-coded ADL2 archetype
 [source, cadl]

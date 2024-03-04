@@ -6,9 +6,41 @@ This section describes the syntax of the `terminology` section of an archetype. 
 
 The `terminology` section of an archetype is expressed in ODIN, and is where codes representing node identifiers, constraints on coded term values, and bindings to terminologies are defined. Linguistic language translations are added in the form of extra blocks keyed by the relevant language. The following example shows the general layout of this section.
 
+.at-coded ADL2 archetype
 [source, adl]
 --------
 terminology 
+    term_definitions = <
+        ["en"] = <
+            ["at0001"] = <...>
+            ["at0002"] = <...>
+            ["ac1"] = <...>
+        >
+        ["de"] = <
+            ["at0000"] = <...>
+            ["at0001"] = <...>
+            ["ac1"] = <...>
+        >
+    >
+    value_sets = <
+        ["ac1"] = <
+            id = <"ac1">
+            members = <"at0000", "at0001", "at0002", ...>
+        >
+    >
+    term_bindings = <
+        ["snomed_ct"] = <
+            ["at0003"] = <...>
+            ["ac1"] = <...>
+            ...
+        >
+    >
+--------
+
+.id-coded ADL2 archetype
+[source, adl]
+--------
+terminology
     term_definitions = <
         ["en"] = <
             ["id1"] = <...>
@@ -24,7 +56,7 @@ terminology
     value_sets = <
         ["ac1"] = <
             id = <"ac1">
-            members = <"at1", "at2", "at3", ...>            
+            members = <"at1", "at2", "at3", ...>
         >
     >
     term_bindings = <
@@ -40,12 +72,53 @@ terminology
 
 The `term_definitions` section is mandatory, and must contain definitions for all terms requiring them, in all translations in use in the archetype. Terms requiring definitions include:
 
-* all id-codes of object nodes under a container attribute or which are multiple alternative siblings under a single-valued attribute
-* all at-codes
-* all ac-codes
+* for at-coded archetypes:
+** all at-codes
+** all ac-codes
+* for id-coded archetypes:
+** all id-codes of object nodes under a container attribute or which are multiple alternative siblings under a single-valued attribute
+** all at-codes
+** all ac-codes
 
 The following example shows an extract from the English and German term definitions for the archetype local terms in a problem/SOAP headings archetype. Each term is defined using a structure of name/value pairs, and must at least include the names "text" and "description", which correspond to the usual rubric and full definition found in terminologies like {snomed_ct}[SNOMED CT^]. Each term object is then included in the appropriate language list of term definitions, as shown in the example below.
 
+.at-coded ADL2 archetype
+[source, odin]
+--------
+    term_definitions = <
+        ["en"] = <
+            ["at0000"] = <
+                text = <"problem">
+                description = <"The problem experienced by the subject of care to which the contained information relates">
+            >
+            ["at0001"] = <
+                text = <"problem/SOAP headings"> 
+                description = <"SOAP heading structure for multiple problems">
+            >
+            ... 
+            ["at0002"] = <
+                text = <"plan">
+                description = <"The clinician's professional advice">
+            >
+        >
+        ["de"] = <
+            ["at0000"] = <
+                    text = <"klinisches Problem">
+                    description = <"Das Problem des Patienten worauf sich diese Informationen beziehen">
+            >
+            ["at0001"] = <
+                    text = <"Problem/SOAP Schema"> 
+                    description = <"SOAP-Schlagwort-Gruppierungsschema fuer mehrfache Probleme">
+            >
+            ["at0002"] = <
+                    text = <"Plan">
+                    description = <"Klinisch-professionelle Beratung des Pflegenden">
+            >
+        >
+    >
+--------
+
+.id-coded ADL2 archetype
 [source, odin]
 --------
     term_definitions = <
@@ -55,10 +128,10 @@ The following example shows an extract from the English and German term definiti
                 description = <"The problem experienced by the subject of care to which the contained information relates">
             >
             ["id2"] = <
-                text = <"problem/SOAP headings"> 
+                text = <"problem/SOAP headings">
                 description = <"SOAP heading structure for multiple problems">
             >
-            ... 
+            ...
             ["id3"] = <
                 text = <"plan">
                 description = <"The clinician's professional advice">
@@ -70,7 +143,7 @@ The following example shows an extract from the English and German term definiti
                     description = <"Das Problem des Patienten worauf sich diese Informationen beziehen">
             >
             ["id2"] = <
-                    text = <"Problem/SOAP Schema"> 
+                    text = <"Problem/SOAP Schema">
                     description = <"SOAP-Schlagwort-Gruppierungsschema fuer mehrfache Probleme">
             >
             ["id3"] = <
@@ -83,12 +156,13 @@ The following example shows an extract from the English and German term definiti
 
 In some cases, term definitions may have been lifted from existing terminologies (only a safe thing to do if the definitions _exactly_ match the need in the archetype). To indicate where definitions come from, a "provenance" tag can be used, as follows:
 
+.at-coded ADL2 archetype
 [source, odin]
 ----
     term_definitions = <
         ["en"] = <
             ...
-            ["id3"] = <
+            ["at0002"] = <
                 text = <"plan">
                 description = <"The clinician's professional advice">
                 provenance = <"ACME_terminology(v3.9a)"> 
@@ -98,7 +172,23 @@ In some cases, term definitions may have been lifted from existing terminologies
     >
 ----
 
-Note that this does not indicate a _binding_ to any term, only the origin of its definition. Bindings are described below. 
+.id-coded ADL2 archetype
+[source, odin]
+----
+    term_definitions = <
+        ["en"] = <
+            ...
+            ["id3"] = <
+                text = <"plan">
+                description = <"The clinician's professional advice">
+                provenance = <"ACME_terminology(v3.9a)">
+            >
+            ...
+        >
+    >
+----
+
+Note that this does not indicate a _binding_ to any term, only the origin of its definition. Bindings are described below.
 
 The `term_definitions` section also includes definitions for archetype-local constraint codes, which are of the form `[acN]` in the `definition` part of an archetype. Each such code refers to a terminology 'value set', i.e. a set of possible terms that could be used as the value of the data item being constrained. These constraints are defined in two parts. First, the `ac` code itself is defined - this names the value set. For example:
 
@@ -132,6 +222,7 @@ The `term_definitions` section also includes definitions for archetype-local con
 
 The second part is the value set contents. This can be defined either as an 'internal' value set consisting of at-codes, or else as being a value set defined in an external terminology and referenced via a binding. An internal value set is defined using an entry in the `value_sets` sub-section for the `ac` code, containing a list of at-code member values. Each of those members must have its own definition in the `term_definitions` section. The following shows the structures required.
 
+.at-coded ADL2 archetype
 [source, adl]
 --------
 terminology 
@@ -146,7 +237,27 @@ terminology
     value_sets = <
         ["ac1"] = <
             id = <"ac1">
-            members = <"at1", "at2", "at3", ...>            
+            members = <"at0000", "at0001", "at0002", ...>
+        >
+    >
+--------
+
+.id-coded ADL2 archetype
+[source, adl]
+--------
+terminology
+    term_definitions = <
+        ["en"] = <
+            ["ac1"] = <...>
+            ["at1"] = <...>
+            ["at2"] = <...>
+            ["at3"] = <...>
+        >
+    >
+    value_sets = <
+        ["ac1"] = <
+            id = <"ac1">
+            members = <"at1", "at2", "at3", ...>
         >
     >
 --------
@@ -157,11 +268,16 @@ A value set and/or its constituent terms may also have 'bindings' to externally 
 
 Keys can be any one of:
 
-* for id-coded object nodes:
-** just the id-code, e.g. `id4`;
-** an object node  absolute path terminating in an at-code (id-code), e.g. `"/data[at0001]/events[at0002]/data[at0003]/item[at0004]"` (`"/data[id2]/events[id3]/data[id1]/item[id4]"`);
-* an at-code;
-* an ac-code.
+* for at-coded archetypes:
+** an at-code;
+** an object node absolute path terminating in an at-code, e.g. `"/data[at0001]/events[at0002]/data[at0003]/item[at0004]"`;
+** an ac-code.
+* for id-coded archetypes:
+** for id-coded object nodes:
+*** just the id-code, e.g. `id4`;
+*** an object node  absolute path terminating in an id-code, e.g. `"/data[id2]/events[id3]/data[id1]/item[id4]"`;
+** an at-code;
+** an ac-code.
 
 Binding targets are expressed as URIs that follow the model for {snomed_uris}[terminology URIs published by IHTSDO] or a similar model, in the case of terminologies other than {snomed_ct}[SNOMED CT^]. Because URIs are native types in ADL/ODIN, they do not need quotes.
 
@@ -319,7 +435,7 @@ The next section describes the semantics of term constraining, value sets and bi
 
 ==== At-codes as identifiers
 
-In ADL 2, at-codes are used only as code values, not node identifiers. Id-codes are used for the latter purpose. This provides a clear separation between node 'names' and node 'values', for the kind of nodes whose values are coded terms.
+In at-coded ADL2 archetypes at-codes are used as code values as well as node identifiers. In id-coded ADL2 archetypes at-codes are used only as code values, not node identifiers. Id-codes are used for the latter purpose, providing a clearer separation between node 'names' and node 'values', for the kind of nodes whose values are coded terms.
 
 ==== Terminologies_available sub-section
 
