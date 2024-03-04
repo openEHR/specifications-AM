@@ -169,7 +169,7 @@ Bindings may be defined for a given set of terms for more than one terminology, 
 
 The following is an extract from a https://github.com/openEHR/adl-archetypes/blob/master/ADL2-reference/features/terminology/term_bindings/openEHR-EHR-OBSERVATION.term_bindings_paths_use_refs.v1.adls[test archetype^] based on the openEHR Apgar archetype, showing the different types of bindings:
 
-.openEHR archetype
+.at-coded ADL2 archetype
 [source, odin]
 --------
     --
@@ -220,7 +220,7 @@ The following is an extract from a https://github.com/openEHR/adl-archetypes/blo
     >
 --------
 
-.ADL2 original archetype
+.id-coded ADL2 archetype
 [source, odin]
 --------
     --
@@ -275,7 +275,7 @@ The reason for code and path keys for at-codes (id-codes) is to enable two types
 
 In the example shown below, the `at0003` (`id4`) code identifies a 'temperature' node in an archetype, and the codes `at0002`, `at0004`, `at0005` (`id3`, `id5`, `id6`) etc correspond to various times such as 'any', '1-hour average', '1-hour maximum' and so on. Some terminologies (notably {loinc}[LOINC^], the laboratory terminology in this example) define pre-coordinated codes, such as '1 hour body temperature'; these clearly correspond not to single codes such as `at0003` (`id4`) in the archetype, but to whole paths.
 
-.openEHR archetype
+.at-coded ADL2 archetype
 [source, odin]
 --------
     term_bindings = < 
@@ -287,7 +287,7 @@ In the example shown below, the `at0003` (`id4`) code identifies a 'temperature'
     >
 --------
 
-.ADL2 original archetype
+.id-coded ADL2 archetype
 [source, odin]
 --------
     term_bindings = <
