@@ -1101,13 +1101,13 @@ There is no assumption that a change of a given technical level (i.e. as evaluat
 <p>We can show the highlighted path with code rubrics included:</p>
 </div>
 <div class="listingblock">
-<div class="title">at-coded archetype</div>
+<div class="title">at-coded ADL2 syntax</div>
 <div class="content">
 <pre class="pygments highlight"><code data-lang="cadl"><span></span><span class="tok-p">/</span><span class="tok-nc">data</span><span class="tok-p">[</span><span class="tok-nd">at0001</span><span class="tok-p">]/</span><span class="tok-nc">events</span><span class="tok-p">[</span><span class="tok-nd">at0002</span><span class="tok-p">|</span><span class="tok-s">Any event</span><span class="tok-p">|]/</span><span class="tok-nc">data</span><span class="tok-p">[</span><span class="tok-nd">at0003</span><span class="tok-p">]/</span><span class="tok-nc">items</span><span class="tok-p">[</span><span class="tok-nd">at0078.11</span><span class="tok-p">|</span><span class="tok-s">PaO2</span><span class="tok-p">|]</span></code></pre>
 </div>
 </div>
 <div class="listingblock">
-<div class="title">id-coded archetype</div>
+<div class="title">id-coded ADL2 syntax</div>
 <div class="content">
 <pre class="pygments highlight"><code data-lang="cadl"><span></span><span class="tok-p">/</span><span class="tok-nc">data</span><span class="tok-p">[</span><span class="tok-nd">id2</span><span class="tok-p">]/</span><span class="tok-nc">events</span><span class="tok-p">[</span><span class="tok-nd">id3</span><span class="tok-p">|</span><span class="tok-s">Any event</span><span class="tok-p">|]/</span><span class="tok-nc">data</span><span class="tok-p">[</span><span class="tok-nd">id4</span><span class="tok-p">]/</span><span class="tok-nc">items</span><span class="tok-p">[</span><span class="tok-nd">id79.11</span><span class="tok-p">|</span><span class="tok-s">PaO2</span><span class="tok-p">|]</span></code></pre>
 </div>
@@ -1603,7 +1603,7 @@ is formed from the next version number that corresponds to the magnitude of the 
 <p>In ADL 2, a direct archetype-archetype reference, known as an 'external reference' can be defined, which uses the archetype miniHRID, as shown in the following example.</p>
 </div>
 <div class="listingblock">
-<div class="title">at-coded archetype</div>
+<div class="title">at-coded ADL2 syntax</div>
 <div class="content">
 <pre class="pygments highlight"><code data-lang="cadl"><span></span><span class="tok-w">    </span><span class="tok-nc">ACTIVITY</span><span class="tok-p">[</span><span class="tok-nd">at0001</span><span class="tok-p">]</span><span class="tok-w"> </span><span class="tok-o">∈</span><span class="tok-w"> </span><span class="tok-p">{</span><span class="tok-w">   </span><span class="tok-c">-- Medication activity</span>
 <span class="tok-w">        </span><span class="tok-nc">description</span><span class="tok-w"> </span><span class="tok-o">∈</span><span class="tok-w"> </span><span class="tok-p">{</span>
@@ -1613,7 +1613,7 @@ is formed from the next version number that corresponds to the magnitude of the 
 </div>
 </div>
 <div class="listingblock">
-<div class="title">id-coded archetype</div>
+<div class="title">id-coded ADL2 syntax</div>
 <div class="content">
 <pre class="pygments highlight"><code data-lang="cadl"><span></span><span class="tok-w">    </span><span class="tok-nc">ACTIVITY</span><span class="tok-p">[</span><span class="tok-nd">id2</span><span class="tok-p">]</span><span class="tok-w"> </span><span class="tok-o">∈</span><span class="tok-w"> </span><span class="tok-p">{</span><span class="tok-w">   </span><span class="tok-c">-- Medication activity</span>
 <span class="tok-w">        </span><span class="tok-nc">description</span><span class="tok-w"> </span><span class="tok-o">∈</span><span class="tok-w"> </span><span class="tok-p">{</span>
@@ -1766,7 +1766,7 @@ is formed from the next version number that corresponds to the magnitude of the 
 <p>In ADL 2 a slot can be defined using a semantic (rather than lexical) expression in which matching archetypes are defined in the form of a constraint on the archetype concept (and optionally namespace), reminiscent of the SNOMED CT post-coordination constraint syntax. This is shown in the following example.</p>
 </div>
 <div class="listingblock">
-<div class="title">at-coded archetype</div>
+<div class="title">at-coded ADL2 syntax</div>
 <div class="content">
 <pre class="pygments highlight"><code data-lang="cadl"><span></span><span class="tok-w">    </span><span class="tok-kt">allow_archetype </span><span class="tok-nc">CLUSTER</span><span class="tok-w"> </span><span class="tok-p">[</span><span class="tok-nd">at0003.1</span><span class="tok-p">]</span><span class="tok-w"> </span><span class="tok-kt">occurrences </span><span class="tok-o">∈</span><span class="tok-w"> </span><span class="tok-p">{</span><span class="tok-m">0..1</span><span class="tok-p">}</span><span class="tok-w"> </span><span class="tok-o">∈</span><span class="tok-w"> </span><span class="tok-p">{</span>
 <span class="tok-w">        </span><span class="tok-kt">include </span><span class="tok-o">∈</span><span class="tok-w"> </span><span class="tok-p">{</span><span class="tok-l">True</span><span class="tok-p">}</span>
@@ -1781,7 +1781,7 @@ is formed from the next version number that corresponds to the magnitude of the 
 </div>
 </div>
 <div class="listingblock">
-<div class="title">id-coded archetype</div>
+<div class="title">id-coded ADL2 syntax</div>
 <div class="content">
 <pre class="pygments highlight"><code data-lang="cadl"><span></span><span class="tok-w">    </span><span class="tok-kt">allow_archetype </span><span class="tok-nc">CLUSTER</span><span class="tok-w"> </span><span class="tok-p">[</span><span class="tok-nd">id4.1</span><span class="tok-p">]</span><span class="tok-w"> </span><span class="tok-kt">occurrences </span><span class="tok-o">∈</span><span class="tok-w"> </span><span class="tok-p">{</span><span class="tok-m">0..1</span><span class="tok-p">}</span><span class="tok-w"> </span><span class="tok-o">∈</span><span class="tok-w"> </span><span class="tok-p">{</span>
 <span class="tok-w">        </span><span class="tok-kt">include </span><span class="tok-o">∈</span><span class="tok-w"> </span><span class="tok-p">{</span><span class="tok-l">True</span><span class="tok-p">}</span>
@@ -1812,7 +1812,7 @@ is formed from the next version number that corresponds to the magnitude of the 
 <p>Archetype-based queries contain archetype references and paths, and can also contain template identifiers and paths. Typical examples are the paths (in green) in the following query:</p>
 </div>
 <div class="listingblock">
-<div class="title">at-coded archetype</div>
+<div class="title">at-coded ADL2 syntax</div>
 <div class="content">
 <pre class="pygments highlight"><code data-lang="sql"><span></span><span class="tok-w">    </span><span class="tok-k">SELECT</span><span class="tok-w"> </span><span class="tok-n">pulse</span>
 <span class="tok-w">    </span><span class="tok-k">FROM</span><span class="tok-w"> </span><span class="tok-n">EHR</span><span class="tok-p">[</span><span class="tok-n">ehr_id</span><span class="tok-o">/</span><span class="tok-n">value</span><span class="tok-o">=</span><span class="tok-err">$</span><span class="tok-n">ehruid</span><span class="tok-p">]</span>
@@ -1826,7 +1826,7 @@ is formed from the next version number that corresponds to the magnitude of the 
 </div>
 </div>
 <div class="listingblock">
-<div class="title">id-coded archetype</div>
+<div class="title">id-coded ADL2 syntax</div>
 <div class="content">
 <pre class="pygments highlight"><code data-lang="sql"><span></span><span class="tok-w">    </span><span class="tok-k">SELECT</span><span class="tok-w"> </span><span class="tok-n">pulse</span>
 <span class="tok-w">    </span><span class="tok-k">FROM</span><span class="tok-w"> </span><span class="tok-n">EHR</span><span class="tok-p">[</span><span class="tok-n">ehr_id</span><span class="tok-o">/</span><span class="tok-n">value</span><span class="tok-o">=</span><span class="tok-err">$</span><span class="tok-n">ehruid</span><span class="tok-p">]</span>
@@ -1867,13 +1867,13 @@ is formed from the next version number that corresponds to the magnitude of the 
 <p>An example of a congruent path in a child archetype is:</p>
 </div>
 <div class="listingblock">
-<div class="title">at-coded archetype</div>
+<div class="title">at-coded ADL2 syntax</div>
 <div class="content">
 <pre class="pygments highlight"><code data-lang="cadl"><span></span><span class="tok-w">    </span><span class="tok-p">/</span><span class="tok-nc">data</span><span class="tok-p">/</span><span class="tok-nc">events</span><span class="tok-p">[</span><span class="tok-nd">at0005.0.4</span><span class="tok-p">]/</span><span class="tok-nc">data</span><span class="tok-p">/</span><span class="tok-nc">items</span><span class="tok-p">[</span><span class="tok-nd">at0003.1</span><span class="tok-p">]/</span><span class="tok-nc">value</span><span class="tok-p">/</span><span class="tok-nc">value</span></code></pre>
 </div>
 </div>
 <div class="listingblock">
-<div class="title">id-coded archetype</div>
+<div class="title">id-coded ADL2 syntax</div>
 <div class="content">
 <pre class="pygments highlight"><code data-lang="cadl"><span></span><span class="tok-w">    </span><span class="tok-p">/</span><span class="tok-nc">data</span><span class="tok-p">/</span><span class="tok-nc">events</span><span class="tok-p">[</span><span class="tok-nd">id6.0.4</span><span class="tok-p">]/</span><span class="tok-nc">data</span><span class="tok-p">/</span><span class="tok-nc">items</span><span class="tok-p">[</span><span class="tok-nd">id4.1</span><span class="tok-p">]/</span><span class="tok-nc">value</span><span class="tok-p">/</span><span class="tok-nc">value</span></code></pre>
 </div>

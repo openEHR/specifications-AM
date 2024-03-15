@@ -27,7 +27,7 @@ Symbol equivalents for some of the above are given in the following table.
 
 cADL constraints are written in a block-structured style, similar to block-structured programming languages like C. A typical block resembles the following (the recurring pattern `/.+/` is a regular expression matching a non-empty string):
 
-.at-coded ADL2 archetype
+.at-coded ADL2 syntax
 [source, cadl]
 --------
     PERSON[at0000] ∈ {
@@ -51,7 +51,7 @@ cADL constraints are written in a block-structured style, similar to block-struc
     }
 --------
 
-.id-coded ADL2 archetype
+.id-coded ADL2 syntax
 [source, cadl]
 --------
     PERSON[id1] ∈ {
@@ -81,7 +81,7 @@ Blocks introduced by a type name are known as _object blocks_ or _object nodes_,
 
 The block identifier is followed by the ∈ operator (equivalent text keyword: `matches` or `is_in` ) followed by an open brace, is the start of a 'block', which continues until the closing matching brace (normally visually indented to match the line at the beginning of the block).
 
-.at-coded ADL2 archetype
+.at-coded ADL2 syntax
 [source, cadl]
 --------
     PERSON[at0000] ∈ {                     -- OBJECT block 1 ------------+
@@ -91,7 +91,7 @@ The block identifier is followed by the ∈ operator (equivalent text keyword: `
     }                                   -------------------------------+
 --------
 
-.id-coded ADL2 archetype
+.id-coded ADL2 syntax
 [source, cadl]
 --------
     PERSON[id1] ∈ {                     -- OBJECT block 1 ------------+
@@ -127,7 +127,7 @@ Constraints expressed in cADL cannot invalidate those from the information model
 
 This general approach can be used to express constraints for instances of any information model. The following example shows how to express a constraint on the `_value_` property of an `ELEMENT` class to be a `DV_QUANTITY` with a suitable range for expressing blood pressure.
 
-.at-coded ADL2 archetype
+.at-coded ADL2 syntax
 [source, cadl]
 --------
     ELEMENT[at0009] matches {          -- diastolic blood pressure
@@ -141,7 +141,7 @@ This general approach can be used to express constraints for instances of any in
     }
 --------
 
-.id-coded ADL2 archetype
+.id-coded ADL2 syntax
 [source, cadl]
 --------
     ELEMENT[id10] matches {          -- diastolic blood pressure
@@ -181,7 +181,7 @@ The `matches` or `is_in` operator deserves special mention, since it is the key 
 
 The following example links the name of a type `XXX` with a hierarchical value space.
 
-.at-coded ADL2 archetype
+.at-coded ADL2 syntax
 [source, cadl]
 --------
     XXX[at0001] matches {
@@ -198,7 +198,7 @@ The following example links the name of a type `XXX` with a hierarchical value s
     }
 --------
 
-.id-coded ADL2 archetype
+.id-coded ADL2 syntax
 [source, cadl]
 --------
     XXX[id2] matches {

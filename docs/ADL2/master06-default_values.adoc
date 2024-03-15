@@ -51,7 +51,7 @@ A default value is either of the same type as specified by the corresponding arc
 
 Within a template, a default value can be defined to support the situation where only one value is possible for a data item due to the specific nature of the template. For example, a blood pressure archetype may allow a number of possible values for 'patient position', such as 'lying', and 'sitting', 'standing'. When used in a hospital, the patient will usually be lying so a default value for this can be set, as shown in the following example:
 
-.at-coded archetype
+.at-coded ADL2 syntax
 [source, cadl]
 -----------------------------------------------------------------------
     /data[at0001]/events[at0005]/state[at0006]/items[at0007]/value ∈ {
@@ -63,7 +63,7 @@ Within a template, a default value can be defined to support the situation where
     }
 -----------------------------------------------------------------------
 
-.id-coded archetype
+.id-coded ADL2 syntax
 [source, cadl]
 -----------------------------------------------------------------------
     /data[id2]/events[id6]/state[id7]/items[id8]/value ∈ {
@@ -77,7 +77,7 @@ Within a template, a default value can be defined to support the situation where
 
 The example above only sets the default value, but it could have also modified the constraint on the value object as well, as in the following version, where the standing blood pressure possibility from the archetype has been removed:
 
-.at-coded archetype
+.at-coded ADL2 syntax
 [source, cadl]
 ---------------------------------------------------------------------
     /data[at0001]/events[at0005]/state[at0006]/items[at0007]/value ∈ {
@@ -93,7 +93,7 @@ The example above only sets the default value, but it could have also modified t
     }
 ---------------------------------------------------------------------
 
-.id-coded archetype
+.id-coded ADL2 syntax
 [source, cadl]
 ---------------------------------------------------------------------
     /data[id2]/events[id6]/state[id7]/items[id8]/value ∈ {
@@ -111,7 +111,7 @@ The example above only sets the default value, but it could have also modified t
 
 Note that in the above, the standard brief syntax for a `CODE_PHRASE` (also the equivalent class `Terminology_code`) is used. In the JSON format, the default value in the above examples is as follows:
 
-.at-coded archetype
+.at-coded ADL2 syntax
 [source, cadl]
 ---------------------------------------------------------------------
     /data[at0001]/events[at0005]/state[at0006]/items[at0007]/value ∈ {
@@ -130,7 +130,7 @@ Note that in the above, the standard brief syntax for a `CODE_PHRASE` (also the 
     }
 ---------------------------------------------------------------------
 
-.id-coded archetype
+.id-coded ADL2 syntax
 [source, cadl]
 ---------------------------------------------------------------------
     /data[id2]/events[id6]/state[id7]/items[id8]/value ∈ {

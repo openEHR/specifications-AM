@@ -21,7 +21,7 @@ For nodes carrying a node identifier, the specialisation level is always equal t
 
 Because ADL is a block-structured language, the redefinition of nodes deep in the parent structure normally requires descending into the structure. Since it is common to want to further constrain only nodes deep within a structure in specialised archetype, a more convenient way is provided in ADL to do this using a _specialisation path_, illustrated by the following example:
 
-.at-coded ADL2 archetype
+.at-coded ADL2 syntax
 [source, cadl]
 --------
     OBSERVATION[at0000.1] ∈ {                                   -- Thyroid function tests
@@ -38,7 +38,7 @@ Because ADL is a block-structured language, the redefinition of nodes deep in th
     }
 --------
 
-.id-coded ADL2 archetype
+.id-coded ADL2 syntax
 [source, cadl]
 --------
     OBSERVATION[id1.1] ∈ {                                   -- Thyroid function tests
@@ -67,13 +67,13 @@ The rules for specialisation paths are as follows.
 
 Any node in an archetype can unambiguously be located by its archetype path. For example, the text value of the 'problem' node of the `openEHR-EHR-EVALUATION.problem.v1` archetype shown at the top of the example in <<Redefinition for Specialisation>> is:
 
-.at-coded ADL2 archetype
+.at-coded ADL2 syntax
 [source, cadl]
 --------
     /data[at0001]/items[at0002]/value
 --------
 
-.id-coded ADL2 archetype
+.id-coded ADL2 syntax
 [source, cadl]
 --------
     /data[id2]/items[id3]/value
@@ -81,13 +81,13 @@ Any node in an archetype can unambiguously be located by its archetype path. For
 
 Similarly the path to the redefined version of the same node in the `openEHR-EHR-EVALUATION.problem-diagnosis.v1` archetype at the bottom of the same figure is:
 
-.at-coded ADL2 archetype
+.at-coded ADL2 syntax
 [source, cadl]
 --------
     /data[at0001]/items[at0002.1]/value
 --------
 
-.id-coded ADL2 archetype
+.id-coded ADL2 syntax
 [source, cadl]
 --------
     /data[id2]/items[id3.1]/value

@@ -20,7 +20,7 @@ Each of these is described below.
 
 Assertions can be stated that make explicit intended arithmetic identities among value nodes in an archetype. For example, in an archetype representing {wikipedia}Apgar_score[Apgar Score], five values should sum to equal the total. This can be expressed as the following assertions:
 
-.at-coded ADL2 archetype
+.at-coded ADL2 syntax
 --------
 rules
 	$respiratory_effort: Integer := /data[at0002]/events[at0003]/data[at0001]/items[at0009]/value[at9001]/value
@@ -33,7 +33,7 @@ rules
     Apgar_total: $apgar_score = $respiratory_effort + $heart_rate + $muscle_tone + $reflex_irritability + $skin_colour
 --------
 
-.id-coded ADL2 archetype
+.id-coded ADL2 syntax
 --------
 rules
 	$respiratory_effort: Integer := /data[id3]/events[id4]/data[id2]/items[id10]/value[id39]/value
@@ -50,7 +50,7 @@ rules
 
 The following ADL example shows a `rules` section containing the Blood Pressure MAP and Pulse pressure formulae expressed using references to the relevant input and output values in the archetype.
 
-.at-coded ADL2 archetype
+.at-coded ADL2 syntax
 --------
 rules
     $pulse_pressure: Real := /data[at0001]/events[at0006]/data[at0003]/items[at1007]/value/magnitude
@@ -63,7 +63,7 @@ rules
 	pulse_pressure: $pulse_pressure = $systolic_value - $diastolic_value
 --------
 
-.id-coded ADL2 archetype
+.id-coded ADL2 syntax
 --------
 rules
     $pulse_pressure: Real := /data[id2]/events[id7]/data[id4]/items[id1008]/value/magnitude
@@ -84,7 +84,7 @@ image::{images_uri}/assertions_bp_map_pp.png[id=assertions_bp_map_pp.png, align=
 
 More complex assertions make use of _variable sub-paths_ and the `for_all` operator to check multiple values in a repeated structure, as in this example.
 
-.at-coded ADL2 archetype
+.at-coded ADL2 syntax
 --------
     -- ensure that each mean arterial pressure value in a series of blood pressures
     -- has the correct value.
@@ -94,7 +94,7 @@ More complex assertions make use of _variable sub-paths_ and the `for_all` opera
                 ($event/data[at0003]/items[at0004]/value/magnitude - $event/data[at0003]/items[at0005]/value/magnitude)
 --------
 
-.id-coded ADL2 archetype
+.id-coded ADL2 syntax
 --------
     -- ensure that each mean arterial pressure value in a series of blood pressures
     -- has the correct value.
@@ -110,7 +110,7 @@ NOTE: the evolution toward separation of data context paths and expressions will
 
 One specific type of logical expression that is commonly required in archetypes is used to state the mandation (or otherwise) of certain data points as conditional on another specific data point. An example is an archetype that documents Tobacco use. This will normally contain a data point representing substance 'use status', which may have values such as 'never used', 'occasional user', 'frequent user', etc.; and another set of data points quantifying the use. Clearly, if the 'use status' is 'never', the latter set of data is not needed; conversely, if 'use status' is any other value, the quantifying data items are needed. To make them mandatory if the 'use status' is any value other than 'never used', rules like the following can be used.
 
-.at-coded ADL2 archetype
+.at-coded ADL2 syntax
 --------
 rules
     $substance_use_status: Boolean := /data[at0001]/items[at0002]/value[at90001]
@@ -120,7 +120,7 @@ rules
         exists /data[at0001]/items[at0007|details of use|]
 --------
 
-.id-coded ADL2 archetype
+.id-coded ADL2 syntax
 --------
 rules
     $substance_use_status: Boolean := /data[id2]/items[id3]/value[id18]
@@ -134,7 +134,7 @@ rules
 
 The `rules` section may also include computational statements that can be used to compute values for specific fields, generally based on some published algorithm, rather than just asserting a relationship between various fields. The following shows a set of statements similar to the example above, but with the field bound to `$mean_arterial_pressure` now having its value set, not just tested. The assignment operator (`:=`) is used to achieve this.
 
-.at-coded ADL2 archetype
+.at-coded ADL2 syntax
 --------
 rules
     $mean_arterial_pressure: Real := /data[at0001]/events[at0006]/data[at0003]/items[at1006]/value/magnitude
@@ -144,7 +144,7 @@ rules
 	$mean_arterial_pressure := $diastolic_value + 0.33 * ($systolic_value - $diastolic_value)
 --------
 
-.id-coded ADL2 archetype
+.id-coded ADL2 syntax
 --------
 rules
     $mean_arterial_pressure: Real := /data[id2]/events[id7]/data[id4]/items[id1007]/value/magnitude
