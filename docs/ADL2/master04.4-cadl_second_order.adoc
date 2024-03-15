@@ -4,7 +4,7 @@
 
 In realistic data, it is not uncommon to need to constrain multiple object properties that co-vary in a specific way. A simple example is the need to state range constraints on a temperature, represented as an openEHR `DV_QUANTITY` type, for both Centigrade and Fahrenheit scales. The default way to do this in ADL is as follows (the `DV_QUANTITY` class has `_property_`, `_units_` and `_magnitude_` attributes):
 
-.at-coded ADL2 archetype
+.at-coded ADL2 syntax
 [source, cadl]
 --------
     --
@@ -24,7 +24,7 @@ In realistic data, it is not uncommon to need to constrain multiple object prope
     }
 --------
 
-.id-coded ADL2 archetype
+.id-coded ADL2 syntax
 [source, cadl]
 --------
     --
@@ -58,7 +58,7 @@ However, this seems obscure for what is logically a very simple kind of constrai
 
 A generic solution that can be used in the main `definition` section involves treating co-varying properties formally as tuples, and providing syntax to express constraints on tuples. The following syntax achieves this:
 
-.at-coded ADL2 archetype
+.at-coded ADL2 syntax
 [source, cadl]
 --------
     --
@@ -75,7 +75,7 @@ A generic solution that can be used in the main `definition` section involves tr
     }
 --------
 
-.id-coded ADL2 archetype
+.id-coded ADL2 syntax
 [source, cadl]
 --------
     --
@@ -100,7 +100,7 @@ The tuple form has the advantage of expressing the additional constraint that on
 
 Another way to attempt to represent the effect of covarying constraints might be as follows, using lists of primitive values as shown below. However, there is nothing in these constraints that forces the correct associations between the `_units_` and `_magnitude_` constraints, preventing wrong combinations.
 
-.at-coded ADL2 archetype
+.at-coded ADL2 syntax
 [source, cadl]
 --------
     --
@@ -115,7 +115,7 @@ Another way to attempt to represent the effect of covarying constraints might be
     }
 --------
 
-.id-coded ADL2 archetype
+.id-coded ADL2 syntax
 [source, cadl]
 --------
     --
@@ -137,7 +137,7 @@ This same syntax will work for tuples of 3 or more co-varying properties. It doe
 
 A constraint on the openEHR `DV_ORDINAL` type provides another example of the utility of ADL tuples. First, a typical ordinal constraint (a scale of pass:[+, ++, +++]) with  standard ADL:
 
-.at-coded ADL2 archetype
+.at-coded ADL2 syntax
 [source, cadl]
 --------
     --
@@ -173,7 +173,7 @@ A constraint on the openEHR `DV_ORDINAL` type provides another example of the ut
     }
 --------
 
-.id-coded ADL2 archetype
+.id-coded ADL2 syntax
 [source, cadl]
 --------
     --
@@ -211,7 +211,7 @@ A constraint on the openEHR `DV_ORDINAL` type provides another example of the ut
 
 By the use of tuple constraint, almost the same thing can be achieved much more efficiently. We can write:
 
-.at-coded ADL2 archetype
+.at-coded ADL2 syntax
 [source, cadl]
 --------
     --
@@ -228,7 +228,7 @@ By the use of tuple constraint, almost the same thing can be achieved much more 
     }
 --------
 
-.id-coded ADL2 archetype
+.id-coded ADL2 syntax
 [source, cadl]
 --------
     --
@@ -268,7 +268,7 @@ Unlike the basic form primitive constraint, tuple constraints introduce multipli
 
 This solved by allowing Xpath-style child numbering predicates in paths starting at 1, as shown below.
 
-.at-coded ADL2 archetype
+.at-coded ADL2 syntax
 [source, cadl]
 --------
 value[9007]/magnitude[1]     -- refer to the constraint {|32.0..212.0|}
@@ -279,7 +279,7 @@ ordinal_attr[at9006]/value[2]  -- refer to the constraint {1}
 ordinal_attr[at9006]/value[3]  -- refer to the constraint {2}
 --------
 
-.id-coded ADL2 archetype
+.id-coded ADL2 syntax
 [source, cadl]
 --------
 value[id4]/magnitude[1]     -- refer to the constraint {|32.0..212.0|}
@@ -294,7 +294,7 @@ ordinal_attr[id3]/value[3]  -- refer to the constraint {2}
 
 Within a container attribute, any number of object constraints may be defined. The cardinality and occurrences constraints described above show how to control respectively, the overall container contents, and the occurrence of any particular object constraint within data. However, sometimes finer control is needed on repetition and grouping of members within the container. This can be achieved by the `group` construct, which provides an interior block where a subset of the overall container can be treated as a sub-group. The following example shows a typical used of the group construct.
 
-.at-coded ADL2 archetype
+.at-coded ADL2 syntax
 [source, cadl]
 --------
     ITEM_TREE[at0000] ∈ {
@@ -312,7 +312,7 @@ Within a container attribute, any number of object constraints may be defined. T
     }
 --------
 
-.id-coded ADL2 archetype
+.id-coded ADL2 syntax
 [source, cadl]
 --------
     ITEM_TREE[id1] ∈ {
@@ -355,7 +355,7 @@ The use of group cardinality and occurrences constraints, coupled with the occur
 
 Group blocks can be nested, enabling subsets of subsets to be defined, as illustrated below.
 
-.at-coded ADL2 archetype
+.at-coded ADL2 syntax
 [source, cadl]
 --------
     items ∈ {
@@ -375,7 +375,7 @@ Group blocks can be nested, enabling subsets of subsets to be defined, as illust
     }
 --------
 
-.id-coded ADL2 archetype
+.id-coded ADL2 syntax
 [source, cadl]
 --------
     items ∈ {
@@ -397,7 +397,7 @@ Group blocks can be nested, enabling subsets of subsets to be defined, as illust
 
 For nested groups, the individual object nodes of the sub-group count _individually_ towards the super-group's cardinality, i.e. the group itself is not counted as a node. Thus, in the following example, any three nodes can be chosen from nodes `at0005` - `at0010` (`id6` - `id11`), with one or two of those nodes being from nodes `at0008` - `at0010` (`id9` - `id11`).
 
-.at-coded ADL2 archetype
+.at-coded ADL2 syntax
 [source, cadl]
 --------
     group cardinality ∈ {3} occurrences ∈ {*} ∈ {         -- pick any 3 from id6-id11 & repeat
@@ -413,7 +413,7 @@ For nested groups, the individual object nodes of the sub-group count _individua
     }
 --------
 
-.id-coded ADL2 archetype
+.id-coded ADL2 syntax
 [source, cadl]
 --------
     group cardinality ∈ {3} occurrences ∈ {*} ∈ {         -- pick any 3 from id6-id11 & repeat
@@ -443,7 +443,7 @@ The group constraint is often useful with a slot definition, in order to control
 
 It might be expected that the slot constraints needed to define this are as follows:
 
-.at-coded ADL2 archetype
+.at-coded ADL2 syntax
 [source, cadl]
 --------
     SECTION[at0001] occurrences ∈ {0..1} ∈ {                           -- Subjective
@@ -468,7 +468,7 @@ It might be expected that the slot constraints needed to define this are as foll
     }
 --------
 
-.id-coded ADL2 archetype
+.id-coded ADL2 syntax
 [source, cadl]
 --------
     SECTION[id2] occurrences ∈ {0..1} ∈ {                           -- Subjective
@@ -495,7 +495,7 @@ It might be expected that the slot constraints needed to define this are as foll
 
 The above says that the `SECTION._items_` attribute is an ordered list, and that its contents include multiple `EVALUATION` objects representing problem, diagnosis and plan, and also multiple `INSTRUCTION` objects representing interventions. The problem is now apparent. Each slot definition is set of possibilities, but we do not necessarily want to follow the slot ordering for the ordering of the archetypes chosen to fill the slots. To impose the required ordering and occurrences, we can use the group construct as follows.
 
-.at-coded ADL2 archetype
+.at-coded ADL2 syntax
 [source, cadl]
 --------
     SECTION[at0001] occurrences ∈ {0..1} ∈ {                             -- Subjective
@@ -523,7 +523,7 @@ The above says that the `SECTION._items_` attribute is an ordered list, and that
     }
 --------
 
-.id-coded ADL2 archetype
+.id-coded ADL2 syntax
 [source, cadl]
 --------
     SECTION[id2] occurrences ∈ {0..1} ∈ {                             -- Subjective

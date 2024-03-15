@@ -14,7 +14,7 @@ ADL provides one other special feature specific to templates: the ability to def
 
 By way of illustrating ADL's template-related ADL features, an example is useful. The following is the openEHR archetype `openEHR-EHR-COMPOSITION.discharge.v1` for the generic concept 'discharge summary' followed by a template representing a full patient clinical information discharge summary, consisting of `COMPOSITION`, `SECTION` and various `ENTRY` archetypes.
 
-.at-coded ADL2 archetype
+.at-coded ADL2 syntax
 [source, adl]
 --------
 archetype (adl_version=2.x.x; rm_release=1.0.3)
@@ -75,7 +75,7 @@ terminology
     >
 --------
 
-.id-coded ADL2 archetype
+.id-coded ADL2 syntax
 [source, adl]
 --------
 archetype (adl_version=2.0.5; rm_release=1.0.2)
@@ -146,7 +146,7 @@ Each overlay can be seen to be a specialisation of an archetype (it could also h
 
 Additionally, some overlays contain element removal constraints (`occurrences matches {0}`), used to reduce the data set to the intended final result for the purpose of this template. Clearly other templates could make quite different selections of data items from the same archetypes.
 
-.at-coded ADL2 archetype
+.at-coded ADL2 syntax
 [source, adl]
 --------
 template (adl_version=2.x.x; rm_release=1.0.3)
@@ -284,7 +284,7 @@ terminology
     >
 --------
 
-.id-coded ADL2 archetype
+.id-coded ADL2 syntax
 [source, adl]
 --------
 template (adl_version=2.0.5; rm_release=1.0.2)
@@ -424,7 +424,7 @@ terminology
 
 When the above is flattened, with all overlays, slot fillers and external references being inlined, a single operational template results, as shown below. Note the `component_terminologies` section at the end, which contains the terminology of every constituent overlay and archetype.
 
-.at-coded ADL2 archetype
+.at-coded ADL2 syntax
 [source, adl]
 --------
 operational_template (adl_version=2.x.x; rm_release=1.0.3; generated)
@@ -525,7 +525,7 @@ component_terminologies
         
 --------
 
-.id-coded ADL2 archetype
+.id-coded ADL2 syntax
 [source, adl]
 --------
 operational_template (adl_version=2.0.6; rm_release=1.0.2; generated)

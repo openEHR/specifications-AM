@@ -39,7 +39,7 @@ Connection with external terminology is managed using in the `term_binding` sect
 
 Expressing terminology constraints in cADL was briefly described in <<cADL_Terminology_Constraints>>. Constraints in the `definition` section of an archetype are only a small part of the picture. The targets of the at- and ac- codes are defined in the archetype `terminology` section, potentially with bindings to external terminology. In order to illustrate the approach clearly, the cADL example from earlier is repeated here, minus the node containing the assumed value, and this time with an extract from the terminology section.
 
-.at-coded ADL2 archetype
+.at-coded ADL2 syntax
 [source, adl]
 --------
 --
@@ -103,7 +103,7 @@ terminology
     >
 --------
 
-.id-coded ADL2 archetype
+.id-coded ADL2 syntax
 [source, adl]
 --------
 --
@@ -169,7 +169,7 @@ terminology
 
 The at- and ac- codes (and id-codes for id-coded archetypes) in the above are defined in the archetype terminology in the normal way (noting that codes `at9000` and `at9001` (`id8` and `id55`) do not need local terminology definitions, following the rules described earlier<<_node_identifiers_2>>), with various possibilities for defining and binding the value set denoted by the code `ac1`. Below is shown the first alternative: local value-set definition.
 
-.at-coded ADL2 archetype
+.at-coded ADL2 syntax
 [source, adl]
 --------
 terminology
@@ -188,7 +188,7 @@ terminology
     >
 --------
 
-.id-coded ADL2 archetype
+.id-coded ADL2 syntax
 [source, adl]
 --------
 terminology
@@ -213,7 +213,7 @@ The next variation is that bindings are found for the at-codes from a terminolog
 
 CAUTION: it is quite common that only _some_ of the local at-codes have equivalents in the external terminology, especially if the archetype has a more fine-grained coding of the concept in question. In general, the availability of any external codes for a given internal code doesn't imply that the value set has full coverage by the terminology.
 
-.at-coded ADL2 archetype
+.at-coded ADL2 syntax
 [source, adl]
 --------
 terminology
@@ -241,7 +241,7 @@ terminology
     >
 --------
 
-.id-coded ADL2 archetype
+.id-coded ADL2 syntax
 [source, adl]
 --------
 terminology
@@ -277,7 +277,7 @@ This provides the basis for the next variant. Assuming that an external value se
 
 It will be up to applications or infrastructure in the execution environment to determine if the required external terminology is available and should be used; if so, the local value set definition and at-code bindings can be ignored.
 
-.at-coded ADL2 archetype
+.at-coded ADL2 syntax
 [source, adl]
 --------
 terminology
@@ -306,7 +306,7 @@ terminology
     >
 --------
 
-.id-coded ADL2 archetype
+.id-coded ADL2 syntax
 [source, adl]
 --------
 terminology
@@ -384,7 +384,7 @@ The upshot of these considerations is that the choice of which kind of term to u
 
 As described in <<cADL_Terminology_Constraints>>, constraints of the form `[acN]` and `[atN]` are replaced by `[acN@ttttt]` and `[atN@ttttt]`. A generated operational template that includes the above archetype, with the choice to use the `snomed_ct` binding's external terms made on some nodes, could include the following content.
 
-.at-coded ADL2 archetype
+.at-coded ADL2 syntax
 [source, cadl]
 --------
     --
@@ -404,7 +404,7 @@ As described in <<cADL_Terminology_Constraints>>, constraints of the form `[acN]
     }
 --------
 
-.id-coded ADL2 archetype
+.id-coded ADL2 syntax
 [source, cadl]
 --------
     --

@@ -25,7 +25,7 @@ While constraints on complex types follow the rules described so far, constraint
 
 rather than:
 
-.at-coded ADL2 archetype
+.at-coded ADL2 syntax
 [source, cadl]
 ----
     some_attr matches {
@@ -33,7 +33,7 @@ rather than:
     }
 ----
 
-.id-coded ADL2 archetype
+.id-coded ADL2 syntax
 [source, cadl]
 ----
     some_attr matches {
@@ -45,7 +45,7 @@ This is possible because the syntax patterns of all primitive type constraints a
 
 Although for the majority of primitive type constraints, the shortened form is the most convenient, there is one circumstance in which the regular syntax form is needed, which is when only the type is to be constrained, but not the value. This leads to a constraint of the following form:
 
-.at-coded ADL2 archetype
+.at-coded ADL2 syntax
 [source, cadl]
 ----
     some_attr matches {
@@ -53,7 +53,7 @@ Although for the majority of primitive type constraints, the shortened form is t
     }
 ----
 
-.id-coded ADL2 archetype
+.id-coded ADL2 syntax
 [source, cadl]
 ----
     some_attr matches {
@@ -63,7 +63,7 @@ Although for the majority of primitive type constraints, the shortened form is t
 
 This may occur because the attribute `_some_attr_` in the reference model is of a more general type, e.g. `Any`. The constraint may thus be to simply require a `String`, `Terminology_code` or other primitive type. In the regular form a valid at-code (id-code) must be supplied; this may be either a standard at-code, e.g. `at9013` (id-code, e.g. `id9`) or the `Primitive_node_id` value. If the former is used, any specialised archetype that adds a value constraint must use the regular form, as in the following example.
 
-.at-coded ADL2 archetype
+.at-coded ADL2 syntax
 [source, cadl]
 ----
     -- in parent archetype
@@ -77,7 +77,7 @@ This may occur because the attribute `_some_attr_` in the reference model is of 
     }
 ----
 
-.id-coded ADL2 archetype
+.id-coded ADL2 syntax
 [source, cadl]
 ----
     -- in parent archetype
@@ -93,7 +93,7 @@ This may occur because the attribute `_some_attr_` in the reference model is of 
 
 If the `Primitive_node_id` is used, a specialisation may use the brief form, as in the following.
 
-.at-coded ADL2 archetype
+.at-coded ADL2 syntax
 [source, cadl]
 ----
     -- in parent archetype
@@ -105,7 +105,7 @@ If the `Primitive_node_id` is used, a specialisation may use the brief form, as 
     some_attr matches {"match me"}
 ----
 
-.id-coded ADL2 archetype
+.id-coded ADL2 syntax
 [source, cadl]
 ----
     -- in parent archetype
@@ -504,7 +504,7 @@ Syntactically, there are two types of terminology constraint expressible in 'sou
 
 The possibilities are illustrated below.
 
-.at-coded ADL2 archetype
+.at-coded ADL2 syntax
 [source, cadl]
 --------
     --
@@ -535,7 +535,7 @@ The possibilities are illustrated below.
     }
 --------
 
-.id-coded ADL2 archetype
+.id-coded ADL2 syntax
 [source, cadl]
 --------
     --
@@ -594,7 +594,7 @@ The _recommendation_ is that if a terminology constraint is not `required`, a pl
 
 Soft terminology constraints are specified in ADL using keywords prior to the formal constraint. Taking into account the recommendation for coded-text + text, the typical usage is as shown below. If no keyword is supplied, the meaning is `required`, although this may also be stated using the `required` keyword if desired.
 
-.at-coded ADL2 archetype
+.at-coded ADL2 syntax
 [source, cadl]
 --------
     items matches {
@@ -624,7 +624,7 @@ Soft terminology constraints are specified in ADL using keywords prior to the fo
     }
 --------
 
-.id-coded ADL2 archetype
+.id-coded ADL2 syntax
 [source, cadl]
 --------
     items matches {
@@ -664,7 +664,7 @@ Specifying which codable nodes (including 'all' and 'none' options) should have 
 
 The following example shows the result in an operational template fragment.
 
-.at-coded ADL2 archetype
+.at-coded ADL2 syntax
 [source, cadl]
 --------
     --
@@ -677,7 +677,7 @@ The following example shows the result in an operational template fragment.
     }
 --------
 
-.id-coded ADL2 archetype
+.id-coded ADL2 syntax
 [source, cadl]
 --------
     --
@@ -724,7 +724,7 @@ Enumeration types in a reference model are assumed to have the semantics defined
 
 In ADL, constraints on enumerated types are represented by constraints on the underlying primitive values. The following example shows 2 constraints on an attribute of the type `PROPORTION_KIND` from the openEHR Reference Model.
 
-.at-coded ADL2 archetype
+.at-coded ADL2 syntax
 [source, cadl]
 --------
     ITEM_TREE[at0003] ∈ {
@@ -749,7 +749,7 @@ In ADL, constraints on enumerated types are represented by constraints on the un
     }
 --------
 
-.id-coded ADL2 archetype
+.id-coded ADL2 syntax
 [source, cadl]
 --------
     ITEM_TREE[id4] ∈ {

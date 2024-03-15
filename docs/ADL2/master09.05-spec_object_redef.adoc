@@ -16,7 +16,7 @@ Redefinition of an object node identifier for purely semantic purposes, unaccomp
 
 Parent archetype:
 
-.at-coded ADL2 archetype
+.at-coded ADL2 syntax
 [source, cadl]
 --------
     EVALUATION[at0000] ∈ {                                      -- Medical Certificate
@@ -34,7 +34,7 @@ Parent archetype:
     }
 --------
 
-.id-coded ADL2 archetype
+.id-coded ADL2 syntax
 [source, cadl]
 --------
     EVALUATION[id1] ∈ {                                      -- Medical Certificate
@@ -54,7 +54,7 @@ Parent archetype:
 
 Child archetype:
 
-.at-coded ADL2 archetype
+.at-coded ADL2 syntax
 [source, cadl]
 --------
     EVALUATION[at0000.1] ∈ {                              -- Singapore Medical Certificate
@@ -64,7 +64,7 @@ Child archetype:
     }
 --------
 
-.id-coded ADL2 archetype
+.id-coded ADL2 syntax
 [source, cadl]
 --------
     EVALUATION[id1.1] ∈ {                              -- Singapore Medical Certificate
@@ -146,7 +146,7 @@ Within container attributes, `occurrences` is usually redefined in order to make
 
 Parent (`openEHR-EHR-EVALUATION.problem.v1.0.3`):
 
-.at-coded ADL2 archetype
+.at-coded ADL2 syntax
 [source, cadl]
 --------
     EVALUATION[at0000] ∈ { -- Problem
@@ -162,7 +162,7 @@ Parent (`openEHR-EHR-EVALUATION.problem.v1.0.3`):
     }
 --------
 
-.id-coded ADL2 archetype
+.id-coded ADL2 syntax
 [source, cadl]
 --------
     EVALUATION[id1] ∈ { -- Problem
@@ -180,7 +180,7 @@ Parent (`openEHR-EHR-EVALUATION.problem.v1.0.3`):
 
 Child (`openEHR-EHR-EVALUATION.problem-diagnosis.v1`):
 
-.at-coded ADL2 archetype
+.at-coded ADL2 syntax
 [source, cadl]
 --------
     /data[at0001]/items ∈ {
@@ -188,7 +188,7 @@ Child (`openEHR-EHR-EVALUATION.problem-diagnosis.v1`):
     }
 --------
 
-.id-coded ADL2 archetype
+.id-coded ADL2 syntax
 [source, cadl]
 --------
     /data[id2]/items ∈ {
@@ -202,7 +202,7 @@ In the above we can see that if the only change in the redefinition is to occurr
 
 Occurrences is most commonly constrained on child objects of container attributes, but can be set on objects of any attribute to effect exclusion of part of the instance space. This can be useful in archetypes where a number of alternatives for a single-valued attribute have been stated, and the need is to remove some alternatives in a specialised child archetype. For example, an archetype might have the following constraint:
 
-.at-coded ADL2 archetype
+.at-coded ADL2 syntax
 [source, cadl]
 --------
     ELEMENT[at0002] ∈ {
@@ -215,7 +215,7 @@ Occurrences is most commonly constrained on child objects of container attribute
     }
 --------
 
-.id-coded ADL2 archetype
+.id-coded ADL2 syntax
 [source, cadl]
 --------
     ELEMENT[id3] ∈ {
@@ -230,7 +230,7 @@ Occurrences is most commonly constrained on child objects of container attribute
 
 and the intention is to remove the `DV_INTERVAL<*>` alternatives. This is achieved by redefining the enclosing object to remove the relevant types:
 
-.at-coded ADL2 archetype
+.at-coded ADL2 syntax
 [source, cadl]
 --------
     ELEMENT[at0002] ∈ {
@@ -241,7 +241,7 @@ and the intention is to remove the `DV_INTERVAL<*>` alternatives. This is achiev
     }
 --------
 
-.id-coded ADL2 archetype
+.id-coded ADL2 syntax
 [source, cadl]
 --------
     ELEMENT[id3] ∈ {
@@ -254,7 +254,7 @@ and the intention is to remove the `DV_INTERVAL<*>` alternatives. This is achiev
 
 Exclusion by setting occurrences to `{0}` is also common in templates, and is used to remove specific child objects of container attributes, as in the following example:
 
-.at-coded ADL2 archetype
+.at-coded ADL2 syntax
 [source, cadl]
 --------
     /data[at0001]/items ∈ {
@@ -263,7 +263,7 @@ Exclusion by setting occurrences to `{0}` is also common in templates, and is us
     }
 --------
 
-.id-coded ADL2 archetype
+.id-coded ADL2 syntax
 [source, cadl]
 --------
     /data[id2]/items ∈ {
@@ -299,7 +299,7 @@ The default situation is that child redefinition nodes do not exhaustively repla
 
 Parent archetype:
 
-.at-coded ADL2 archetype
+.at-coded ADL2 syntax
 [source, cadl]
 --------
     items cardinality ∈ {0..*; unordered} ∈ {
@@ -313,7 +313,7 @@ Parent archetype:
     }
 --------
 
-.id-coded ADL2 archetype
+.id-coded ADL2 syntax
 [source, cadl]
 --------
     items cardinality ∈ {0..*; unordered} ∈ {
@@ -330,7 +330,7 @@ Parent archetype:
 
 Child archetype:
 
-.at-coded ADL2 archetype
+.at-coded ADL2 syntax
 [source, cadl]
 --------
     /data/events[at0001]/data/items ∈ {
@@ -346,7 +346,7 @@ Child archetype:
     }
 --------
 
-.id-coded ADL2 archetype
+.id-coded ADL2 syntax
 [source, cadl]
 --------
     /data/events[id2]/data/items ∈ {
@@ -383,7 +383,7 @@ Parent archetype:
 
 Specialised archetype:
 
-.at-coded ADL2 archetype
+.at-coded ADL2 syntax
 [source, cadl]
 --------
     .../value ∈ {
@@ -391,7 +391,7 @@ Specialised archetype:
     }
 --------
 
-.id-coded ADL2 archetype
+.id-coded ADL2 syntax
 [source, cadl]
 --------
     .../value ∈ {
@@ -405,7 +405,7 @@ When a type in an archetype is redefined into one of its subtypes, any existing 
 
 Parent archetype:
 
-.at-coded ADL2 archetype
+.at-coded ADL2 syntax
 [source, cadl]
 --------
     value ∈ {   
@@ -415,7 +415,7 @@ Parent archetype:
     }
 --------
 
-.id-coded ADL2 archetype
+.id-coded ADL2 syntax
 [source, cadl]
 --------
     value ∈ {
@@ -427,7 +427,7 @@ Parent archetype:
 
 Specialised archetype:
 
-.at-coded ADL2 archetype
+.at-coded ADL2 syntax
 [source, cadl]
 --------
     .../value ∈ {
@@ -438,7 +438,7 @@ Specialised archetype:
     }
 --------
 
-.id-coded ADL2 archetype
+.id-coded ADL2 syntax
 [source, cadl]
 --------
     .../value ∈ {
@@ -451,7 +451,7 @@ Specialised archetype:
 
 In the same manner, an object node can be specialised into more than one subtype, where each such constraint selects a mutually exclusive subset of the instance space. The following example shows a specialisation of the `DV_AMOUNT` constraint above into two sub-typed constraints.
 
-.at-coded ADL2 archetype
+.at-coded ADL2 syntax
 [source, cadl]
 --------
     .../value ∈ {
@@ -466,7 +466,7 @@ In the same manner, an object node can be specialised into more than one subtype
     }
 --------
 
-.id-coded ADL2 archetype
+.id-coded ADL2 syntax
 [source, cadl]
 --------
     .../value ∈ {
@@ -489,7 +489,7 @@ A final variant of subtyping is when the intention is to constraint the data to 
 * an instance of `DV_PROPORTION` with _numerator_ in the given range etc;
 * an instance of any other subtype of `DV_AMOUNT`, with _accuracy_ in the given range.
 
-.at-coded ADL2 archetype
+.at-coded ADL2 syntax
 [source, cadl]
 --------
     .../value ∈ {
@@ -507,7 +507,7 @@ A final variant of subtyping is when the intention is to constraint the data to 
     }
 --------
 
-.id-coded ADL2 archetype
+.id-coded ADL2 syntax
 [source, cadl]
 --------
     .../value ∈ {
@@ -527,7 +527,7 @@ A final variant of subtyping is when the intention is to constraint the data to 
 
 A typical use of this kind of refinement in openEHR would be to add an alternative for a `DV_CODED_TEXT` constraint for a specific terminology to an existing `DV_TEXT` constraint in a `_name_` attribute, as follows:
 
-.at-coded ADL2 archetype
+.at-coded ADL2 syntax
 [source, adl]
 --------
 definition
@@ -551,7 +551,7 @@ terminology
     >
 --------
 
-.id-coded ADL2 archetype
+.id-coded ADL2 syntax
 [source, adl]
 --------
 definition
@@ -590,7 +590,7 @@ The second type of redefinition above is the most common, and is shown in the fo
 
 Parent archetype:
 
-.at-coded ADL2 archetype
+.at-coded ADL2 syntax
 [source, cadl]
 --------
     ENTRY[at0000]∈ {
@@ -605,7 +605,7 @@ Parent archetype:
     }
 --------
 
-.id-coded ADL2 archetype
+.id-coded ADL2 syntax
 [source, cadl]
 --------
     ENTRY[id1]∈ {
@@ -622,7 +622,7 @@ Parent archetype:
 
 Child archetype:
 
-.at-coded ADL2 archetype
+.at-coded ADL2 syntax
 [source, cadl]
 --------
     ENTRY [at0000.1]∈ {
@@ -634,7 +634,7 @@ Child archetype:
     }
 --------
 
-.id-coded ADL2 archetype
+.id-coded ADL2 syntax
 [source, cadl]
 --------
     ENTRY [id1.1]∈ {
@@ -648,7 +648,7 @@ Child archetype:
 
 Remembering that the parent archetype is essentially just definition two sibling object structures with the identifiers `at0000` and `at0001` (`id1` and `id2`) (defined by the use_node reference), the child is redefining the `at0001` (`id2`) node (it could have redefined the `at0000` (`id1`) node as well). The result of this in the flattened output is as follows:
 
-.at-coded ADL2 archetype
+.at-coded ADL2 syntax
 [source, cadl]
 --------
     ENTRY [at0000.1] ∈ {
@@ -669,7 +669,7 @@ Remembering that the parent archetype is essentially just definition two sibling
     }
 --------
 
-.id-coded ADL2 archetype
+.id-coded ADL2 syntax
 [source, cadl]
 --------
     ENTRY [id1.1] ∈ {
@@ -717,7 +717,7 @@ Both types of redefinition are generally used by templates rather than published
 
 The following example shows a slot from a `SECTION` archetype for the 'history_medical_surgical' archetype.
 
-.at-coded ADL2 archetype
+.at-coded ADL2 syntax
 [source, cadl]
 --------
     SECTION[at0000] ∈ {    -- Past history
@@ -734,7 +734,7 @@ The following example shows a slot from a `SECTION` archetype for the 'history_m
     }
 --------
 
-.id-coded ADL2 archetype
+.id-coded ADL2 syntax
 [source, cadl]
 --------
     SECTION[id1] ∈ {    -- Past history
@@ -753,7 +753,7 @@ The following example shows a slot from a `SECTION` archetype for the 'history_m
 
 This slot specification allows `EVALUATION` archetypes for the concepts 'clinical synopsis', various kinds of 'exclusions' and 'problems', and 'injury' to be used, and no others. The following fragment of ADL shows how the slot is filled in a template, using the keyword `use_archetype`. In this syntax, the node identification is a variation on the normal archetype at-codes (id-codes). Within the template, the identifier of the used archetype is also the identifier of that node. However, the original at-code (if defined) must also be mentioned, to indicate which slot the used archetype is filling. Templates may also be used to fill slots in the same way. Thus, in the following example, two archetypes and a template are designated to fill the `at0001` (`id2`) slot defined in the above fragment of ADL. The slot definition is not mentioned, so it remains unchanged, i.e. 'open'.
 
-.at-coded ADL2 archetype
+.at-coded ADL2 syntax
 [source, cadl]
 --------
     SECTION[at0000] ∈ {    -- Past history
@@ -765,7 +765,7 @@ This slot specification allows `EVALUATION` archetypes for the concepts 'clinica
     }
 --------
 
-.id-coded ADL2 archetype
+.id-coded ADL2 syntax
 [source, cadl]
 --------
     SECTION[id1] ∈ {    -- Past history
@@ -779,7 +779,7 @@ This slot specification allows `EVALUATION` archetypes for the concepts 'clinica
 
 Slots can be recursively filled in the above fashion, according to the possibilities offered by the chosen archetypes or templates. The following ADL fragment shows two levels of slot-filling:
 
-.at-coded ADL2 archetype
+.at-coded ADL2 syntax
 [source, cadl]
 --------
     use_archetype COMPOSITION[openEHR-EHR-COMPOSITION.xxx.v1] ∈ {
@@ -795,7 +795,7 @@ Slots can be recursively filled in the above fashion, according to the possibili
     }
 --------
 
-.id-coded ADL2 archetype
+.id-coded ADL2 syntax
 [source, cadl]
 --------
     use_archetype COMPOSITION[openEHR-EHR-COMPOSITION.xxx.v1] ∈ {
@@ -815,7 +815,7 @@ Note that in the above the archetype fillers are specified as published archetyp
 
 In addition to or instead of specifying slot fillers, it is possible in a slot specialisation to narrow the slot definition, or to close it. If fillers are specified, closing the slot as well is typical. The latter is done by including an overridden version of the archetype slot object itself, with the 'closed' constraint set, as in the following example:
 
-.at-coded ADL2 archetype
+.at-coded ADL2 syntax
 [source, cadl]
 --------
     use_archetype SECTION[org.openehr::openEHR-EHR-SECTION.history_medical_surgical.v1] ∈ {
@@ -826,7 +826,7 @@ In addition to or instead of specifying slot fillers, it is possible in a slot s
     }
 --------
 
-.id-coded ADL2 archetype
+.id-coded ADL2 syntax
 [source, cadl]
 --------
     use_archetype SECTION[org.openehr::openEHR-EHR-SECTION.history_medical_surgical.v1] ∈ {
@@ -847,7 +847,7 @@ Any reference specified will have no slot, and is instead validity-checked again
 
 The following example from the openEHR reference model is typical.
 
-.at-coded ADL2 archetype
+.at-coded ADL2 syntax
 [source, cadl]
 --------
     COMPOSITION[at0000] matches {               -- Referral document
@@ -861,7 +861,7 @@ The following example from the openEHR reference model is typical.
     }
 --------
 
-.id-coded ADL2 archetype
+.id-coded ADL2 syntax
 [source, cadl]
 --------
     COMPOSITION[id1] matches {               -- Referral document
@@ -881,7 +881,7 @@ Using an external reference in an unarchetyped part of the RM structure is almos
 
 The following example shows the use of `use_archetype` within a specialised archetype.
 
-.at-coded ADL2 archetype
+.at-coded ADL2 syntax
 [source, cadl]
 --------
     COMPOSITION[at0000.1] matches {        -- Referral document (specialisation)
@@ -891,7 +891,7 @@ The following example shows the use of `use_archetype` within a specialised arch
     }
 --------
 
-.id-coded ADL2 archetype
+.id-coded ADL2 syntax
 [source, cadl]
 --------
     COMPOSITION[id1.1] matches {        -- Referral document (specialisation)
@@ -916,7 +916,7 @@ The following example shows a redefined real value range.
 
 Parent archetype:
 
-.at-coded ADL2 archetype
+.at-coded ADL2 syntax
 [source, cadl]
 --------
     value ∈ {   
@@ -927,7 +927,7 @@ Parent archetype:
     }
 --------
 
-.id-coded ADL2 archetype
+.id-coded ADL2 syntax
 [source, cadl]
 --------
     value ∈ {
@@ -940,7 +940,7 @@ Parent archetype:
 
 Specialised archetype:
 
-.at-coded ADL2 archetype
+.at-coded ADL2 syntax
 [source, cadl]
 --------
     .../value ∈ {
@@ -950,7 +950,7 @@ Specialised archetype:
     }
 --------
 
-.id-coded ADL2 archetype
+.id-coded ADL2 syntax
 [source, cadl]
 --------
     .../value ∈ {
@@ -968,7 +968,7 @@ Redefinition of a terminology constraint follows the golden rule that redefiniti
 
 The simplest form of terminology constraint specialisation is when a term constraint is used as a redefinition of a previously _unconstrained node_. This might simply be to require that a data item be of the appropriate reference model type, with no further constraint:
 
-.at-coded ADL2 archetype
+.at-coded ADL2 syntax
 [source, cadl]
 --------
     /data[at0001]/events[at0002]/data[at0003]/items[at0021]/value ∈ {  -- cuff size
@@ -976,7 +976,7 @@ The simplest form of terminology constraint specialisation is when a term constr
     }
 --------
 
-.id-coded ADL2 archetype
+.id-coded ADL2 syntax
 [source, cadl]
 --------
     /data[id2]/events[id3]/data[id4]/items[id22]/value ∈ {  -- cuff size
@@ -986,7 +986,7 @@ The simplest form of terminology constraint specialisation is when a term constr
 
 Alternatively, it may impose a value set, as follows:
 
-.at-coded ADL2 archetype
+.at-coded ADL2 syntax
 [source, cadl]
 --------
     /data[at0001]/events[at0002]/data[at0003]/items[at0021]/value ∈ {  -- cuff size
@@ -994,7 +994,7 @@ Alternatively, it may impose a value set, as follows:
     }
 --------
 
-.id-coded ADL2 archetype
+.id-coded ADL2 syntax
 [source, cadl]
 --------
     /data[id2]/events[id3]/data[id4]/items[id22]/value ∈ {  -- cuff size
@@ -1008,7 +1008,7 @@ The more typical redefinition case is when the parent node already states a term
 
 Parent archetype:
 
-.at-coded ADL2 archetype
+.at-coded ADL2 syntax
 [source, adl]
 --------
 definition
@@ -1041,7 +1041,7 @@ terminology
     >
 --------
 
-.id-coded ADL2 archetype
+.id-coded ADL2 syntax
 [source, adl]
 --------
 definition
@@ -1076,7 +1076,7 @@ terminology
 
 Specialised archetype:
 
-.at-coded ADL2 archetype
+.at-coded ADL2 syntax
 [source, adl]
 --------
 definition
@@ -1099,7 +1099,7 @@ terminology
     >
 --------
 
-.id-coded ADL2 archetype
+.id-coded ADL2 syntax
 [source, adl]
 --------
 definition
@@ -1125,7 +1125,7 @@ terminology
 
 A terminology external subset constraint is used to set the value set of a coded term to be one defined externally in a terminology, specified in the `term_definitions` sub-section of the `terminology` section, as shown in the following example.
 
-.at-coded ADL2 archetype
+.at-coded ADL2 syntax
 [source, adl]
 --------
 definition
@@ -1145,7 +1145,7 @@ terminology
     >
 --------
 
-.id-coded ADL2 archetype
+.id-coded ADL2 syntax
 [source, adl]
 --------
 definition
@@ -1167,7 +1167,7 @@ terminology
 
 In a specialisation of the archetype, the value set reference can be redefined in two different ways. The first is by redefinition of the constraint to a narrower one. This is a achieved by redefining the constraint code, and adding a new definition in the terminology of the specialised archetype, as follows.
 
-.at-coded ADL2 archetype
+.at-coded ADL2 syntax
 [source, adl]
 --------
 definition
@@ -1187,7 +1187,7 @@ terminology
     >
 --------
 
-.id-coded ADL2 archetype
+.id-coded ADL2 syntax
 [source, adl]
 --------
 definition
@@ -1209,7 +1209,7 @@ terminology
 
 The second kind of redefinition is by an internal value set, as follows.
 
-.at-coded ADL2 archetype
+.at-coded ADL2 syntax
 [source, adl]
 --------
 terminology
@@ -1223,7 +1223,7 @@ terminology
     >
 --------
 
-.id-coded ADL2 archetype
+.id-coded ADL2 syntax
 [source, adl]
 --------
 terminology
@@ -1243,7 +1243,7 @@ These redefinitions are assumed to be valid, although they are not directly vali
 
 Regardless of any changes to the value constraint, narrowing must also be respected for the constraint strength. Concretely, this means that a redefined terminology constraint may narrow the constraint strength by redefining any strength declared in a parent to any 'higher' strength, where the following order holds, from lowest to highest: `example` -> `preferred` -> `exensible` -> `required`. Thus, the following redefinition from `preferred` to `required` may be made:
 
-.at-coded ADL2 archetype
+.at-coded ADL2 syntax
 [source, cadl]
 --------
     -- parent archetype
@@ -1261,7 +1261,7 @@ Regardless of any changes to the value constraint, narrowing must also be respec
     }
 --------
 
-.id-coded ADL2 archetype
+.id-coded ADL2 syntax
 [source, cadl]
 --------
     -- parent archetype
@@ -1285,7 +1285,7 @@ NOTE: Although the standard form `defining_code matches {[ac1]}` may always be u
 
 It must be kept in mind that a constraint strength other than `required` is formally equivalent to _no constraint_ - i.e. it is only a guide for tooling and human authors. The following two fragments are therefore completely equivalent.
 
-.at-coded ADL2 archetype
+.at-coded ADL2 syntax
 [source, cadl]
 --------
     -- non-required constraint strength
@@ -1301,7 +1301,7 @@ It must be kept in mind that a constraint strength other than `required` is form
     }
 --------
 
-.id-coded ADL2 archetype
+.id-coded ADL2 syntax
 [source, cadl]
 --------
     -- non-required constraint strength
@@ -1319,7 +1319,7 @@ It must be kept in mind that a constraint strength other than `required` is form
 
 This means that redefinition of a node containing a non-required constraint strength is formally speaking a redefinition of a node with no constraint on terminology code values. _The specialised node may therefore state any value set, regardless of what value set was stated in the parent_. This is true regardless of whether the constraint strength itself is redefined. For example, in the following a `preferred` strength node with value set `ac1` is redefined by another `preferred` node using a non-conforming value set `ac0.4`.
 
-.at-coded ADL2 archetype
+.at-coded ADL2 syntax
 [source, cadl]
 --------
     -- parent archetype
@@ -1337,7 +1337,7 @@ This means that redefinition of a node containing a non-required constraint stre
     }
 --------
 
-.id-coded ADL2 archetype
+.id-coded ADL2 syntax
 [source, cadl]
 --------
     -- parent archetype
@@ -1361,7 +1361,7 @@ Tuple constraints can be redefined by narrowing, as for other primitive constrai
 
 Parent archetype:
 
-.at-coded ADL2 archetype
+.at-coded ADL2 syntax
 [source, cadl]
 --------
     DV_QUANTITY[at9000] ∈ {
@@ -1373,7 +1373,7 @@ Parent archetype:
     }
 --------
 
-.id-coded ADL2 archetype
+.id-coded ADL2 syntax
 [source, cadl]
 --------
     DV_QUANTITY[id42] ∈ {
@@ -1387,7 +1387,7 @@ Parent archetype:
 
 Child archetype:
 
-.at-coded ADL2 archetype
+.at-coded ADL2 syntax
 [source, cadl]
 --------
     DV_QUANTITY[at9000] ∈ {
@@ -1398,7 +1398,7 @@ Child archetype:
     }
 --------
 
-.id-coded ADL2 archetype
+.id-coded ADL2 syntax
 [source, cadl]
 --------
     DV_QUANTITY[id42] ∈ {
