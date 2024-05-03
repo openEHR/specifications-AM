@@ -4,12 +4,13 @@
 <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="generator" content="Asciidoctor 2.0.21">
+<meta name="generator" content="Asciidoctor 2.0.22">
 <meta name="description" content="openEHR Archetype Definition Language 2 (ADL2)">
 <meta name="keywords" content="EHR, ADL, AOM, health records, archetypes, constraint language, ISO 13606, openehr">
 <title>Archetype Definition Language 2 (ADL2)</title>
 <link rel="stylesheet" href="https://specifications.openehr.org/styles/openehr.css">
 <link rel="stylesheet" href="https://specifications.openehr.org/styles/pygments-default.css">
+<link rel="stylesheet" href="https://specifications.openehr.org/styles/asciidoctor-tabs.css">
 </head>
 <body class="book toc2 toc-left">
 <div id="header">
@@ -1950,23 +1951,37 @@ the structure, as shown in the following example:</p>
 <div class="paragraph">
 <p>cADL is a block-structured syntax which enables constraints on data defined by object-oriented information models to be expressed in archetypes or other knowledge definition formalisms. It is most useful for defining the specific allowable configurations of data whose instances conform to very general object models. The general appearance of cADL is illustrated by the following example:</p>
 </div>
-<div class="listingblock">
-<div class="title">at-coded ADL2 syntax</div>
+<div id="_tabs_1" class="openblock tabs is-loading">
 <div class="content">
-<pre class="pygments highlight"><code data-lang="cadl"><span></span><span class="tok-w">    </span><span class="tok-nc">PERSON</span><span class="tok-p">[</span><span class="tok-nd">at0000</span><span class="tok-p">]</span><span class="tok-w"> </span><span class="tok-o">matches </span><span class="tok-p">{</span><span class="tok-w">                                </span><span class="tok-c">-- constraint on a PERSON instance</span>
+<div class="ulist tablist">
+<ul>
+<li id="_tabs_1_at_coded_adl2" class="tab">
+<p>at-coded ADL2</p>
+</li>
+<li id="_tabs_1_id_coded_adl2" class="tab">
+<p>id-coded ADL2</p>
+</li>
+</ul>
+</div>
+<div id="_tabs_1_at_coded_adl2--panel" class="tabpanel" aria-labelledby="_tabs_1_at_coded_adl2">
+<div class="listingblock">
+<div class="title">The <em><strong>at-coded ADL2</strong></em> syntax is used for openEHR RM conformance.</div>
+<div class="content">
+<pre class="pygments highlight"><code data-lang="cadl"><span></span><span class="tok-w">    </span><span class="tok-nc">PERSON</span><span class="tok-p">[</span><span class="tok-nd">at0000</span><span class="tok-p">]</span><span class="tok-w"> </span><span class="tok-o">matches </span><span class="tok-p">{</span><span class="tok-w">                             </span><span class="tok-c">-- constraint on a PERSON instance</span>
 <span class="tok-w">        </span><span class="tok-nc">name</span><span class="tok-w"> </span><span class="tok-o">matches </span><span class="tok-p">{</span><span class="tok-w">                                   </span><span class="tok-c">-- constraint on PERSON.name</span>
-<span class="tok-w">            </span><span class="tok-nc">TEXT</span><span class="tok-p">[</span><span class="tok-nd">at0001</span><span class="tok-p">]</span><span class="tok-w"> </span><span class="tok-o">matches </span><span class="tok-p">{</span><span class="tok-sr">/.+/</span><span class="tok-p">}</span><span class="tok-w">                     </span><span class="tok-c">-- any non-empty string</span>
+<span class="tok-w">            </span><span class="tok-nc">TEXT</span><span class="tok-p">[</span><span class="tok-nd">at0001</span><span class="tok-p">]</span><span class="tok-w"> </span><span class="tok-o">matches </span><span class="tok-p">{</span><span class="tok-sr">/.+/</span><span class="tok-p">}</span><span class="tok-w">                  </span><span class="tok-c">-- any non-empty string</span>
 <span class="tok-w">        </span><span class="tok-p">}</span>
 <span class="tok-w">        </span><span class="tok-nc">addresses</span><span class="tok-w"> </span><span class="tok-kt">cardinality </span><span class="tok-o">matches </span><span class="tok-p">{</span><span class="tok-m">1..*</span><span class="tok-p">}</span><span class="tok-w"> </span><span class="tok-o">matches </span><span class="tok-p">{</span><span class="tok-w">   </span><span class="tok-c">-- constraint on</span>
-<span class="tok-w">            </span><span class="tok-nc">ADDRESS</span><span class="tok-p">[</span><span class="tok-nd">at0002</span><span class="tok-p">]</span><span class="tok-w"> </span><span class="tok-o">matches </span><span class="tok-p">{</span><span class="tok-w">                       </span><span class="tok-c">-- PERSON.addresses</span>
+<span class="tok-w">            </span><span class="tok-nc">ADDRESS</span><span class="tok-p">[</span><span class="tok-nd">at0002</span><span class="tok-p">]</span><span class="tok-w"> </span><span class="tok-o">matches </span><span class="tok-p">{</span><span class="tok-w">                    </span><span class="tok-c">-- PERSON.addresses</span>
 <span class="tok-w">                </span><span class="tok-c">-- etc --</span>
 <span class="tok-w">            </span><span class="tok-p">}</span>
 <span class="tok-w">        </span><span class="tok-p">}</span>
 <span class="tok-w">    </span><span class="tok-p">}</span></code></pre>
 </div>
 </div>
+</div>
+<div id="_tabs_1_id_coded_adl2--panel" class="tabpanel" aria-labelledby="_tabs_1_id_coded_adl2">
 <div class="listingblock">
-<div class="title">id-coded ADL2 syntax</div>
 <div class="content">
 <pre class="pygments highlight"><code data-lang="cadl"><span></span><span class="tok-w">    </span><span class="tok-nc">PERSON</span><span class="tok-p">[</span><span class="tok-nd">id1</span><span class="tok-p">]</span><span class="tok-w"> </span><span class="tok-o">matches </span><span class="tok-p">{</span><span class="tok-w">                                </span><span class="tok-c">-- constraint on a PERSON instance</span>
 <span class="tok-w">        </span><span class="tok-nc">name</span><span class="tok-w"> </span><span class="tok-o">matches </span><span class="tok-p">{</span><span class="tok-w">                                   </span><span class="tok-c">-- constraint on PERSON.name</span>
@@ -1980,26 +1995,42 @@ the structure, as shown in the following example:</p>
 <span class="tok-w">    </span><span class="tok-p">}</span></code></pre>
 </div>
 </div>
+</div>
+</div>
+</div>
 <div class="paragraph">
 <p>Some of the textual keywords in this example can be more efficiently rendered using common mathematical logic symbols. In the following example, the <code>matches</code> keyword have been replaced by an equivalent symbol:</p>
 </div>
-<div class="listingblock">
-<div class="title">at-coded ADL2 syntax</div>
+<div id="_tabs_2" class="openblock tabs is-loading">
 <div class="content">
-<pre class="pygments highlight"><code data-lang="cadl"><span></span><span class="tok-w">    </span><span class="tok-nc">PERSON</span><span class="tok-p">[</span><span class="tok-nd">at0000</span><span class="tok-p">]</span><span class="tok-w"> </span><span class="tok-o">∈</span><span class="tok-w"> </span><span class="tok-p">{</span><span class="tok-w">                            </span><span class="tok-c">-- constraint on a PERSON instance</span>
+<div class="ulist tablist">
+<ul>
+<li id="_tabs_2_at_coded_adl2" class="tab">
+<p>at-coded ADL2</p>
+</li>
+<li id="_tabs_2_id_coded_adl2" class="tab">
+<p>id-coded ADL2</p>
+</li>
+</ul>
+</div>
+<div id="_tabs_2_at_coded_adl2--panel" class="tabpanel" aria-labelledby="_tabs_2_at_coded_adl2">
+<div class="listingblock">
+<div class="content">
+<pre class="pygments highlight"><code data-lang="cadl"><span></span><span class="tok-w">    </span><span class="tok-nc">PERSON</span><span class="tok-p">[</span><span class="tok-nd">at0000</span><span class="tok-p">]</span><span class="tok-w"> </span><span class="tok-o">∈</span><span class="tok-w"> </span><span class="tok-p">{</span><span class="tok-w">                         </span><span class="tok-c">-- constraint on a PERSON instance</span>
 <span class="tok-w">        </span><span class="tok-nc">name</span><span class="tok-w"> </span><span class="tok-o">∈</span><span class="tok-w"> </span><span class="tok-p">{</span><span class="tok-w">                               </span><span class="tok-c">-- constraint on PERSON.name</span>
-<span class="tok-w">            </span><span class="tok-nc">TEXT</span><span class="tok-p">[</span><span class="tok-nd">at0001</span><span class="tok-p">]</span><span class="tok-w"> </span><span class="tok-o">∈</span><span class="tok-w"> </span><span class="tok-p">{</span><span class="tok-sr">/..*/</span><span class="tok-p">}</span><span class="tok-w">                </span><span class="tok-c">-- any non-empty string</span>
+<span class="tok-w">            </span><span class="tok-nc">TEXT</span><span class="tok-p">[</span><span class="tok-nd">at0001</span><span class="tok-p">]</span><span class="tok-w"> </span><span class="tok-o">∈</span><span class="tok-w"> </span><span class="tok-p">{</span><span class="tok-sr">/..*/</span><span class="tok-p">}</span><span class="tok-w">             </span><span class="tok-c">-- any non-empty string</span>
 <span class="tok-w">        </span><span class="tok-p">}</span>
 <span class="tok-w">        </span><span class="tok-nc">addresses</span><span class="tok-w"> </span><span class="tok-kt">cardinality </span><span class="tok-o">∈</span><span class="tok-w"> </span><span class="tok-p">{</span><span class="tok-m">1..*</span><span class="tok-p">}</span><span class="tok-w"> </span><span class="tok-o">∈</span><span class="tok-w"> </span><span class="tok-p">{</span><span class="tok-w">     </span><span class="tok-c">-- constraint on</span>
-<span class="tok-w">            </span><span class="tok-nc">ADDRESS</span><span class="tok-p">[</span><span class="tok-nd">at0002</span><span class="tok-p">]</span><span class="tok-w"> </span><span class="tok-o">∈</span><span class="tok-w"> </span><span class="tok-p">{</span><span class="tok-w">                   </span><span class="tok-c">-- PERSON.addresses</span>
+<span class="tok-w">            </span><span class="tok-nc">ADDRESS</span><span class="tok-p">[</span><span class="tok-nd">at0002</span><span class="tok-p">]</span><span class="tok-w"> </span><span class="tok-o">∈</span><span class="tok-w"> </span><span class="tok-p">{</span><span class="tok-w">                </span><span class="tok-c">-- PERSON.addresses</span>
 <span class="tok-w">                </span><span class="tok-c">-- etc --</span>
 <span class="tok-w">            </span><span class="tok-p">}</span>
 <span class="tok-w">        </span><span class="tok-p">}</span>
 <span class="tok-w">    </span><span class="tok-p">}</span></code></pre>
 </div>
 </div>
+</div>
+<div id="_tabs_2_id_coded_adl2--panel" class="tabpanel" aria-labelledby="_tabs_2_id_coded_adl2">
 <div class="listingblock">
-<div class="title">id-coded ADL2 syntax</div>
 <div class="content">
 <pre class="pygments highlight"><code data-lang="cadl"><span></span><span class="tok-w">    </span><span class="tok-nc">PERSON</span><span class="tok-p">[</span><span class="tok-nd">id1</span><span class="tok-p">]</span><span class="tok-w"> </span><span class="tok-o">∈</span><span class="tok-w"> </span><span class="tok-p">{</span><span class="tok-w">                            </span><span class="tok-c">-- constraint on a PERSON instance</span>
 <span class="tok-w">        </span><span class="tok-nc">name</span><span class="tok-w"> </span><span class="tok-o">∈</span><span class="tok-w"> </span><span class="tok-p">{</span><span class="tok-w">                               </span><span class="tok-c">-- constraint on PERSON.name</span>
@@ -2011,6 +2042,9 @@ the structure, as shown in the following example:</p>
 <span class="tok-w">            </span><span class="tok-p">}</span>
 <span class="tok-w">        </span><span class="tok-p">}</span>
 <span class="tok-w">    </span><span class="tok-p">}</span></code></pre>
+</div>
+</div>
+</div>
 </div>
 </div>
 <div class="paragraph">
@@ -12926,8 +12960,9 @@ Although the standard form <code>defining_code matches {[ac1]}</code> may always
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2024-02-19 14:36:30 UTC
+Last updated 2022-11-12 10:23:49 UTC
 </div>
 </div>
+<script src="https://specifications.openehr.org/js/asciidoctor-tabs.js"></script>
 </body>
 </html>
