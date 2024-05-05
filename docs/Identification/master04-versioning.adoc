@@ -104,17 +104,22 @@ The RM attribute names and node at-codes (id-codes) are visible within the paths
 
 We can show the highlighted path with code rubrics included:
 
-.at-coded ADL2 syntax
+[tabs,sync-group-id=adl-example]
+====
+at-coded ADL2::
++
 [source, cadl]
 --------
 /data[at0001]/events[at0002|Any event|]/data[at0003]/items[at0078.11|PaO2|]
 --------
 
-.id-coded ADL2 syntax
+id-coded ADL2::
++
 [source, cadl]
 --------
 /data[id2]/events[id3|Any event|]/data[id4]/items[id79.11|PaO2|]
 --------
+====
 
 Here `at0078.11` (`id79.11`) is defined as 'PaO2', for which the description is 'Oxygen partial pressure in arterial blood'. This defined the domain meaning of the node at this path.
 
@@ -144,7 +149,7 @@ Examples of breaking changes are:
 * change of domain definition of at-code (id-code);
 * narrowing of any constraint, including RM type of a node.
 
-Any such change necessarily requires a new major version. 
+Any such change necessarily requires a new major version.
 
 === Minor version changes
 

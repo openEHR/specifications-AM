@@ -1,6 +1,10 @@
 = Overview
 
-ADL uses three syntaxes, cADL (constraint form of ADL), ODIN (Object Data Instance Notation), and openEHR Expression Language (EL), to express constraints on data which are instances of an underlying information model, which may be expressed in UML, relational form, or in a programming language. ADL itself is a very simple 'glue' syntax, which uses two other syntaxes for expressing structured constraints and data, respectively. The cADL syntax is used to express the archetype `definition` section, while the ODIN syntax is used to express data which appears in the `language`, `description`, and `terminology` sections of an ADL archetype. The top-level structure of an ADL archetype is shown in the figure below.
+ADL uses three syntaxes, cADL (constraint form of ADL), ODIN (Object Data Instance Notation), and openEHR Expression Language (EL), to express constraints on data which are instances of an underlying information model, which may be expressed in UML, relational form, or in a programming language.
+
+ADL itself is a very simple 'glue' syntax, which uses two other syntaxes for expressing structured constraints and data, respectively.
+
+The cADL syntax is used to express the archetype `definition` section, while the ODIN syntax is used to express data which appears in the `language`, `description`, and `terminology` sections of an ADL archetype. The top-level structure of an ADL archetype is shown in the figure below.
 
 This main part of this document describes cADL and ADL path syntax, before going on to describe the combined ADL syntax, archetypes, specialisation, terminology integration and templates.
 
@@ -10,9 +14,22 @@ image::{diagrams_uri}/adl_text_overview.svg[id=archetype_structure, align="cente
 
 == An Example
 
-The following is an example of a very simple archetype, giving a feel for the syntax. The main point to glean from the following is that the notion of 'guitar' is defined in terms of _constraints_ on a _generic_ model of the concept "INSTRUMENT". The names mentioned down the left-hand side of the definition section (`INSTRUMENT`, `size` etc) are alternately class and attribute names from an object model.  Each block of braces encloses a specification for some particular set of instances that conform to a specific concept, such as 'guitar' or 'neck', defined in terms of constraints on types from a generic class model. The leaf pairs of braces enclose constraints on primitive types such as `Integer`, `String`, `Boolean` and so on. 
+The following is an example of a very simple archetype, giving a feel for the syntax. The main point to glean from the following is that the notion of 'guitar' is defined in terms of _constraints_ on a _generic_ model of the concept "INSTRUMENT".
 
-.at-coded ADL2 syntax
+The names mentioned down the left-hand side of the definition section (`INSTRUMENT`, `size` etc) are alternately class and attribute names from an object model.
+
+Each block of braces encloses a specification for some particular set of instances that conform to a specific concept, such as 'guitar' or 'neck', defined in terms of constraints on types from a generic class model. The leaf pairs of braces enclose constraints on primitive types such as `Integer`, `String`, `Boolean` and so on.
+
+====
+[IMPORTANT]
+ADL2.4 introduces an option to use the original ADL1.4 `at-coded` internal codeset/numbering system in order to retain compatibility with the openEHR Reference Model (RM).  The `id-coded` identifier variant remains an option for non-openEHR RM environments and examples for both variants will be provided.
+====
+
+[tabs,sync-group-id=adl-example]
+.Simple 'Guitar' archetype ADL2 example
+====
+at-coded ADL2::
++
 [source, adl]
 --------
 archetype (adl_version=2.0.5; rm_release=1.1.5)
@@ -70,7 +87,8 @@ terminology
     >
 --------
 
-.id-coded ADL2 syntax
+id-coded ADL2::
++
 [source, adl]
 --------
 archetype (adl_version=2.0.5; rm_release=1.1.5)
@@ -127,3 +145,4 @@ terminology
         >
     >
 --------
+====

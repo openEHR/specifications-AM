@@ -28,7 +28,7 @@ include::{uml_export_dir}/classes/{pkg}aom_property_mapping.adoc[leveloffset=+1]
 
 === Configuration File
 
-Instances of the above classes can be expressed in an ODIN format file, as a convenient way of defining configuration for tools. Examples of such files used for the {openehr_awb}[openEHR ADL Workbench^] tool can be found in the {openehr_awb_profiles}[Github project for the tool^]. 
+Instances of the above classes can be expressed in an ODIN format file, as a convenient way of defining configuration for tools. Examples of such files used for the {openehr_awb}[openEHR ADL Workbench^] tool can be found in the {openehr_awb_profiles}[Github project for the tool^].
 
 == Mapping RM Entities to AOM Entities
 
@@ -36,7 +36,7 @@ One adjustment that can be made is to indicate equivalences between RM entities 
 
 The mapping is achieved by using the `_aom_rm_type_mappings_` property of the `AOM_PROFILE` type, which enables equivalences between complex classes and properties to be described.
 
-The following example shows parts of two AOM profile files, illustrating two different mappings of RM types for 'coded text' to the AOM `TERMINOLOGY_CODE` class. The following extract is from the openEHR AOM profile file for the ADL Workbench. 
+The following example shows parts of two AOM profile files, illustrating two different mappings of RM types for 'coded text' to the AOM `TERMINOLOGY_CODE` class. The following extract is from the openEHR AOM profile file for the ADL Workbench.
 
 [source, odin]
 --------
@@ -93,7 +93,7 @@ Using class and property mappings can enable more sophisticated archetype compar
 
 == RM Primitive Type Equivalences
 
-The primitive constrainer types of the AOM, i.e. descendants of `C_PRIMITIVE_OBJECT` correspond to a small abstract set of primitive types, as shown in the table <<Primitive Types>>. The implied list of RM abstract primitive types is `Boolean`, `Integer`, `Real`, `Date`, `Date_time`, `Time`, `Duration`, `String`, and `Terminology_code`. However, real reference models may be based on typical programming languages, and therefore include types like `Double`, `Integer64`, and even numerous variants on `String`, `Integer` etc, such as `String_8`, `String32` and so on. 
+The primitive constrainer types of the AOM, i.e. descendants of `C_PRIMITIVE_OBJECT` correspond to a small abstract set of primitive types, as shown in the table <<Primitive Types>>. The implied list of RM abstract primitive types is `Boolean`, `Integer`, `Real`, `Date`, `Date_time`, `Time`, `Duration`, `String`, and `Terminology_code`. However, real reference models may be based on typical programming languages, and therefore include types like `Double`, `Integer64`, and even numerous variants on `String`, `Integer` etc, such as `String_8`, `String32` and so on.
 
 In order to prevent a similar explosion of AOM primitive types, the AOM profile enables equivalences between these latter types (which typically differ for each RM) and the abstract set to be stated, using the `_rm_primitive_type_equivalences_` property of `AOM_PROFILE`. An example is shown below.
 
@@ -112,7 +112,10 @@ rm_primitive_type_equivalences = <
 The following CADL fragment provides an example.
 
 
-.at-coded ADL2 syntax
+[tabs,sync-group-id=adl-example]
+====
+at-coded ADL2::
++
 [source, cadl]
 --------
     ELEMENT[at0004] occurrences matches {0..1} matches {	-- Systolic
@@ -127,7 +130,8 @@ The following CADL fragment provides an example.
     }
 --------
 
-.id-coded ADL2 syntax
+it-coded ADL2::
++
 [source, cadl]
 --------
     ELEMENT[id5] occurrences matches {0..1} matches {	-- Systolic
@@ -141,11 +145,12 @@ The following CADL fragment provides an example.
         }
     }
 --------
+====
 
 == RM Type Substitutions
 
 Occasionally there are type mismatches between the RM type and the AOM type we would like to use, or has been used in an archetype. For example, the RM may have a `String` attribute in some class that represents an ISO 8601 date. It is possible to use the AOM constrainer type `C_DATE` instead of `C_STRING`, to obtain a more meaningful constraint.
- 
+
 Another use is where the archetype has been written with an integer constraint (i.e. a `C_INTEGER`) but the RM has a `Real` or `Double` type in the corresponding place. This can also be accommodated.
 
 These differences can be corrected by using the `_aom_type_substitutions_` configuration table defined in the `AOM_PROFILE` class. The following is an example of using this facility to enable primitive type matching for openEHR archetypes.
@@ -167,7 +172,10 @@ aom_rm_type_substitutions = <
 
 The effect of these mappings is that literal values in an archetype that parse as the left-hand side type (`ISO8601_DATE` etc.) will be silently mapped to the right hand RM type (`String` etc). The following example shows a native ISO Duration field that is mapped to an RM String value.
 
-.at-coded ADL2 syntax
+[tabs,sync-group-id=adl-example]
+====
+at-coded ADL2::
++
 [source, cadl]
 --------
     INTERVAL_EVENT[at1042] occurrences matches {0..1} matches {	-- 24 hour average
@@ -179,10 +187,11 @@ The effect of these mappings is that literal values in an archetype that parse a
     }
 --------
 
-.id-coded ADL2 syntax
+id-coded ADL2::
++
 [source, cadl]
 --------
-    INTERVAL_EVENT[id1043] occurrences matches {0..1} matches {	-- 24 hour average 
+    INTERVAL_EVENT[id1043] occurrences matches {0..1} matches {	-- 24 hour average
         width matches {
             DV_DURATION[id1064] matches {
                 value matches {PT24H}  --  parses as AOM ISO8601_DURATION, but is String in RM
@@ -190,6 +199,7 @@ The effect of these mappings is that literal values in an archetype that parse a
         }
     }
 --------
+====
 
 == AOM Lifecycle State Mappings
 
@@ -207,7 +217,7 @@ description
     resource_package_uri =  <".....">
 --------
 
-The following example shows typical mappings of customs lifecycle state names to the openEHR standard state names. 
+The following example shows typical mappings of customs lifecycle state names to the openEHR standard state names.
 
 [source, odin]
 --------

@@ -40,7 +40,10 @@ This section describes the scenarios and representation required for identifier-
 
 In ADL 2, a direct archetype-archetype reference, known as an 'external reference' can be defined, which uses the archetype miniHRID, as shown in the following example.
 
-.at-coded ADL2 syntax
+[tabs,sync-group-id=adl-example]
+====
+at-coded ADL2::
++
 [source, cadl]
 --------
     ACTIVITY[at0001] ∈ {   -- Medication activity
@@ -50,7 +53,9 @@ In ADL 2, a direct archetype-archetype reference, known as an 'external referenc
     }
 --------
 
-.id-coded ADL2 syntax
+
+id-coded ADL2::
++
 [source, cadl]
 --------
     ACTIVITY[id2] ∈ {   -- Medication activity
@@ -59,6 +64,7 @@ In ADL 2, a direct archetype-archetype reference, known as an 'external referenc
         }
     }
 --------
+====
 
 If such a reference does not include a namespace, the meaning is that the same namespace as the current archetype is assumed (which may be no namespace). A namespace would be included to express a reference to an archetype outside the current namespace.
 
@@ -121,7 +127,7 @@ A typical slot definition using REs based on such identifiers is as follows:
 [source, cadl]
 --------
     protocol matches {
-        ITEM_TREE[at0015] ∈ {   
+        ITEM_TREE[at0015] ∈ {
             items cardinality ∈ {0..*; ordered} ∈ {
                 allow_archetype CLUSTER[id20] occurrences ∈ {0..1} matches {
                     include
@@ -145,7 +151,10 @@ As for external references, there is technically nothing to stop a slot RE being
 
 In ADL 2 a slot can be defined using a semantic (rather than lexical) expression in which matching archetypes are defined in the form of a constraint on the archetype concept (and optionally namespace), reminiscent of the SNOMED CT post-coordination constraint syntax. This is shown in the following example.
 
-.at-coded ADL2 syntax
+[tabs,sync-group-id=adl-example]
+====
+at-coded ADL2::
++
 [source, cadl]
 --------
     allow_archetype CLUSTER [at0003.1] occurrences ∈ {0..1} ∈ {
@@ -160,7 +169,8 @@ In ADL 2 a slot can be defined using a semantic (rather than lexical) expression
         }
 --------
 
-.id-coded ADL2 syntax
+id-coded ADL2::
++
 [source, cadl]
 --------
     allow_archetype CLUSTER [id4.1] occurrences ∈ {0..1} ∈ {
@@ -174,6 +184,7 @@ In ADL 2 a slot can be defined using a semantic (rather than lexical) expression
             }
         }
 --------
+====
 
 The above kind of referencing relies on an ontological underpinning for the `concept_id` part of the human-readable identifier.
 
@@ -185,21 +196,26 @@ AQL queries are in general authored in a 'set' in order to achieve a design obje
 
 Archetype-based queries contain archetype references and paths, and can also contain template identifiers and paths. Typical examples are the paths (in green) in the following query:
 
-.at-coded ADL2 syntax
+[tabs,sync-group-id=adl-example]
+====
+at-coded ADL2::
++
 [source, sql]
 --------
-    SELECT pulse 
-    FROM EHR[ehr_id/value=$ehruid] 
-     CONTAINS COMPOSITION c 
-     CONTAINS OBSERVATION pulse[openEHR-EHR-OBSERVATION.pulse.v1] 
+    SELECT pulse
+    FROM EHR[ehr_id/value=$ehruid]
+     CONTAINS COMPOSITION c
+     CONTAINS OBSERVATION pulse[openEHR-EHR-OBSERVATION.pulse.v1]
 
-    WHERE c/name/value='Encounter` AND 
-        c/context/start_time/value <= $endperiod AND 
+    WHERE c/name/value='Encounter` AND
+        c/context/start_time/value <= $endperiod AND
         c/context/start_time/value >= $startPeriod AND
         pulse/data/events[at0005]/data/items[at0003]/value/value < 60
 --------
 
-.id-coded ADL2 syntax
+
+id-coded ADL2::
++
 [source, sql]
 --------
     SELECT pulse
@@ -212,6 +228,7 @@ Archetype-based queries contain archetype references and paths, and can also con
         c/context/start_time/value >= $startPeriod AND
         pulse/data/events[id6]/data/items[id4]/value/value < 60
 --------
+====
 
 The semantics of referencing in queries differ from those of the archetype-to-archetype form, due to the fact that references are normally followed by paths that refer to specific data points within the structure. For an AQL query to be correct, the path must exist in the archetype at the release matched by the reference. Since minor versions can add to the archetype 'interface' (i.e. add data points, and therfore paths, to the structure), a given path needs to reference the oldest archetype for which the path is valid. Consider the following path:
 
@@ -229,17 +246,23 @@ Once an AQL query processor can work with a valid path, it will match the follow
 
 An example of a congruent path in a child archetype is:
 
-.at-coded ADL2 syntax
+[tabs,sync-group-id=adl-example]
+====
+at-coded ADL2::
++
 [source, cadl]
 --------
     /data/events[at0005.0.4]/data/items[at0003.1]/value/value
 --------
 
-.id-coded ADL2 syntax
+
+id-coded ADL2::
++
 [source, cadl]
 --------
     /data/events[id6.0.4]/data/items[id4.1]/value/value
 --------
+====
 
 == Operational Artefacts
 
