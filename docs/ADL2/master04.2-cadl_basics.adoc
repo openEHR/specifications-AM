@@ -180,9 +180,23 @@ A *type name* is any identifier with an initial upper case letter, followed by a
 
 Type identifiers are shown in this document in all uppercase, e.g. `PERSON` , while attribute identifiers are shown in all lowercase, e.g. `home_address` . In both cases, underscores are used to represent word breaks. This convention is used to improve the readability of this document, and other conventions may be used, such as the common programmer's mixed-case convention exemplified by `Person` and `homeAddress`. The convention chosen for any particular cADL document should be based on that used in the underlying information model.
 
-=== Node Identifiers
+=== Node Identifiers and Codesystems
 
-Node identifier codes appear after all type identifiers in a cADL text. For at-coded archetypes they take the form of an 'at-code' in brackets, e.g. `[at0002]`. The at-code of a root object in a structure is always `at0000`, or for specialised archetypes, `at0000.1`, `at0000.1.1` etc. The rules and use of node identifiers is described in more detail below. For id-coded archetypes they take the form of an 'id-code' in brackets, e.g. `[id3]`. The id-code of a root object in a structure is always `id1`, or for specialised archetypes, `id1.1`, `id1.1.1` etc. The rules and use of node identifiers is described in more detail below.
+Node identifier codes appear after all type identifiers in a cADL text.
+
+ADL2.4 onwards supports a choice of node identifier _codesystems_, in order to facilitate transition from ADL1 to ADL2.
+
+- An `at-code codesystem` identical to that used for ADL1, and mandatory for use in openEHR RM environments.
+
+- An 'id-code codesystem` introduced in ADL2.
+
+Each codesystem has a different node-naming and numbering conventions:
+
+- For **at-coded archetypes**, node identifiers take the form of an _at-code_ in brackets, e.g. `[at0002]`. The at-code of a root object in a structure is always `at0000`, or for specialised archetypes, `at0000.1`, `at0000.1.1` etc.
+
+- For **id-coded archetypes**, node identifiers take the form of an _id-code_ in brackets, e.g. `[id3]`. The id-code of a root object in a structure is always `id1`, or for specialised archetypes, `id1.1`, `id1.1.1` etc.
+
+The rules and use of node identifiers and the different codesystems is described in more detail at <<xxx>>.
 
 === The matches Operator
 
