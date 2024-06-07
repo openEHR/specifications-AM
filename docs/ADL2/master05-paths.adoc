@@ -32,7 +32,10 @@ The ADL path syntax is semantically a subset of the Xpath query language, with a
 
 ADL does not distinguish attributes from children, and also assumes the node_id attribute. Thus, the following expressions are legal for cADL structures:
 
-.at-coded ADL2 syntax
+[tabs,sync-group-id=adl-example]
+====
+at-coded ADL2::
++
 [source, cadl]
 ----
     items[1]                            -- the first member of 'items'
@@ -40,33 +43,40 @@ ADL does not distinguish attributes from children, and also assumes the node_id 
     items[at0003]                       -- the member of 'items' with node id 'at0003'
 ----
 
-.id-coded ADL2 syntax
+id-coded ADL2::
++
 [source, cadl]
 ----
     items[1]                            -- the first member of 'items'
     items[systolic]                     -- the member of 'items' with meaning 'systolic'
     items[id1]                          -- the member of 'items' with node id 'id1'
 ----
+====
 
 The Xpath equivalents are:
 
-.at-coded ADL2 syntax
+[tabs,sync-group-id=adl-example]
+====
+at-coded ADL2::
++
 [source, xpath]
-----
+-----
     items[1]                              -- the first member of 'items'
     items[meaning() = 'systolic']         -- the member of 'items' for which the meaning()
                                           -- function evaluates to "systolic"
     items[@archetype_node_id = 'at0003']  -- the member of 'items' with key 'at0003'
-----
+-----
 
-.id-coded ADL2 syntax
+id-coded ADL2::
++
 [source, xpath]
-----
+-----
     items[1]                           -- the first member of 'items'
     items[meaning() = 'systolic']      -- the member of 'items' for which the meaning()
                                        -- function evaluates to "systolic"
     items[@archetype_node_id = 'id1']  -- the member of 'items' with key 'id1'
-----
+-----
+====
 
 In the above, `meaning()` is a notional function is defined for Xpath in openEHR, which returns the rubric for the node_id of the current node. Such paths are only for display purposes, and paths used for computing always use the 'at' ('id') codes, e.g. `items[at0003]` (`items[id1]`), for which the Xpath equivalent is `items[@node_id = 'at0003']` (`items[@node_id = 'id1']`).
 

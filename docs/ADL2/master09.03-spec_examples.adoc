@@ -6,11 +6,14 @@ The examples below provide a basis for understanding most of the semantics discu
 
 The example shown below is from an older version of the openEHR 'Problem' archetype and illustrates the use of redefinition and extension. The first text is the definition section of the top-level 'Problem' archetype, and shows one `ELEMENT` node in expanded form, with the remaining nodes in an elided form.
 
-.at-coded ADL2 syntax
+[tabs,sync-group-id=adl-example]
+====
+at-coded ADL2::
++
 [source, cadl]
 --------
     -- openEHR-EHR-EVALUATION.problem.v1 --
-    
+
     EVALUATION[at0000] ∈ {                                              -- Problem
         data ∈ {
             ITEM_TREE[at0001] ∈ {
@@ -34,7 +37,8 @@ The example shown below is from an older version of the openEHR 'Problem' archet
     }
 --------
 
-.id-coded ADL2 syntax
+id-coded ADL2::
++
 [source, cadl]
 --------
     -- openEHR-EHR-EVALUATION.problem.v1 --
@@ -61,14 +65,18 @@ The example shown below is from an older version of the openEHR 'Problem' archet
         }
     }
 --------
+====
 
 The second text below is from the 'problem-diagnosis' archetype, i.e. a 'diagnosis' specialisation of the general notion of 'problem'. In this situation, the node `[at0001]` (`[id2]`), with occurrences of 1, i.e. mandatory non-multiple, has its meaning narrowed to `[at0001.1]` (`[id2.1]`) 'diagnosis' (diagnosed problems are seen as a subset of all problems in medicine), while new sibling nodes are added to the items attribute to define details particular to recording a diagnosis. The extension nodes are identified by the codes `[at0.32]` , `[at0.35]` and `[at0.37]` (`[id0.32]` , `[id0.35]` and `[id0.37]`), with the latter two shown in elided form.
 
-.at-coded ADL2 syntax
+[tabs,sync-group-id=adl-example]
+====
+at-coded ADL2::
++
 [source, cadl]
 --------
     -- openEHR-EHR-EVALUATION.problem-diagnosis.v1 --   -- specialises openEHR-EHR-EVALUATION.problem.v1
-    
+
     EVALUATION[at0000.1] ∈ {                               -- Recording of diagnosis
         /data[at0001.1]/items[at0002]/value ∈ {            -- redefine at0001 to at0001.1 (in terminology section)
             DV_CODED_TEXT[at9000] ∈ {                      -- << This node redefines 'NODE A' above
@@ -93,7 +101,8 @@ The second text below is from the 'problem-diagnosis' archetype, i.e. a 'diagnos
     }
 --------
 
-.id-coded ADL2 syntax
+id-coded ADL2::
++
 [source, cadl]
 --------
     -- openEHR-EHR-EVALUATION.problem-diagnosis.v1 --   -- specialises openEHR-EHR-EVALUATION.problem.v1
@@ -121,13 +130,18 @@ The second text below is from the 'problem-diagnosis' archetype, i.e. a 'diagnos
         }
     }
 --------
+====
+
 
 [[redefinition_for_specialisation]]
 === Redefinition for Specialisation
 
 The example shown below illustrates redefinition in a specialised archetype. The first text is taken from the definition section of the 'laboratory result' `OBSERVATION` archetype (available at {openehr_CKM}[openEHR CKM^]), and contains an `ELEMENT` node whose identifier is `[at0078]` (`[id79]`) , defined as 'panel item' in the archetype terminology (sibling nodes are not shown here). The intention is that the `[at0078]` (`[id79]`) node be specialised into particular 'panel items' or analytes according to particular types of test result. Accordingly, the `[at0078]` (`[id79]`) node has occurrences of `0..*` and its value is not constrained with respect to the reference model, meaning that the type of the `_value_` attribute can be any descendant of `DATA_VALUE` .
 
-.at-coded ADL2 syntax
+[tabs,sync-group-id=adl-example]
+====
+at-coded ADL2::
++
 [source, cadl]
 --------
     ------ openEHR-EHR-OBSERVATION.laboratory.v1 ------
@@ -156,7 +170,8 @@ The example shown below illustrates redefinition in a specialised archetype. The
     }
 --------
 
-.id-coded ADL2 syntax
+id-coded ADL2::
++
 [source, cadl]
 --------
     ------ openEHR-EHR-OBSERVATION.laboratory.v1 ------
@@ -184,10 +199,14 @@ The example shown below illustrates redefinition in a specialised archetype. The
         }
     }
 --------
+====
 
 The second text, below, is a specialised version of the laboratory result archetype, defining 'thyroid function test result'.
 
-.at-coded ADL2 syntax
+[tabs,sync-group-id=adl-example]
+====
+at-coded ADL2::
++
 [source, cadl]
 --------
     ------ openEHR-EHR-OBSERVATION.laboratory-thyroid.v1 ------
@@ -213,7 +232,8 @@ The second text, below, is a specialised version of the laboratory result archet
     }
 --------
 
-.id-coded ADL2 syntax
+id-coded ADL2::
++
 [source, cadl]
 --------
     ------ openEHR-EHR-OBSERVATION.laboratory-thyroid.v1 ------
@@ -238,6 +258,7 @@ The second text, below, is a specialised version of the laboratory result archet
         }
     }
 --------
+====
 
 The redefinitions include:
 
@@ -256,7 +277,10 @@ In the previous example, each of the nodes with identifiers of the form `at0078.
 
 Parent archetype:
 
-.at-coded ADL2 syntax
+[tabs,sync-group-id=adl-example]
+====
+at-coded ADL2::
++
 [source, cadl]
 --------
     CLUSTER[at0000] ∈ {                                         -- Laboratory test panel
@@ -277,7 +301,7 @@ Parent archetype:
                     ELEMENT[at0005] occurrences ∈ {0..1} ∈ {   -- Result Value Status
                         value ∈ {
                             DV_CODED_TEXT[at9002] ∈ {
-                                defining_code ∈ {[ac1]}                 
+                                defining_code ∈ {[ac1]}
                             }
                         }
                     }
@@ -296,7 +320,8 @@ Parent archetype:
     }
 --------
 
-.id-coded ADL2 syntax
+id-coded ADL2::
++
 [source, cadl]
 --------
     CLUSTER[id1] ∈ {                                         -- Laboratory test panel
@@ -335,10 +360,14 @@ Parent archetype:
         }
     }
 --------
+====
 
 Specialised child archetype:
 
-.at-coded ADL2 syntax
+[tabs,sync-group-id=adl-example]
+====
+at-coded ADL2::
++
 [source, cadl]
 --------
     CLUSTER[at0000.1] ∈ {    -- Lipid studies panel
@@ -389,7 +418,8 @@ Specialised child archetype:
     }
 --------
 
-.id-coded ADL2 syntax
+id-coded ADL2::
++
 [source, cadl]
 --------
     CLUSTER[id1.1] ∈ {    -- Lipid studies panel
@@ -439,6 +469,7 @@ Specialised child archetype:
         }
     }
 --------
+====
 
 The flattened result consists of a number of repetitions of the entire `CLUSTER[at0002]` (`CLUSTER[id3]`) structure from the parent, corresponding to the specialisations in the child. The ADL source form is too large to show here, but the {openehr_awb}[ADL Workbench^] provides a visualisation in <<specialisation_with_cloning>>. In this figure we can see that the `CLUSTER` / `ELEMENT` overlays from the child archetype have been overlaid on clones of the `CLUSTER[id3]` structure from the parent, preserving the `at0003` , `at0004` (`id4` , `id5`) etc nodes. Elements shown in light blue are inherited; where they appear under the nodes `[at0002.1]`, `[at0002.2]` (`[id3.1]`, `[id3.2]`) etc, they are cloned from the corresponding nodes under `[at0002]` (`[id3]`).
 

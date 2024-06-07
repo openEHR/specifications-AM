@@ -14,10 +14,13 @@ ADL provides one other special feature specific to templates: the ability to def
 
 By way of illustrating ADL's template-related ADL features, an example is useful. The following is the openEHR archetype `openEHR-EHR-COMPOSITION.discharge.v1` for the generic concept 'discharge summary' followed by a template representing a full patient clinical information discharge summary, consisting of `COMPOSITION`, `SECTION` and various `ENTRY` archetypes.
 
-.at-coded ADL2 syntax
+[tabs,sync-group-id=adl-example]
+====
+at-coded ADL2::
++
 [source, adl]
 --------
-archetype (adl_version=2.x.x; rm_release=1.0.3)
+archetype (adl_version=2.4.0; rm_release=1.0.3)
     openEHR-EHR-COMPOSITION.discharge.v1.0.0
 
 language
@@ -75,10 +78,11 @@ terminology
     >
 --------
 
-.id-coded ADL2 syntax
+id-coded ADL2::
++
 [source, adl]
 --------
-archetype (adl_version=2.0.5; rm_release=1.0.2)
+archetype (adl_version=2.4.0; rm_release=1.0.2)
     openEHR-EHR-COMPOSITION.discharge.v1.0.0
 
 language
@@ -135,6 +139,7 @@ terminology
         >
     >
 --------
+====
 
 Below is the template definition. The root artefact is a self-standing template `openEHR-EHR-COMPOSITION.t_clinical_info_ds_sf.v1.0.0` that specialises the archetype . The declaration of being a 'template' is primarily to signal to tools the intended use of the artefact - it doesn't have any formal implications. The job of the template is to define the specific clinical information required in a discharge summary (note that not all the usual items are included, in order to reduce the size of the template as shown here - clinical synopsis and medications list are left out).
 
@@ -146,10 +151,13 @@ Each overlay can be seen to be a specialisation of an archetype (it could also h
 
 Additionally, some overlays contain element removal constraints (`occurrences matches {0}`), used to reduce the data set to the intended final result for the purpose of this template. Clearly other templates could make quite different selections of data items from the same archetypes.
 
-.at-coded ADL2 syntax
+[tabs,sync-group-id=adl-example]
+====
+at-coded ADL2::
++
 [source, adl]
 --------
-template (adl_version=2.x.x; rm_release=1.0.3)
+template (adl_version=2.4.0; rm_release=1.0.3)
     openEHR-EHR-COMPOSITION.t_clinical_info_ds_sf.v1.0.0
 
 specialize
@@ -176,7 +184,7 @@ description
 
 definition
     COMPOSITION[at0000.1] ∈ {    -- Clinical detail
-        context existence ∈ {0} 
+        context existence ∈ {0}
         content ∈ {
             use_archetype SECTION[at0000.1, openEHR-EHR-SECTION.t_patient_event_info_ds_sf.v1] occurrences ∈ {1}
             use_archetype EVALUATION[at0000.2, openEHR-EHR-EVALUATION.t_clinical_info_ds_sf-1.v1] occurrences ∈ {0..1}
@@ -284,10 +292,11 @@ terminology
     >
 --------
 
-.id-coded ADL2 syntax
+id-coded ADL2::
++
 [source, adl]
 --------
-template (adl_version=2.0.5; rm_release=1.0.2)
+template (adl_version=2.4.0; rm_release=1.0.2)
     openEHR-EHR-COMPOSITION.t_clinical_info_ds_sf.v1.0.0
 
 specialize
@@ -421,13 +430,17 @@ terminology
         >
     >
 --------
+====
 
 When the above is flattened, with all overlays, slot fillers and external references being inlined, a single operational template results, as shown below. Note the `component_terminologies` section at the end, which contains the terminology of every constituent overlay and archetype.
 
-.at-coded ADL2 syntax
+[tabs,sync-group-id=adl-example]
+====
+at-coded ADL2::
++
 [source, adl]
 --------
-operational_template (adl_version=2.x.x; rm_release=1.0.3; generated)
+operational_template (adl_version=2.4.0; rm_release=1.0.3; generated)
 	openEHR-EHR-COMPOSITION.t_clinical_info_ds_sf.v1.0.0
 
 specialize
@@ -471,7 +484,7 @@ definition
             }
             --- etc ---
         }
-    }	
+    }
 
 terminology
 	term_definitions = <
@@ -521,14 +534,15 @@ component_terminologies
                 ------- etc ---------
 			>
 		>
-	>                
-        
+	>
+
 --------
 
-.id-coded ADL2 syntax
+id-coded ADL2::
++
 [source, adl]
 --------
-operational_template (adl_version=2.0.6; rm_release=1.0.2; generated)
+operational_template (adl_version=2.4.0; rm_release=1.0.2; generated)
 	openEHR-EHR-COMPOSITION.t_clinical_info_ds_sf.v1.0.0
 
 specialize
@@ -623,5 +637,5 @@ component_terminologies
 			>
 		>
 	>
-
 --------
+====

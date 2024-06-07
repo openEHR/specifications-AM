@@ -69,16 +69,28 @@ The object syntax used to represent the description, terminology and annotations
 
 ==== Changes
 
-The primary change in version 2.4 is introduction of alternative code systems.
-ADL2 was initially released with code system using id-codes, at-codes and ac-codes.
-As this proved to hinder its widespread use in the openEHR community (due to its impact on existing openEHR RM data) a code system matching the one used in ADL 1.4 was introduced (using just at-codes and ac-codes) as openEHR primary code system.
-The new coding system also carries original ADL 2 id-codes in its archetypes as alternative codes.
+ADL2 was initially released with a new id-coded codesystem using id-codes, at-codes and ac-codes.
+
+The primary change in version 2.4 is the introduction of an alternative at-code codesystem, identical to that used in ADL1.
+
+Although a conversion algorithm was developed to enable conversion for ADL1  at-coded archetypes and templates to the new id-coded codesystem, the openEHR implementer community had concerns on the burden and impact and safety risks inherent in converting downstream software artefacts, queries and persisted patient records.
+
+It was felt that the best solution was to allow openEHR-RM based systems and archetypes to continue to use the original ADL1 at-coded codesystem instead of the id-coded codesystem. THis was seen as critical to remove a very significant barrier to transition from ADL1 to ADL2  which in all other respects was widely welcomed by the established openEHR implementer community,
+
+[WARNING]::
+**Is this correct??**
+
+Where The new coding system also carries original ADL 2 id-codes in its archetypes as alternative codes.
+
+
+
+
 
 NOTE: ADL tools conformant to ADL/AOM 2.3 or earlier will not conform to the at-coded ADL2 archetypes described in ADL 2.4 without additional engineering.
 
 ==== Backward Compatibility
 
-When using at-code codesystem this release is fully backward compatible with openEHR data created based on ADL 1.4 archetypes but breaks compatibility with openEHR data created based on ADL 2.0 - ADL 2.3 archetypes.
+When using the at-coded codesystem, this ADL2.4 release is fully backwards compatible with openEHR data created based on ADL 1.4 archetypes but breaks compatibility with openEHR data created based on ADL 2.0 - ADL 2.3 archetypes.
 
 === ADL 2.0
 
@@ -182,7 +194,7 @@ It is strongly recommended that all tool implementors include this information w
 
 ==== dADL (ODIN) Syntax Changes
 
-The dADL (now ODIN) syntax for container attributes has been altered to allow paths and typing to be expressed more clearly, as part of enabling the use of Xpath-style paths. ADL 1.1 dADL had the following appearance: 
+The dADL (now ODIN) syntax for container attributes has been altered to allow paths and typing to be expressed more clearly, as part of enabling the use of Xpath-style paths. ADL 1.1 dADL had the following appearance:
 
 ```
 	school_schedule = <

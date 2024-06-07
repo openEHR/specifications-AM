@@ -4,12 +4,13 @@
 <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="generator" content="Asciidoctor 2.0.21">
+<meta name="generator" content="Asciidoctor 2.0.22">
 <meta name="description" content="openEHR Archetype Object Model 2 (AOM2) (ISO 13606-2:2019)">
 <meta name="keywords" content="EHR, ADL, AOM, health records, archetypes, constraint language, ISO 13606, openehr">
 <title>Archetype Object Model 2 (AOM2)</title>
 <link rel="stylesheet" href="https://specifications.openehr.org/styles/openehr.css">
 <link rel="stylesheet" href="https://specifications.openehr.org/styles/pygments-default.css">
+<link rel="stylesheet" href="https://specifications.openehr.org/styles/asciidoctor-tabs.css">
 </head>
 <body class="book toc2 toc-left">
 <div id="header">
@@ -9015,8 +9016,20 @@ Hash of keys ("text", "description" etc) and corresponding values.</p>
 <div class="paragraph">
 <p>The following CADL fragment provides an example.</p>
 </div>
+<div id="_tabs_1" class="openblock tabs is-sync data-sync-group-id=adl-example is-loading">
+<div class="content">
+<div class="ulist tablist">
+<ul>
+<li id="_tabs_1_at_coded_adl2" class="tab">
+<p>at-coded ADL2</p>
+</li>
+<li id="_tabs_1_it_coded_adl2" class="tab">
+<p>it-coded ADL2</p>
+</li>
+</ul>
+</div>
+<div id="_tabs_1_at_coded_adl2--panel" class="tabpanel" aria-labelledby="_tabs_1_at_coded_adl2">
 <div class="listingblock">
-<div class="title">at-coded ADL2 syntax</div>
 <div class="content">
 <pre class="pygments highlight"><code data-lang="cadl"><span></span><span class="tok-w">    </span><span class="tok-nc">ELEMENT</span><span class="tok-p">[</span><span class="tok-nd">at0004</span><span class="tok-p">]</span><span class="tok-w"> </span><span class="tok-kt">occurrences </span><span class="tok-o">matches </span><span class="tok-p">{</span><span class="tok-m">0..1</span><span class="tok-p">}</span><span class="tok-w"> </span><span class="tok-o">matches </span><span class="tok-p">{</span><span class="tok-w">	</span><span class="tok-c">-- Systolic</span>
 <span class="tok-w">        </span><span class="tok-nc">value</span><span class="tok-w"> </span><span class="tok-o">matches </span><span class="tok-p">{</span>
@@ -9030,8 +9043,9 @@ Hash of keys ("text", "description" etc) and corresponding values.</p>
 <span class="tok-w">    </span><span class="tok-p">}</span></code></pre>
 </div>
 </div>
+</div>
+<div id="_tabs_1_it_coded_adl2--panel" class="tabpanel" aria-labelledby="_tabs_1_it_coded_adl2">
 <div class="listingblock">
-<div class="title">id-coded ADL2 syntax</div>
 <div class="content">
 <pre class="pygments highlight"><code data-lang="cadl"><span></span><span class="tok-w">    </span><span class="tok-nc">ELEMENT</span><span class="tok-p">[</span><span class="tok-nd">id5</span><span class="tok-p">]</span><span class="tok-w"> </span><span class="tok-kt">occurrences </span><span class="tok-o">matches </span><span class="tok-p">{</span><span class="tok-m">0..1</span><span class="tok-p">}</span><span class="tok-w"> </span><span class="tok-o">matches </span><span class="tok-p">{</span><span class="tok-w">	</span><span class="tok-c">-- Systolic</span>
 <span class="tok-w">        </span><span class="tok-nc">value</span><span class="tok-w"> </span><span class="tok-o">matches </span><span class="tok-p">{</span>
@@ -9043,6 +9057,9 @@ Hash of keys ("text", "description" etc) and corresponding values.</p>
 <span class="tok-w">            </span><span class="tok-p">}</span>
 <span class="tok-w">        </span><span class="tok-p">}</span>
 <span class="tok-w">    </span><span class="tok-p">}</span></code></pre>
+</div>
+</div>
+</div>
 </div>
 </div>
 </div>
@@ -9075,8 +9092,20 @@ Hash of keys ("text", "description" etc) and corresponding values.</p>
 <div class="paragraph">
 <p>The effect of these mappings is that literal values in an archetype that parse as the left-hand side type (<code>ISO8601_DATE</code> etc.) will be silently mapped to the right hand RM type (<code>String</code> etc). The following example shows a native ISO Duration field that is mapped to an RM String value.</p>
 </div>
+<div id="_tabs_2" class="openblock tabs is-sync data-sync-group-id=adl-example is-loading">
+<div class="content">
+<div class="ulist tablist">
+<ul>
+<li id="_tabs_2_at_coded_adl2" class="tab">
+<p>at-coded ADL2</p>
+</li>
+<li id="_tabs_2_id_coded_adl2" class="tab">
+<p>id-coded ADL2</p>
+</li>
+</ul>
+</div>
+<div id="_tabs_2_at_coded_adl2--panel" class="tabpanel" aria-labelledby="_tabs_2_at_coded_adl2">
 <div class="listingblock">
-<div class="title">at-coded ADL2 syntax</div>
 <div class="content">
 <pre class="pygments highlight"><code data-lang="cadl"><span></span><span class="tok-w">    </span><span class="tok-nc">INTERVAL_EVENT</span><span class="tok-p">[</span><span class="tok-nd">at1042</span><span class="tok-p">]</span><span class="tok-w"> </span><span class="tok-kt">occurrences </span><span class="tok-o">matches </span><span class="tok-p">{</span><span class="tok-m">0..1</span><span class="tok-p">}</span><span class="tok-w"> </span><span class="tok-o">matches </span><span class="tok-p">{</span><span class="tok-w">	</span><span class="tok-c">-- 24 hour average</span>
 <span class="tok-w">        </span><span class="tok-nc">width</span><span class="tok-w"> </span><span class="tok-o">matches </span><span class="tok-p">{</span>
@@ -9087,8 +9116,9 @@ Hash of keys ("text", "description" etc) and corresponding values.</p>
 <span class="tok-w">    </span><span class="tok-p">}</span></code></pre>
 </div>
 </div>
+</div>
+<div id="_tabs_2_id_coded_adl2--panel" class="tabpanel" aria-labelledby="_tabs_2_id_coded_adl2">
 <div class="listingblock">
-<div class="title">id-coded ADL2 syntax</div>
 <div class="content">
 <pre class="pygments highlight"><code data-lang="cadl"><span></span><span class="tok-w">    </span><span class="tok-nc">INTERVAL_EVENT</span><span class="tok-p">[</span><span class="tok-nd">id1043</span><span class="tok-p">]</span><span class="tok-w"> </span><span class="tok-kt">occurrences </span><span class="tok-o">matches </span><span class="tok-p">{</span><span class="tok-m">0..1</span><span class="tok-p">}</span><span class="tok-w"> </span><span class="tok-o">matches </span><span class="tok-p">{</span><span class="tok-w">	</span><span class="tok-c">-- 24 hour average</span>
 <span class="tok-w">        </span><span class="tok-nc">width</span><span class="tok-w"> </span><span class="tok-o">matches </span><span class="tok-p">{</span>
@@ -9097,6 +9127,9 @@ Hash of keys ("text", "description" etc) and corresponding values.</p>
 <span class="tok-w">            </span><span class="tok-p">}</span>
 <span class="tok-w">        </span><span class="tok-p">}</span>
 <span class="tok-w">    </span><span class="tok-p">}</span></code></pre>
+</div>
+</div>
+</div>
 </div>
 </div>
 </div>
@@ -9223,8 +9256,9 @@ Hash of keys ("text", "description" etc) and corresponding values.</p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2024-02-19 14:36:31 UTC
+Last updated 2022-11-12 20:36:45 UTC
 </div>
 </div>
+<script src="https://specifications.openehr.org/js/asciidoctor-tabs.js"></script>
 </body>
 </html>

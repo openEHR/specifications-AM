@@ -1,6 +1,6 @@
 == RM Overlay Section
 
-Most content in an archetype consists of constraints expressed as an attribute/object structure based on a Reference Model. However, sometimes related meta-data need to be stated with respect to unconstrained RM attributes and paths. Such statements can be made in the `rm_overlay` section of an archetype, which is designed to be extensible. Specific categories of statement or constraint relating to RM attribute paths can be stated within dedicated sub-sections. 
+Most content in an archetype consists of constraints expressed as an attribute/object structure based on a Reference Model. However, sometimes related meta-data need to be stated with respect to unconstrained RM attributes and paths. Such statements can be made in the `rm_overlay` section of an archetype, which is designed to be extensible. Specific categories of statement or constraint relating to RM attribute paths can be stated within dedicated sub-sections.
 
 === RM Visibility
 
@@ -14,7 +14,10 @@ For this reason a 'show' marker can be associated with the path of an non-constr
 
 Since both of these needs relate to the visibility of RM attributes in an archetype, and are specfied in terms of RM attribute paths, an `rm_overlay` sub-section called `rm_visibility` is used to specify them. The following example illustrates the use of this section to force visibility and aliasing of one attribute, and hiding of another attribute within an archetype.
 
-.at-coded ADL2 syntax
+[tabs,sync-group-id=adl-example]
+====
+at-coded ADL2::
++
 [source, odin]
 --------
 rm_overlay
@@ -42,12 +45,13 @@ terminology
                 text = <"name in German">
                 description = <"description in German">
             >
-            ...    
+            ...
         >
     >
 --------
 
-.id-coded ADL2 syntax
+id-coded ADL2::
++
 [source, odin]
 --------
 rm_overlay
@@ -79,3 +83,4 @@ terminology
         >
     >
 --------
+====
