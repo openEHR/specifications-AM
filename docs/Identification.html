@@ -4,12 +4,13 @@
 <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="generator" content="Asciidoctor 2.0.21">
+<meta name="generator" content="Asciidoctor 2.0.22">
 <meta name="description" content="openEHR Archetype Identification">
 <meta name="keywords" content="archetype, identification, governance, openehr">
 <title>Archetype Identification</title>
 <link rel="stylesheet" href="https://specifications.openehr.org/styles/openehr.css">
 <link rel="stylesheet" href="https://specifications.openehr.org/styles/pygments-default.css">
+<link rel="stylesheet" href="https://specifications.openehr.org/styles/asciidoctor-tabs.css">
 </head>
 <body class="book toc2 toc-left">
 <div id="header">
@@ -1073,7 +1074,7 @@ There is no assumption that a change of a given technical level (i.e. as evaluat
 <p>The paths, RM types and formal constraints are what other system components assume about an archetype, and what must therefore be maintained for a non-breaking change.</p>
 </div>
 <div class="paragraph">
-<p>Consider first the paths. An archetype path is a formal path through a hierarchical structure whose nodes are named by Reference Model class attributes, and in the case of object nodes, by id-codes. Any given path must be a legal path through an instance structure constructable by the Reference Model on which it is based. This implies two things:</p>
+<p>Consider first the paths. An archetype path is a formal path through a hierarchical structure whose nodes are named by Reference Model class attributes, and in the case of object nodes, by at-codes (id-codes). Any given path must be a legal path through an instance structure constructable by the Reference Model on which it is based. This implies two things:</p>
 </div>
 <div class="ulist">
 <ul>
@@ -1086,7 +1087,7 @@ There is no assumption that a change of a given technical level (i.e. as evaluat
 </ul>
 </div>
 <div class="paragraph">
-<p>Further, each node is made unique by the use of archetype id-codes (at-codes in ADL 1.4 archetypes) which distinguish sibling child objects under any attribute node. Where there are siblings (there need not always be), these codes must be defined in the archetype terminology by domain semantic definitions (e.g. 'serum sodium', 'O2 saturation level').</p>
+<p>Further, each node is made unique by the use of archetype at-codes (id-codes) (in ADL 1.4 at-codes) which distinguish sibling child objects under any attribute node. Where there are siblings (there need not always be), these codes must be defined in the archetype terminology by domain semantic definitions (e.g. 'serum sodium', 'O2 saturation level').</p>
 </div>
 <div class="paragraph">
 <p>Typical archetype paths look as follows:</p>
@@ -1098,18 +1099,41 @@ There is no assumption that a change of a given technical level (i.e. as evaluat
 <div class="title">Figure 4. Typical Paths</div>
 </div>
 <div class="paragraph">
-<p>The RM attribute names and node id-codes are visible within the paths (left-hand column). The node RM types implied in the paths are shown in the middle column. The first path thus corresponds to the object model reference <code>OBSERVATION</code>.<code><em>data._events.data.items</em></code>, and happens to be of type <code>ITEM</code>.</p>
+<p>The RM attribute names and node at-codes (id-codes) are visible within the paths (left-hand column). The node RM types implied in the paths are shown in the middle column. The first path thus corresponds to the object model reference <code>OBSERVATION</code>.<code><em>data._events.data.items</em></code>, and happens to be of type <code>ITEM</code>.</p>
 </div>
 <div class="paragraph">
 <p>We can show the highlighted path with code rubrics included:</p>
 </div>
+<div id="_tabs_1" class="openblock tabs is-sync data-sync-group-id=adl-example is-loading">
+<div class="content">
+<div class="ulist tablist">
+<ul>
+<li id="_tabs_1_at_coded_adl2" class="tab">
+<p>at-coded ADL2</p>
+</li>
+<li id="_tabs_1_id_coded_adl2" class="tab">
+<p>id-coded ADL2</p>
+</li>
+</ul>
+</div>
+<div id="_tabs_1_at_coded_adl2--panel" class="tabpanel" aria-labelledby="_tabs_1_at_coded_adl2">
+<div class="listingblock">
+<div class="content">
+<pre class="pygments highlight"><code data-lang="cadl"><span></span><span class="tok-p">/</span><span class="tok-nc">data</span><span class="tok-p">[</span><span class="tok-nd">at0001</span><span class="tok-p">]/</span><span class="tok-nc">events</span><span class="tok-p">[</span><span class="tok-nd">at0002</span><span class="tok-p">|</span><span class="tok-s">Any event</span><span class="tok-p">|]/</span><span class="tok-nc">data</span><span class="tok-p">[</span><span class="tok-nd">at0003</span><span class="tok-p">]/</span><span class="tok-nc">items</span><span class="tok-p">[</span><span class="tok-nd">at0078.11</span><span class="tok-p">|</span><span class="tok-s">PaO2</span><span class="tok-p">|]</span></code></pre>
+</div>
+</div>
+</div>
+<div id="_tabs_1_id_coded_adl2--panel" class="tabpanel" aria-labelledby="_tabs_1_id_coded_adl2">
 <div class="listingblock">
 <div class="content">
 <pre class="pygments highlight"><code data-lang="cadl"><span></span><span class="tok-p">/</span><span class="tok-nc">data</span><span class="tok-p">[</span><span class="tok-nd">id2</span><span class="tok-p">]/</span><span class="tok-nc">events</span><span class="tok-p">[</span><span class="tok-nd">id3</span><span class="tok-p">|</span><span class="tok-s">Any event</span><span class="tok-p">|]/</span><span class="tok-nc">data</span><span class="tok-p">[</span><span class="tok-nd">id4</span><span class="tok-p">]/</span><span class="tok-nc">items</span><span class="tok-p">[</span><span class="tok-nd">id79.11</span><span class="tok-p">|</span><span class="tok-s">PaO2</span><span class="tok-p">|]</span></code></pre>
 </div>
 </div>
+</div>
+</div>
+</div>
 <div class="paragraph">
-<p>Here <code>id79.11</code> is defined as 'PaO2', for which the description is 'Oxygen partial pressure in arterial blood'. This defined the domain meaning of the node at this path.</p>
+<p>Here <code>at0078.11</code> (<code>id79.11</code>) is defined as 'PaO2', for which the description is 'Oxygen partial pressure in arterial blood'. This defined the domain meaning of the node at this path.</p>
 </div>
 <div class="paragraph">
 <p>Paths and types constitute the structure of the archetype. In addition, the constraints (as defined by the Archetype Object Model) at each node - other than RM types - must be taken into account. These consist of constraints on values, cardinalities and occurrences.</p>
@@ -1122,13 +1146,13 @@ There is no assumption that a change of a given technical level (i.e. as evaluat
 <div class="ulist">
 <ul>
 <li>
-<p>for an existing path, nothing changes - no change in hierarchy or lexical id-code;</p>
+<p>for an existing path, nothing changes - no change in hierarchy or lexical at-code (id-code);</p>
 </li>
 <li>
 <p>in the path set, no paths are deleted;</p>
 </li>
 <li>
-<p>no change in domain meaning for id-codes used in the path;</p>
+<p>no change in domain meaning for at-codes (id-codes) used in the path;</p>
 </li>
 <li>
 <p>RM type of object nodes is the same or an ancestor (i.e. super-type) of the original type;</p>
@@ -1162,7 +1186,7 @@ There is no assumption that a change of a given technical level (i.e. as evaluat
 <p>move of nodes to different sub-tree;</p>
 </li>
 <li>
-<p>change of domain definition of id-code;</p>
+<p>change of domain definition of at-code (id-code);</p>
 </li>
 <li>
 <p>narrowing of any constraint, including RM type of a node.</p>
@@ -1598,6 +1622,30 @@ is formed from the next version number that corresponds to the magnitude of the 
 <div class="paragraph">
 <p>In ADL 2, a direct archetype-archetype reference, known as an 'external reference' can be defined, which uses the archetype miniHRID, as shown in the following example.</p>
 </div>
+<div id="_tabs_2" class="openblock tabs is-sync data-sync-group-id=adl-example is-loading">
+<div class="content">
+<div class="ulist tablist">
+<ul>
+<li id="_tabs_2_at_coded_adl2" class="tab">
+<p>at-coded ADL2</p>
+</li>
+<li id="_tabs_2_id_coded_adl2" class="tab">
+<p>id-coded ADL2</p>
+</li>
+</ul>
+</div>
+<div id="_tabs_2_at_coded_adl2--panel" class="tabpanel" aria-labelledby="_tabs_2_at_coded_adl2">
+<div class="listingblock">
+<div class="content">
+<pre class="pygments highlight"><code data-lang="cadl"><span></span><span class="tok-w">    </span><span class="tok-nc">ACTIVITY</span><span class="tok-p">[</span><span class="tok-nd">at0001</span><span class="tok-p">]</span><span class="tok-w"> </span><span class="tok-o">∈</span><span class="tok-w"> </span><span class="tok-p">{</span><span class="tok-w">   </span><span class="tok-c">-- Medication activity</span>
+<span class="tok-w">        </span><span class="tok-nc">description</span><span class="tok-w"> </span><span class="tok-o">∈</span><span class="tok-w"> </span><span class="tok-p">{</span>
+<span class="tok-w">            </span><span class="tok-kt">use_archetype </span><span class="tok-nc">ITEM_TREE</span><span class="tok-w"> </span><span class="tok-p">[</span><span class="tok-nd">openEHR-EHR-ITEM_TREE.medication.v1</span><span class="tok-p">]</span>
+<span class="tok-w">        </span><span class="tok-p">}</span>
+<span class="tok-w">    </span><span class="tok-p">}</span></code></pre>
+</div>
+</div>
+</div>
+<div id="_tabs_2_id_coded_adl2--panel" class="tabpanel" aria-labelledby="_tabs_2_id_coded_adl2">
 <div class="listingblock">
 <div class="content">
 <pre class="pygments highlight"><code data-lang="cadl"><span></span><span class="tok-w">    </span><span class="tok-nc">ACTIVITY</span><span class="tok-p">[</span><span class="tok-nd">id2</span><span class="tok-p">]</span><span class="tok-w"> </span><span class="tok-o">∈</span><span class="tok-w"> </span><span class="tok-p">{</span><span class="tok-w">   </span><span class="tok-c">-- Medication activity</span>
@@ -1605,6 +1653,9 @@ is formed from the next version number that corresponds to the magnitude of the 
 <span class="tok-w">            </span><span class="tok-kt">use_archetype </span><span class="tok-nc">ITEM_TREE</span><span class="tok-w"> </span><span class="tok-p">[</span><span class="tok-nd">openEHR-EHR-ITEM_TREE.medication.v1</span><span class="tok-p">]</span>
 <span class="tok-w">        </span><span class="tok-p">}</span>
 <span class="tok-w">    </span><span class="tok-p">}</span></code></pre>
+</div>
+</div>
+</div>
 </div>
 </div>
 <div class="paragraph">
@@ -1750,6 +1801,35 @@ is formed from the next version number that corresponds to the magnitude of the 
 <div class="paragraph">
 <p>In ADL 2 a slot can be defined using a semantic (rather than lexical) expression in which matching archetypes are defined in the form of a constraint on the archetype concept (and optionally namespace), reminiscent of the SNOMED CT post-coordination constraint syntax. This is shown in the following example.</p>
 </div>
+<div id="_tabs_3" class="openblock tabs is-sync data-sync-group-id=adl-example is-loading">
+<div class="content">
+<div class="ulist tablist">
+<ul>
+<li id="_tabs_3_at_coded_adl2" class="tab">
+<p>at-coded ADL2</p>
+</li>
+<li id="_tabs_3_id_coded_adl2" class="tab">
+<p>id-coded ADL2</p>
+</li>
+</ul>
+</div>
+<div id="_tabs_3_at_coded_adl2--panel" class="tabpanel" aria-labelledby="_tabs_3_at_coded_adl2">
+<div class="listingblock">
+<div class="content">
+<pre class="pygments highlight"><code data-lang="cadl"><span></span><span class="tok-w">    </span><span class="tok-kt">allow_archetype </span><span class="tok-nc">CLUSTER</span><span class="tok-w"> </span><span class="tok-p">[</span><span class="tok-nd">at0003.1</span><span class="tok-p">]</span><span class="tok-w"> </span><span class="tok-kt">occurrences </span><span class="tok-o">∈</span><span class="tok-w"> </span><span class="tok-p">{</span><span class="tok-m">0..1</span><span class="tok-p">}</span><span class="tok-w"> </span><span class="tok-o">∈</span><span class="tok-w"> </span><span class="tok-p">{</span>
+<span class="tok-w">        </span><span class="tok-kt">include </span><span class="tok-o">∈</span><span class="tok-w"> </span><span class="tok-p">{</span><span class="tok-l">True</span><span class="tok-p">}</span>
+<span class="tok-w">            </span><span class="tok-nc">archetype_id</span><span class="tok-w"> </span><span class="tok-o">∈</span><span class="tok-w"> </span><span class="tok-p">{</span>
+<span class="tok-w">                </span><span class="tok-nc">ARCHETYPE_ID</span><span class="tok-w"> </span><span class="tok-o">∈</span><span class="tok-w"> </span><span class="tok-p">{</span>
+<span class="tok-w">                    </span><span class="tok-nc">namespace</span><span class="tok-w"> </span><span class="tok-o">∈</span><span class="tok-w"> </span><span class="tok-p">{...}</span>
+<span class="tok-w">                    </span><span class="tok-nc">concept</span><span class="tok-w"> </span><span class="tok-o">∈</span><span class="tok-w"> </span><span class="tok-p">{</span><span class="tok-o">&lt;&lt;</span><span class="tok-w"> </span><span class="tok-nc">investigation_methodology</span><span class="tok-w"> </span><span class="tok-nc">OR</span><span class="tok-w"> </span><span class="tok-o">&lt;&lt;</span><span class="tok-w"> </span><span class="tok-nc">investigation_protocol</span><span class="tok-p">}</span>
+<span class="tok-w">                    </span><span class="tok-p">...</span>
+<span class="tok-w">                </span><span class="tok-p">}</span>
+<span class="tok-w">            </span><span class="tok-p">}</span>
+<span class="tok-w">        </span><span class="tok-p">}</span></code></pre>
+</div>
+</div>
+</div>
+<div id="_tabs_3_id_coded_adl2--panel" class="tabpanel" aria-labelledby="_tabs_3_id_coded_adl2">
 <div class="listingblock">
 <div class="content">
 <pre class="pygments highlight"><code data-lang="cadl"><span></span><span class="tok-w">    </span><span class="tok-kt">allow_archetype </span><span class="tok-nc">CLUSTER</span><span class="tok-w"> </span><span class="tok-p">[</span><span class="tok-nd">id4.1</span><span class="tok-p">]</span><span class="tok-w"> </span><span class="tok-kt">occurrences </span><span class="tok-o">∈</span><span class="tok-w"> </span><span class="tok-p">{</span><span class="tok-m">0..1</span><span class="tok-p">}</span><span class="tok-w"> </span><span class="tok-o">∈</span><span class="tok-w"> </span><span class="tok-p">{</span>
@@ -1762,6 +1842,9 @@ is formed from the next version number that corresponds to the magnitude of the 
 <span class="tok-w">                </span><span class="tok-p">}</span>
 <span class="tok-w">            </span><span class="tok-p">}</span>
 <span class="tok-w">        </span><span class="tok-p">}</span></code></pre>
+</div>
+</div>
+</div>
 </div>
 </div>
 <div class="paragraph">
@@ -1780,6 +1863,34 @@ is formed from the next version number that corresponds to the magnitude of the 
 <div class="paragraph">
 <p>Archetype-based queries contain archetype references and paths, and can also contain template identifiers and paths. Typical examples are the paths (in green) in the following query:</p>
 </div>
+<div id="_tabs_4" class="openblock tabs is-sync data-sync-group-id=adl-example is-loading">
+<div class="content">
+<div class="ulist tablist">
+<ul>
+<li id="_tabs_4_at_coded_adl2" class="tab">
+<p>at-coded ADL2</p>
+</li>
+<li id="_tabs_4_id_coded_adl2" class="tab">
+<p>id-coded ADL2</p>
+</li>
+</ul>
+</div>
+<div id="_tabs_4_at_coded_adl2--panel" class="tabpanel" aria-labelledby="_tabs_4_at_coded_adl2">
+<div class="listingblock">
+<div class="content">
+<pre class="pygments highlight"><code data-lang="sql"><span></span><span class="tok-w">    </span><span class="tok-k">SELECT</span><span class="tok-w"> </span><span class="tok-n">pulse</span>
+<span class="tok-w">    </span><span class="tok-k">FROM</span><span class="tok-w"> </span><span class="tok-n">EHR</span><span class="tok-p">[</span><span class="tok-n">ehr_id</span><span class="tok-o">/</span><span class="tok-n">value</span><span class="tok-o">=</span><span class="tok-err">$</span><span class="tok-n">ehruid</span><span class="tok-p">]</span>
+<span class="tok-w">     </span><span class="tok-k">CONTAINS</span><span class="tok-w"> </span><span class="tok-n">COMPOSITION</span><span class="tok-w"> </span><span class="tok-k">c</span>
+<span class="tok-w">     </span><span class="tok-k">CONTAINS</span><span class="tok-w"> </span><span class="tok-n">OBSERVATION</span><span class="tok-w"> </span><span class="tok-n">pulse</span><span class="tok-p">[</span><span class="tok-n">openEHR</span><span class="tok-o">-</span><span class="tok-n">EHR</span><span class="tok-o">-</span><span class="tok-n">OBSERVATION</span><span class="tok-p">.</span><span class="tok-n">pulse</span><span class="tok-p">.</span><span class="tok-n">v1</span><span class="tok-p">]</span>
+
+<span class="tok-w">    </span><span class="tok-k">WHERE</span><span class="tok-w"> </span><span class="tok-k">c</span><span class="tok-o">/</span><span class="tok-n">name</span><span class="tok-o">/</span><span class="tok-n">value</span><span class="tok-o">=</span><span class="tok-err">&#39;</span><span class="tok-n">Encounter</span><span class="tok-o">`</span><span class="tok-w"> </span><span class="tok-k">AND</span>
+<span class="tok-w">        </span><span class="tok-k">c</span><span class="tok-o">/</span><span class="tok-n">context</span><span class="tok-o">/</span><span class="tok-n">start_time</span><span class="tok-o">/</span><span class="tok-n">value</span><span class="tok-w"> </span><span class="tok-o">&lt;=</span><span class="tok-w"> </span><span class="tok-err">$</span><span class="tok-n">endperiod</span><span class="tok-w"> </span><span class="tok-k">AND</span>
+<span class="tok-w">        </span><span class="tok-k">c</span><span class="tok-o">/</span><span class="tok-n">context</span><span class="tok-o">/</span><span class="tok-n">start_time</span><span class="tok-o">/</span><span class="tok-n">value</span><span class="tok-w"> </span><span class="tok-o">&gt;=</span><span class="tok-w"> </span><span class="tok-err">$</span><span class="tok-n">startPeriod</span><span class="tok-w"> </span><span class="tok-k">AND</span>
+<span class="tok-w">        </span><span class="tok-n">pulse</span><span class="tok-o">/</span><span class="tok-k">data</span><span class="tok-o">/</span><span class="tok-n">events</span><span class="tok-p">[</span><span class="tok-n">at0005</span><span class="tok-p">]</span><span class="tok-o">/</span><span class="tok-k">data</span><span class="tok-o">/</span><span class="tok-n">items</span><span class="tok-p">[</span><span class="tok-n">at0003</span><span class="tok-p">]</span><span class="tok-o">/</span><span class="tok-n">value</span><span class="tok-o">/</span><span class="tok-n">value</span><span class="tok-w"> </span><span class="tok-o">&lt;</span><span class="tok-w"> </span><span class="tok-mi">60</span></code></pre>
+</div>
+</div>
+</div>
+<div id="_tabs_4_id_coded_adl2--panel" class="tabpanel" aria-labelledby="_tabs_4_id_coded_adl2">
 <div class="listingblock">
 <div class="content">
 <pre class="pygments highlight"><code data-lang="sql"><span></span><span class="tok-w">    </span><span class="tok-k">SELECT</span><span class="tok-w"> </span><span class="tok-n">pulse</span>
@@ -1791,6 +1902,9 @@ is formed from the next version number that corresponds to the magnitude of the 
 <span class="tok-w">        </span><span class="tok-k">c</span><span class="tok-o">/</span><span class="tok-n">context</span><span class="tok-o">/</span><span class="tok-n">start_time</span><span class="tok-o">/</span><span class="tok-n">value</span><span class="tok-w"> </span><span class="tok-o">&lt;=</span><span class="tok-w"> </span><span class="tok-err">$</span><span class="tok-n">endperiod</span><span class="tok-w"> </span><span class="tok-k">AND</span>
 <span class="tok-w">        </span><span class="tok-k">c</span><span class="tok-o">/</span><span class="tok-n">context</span><span class="tok-o">/</span><span class="tok-n">start_time</span><span class="tok-o">/</span><span class="tok-n">value</span><span class="tok-w"> </span><span class="tok-o">&gt;=</span><span class="tok-w"> </span><span class="tok-err">$</span><span class="tok-n">startPeriod</span><span class="tok-w"> </span><span class="tok-k">AND</span>
 <span class="tok-w">        </span><span class="tok-n">pulse</span><span class="tok-o">/</span><span class="tok-k">data</span><span class="tok-o">/</span><span class="tok-n">events</span><span class="tok-p">[</span><span class="tok-n">id6</span><span class="tok-p">]</span><span class="tok-o">/</span><span class="tok-k">data</span><span class="tok-o">/</span><span class="tok-n">items</span><span class="tok-p">[</span><span class="tok-n">id4</span><span class="tok-p">]</span><span class="tok-o">/</span><span class="tok-n">value</span><span class="tok-o">/</span><span class="tok-n">value</span><span class="tok-w"> </span><span class="tok-o">&lt;</span><span class="tok-w"> </span><span class="tok-mi">60</span></code></pre>
+</div>
+</div>
+</div>
 </div>
 </div>
 <div class="paragraph">
@@ -1820,9 +1934,32 @@ is formed from the next version number that corresponds to the magnitude of the 
 <div class="paragraph">
 <p>An example of a congruent path in a child archetype is:</p>
 </div>
+<div id="_tabs_5" class="openblock tabs is-sync data-sync-group-id=adl-example is-loading">
+<div class="content">
+<div class="ulist tablist">
+<ul>
+<li id="_tabs_5_at_coded_adl2" class="tab">
+<p>at-coded ADL2</p>
+</li>
+<li id="_tabs_5_id_coded_adl2" class="tab">
+<p>id-coded ADL2</p>
+</li>
+</ul>
+</div>
+<div id="_tabs_5_at_coded_adl2--panel" class="tabpanel" aria-labelledby="_tabs_5_at_coded_adl2">
+<div class="listingblock">
+<div class="content">
+<pre class="pygments highlight"><code data-lang="cadl"><span></span><span class="tok-w">    </span><span class="tok-p">/</span><span class="tok-nc">data</span><span class="tok-p">/</span><span class="tok-nc">events</span><span class="tok-p">[</span><span class="tok-nd">at0005.0.4</span><span class="tok-p">]/</span><span class="tok-nc">data</span><span class="tok-p">/</span><span class="tok-nc">items</span><span class="tok-p">[</span><span class="tok-nd">at0003.1</span><span class="tok-p">]/</span><span class="tok-nc">value</span><span class="tok-p">/</span><span class="tok-nc">value</span></code></pre>
+</div>
+</div>
+</div>
+<div id="_tabs_5_id_coded_adl2--panel" class="tabpanel" aria-labelledby="_tabs_5_id_coded_adl2">
 <div class="listingblock">
 <div class="content">
 <pre class="pygments highlight"><code data-lang="cadl"><span></span><span class="tok-w">    </span><span class="tok-p">/</span><span class="tok-nc">data</span><span class="tok-p">/</span><span class="tok-nc">events</span><span class="tok-p">[</span><span class="tok-nd">id6.0.4</span><span class="tok-p">]/</span><span class="tok-nc">data</span><span class="tok-p">/</span><span class="tok-nc">items</span><span class="tok-p">[</span><span class="tok-nd">id4.1</span><span class="tok-p">]/</span><span class="tok-nc">value</span><span class="tok-p">/</span><span class="tok-nc">value</span></code></pre>
+</div>
+</div>
+</div>
 </div>
 </div>
 </div>
@@ -2233,5 +2370,6 @@ is formed from the next version number that corresponds to the magnitude of the 
 Last updated 2022-11-12 10:23:49 UTC
 </div>
 </div>
+<script src="https://specifications.openehr.org/js/asciidoctor-tabs.js"></script>
 </body>
 </html>
