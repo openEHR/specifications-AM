@@ -40,7 +40,7 @@ id-coded ADL2::
 +
 --------
 rules
-	$respiratory_effort: Integer := /data[id3]/events[id4]/data[id2]/items[id10]/value[id39]/value
+    $respiratory_effort: Integer := /data[id3]/events[id4]/data[id2]/items[id10]/value[id39]/value
     $heart_rate: Integer := /data[id3]/events[id4]/data[id2]/items[id6]/value[id40]/value
     $muscle_tone: Integer := /data[id3]/events[id4]/data[id2]/items[id14]/value[id41]/value
     $reflex_irritability: Integer := /data[id3]/events[id4]/data[id2]/items[id18]/value[id42]/value
@@ -66,9 +66,9 @@ rules
     $systolic_value: Real := /data[at0001]/events[at0006]/data[at0003]/items[at0004]/value/magnitude
     $diastolic_value: Real := /data[at0001]/events[at0006]/data[at0003]/items[at0005]/value/magnitude
 
-	MAP_valid: $mean_arterial_pressure = $diastolic_value + 0.33 * ($systolic_value - $diastolic_value)
+    MAP_valid: $mean_arterial_pressure = $diastolic_value + 0.33 * ($systolic_value - $diastolic_value)
 
-	pulse_pressure: $pulse_pressure = $systolic_value - $diastolic_value
+    pulse_pressure: $pulse_pressure = $systolic_value - $diastolic_value
 --------
 
 id-coded ADL2::
@@ -80,9 +80,9 @@ rules
     $systolic_value: Real := /data[id2]/events[id7]/data[id4]/items[id5]/value/magnitude
     $diastolic_value: Real := /data[id2]/events[id7]/data[id4]/items[id6]/value/magnitude
 
-	MAP_valid: $mean_arterial_pressure = $diastolic_value + 0.33 * ($systolic_value - $diastolic_value)
+    MAP_valid: $mean_arterial_pressure = $diastolic_value + 0.33 * ($systolic_value - $diastolic_value)
 
-	pulse_pressure: $pulse_pressure = $systolic_value - $diastolic_value
+    pulse_pressure: $pulse_pressure = $systolic_value - $diastolic_value
 --------
 ====
 
@@ -101,9 +101,9 @@ at-coded ADL2::
 --------
     -- ensure that each mean arterial pressure value in a series of blood pressures
     -- has the correct value.
-	for_all $event : /data[at0001]/events
-		$event/data[at0003]/items[at1006]/value/magnitude =
-			$event/data[at0003]/items[at0005]/value/magnitude + 0.33 *
+    for_all $event : /data[at0001]/events
+        $event/data[at0003]/items[at1006]/value/magnitude =
+            $event/data[at0003]/items[at0005]/value/magnitude + 0.33 *
                 ($event/data[at0003]/items[at0004]/value/magnitude - $event/data[at0003]/items[at0005]/value/magnitude)
 --------
 
@@ -112,9 +112,9 @@ id-coded ADL2::
 --------
     -- ensure that each mean arterial pressure value in a series of blood pressures
     -- has the correct value.
-	for_all $event : /data[id2]/events
-		$event/data[id4]/items[id1007]/value/magnitude =
-			$event/data[id4]/items[id6]/value/magnitude + 0.33 *
+    for_all $event : /data[id2]/events
+        $event/data[id4]/items[id1007]/value/magnitude =
+            $event/data[id4]/items[id6]/value/magnitude + 0.33 *
                 ($event/data[id4]/items[id5]/value/magnitude - $event/data[id4]/items[id6]/value/magnitude)
 --------
 ====
@@ -164,7 +164,7 @@ rules
     $systolic_value: Real := /data[at0001]/events[at0006]/data[at0003]/items[at0004]/value/magnitude
     $diastolic_value: Real := /data[at0001]/events[at0006]/data[at0003]/items[at0005]/value/magnitude
 
-	$mean_arterial_pressure := $diastolic_value + 0.33 * ($systolic_value - $diastolic_value)
+    $mean_arterial_pressure := $diastolic_value + 0.33 * ($systolic_value - $diastolic_value)
 --------
 
 id-coded ADL2::
@@ -175,6 +175,6 @@ rules
     $systolic_value: Real := /data[id2]/events[id7]/data[id4]/items[id5]/value/magnitude
     $diastolic_value: Real := /data[id2]/events[id7]/data[id4]/items[id6]/value/magnitude
 
-	$mean_arterial_pressure := $diastolic_value + 0.33 * ($systolic_value - $diastolic_value)
+    $mean_arterial_pressure := $diastolic_value + 0.33 * ($systolic_value - $diastolic_value)
 --------
 ====
