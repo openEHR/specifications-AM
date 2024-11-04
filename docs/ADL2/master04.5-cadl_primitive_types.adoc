@@ -688,7 +688,7 @@ id-coded ADL2::
 
 The above sections describe 'source form' constraints, i.e. constraints expressed in terms of internal codes and value-sets. A further constraint possibility exists, for use at the point of operational template generation. As described in <<From Constraints to Concrete Codes in Data>>, the choice may be made that a specific operational template (OPT) should use external codes from the archetype bindings (such as from {snomed_ct}[SNOMED CT^], {who_icd}[ICD10^], etc) as the values of some or all coded nodes, rather than using the internal at-codes.
 
-To express this choice, the OPT's `definition` section contains a modified version of the usual syntax `[at0001]` (`[at1]`) or `[ac1]` in those nodes where an external term from the bindings is to be used. This takes the form `[acN@ttttt]` or `[atNNNN@ttttt]` (`[atN@ttttt]`) where `ttttt` is the namespace identifier of a binding in the `terminology` section of the archetype.
+To express this choice, the OPT's `definition` section contains a modified version of the usual syntax `[at0001]` (`[at2]`) or `[ac1]` in those nodes where an external term from the bindings is to be used. This takes the form `[acN@ttttt]` or `[atNNNN@ttttt]` (`[atN@ttttt]`) where `ttttt` is the namespace identifier of a binding in the `terminology` section of the archetype.
 
 Specifying which codable nodes (including 'all' and 'none' options) should have their values substituted by the external codes is assumed to be part of the OPT generator tool. Different terminology bindings may be specified on different nodes of the same archetype, or none at all, allowing for a mixture of external term substitutions depending on node.
 
