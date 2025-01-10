@@ -17,9 +17,9 @@ Currently, the only RM overlay settings are for RM attribute visibility, which r
 The visibility settings consist of a list of per-RM attribute settings, in the form of instances of the class `RM_ATTRIBUTE_VISIBILITY`, each keyed by the RM path to the node(s) to which they apply. The path is formed of an object node path within the archetype followed by a path to an RM attribute, which may be on an already-constrained path, or may be a path not already included in the archetype structure. The former part is one of:
 
 * the root path, `/`;
-* an object path within the archetyped structure e.g. `/items[id20]`.
+* an object path within the archetyped structure e.g. `/items[at0019]` (`/items[id20]`).
 
-The latter part is a path containing no object identifiers (id-codes), of one or mode RM attribute names from the Reference Model. The terminal attribute name will almost always be a single-valued attribute, since the visibility of container attributes will almost always be defined in terms of specifically constrained child objects, i.e. part of the archetyped structure.
+The latter part is a path containing no object identifiers (at-codes / id-codes), of one or mode RM attribute names from the Reference Model. The terminal attribute name will almost always be a single-valued attribute, since the visibility of container attributes will almost always be defined in terms of specifically constrained child objects, i.e. part of the archetyped structure.
 
 Two types of RM visibility can be specified. First, in terms of attribute visibility within modelling tools, using the values `show` and `hide`. A non-archetyped RM attribute is by default not visible within an archetype modelling tool visualisation, since it is not part of the archetyped structure. Without visibility settings, the only means of displaying such an attribute is to display all non-archetyped RM attributes in some generic fashion. Setting the visibility on a particular RM attribute path to `show` indicates to the tool that this RM attribute should be displayed, along with the archetyped structure - preferably in a visually distinct way. This enables modellers to see specific model attributes that are built into the RM, and do not need to be modelled as archetype objects.
 

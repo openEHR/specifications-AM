@@ -11,7 +11,8 @@ image::{uml_diagrams_uri}/AM-aom2.terminology.svg[id=terminology_package, align=
 An archetype terminology consists of the following elements.
 
 * `_term_definitions_`: a mandatory structure consisting of lists of term definitions defined local to the archetype, one list for each language of translation, as well as the original language of definition. The entries in this table include:
-** Some or all id-codes. One of these is a code of the form 'id1', 'id1.1', 'id1.1.1' etc, denoting the concept of the archetype as a whole. This particular code is recorded in the `_concept_code_` attribute and is used as the id-code on the root node in the archetype definition. Not all id-codes are required to be in the term_definitions structure - for nodes that are children of single-valued attribute, a term definition is optional (and not typically defined).
+** For at-coded archetypes: Some or all at-codes. One of these is a code of the form 'at0000', 'at0000.1', 'at0000.1.1' etc, denoting the concept of the archetype as a whole. This particular code is recorded in the `_concept_code_` attribute and is used as the at-code on the root node in the archetype definition. Not all at-codes are required to be in the term_definitions structure - for nodes that are children of single-valued attribute, a term definition is optional (and not typically defined).
+** For id-coded archetypes: Some or all id-codes. One of these is a code of the form 'id1', 'id1.1', 'id1.1.1' etc, denoting the concept of the archetype as a whole. This particular code is recorded in the `_concept_code_` attribute and is used as the id-code on the root node in the archetype definition. Not all id-codes are required to be in the term_definitions structure - for nodes that are children of single-valued attribute, a term definition is optional (and not typically defined).
 ** at-codes used to define value terms and inline value sets/ All at-codes will appear within a `C_TERMINOLOGY_CODE` constraint object within the archetype. All at-codes must have a definition in the term_definitions.
 ** ac-codes used to define external value set references. All ac-codes must have a definition in the term_definitions.
 * `_term_bindings_`: an optional structure consisting of list of terms and bindings, one list for each external terminology (i.e. the terminology or ontology being 'bound to'). Each 'binding' is a URI to a target. For a binding of an id-code or an at-code, the target will be a single term, and for an ac-code, it will designate a ref-set or value set.
@@ -30,9 +31,14 @@ image::{diagrams_uri}/terminology_instance_structure.svg[id=terminology_instance
 
 Any given archetype occurs at some point in a lineage of archetypes related by specialisation, where the depth is reflected by the `_specialisation_depth_` function. An archetype which is not a specialisation of another has a specialisation_depth of 0. Term and constraint codes introduced in the terminology of specialised archetypes (i.e. which did not exist in the terminology of the parent archetype) are defined in a strict way, using '.' (period) markers. For example, an archetype of specialisation depth 2 will use term definition codes like the following:
 
-* `id0.0.1` - a new term introduced in this archetype, which is not a specialisation of any previous term in any of the parent archetypes;
-* `id4.0.1` - a term which specialises the `id4` term from the top parent. An intervening `.0` is required to show that the new term is at depth 2, not depth 1;
-* `id25.1.1` - a term which specialises the term `id25.1` from the immediate parent, which itself specialises the term `id25` from the top parent.
+* For at-coded archetypes:
+** `at0.0.1` - a new term introduced in this archetype, which is not a specialisation of any previous term in any of the parent archetypes;
+** `at0004.0.1` - a term which specialises the `at0004` term from the top parent. An intervening `.0` is required to show that the new term is at depth 2, not depth 1;
+** `at0025.1.1` - a term which specialises the term `at0025.1` from the immediate parent, which itself specialises the term `at0025` from the top parent.
+* For id-coded archetypes:
+** `id0.0.1` - a new term introduced in this archetype, which is not a specialisation of any previous term in any of the parent archetypes;
+** `id4.0.1` - a term which specialises the `id4` term from the top parent. An intervening `.0` is required to show that the new term is at depth 2, not depth 1;
+** `id25.1.1` - a term which specialises the term `id25.1` from the immediate parent, which itself specialises the term `id25` from the top parent.
 
 This systematic definition of codes enables software to use the structure of the codes to more quickly and accurately make inferences about term definitions up and down specialisation hierarchies. Constraint codes on the other hand do not follow these rules, and exist in a flat code space instead.
 

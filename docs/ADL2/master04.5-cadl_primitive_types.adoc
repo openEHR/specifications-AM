@@ -25,26 +25,73 @@ While constraints on complex types follow the rules described so far, constraint
 
 rather than:
 
+[tabs,sync-group-id=adl-example]
+====
+at-coded ADL2::
++
+[source, cadl]
+----
+    some_attr matches {
+        PRIMITIVE_TYPE[at9009] matches {<some_pattern>}
+    }
+----
+
+id-coded ADL2::
++
 [source, cadl]
 ----
     some_attr matches {
         PRIMITIVE_TYPE[id3] matches {<some_pattern>}
     }
 ----
+====
 
-This is possible because the syntax patterns of all primitive type constraints are mutually distinguishable, i.e. the type can always be inferred from the syntax alone. Since all leaf attributes of all object models are of primitive types, or lists or sets of them, cADL archetypes using the brief form for primitive types are significantly less verbose overall, as well as being more directly comprehensible to human readers. Because the brief form omits an id-code, the id-code for primitive object nodes is automatically set to a fixed value, defined in the {openehr_am_aom2}#_overview[AOM specification^] as `Primitive_node_id`.
+This is possible because the syntax patterns of all primitive type constraints are mutually distinguishable, i.e. the type can always be inferred from the syntax alone. Since all leaf attributes of all object models are of primitive types, or lists or sets of them, cADL archetypes using the brief form for primitive types are significantly less verbose overall, as well as being more directly comprehensible to human readers. Because the brief form omits an at-code (id-code), the at-code (id-code) for primitive object nodes is automatically set to a fixed value, defined in the {openehr_am_aom2}#_overview[AOM specification^] as `Primitive_node_id`.
 
 Although for the majority of primitive type constraints, the shortened form is the most convenient, there is one circumstance in which the regular syntax form is needed, which is when only the type is to be constrained, but not the value. This leads to a constraint of the following form:
 
+[tabs,sync-group-id=adl-example]
+====
+at-coded ADL2::
++
+[source, cadl]
+----
+    some_attr matches {
+        PRIMITIVE_TYPE[at9013]
+    }
+----
+
+id-coded ADL2::
++
 [source, cadl]
 ----
     some_attr matches {
         PRIMITIVE_TYPE[id3]
     }
 ----
+====
 
-This may occur because the attribute `_some_attr_` in the reference model is of a more general type, e.g. `Any`. The constraint may thus be to simply require a `String`, `Terminology_code` or other primitive type. In the regular form a valid id-code must be supplied; this may be either a standard id-code (e.g. `id9`) or the `Primitive_node_id` value. If the former is used, any specialised archetype that adds a value constraint must use the regular form, as in the following example.
+This may occur because the attribute `_some_attr_` in the reference model is of a more general type, e.g. `Any`. The constraint may thus be to simply require a `String`, `Terminology_code` or other primitive type. In the regular form a valid at-code (id-code) must be supplied; this may be either a standard at-code, e.g. `at9013` (id-code, e.g. `id9`) or the `Primitive_node_id` value. If the former is used, any specialised archetype that adds a value constraint must use the regular form, as in the following example.
 
+[tabs,sync-group-id=adl-example]
+====
+at-coded ADL2::
++
+[source, cadl]
+----
+    -- in parent archetype
+    some_attr matches {
+        String[at9013]
+    }
+
+    -- in specialisation child
+    some_attr matches {
+        String[at9013] matches {"match me"}
+    }
+----
+
+id-coded ADL2::
++
 [source, cadl]
 ----
     -- in parent archetype
@@ -57,9 +104,27 @@ This may occur because the attribute `_some_attr_` in the reference model is of 
         String[id3] matches {"match me"}
     }
 ----
+====
 
 If the `Primitive_node_id` is used, a specialisation may use the brief form, as in the following.
 
+[tabs,sync-group-id=adl-example]
+====
+at-coded ADL2::
++
+[source, cadl]
+----
+    -- in parent archetype
+    some_attr matches {
+        String[at9017]
+    }
+
+    -- in specialisation child
+    some_attr matches {"match me"}
+----
+
+id-coded ADL2::
++
 [source, cadl]
 ----
     -- in parent archetype
@@ -70,6 +135,7 @@ If the `Primitive_node_id` is used, a specialisation may use the brief form, as 
     -- in specialisation child
     some_attr matches {"match me"}
 ----
+====
 
 === Assumed Values
 
@@ -146,7 +212,7 @@ The second way of constraining strings is with regular expressions, a widely use
 
 [source, cadl]
 ----
-    string_attr matches {/regular expression/} 
+    string_attr matches {/regular expression/}
     string_attr matches {^regular expression^}
 ----
 
@@ -154,7 +220,7 @@ For example, the following two patterns are equivalent:
 
 [source, cadl]
 --------
-    units ∈ {/km\/h|mi\/h/} 
+    units ∈ {/km\/h|mi\/h/}
     units ∈ {^km/h|mi/h^}
 --------
 
@@ -222,7 +288,7 @@ Lists of integers expressed in the syntax from ODIN can be used as a constraint,
 
 [source, cadl]
 --------
-    length matches {1000}       -- fixed value of 1000 
+    length matches {1000}       -- fixed value of 1000
     magnitude matches {0, 5, 8} -- any of 0, 5 or 8
 --------
 
@@ -289,10 +355,10 @@ Constraints on attributes of type `Real` follow the same syntax as for Integers,
 
 === Constraints on Dates, Times and Durations
 
-Attributes of type `Date`, `Time`, `Date_time` and `Duration` (or of differently-named primitive types with the same meaning) may all be constrained in either of two ways: 
+Attributes of type `Date`, `Time`, `Date_time` and `Duration` (or of differently-named primitive types with the same meaning) may all be constrained in either of two ways:
 
-* in terms of values, using a list of ISO 8601 values or value intervals, in the same manner as for `Integer` and `Real`; and 
-* using patterns based on the ISO 8601 value syntax. 
+* in terms of values, using a list of ISO 8601 values or value intervals, in the same manner as for `Integer` and `Real`; and
+* using patterns based on the ISO 8601 value syntax.
 
 The first method allows temporal values to be constrained to actual date, time etc values, while the second allows values to be constrained on the basis of which parts of the date, time etc. are present or missing, regardless of value. The pattern method is described first, since patterns can also be used in lists and intervals.
 
@@ -446,9 +512,9 @@ duration_constraint: duration_pattern '/' duration_interval ;
 
 Terminology constraints deal with a special category of data values known as 'coded terms' or 'terminology'. Coded data values are both textual (e.g. 'diastolic blood pressure') and semantic, i.e. they may have relationships to each other. The idea is that instead of using text, the possible values are represented in structured vocabularies, terminologies or ontologies that define both the possible text (including translations) and also the relationships, if any, between the terms (sometimes known as 'concepts'). In health, typical examples include 'terminology' resources such as {who_icd}[WHO ICDx^] and {snomed_ct}[SNOMED CT^] terminologies and drug databases.
 
-Coded terms are treated as a primitive type in ADL in order to enable the formalism and tools to work with terminology constraints. Unlike other primitive constraints, terminology constraints may be complex, because they can refer to external resources, either directly or via 'bindings' defined elsewhere in the archteype. This section describes just the syntax representations and relationships between these.
+Coded terms are treated as a primitive type in ADL in order to enable the formalism and tools to work with terminology constraints. Unlike other primitive constraints, terminology constraints may be complex, because they can refer to external resources, either directly or via 'bindings' defined elsewhere in the archetype. This section describes just the syntax representations and relationships between these.
 
-The full description, including binding and resolution is provided in <<Terminology Integration>>. This section describes only the syntax for term constraint in the `definition` section of an archetype. 
+The full description, including binding and resolution is provided in <<Terminology Integration>>. This section describes only the syntax for term constraint in the `definition` section of an archetype.
 
 Terminology constraints come in both the usual 'formal' form, as well as a 'soft' form, designed to allow constraints to be treated as various kinds of preferences. These are described below. The allowed specialisations of terminology constraints are described in <<_primitive_object_redefinition>>.
 
@@ -458,12 +524,48 @@ Syntactically, there are two types of terminology constraint expressible in 'sou
 
 The possibilities are illustrated below.
 
+[tabs,sync-group-id=adl-example]
+====
+at-coded ADL2::
++
 [source, cadl]
 --------
     --
     -- fragment of openEHR-EHR-EVALUATION.term_constraint_variations.v0.0.1
     --
-    
+
+    items matches {
+        ELEMENT[at0010] occurrences matches {0..1} matches {
+            name matches {
+                DV_CODED_TEXT[at0007] matches {
+                    defining_code matches {[at0004]}		-- set name to 'Substance'
+                }
+            }
+            value matches {
+                DV_CODED_TEXT[at0054] matches {
+                    defining_code matches {[ac1]}		-- Type of Substance/Agent
+                }
+            }
+        }
+        ELEMENT[at0021] occurrences matches {0..1} matches {	-- Certainty
+            value matches {
+                DV_CODED_TEXT[at0057] matches {
+                    defining_code matches {[ac2; at0022]}
+                }
+            }
+        }
+        ...
+    }
+--------
+
+id-coded ADL2::
++
+[source, cadl]
+--------
+    --
+    -- fragment of openEHR-EHR-EVALUATION.term_constraint_variations.v0.0.1
+    --
+
     items matches {
         ELEMENT[id11] occurrences matches {0..1} matches {
             name matches {
@@ -480,19 +582,20 @@ The possibilities are illustrated below.
         ELEMENT[id22] occurrences matches {0..1} matches {	-- Certainty
             value matches {
                 DV_CODED_TEXT[id58] matches {
-                    defining_code matches {[ac2; at23]}	
+                    defining_code matches {[ac2; at23]}
                 }
             }
         }
         ...
     }
 --------
+====
 
-In the above, the constraint at the path `items[id11]/name[id8]` is on a `DV_CODED_TEXT._defining_code_` representing the `_name_` of the `ELEMENT`. It is constrained to a single at-code value representing 'Substance' (assume this is the preferred name of the institution that created this archetype). The at-code is defined in the terminology part of the archetype, and may have bindings defined there as well. These are described in later sections.
+In the above, the constraint at the path `items[at0010]/name[at0007]` (`items[id11]/name[id8]`) is on a `DV_CODED_TEXT._defining_code_` representing the `_name_` of the `ELEMENT`. It is constrained to a single at-code value representing 'Substance' (assume this is the preferred name of the institution that created this archetype). The at-code is defined in the terminology part of the archetype, and may have bindings defined there as well. These are described in later sections.
 
 The second variant uses the code `ac1`, which refers to a value set. This is by definition: all ac-codes in ADL refer only to value sets. This is the most common form of terminology constraint - defining possible codes for a codable value in the model. The code and any bindings are also defined in the `terminology` section.
 
-The last variant shows a second value set constraint, this time with an assumed code, where `at23` must be in the value set referred to by `ac2`.
+The last variant shows a second value set constraint, this time with an assumed code, where `at0022` (`at23`) must be in the value set referred to by `ac2`.
 
 ==== Soft Terminology Constraint
 
@@ -516,6 +619,41 @@ The _recommendation_ is that if a terminology constraint is not `required`, a pl
 
 Soft terminology constraints are specified in ADL using keywords prior to the formal constraint. Taking into account the recommendation for coded-text + text, the typical usage is as shown below. If no keyword is supplied, the meaning is `required`, although this may also be stated using the `required` keyword if desired.
 
+[tabs,sync-group-id=adl-example]
+====
+at-coded ADL2::
++
+[source, cadl]
+--------
+    items matches {
+        ELEMENT[at0010] occurrences matches {0..1} matches {
+            name matches {
+                DV_CODED_TEXT[at0007] matches {
+                    defining_code matches {preferred [at0004]}	-- prefer 'Substance', any code ok
+                }
+                DV_TEXT[at0008]                                -- or plain text
+            }
+            value matches {
+                DV_CODED_TEXT[at0054] matches {
+                    defining_code matches {example [ac1]}	-- ac1 provided as example only
+                }
+                DV_TEXT[at0055]                               -- or plain text
+            }
+        }
+        ELEMENT[at0021] occurrences matches {0..1} matches {
+            value matches {
+                DV_CODED_TEXT[at0057] matches {
+                    defining_code matches {extensible [ac2]} -- use ac2 value-set if there is a match
+                }                                            -- or another code from same terminology
+                DV_TEXT[at0058]                                -- or plain text
+            }
+        }
+        ...
+    }
+--------
+
+id-coded ADL2::
++
 [source, cadl]
 --------
     items matches {
@@ -544,17 +682,36 @@ Soft terminology constraints are specified in ADL using keywords prior to the fo
         ...
     }
 --------
+====
 
 ==== Operational Binding Constraints
 
-The above sections describe 'source form' constraints, i.e. constraints expressed in terms of internal codes and value-sets. A further constraint possibility exists, for use at the point of operational template generation. As described in <<From Constraints to Concrete Codes in Data>>, the choice may be made that a specific operational template (OPT) should use external codes from the archetype bindings (such as from {snomed_ct}[SNOMED CT^], {who_icd}[ICD10^], etc) as the values of some or all coded nodes, rather than using the internal at-codes. 
+The above sections describe 'source form' constraints, i.e. constraints expressed in terms of internal codes and value-sets. A further constraint possibility exists, for use at the point of operational template generation. As described in <<From Constraints to Concrete Codes in Data>>, the choice may be made that a specific operational template (OPT) should use external codes from the archetype bindings (such as from {snomed_ct}[SNOMED CT^], {who_icd}[ICD10^], etc) as the values of some or all coded nodes, rather than using the internal at-codes.
 
-To express this choice, the OPT's `definition` section contains a modified version of the usual syntax `[at1]` or `[ac1]` in those nodes where an external term from the bindings is to be used. This takes the form `[acN@ttttt]` or `[atN@ttttt]` where `ttttt` is the namespace identifier of a binding in the `terminology` section of the archetype.
+To express this choice, the OPT's `definition` section contains a modified version of the usual syntax `[at0001]` (`[at2]`) or `[ac1]` in those nodes where an external term from the bindings is to be used. This takes the form `[acN@ttttt]` or `[atNNNN@ttttt]` (`[atN@ttttt]`) where `ttttt` is the namespace identifier of a binding in the `terminology` section of the archetype.
 
 Specifying which codable nodes (including 'all' and 'none' options) should have their values substituted by the external codes is assumed to be part of the OPT generator tool. Different terminology bindings may be specified on different nodes of the same archetype, or none at all, allowing for a mixture of external term substitutions depending on node.
 
 The following example shows the result in an operational template fragment.
 
+[tabs,sync-group-id=adl-example]
+====
+at-coded ADL2::
++
+[source, cadl]
+--------
+    --
+    -- extract of an operational template based on openEHR-EHR-EVALUATION.term_constraint_variations.v0.0.1
+    --
+    value matches {
+        DV_CODED_TEXT[at0054] matches {
+            defining_code matches {[ac1@snomed_ct]}        -- use snomed_ct binding for value from ac1 at runtime
+        }
+    }
+--------
+
+id-coded ADL2::
++
 [source, cadl]
 --------
     --
@@ -566,6 +723,7 @@ The following example shows the result in an operational template fragment.
         }
     }
 --------
+====
 
 See <<Terminology Integration>> for fuller picture of how this works.
 
@@ -601,6 +759,36 @@ Enumeration types in a reference model are assumed to have the semantics defined
 
 In ADL, constraints on enumerated types are represented by constraints on the underlying primitive values. The following example shows 2 constraints on an attribute of the type `PROPORTION_KIND` from the openEHR Reference Model.
 
+[tabs,sync-group-id=adl-example]
+====
+at-coded ADL2::
++
+[source, cadl]
+--------
+    ITEM_TREE[at0003] ∈ {
+        items ∈ {
+            ELEMENT[at0004] occurrences ∈ {0..1} matches {    -- test enum 1
+                value ∈ {
+                    DV_PROPORTION[at9001] ∈ {
+                        numerator ∈ {|0.0..1.0|; 0.0}
+                        type ∈ {1}                         -- pk_unitary
+                    }
+                }
+            }
+            ELEMENT[at0006] ∈ {                               -- test enum 2
+                value ∈ {
+                    DV_PROPORTION[at9002] ∈ {
+                        numerator ∈ {|0.0..1.0|; 0.0}
+                        type ∈ {2, 3}                      -- pk_percent, pk_fraction
+                    }
+                }
+            }
+        }
+    }
+--------
+
+id-coded ADL2::
++
 [source, cadl]
 --------
     ITEM_TREE[id4] ∈ {
@@ -624,6 +812,7 @@ In ADL, constraints on enumerated types are represented by constraints on the un
         }
     }
 --------
+====
 
 `PROPORTION_KIND` is defined as `{pk_ratio = 0; pk_unitary = 1; pk_percent = 2; pk_fraction = 3; pk_integer_fraction = 4}` in its reference model. Modelling tools are relied on to visualise enumeration constraints in a suitable way, by inferring the type based on inspection of the reference model on which the archetype is based.
 

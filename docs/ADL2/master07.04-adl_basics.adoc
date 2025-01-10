@@ -34,18 +34,18 @@ A fourth artefact type is also possible.
 
 === Node Identifier Codes
 
-In the `definition` section of an ADL archetype, a specific set of codes is used as node identifiers. Identifier codes always appear in brackets (`[]` ), and begin with the 'id' prefix. Specialisations of locally coded concepts have the same root, followed by 'dot' extensions, e.g. `[id10.2]` . From a terminology point of view, these codes have no implied semantics - the 'dot' structuring is used as an optimisation on node identification.
+In the `definition` section of an ADL archetype, a specific set of codes is used as node identifiers. Identifier codes always appear in brackets (`[]` ), and begin with the 'at' prefix for at-coded archetypes or 'id' prefix for id-coded archetypes. Specialisations of locally coded concepts have the same root, followed by 'dot' extensions, e.g. `[at0009.2]` (`[id10.2]`). From a terminology point of view, these codes have no implied semantics - the 'dot' structuring is used as an optimisation on node identification.
 
-[.deprecated]
-*Deprecated*: In ADL 1.4 at-codes were used as node identifiers. These are converted to id-codes by ADL 1.4 to ADL 2 converters.
+In ADL 1.4 at-codes were used as node identifiers. For id-coded ADL2 archetypes, these are converted to id-codes by ADL 1.4 to ADL 2 converters.
 
 === Local Term Codes
 
-In the `definition` section of an ADL archetype, a second set of codes is used for terms denoting constraints on coded items. Term codes are either local to the archetype, or from an external lexicon. This means that the archetype description is the same in all languages, and is available in any language that the codes have been translated to. All term codes are shown in brackets (`[]`) and are prefixed with "at", e.g. `at10` . Codes of any length are acceptable in ADL archetypes. Specialisations of locally coded concepts have the same root, followed by 'dot' extensions, e.g. `at10.2` . From a terminology point of view, these codes have no implied semantics - the 'dot' structuring is used as an optimisation on node identification.
+In the `definition` section of an ADL archetype, a second set of codes is used for terms denoting constraints on coded items. Term codes are either local to the archetype, or from an external lexicon. This means that the archetype description is the same in all languages, and is available in any language that the codes have been translated to. All term codes are shown in brackets (`[]`) and are prefixed with "at", e.g. `at0009` (`at10`) . Codes of any length are acceptable in ADL archetypes. Specialisations of locally coded concepts have the same root, followed by 'dot' extensions, e.g. `at0009.2` (`at10.2`) . From a terminology point of view, these codes have no implied semantics - the 'dot' structuring is used as an optimisation on node identification.
 
 === Local Value Set Codes
 
 A third kind of local code is used to stand for value set constraints on coded text items in the body of the archetype. Because they are language- and/or terminology-sensitive, they are defined in the terminology section, and referenced by codes prefixed by "ac", e.g. `[ac9]`.
 
 [.deprecated]
-*Deprecated*: In ADL 1.4 and transitional forms of ADL 1.5/2, 0-padded 'at' and 'ac' codes were used within top-level archetypes. In ADL 2, all such codes are reformatted to remove the 0-padding.
+*Deprecated*: In ADL 1.4 and transitional forms of ADL 1.5/2, 0-padded 'at' and 'ac' codes were used within top-level archetypes. These are also used in at-coded ADL2.
+In id-coded ADL2 however, all such codes are reformatted to remove the 0-padding.

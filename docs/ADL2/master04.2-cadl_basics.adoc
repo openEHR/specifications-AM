@@ -27,6 +27,35 @@ Symbol equivalents for some of the above are given in the following table.
 
 cADL constraints are written in a block-structured style, similar to block-structured programming languages like C. A typical block resembles the following (the recurring pattern `/.+/` is a regular expression matching a non-empty string):
 
+[tabs,sync-group-id=adl-example]
+====
+at-coded ADL2::
++
+[source, cadl]
+--------
+    PERSON[at0000] ∈ {
+        name ∈ {
+            PERSON_NAME[at0001] ∈ {
+                forenames cardinality ∈ {1..*} ∈ {/.+/}
+                family_name ∈ {/.+/}
+                title ∈ {"Dr", "Miss", "Mrs", "Mr"}
+            }
+        }
+        addresses cardinality ∈ {1..*} ∈ {
+            LOCATION_ADDRESS[at0002] ∈ {
+                street_number existence ∈ {0..1} ∈ {/.+/}
+                street_name ∈ {/.+/}
+                locality ∈ {/.+/}
+                post_code ∈ {/.+/}
+                state ∈ {/.+/}
+                country ∈ {/.+/}
+            }
+        }
+    }
+--------
+
+id-coded ADL2::
++
 [source, cadl]
 --------
     PERSON[id1] ∈ {
@@ -49,6 +78,7 @@ cADL constraints are written in a block-structured style, similar to block-struc
         }
     }
 --------
+====
 
 In the above, each block is introduced by an identifier (shown in blue) from an information model. The identifiers alternate between type-names (upper case in this example, or 'camel' case) and type attribute names (lower case). Here, 'type-name' indicates the name of a type, which may be a class name, or may be a derived generic type name. An 'attribute name' is the name of an attribute in the inheritance-flattened form of a type, i.e. may be be defined in an ancestor class of the class to which the type-name most directly corresponds.
 
@@ -56,15 +86,29 @@ Blocks introduced by a type name are known as _object blocks_ or _object nodes_,
 
 The block identifier is followed by the ∈ operator (equivalent text keyword: `matches` or `is_in` ) followed by an open brace, is the start of a 'block', which continues until the closing matching brace (normally visually indented to match the line at the beginning of the block).
 
+[tabs,sync-group-id=adl-example]
+====
+at-coded ADL2::
++
+[source, cadl]
+--------
+    PERSON[at0000] ∈ {                  -- OBJECT block 1 ------------+
+        name ∈ {                            -- attribute block A ---+ |
+            PERSON_NAME[at0001] ∈ { ... }       -- OBJECT block 2   + |
+        }                                  -------------------------+ |
+    }                                   ------------------------------+
+--------
+id-coded ADL2::
++
 [source, cadl]
 --------
     PERSON[id1] ∈ {                     -- OBJECT block 1 ------------+
         name ∈ {                            -- attribute block A ---+ |
             PERSON_NAME[id2] ∈ { ... }          -- OBJECT block 2   + |
-        }                                   -------------------------+ |
-    }                                   -------------------------------+
+        }                                  -------------------------+ |
+    }                                   ------------------------------+
 --------
-
+====
 An object block or node can be thought of as a constraint matching a set of instances conforming to the type which introduces the block.
 
 The example above expresses a constraint on an instance of the type `PERSON` ; the constraint is expressed by everything inside the `PERSON` block. The two blocks at the next level define constraints on properties of `PERSON` , in this case `_name_` and `_addresses_`. Each of these constraints is expressed in turn by the next level containing constraints on further types, and so on. The general structure is therefore a recursive nesting of constraints on types, followed by constraints on attributes (of that type), followed by types (being the types of the attribute under which it appears) until leaf nodes are reached.
@@ -91,6 +135,27 @@ Constraints expressed in cADL cannot invalidate those from the information model
 
 This general approach can be used to express constraints for instances of any information model. The following example shows how to express a constraint on the `_value_` property of an `ELEMENT` class to be a `DV_QUANTITY` with a suitable range for expressing blood pressure.
 
+[tabs,sync-group-id=adl-example]
+====
+
+at-coded ADL2::
++
+[source, cadl]
+--------
+    ELEMENT[at0009] matches {          -- diastolic blood pressure
+        value matches {
+            DV_QUANTITY[at9071] matches {
+                magnitude matches {|0..1000|}
+                property matches {"pressure"}
+                units matches {"mm[Hg]"}
+            }
+        }
+    }
+--------
+
+id-coded ADL2::
++
+
 [source, cadl]
 --------
     ELEMENT[id10] matches {          -- diastolic blood pressure
@@ -103,7 +168,7 @@ This general approach can be used to express constraints for instances of any in
         }
     }
 --------
-
+====
 In this specification, the terms underlying information model and _reference model_ are equivalent and refer to the information model on which a cADL text is based.
 
 ==== Information Model Identifiers
@@ -115,9 +180,23 @@ A *type name* is any identifier with an initial upper case letter, followed by a
 
 Type identifiers are shown in this document in all uppercase, e.g. `PERSON` , while attribute identifiers are shown in all lowercase, e.g. `home_address` . In both cases, underscores are used to represent word breaks. This convention is used to improve the readability of this document, and other conventions may be used, such as the common programmer's mixed-case convention exemplified by `Person` and `homeAddress`. The convention chosen for any particular cADL document should be based on that used in the underlying information model.
 
-=== Node Identifiers
+=== Node Identifier and Coding Systems
 
-Node identifier codes appear after all type identifiers in a cADL text. They take the form of an 'id-code' in brackets, e.g. `[id3]`. The id-code of a root object in a structure is always `id1`, or for specialised archetypes, `id1.1`, `id1.1.1` etc. The rules and use of node identifiers is described in more detail below.
+Node identifier codes appear after all type identifiers in a cADL text.
+
+ADL 2.4 introduces support for a choice of node identifier _coding systems_, in order to facilitate transition from ADL1 to ADL2:
+
+- the **at-code coding system**, identical to that used for ADL1, mandatory to be used in _openEHR Reference Model (RM)_ environments.
+
+- the **id-code coding system**, as originally introduced in ADL2.
+
+Each coding system has a different node-naming and numbering convention:
+
+- For **at-coded archetypes**, node identifiers take the form of an _at-code_ in brackets, e.g. `[at0002]`. The at-code of a root object in a structure is always `at0000`, or for specialised archetypes, `at0000.1`, `at0000.1.1` etc.
+
+- For **id-coded archetypes**, node identifiers take the form of an _id-code_ in brackets, e.g. `[id3]`. The id-code of a root object in a structure is always `id1`, or for specialised archetypes, `id1.1`, `id1.1.1` etc.
+
+The rules and use of node identifiers are described in more detail below in the <<_node_identifiers>> and <<_node_identifier_codes>> sections.
 
 === The matches Operator
 
@@ -125,35 +204,57 @@ The `matches` or `is_in` operator deserves special mention, since it is the key 
 
 [source, cadl]
 --------
-    aaa matches {/\w*ion[\s\n\t ]/} -- the set of words ending in 'ion'  
+    aaa matches {/\w*ion[\s\n\t ]/} -- the set of words ending in 'ion'
 --------
 
 The following example links the name of a type `XXX` with a hierarchical value space.
 
+[tabs,sync-group-id=adl-example]
+====
+at-coded ADL2::
++
 [source, cadl]
 --------
-    XXX[id2] matches {
-        xxx_attr1 matches {                    
-            YYY[id3] matches {
-                yyy_attr1 matches {0..3}                    
+    XXX[at0001] matches {
+        xxx_attr1 matches {
+            YYY[at0002] matches {
+                yyy_attr1 matches {0..3}
             }
-        }                                        
-        xxx_attr2 matches {                
-            ZZZ[id4] matches {
-                zzz_attr1 matches {>1992-12-01}                        
+        }
+        xxx_attr2 matches {
+            ZZZ[at0003] matches {
+                zzz_attr1 matches {>1992-12-01}
             }
         }
     }
 --------
 
-The meaning of the syntax above is: data matching the constraints conssists of an instance of type `XXX` , or any subtype allowed by the underlying information model, for which the value of attribute `_aaa_` is of type `YYY` , or any subtype allowed by the underlying information model, and so on, recursively until leaf level constraints are reached.
+id-coded ADL2::
++
+[source, cadl]
+--------
+    XXX[id2] matches {
+        xxx_attr1 matches {
+            YYY[id3] matches {
+                yyy_attr1 matches {0..3}
+            }
+        }
+        xxx_attr2 matches {
+            ZZZ[id4] matches {
+                zzz_attr1 matches {>1992-12-01}
+            }
+        }
+    }
+--------
+====
+The meaning of the syntax above is: data matching the constraints consists of an instance of type `XXX` , or any subtype allowed by the underlying information model, for which the value of attribute `_aaa_` is of type `YYY` , or any subtype allowed by the underlying information model, and so on, recursively until leaf level constraints are reached.
 
 Occasionally the `matches` operator needs to be used in the negative, usually at a leaf block. Any of the following can be used to constrain the value space of the attribute `aaa` to any number except 5:
 
 [source, cadl]
 --------
-    aaa ~matches {5} 
-    aaa ~is_in {5} 
+    aaa ~matches {5}
+    aaa ~is_in {5}
     aaa ∉ {5}
 --------
 
