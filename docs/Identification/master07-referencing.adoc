@@ -6,7 +6,7 @@ A key semantic difference exists with references as opposed to identifiers. A re
 
 Various forms of the references based on the HRID are used, depending on the need, as described below. These are denoted as follows:
 
-* the interface HRID reference (`ihrid_ref`), which is the same for all artefact instances sharing the same core interface, in other words, the form of the identifier including only the major version; this will match the latest relase available of that major version;
+* the interface HRID reference (`ihrid_ref`), which is the same for all artefact instances sharing the same core interface, in other words, the form of the identifier including only the major version; this will match the latest release available of that major version;
 * the specific interface HRID reference (`sihrid_ref`), which is the form of the identifier including the major and minor versions, which will match a specific release of the interface;
 * the physical HRID reference (`phrid_ref`), which identifies artefact instances which are identical; this is the form of identifier with the full version identifier included.
 
@@ -73,7 +73,7 @@ A reference such as the above will resolve to an actual archetype at runtime acc
 * the most recent released version variant of `openEHR-EHR-ITEM_TREE.medication.v1`, i.e. the latest minor or patch version such as `v1.0.4`, `v1.2.49` etc OR
 * the latest release candidate version of `openEHR-EHR-ITEM_TREE.medication.v1`, e.g. `v1.2.3-rc44`, because 'rc' versions are guaranteed to be semantically compatible with their target version
 
-Because minor versions can include structural additions, it may be that in some cases, archetype external references need to be include a minor version as well - allowing an exact structual form of the archetype (interface) to be identified. Similarly For testing or other research purposes, it should probably be assumed that patch and `-rc` and `-alpha` versions of an archetype need to be referenced.
+Because minor versions can include structural additions, it may be that in some cases, archetype external references need to be include a minor version as well - allowing an exact structural form of the archetype (interface) to be identified. Similarly For testing or other research purposes, it should probably be assumed that patch and `-rc` and `-alpha` versions of an archetype need to be referenced.
 
 The general case is therefore assumed to be that an artefact reference is a `hrid_ref` , but most commonly an `ihrid_ref`.
 
@@ -230,7 +230,7 @@ id-coded ADL2::
 --------
 ====
 
-The semantics of referencing in queries differ from those of the archetype-to-archetype form, due to the fact that references are normally followed by paths that refer to specific data points within the structure. For an AQL query to be correct, the path must exist in the archetype at the release matched by the reference. Since minor versions can add to the archetype 'interface' (i.e. add data points, and therfore paths, to the structure), a given path needs to reference the oldest archetype for which the path is valid. Consider the following path:
+The semantics of referencing in queries differ from those of the archetype-to-archetype form, due to the fact that references are normally followed by paths that refer to specific data points within the structure. For an AQL query to be correct, the path must exist in the archetype at the release matched by the reference. Since minor versions can add to the archetype 'interface' (i.e. add data points, and therefore paths, to the structure), a given path needs to reference the oldest archetype for which the path is valid. Consider the following path:
 
 [source, cadl]
 --------
@@ -332,8 +332,8 @@ In knowledge-enabled information environments such as those built on the archety
 Three requirements can be identified with respect to data within systems.
 
 * _Reconstitutability_: firstly, it must be possible to re-connect data with the archetypes, templates and subsets, used to create them. This implies that the major and minor versions at least are recorded in data, since a minor version may have an effect on structure.
-* _Querying_: secondly, it must be possible to know what archetypes (including major version), and therefore what path-sets can be used for querying data - given that this may well include parents of specialised archteypes, not just the archetypes used to directly create the data.
-* _Optimisation_: we can also assume that in a typical production system handling millions of health records, that the size of artefect identifiers embedded in data (especially if repeated) may be an issue, and that some kind of space optimisation may be required.
+* _Querying_: secondly, it must be possible to know what archetypes (including major version), and therefore what path-sets can be used for querying data - given that this may well include parents of specialised archetypes, not just the archetypes used to directly create the data.
+* _Optimisation_: we can also assume that in a typical production system handling millions of health records, that the size of artefact identifiers embedded in data (especially if repeated) may be an issue, and that some kind of space optimisation may be required.
 
 Within extracts or messages, the same requirements broadly hold, but could be better restated as follows.
 
@@ -371,7 +371,7 @@ To address this situation, one of the following strategies is required:
 * include the configuration meta-data from the operational template(s) with the data when it is exchanged, i.e. in an EHR Extract.
 * include archetype lineage information in the data itself. This could be a modified form of the identifier reference in the case of specialised archetypes to allow lineage information to be stored.
 
-The second approach can be considered a generalisation of recording just the current archetype identifier, i.e. the 'lineage' for non-specialised archetypes evaluates to just that archetype id, and for specialised archteypes, it will be a list. This specification assumes that the second is used.
+The second approach can be considered a generalisation of recording just the current archetype identifier, i.e. the 'lineage' for non-specialised archetypes evaluates to just that archetype id, and for specialised archetypes, it will be a list. This specification assumes that the second is used.
 
 The simplest form of this would be as a list of operational identifiers, e.g.
 

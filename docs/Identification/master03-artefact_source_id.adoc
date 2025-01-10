@@ -29,7 +29,7 @@ Different types of human-readable identifiers are used for archetypes, templates
 
 == Formal Model
 
-This section defines a formal grammar for human-readable indentifiers of knowledge artefacts. As described above, more than one human-readable identifier can be constructed from the identifying properties of the `ARCHETYPE_HRID` class. The grammar is shown in green below.
+This section defines a formal grammar for human-readable identifiers of knowledge artefacts. As described above, more than one human-readable identifier can be constructed from the identifying properties of the `ARCHETYPE_HRID` class. The grammar is shown in green below.
 
 The highest level distinction is between managed and unmanaged artefacts, with managed status being indicated by the prepending of a namespace to what can be termed a 'local' HRID (i.e. local to a given namespace context).
 
@@ -42,7 +42,7 @@ The highest level distinction is between managed and unmanaged artefacts, with m
     V_REVERSE_DOMAIN_NAME   =   ; (* See IETF RFCs 1035, 123, and 2181. *)
 --------
 
-The `namespace` above is the publisher organisation reverse domain name. Reverse domain names are used in order to aid lexical sorting of identifiers and also tools that build directory structures based on reverse domain name segments. All managed artefacts, including archetypes and templates should include a namespace. Any archetype or template carriying an identifier without a namespace is assumed to be an unmanaged artefact.
+The `namespace` above is the publisher organisation reverse domain name. Reverse domain names are used in order to aid lexical sorting of identifiers and also tools that build directory structures based on reverse domain name segments. All managed artefacts, including archetypes and templates should include a namespace. Any archetype or template carrying an identifier without a namespace is assumed to be an unmanaged artefact.
 
 Examples:
 
@@ -93,7 +93,7 @@ The second part of the human-readable identifier is a 'short' ontological identi
 
 ==== Legacy ADL 1.4 Semantics
 
-Historically in ADL 1.4 (ISO 13606-2:2008), the 'concept' part of the identifier encoded the specialisation hierarchy of concepts as a series of hyphated segments, e.g. 'problem' and 'problem-diagnosis', with the latter identifiying a specialised form of the former.The requirement for the concept name to include specialisations is removed in this specification, as well as the ADL / AOM 1.5 specifications. This enables the domain concept of any artefact to be freely assigned according to the purpose of the artefact.
+Historically in ADL 1.4 (ISO 13606-2:2008), the 'concept' part of the identifier encoded the specialisation hierarchy of concepts as a series of hyphenated segments, e.g. 'problem' and 'problem-diagnosis', with the latter identifying a specialised form of the former.The requirement for the concept name to include specialisations is removed in this specification, as well as the ADL / AOM 1.5 specifications. This enables the domain concept of any artefact to be freely assigned according to the purpose of the artefact.
 
 To allow for the fact that legacy specialised archetypes do in fact include the '-' style of separated domain concept identifier, the '-' character is still be allowed, but no longer has any semantic significance.
 
@@ -113,7 +113,7 @@ image::{diagrams_uri}/information_artefact_ontology.png[id=info_artefact_ontolog
 
 This (putative) ontology consists of high-level health information recording entities (black), a set of record entry types derived from the Clinical Investigator Record ontology cite:[Beale_Heard2007], and domain-specific entities in blue. It is assumed that the top node(s) of the ontology could be related to nodes in a published ontology such as the {iao}[Information Artefact Ontology (IAO)^], but this is not a pre-requisite for establishing this ontology. More ideally, its categories would be related to categories in the {bfo}[Basic Formal Ontology (BFO)^].
 
-The blue node `measurement_of_systemic_arterial_blood_pressure` (bottom left) describes an entity corresponding to a 'record of systemic arterial blood pressure measurement'. Long names such as this are standard in the ontology community, and are designed to ensure that the name of a category is sufficient to unamiguously define its meaning. Such names are typically too long and unwieldy for the purposes of managable lexical identifiers such as for archetypes.
+The blue node `measurement_of_systemic_arterial_blood_pressure` (bottom left) describes an entity corresponding to a 'record of systemic arterial blood pressure measurement'. Long names such as this are standard in the ontology community, and are designed to ensure that the name of a category is sufficient to unambiguously define its meaning. Such names are typically too long and unwieldy for the purposes of manageable lexical identifiers such as for archetypes.
 
 We therefore assume that a system of 'short identifiers' is possible within the ontology, where a 'short id' is a synonym for a full node identifier. If we further assume that the ontology is constructed with tools (e.g. {protege}[Protege^]) and that ontology identifiers are checked to ensure uniqueness.
 
