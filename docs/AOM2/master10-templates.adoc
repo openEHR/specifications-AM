@@ -32,17 +32,20 @@ The first two of these are explicitly identified and published artefacts, and ca
 
 In order to better explain the template artefact structure, an example is described below. Assume the logical structure required is as shown below. This shows three archetypes of specific RM types, that should be chained together by slot-filling at specific paths, to form a final template. The template also adds further constraints via overlays.
 
-at-coded example:
-
+[tabs,sync-group-id=adl-example]
+====
+at-coded archetypes structure::
++
 * `org.openehr::openEHR-EHR-COMPOSITION.encounter_report.v1 / content[at0004]`
 ** `org.openehr::openEHR-EHR-SECTION.vital_signs_headings.v1 / items [at0001]`
 *** `org.openehr::openEHR-EHR-EVALUATION.problem_description.v1`
 
-id-coded example:
-
+id-coded archetypes structure::
++
 * `org.openehr::openEHR-EHR-COMPOSITION.encounter_report.v1 / content[id5]`
 ** `org.openehr::openEHR-EHR-SECTION.vital_signs_headings.v1 / items [id2]`
 *** `org.openehr::openEHR-EHR-EVALUATION.problem_description.v1`
+====
 
 The actual template structure needed to achieve this is shown below. The archetype `org.openehr::openEHR-EHR-COMPOSITION.encounter_report.v1` is shown at the top right. This is templated (i.e. specialised) by the template `uk.nhs.clinical::openEHR-EHR-COMPOSITION.t_encounter_report.v1` at the top left. The template performs the job of filling the `at0004` (`id5`) slot in the root archetype by specialising the slot. The specialised version adds a filler object (designated with the `C_ARCHETYPE_ROOT` instance) and also overrides the original `ARCHETYPE_SLOT` instance to close the slot to any further filling, either by further templating or at runtime.
 

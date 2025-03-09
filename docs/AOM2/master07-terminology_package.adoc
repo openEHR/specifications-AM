@@ -31,14 +31,19 @@ image::{diagrams_uri}/terminology_instance_structure.svg[id=terminology_instance
 
 Any given archetype occurs at some point in a lineage of archetypes related by specialisation, where the depth is reflected by the `_specialisation_depth_` function. An archetype which is not a specialisation of another has a specialisation_depth of 0. Term and constraint codes introduced in the terminology of specialised archetypes (i.e. which did not exist in the terminology of the parent archetype) are defined in a strict way, using '.' (period) markers. For example, an archetype of specialisation depth 2 will use term definition codes like the following:
 
-* For at-coded archetypes:
+[tabs,sync-group-id=adl-example]
+====
+for at-coded archetypes::
++
 ** `at0.0.1` - a new term introduced in this archetype, which is not a specialisation of any previous term in any of the parent archetypes;
 ** `at0004.0.1` - a term which specialises the `at0004` term from the top parent. An intervening `.0` is required to show that the new term is at depth 2, not depth 1;
 ** `at0025.1.1` - a term which specialises the term `at0025.1` from the immediate parent, which itself specialises the term `at0025` from the top parent.
-* For id-coded archetypes:
+for id-coded archetypes::
++
 ** `id0.0.1` - a new term introduced in this archetype, which is not a specialisation of any previous term in any of the parent archetypes;
 ** `id4.0.1` - a term which specialises the `id4` term from the top parent. An intervening `.0` is required to show that the new term is at depth 2, not depth 1;
 ** `id25.1.1` - a term which specialises the term `id25.1` from the immediate parent, which itself specialises the term `id25` from the top parent.
+====
 
 This systematic definition of codes enables software to use the structure of the codes to more quickly and accurately make inferences about term definitions up and down specialisation hierarchies. Constraint codes on the other hand do not follow these rules, and exist in a flat code space instead.
 

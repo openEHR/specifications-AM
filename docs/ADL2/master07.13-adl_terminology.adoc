@@ -78,13 +78,18 @@ terminology
 
 The `term_definitions` section is mandatory, and must contain definitions for all terms requiring them, in all translations in use in the archetype. Terms requiring definitions include:
 
-* for at-coded archetypes:
+[tabs,sync-group-id=adl-example]
+====
+for at-coded archetypes::
++
 ** all at-codes
 ** all ac-codes
-* for id-coded archetypes:
+for id-coded archetypes::
++
 ** all id-codes of object nodes under a container attribute or which are multiple alternative siblings under a single-valued attribute
 ** all at-codes
 ** all ac-codes
+====
 
 The following example shows an extract from the English and German term definitions for the archetype local terms in a problem/SOAP headings archetype. Each term is defined using a structure of name/value pairs, and must at least include the names "text" and "description", which correspond to the usual rubric and full definition found in terminologies like {snomed_ct}[SNOMED CT^]. Each term object is then included in the appropriate language list of term definitions, as shown in the example below.
 
@@ -291,16 +296,21 @@ A value set and/or its constituent terms may also have 'bindings' to externally 
 
 Keys can be any one of:
 
-* for at-coded archetypes:
+[tabs,sync-group-id=adl-example]
+====
+for at-coded archetypes::
++
 ** an at-code;
 ** an object node absolute path terminating in an at-code, e.g. `"/data[at0001]/events[at0002]/data[at0003]/item[at0004]"`;
 ** an ac-code.
-* for id-coded archetypes:
+for id-coded archetypes::
++
 ** for id-coded object nodes:
 *** just the id-code, e.g. `id4`;
 *** an object node  absolute path terminating in an id-code, e.g. `"/data[id2]/events[id3]/data[id1]/item[id4]"`;
 ** an at-code;
 ** an ac-code.
+====
 
 Binding targets are expressed as URIs that follow the model for {snomed_uris}[terminology URIs published by IHTSDO] or a similar model, in the case of terminologies other than {snomed_ct}[SNOMED CT^]. Because URIs are native types in ADL/ODIN, they do not need quotes.
 
