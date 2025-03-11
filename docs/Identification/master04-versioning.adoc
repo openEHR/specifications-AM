@@ -66,8 +66,6 @@ Two 'variant' versions are defined in the above syntax: 'release candidate' and 
 
 The other variant is indicated with the modifier `-alpha`, where `-` has the same meaning as above (i.e. indicates a version prior to the version identified by the preceding numeric identifier), and `alpha` indicates an 'alpha' development version. The magnitude of the differences in a `-alpha` version are indicated by the difference between the 3-part version identifiers of the current artefact and the previously published one on which it is based.
 
-Note that only the major version forms part of the source artefact human-readable identifier. The intention of that is that a breaking change causes a new artefact from the point of view of deployment. This is analogous to breaking changes in software interfaces, web service definitions etc, being seen as a distinct entity, typically deployed alongside the previous version(s).
-
 == Change Semantics
 
 As a consequence of the 3-part {semver}[semver.org] version identification scheme, three levels of change to an artefact can be distinguished. The main question for archetype authors and tool developers is: what level of version change is _required_ for a given kind of concrete change to the artefact? Is this change a patch, a minor version or a breaking change (i.e. major version)?
