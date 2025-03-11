@@ -21,7 +21,7 @@ Three distinct groups of properties shown in the `ARCHETYPE_HRID` class that und
 
 Functions such as `interface_id`, `physical_id` and `version_id` are defined to return respectively the 'interface' and 'physical' archetype HRIDs (described below) as strings, and the full version string (computed from `release_version` , `build_uid` and `description.lifecycle_state` ). The functions `major_version` , `minor_version` and `patch_version` extract the various parts of the 3-part `release_version` property.
 
-The `uid` property provides the machine identifier, and is assumed to be a Guid.
+The `uid` property provides the machine identifier, and is assumed to be a GUID.
 
 Both the `uid` and `namespace` properties are optional for legacy reasons, since most existing archetypes have neither. The interpretation of an artefact without these identifiers in this specification is that it is _unmanaged_ , i.e. it has no recognised owner organisation. During a period of changeover to the identifiers specified here, there will clearly be artefacts that are in fact managed, and which need to have the `uid` and `namespace` properties assigned. This will obviously take some time, as it requires support from the tooling ecosystem.
 
