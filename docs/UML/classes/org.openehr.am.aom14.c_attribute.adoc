@@ -16,7 +16,7 @@ h|*Attributes*
 ^h|*Meaning*
 
 h|*1..1*
-|*rm_attribute_name*: `String`
+|*rm_attribute_name*: `link:/releases/BASE/{base_release}/foundation_types.html#_string_class[String^]`
 a|Reference model attribute within the enclosing type represented by a C_OBJECT.
 
 h|*1..1*
@@ -26,12 +26,13 @@ a|Constraint on every attribute, regardless of whether it is singular or of a co
 h|*0..1*
 |*children*: `link:/releases/BASE/{base_release}/foundation_types.html#_list_class[List^]<<<_c_object_class,C_OBJECT>>>`
 a|Child C_OBJECT nodes. Each such node represents a constraint on the type of this attribute in its reference model. Multiples occur both for multiple items in the case of container attributes, and alternatives in the case of singular attributes.
+
 h|*Functions*
 ^h|*Signature*
 ^h|*Meaning*
 
 h|*1..1*
-|*any_allowed* (): `Boolean` +
+|*any_allowed* (): `link:/releases/BASE/{base_release}/foundation_types.html#_boolean_class[Boolean^]` +
  +
 __Post__: `Result := children = Void or else children.is_empty`
 a|True if any value (i.e. instance) of the reference model attribute represented by this C_ATTIRBUTE is allowed.

@@ -22,6 +22,7 @@ a|Parent node, except in the case of the top of a tree, i.e. root `C_COMPLEX_OBJ
 h|*0..1*
 |*soc_parent*: `<<_c_second_order_class,C_SECOND_ORDER>>`
 a|
+
 h|*Functions*
 ^h|*Signature*
 ^h|*Meaning*
@@ -45,9 +46,9 @@ h|*1..1 +
 (abstract)*
 |*c_conforms_to* ( +
 other: `<<_archetype_constraint_class,ARCHETYPE_CONSTRAINT>>[1]`, +
-rmcc: `link:/releases/BASE/{base_release}/foundation_types.html#_function_class[FUNCTION^]<link:/releases/BASE/{base_release}/foundation_types.html#_boolean_class[Boolean^], link:/releases/BASE/{base_release}/foundation_types.html#_tuple2_class[TUPLE2^]<link:/releases/BASE/{base_release}/foundation_types.html#_string_class[String^], link:/releases/BASE/{base_release}/foundation_types.html#_string_class[String^]>>[1]` +
-): `Boolean`
-a|True if constraints represented by this node, ignoring any sub-parts, are narrower or the same as other.
+rmcc: `link:/releases/BASE/{base_release}/foundation_types.html#_function_class[FUNCTION^]<link:/releases/BASE/{base_release}/foundation_types.html#_boolean_class[Boolean^],link:/releases/BASE/{base_release}/foundation_types.html#_tuple2_class[TUPLE2^]<link:/releases/BASE/{base_release}/foundation_types.html#_string_class[String^],link:/releases/BASE/{base_release}/foundation_types.html#_string_class[String^]>>[1]` +
+): `link:/releases/BASE/{base_release}/foundation_types.html#_boolean_class[Boolean^]`
+a|True if constraints represented by this node, ignoring any sub-parts, are narrower or the same as other. 
 Typically used during validation of specialised archetype nodes.
 
 .Parameters +
@@ -58,8 +59,8 @@ h|*1..1 +
 (abstract)*
 |*c_congruent_to* ( +
 other: `<<_archetype_constraint_class,ARCHETYPE_CONSTRAINT>>[1]` +
-): `Boolean`
-a|True if constraints represented by this node contain no further redefinitions with respect to the node other, with the exception of `_node_id_` redefinition in `C_OBJECT` nodes.
+): `link:/releases/BASE/{base_release}/foundation_types.html#_boolean_class[Boolean^]`
+a|True if constraints represented by this node contain no further redefinitions with respect to the node other, with the exception of `_node_id_` redefinition in `C_OBJECT` nodes. 
 
 Typically used to test if an inherited node locally contains any constraints.
 
@@ -76,4 +77,7 @@ a|True if this node is the root of the tree.
 h|*1..1*
 |*is_leaf* (): `link:/releases/BASE/{base_release}/foundation_types.html#_boolean_class[Boolean^]`
 a|True if this node is a terminal node in the tree structure, i.e. having no child nodes.
+
+h|*Invariants*
+2+a|__Post__: `Result = soc_parent /= Void or parent.soc_parent /= Void`
 |===
