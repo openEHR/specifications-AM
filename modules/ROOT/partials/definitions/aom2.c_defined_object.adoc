@@ -7,14 +7,14 @@ h|*Description*
 2+a|Abstract parent type of `C_OBJECT` subtypes that are defined by value, i.e. whose definitions are actually in the archetype rather than being by reference.
 
 h|*Inherit*
-2+|`xref:AM:AOM2:constraint_model-class_definitions.adoc#_c_object_class[C_OBJECT]`
+2+|`xref:{class_c_object}[C_OBJECT]`
 
 h|*Attributes*
 ^h|*Signature*
 ^h|*Meaning*
 
 h|*0..1*
-|*default_value*: `xref:BASE:foundation_types:overview.adoc#_any_class[Any]`
+|*default_value*: `xref:{class_any}[Any]`
 a|Default value set in a template, and present in an operational template. Generally limited to leaf and near-leaf nodes.
 
 h|*Functions*
@@ -23,22 +23,22 @@ h|*Functions*
 
 h|*1..1 +
 (abstract)*
-|*any_allowed* (): `xref:BASE:foundation_types:primitive_types.adoc#_boolean_class[Boolean]`
+|*any_allowed* (): `xref:{class_boolean}[Boolean]`
 a|True if any value (i.e. instance) of the reference model type would be allowed. Redefined in descendants.
 
 h|*1..1 +
 (abstract)*
 |*valid_value* ( +
-a_value: `xref:BASE:foundation_types:overview.adoc#_any_class[Any][1]` +
-): `xref:BASE:foundation_types:primitive_types.adoc#_boolean_class[Boolean]`
+a_value: `xref:{class_any}[Any][1]` +
+): `xref:{class_boolean}[Boolean]`
 a|True if `_a_value_` is valid with respect to constraint expressed in concrete instance of this type.
 
 h|*1..1 +
 (abstract)*
-|*prototype_value* (): `xref:BASE:foundation_types:overview.adoc#_any_class[Any]`
+|*prototype_value* (): `xref:{class_any}[Any]`
 a|Generate a prototype value from this constraint object.
 
 h|*1..1*
-|*has_default_value* (): `xref:BASE:foundation_types:primitive_types.adoc#_boolean_class[Boolean]`
+|*has_default_value* (): `xref:{class_boolean}[Boolean]`
 a|True if there is an assumed value.
 |===

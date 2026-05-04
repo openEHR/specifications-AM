@@ -4,25 +4,25 @@
 
 2+a|Binary operator expression node.
 
-2+|Inherits: xref:AM:AOM1.4:archetype_package.adoc#_expr_item_class[EXPR_ITEM], xref:AM:AOM1.4:archetype_package.adoc#_expr_operator_class[EXPR_OPERATOR]
+2+|Inherits: xref:{class_expr_item}[EXPR_ITEM], xref:{class_expr_operator}[EXPR_OPERATOR]
 
 2+h|*Attributes*
 
-|*type*: `xref:BASE:foundation_types:primitive_types.adoc#_string_class[String]` [1..1]
+|*type*: `xref:{class_string}[String]` [1..1]
 a|Type name of this item in the mathematical sense. For leaf nodes, must be the name of a primitive type, or else a reference model type. The type for any relational or boolean operator will be “Boolean”, while the type for any arithmetic operator, will be “Real” or “Integer”. +
-_Inherited from xref:AM:AOM1.4:archetype_package.adoc#_expr_item_class[EXPR_ITEM]_
+_Inherited from xref:{class_expr_item}[EXPR_ITEM]_
 
-|*precedence_overridden*: `xref:BASE:foundation_types:primitive_types.adoc#_boolean_class[Boolean]` [0..1]
+|*precedence_overridden*: `xref:{class_boolean}[Boolean]` [0..1]
 a|True if the natural precedence of operators is overridden in the expression represented by this node of the expression tree. If True, parentheses should be introduced around the totality of the syntax expression corresponding to this operator node and its operands. +
-_Inherited from xref:AM:AOM1.4:archetype_package.adoc#_expr_operator_class[EXPR_OPERATOR]_
+_Inherited from xref:{class_expr_operator}[EXPR_OPERATOR]_
 
-|*operator*: `xref:AM:AOM1.4:archetype_package.adoc#_operator_kind_enumeration[OPERATOR_KIND]` [1..1]
+|*operator*: `xref:{class_operator_kind}[OPERATOR_KIND]` [1..1]
 a|Code of operator. +
-_Inherited from xref:AM:AOM1.4:archetype_package.adoc#_expr_operator_class[EXPR_OPERATOR]_
+_Inherited from xref:{class_expr_operator}[EXPR_OPERATOR]_
 
-|*left_operand*: `xref:AM:AOM1.4:archetype_package.adoc#_expr_item_class[EXPR_ITEM]` [1..1]
+|*left_operand*: `xref:{class_expr_item}[EXPR_ITEM]` [1..1]
 a|Left operand node.
 
-|*right_operand*: `xref:AM:AOM1.4:archetype_package.adoc#_expr_item_class[EXPR_ITEM]` [1..1]
+|*right_operand*: `xref:{class_expr_item}[EXPR_ITEM]` [1..1]
 a|Right operand node.
 |===

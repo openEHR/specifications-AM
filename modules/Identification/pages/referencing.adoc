@@ -1,3 +1,5 @@
+include::partial$module_vars.adoc[]
+
 = Referencing
 
 This section describes how artefact are referenced, by other artefacts and software. The general principal for referencing is that references based on human-readable identifiers are used between source artefacts, in the same way as for software, while references in operational forms of the artefacts or from data may be in the form of either HRIDs or machine identifiers.
@@ -112,7 +114,7 @@ A typical slot definition using REs based on such identifiers is as follows:
     protocol matches {
         ITEM_TREE[at0015] ∈ {   
             items cardinality ∈ {0..*; ordered} ∈ {
-                allow_archetype CLUSTER[id20] occurrences ∈ {0..1} matches {
+                allow_archetype CLUSTER[id20] occurrences ∈ \{0..1} matches {
                     include
                         archetype_id/value ∈ {/openEHR-EHR-CLUSTER\.device(-[a-zA-Z0-9_]+)*\.v1/}
                 }
@@ -136,7 +138,7 @@ In ADL 2 a slot can be defined using a semantic (rather than lexical) expression
 
 [source, cadl]
 --------
-    allow_archetype CLUSTER [id4.1] occurrences ∈ {0..1} ∈ {
+    allow_archetype CLUSTER [id4.1] occurrences ∈ \{0..1} ∈ {
         include ∈ {True}
             archetype_id ∈ {
                 ARCHETYPE_ID ∈ {

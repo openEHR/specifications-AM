@@ -1,3 +1,5 @@
+include::partial$module_vars.adoc[]
+
 //
 // ============================================ Asciidoc HEADER =============================================
 //
@@ -7,7 +9,47 @@
 //
 
 
-= {spec_title}
+= {spec_title} [.spec-status.spec-status-stable]#{spec_status}#
+
+The object model of an ADL 2 archetype in memory. This specification is the primary reference for tool developers building archetype editors, validators, repository software, and template engines, as it defines exactly how archetype structure, constraints, terminology, and specialisation are represented in a conformant implementation. AOM 1.4 is the predecessor aligned with the ADL 1.4 formalism. The AOM includes a full constraint type hierarchy, terminology binding model, and specialisation semantics covering both differential and flat forms.
+
+== Purpose
+
+This document contains the normative description of openEHR Archetype and Template semantics (originally described in <<Beale2000>> and <<Beale2002>>), in the form of an object model. The model presented here can be used as a basis for building software that represents archetypes and templates, independent of their persistent representation. Equally, it can be used to develop the output side of parsers that process archetypes in a linguistic format, such as the {openehr_am_adl2}[openEHR Archetype Definition Language (ADL)^] , XML and so on.
+
+It is recommended in any case that the ADL specification be read in conjunction with this document, since it contains a detailed explanation of the semantics of archetypes, and many of the examples are more obvious in ADL, regardless of whether ADL is actually used with the object model presented here or not.
+
+The release of AOM described in this specification corresponds to the 2.x version of the archetype formalism.
+
+The intended audience includes:
+
+* Standards bodies producing health informatics standards;
+* Research groups using openEHR, ISO 13606, and other EHR or EHR exchange architectures;
+* The open source healthcare community;
+* EHR solution vendors;
+* Medical informaticians and clinicians interested in health information.
+
+== Related Documents
+
+Prerequisite documents for reading this document include:
+
+* The {openehr_overview}[openEHR Architecture Overview^];
+* The {openehr_am_overview}[openEHR Archetypes Technical Overview^].
+* The {openehr_base_types}[openEHR Base Types Specification^].
+
+Related documents include:
+
+* The {openehr_am_adl2}[openEHR Archetype Definition Language 2 Specification^];
+* The {openehr_am_opt2}[openEHR Operational Template Specification^].
+
+== Nomenclature
+
+In this document, the term 'attribute' denotes any stored property of a type defined in an object model, including primitive attributes and any kind of relationship such as an association or aggregation. XML 'attributes' are always referred to explicitly as 'XML attributes'.
+
+We also use the word 'archetype' in a broad sense to designate what are commonly understood to be 'archetypes' (specifications of clinical data groups / data constraints) and 'templates' (data sets based on archetypes, since at a technical level, an ADL/AOM 2 template is in fact just an archetype. Accordingly, statements about 'archetypes' in this specification can be always understood to also apply to templates, unless otherwise indicated.
+
+
+
 
 
 //
@@ -18,76 +60,13 @@
 //
 // --------------------------------------------- Preface -----------------------------------------------
 //
-== Acknowledgements
 
-=== Primary Author
+== Feedback
 
-* Thomas Beale, Ars Semantica, UK; openEHR International Board.
+Feedback may be provided on the {openehr_adl_forum}[openEHR ADL forum^].
 
-=== Contributors
+Issues may be raised on the {component_prs}[specifications Problem Report tracker^].
 
-This specification and its sibling Archetype Definition Language specification have benefited from wide formal and informal input from the openEHR and wider health informatics community. The openEHR Foundation would like to recognise the following people for their contributions.
-
-* Koray Atalag, MD, PhD, Sen. Researcher, National Institute for Health Innovation (NIHI), New Zealand
-* Silje Ljosland Bakke, RN, Nasjonal IKT HF, Norway
-* Linda Bird PhD, IHTSDO, Australia
-* Pieter Bos, Senior Software Engineer, Nedap, Netherlands
-* Diego Boscá, IBIME, Technical University Valencia, VeraTech for Health, Spain
-* Rong Chen MD, PhD, Cambio Healthcare Systems, Sweden
-* Joey Coyle MD, PhD, Intermountain Healthcare, New York
-* Borut Fabjan, Program Manager, Better d.o.o., Slovenia
-* Sebastian Garde PhD, Ocean Informatics, UK
-* Peter Gummer, Ocean Informatics, Australia
-* Sam Heard MD, Ocean Informatics, Australia
-* Stan Huff MD, Intermountain Healthcare, UT, USA
-* David Ingram PhD, Emeritus Professor of Health Informatics, UCL, UK
-* Dipak Kalra MD, PhD, Professor Health Informatics, CHIME, UCL, UK
-* Shinji Kobayashi PhD, Kyoto University EHR research unit, Japan
-* Bostjan Lah, Architect, Better d.o.o., Slovenia
-* Patrick Langford, NeuronSong LLC, Utah, USA
-* David Lloyd, CHIME, UCL (ret), UK
-* Chunlan Ma PhD, MD, Ocean Informatics, Australia
-* Ian McNicoll MD, FreshEHR, UK
-* David Moner, IBIME, Technical University Valencia, VeraTech for Health, Spain
-* Claude Nanjo MA African Studies., M Public Health, Cognitive Medical Systems Inc., California
-* Pablo Pazos Gutierrez, Tarmac IT, CaboLabs, Uruguay
-* Harold Solbrig, Mayo Clinic, Rochester, USA
-* Erik Sundvall PhD, Linkoping University, Sweden
-* Alessandro Torrisi, Code24, The Netherlands
-* Bert Verhees, ROSA Software, The Netherlands
-
-=== Supporters
-
-The work reported in this paper has been funded by the following organisations:
-
-* Ars Semantica, UK
-* UCL (University College London) - Centre for Health Informatics and Multiprofessional Education (CHIME)
-* Ocean Informatics.
-
-Special thanks to David Ingram, Emeritus Professor of Health Informatics at UCL, who provided a vision and collegial working environment ever since the days of GEHR (1992).
-
-=== Trademarks
-
-* 'openEHR' is a trademark of the openEHR Foundation
-* 'Java' is a registered trademark of Oracle Corporation
-* 'Microsoft' is a trademark of the Microsoft Corporation
+To see changes made due to previously reported issues, see the {component_history}[{component} component Change Request tracker^].
 
 
-//
-// --------------------------------------------- TOC -----------------------------------------------
-//
-//toc::[left]
-
-//
-// --------------------------------------------- CHAPTERS -----------------------------------------------
-//
-:sectanchors:
-
-
-//
-// --------------------------------------------- REFERENCES -----------------------------------------------
-//
-:sectnums!:
-== References
-
-bibliography::[]

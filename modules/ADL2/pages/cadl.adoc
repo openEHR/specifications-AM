@@ -1,3 +1,5 @@
+include::partial$module_vars.adoc[]
+
 = cADL - Constraint ADL
 
 == Overview
@@ -10,7 +12,7 @@ cADL is a block-structured syntax which enables constraints on data defined by o
         name matches {                                   -- constraint on PERSON.name
             TEXT[id2] matches {/.+/}                     -- any non-empty string
         }
-        addresses cardinality matches {1..*} matches {   -- constraint on
+        addresses cardinality matches \{1..*} matches {   -- constraint on
             ADDRESS[id3] matches {                       -- PERSON.addresses
                 -- etc --
             }
@@ -26,7 +28,7 @@ Some of the textual keywords in this example can be more efficiently rendered us
         name ∈ {                               -- constraint on PERSON.name
             TEXT[id2] ∈ {/..*/}                -- any non-empty string
         }
-        addresses cardinality ∈ {1..*} ∈ {     -- constraint on
+        addresses cardinality ∈ \{1..*} ∈ {     -- constraint on
             ADDRESS[id3] ∈ {                   -- PERSON.addresses
                 -- etc --
             }
@@ -72,14 +74,14 @@ cADL constraints are written in a block-structured style, similar to block-struc
     PERSON[id1] ∈ {
         name ∈ {
             PERSON_NAME[id2] ∈ {
-                forenames cardinality ∈ {1..*} ∈ {/.+/}
+                forenames cardinality ∈ \{1..*} ∈ {/.+/}
                 family_name ∈ {/.+/}
                 title ∈ {"Dr", "Miss", "Mrs", "Mr"}
             }
         }
-        addresses cardinality ∈ {1..*} ∈ {
+        addresses cardinality ∈ \{1..*} ∈ {
             LOCATION_ADDRESS[id3] ∈ {
-                street_number existence ∈ {0..1} ∈ {/.+/}
+                street_number existence ∈ \{0..1} ∈ {/.+/}
                 street_name ∈ {/.+/}
                 locality ∈ {/.+/}
                 post_code ∈ {/.+/}
@@ -125,7 +127,7 @@ Identifiers in cADL texts correspond to entities - types and attributes - in an 
 
 [.text-center]
 .UML Model of Person
-image::{uml_diagrams_uri}/AM-example-demographics.svg[id=uml_model_of_person, align="center"]
+image::ROOT:uml/AM-example-demographics.svg[id=uml_model_of_person, align="center"]
 
 Constraints expressed in cADL cannot invalidate those from the information model. For example, the `PERSON._family_name_` attribute is mandatory in the model in the above `PERSON` model, so it is not valid to express a constraint allowing the attribute to be optional. In general, a cADL archetype can only further constrain an existing information model. However, it must be remembered that for very generic models consisting of only a few classes and a lot of optionality, this rule is not so much a limitation as a way of adding meaning to information. Thus, for a demographic information model which has only the types `PARTY` and `PERSON`, one can write cADL which defines the concepts of entities such as `COMPANY` , `EMPLOYEE` , `PROFESSIONAL` , and so on, in terms of constraints on the types available in the information model.
 
@@ -175,7 +177,7 @@ The following example links the name of a type `XXX` with a hierarchical value s
     XXX[id2] matches {
         xxx_attr1 matches {                    
             YYY[id3] matches {
-                yyy_attr1 matches {0..3}                    
+                yyy_attr1 matches \{0..3}                    
             }
         }                                        
         xxx_attr2 matches {                
@@ -192,9 +194,9 @@ Occasionally the `matches` operator needs to be used in the negative, usually at
 
 [source, cadl]
 --------
-    aaa ~matches {5} 
-    aaa ~is_in {5} 
-    aaa ∉ {5}
+    aaa ~matches \{5} 
+    aaa ~is_in \{5} 
+    aaa ∉ \{5}
 --------
 
 The choice of whether to use `matches` or `is_in` is a matter of taste and background; those with a mathematical background will probably prefer `is_in` , while those with a data processing background may prefer `matches` .
@@ -213,12 +215,12 @@ In any information model, attributes are either single-valued or multiply-valued
 
 ==== Existence
 
-The existence constraint may be used with any attribute to further constrain the existence defined by the underlying reference model. An existence constraint indicates whether an attribute value is mandatory or optional, and is indicated by "0..1" or "1" markers at line ends in UML diagrams (and often mistakenly referred to as a "cardinality of 1..1"). Attributes defined in the reference model have an effective existence constraint, defined by the invariants (or lack thereof) of the relevant class. For example, the `_protocol_` attribute in the {openehr_rm_ehr}[openEHR EHR IM^] `OBSERVATION` class is defined in the reference model as being optional, i.e. `0..1`. An archetype may redefine this to `{1..1}`, making the attribute mandatory. Existence constraints are expressed in cADL as follows:
+The existence constraint may be used with any attribute to further constrain the existence defined by the underlying reference model. An existence constraint indicates whether an attribute value is mandatory or optional, and is indicated by "0..1" or "1" markers at line ends in UML diagrams (and often mistakenly referred to as a "cardinality of 1..1"). Attributes defined in the reference model have an effective existence constraint, defined by the invariants (or lack thereof) of the relevant class. For example, the `_protocol_` attribute in the {openehr_rm_ehr}[openEHR EHR IM^] `OBSERVATION` class is defined in the reference model as being optional, i.e. `0..1`. An archetype may redefine this to `\{1..1}`, making the attribute mandatory. Existence constraints are expressed in cADL as follows:
 
 [source, cadl]
 --------
     OBSERVATION[id1] matches {
-        protocol existence matches {1..1} matches {
+        protocol existence matches \{1..1} matches {
             -- details
         }
     }
@@ -229,7 +231,7 @@ The meaning of an existence constraint is to indicate whether a value - i.e. an 
 [.principle]
 An *existence constraint* may be used directly after any attribute identifier, and indicates whether the object to which the attribute refers is mandatory or optional in the data.
 
-Existence is shown using the same constraint language as the rest of the archetype definition. Existence constraints can take the values `{0}` , `{0..0}` , `{0..1}` , `{1}` , or `{1..1}` . The first two of these constraints may not seem initially obvious, but can be used to indicate that an attribute must not be present in the particular situation modelled by the archetype. This may be reasonable in some cases.
+Existence is shown using the same constraint language as the rest of the archetype definition. Existence constraints can take the values `\{0}` , `\{0..0}` , `\{0..1}` , `\{1}` , or `\{1..1}` . The first two of these constraints may not seem initially obvious, but can be used to indicate that an attribute must not be present in the particular situation modelled by the archetype. This may be reasonable in some cases.
 
 === Single-valued Attributes
 
@@ -277,12 +279,12 @@ The cardinality of container attributes may be constrained in cADL with the `_ca
 
 [source, cadl]
 --------
-    HISTORY[id2] occurrences ∈ {1} ∈ {            
+    HISTORY[id2] occurrences ∈ \{1} ∈ {            
         periodic ∈ {False}
-        events cardinality ∈ {*} ∈ {     
-            EVENT[id3] occurrences ∈ {0..1} ∈ {    }           -- 1 min sample
-            EVENT[id4] occurrences ∈ {0..1} ∈ {    }           -- 2 min sample
-            EVENT[id5] occurrences ∈ {0..1} ∈ {    }           -- 3 min sample
+        events cardinality ∈ \{*} ∈ {     
+            EVENT[id3] occurrences ∈ \{0..1} ∈ {    }           -- 1 min sample
+            EVENT[id4] occurrences ∈ \{0..1} ∈ {    }           -- 2 min sample
+            EVENT[id5] occurrences ∈ \{0..1} ∈ {    }           -- 3 min sample
         }
     }
 --------
@@ -310,13 +312,13 @@ In theory, no cardinality constraint can be stronger than the semantics of the c
 [.principle]
 A *cardinality constraint* must be used after any Reference Model container attribute name (or after its existence constraint, if there is one) in order to designate it as a container attribute. Additionally, it may constrain the number of member items it may have in the data, and whether it has "list", "set", or "bag" semantics, via the use of the keywords 'ordered', 'unordered', 'unique' and 'non-unique'.
 
-The numeric part of the cardinality contraint can take the values `{0}`, `{0..0}`, `{0..n}`, `{m..n}`, `{0..\*}`, or `{*}`, or a syntactic equivalent. The first two of these constraints are unlikely to be useful, but there is no reason to prevent them. There is no default cardinality, since if none is shown, the relevant attribute is assumed to be single-valued (in the interests of uniformity in archetypes, this holds even for smarter parsers that can access the reference model and determine that the attribute is in fact a container).
+The numeric part of the cardinality contraint can take the values `\{0}`, `\{0..0}`, `\{0..n}`, `\{m..n}`, `{0..\*}`, or `\{*}`, or a syntactic equivalent. The first two of these constraints are unlikely to be useful, but there is no reason to prevent them. There is no default cardinality, since if none is shown, the relevant attribute is assumed to be single-valued (in the interests of uniformity in archetypes, this holds even for smarter parsers that can access the reference model and determine that the attribute is in fact a container).
 
 Cardinality and existence constraints can co-occur, in order to indicate various combinations on a container type property, e.g. that it is optional, but if present, is a container that may be empty, as in the following:
 
 [source, cadl]
 --------
-    events existence ∈ {0..1} cardinality ∈ {0..*} ∈ {-- etc --}
+    events existence ∈ \{0..1} cardinality ∈ \{0..*} ∈ {-- etc --}
 --------
 
 === Object Constraints
@@ -349,10 +351,10 @@ In the example below, three `EVENT` constraints are shown; the first one ("1 min
 
 [source, cadl]
 --------
-    events cardinality ∈ {*} ∈ {     
-        EVENT[id2] occurrences ∈ {1..1} ∈ {    }          -- 1 minute sample
-        EVENT[id3] occurrences ∈ {0..1} ∈ {    }          -- 2 minute sample
-        EVENT[id4] occurrences ∈ {0..1} ∈ {    }          -- 3 minute sample
+    events cardinality ∈ \{*} ∈ {     
+        EVENT[id2] occurrences ∈ \{1..1} ∈ {    }          -- 1 minute sample
+        EVENT[id3] occurrences ∈ \{0..1} ∈ {    }          -- 2 minute sample
+        EVENT[id4] occurrences ∈ \{0..1} ∈ {    }          -- 3 minute sample
     }
 --------
 
@@ -362,12 +364,12 @@ The following example expresses a constraint on instances of `GROUP` such that f
 --------
     GROUP[id103] ∈ {
         kind ∈ {/tribe|family|club/}
-        members cardinality ∈ {*} ∈ {
-            PERSON[id104] occurrences ∈ {1} ∈ {    
+        members cardinality ∈ \{*} ∈ {
+            PERSON[id104] occurrences ∈ \{1} ∈ {    
                 title ∈ {"head"}
                 -- etc --
             }
-            PERSON[id105] occurrences ∈ {0..*} ∈ {    
+            PERSON[id105] occurrences ∈ \{0..*} ∈ {    
                 title ∈ {"member"}
                 -- etc --
             }
@@ -375,7 +377,7 @@ The following example expresses a constraint on instances of `GROUP` such that f
     }
 --------
 
-The first `occurrences` constraint indicates that a `PERSON` with the title `"head"` is mandatory in the `GROUP` , while the second indicates that at runtime, instances of `PERSON` with the title `"member"` can number from none to many. Occurrences may take the value of any range including `{0..\*}`, meaning that any number of instances of the given type may appear in data, each conforming to the one constraint block in the archetype. A single positive integer, or the infinity indicator, may also be used on its own, thus: `{2}` , `{*}` . A range of `{0..0}` or `{0}` indicates that no occurrences of this object are allowed in this archetype. If no occurrences constraint is stated, the occurrences of the object is define by the underlying reference model.
+The first `occurrences` constraint indicates that a `PERSON` with the title `"head"` is mandatory in the `GROUP` , while the second indicates that at runtime, instances of `PERSON` with the title `"member"` can number from none to many. Occurrences may take the value of any range including `{0..\*}`, meaning that any number of instances of the given type may appear in data, each conforming to the one constraint block in the archetype. A single positive integer, or the infinity indicator, may also be used on its own, thus: `\{2}` , `\{*}` . A range of `\{0..0}` or `\{0}` indicates that no occurrences of this object are allowed in this archetype. If no occurrences constraint is stated, the occurrences of the object is define by the underlying reference model.
 
 [.principle]
 An *occurrences constraint* may appear directly after the type name of any object constraint within a container attribute, in order to indicate how many times data objects conforming to the block may occur in the data.
@@ -394,7 +396,7 @@ There are two cases where it is useful to state a completely open, or 'any', con
 [source, cadl]
 --------
     PERSON[id2] ∈ {
-        name existence ∈ {1}
+        name existence ∈ \{1}
         -- etc --
     }
 --------
@@ -415,7 +417,7 @@ The second use of "any" as a constraint value is for types, such as in the follo
 The meaning of this constraint is that in the data at runtime, the `_value_` property of `ELEMENT` must be of type `DV_QUANTITY` , but can have any value internally. This is most useful for constraining objects to be of a certain type, without further constraining value, and is especially useful where the information model contains subtyping, and there is a need to restrict data to be of certain subtypes in certain contexts.
 
 [.deprecated]
-*Deprecated*: In ADL 1.4, 'any' constraints were represented with an additional `matches {*}` at the end of the statement. This is deprecated. It is recommended that parsers silently accept this form, but output the modern ADL 2 form.
+*Deprecated*: In ADL 1.4, 'any' constraints were represented with an additional `matches \{*}` at the end of the statement. This is deprecated. It is recommended that parsers silently accept this form, but output the modern ADL 2 form.
 
 === Reference Model Type Matching
 
@@ -433,7 +435,7 @@ One of the consequences of subtype-based type matching is that semantics are nee
 
 [.text-center]
 .Reference Model Sub-type Hierarchy
-image::{uml_diagrams_uri}/AM-example-demographics-parties.svg[id=ADL-demographics-parties, align="center"]
+image::ROOT:uml/AM-example-demographics-parties.svg[id=ADL-demographics-parties, align="center"]
 
 The following cADL statement defines an instance space that includes instances of any of the concrete subtypes of the `PARTY` class within an instance of the class `XXXX` in the figure (the ellipsis indicates particular constrraints not shown here).
 
@@ -483,8 +485,8 @@ In some cases it is required to remove some subtypes altogether. This is achieve
 --------
     counter_party ∈ {        
         PARTY[id4] ∈ { ... }
-        COMPANY[id5] occurrences ∈ {0}
-        GROUP[id6] occurrences ∈ {0}
+        COMPANY[id5] occurrences ∈ \{0}
+        GROUP[id6] occurrences ∈ \{0}
     }
 --------
 
@@ -542,12 +544,12 @@ The following provides another example:
 
 [source, cadl]
 -------- 
-    HISTORY[id1] occurrences ∈ {1} ∈ {            
+    HISTORY[id1] occurrences ∈ \{1} ∈ {            
         periodic ∈ {False}
-        events cardinality ∈ {*} ∈ {     
-            EVENT[id2] occurrences ∈ {0..1} ∈ {    }           -- 1 min sample
-            EVENT[id3] occurrences ∈ {0..1} ∈ {    }           -- 2 min sample
-            EVENT[id4] occurrences ∈ {0..1} ∈ {    }           -- 3 min sample
+        events cardinality ∈ \{*} ∈ {     
+            EVENT[id2] occurrences ∈ \{0..1} ∈ {    }           -- 1 min sample
+            EVENT[id3] occurrences ∈ \{0..1} ∈ {    }           -- 2 min sample
+            EVENT[id4] occurrences ∈ \{0..1} ∈ {    }           -- 3 min sample
         }
     }
 --------
@@ -592,7 +594,7 @@ Paths for use with runtime data based on an archetype can be constructed in the 
 
 [source, cadl]
 --------
-    items cardinality matches {*} matches {
+    items cardinality matches \{*} matches {
         ELEMENT[id4] matches {  -- speed limit
             value matches {
                 DV_QUANTITY[id22] matches {                       -- miles per hour
@@ -644,7 +646,7 @@ Occurrences from the target are also assumed, or may be explicitly overridden:
 
 [source, cadl]
 --------
-    use_node TYPE[id4] occurrences ∈ {0..1} archetype_path
+    use_node TYPE[id4] occurrences ∈ \{0..1} archetype_path
 --------
 
 Proxy objects provide an internal reuse mechanism. Specialised archetypes may redefine structures on such nodes as if they had been defined inline. This is described in more detail in <<Internal Reference (Proxy Object) Redefinition>>.
@@ -660,7 +662,7 @@ The following example shows the definitions of the `ADDRESS` nodes for phone, fa
         identities ∈ {            
             -- etc --
         }
-        contacts cardinality ∈ {0..*} ∈ {
+        contacts cardinality ∈ \{0..*} ∈ {
             CONTACT[id2] ∈ {      -- home address
                 purpose ∈ {...}        
                 addresses ∈ {...}
@@ -671,7 +673,7 @@ The following example shows the definitions of the `ADDRESS` nodes for phone, fa
             }
             CONTACT[id4] ∈ {      -- home contact
                 purpose ∈ {...}    
-                addresses cardinality ∈ {0..*} ∈ { 
+                addresses cardinality ∈ \{0..*} ∈ { 
                     ADDRESS[id5] ∈ {                            -- phone
                         type ∈ {...}
                         details ∈ {...}
@@ -688,7 +690,7 @@ The following example shows the definitions of the `ADDRESS` nodes for phone, fa
             }
             CONTACT[id8] ∈ {                                    -- work contact
                 purpose ∈ {...}
-                addresses cardinality ∈ {0..*} ∈ { 
+                addresses cardinality ∈ \{0..*} ∈ { 
                     use_node ADDRESS[id9] /contacts[id4]/addresses[id5]    -- phone
                     use_node ADDRESS[id10] /contacts[id4]/addresses[id6]   -- fax 
                     use_node ADDRESS[id11] /contacts[id4]/addresses[id7]   -- email
@@ -703,15 +705,15 @@ The following example shows the occurrences being overridden in the referring no
 [source, cadl]
 --------
     PERSON[id1] ∈ {
-        contacts cardinality ∈ {0..*} ∈ {
+        contacts cardinality ∈ \{0..*} ∈ {
             CONTACT[id4] ∈ {                                   -- home contact
-                addresses cardinality ∈ {0..*} ∈ { 
-                    ADDRESS[id5] occurrences ∈ {1} ∈ { ...}   -- phone
+                addresses cardinality ∈ \{0..*} ∈ { 
+                    ADDRESS[id5] occurrences ∈ \{1} ∈ { ...}   -- phone
                 }
             }
             CONTACT[id8] ∈ {                                  -- work contact
-                addresses cardinality ∈ {0..*} ∈ { 
-                    use_node ADDRESS[id9] occurrences ∈ {0..*} /contacts[id4]/addresses[id5]      -- phone
+                addresses cardinality ∈ \{0..*} ∈ { 
+                    use_node ADDRESS[id9] occurrences ∈ \{0..*} /contacts[id4]/addresses[id5]      -- phone
                 }
             }
         }
@@ -817,7 +819,7 @@ An archetype slot is introduced with the keyword `allow_archetype` and defined i
 
 [source, cadl]
 --------
-    allow_archetype SECTION[id5] occurrences ∈ {0..*} ∈ {
+    allow_archetype SECTION[id5] occurrences ∈ \{0..*} ∈ {
         include
             -- constraints for inclusion
         exclude
@@ -860,9 +862,9 @@ The following example shows how the "Objective" `SECTION` in a problem/SOAP head
 
 [source, cadl]
 --------
-    SECTION [id1] occurrences ∈ {0..1} ∈ {                      -- objective
-        items cardinality ∈ {0..*} ∈ {
-            allow_archetype SECTION[id2] occurrences ∈ {0..*} ∈ {
+    SECTION [id1] occurrences ∈ \{0..1} ∈ {                      -- objective
+        items cardinality ∈ \{0..*} ∈ {
+            allow_archetype SECTION[id2] occurrences ∈ \{0..*} ∈ {
                 include
                     archetype_id/value ∈ {/.*/}
                 exclude
@@ -923,7 +925,7 @@ Other constraints are possible as well, including that the allowed archetype mus
 
 [source, cadl]
 --------    
-    allow_archetype EVALUATION[id2] occurrences ∈ {0..*} matches {
+    allow_archetype EVALUATION[id2] occurrences ∈ \{0..*} matches {
         include
             archetype_id ∈ {/openEHR-EHR-EVALUATION.family_history.v1/}
                 ∧ ∃ /subject/relationship/defining_code ->
@@ -1067,7 +1069,7 @@ A constraint on the openEHR `DV_ORDINAL` type provides another example of the ut
     --
     ordinal_attr ∈ {
         DV_ORDINAL[id3] ∈ {
-            value ∈ {0}
+            value ∈ \{0}
             symbol ∈ {
                 DV_CODED_TEXT[id4] ∈ {
                     code ∈ {"at1"}          -- +
@@ -1075,7 +1077,7 @@ A constraint on the openEHR `DV_ORDINAL` type provides another example of the ut
             }
         }
         DV_ORDINAL[id5] ∈ {
-            value ∈ {1}
+            value ∈ \{1}
             symbol ∈ {
                 DV_CODED_TEXT[id6] ∈ {
                     code ∈ {"at2"}          -- ++
@@ -1085,7 +1087,7 @@ A constraint on the openEHR `DV_ORDINAL` type provides another example of the ut
             }
         }
         DV_ORDINAL[id7] ∈ {
-            value ∈ {2}
+            value ∈ \{2}
             symbol ∈ {
                 DV_CODED_TEXT[id8] ∈ {
                     code ∈ {"at3"}         -- +++
@@ -1105,9 +1107,9 @@ By the use of tuple constraint, almost the same thing can be chieved much more e
     ordinal_attr ∈ {
         DV_ORDINAL[id3] ∈ {
             [value, symbol] ∈ {
-                [{0}, {[at1]}],           -- +             
-                [{1}, {[at2]}],           -- ++          
-                [{2}, {[at3]}]            -- +++           
+                [\{0}, {[at1]}],           -- +             
+                [\{1}, {[at2]}],           -- ++          
+                [\{2}, {[at3]}]            -- +++           
             }
         }
     }
@@ -1141,9 +1143,9 @@ This solved by allowing Xpath-style child numbering predicates in paths starting
 value[id4]/magnitude[1]     -- refer to the constraint {|32.0..212.0|}
 value[id4]/magnitude[2]     -- refer to the constraint {|0.0..100.0|}
 
-ordinal_attr[id3]/value[1]  -- refer to the constraint {0}
-ordinal_attr[id3]/value[2]  -- refer to the constraint {1}
-ordinal_attr[id3]/value[3]  -- refer to the constraint {2}
+ordinal_attr[id3]/value[1]  -- refer to the constraint \{0}
+ordinal_attr[id3]/value[2]  -- refer to the constraint \{1}
+ordinal_attr[id3]/value[3]  -- refer to the constraint \{2}
 --------
 
 === Group Constraints
@@ -1154,15 +1156,15 @@ Within a container attribute, any number of object constraints may be defined. T
 --------
     ITEM_TREE[id1] ∈ {
         items matches {
-            ELEMENT[id2] occurrences ∈ {1} ∈ {...}              -- Investigation type
-            ELEMENT[id3] occurrences ∈ {0..1} ∈ {...}           -- reason
-            group cardinality ∈ {1} occurrences ∈ {0..1} ∈ {   -- Methodology
-                ELEMENT[id6] occurrences ∈ {0..1} ∈ {...}       -- as Text
-                ELEMENT[id7] occurrences ∈ {0..1} ∈ {...}       -- Coded
-                CLUSTER[id8] occurrences ∈ {0..1} ∈ {...}       -- structured
+            ELEMENT[id2] occurrences ∈ \{1} ∈ {...}              -- Investigation type
+            ELEMENT[id3] occurrences ∈ \{0..1} ∈ {...}           -- reason
+            group cardinality ∈ \{1} occurrences ∈ \{0..1} ∈ {   -- Methodology
+                ELEMENT[id6] occurrences ∈ \{0..1} ∈ {...}       -- as Text
+                ELEMENT[id7] occurrences ∈ \{0..1} ∈ {...}       -- Coded
+                CLUSTER[id8] occurrences ∈ \{0..1} ∈ {...}       -- structured
             }
-            ELEMENT[id11] occurrences ∈ {0..1} ∈ {...}          -- (other details)
-            CLUSTER[id12] occurrences ∈ {0..1} ∈ {...}          -- (other details)
+            ELEMENT[id11] occurrences ∈ \{0..1} ∈ {...}          -- (other details)
+            CLUSTER[id12] occurrences ∈ \{0..1} ∈ {...}          -- (other details)
         }
     }
 --------
@@ -1195,19 +1197,19 @@ Group blocks can be nested, enabling subsets of subsets to be defined, as illust
 [source, cadl]
 --------
     items ∈ {
-        ELEMENT[id2] occurrences ∈ {1} ∈ {...}                -- Investigation type
-        ELEMENT[id3] occurrences ∈ {0..1} ∈ {...}             -- Investigation reason
-        group cardinality ∈ {2} occurrences ∈ {*} ∈ {         -- pick any 2 & repeat
-            ELEMENT[id6] occurrences ∈ {0..1} ∈ {...}
-            ELEMENT[id7] occurrences ∈ {0..1} ∈ {...}
-            CLUSTER[id8] occurrences ∈ {0..1} ∈ {...}
-            group cardinality ∈ {1} occurrences ∈ {0..1} ∈ {  -- at least one
-                ELEMENT[id9] occurrences ∈ {0..1} ∈ {...}
-                CLUSTER[id10] occurrences ∈ {0..1} ∈ {...}
+        ELEMENT[id2] occurrences ∈ \{1} ∈ {...}                -- Investigation type
+        ELEMENT[id3] occurrences ∈ \{0..1} ∈ {...}             -- Investigation reason
+        group cardinality ∈ \{2} occurrences ∈ \{*} ∈ {         -- pick any 2 & repeat
+            ELEMENT[id6] occurrences ∈ \{0..1} ∈ {...}
+            ELEMENT[id7] occurrences ∈ \{0..1} ∈ {...}
+            CLUSTER[id8] occurrences ∈ \{0..1} ∈ {...}
+            group cardinality ∈ \{1} occurrences ∈ \{0..1} ∈ {  -- at least one
+                ELEMENT[id9] occurrences ∈ \{0..1} ∈ {...}
+                CLUSTER[id10] occurrences ∈ \{0..1} ∈ {...}
             }
         }
-        ELEMENT[id11] occurrences ∈ {0..1} ∈ {...}            -- (other details)
-        CLUSTER[id12] occurrences ∈ {0..1} ∈ {...}            -- (other details)
+        ELEMENT[id11] occurrences ∈ \{0..1} ∈ {...}            -- (other details)
+        CLUSTER[id12] occurrences ∈ \{0..1} ∈ {...}            -- (other details)
     }
 --------
 
@@ -1215,14 +1217,14 @@ For nested groups, the individual object nodes of the sub-group count _individua
 
 [source, cadl]
 --------
-    group cardinality ∈ {3} occurrences ∈ {*} ∈ {         -- pick any 3 from id6-id11 & repeat
-        ELEMENT[id6] occurrences ∈ {0..1} ∈ {...}
-        ELEMENT[id7] occurrences ∈ {0..1} ∈ {...}
-        CLUSTER[id8] occurrences ∈ {0..1} ∈ {...}
-            group cardinality ∈ {1} occurrences ∈ {1..2} ∈ {  -- pick 1-2 from id9 - id11
-                ELEMENT[id9] occurrences ∈ {0..1} ∈ {...}
-                CLUSTER[id10] occurrences ∈ {0..1} ∈ {...}
-                ELEMENT[id11] occurrences ∈ {0..1} ∈ {...}
+    group cardinality ∈ \{3} occurrences ∈ \{*} ∈ {         -- pick any 3 from id6-id11 & repeat
+        ELEMENT[id6] occurrences ∈ \{0..1} ∈ {...}
+        ELEMENT[id7] occurrences ∈ \{0..1} ∈ {...}
+        CLUSTER[id8] occurrences ∈ \{0..1} ∈ {...}
+            group cardinality ∈ \{1} occurrences ∈ \{1..2} ∈ {  -- pick 1-2 from id9 - id11
+                ELEMENT[id9] occurrences ∈ \{0..1} ∈ {...}
+                CLUSTER[id10] occurrences ∈ \{0..1} ∈ {...}
+                ELEMENT[id11] occurrences ∈ \{0..1} ∈ {...}
             }
         }
     }
@@ -1244,21 +1246,21 @@ It might be expected that the slot constraints needed to define this are as foll
 
 [source, cadl]
 --------
-    SECTION[id2] occurrences ∈ {0..1} ∈ {                           -- Subjective
+    SECTION[id2] occurrences ∈ \{0..1} ∈ {                           -- Subjective
         items cardinality ∈ {0..*; ordered} ∈ {
-            allow_archetype EVALUATION[id6] occurrences ∈ {*} ∈ {   -- Problem
+            allow_archetype EVALUATION[id6] occurrences ∈ \{*} ∈ {   -- Problem
                 include
                     archetype_id/value ∈ {/openEHR-EHR-EVALUATION\.problem\.v*/}
             }
-            allow_archetype EVALUATION[id7] occurrences ∈ {*} ∈ {   -- Diagnosis
+            allow_archetype EVALUATION[id7] occurrences ∈ \{*} ∈ {   -- Diagnosis
                 include
                     archetype_id/value ∈ {/openEHR-EHR-EVALUATION\.problem-diagnosis\.v*/}
             }
-            allow_archetype EVALUATION[id8] occurrences ∈ {1} ∈ {   -- Plan
+            allow_archetype EVALUATION[id8] occurrences ∈ \{1} ∈ {   -- Plan
                 include
                     archetype_id/value ∈ {/openEHR-EHR-EVALUATION\.plan\.v*/}
             }
-            allow_archetype INSTRUCTION[id9] occurrences ∈ {1..*} ∈ {  -- Intervention
+            allow_archetype INSTRUCTION[id9] occurrences ∈ \{1..*} ∈ {  -- Intervention
                 include
                     archetype_id/value ∈ {/openEHR-EHR-INSTRUCTION\.(medication_order|therapy)\.v*/}
             }
@@ -1270,24 +1272,24 @@ The above says that the `SECTION._items_` attribute is an ordered list, and that
 
 [source, cadl]
 --------
-    SECTION[id2] occurrences ∈ {0..1} ∈ {                             -- Subjective
+    SECTION[id2] occurrences ∈ \{0..1} ∈ {                             -- Subjective
         items cardinality ∈ {0..*; ordered} ∈ {
-            group cardinality ∈ {0..1} occurrences ∈ {0..*} ∈ {                                   
+            group cardinality ∈ \{0..1} occurrences ∈ \{0..*} ∈ {                                   
                                     -- sub-group of any number of problems & diagnoses
-                allow_archetype EVALUATION[id6] occurrences ∈ {1} ∈ {  --Problem
+                allow_archetype EVALUATION[id6] occurrences ∈ \{1} ∈ {  --Problem
                     include
                       archetype_id/value ∈ {/openEHR-EHR-EVALUATION\.problem\.v*/}
                 }
-                allow_archetype EVALUATION[id7] occurrences ∈ {1} ∈ {  -- Diagnosis
+                allow_archetype EVALUATION[id7] occurrences ∈ \{1} ∈ {  -- Diagnosis
                     include
                       archetype_id/value ∈ {/openEHR-EHR-EVALUATION\.diagnosis\.v*/}
                 }
             }
-            allow_archetype EVALUATION[id8] occurrences ∈ {1} ∈ {      -- Plan
+            allow_archetype EVALUATION[id8] occurrences ∈ \{1} ∈ {      -- Plan
                 include
                     archetype_id/value ∈ {/openEHR-EHR-EVALUATION\.plan\.v*/}
             }
-            allow_archetype INSTRUCTION[id9] occurrences ∈ {1..*} ∈ {     -- Intervention
+            allow_archetype INSTRUCTION[id9] occurrences ∈ \{1..*} ∈ {     -- Intervention
                 include
                     archetype_id/value ∈ {/openEHR-EHR-INSTRUCTION\.(medication_order|therapy)\.v*/}
             }
@@ -1485,7 +1487,7 @@ The regular expression patterns supported in cADL are as follows.
 | `{m,n}`   |match m to n occurrences of the preceding atomic item.     |E.g. `ab{1,3}` matches the strings `"ab"` and `"abb"` and `"abbb"` ; `[a-z]{1,3}` matches all lower-case alphabetic strings of one to three characters in length;
 | `{m,}`    |match at least m occurrences of the preceding atomic item; |
 | `{,n}`    |match at most n occurrences of the preceding atomic item;  |
-| `{m}`     |match exactly m occurrences of the preceding atomic item;  |
+| `\{m}`     |match exactly m occurrences of the preceding atomic item;  |
 
 3+^h|Special Character Classes
 
@@ -1503,7 +1505,7 @@ A similar warning as for a list of strings should be noted for the use of regula
 
 Of the primitive types defined in the {openehr_foundation_types}[openEHR Foundation Types^], some inherit (at least notionally) from the abstract type `Ordered`, including `Integer`, `Real`, and the Date/Time types. Constraints on all these types follow a constraint type of `List<Interval<T:Ordered>>`, i.e. a `List` of `Intervals`. Since the `Interval<T>` type in openEHR includes a descendant `Point_interval<T>` that can represent a degenerate interval of the form `{N..N}`, i.e. effectively a single value, this constraint type can represent many patterns of constraint, including:
 
-* single value e.g. `{3}`;
+* single value e.g. `\{3}`;
 * list of values e.g. `{3, 4, 5}`;
 * single interval e.g. `{|0..10|}`;
 * list of intervals e.g. `{|0..10|, |60..90|, |>500|}`;
@@ -1529,7 +1531,7 @@ The first constraint requires the attribute `_length_` to be 1000, while the sec
 
 [source, cadl]
 --------
-    magnitude matches {0} -- matches 0
+    magnitude matches \{0} -- matches 0
 --------
 
 ==== Interval of Integer
@@ -1737,7 +1739,7 @@ The possibilities are illustrated below.
     --
     
     items matches {
-        ELEMENT[id11] occurrences matches {0..1} matches {
+        ELEMENT[id11] occurrences matches \{0..1} matches {
             name matches {
                 DV_CODED_TEXT[id8] matches {
                     defining_code matches {[at5]}		-- set name to 'Substance'
@@ -1749,7 +1751,7 @@ The possibilities are illustrated below.
                 }
             }
         }
-        ELEMENT[id22] occurrences matches {0..1} matches {	-- Certainty
+        ELEMENT[id22] occurrences matches \{0..1} matches {	-- Certainty
             value matches {
                 DV_CODED_TEXT[id58] matches {
                     defining_code matches {[ac2; at23]}	
@@ -1824,11 +1826,11 @@ In ADL, constraints on enumerated types are represented by constraints on the un
 --------
     ITEM_TREE[id4] ∈ {
         items ∈ {
-            ELEMENT[id5] occurrences ∈ {0..1} matches {    -- test enum 1
+            ELEMENT[id5] occurrences ∈ \{0..1} matches {    -- test enum 1
                 value ∈ {
                     DV_PROPORTION[id6] ∈ {
                         numerator ∈ {|0.0..1.0|; 0.0}
-                        type ∈ {1}                         -- pk_unitary
+                        type ∈ \{1}                         -- pk_unitary
                     }
                 }
             }

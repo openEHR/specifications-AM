@@ -1,3 +1,5 @@
+include::partial$module_vars.adoc[]
+
 = ADL - Archetype Definition Language
 
 == Introduction
@@ -445,8 +447,8 @@ definition
         }
         data ∈ {            
             HISTORY[id4] ∈ {                                              -- history
-                events cardinality ∈ {1..*} ∈ { 
-                    POINT_EVENT[id5] occurrences ∈ {0..1} ∈ {            -- baseline
+                events cardinality ∈ \{1..*} ∈ { 
+                    POINT_EVENT[id5] occurrences ∈ \{0..1} ∈ {            -- baseline
                         name ∈ {
                             DV_CODED_TEXT[id6] ∈ {
                                 defining_code ∈ {
@@ -456,7 +458,7 @@ definition
                         }
                         data ∈ {
                             ITEM_LIST[id8] ∈ {                              -- systemic arterial BP
-                                items cardinality ∈ {2..*} ∈ {
+                                items cardinality ∈ \{2..*} ∈ {
                                     ELEMENT[id9] ∈ {                        -- systolic BP
                                         name ∈ {                            -- any synonym of 'systolic'
                                             DV_CODED_TEXT[id10] ∈ {
@@ -489,7 +491,7 @@ definition
                                             }
                                         }
                                     } 
-                                    ELEMENT[id17] occurrences ∈ {0..*} ∈ {*}    -- unknown new item
+                                    ELEMENT[id17] occurrences ∈ \{0..*} ∈ \{*}    -- unknown new item
                                 }
                             ...
 --------
@@ -973,13 +975,13 @@ definition
     EVALUATION[id1.1] matches {    -- Exclusion statement - Adverse Reaction
         /data[id2]/items matches {
             ...
-            ELEMENT[id0.8] occurrences matches {0..1} matches {    -- No known allergic reaction to
+            ELEMENT[id0.8] occurrences matches \{0..1} matches {    -- No known allergic reaction to
                 value matches {
                     DV_TEXT[id0.6] 
                 }
             }
             ...
-            ELEMENT[id0.10] occurrences matches {0..1} matches {    -- No known intolerance to
+            ELEMENT[id0.10] occurrences matches \{0..1} matches {    -- No known intolerance to
                 value matches {
                     DV_TEXT[id0.8]     -- No known allergic reaction to
                 }

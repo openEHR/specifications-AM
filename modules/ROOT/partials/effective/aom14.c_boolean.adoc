@@ -4,38 +4,38 @@
 
 2+a|Constraint on instances of Boolean. Both attributes cannot be set to False, since this would mean that the Boolean value being constrained cannot be True or False.
 
-2+|Inherits: xref:AM:AOM1.4:archetype_package.adoc#_c_primitive_class[C_PRIMITIVE]
+2+|Inherits: xref:{class_c_primitive}[C_PRIMITIVE]
 
 2+h|*Attributes*
 
-|*assumed_value*: `xref:BASE:foundation_types:primitive_types.adoc#_boolean_class[Boolean]` [0..1]
+|*assumed_value*: `xref:{class_boolean}[Boolean]` [0..1]
 a|The value to assume if this item is not included in data, due to being part of an optional structure.
 
-|*true_valid*: `xref:BASE:foundation_types:primitive_types.adoc#_boolean_class[Boolean]` [1..1]
+|*true_valid*: `xref:{class_boolean}[Boolean]` [1..1]
 a|True if the value True is allowed.
 
-|*false_valid*: `xref:BASE:foundation_types:primitive_types.adoc#_boolean_class[Boolean]` [1..1]
+|*false_valid*: `xref:{class_boolean}[Boolean]` [1..1]
 a|True if the value False is allowed.
 
 2+h|*Functions*
 
-|_(abstract)_ *default_value* (): `xref:BASE:foundation_types:overview.adoc#_any_class[Any]` [1..1]
+|_(abstract)_ *default_value* (): `xref:{class_any}[Any]` [1..1]
 a|Generate a default value from this constraint object. +
-_Inherited from xref:AM:AOM1.4:archetype_package.adoc#_c_primitive_class[C_PRIMITIVE]_
+_Inherited from xref:{class_c_primitive}[C_PRIMITIVE]_
 
-|_(abstract)_ *has_assumed_value* (): `xref:BASE:foundation_types:primitive_types.adoc#_boolean_class[Boolean]` [1..1]
+|_(abstract)_ *has_assumed_value* (): `xref:{class_boolean}[Boolean]` [1..1]
 a|True if there is an assumed value. +
-_Inherited from xref:AM:AOM1.4:archetype_package.adoc#_c_primitive_class[C_PRIMITIVE]_
+_Inherited from xref:{class_c_primitive}[C_PRIMITIVE]_
 
 |_(abstract)_ *valid_value* ( +
-a_value: `xref:BASE:foundation_types:overview.adoc#_any_class[Any][1]` +
-): `xref:BASE:foundation_types:primitive_types.adoc#_boolean_class[Boolean]` [1..1]
+a_value: `xref:{class_any}[Any][1]` +
+): `xref:{class_boolean}[Boolean]` [1..1]
 a|True if a_value is valid with respect to constraint expressed in concrete instance of this type. +
-_Inherited from xref:AM:AOM1.4:archetype_package.adoc#_c_primitive_class[C_PRIMITIVE]_
+_Inherited from xref:{class_c_primitive}[C_PRIMITIVE]_
 
 2+h|*Invariants*
 
 2+a|__Assumed_value_valid__: `has_assumed_value implies valid_value(assumed_value)` +
-_Inherited from xref:AM:AOM1.4:archetype_package.adoc#_c_primitive_class[C_PRIMITIVE]_
+_Inherited from xref:{class_c_primitive}[C_PRIMITIVE]_
 
 |===

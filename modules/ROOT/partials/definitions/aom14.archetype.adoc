@@ -7,43 +7,43 @@ h|*Description*
 2+a|Archetype equivalent to ARCHETYPED class in Common reference model. Defines semantics of identfication, lifecycle, versioning, composition and specialisation.
 
 h|*Inherit*
-2+|`xref:BASE:resource:resource_package.adoc#_authored_resource_class[AUTHORED_RESOURCE]`
+2+|`xref:{class_authored_resource}[AUTHORED_RESOURCE]`
 
 h|*Attributes*
 ^h|*Signature*
 ^h|*Meaning*
 
 h|*1..1*
-|*definition*: `xref:AM:AOM1.4:archetype_package.adoc#_c_complex_object_class[C_COMPLEX_OBJECT]`
+|*definition*: `xref:{class_c_complex_object}[C_COMPLEX_OBJECT]`
 a|Root node of the definition of this archetype.
 
 h|*1..1*
-|*ontology*: `xref:AM:AOM1.4:archetype_package.adoc#_archetype_ontology_class[ARCHETYPE_ONTOLOGY]`
+|*ontology*: `xref:{class_archetype_ontology}[ARCHETYPE_ONTOLOGY]`
 a|The ontology of the archetype.
 
 h|*0..1*
-|*adl_version*: `xref:BASE:foundation_types:primitive_types.adoc#_string_class[String]`
+|*adl_version*: `xref:{class_string}[String]`
 a|ADL version if archetype was read in from an ADL sharable archetype.
 
 h|*1..1*
-|*archetype_id*: `xref:BASE:base_types:identification_package.adoc#_archetype_id_class[ARCHETYPE_ID]`
+|*archetype_id*: `xref:{class_archetype_id}[ARCHETYPE_ID]`
 a|Multi-axial identifier of this archetype in archetype space.
 
 h|*0..1 +
 (redefined)*
-|*uid*: `xref:BASE:base_types:identification_package.adoc#_hier_object_id_class[HIER_OBJECT_ID]`
+|*uid*: `xref:{class_hier_object_id}[HIER_OBJECT_ID]`
 a|OID identifier of this archetype.
 
 h|*1..1*
-|*concept*: `xref:BASE:foundation_types:primitive_types.adoc#_string_class[String]`
+|*concept*: `xref:{class_string}[String]`
 a|The normative meaning of the archetype as a whole, expressed as a local archetype code, typically “at0000”.
 
 h|*0..1*
-|*parent_archetype_id*: `xref:BASE:base_types:identification_package.adoc#_archetype_id_class[ARCHETYPE_ID]`
+|*parent_archetype_id*: `xref:{class_archetype_id}[ARCHETYPE_ID]`
 a|Identifier of the specialisation parent of this archetype.
 
 h|*0..1*
-|*invariants*: `xref:BASE:foundation_types:structure_types.adoc#_list_class[List]<xref:AM:AOM1.4:archetype_package.adoc#_assertion_class[ASSERTION]>`
+|*invariants*: `xref:{class_list}[List]<xref:{class_assertion}[ASSERTION]>`
 a|Invariant statements about this object. Statements are expressed in first order predicate logic, and usually refer to at least two attributes.
 
 h|*Functions*
@@ -52,62 +52,62 @@ h|*Functions*
 
 h|*1..1*
 |*concept_name* ( +
-a_lang: `xref:BASE:foundation_types:primitive_types.adoc#_string_class[String][1]` +
-): `xref:BASE:foundation_types:primitive_types.adoc#_string_class[String]` +
+a_lang: `xref:{class_string}[String][1]` +
+): `xref:{class_string}[String]` +
  +
 __post-condition__: `Result.is_equal (definition.node_id)`
 a|The concept name of the archetype in language a_lang; corresponds to the term definition of the concept attribute in the archetype ontology.
 
 h|*1..1*
-|*physical_paths* (): `xref:BASE:foundation_types:structure_types.adoc#_list_class[List]<xref:BASE:foundation_types:primitive_types.adoc#_string_class[String]>`
+|*physical_paths* (): `xref:{class_list}[List]<xref:{class_string}[String]>`
 a|Set of language-independent paths extracted from archetype. Paths obey Xpath-like syntax and are formed from alternations of C_OBJECT.node_id and C_ATTRIBUTE.rm_attribute_name values.
 
 h|*1..1*
 |*logical_paths* ( +
-lang: `xref:BASE:foundation_types:primitive_types.adoc#_string_class[String][1]` +
-): `xref:BASE:foundation_types:structure_types.adoc#_list_class[List]<xref:BASE:foundation_types:primitive_types.adoc#_string_class[String]>`
+lang: `xref:{class_string}[String][1]` +
+): `xref:{class_list}[List]<xref:{class_string}[String]>`
 a|Set of language-dependent paths extracted from archetype. Paths obey the same syntax as physical_paths, but with node_ids replaced by their meanings from the ontology.
 
 h|*1..1*
-|*specialisation_depth* (): `xref:BASE:foundation_types:primitive_types.adoc#_integer_class[Integer]` +
+|*specialisation_depth* (): `xref:{class_integer}[Integer]` +
  +
 __post-condition__: `Result = terminology.specialisation_depth`
 a|Specialisation depth of this archetype; larger than 0 if this archetype has a parent. Derived from terminology.specialisation_depth.
 
 h|*1..1*
-|*is_specialised* (): `xref:BASE:foundation_types:primitive_types.adoc#_boolean_class[Boolean]` +
+|*is_specialised* (): `xref:{class_boolean}[Boolean]` +
  +
 __post-condition__: `Result implies parent_archetype_id /= Void`
 a|True if this archetype is a specialisation of another.
 
 h|*1..1*
-|*is_valid* (): `xref:BASE:foundation_types:primitive_types.adoc#_boolean_class[Boolean]` +
+|*is_valid* (): `xref:{class_boolean}[Boolean]` +
  +
 __Post__: `not (node_ids_valid and internal_references_valid and constraint_references_valid) implies not Result`
 a|True if the archetype is valid overall; various tests should be used, including checks on node_ids, internal references, and constraint references.
 
 h|*1..1*
-|*node_ids_valid* (): `xref:BASE:foundation_types:primitive_types.adoc#_boolean_class[Boolean]`
+|*node_ids_valid* (): `xref:{class_boolean}[Boolean]`
 a|True if every node_id found on a C_OBJECT node is found in ontology.term_codes.
 
 h|*0..1*
-|*previous_version* (): `xref:BASE:foundation_types:primitive_types.adoc#_string_class[String]`
+|*previous_version* (): `xref:{class_string}[String]`
 a|Version of predecessor archetype of this archetype, if any.
 
 h|*1..1*
-|*internal_references_valid* (): `xref:BASE:foundation_types:primitive_types.adoc#_boolean_class[Boolean]`
+|*internal_references_valid* (): `xref:{class_boolean}[Boolean]`
 a|True if every ARCHETYPE_INTERNAL_REF. target_path refers to a legitimate node in the archetype definition.
 
 h|*1..1*
-|*constraint_references_valid* (): `xref:BASE:foundation_types:primitive_types.adoc#_boolean_class[Boolean]`
+|*constraint_references_valid* (): `xref:{class_boolean}[Boolean]`
 a|True if every CONSTRAINT_REF.reference found on a C_OBJECT node in the archetype definition is found in ontology.constraint_codes.
 
 h|*1..1*
-|*short_concept_name* (): `xref:BASE:foundation_types:primitive_types.adoc#_string_class[String]`
+|*short_concept_name* (): `xref:{class_string}[String]`
 a|The short concept name of the archetype extracted from the archetype_id.
 
 h|*1..1*
-|*version* (): `xref:BASE:foundation_types:primitive_types.adoc#_string_class[String]`
+|*version* (): `xref:{class_string}[String]`
 a|
 
 h|*Invariants*

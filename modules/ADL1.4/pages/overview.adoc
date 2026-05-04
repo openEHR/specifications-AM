@@ -1,3 +1,5 @@
+include::partial$module_vars.adoc[]
+
 = Overview
 
 == What is ADL?
@@ -43,7 +45,7 @@ definition
     INSTRUMENT[at0000] matches {
         size matches {|60..120|}                            -- size in cm
         date_of_manufacture matches {yyyy-mm-??}            -- year & month ok
-        parts cardinality matches {0..*} matches {
+        parts cardinality matches \{0..*} matches {
             PART[at0001] matches {                          -- neck
                 material matches {[local::at0003, at0004]}  -- timber or nickel alloy
             }
