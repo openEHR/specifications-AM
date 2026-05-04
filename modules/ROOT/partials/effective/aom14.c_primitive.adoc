@@ -1,0 +1,29 @@
+[cols="2,3", frame=none, grid=rows]
+|===
+2+^h|*__C_PRIMITIVE (abstract)__*
+
+2+a|Parent of types representing constraints on primitive types.
+
+2+h|*Attributes*
+
+|*assumed_value*: `xref:BASE:foundation_types:overview.adoc#_any_class[Any]` [0..1]
+a|Value to be assumed if none sent in data.
+
+2+h|*Functions*
+
+|_(abstract)_ *default_value* (): `xref:BASE:foundation_types:overview.adoc#_any_class[Any]` [1..1]
+a|Generate a default value from this constraint object.
+
+|_(abstract)_ *has_assumed_value* (): `xref:BASE:foundation_types:primitive_types.adoc#_boolean_class[Boolean]` [1..1]
+a|True if there is an assumed value.
+
+|_(abstract)_ *valid_value* ( +
+a_value: `xref:BASE:foundation_types:overview.adoc#_any_class[Any][1]` +
+): `xref:BASE:foundation_types:primitive_types.adoc#_boolean_class[Boolean]` [1..1]
+a|True if a_value is valid with respect to constraint expressed in concrete instance of this type.
+
+2+h|*Invariants*
+
+2+a|__Assumed_value_valid__: `has_assumed_value implies valid_value(assumed_value)`
+
+|===

@@ -1,0 +1,29 @@
+[cols="2,3", frame=none, grid=rows]
+|===
+2+^h|*EXPR_ARCHETYPE_REF*
+
+2+a|Expression tree leaf item representing a reference to a value found in data at a location specified by a path in the archetype definition.
+
+* A path referring to a value in the archetype (paths with a leading ‘/’ are in the definition section.
+* Paths with no leading ‘/’ are in the outer part of the archetype, e.g. “archetype_id/value” refers to the String value of the archetype_id attribute of the enclosing archetype.
+
+2+|Inherits: xref:LANG:beom:core_package.adoc#_expr_value_class[EXPR_VALUE], xref:LANG:beom:core_package.adoc#_expression_class[EXPRESSION], xref:LANG:beom:core_package.adoc#_expr_leaf_class[EXPR_LEAF], xref:LANG:beom:core_package.adoc#_expr_value_ref_class[EXPR_VALUE_REF]
+
+2+h|*Attributes*
+
+|*item*: `xref:AM:AOM2:constraint_model-class_definitions.adoc#_archetype_constraint_class[ARCHETYPE_CONSTRAINT]` [1..1]
+a|
+
+|*path*: `xref:BASE:foundation_types:primitive_types.adoc#_string_class[String]` [1..1]
+a|The path to the archetype node.
+
+2+h|*Functions*
+
+|_(abstract)_ *value* (): `xref:BASE:foundation_types:overview.adoc#_any_class[Any]` [1..1]
+a|The computed value of this node as a result of the nodes below it, for operator nodes, or else statically set or otherwise derived values. +
+_Inherited from xref:LANG:beom:core_package.adoc#_expr_value_class[EXPR_VALUE]_
+
+|_(abstract)_ *type* (): `xref:LANG:beom:types_package.adoc#_expr_type_def_class[EXPR_TYPE_DEF]` [1..1]
+a|The primitive type of this node, which must be determined by redefinitions in concrete classes. +
+_Inherited from xref:LANG:beom:core_package.adoc#_expression_class[EXPRESSION]_
+|===
