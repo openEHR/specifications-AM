@@ -1,0 +1,60 @@
+[source,json]
+--------
+{
+    "name": "C_DATE",
+    "documentation": "Constraint on instances representing dates in the form either of a set of validity values, or else date ranges based on the `C_ORDERED` list constraint. \n\nThere is no validity flag for `_year_`, since it must always be by definition mandatory in order to have a sensible date at all. Syntax expressions of instances of this class include `\"YYYY-??-??\"` (date with optional month and day).",
+    "ancestors": [
+        "C_TEMPORAL"
+    ],
+    "properties": {
+        "constraint": {
+            "_type": "P_BMM_CONTAINER_PROPERTY",
+            "name": "constraint",
+            "documentation": "Formal constraint on the assumed primitive `Iso8601_date` type, in the form of one or more `Interval<Iso8601_date>`.\n\nFor a pattern constraint or no constraint, use an empty list.",
+            "type_def": {
+                "container_type": "List",
+                "type_def": {
+                    "_type": "P_BMM_GENERIC_TYPE",
+                    "root_type": "Interval",
+                    "generic_parameters": [
+                        "Iso8601_date"
+                    ]
+                }
+            },
+            "cardinality": {
+                "lower": 0,
+                "upper_unbounded": true
+            }
+        }
+    },
+    "functions": {
+        "month_validity": {
+            "name": "month_validity",
+            "documentation": "Validity of month in constrained date.",
+            "result": {
+                "_type": "P_BMM_SIMPLE_TYPE",
+                "type": "VALIDITY_KIND"
+            }
+        },
+        "day_validity": {
+            "name": "day_validity",
+            "documentation": "Validity of day in constrained date.",
+            "result": {
+                "_type": "P_BMM_SIMPLE_TYPE",
+                "type": "VALIDITY_KIND"
+            }
+        },
+        "timezone_validity": {
+            "name": "timezone_validity",
+            "documentation": "Validity of timezone in constrained date.",
+            "result": {
+                "_type": "P_BMM_SIMPLE_TYPE",
+                "type": "VALIDITY_KIND"
+            }
+        }
+    },
+    "invariants": {
+        "Pattern_validity": "pattern /= Void implies valid_iso8601_date_constraint_pattern(pattern)"
+    }
+}
+--------

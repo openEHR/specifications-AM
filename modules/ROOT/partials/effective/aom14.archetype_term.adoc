@@ -1,0 +1,24 @@
+[cols="2,3", frame=none, grid=rows]
+|===
+2+^h|*ARCHETYPE_TERM*
+
+2+a|Representation of any coded entity (term or constraint) in the archetype ontology.
+
+2+h|*Attributes*
+
+|*code*: `xref:BASE:foundation_types:primitive_types.adoc#_string_class[String]` [1..1]
+a|Code of this term.
+
+|*items*: `xref:BASE:foundation_types:structure_types.adoc#_hash_class[Hash]<xref:BASE:foundation_types:primitive_types.adoc#_string_class[String],xref:BASE:foundation_types:primitive_types.adoc#_string_class[String]>` [0..1]
+a|Hash of keys (“text”, “description” etc) and corresponding values.
+
+2+h|*Functions*
+
+|*keys* (): `xref:BASE:foundation_types:structure_types.adoc#_list_class[List]<xref:BASE:foundation_types:primitive_types.adoc#_string_class[String]>` [0..1]
+a|List of all keys used in this term.
+
+2+h|*Invariants*
+
+2+a|__Code_valid__: `not code.is_empty`
+
+|===

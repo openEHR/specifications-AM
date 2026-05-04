@@ -1,0 +1,60 @@
+[cols="^1,3,5"]
+|===
+h|*Class*
+2+^h|*C_BOOLEAN*
+
+h|*Description*
+2+a|Constraint on instances of `Boolean`. Both attributes cannot be set to False, since this would mean that the Boolean value being constrained cannot be `True` or `False`.
+
+h|*Inherit*
+2+|`xref:AM:AOM2:constraint_model-class_definitions.adoc#_c_primitive_object_class[C_PRIMITIVE_OBJECT]`
+
+h|*Attributes*
+^h|*Signature*
+^h|*Meaning*
+
+h|*0..1 +
+(redefined)*
+|*constraint*: `xref:BASE:foundation_types:structure_types.adoc#_list_class[List]<xref:BASE:foundation_types:primitive_types.adoc#_boolean_class[Boolean]>`
+a|Boolean constraint - a list of Boolean values.
+
+h|*0..1 +
+(redefined)*
+|*assumed_value*: `xref:BASE:foundation_types:primitive_types.adoc#_boolean_class[Boolean]`
+a|Assumed Boolean value.
+
+h|*1..1 +
+(redefined)*
+|*default_value*: `xref:BASE:foundation_types:primitive_types.adoc#_boolean_class[Boolean]`
+a|Default Boolean value.
+
+h|*Functions*
+^h|*Signature*
+^h|*Meaning*
+
+h|*1..1 +
+(effected)*
+|*prototype_value* (): `xref:BASE:foundation_types:primitive_types.adoc#_boolean_class[Boolean]`
+a|Prototype Boolean value.
+
+h|*1..1 +
+(effected)*
+|*any_allowed* (): `xref:BASE:foundation_types:primitive_types.adoc#_boolean_class[Boolean]` +
+ +
+__Post__: `Result = constraint.is_empty`
+a|True if any value (i.e. instance) of the reference model type would be allowed. Redefined in descendants.
+
+h|*1..1 +
+(effected)*
+|*c_value_conforms_to* ( +
+other: `xref:AM:aom2:primitive_package.adoc#_c_boolean_class[C_BOOLEAN][1]` +
+): `xref:BASE:foundation_types:primitive_types.adoc#_boolean_class[Boolean]`
+a|True if `_other.any_allowed_` or else every constraint in the `_constraint_` list exists in the `_other.constraint_`.
+
+h|*1..1 +
+(effected)*
+|*c_value_congruent_to* ( +
+other: `xref:AM:aom2:primitive_package.adoc#_c_boolean_class[C_BOOLEAN][1]` +
+): `xref:BASE:foundation_types:primitive_types.adoc#_boolean_class[Boolean]`
+a|True if the items in `_constraint_` are equal in number and identical pair-wise with those in `_other.constraint_`.
+|===

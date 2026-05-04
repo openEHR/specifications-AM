@@ -1,0 +1,89 @@
+[source,json]
+--------
+{
+    "name": "C_DURATION",
+    "documentation": "Constraint on instances representing duration, which is assumed to have the same parts as the ISO8601 duration string. Thus, constraints are of the form `\"PWD\"` (weeks and/or days), `\"PDTHMS\"` (days, hours, minutes, seconds) and so on. \n\nIn official ISO 8601:2004, the ‘W’ (week) designator cannot be mixed in; allowing it is an openEHR-wide exception. The allowed patterns are: `P[Y|y][M|m][D|d][T[H|h][M|m][S|s]] and P[W|w]`.",
+    "ancestors": [
+        "C_TEMPORAL"
+    ],
+    "properties": {
+        "constraint": {
+            "_type": "P_BMM_CONTAINER_PROPERTY",
+            "name": "constraint",
+            "documentation": "Formal constraint on the assumed primitive `Iso8601_duration` type, in the form of one or more `Interval<Iso8601_duration>`.\n\nFor a pattern constraint or no constraint, use an empty list.",
+            "type_def": {
+                "container_type": "List",
+                "type_def": {
+                    "_type": "P_BMM_GENERIC_TYPE",
+                    "root_type": "Interval",
+                    "generic_parameters": [
+                        "Iso8601_duration"
+                    ]
+                }
+            },
+            "cardinality": {
+                "lower": 0,
+                "upper_unbounded": true
+            }
+        }
+    },
+    "functions": {
+        "years_allowed": {
+            "name": "years_allowed",
+            "documentation": "True if years are allowed in the constrained Duration.",
+            "result": {
+                "_type": "P_BMM_SIMPLE_TYPE",
+                "type": "Boolean"
+            }
+        },
+        "months_allowed": {
+            "name": "months_allowed",
+            "documentation": "True if months are allowed in the constrained Duration.",
+            "result": {
+                "_type": "P_BMM_SIMPLE_TYPE",
+                "type": "Boolean"
+            }
+        },
+        "weeks_allowed": {
+            "name": "weeks_allowed",
+            "documentation": "True if weeks are allowed in the constrained Duration.",
+            "result": {
+                "_type": "P_BMM_SIMPLE_TYPE",
+                "type": "Boolean"
+            }
+        },
+        "days_allowed": {
+            "name": "days_allowed",
+            "documentation": "True if days are allowed in the constrained Duration.",
+            "result": {
+                "_type": "P_BMM_SIMPLE_TYPE",
+                "type": "Boolean"
+            }
+        },
+        "hours_allowed": {
+            "name": "hours_allowed",
+            "documentation": "True if hours are allowed in the constrained Duration.",
+            "result": {
+                "_type": "P_BMM_SIMPLE_TYPE",
+                "type": "Boolean"
+            }
+        },
+        "minutes_allowed": {
+            "name": "minutes_allowed",
+            "documentation": "True if minutes are allowed in the constrained Duration.",
+            "result": {
+                "_type": "P_BMM_SIMPLE_TYPE",
+                "type": "Boolean"
+            }
+        },
+        "seconds_allowed": {
+            "name": "seconds_allowed",
+            "documentation": "True if seconds are allowed in the constrained Duration.",
+            "result": {
+                "_type": "P_BMM_SIMPLE_TYPE",
+                "type": "Boolean"
+            }
+        }
+    }
+}
+--------

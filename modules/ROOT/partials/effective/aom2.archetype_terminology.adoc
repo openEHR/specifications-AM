@@ -1,0 +1,107 @@
+[cols="2,3", frame=none, grid=rows]
+|===
+2+^h|*ARCHETYPE_TERMINOLOGY*
+
+2+a|Local terminology of an archetype. This class defines the semantics of the terminology of an archetype.
+
+2+h|*Attributes*
+
+|*is_differential*: `xref:BASE:foundation_types:primitive_types.adoc#_boolean_class[Boolean]` [1..1]
+a|True if this terminology only contains terms relating to a differential specialisation of the owning artefact, rather than a complete set.
+
+|*original_language*: `xref:BASE:foundation_types:primitive_types.adoc#_string_class[String]` [1..1]
+a|Original language of the terminology, as set at artefact creation or parsing time; must be a code in the ISO 639-1 2 character language code-set.
+
+|*concept_code*: `xref:BASE:foundation_types:primitive_types.adoc#_string_class[String]` [1..1]
+a|Term code defining the meaning of the artefact as a whole, and always used as the id-code on the root node of the artefact. Must be defined in the `_term_definitions_` property.
+
+|*term_definitions*: `xref:BASE:foundation_types:structure_types.adoc#_hash_class[Hash]<xref:BASE:foundation_types:primitive_types.adoc#_string_class[String],xref:BASE:foundation_types:structure_types.adoc#_hash_class[Hash]<xref:BASE:foundation_types:primitive_types.adoc#_string_class[String],xref:AM:AOM2:terminology_package.adoc#_archetype_term_class[ARCHETYPE_TERM]>>` [1..1]
+a|Directory of term definitions as a two-level table. The outer hash keys are language codes, e.g. `"en"`, `"de"`, while the inner hash keys are term codes, e.g. `"id17"`, `"at4"`.
+
+|*term_bindings*: `xref:BASE:foundation_types:structure_types.adoc#_hash_class[Hash]<xref:BASE:foundation_types:primitive_types.adoc#_string_class[String],xref:BASE:foundation_types:structure_types.adoc#_hash_class[Hash]<xref:BASE:foundation_types:primitive_types.adoc#_string_class[String],xref:BASE:foundation_types:primitive_types.adoc#_uri_class[Uri]>>` [0..1]
+a|Directory of bindings to external terminology codes and value sets, as a two-level table. The outer hash keys are terminology ids, e.g. `"SNOMED_CT"`, and the inner hash keys are constraint codes, e.g. `"at4"`, `"ac13"` or paths. The indexed `Uri` objects represent references to externally defined resources, either terms, ontology concepts, or terminology subsets / ref-sets.
+
+|*owner_archetype*: `xref:AM:AOM2:archetype_package.adoc#_archetype_class[ARCHETYPE]` [1..1]
+a|Archetype that owns this terminology.
+
+|*value_sets*: `xref:BASE:foundation_types:structure_types.adoc#_hash_class[Hash]<xref:BASE:foundation_types:primitive_types.adoc#_string_class[String],xref:AM:AOM2:terminology_package.adoc#_value_set_class[VALUE_SET]>` [0..1]
+a|Archetype-local value sets, each keyed by value-set id, i.e. an ac-code.
+
+|*terminology_extracts*: `xref:BASE:foundation_types:structure_types.adoc#_hash_class[Hash]<xref:BASE:foundation_types:primitive_types.adoc#_string_class[String],xref:BASE:foundation_types:structure_types.adoc#_hash_class[Hash]<xref:BASE:foundation_types:primitive_types.adoc#_string_class[String],xref:AM:AOM2:terminology_package.adoc#_archetype_term_class[ARCHETYPE_TERM]>>` [0..1]
+a|Directory of extracts of external terminologies, as a two-level table. The outer hash keys are terminology ids, e.g. `"SNOMED_CT"`, while the inner hash keys are term codes or code-phrases from the relevant terminology, e.g. `"10094842"`.
+
+2+h|*Functions*
+
+|*specialisation_depth* (): `xref:BASE:foundation_types:primitive_types.adoc#_integer_class[Integer]` [1..1]
+a|Specialisation depth of this artefact. Unspecialised artefacts have depth 0, with each additional level of specialisation adding 1 to the specialisation_depth.
+
+|*id_codes* (): `xref:BASE:foundation_types:structure_types.adoc#_list_class[List]<xref:BASE:foundation_types:primitive_types.adoc#_string_class[String]>` [1..1]
+a|List of all id codes in the terminology., i.e. the 'id' codes in an ADL archetype, which are the `_node_id_` values on `C_OBJECT` descendants.
+
+|*value_codes* (): `xref:BASE:foundation_types:structure_types.adoc#_list_class[List]<xref:BASE:foundation_types:primitive_types.adoc#_string_class[String]>` [0..1]
+a|List of all value term codes in the terminology, i.e. the 'at' codes in an ADL archetype, which are used as possible values on terminological constrainer nodes.
+
+|*value_set_codes* (): `xref:BASE:foundation_types:structure_types.adoc#_list_class[List]<xref:BASE:foundation_types:primitive_types.adoc#_string_class[String]>` [0..1]
+a|List of all value set codes in the terminology defining value sets. These correspond to the 'ac' codes in an ADL archetype.
+
+|*has_language* ( +
+a_lang: `xref:BASE:foundation_types:primitive_types.adoc#_string_class[String][1]` +
+): `xref:BASE:foundation_types:primitive_types.adoc#_boolean_class[Boolean]` [1..1]
+a|True if language `_a_lang_` is present in archetype terminology.
+
+|*has_terminology* ( +
+a_terminology_id: `xref:BASE:foundation_types:primitive_types.adoc#_string_class[String][1]` +
+): `xref:BASE:foundation_types:primitive_types.adoc#_boolean_class[Boolean]` [1..1]
+a|True if there are bindings to terminology `_a_terminology_id_` present.
+
+|*has_term_code* ( +
+a_code: `xref:BASE:foundation_types:primitive_types.adoc#_string_class[String][1]` +
+): `xref:BASE:foundation_types:primitive_types.adoc#_boolean_class[Boolean]` [1..1]
+a|True if code `_a_code_` defined in this terminology.
+
+|*term_definition* ( +
+a_lang: `xref:BASE:foundation_types:primitive_types.adoc#_string_class[String][1]`, +
+a_code: `xref:BASE:foundation_types:primitive_types.adoc#_string_class[String][1]` +
+): `xref:AM:AOM2:terminology_package.adoc#_archetype_term_class[ARCHETYPE_TERM]` +
+ +
+__Pre__: `has_term-definition (a_lang, a_code)` [1..1]
+a|Term definition for a code, in a specified language.
+
+|*term_binding* ( +
+a_terminology: `xref:BASE:foundation_types:primitive_types.adoc#_string_class[String][1]`, +
+a_code: `xref:BASE:foundation_types:primitive_types.adoc#_string_class[String][1]` +
+): `xref:BASE:foundation_types:primitive_types.adoc#_uri_class[Uri]` +
+ +
+__Pre__: `has_term_binding (a_terminology_id, a_code)` [1..1]
+a|Binding of constraint corresponding to `_a_code_` in target external terminology `_a_terminology_id_`, as a string, which is usually a formal query expression.
+
+|*terminologies_available* (): `xref:BASE:foundation_types:structure_types.adoc#_list_class[List]<xref:BASE:foundation_types:primitive_types.adoc#_string_class[String]>` [1..1]
+a|List of terminologies to which term or constraint bindings exist in this terminology, computed from bindings.
+
+|*terminology_extract_term* ( +
+a_terminology_id: `xref:BASE:foundation_types:primitive_types.adoc#_string_class[String][1]`, +
+a_code: `xref:BASE:foundation_types:primitive_types.adoc#_string_class[String][1]` +
+): `xref:AM:AOM2:terminology_package.adoc#_archetype_term_class[ARCHETYPE_TERM]` +
+ +
+__Pre__: `has_terminology_extract (a_terminology_id) and has_terminology_extract_code (a_code)` [1..1]
+a|Return an `ARCHETYPE_TERM` from specified terminology extract, for specified term code.
+
+|*has_terminology_extract* ( +
+a_terminology_id: `xref:BASE:foundation_types:primitive_types.adoc#_string_class[String][1]` +
+): `xref:BASE:foundation_types:primitive_types.adoc#_boolean_class[Boolean]` [1..1]
+a|True if there is a provided terminology extract present.
+
+|*languages_available* (): `xref:BASE:foundation_types:structure_types.adoc#_list_class[List]<xref:BASE:foundation_types:primitive_types.adoc#_string_class[String]>` [1..1]
+a|List of languages in which terms in this terminology are available.
+
+2+h|*Invariants*
+
+2+a|__Original_language_validity__: `code_set (Code_set_id_languages).has_concept_id (original_language)`
+
+2+a|__concept_code_validity__: `id_codes.has (concept_code)`
+
+2+a|__Term_bindings_validity__: `bindings /= void implies not bindings.is_empty`
+
+2+a|__Parent_archetype_valid__: `parent_archetype.terminology = Current`
+
+|===

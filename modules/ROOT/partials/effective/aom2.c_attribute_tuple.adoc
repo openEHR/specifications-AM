@@ -1,0 +1,28 @@
+[cols="2,3", frame=none, grid=rows]
+|===
+2+^h|*C_ATTRIBUTE_TUPLE*
+
+2+a|Object representing a constraint on an atttribute tuple, i.e. a group of attributes that are constrained together. Typically used for representing co-varying constraints like \{units, range} constraints.
+
+2+|Inherits: xref:AM:AOM2:constraint_model-class_definitions.adoc#_c_second_order_class[C_SECOND_ORDER]
+
+2+h|*Attributes*
+
+|*members*: `xref:BASE:foundation_types:structure_types.adoc#_list_class[List]<xref:AM:AOM2:constraint_model-class_definitions.adoc#_c_attribute_class[C_ATTRIBUTE]>` [0..1]
+a|List of `C_ATTRIBUTEs` forming the definition of the tuple.
+
+|*tuples*: `xref:BASE:foundation_types:structure_types.adoc#_list_class[List]<xref:AM:AOM2:constraint_model-class_definitions.adoc#_c_primitive_tuple_class[C_PRIMITIVE_TUPLE]>` [0..1]
+a|Tuple definitions.
+
+2+h|*Functions*
+
+|*c_conforms_to* ( +
+other: `xref:AM:AOM2:constraint_model-class_definitions.adoc#_c_second_order_class[C_SECOND_ORDER][1]` +
+): `xref:BASE:foundation_types:primitive_types.adoc#_boolean_class[Boolean]` [1..1]
+a|True if constraints represented by this node, ignoring any sub-parts, are narrower or the same as other. Typically used during validation of specialised archetype nodes.
+
+|*c_congruent_to* ( +
+other: `xref:AM:AOM2:constraint_model-class_definitions.adoc#_c_second_order_class[C_SECOND_ORDER][1]` +
+): `xref:BASE:foundation_types:primitive_types.adoc#_boolean_class[Boolean]` [1..1]
+a|True if constraints represented by this node contain no further redefinitions with respect to the node other. Typically used to test if an inherited node locally contains any constraints.
+|===

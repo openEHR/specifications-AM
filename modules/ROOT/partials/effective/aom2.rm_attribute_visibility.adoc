@@ -1,0 +1,19 @@
+[cols="2,3", frame=none, grid=rows]
+|===
+2+^h|*RM_ATTRIBUTE_VISIBILITY*
+
+2+a|Definition of visibility of an RM attribute within a larger archetype structure.
+
+2+h|*Attributes*
+
+|*visibility*: `xref:AM:AOM2:rm_adaptation.adoc#_visibility_type_enumeration[VISIBILITY_TYPE]` [0..1]
+a|Visibility setting of a non-archetyped RM attribute (RM attributes that are constrained or within the archetyped structure are visible by default).
+
+|*alias*: `xref:BASE:foundation_types:terminology.adoc#_terminology_code_class[Terminology_code]` [0..1]
+a|Optional alias for the attribute referenced by the path.
+
+2+h|*Invariants*
+
+2+a|__Inv_alias_validity__: `alias /= Void implies visibility /= Void`
+
+|===

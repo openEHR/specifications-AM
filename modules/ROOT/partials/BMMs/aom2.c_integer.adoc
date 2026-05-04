@@ -1,0 +1,31 @@
+[source,json]
+--------
+{
+    "name": "C_INTEGER",
+    "documentation": "Constraint on instances of Integer.",
+    "ancestors": [
+        "C_ORDERED"
+    ],
+    "properties": {
+        "constraint": {
+            "_type": "P_BMM_CONTAINER_PROPERTY",
+            "name": "constraint",
+            "documentation": "Formal constraint on `Integer`, in the form of `List<Interval<Integer>>`.",
+            "type_def": {
+                "container_type": "List",
+                "type_def": {
+                    "_type": "P_BMM_GENERIC_TYPE",
+                    "root_type": "Interval",
+                    "generic_parameters": [
+                        "Integer"
+                    ]
+                }
+            },
+            "cardinality": {
+                "lower": 0,
+                "upper_unbounded": true
+            }
+        }
+    }
+}
+--------

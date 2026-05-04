@@ -1,0 +1,31 @@
+[source,json]
+--------
+{
+    "name": "C_REAL",
+    "documentation": "Constraint on instances of Real.",
+    "ancestors": [
+        "C_ORDERED"
+    ],
+    "properties": {
+        "constraint": {
+            "_type": "P_BMM_CONTAINER_PROPERTY",
+            "name": "constraint",
+            "documentation": "Formal constraint on `Real`, in the form of `List<Interval<Real>>`.",
+            "type_def": {
+                "container_type": "List",
+                "type_def": {
+                    "_type": "P_BMM_GENERIC_TYPE",
+                    "root_type": "Interval",
+                    "generic_parameters": [
+                        "Real"
+                    ]
+                }
+            },
+            "cardinality": {
+                "lower": 0,
+                "upper_unbounded": true
+            }
+        }
+    }
+}
+--------

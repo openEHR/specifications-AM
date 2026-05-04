@@ -1,0 +1,81 @@
+[cols="^1,3,5"]
+|===
+h|*Class*
+2+^h|*__ARCHETYPE_CONSTRAINT (abstract)__*
+
+h|*Description*
+2+a|Abstract parent of all constraint model types. Defines conformance and congruence function signatures.
+
+h|*Inherit*
+2+|`xref:AM:AOM2:model_overview.adoc#_adl_code_definitions_class[ADL_CODE_DEFINITIONS]`
+
+h|*Attributes*
+^h|*Signature*
+^h|*Meaning*
+
+h|*0..1*
+|*parent*: `xref:AM:AOM2:constraint_model-class_definitions.adoc#_archetype_constraint_class[ARCHETYPE_CONSTRAINT]`
+a|Parent node, except in the case of the top of a tree, i.e. root `C_COMPLEX_OBJECT` of an archetype definition.
+
+h|*0..1*
+|*soc_parent*: `xref:AM:AOM2:constraint_model-class_definitions.adoc#_c_second_order_class[C_SECOND_ORDER]`
+a|
+
+h|*Functions*
+^h|*Signature*
+^h|*Meaning*
+
+h|*1..1 +
+(abstract)*
+|*is_prohibited* (): `xref:BASE:foundation_types:primitive_types.adoc#_boolean_class[Boolean]`
+a|True if this node is prohibited. Implemented in subtypes.
+
+h|*1..1*
+|*has_path* ( +
+a_path: `xref:BASE:foundation_types:primitive_types.adoc#_string_class[String][1]` +
+): `xref:BASE:foundation_types:primitive_types.adoc#_boolean_class[Boolean]`
+a|True if the relative path a_path exists at this node.
+
+h|*1..1*
+|*path* (): `xref:BASE:foundation_types:primitive_types.adoc#_string_class[String]`
+a|Path of this node relative to root of archetype.
+
+h|*1..1 +
+(abstract)*
+|*c_conforms_to* ( +
+other: `xref:AM:AOM2:constraint_model-class_definitions.adoc#_archetype_constraint_class[ARCHETYPE_CONSTRAINT][1]`, +
+rmcc: `xref:BASE:foundation_types:functional.adoc#_function_class[FUNCTION]<xref:BASE:foundation_types:primitive_types.adoc#_boolean_class[Boolean],xref:BASE:foundation_types:functional.adoc#_tuple2_class[TUPLE2]<xref:BASE:foundation_types:primitive_types.adoc#_string_class[String],xref:BASE:foundation_types:primitive_types.adoc#_string_class[String]>>[1]` +
+): `xref:BASE:foundation_types:primitive_types.adoc#_boolean_class[Boolean]`
+a|True if constraints represented by this node, ignoring any sub-parts, are narrower or the same as other. 
+Typically used during validation of special-ised archetype nodes.
+
+.Parameters +
+[horizontal]
+`_rmcc_`:: RM conformance checker - a lambda (i.e. function object) that can compute conformance of type-names within the  Reference Model on which the current archetype is based. The signature provides two arguments representing respectively, the `_rm_type_name_` of the current node and the `_rm_type_name_` of the node being redefined in a specialisation parent archetype.
+
+h|*1..1 +
+(abstract)*
+|*c_congruent_to* ( +
+other: `xref:AM:AOM2:constraint_model-class_definitions.adoc#_archetype_constraint_class[ARCHETYPE_CONSTRAINT][1]` +
+): `xref:BASE:foundation_types:primitive_types.adoc#_boolean_class[Boolean]`
+a|True if constraints represented by this node contain no further redefinitions with respect to the node other, with the exception of node_id redefnition in `C_OBJECT` nodes. 
+
+Typically used to test if an inherited node locally contains any constraints.
+
+h|*1..1*
+|*is_second_order_constrained* (): `xref:BASE:foundation_types:primitive_types.adoc#_boolean_class[Boolean]` +
+ +
+__Post__: `soc_parent /= Void or else (parent /= Void and then parent.is_second_order_constrained)`
+a|True if there is a second order constraint such as a tuple constraint on this node.
+
+h|*1..1*
+|*is_root* (): `xref:BASE:foundation_types:primitive_types.adoc#_boolean_class[Boolean]`
+a|True if this node is the root of the tree.
+
+h|*1..1*
+|*is_leaf* (): `xref:BASE:foundation_types:primitive_types.adoc#_boolean_class[Boolean]`
+a|True if this node is a terminal node in the tree structure, i.e. having no child nodes.
+
+h|*Invariants*
+2+a|__Post__: `Result = soc_parent /= Void or parent.soc_parent /= Void`
+|===

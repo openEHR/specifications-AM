@@ -1,0 +1,35 @@
+[cols="2,3", frame=none, grid=rows]
+|===
+2+^h|*P_C_COMPLEX_OBJECT_PROXY*
+
+2+a|A constraint defined by proxy, using a reference to an object constraint defined elsewhere in the same archetype. Note that since this object refers to another node, there are two objects with available occurrences values. The local occurrences value on a COJMPLEX_OBJECT_PROXY should always be used; when setting this from a seri- alised form, if no occurrences is mentioned, the target occurrences should be used (not the standard default of \{1..1}); otherwise the locally specified occurrences should be used as normal. When serialising out, if the occurrences is the same as that of the target, it can be left out.
+
+2+|Inherits: xref:AM:p_aom2:constraint_model_package.adoc#_p_archetype_constraint_class[P_ARCHETYPE_CONSTRAINT], xref:AM:p_aom2:constraint_model_package.adoc#_p_c_object_class[P_C_OBJECT]
+
+2+h|*Attributes*
+
+|*rm_type_name*: `xref:BASE:foundation_types:primitive_types.adoc#_string_class[String]` [1..1]
+a|Reference model type that this node corresponds to. +
+_Inherited from xref:AM:p_aom2:constraint_model_package.adoc#_p_c_object_class[P_C_OBJECT]_
+
+|*occurrences*: `xref:BASE:foundation_types:primitive_types.adoc#_string_class[String]` [0..1]
+a|Occurrences of this object node in the data, under the owning attribute. Upper limit can only be greater than 1 if owning attribute has a cardinality of more than 1. +
+_Inherited from xref:AM:p_aom2:constraint_model_package.adoc#_p_c_object_class[P_C_OBJECT]_
+
+|*node_id*: `xref:BASE:foundation_types:primitive_types.adoc#_string_class[String]` [1..1]
+a|Semantic id of this node, used to differentiate sibling nodes of the same type. Each node_id must be defined in the archetype ontology as a term code. +
+_Inherited from xref:AM:p_aom2:constraint_model_package.adoc#_p_c_object_class[P_C_OBJECT]_
+
+|*is_deprecated*: `xref:BASE:foundation_types:primitive_types.adoc#_boolean_class[Boolean]` [0..1]
+a| +
+_Inherited from xref:AM:p_aom2:constraint_model_package.adoc#_p_c_object_class[P_C_OBJECT]_
+
+|*target_path*: `xref:BASE:foundation_types:primitive_types.adoc#_string_class[String]` [1..1]
+a|Reference to an object node using archetype path notation.
+
+2+h|*Functions*
+
+|*specialisation_depth* (): `xref:BASE:foundation_types:primitive_types.adoc#_integer_class[Integer]` [1..1]
+a| +
+_Inherited from xref:AM:p_aom2:constraint_model_package.adoc#_p_c_object_class[P_C_OBJECT]_
+|===
