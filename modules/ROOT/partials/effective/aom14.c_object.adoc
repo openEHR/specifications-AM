@@ -1,0 +1,52 @@
+[cols="2,3", frame=none, grid=rows]
+|===
+2+^h|*__C_OBJECT (abstract)__*
+
+2+a|Abstract model of constraint on any kind of object node.
+
+2+|Inherits: xref:AM:AOM1.4:archetype_package.adoc#_archetype_constraint_class[ARCHETYPE_CONSTRAINT]
+
+2+h|*Attributes*
+
+|*rm_type_name*: `xref:BASE:foundation_types:primitive_types.adoc#_string_class[String]` [1..1]
+a|Reference model type that this node corresponds to.
+
+|*occurrences*: `xref:BASE:foundation_types:interval.adoc#_interval_class[Interval]<xref:BASE:foundation_types:primitive_types.adoc#_integer_class[Integer]>` [1..1]
+a|Occurrences of this object node in the data, under the owning attribute. Upper limit can only be greater than 1 if owning attribute has a cardinality of more than 1).
+
+|*node_id*: `xref:BASE:foundation_types:primitive_types.adoc#_string_class[String]` [1..1]
+a|Semantic identifier of this node, used to distinguish sibling nodes. All nodes must have a node_id; for nodes under a container C_ATTRIBUTE, the id must be an id-code must be defined in the archetype terminology. For valid structures, all node ids are at-codes.
+For C_PRIMITIVE_OBJECTs, it will have the special value Primitive_node_id.
+
+2+h|*Functions*
+
+|_(abstract)_ *is_subset_of* ( +
+other: `xref:AM:AOM1.4:archetype_package.adoc#_archetype_constraint_class[ARCHETYPE_CONSTRAINT][1]` +
+): `xref:BASE:foundation_types:primitive_types.adoc#_boolean_class[Boolean]` [1..1]
+a|True if constraints represented by this node, ignoring any sub-parts, are narrower or the same as other. 
+Typically used during validation of special-ised archetype nodes. +
+_Inherited from xref:AM:AOM1.4:archetype_package.adoc#_archetype_constraint_class[ARCHETYPE_CONSTRAINT]_
+
+|_(abstract)_ *is_valid* (): `xref:BASE:foundation_types:primitive_types.adoc#_boolean_class[Boolean]` [1..1]
+a| +
+_Inherited from xref:AM:AOM1.4:archetype_package.adoc#_archetype_constraint_class[ARCHETYPE_CONSTRAINT]_
+
+|*path* (): `xref:BASE:foundation_types:primitive_types.adoc#_string_class[String]` [1..1]
+a|Path of this node relative to root of archetype. +
+_Inherited from xref:AM:AOM1.4:archetype_package.adoc#_archetype_constraint_class[ARCHETYPE_CONSTRAINT]_
+
+|*has_path* ( +
+a_path: `xref:BASE:foundation_types:primitive_types.adoc#_string_class[String][1]` +
+): `xref:BASE:foundation_types:primitive_types.adoc#_boolean_class[Boolean]` [1..1]
+a|True if the relative path a_path exists at this node. +
+_Inherited from xref:AM:AOM1.4:archetype_package.adoc#_archetype_constraint_class[ARCHETYPE_CONSTRAINT]_
+
+2+h|*Invariants*
+
+2+a|__Post__: `Result = soc_parent /= Void or parent.soc_parent /= Void` +
+_Inherited from xref:AM:AOM1.4:archetype_package.adoc#_archetype_constraint_class[ARCHETYPE_CONSTRAINT]_
+
+2+a|__Path_exists__: `path /= Void` +
+_Inherited from xref:AM:AOM1.4:archetype_package.adoc#_archetype_constraint_class[ARCHETYPE_CONSTRAINT]_
+
+|===
