@@ -1,3 +1,5 @@
+include::partial$module_vars.adoc[]
+
 = ADL - Archetype Definition Language
 
 == Introduction
@@ -211,8 +213,8 @@ definition
         }
         data ∈ {            
             HISTORY[at9001] ∈ {                                           -- history
-                events cardinality ∈ {1..*} ∈ { 
-                    EVENT[at9002] occurrences ∈ {0..1} ∈ {               -- baseline
+                events cardinality ∈ \{1..*} ∈ { 
+                    EVENT[at9002] occurrences ∈ \{0..1} ∈ {               -- baseline
                         name ∈ {
                             CODED_TEXT ∈ {
                                 defining_code ∈ {
@@ -222,7 +224,7 @@ definition
                         }
                         data ∈ {
                             ITEM_LIST[at1000] ∈ {                           -- systemic arterial BP
-                                items cardinality ∈ {2..*} ∈ {
+                                items cardinality ∈ \{2..*} ∈ {
                                     ELEMENT[at1100] ∈ {                     -- systolic BP
                                         name ∈ {                            -- any synonym of 'systolic'
                                             CODED_TEXT ∈ {
@@ -255,7 +257,7 @@ definition
                                             }
                                         }
                                     } 
-                                    ELEMENT[at9000] occurrences ∈ {0..*} ∈ {*}    -- unknown new item
+                                    ELEMENT[at9000] occurrences ∈ \{0..*} ∈ \{*}    -- unknown new item
                                 }
                             ...
 --------
@@ -726,7 +728,7 @@ The following shows the ADL lexical specification.
 \[[a-zA-Z0-9][a-zA-Z0-9.-]*\] 
 
 ----------/* V_ARCHETYPE_ID */ ---------------------------------------------
-[a-zA-Z][a-zA-Z0-9_]+(-[a-zA-Z][a-zA-Z0-9_]+){2}\.[a-zA-Z][a-zA-Z0-9_]+(-[azA-Z][a-zA-Z0-9_]+)*\.v[1-9][0-9]*
+[a-zA-Z][a-zA-Z0-9_]+(-[a-zA-Z][a-zA-Z0-9_]+)\{2}\.[a-zA-Z][a-zA-Z0-9_]+(-[azA-Z][a-zA-Z0-9_]+)*\.v[1-9][0-9]*
 
 ----------/* V_IDENTIFIER */ ----------------------------------------------
 [a-zA-Z][a-zA-Z0-9_]* 

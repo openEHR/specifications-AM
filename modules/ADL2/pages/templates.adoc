@@ -1,3 +1,5 @@
+include::partial$module_vars.adoc[]
+
 = Templates
 
 == Overview
@@ -6,7 +8,7 @@ In ADL2, a template is a kind of specialised archetype that uses one feature of 
 
 It is worth emphasising this point, since 'slot-filling' is usually thought of as a compositional relationship (joining archetypes), rather than a specialisation relationship. However, ADL considers a filled or partly filled slot as a kind of slot, i.e. a specialisation of an initially empty slot. The consequence of this is that no special relationship or operation is required to achieve slot-filling in ADL - normal node redefinition is sufficient.
 
-All of the other constraints used in templates typically occur in normal archetypes, with one exception: multiplicity reduction to `{0}` of existences, cardinalities and occurrences. This particular constraint can be used in archetypes, but is generally only useful in templates, since one of the main functions of a template is to select specific data items from archetypes composed in a structure.
+All of the other constraints used in templates typically occur in normal archetypes, with one exception: multiplicity reduction to `\{0}` of existences, cardinalities and occurrences. This particular constraint can be used in archetypes, but is generally only useful in templates, since one of the main functions of a template is to select specific data items from archetypes composed in a structure.
 
 ADL provides one other special feature specific to templates: the ability to define 'overlays'. An overlay is just a specialised archetype that is local to the template, rather than being a self-standing archetype. It is used to enable a template to fill a slot not only with an available normal archetype, but with a locally constrained version of an archetype. This feature enables a template to express constraints on a filler archetype without need to create new independent archetype.
 
@@ -81,7 +83,7 @@ Each of the filler archetypes can have its occurrences individually constrained 
 
 Each overlay can be seen to be a specialisation of an archetype (it could also have been a template). The overlays also do not include any `languages` or `description` sections, since as parts of the parent template, they inherit these sections from the root template.
 
-Additionally, some overlays contain element removal constraints (`occurrences matches {0}`), used to reduce the data set to the intended final result for the purpose of this template. Clearly other templates could make quite different selections of data items from the same archetypes.
+Additionally, some overlays contain element removal constraints (`occurrences matches \{0}`), used to reduce the data set to the intended final result for the purpose of this template. Clearly other templates could make quite different selections of data items from the same archetypes.
 
 [source, adl]
 --------
@@ -112,14 +114,14 @@ description
 
 definition
     COMPOSITION[id1.1] ∈ {    -- Clinical detail
-        context existence ∈ {0} 
+        context existence ∈ \{0} 
         content ∈ {
-            use_archetype SECTION[id0.1, openEHR-EHR-SECTION.t_patient_event_info_ds_sf.v1] occurrences ∈ {1} 
-            use_archetype EVALUATION[id0.2, openEHR-EHR-EVALUATION.t_clinical_info_ds_sf-1.v1] occurrences ∈ {0..1} 
+            use_archetype SECTION[id0.1, openEHR-EHR-SECTION.t_patient_event_info_ds_sf.v1] occurrences ∈ \{1} 
+            use_archetype EVALUATION[id0.2, openEHR-EHR-EVALUATION.t_clinical_info_ds_sf-1.v1] occurrences ∈ \{0..1} 
             use_archetype EVALUATION[id0.3, openEHR-EHR-EVALUATION.t_clinical_info_ds_sf-2.v1] 
-            use_archetype EVALUATION[id0.5, openEHR-EHR-EVALUATION.t_clinical_info_ds_sf-4.v1] occurrences ∈ {1..*} 
-            use_archetype EVALUATION[id0.6, openEHR-EHR-EVALUATION.t_clinical_info_ds_sf-5.v1] occurrences ∈ {0..1} 
-            use_archetype EVALUATION[id0.8, openEHR-EHR-EVALUATION.t_clinical_info_ds_sf-7.v1] occurrences ∈ {0..*} 
+            use_archetype EVALUATION[id0.5, openEHR-EHR-EVALUATION.t_clinical_info_ds_sf-4.v1] occurrences ∈ \{1..*} 
+            use_archetype EVALUATION[id0.6, openEHR-EHR-EVALUATION.t_clinical_info_ds_sf-5.v1] occurrences ∈ \{0..1} 
+            use_archetype EVALUATION[id0.8, openEHR-EHR-EVALUATION.t_clinical_info_ds_sf-7.v1] occurrences ∈ \{0..*} 
             use_archetype EVALUATION[id0.9, openEHR-EHR-EVALUATION.t_clinical_info_ds_sf-8.v1] 
         }
     }
@@ -171,13 +173,13 @@ specialize
 definition
     EVALUATION[id1.1] ∈ {    -- Adverse reaction details for episode of care
         /data[id3]/items ∈ {
-            ELEMENT[id11] occurrences ∈ {0} 
+            ELEMENT[id11] occurrences ∈ \{0} 
         }
         /data[id3]/items[id20]/items ∈ {
-            ELEMENT[id33] occurrences ∈ {0} 
-            ELEMENT[id16] occurrences ∈ {0} 
-            ELEMENT[id5] occurrences ∈ {0} 
-            ELEMENT[id21] occurrences ∈ {0} 
+            ELEMENT[id33] occurrences ∈ \{0} 
+            ELEMENT[id16] occurrences ∈ \{0} 
+            ELEMENT[id5] occurrences ∈ \{0} 
+            ELEMENT[id21] occurrences ∈ \{0} 
         }
     }
 
@@ -200,10 +202,10 @@ specialize
 definition
     EVALUATION[id1.1] ∈ {    -- Alerts
         /data[id2]/items ∈ {
-            ELEMENT[id3] occurrences ∈ {0} 
-            ELEMENT[id6] occurrences ∈ {0} 
-            ELEMENT[id10] occurrences ∈ {0} 
-            ELEMENT[id15] occurrences ∈ {0} 
+            ELEMENT[id3] occurrences ∈ \{0} 
+            ELEMENT[id6] occurrences ∈ \{0} 
+            ELEMENT[id10] occurrences ∈ \{0} 
+            ELEMENT[id15] occurrences ∈ \{0} 
         }
     }
 
@@ -226,21 +228,21 @@ specialize
 definition
     EVALUATION[id1.1.1.1] ∈ {    -- Simple problem / diagnosis summary
         /data[id2]/items ∈ {
-            ELEMENT[id3.1.0.1] occurrences ∈ {1}     -- Diagnosis
-            ELEMENT[id0.32] occurrences ∈ {0} 
-            ELEMENT[id4] occurrences ∈ {0} 
-            ELEMENT[id5] occurrences ∈ {0} 
-            ELEMENT[id6] occurrences ∈ {0} 
+            ELEMENT[id3.1.0.1] occurrences ∈ \{1}     -- Diagnosis
+            ELEMENT[id0.32] occurrences ∈ \{0} 
+            ELEMENT[id4] occurrences ∈ \{0} 
+            ELEMENT[id5] occurrences ∈ \{0} 
+            ELEMENT[id6] occurrences ∈ \{0} 
             ELEMENT[id10.0.0.1]     -- Additional remarks
-            ELEMENT[id39] occurrences ∈ {0} 
-            ELEMENT[id11] occurrences ∈ {0} 
-            ELEMENT[id38] occurrences ∈ {0} 
-            CLUSTER[id12] occurrences ∈ {0} 
-            ELEMENT[id32] occurrences ∈ {0} 
-            CLUSTER[id0.35] occurrences ∈ {0} 
-            ELEMENT[id0.0.55.1] occurrences ∈ {1}     -- Diagnosis type
+            ELEMENT[id39] occurrences ∈ \{0} 
+            ELEMENT[id11] occurrences ∈ \{0} 
+            ELEMENT[id38] occurrences ∈ \{0} 
+            CLUSTER[id12] occurrences ∈ \{0} 
+            ELEMENT[id32] occurrences ∈ \{0} 
+            CLUSTER[id0.35] occurrences ∈ \{0} 
+            ELEMENT[id0.0.55.1] occurrences ∈ \{1}     -- Diagnosis type
         }
-        /protocol existence ∈ {0} 
+        /protocol existence ∈ \{0} 
     }
 
 terminology
@@ -329,9 +331,9 @@ specialize
 definition
     EVALUATION[id1.1] ∈ {    -- Simple Discharge Summary Medical Certificate
         /data[id2]/items ∈ {
-            ELEMENT[id3] occurrences ∈ {0} 
-            ELEMENT[id4] occurrences ∈ {0} 
-            ELEMENT[id5] occurrences ∈ {0} 
+            ELEMENT[id3] occurrences ∈ \{0} 
+            ELEMENT[id4] occurrences ∈ \{0} 
+            ELEMENT[id5] occurrences ∈ \{0} 
         }
     }
 

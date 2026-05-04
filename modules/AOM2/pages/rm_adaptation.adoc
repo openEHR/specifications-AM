@@ -1,3 +1,5 @@
+include::partial$module_vars.adoc[]
+
 = Reference Model Adaptation
 
 So far ADL has been presented as an abstract formal language that defines legal information structures based on a reference model (RM). In real world applications, we need to consider where reference models come from, and the question of harmonising or otherwise integrating archetypes based on different but related RMs.
@@ -20,9 +22,9 @@ image::{uml_export_dir}/diagrams/AOM_PROFILE.svg[id=aom_profile, align="center"]
 
 === Class Definitions
 
-include::{uml_export_dir}/classes/aom_profile.adoc[]
-include::{uml_export_dir}/classes/aom_type_mapping.adoc[]
-include::{uml_export_dir}/classes/aom_property_mapping.adoc[]
+include::ROOT:partial$classes/aom2.aom_profile.adoc[]
+include::ROOT:partial$classes/aom2.aom_type_mapping.adoc[]
+include::ROOT:partial$classes/aom2.aom_property_mapping.adoc[]
 
 === Configuration File
 
@@ -118,12 +120,12 @@ The effect of these mappings is that literal values in an archetype that parse a
 
 [source, cadl]
 --------
-    ELEMENT[id5] occurrences matches {0..1} matches {	-- Systolic
+    ELEMENT[id5] occurrences matches \{0..1} matches {	-- Systolic
         value matches {
             DV_QUANTITY[id1054] matches {
                 property matches {[at1055]}
                 magnitude matches {|0.0..<1000.0|}  -- **** parses as AOM REAL, but is Double in RM
-                precision matches {0}
+                precision matches \{0}
                 units matches {"mm[Hg]"}
             }
         }
@@ -134,7 +136,7 @@ The following example shows a native ISO Duration field that is mapped to a Stri
 
 [source, cadl]
 --------
-    INTERVAL_EVENT[id1043] occurrences matches {0..1} matches {	-- 24 hour average 
+    INTERVAL_EVENT[id1043] occurrences matches \{0..1} matches {	-- 24 hour average 
         width matches {
             DV_DURATION[id1064] matches {
                 value matches {PT24H}  -- **** parses as AOM ISO8601_DURATION, but is String in RM

@@ -1,3 +1,5 @@
+include::partial$module_vars.adoc[]
+
 = Templates
 
 Within the Archetype formalism, a template is used to aggregate and refine archetypes, to produce a structure corresponding to a particular data set. Templates thus provide a way to use archetypes for specific purposes, while the archetypes contain _possible_ data items, not linked to specific purposes. See the {openehr_am_adl2}#_templates[ADL2 specification, Templates section] for a detailed description of template semantics.
@@ -9,8 +11,8 @@ Since a template is a specialised archetype, it cannot change the semantics of a
 However, the mode of use of the AOM and ADL in a template is slightly different from the typical archetype. Firstly, the following features are commonly used in templates but not generally in archetypes:
 
 * slot-filling - achieved by specialisation, as described in the {openehr_am_adl2}#_slot_filling_and_redefinition[ADL specification];
-* specifying `{0..0}` constraints to remove elements not needed from the referenced archetypes;
-* specifying `{1..1}` constraints to mandate elements from the referenced archetypes;
+* specifying `\{0..0}` constraints to remove elements not needed from the referenced archetypes;
+* specifying `\{1..1}` constraints to mandate elements from the referenced archetypes;
 * setting default values;
 * addition of terminology bindings to specific terminology ref-sets.
 

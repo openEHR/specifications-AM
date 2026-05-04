@@ -1,3 +1,5 @@
+include::partial$module_vars.adoc[]
+
 = Rules
 
 == Overview
@@ -15,9 +17,9 @@ Assertions are needed in archetypes to express rules in two locations in an arch
 
 [source, cadl]
 --------
-    CLUSTER[id3] occurrences matches {0..1} matches {   -- Detail
+    CLUSTER[id3] occurrences matches \{0..1} matches {   -- Detail
         items cardinality matches {0..*; unordered} matches {
-            allow_archetype CLUSTER[id9] occurrences matches {0..1} matches {
+            allow_archetype CLUSTER[id9] occurrences matches \{0..1} matches {
                 include
                     archetype_id/value matches {/openEHR-EHR-CLUSTER.exam-.+\.v1/}
             }

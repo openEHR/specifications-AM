@@ -1,3 +1,5 @@
+include::partial$module_vars.adoc[]
+
 //
 // ============================================ Asciidoc HEADER =============================================
 //
@@ -26,7 +28,34 @@
 
 image::http://www.openehr.org/releases/BASE/latest/resources/images/openehr_logo_large.png["openEHR logo",align="center"]
 
-= Operational Template (OPT2) specification
+= Operational Template (OPT2) specification [.spec-status.spec-status-development]#{spec_status}#
+
+The format for a template in ADL 2. A template combines multiple archetypes to define a complete form or document (such as a discharge summary or encounter note); the OPT2 is its fully flattened, self-contained form that clinical systems use at runtime to drive data entry, validation, and storage, with no further archetype resolution required. OPT 1.4 is the predecessor aligned with the ADL 1.4 formalism. Template authors compose it from a root archetype and one or more filler archetypes, specifying slot fillers, value set restrictions, and language selections.
+
+== Purpose
+
+This document provides the formal specification of the Operational Template (OPT) for ADL2 artefacts. The OPT is a first generation 'compiled' artefact based on source archetypes and templates, that serves as the starting point for further downstream format generation (e.g. schemas, APIs) as well as the computational format for operational EHR systems using archetypes.
+
+This specification is primarily intended for software developers.
+
+== Related Documents
+
+Prerequisite documents for reading this document include:
+
+* The {openehr_am_overview}[openEHR Archetype Technical Overview]
+
+Related documents include:
+
+* The {openehr_am_aom2}[openEHR Archetype Object Model (AOM2)];
+
+== Nomenclature
+
+In this document, the term 'attribute' denotes any stored property of a type defined in an object model, including primitive attributes and any kind of relationship such as an association or aggregation. XML 'attributes' are always referred to explicitly as 'XML attributes'.
+
+We also use the word 'archetype' in a broad sense to designate what are commonly understood to be 'archetypes' (specifications of clinical data groups / data constraints) and 'templates' (data sets based on archetypes, since at a technical level, an ADL/AOM 2 template is in fact just an archetype. Accordingly, statements about 'archetypes' in this specification can be always understood to also apply to templates, unless otherwise indicated.
+
+
+
 
 
 //
@@ -37,36 +66,4 @@ image::http://www.openehr.org/releases/BASE/latest/resources/images/openehr_logo
 //
 // --------------------------------------------- Preface -----------------------------------------------
 //
-== Acknowledgements
 
-=== Primary Author
-
-* Thomas Beale, Ocean Informatics UK; openEHR Foundation Management Board
-
-=== Trademarks
-
-* 'Microsoft' and '.Net' are registered trademarks of the Microsoft Corporation.
-* 'Java' is a registered trademark of Oracle Corporation
-* 'Linux' is a registered trademark of Linus Torvalds.
-* 'openEHR' is a registered trademark of The openEHR Foundation
-* 'SNOMED CT' is a registered trademark of IHTSDO
-
-//
-// --------------------------------------------- TOC -----------------------------------------------
-//
-//toc::[left]
-
-//
-// --------------------------------------------- CHAPTERS -----------------------------------------------
-//
-:sectanchors:
-:numbered:
-
-//
-// --------------------------------------------- REFERENCES -----------------------------------------------
-//
-:numbered!:
-//== References
-
-//include::{base_dir}/docs_common/references/publications.adoc[leveloffset=+1]
-//include::{base_dir}/docs_common/references/resources.adoc[leveloffset=+1]

@@ -1,3 +1,5 @@
+include::partial$module_vars.adoc[]
+
 //
 // ============================================ Asciidoc HEADER =============================================
 //
@@ -27,7 +29,44 @@
 
 image::http://www.openehr.org/releases/BASE/latest/resources/images/openehr_logo_large.png["openEHR logo",align="center"]
 
-= Archetype Definition Language 2 (ADL2) Specification
+= Archetype Definition Language 2 (ADL2) Specification [.spec-status.spec-status-trial]#{spec_status}#
+
+The format and syntax for archetype definitions: the computable specifications that describe what clinical data a system may record. ADL 2 expresses constraints on Reference Model instances covering differential specialisation, terminology binding, and annotations, enabling archetype definitions to be authored, validated, and shared across tools and repositories. ADL 1.4 is the predecessor widely deployed in production systems; ADL 2 extends it with a cleaner constraint model and is adopted as ISO 13606-2:2019. Implementers building authoring tools, validators, or repository services should read this specification alongside AOM 2.
+
+== Purpose
+
+This document describes the design basis and syntax of the Archetype Definition Language (ADL) 2.x, a new major version of ADL, containing structural changes with respect to the ADL 1.x versions.
+
+It is intended for software developers, technically-oriented domain specialists and subject matter experts (SMEs). ADL is designed as an abstract human-readable and computer-processible syntax. ADL archetypes can be hand-edited using a normal text editor.
+
+The intended audience includes:
+
+* Standards bodies producing health informatics standards;
+* Academic groups using openEHR;
+* The open source healthcare community;
+* Solution vendors;
+* Medical informaticians and clinicians interested in health information.
+
+== Related Documents
+
+Prerequisite documents for reading this document include:
+
+* The {openehr_overview}[openEHR Architecture Overview];
+* The {openehr_am_overview}[openEHR Archetype Technical Overview];
+
+Related documents include:
+
+* The {openehr_am_aom2}[openEHR Archetype Object Model (AOM2)];
+* The {openehr_am_opt2}[openEHR Operational Template Specification].
+
+== Nomenclature
+
+In this document, the term 'attribute' denotes any stored property of a type defined in an object model, including primitive attributes and any kind of relationship such as an association or aggregation. XML 'attributes' are always referred to explicitly as 'XML attributes'.
+
+We also use the word 'archetype' in a broad sense to designate what are commonly understood to be 'archetypes' (specifications of clinical data groups / data constraints) and 'templates' (data sets based on archetypes, since at a technical level, an ADL/AOM 2 template is in fact just an archetype. Accordingly, statements about 'archetypes' in this specification can be always understood to also apply to templates, unless otherwise indicated.
+
+
+
 
 
 //
@@ -38,71 +77,4 @@ image::http://www.openehr.org/releases/BASE/latest/resources/images/openehr_logo
 //
 // --------------------------------------------- Preface -----------------------------------------------
 //
-== Acknowledgements
 
-=== Primary Author
-
-* Thomas Beale, Ocean Informatics UK; openEHR Foundation Management Board
-
-=== Contributors
-
-This specification and its sibling Archetype Definition Language specification have benefited from wide formal and informal input from the openEHR and wider health informatics community. The openEHR Foundation would like to recognise the following people and institutions.
-
-* Seref Arikan, MEcon, Ocean Informatics UK, Centre for Health Informatics and Multi-professional Education (CHIME), UCL, UK
-* John Arnett, NHS Connecting for Health, UK
-* Koray Atalag PhD, University of Auckland, NZ 
-* Tony Austin PhD, Centre for Health Informatics and Multi-professional Education (CHIME), UCL, UK
-* Eric Browne PhD, HealthBase Australia
-* Rong Chen MD, PhD, Cambio Heath Systems, Sweden
-* Adam Flinton, NHS Connecting for Health, UK
-* Matias Forss MSc, Institute of Technology at Linköping University
-* Sebastian Garde, PhD, Ocean Informatics
-* Andrew Goodchild PhD, Distributed Systems Technology Centre, Australia
-* Peter Gummer MSc, Ocean Informatics
-* Sam Heard MD, Ocean Informatics
-* Jose Alberto Maldondo PhD, Universitat Politècnica de València, Spain
-* David Moner PhD, Universitat Politècnica de València, Spain
-* Isabel Román Martínez PhD, Universitat de Sevilla, Spain
-* Ian McNicoll MD, MSc, Ocean Informatics UK
-* Andrew Patterson PhD, LLM, Federation Health Software, Australia
-* Ognian Pishev PhD, Australia, Ocean Informatics 
-* Rahil Qamar Siddiqui PhD, NHS Health & Social Care Information Centre, UK
-* Prof Alan Rector MD, PhD, University of Manchester, UK
-* Harold Solbrig PhD, Mayo Clinic, Rochester, USA
-* Alessandro Torrisi, Code24, Netherlands
-* Zar Zar Tun, Distributed Systems Technology Centre, Australia
-
-Thanks to Sebastian Garde, Central Qld University, Australia, for German translations.
-
-=== Trademarks
-
-* 'Microsoft' and '.Net' are registered trademarks of the Microsoft Corporation.
-* 'Java' is a registered trademark of Oracle Corporation
-* 'Linux' is a registered trademark of Linus Torvalds.
-* 'openEHR' is a registered trademark of The openEHR Foundation
-* 'SNOMED CT' is a registered trademark of IHTSDO
-
-=== Supporters
-
-The work reported in this paper has been funded by the following organisations:
-
-* UCL (University College London) - Centre for Health Informatics and Multiprofessional Education (CHIME);
-* Ocean Informatics.
-
-Special thanks to Prof David Ingram, founding Director of CHIME, UCL, who provided a vision and collegial working environment ever since the days of GEHR (1992).
-
-//
-// --------------------------------------------- TOC -----------------------------------------------
-//
-//toc::[left]
-
-//
-// --------------------------------------------- CHAPTERS -----------------------------------------------
-//
-:sectanchors:
-
-//
-// --------------------------------------------- REFERENCES -----------------------------------------------
-//
-:sectnums!:
-== References

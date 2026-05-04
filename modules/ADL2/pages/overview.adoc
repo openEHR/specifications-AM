@@ -1,3 +1,5 @@
+include::partial$module_vars.adoc[]
+
 = Overview
 
 ADL uses three syntaxes, cADL (constraint form of ADL), ODIN (Object Data Instance Notation), and a version of first-order predicate logic (FOPL), to express constraints on data which are instances of an underlying information model, which may be expressed in UML, relational form, or in a programming language. ADL itself is a very simple 'glue' syntax, which uses two other syntaxes for expressing structured constraints and data, respectively. The cADL syntax is used to express the archetype `definition` section, while the ODIN syntax is used to express data which appears in the `language`, `description`, `terminology`, and `revision_history` sections of an ADL archetype. The top-level structure of an ADL archetype is shown in the figure below.
@@ -24,7 +26,7 @@ definition
     INSTRUMENT[id1] matches {
         size matches {|60..120|}                    -- size in cm
         date_of_manufacture matches {yyyy-mm-??}    -- year & month ok
-        parts cardinality matches {0..*} matches {
+        parts cardinality matches \{0..*} matches {
             PART[id2] matches {                     -- neck
                 material matches {[ac1]}            -- timber or nickel alloy
             }

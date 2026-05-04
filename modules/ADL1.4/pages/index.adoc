@@ -1,3 +1,5 @@
+include::partial$module_vars.adoc[]
+
 //
 // ============================================ Asciidoc HEADER =============================================
 //
@@ -26,7 +28,39 @@
 
 image::http://www.openehr.org/releases/BASE/latest/resources/images/openehr_logo_large.png["openEHR logo",align="center"]
 
-= Archetype Definition Language 1.4 specification
+= Archetype Definition Language 1.4 specification [.spec-status.spec-status-stable]#{spec_status}#
+
+The format and syntax for archetype definitions, widely deployed in production systems and adopted as ISO 13606-2:2008. ADL 1.4 defines the constraint syntax, terminology binding rules, and file format used by many existing archetype repositories and tooling. ADL 2 is the successor introducing differential specialisation and an improved constraint model. Implementers maintaining or migrating existing archetype tooling should refer to this specification together with AOM 1.4.
+
+== Purpose
+
+This document describes the design basis and syntax of the Archetype Definition Language 1.4 (ADL 1.4). It is intended for software developers, technically-oriented domain specialists and subject matter experts (SMEs). ADL is designed as an abstract human-readable and computer-processible syntax. ADL archetypes can be hand-edited using a normal text editor.
+
+The intended audience includes:
+
+* Standards bodies producing health informatics standards;
+* Academic groups using openEHR;
+* The open source healthcare community;
+* Solution vendors;
+* Medical informaticians and clinicians interested in health information.
+
+== Related Documents
+
+Prerequisite documents for reading this document include:
+
+* The {openehr_overview}[openEHR Architecture Overview];
+* The {openehr_am_overview}[openEHR Archetype Technical Overview].
+
+Related documents include:
+
+* The {openehr_am_adl14}[openEHR Archetype Object Model (AOM14)].
+
+== Nomenclature
+
+In this document, the term 'attribute' denotes any stored property of a type defined in an object model, including primitive attributes and any kind of relationship such as an association or aggregation. XML 'attributes' are always referred to explicitly as 'XML attributes'.
+
+
+
 
 
 //
@@ -37,46 +71,4 @@ image::http://www.openehr.org/releases/BASE/latest/resources/images/openehr_logo
 //
 // --------------------------------------------- Preface -----------------------------------------------
 //
-== Acknowledgements
 
-=== Primary Author
-
-* Thomas Beale, Ocean Informatics UK; openEHR Architecture Review Board (ARB)
-
-=== Contributors
-
-Thanks to Sebastian Garde, Central Qld University, Australia, for German translations.
-
-=== Trademarks
-
-* 'Microsoft' and '.Net' are registered trademarks of the Microsoft Corporation.
-* 'Java' is a registered trademark of Oracle Corporation
-* 'Linux' is a registered trademark of Linus Torvalds.
-* 'openEHR' is a registered trademark of The openEHR Foundation
-* 'SNOMED CT' is a registered trademark of IHTSDO
-
-=== Supporters
-
-The work reported in this paper has been funded by the following organisations:
-
-* UCL (University College London) - Centre for Health Informatics and Multiprofessional Education (CHIME);
-* Ocean Informatics.
-
-Special thanks to Prof David Ingram, founding Director of CHIME, UCL, who provided a vision and collegial working environment ever since the days of GEHR (1992).
-
-//
-// --------------------------------------------- TOC -----------------------------------------------
-//
-//toc::[left]
-
-//
-// --------------------------------------------- CHAPTERS -----------------------------------------------
-//
-:sectanchors:
-:numbered:
-
-//
-// --------------------------------------------- REFERENCES -----------------------------------------------
-//
-:numbered!:
-== References

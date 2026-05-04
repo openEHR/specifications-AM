@@ -1,3 +1,5 @@
+include::partial$module_vars.adoc[]
+
 = Terminology Integration
 
 Previous sections have provided the syntax possibilities for expressing terminological constraints, definitions, value sets and bindings in an archetype. This section describes the semantics of constraints on terminological entities, and how these constraints are resolved to concrete sets of terms. 
@@ -47,7 +49,7 @@ Expressing terminology constraints in cADL was briefly described in <<cADL_Termi
 definition
     ...
         items matches {
-            ELEMENT[id11] occurrences matches {0..1} matches {
+            ELEMENT[id11] occurrences matches \{0..1} matches {
                 name matches {
                     DV_CODED_TEXT[id8] matches {
                         defining_code matches {[at5]}        -- set name to 'Substance'
@@ -246,7 +248,7 @@ As described in section <<cADL_Terminology_Constraints>>, constraints of the for
     --
     -- extract of operational template based on openehr-ehr-EVALUATION.term_constraint_variations.v0.0.1
     --
-    ELEMENT[id11] occurrences matches {0..1} matches {
+    ELEMENT[id11] occurrences matches \{0..1} matches {
         name matches {
             DV_CODED_TEXT[id8] matches {
                 defining_code matches {[at5@snomed_ct]}        -- set name to 'Substance'

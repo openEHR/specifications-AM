@@ -1,0 +1,94 @@
+include::partial$module_vars.adoc[]
+
+= Appendix
+
+
+== Acknowledgements
+
+=== Primary Author
+
+* Thomas Beale, Ocean Informatics UK; openEHR Foundation Management Board
+
+=== Contributors
+
+This specification and its sibling Archetype Definition Language specification have benefited from wide formal and informal input from the openEHR and wider health informatics community. The openEHR Foundation would like to recognise the following people and institutions.
+
+* Koray Atalag, MD, PhD, Sen. Researcher, National Institute for Health Innovation (NIHI), New Zealand
+* Linda Bird PhD, IHTSDO
+* Diego Boscá, IBIME, Technical University Valencia, VeraTech for Health, Spain
+* Rong Chen MD, PhD, Cambio Healthcare Systems, Sweden
+* Borut Fabjan, Program Manager, Marand, Slovenia
+* Sebastian Garde PhD, Ocean Informatics UK
+* Peter Gummer, Ocean Informatics
+* Sam Heard MD, Ocean Informatics
+* Stan Huff MD, Intermountain Healthcare, UT, USA
+* David Ingram PhD, Emeritus Professor of Health Informatics, UCL
+* Dipak Kalra MD, PhD, Professor Health Informatics, CHIME, UCL, president Eurorec
+* Shinji Kobayashi PhD, Kyoto University EHR research unit
+* Bostjan Lah, Architect, Marand, Slovenia
+* David Lloyd, CHIME, UCL (ret)
+* Ian McNicoll MD, Ocean Informatics UK
+* David Moner, IBIME, Technical University Valencia, VeraTech for Health, Spain
+* Pablo Pazos Gutierrez, Tarmac IT, CaboLabs, Uruguay
+* Harold Solbrig, Mayo Clinic, Rochester, USA
+* Erik Sundvall PhD, Linkoping University, Sweden
+* Alessandro Torrisi, Code24, The Netherlands.
+
+=== Supporters
+
+The work reported in this paper has been funded by the following organisations:
+
+* UCL (University College London) - Centre for Health Informatics and Multiprofessional Education (CHIME);
+* Ocean Informatics.
+
+Special thanks to Prof David Ingram, founding Director of CHIME, UCL, who provided a vision and collegial working environment ever since the days of GEHR (1992).
+
+=== Trademarks
+
+* 'openEHR' is a trademark of the openEHR Foundation
+* 'Java' is a registered trademark of Oracle Corporation
+* 'Microsoft' is a trademark of the Microsoft Corporation
+== Tools
+
+Various tools exist for creating and processing archetypes. The http://www.openehr.org/downloads/ADLworkbench/home[ADL Workbench] is a reference compiler, visualiser and editor. The openEHR tools can be http://www.openehr.org/downloads/modellingtools[downloaded from the website] .
+Source projects can be found at the https://github.com/openEHR[openEHR Github project].
+
+== Changes from Previous Versions
+
+=== Release 1.5 to 2.0 (Document version 2.1.2 - )
+
+The changes in release 2 of the ADL/AOM formalism are designed to make the formalism more computable with respect to terminology, and enable more rigorous validation and flattening operations.
+
+The changes are as follows.
+
+* Introduction of *new internal coding scheme*, consisting of id-codes, at-codes and ac-codes;
+* Replace string archetype identifier with multi-part, *namespaced identifier*;
+* Addition of *explicit value-sets* in terminology section, replacing in-line value sets in the `definition` section;
+* Renaming archetype `ontology` section to `terminology`;
+* Expression of all external *term bindings as URIs* following IHTSDO format;
+* Introduction of *'tuple' constraints* to replace openEHR custom constrainer types for covarying attributes within Quantity, Ordinal structures;
+* Re-engineering of all primitive constrainer types, i.e. `C_STRING` , `C_DATE` etc;
+* Removal of the openEHR Archetype Profile specification.
+
+=== Release 1.4 to 1.5 (Document version 2.0 to 2.1.1)
+
+The changes in release 1.5 are made to better facilitate the representation of specialised archetypes. The key semantic capability for specialised archetypes is to be able to support a differential representation, i.e. to express a specialised archetype only in terms of the changed or new elements in its defnition, rather than including a copy of unchanged elements. Doing the latter is clearly unsustainable in terms of change management.
+
+The changes are as follows.
+
+* Full *specialisation support*: the addition of an attribute to the `C_ATTRIBUTE` class, allowing the inclusion of a path that enables specialised archetype redefinitions deep within a structure;
+* Addition of *node-level annotations*;
+* Structural simplification of archetype ontology section;
+* The name of the `invariant` section has been changed to `rules`, to better reflect its purpose.
+* A template is now just an archetype.
+
+=== Release 0.6 to 1.4
+
+Changes made from Release 1.3 to 1.4:
+
+* added a new attribute `_adl_version_` : `String` to the `ARCHETYPE` class;
+* changed name of `ARCHETYPE` . `_concept_code_` attribute to `_concept_` .
+
+:sectnums!:
+
+include::partial$amendment_record.adoc[]
