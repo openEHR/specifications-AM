@@ -1,3 +1,5 @@
+include::partial$module_vars.adoc[]
+
 //
 // ============================================ Asciidoc HEADER =============================================
 //
@@ -7,7 +9,34 @@
 //
 
 
-= {spec_title}
+= {spec_title} [.spec-status.spec-status-stable]#{spec_status}#
+
+The object model of an ADL 1.4 archetype in memory. This specification is the primary reference for tool developers building archetype editors, validators, and repository software targeting ISO 13606-2:2008 compliant archetypes, defining the constraint type hierarchy and terminology model for the ADL 1.4 formalism. AOM 2 is the successor aligned with ADL 2.
+
+== Purpose
+
+This document contains the definitive statement of archetype semantics, in the form of an object model for archetypes. The model presented here can be used as a basis for building software that processes archetypes, independent of their persistent representation; equally, it can be used to develop the output side of parsers that process archetypes in a linguistic format, such as the {openehr_am_adl14}[openEHR Archetype Definition Language (ADL)^], XML-instance and so on. As a specification, it can be treated as an API for archetypes.
+
+It is recommended that the {openehr_am_adl14}[openEHR ADL document^] be read in conjunction with this document, since it contains a detailed explanation of the semantics of archetypes, and many of the examples are more obvious in ADL, regardless of whether ADL is actually used with the object model presented here or not.
+
+== Related Documents
+
+Prerequisite documents for reading this document include:
+
+* The {openehr_overview}[openEHR Architecture Overview^];
+* The {openehr_am_overview}[openEHR Archetypes Technical Overview^].
+
+Related documents include:
+
+* The {openehr_am_adl14}[openEHR Definition Language^];
+* The {openehr_am_oap}[openEHR Archetype Profile^].
+
+== Nomenclature
+
+In this document, the term 'attribute' denotes any stored property of a type defined in an object model, including primitive attributes and any kind of relationship such as an association or aggregation. XML 'attributes' are always referred to explicitly as 'XML attributes'.
+
+
+
 
 
 //
@@ -18,48 +47,13 @@
 //
 // --------------------------------------------- Preface -----------------------------------------------
 //
-== Acknowledgements
 
-=== Primary Author
+== Feedback
 
-* Thomas Beale, Ars Semantica, UK
+Feedback may be provided on the {openehr_adl_forum}[openEHR ADL forum^].
 
-=== Supporters
+Issues may be raised on the {component_prs}[specifications Problem Report tracker^].
 
-The work reported in this paper has been funded by the following organisations:
-
-* UCL (University College London) - Centre for Health Informatics and Multiprofessional Education (CHIME);
-* Ocean Informatics.
-
-Special thanks to Prof David Ingram, founding Director of CHIME, UCL, who provided a vision and collegial working environment ever since the days of GEHR (1992).
-
-=== Trademarks
-
-* 'openEHR' is a trademark of the openEHR Foundation
-* 'Java' is a registered trademark of Oracle Corporation
-* 'Microsoft' is a trademark of the Microsoft Corporation
+To see changes made due to previously reported issues, see the {component_history}[{component} component Change Request tracker^].
 
 
-//
-// --------------------------------------------- TOC -----------------------------------------------
-//
-//toc::[left]
-
-//
-// --------------------------------------------- CHAPTERS -----------------------------------------------
-//
-
-
-ifdef::package_qualifiers[]
-:pkg: org.openehr.am.aom14.
-endif::[]
-
-// include::masterAppC-rm_dependencies.adoc[leveloffset=+1]
-
-//
-// --------------------------------------------- REFERENCES -----------------------------------------------
-//
-:sectnums!:
-== References
-
-bibliography::[]

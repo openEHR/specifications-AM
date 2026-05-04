@@ -1,3 +1,5 @@
+include::partial$module_vars.adoc[]
+
 = cADL - Constraint ADL
 
 == Overview
@@ -10,7 +12,7 @@ cADL is a block-structured syntax which enables constraints on data defined by o
         name matches {                                   -- constraint on PERSON.name
             TEXT[id2] matches {/.+/}                     -- any non-empty string
         }
-        addresses cardinality matches {1..*} matches {   -- constraint on
+        addresses cardinality matches \{1..*} matches {   -- constraint on
             ADDRESS[id3] matches {                       -- PERSON.addresses
                 -- etc --
             }
@@ -26,7 +28,7 @@ Some of the textual keywords in this example can be more efficiently rendered us
         name ∈ {                               -- constraint on PERSON.name
             TEXT[id2] ∈ {/..*/}                -- any non-empty string
         }
-        addresses cardinality ∈ {1..*} ∈ {     -- constraint on
+        addresses cardinality ∈ \{1..*} ∈ {     -- constraint on
             ADDRESS[id3] ∈ {                   -- PERSON.addresses
                 -- etc --
             }

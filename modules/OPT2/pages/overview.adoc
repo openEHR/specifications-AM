@@ -1,3 +1,5 @@
+include::partial$module_vars.adoc[]
+
 = Overview
 
 The Operational Template (OPT) is a family of technical artefacts that is generated from source templates and archetypes expressed in ADL2, as described in the {openehr_am_overview}#_artefacts[Archetype Technology Overview document].
@@ -32,7 +34,7 @@ Because an OPT operates as a single standalone archetype, it does not require al
 * no `use_node` nodes, i.e. all internal references have been expanded out as copies of their targets;
 * all slot-fillers and direct external references (`use_archetype` nodes) have been resolved and substituted;
 * all closed slots are removed;
-* all attribute (`C_ATTRIBUTE`) nodes that have `existence matches {0}` (i.e. are logically removed) are removed;
+* all attribute (`C_ATTRIBUTE`) nodes that have `existence matches \{0}` (i.e. are logically removed) are removed;
 * all template overlays have been applied (flattening);
 * the flattened form of all `terminology` sections of all referenced archetypes are included in the `component_terminologies` section.
 

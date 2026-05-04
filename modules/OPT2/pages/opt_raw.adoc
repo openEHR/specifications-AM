@@ -1,3 +1,5 @@
+include::partial$module_vars.adoc[]
+
 = The Raw Operational Template
 
 A 'raw' OPT is the first stage of OPT processing from a master source template, and all the other templates and archetypes that it references. All references to archetype nodes and other archetypes are resolved, and the structure is fully flattened, with all deleted nodes removed.
@@ -42,7 +44,7 @@ OPT Flattening involves the following additional steps:
 * for slots:
 ** all `closed` slots are removed;
 ** all slot-filler archetype references are replaced by an inline copy of the archetype to which the reference resolves;
-* all deleted nodes are removed from the output, i.e. attribute (`C_ATTRIBUTE`) nodes that have `existence matches {0}` and object (`C_OBJECT`) nodes with `occurrences matches {0}`;
+* all deleted nodes are removed from the output, i.e. attribute (`C_ATTRIBUTE`) nodes that have `existence matches \{0}` and object (`C_OBJECT`) nodes with `occurrences matches \{0}`;
 
 == Terminology
 

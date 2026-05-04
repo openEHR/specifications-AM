@@ -1,0 +1,120 @@
+include::partial$module_vars.adoc[]
+
+= Appendix
+
+
+== Acknowledgements
+
+=== Primary Author
+
+* Thomas Beale, Ars Semantica, UK; openEHR International Board.
+
+=== Contributors
+
+This specification and its sibling Archetype Definition Language specification have benefited from wide formal and informal input from the openEHR and wider health informatics community. The openEHR Foundation would like to recognise the following people for their contributions.
+
+* Koray Atalag, MD, PhD, Sen. Researcher, National Institute for Health Innovation (NIHI), New Zealand
+* Silje Ljosland Bakke, RN, Nasjonal IKT HF, Norway
+* Linda Bird PhD, IHTSDO, Australia
+* Pieter Bos, Senior Software Engineer, Nedap, Netherlands
+* Diego Boscá, IBIME, Technical University Valencia, VeraTech for Health, Spain
+* Rong Chen MD, PhD, Cambio Healthcare Systems, Sweden
+* Joey Coyle MD, PhD, Intermountain Healthcare, New York
+* Borut Fabjan, Program Manager, Better d.o.o., Slovenia
+* Sebastian Garde PhD, Ocean Informatics, UK
+* Peter Gummer, Ocean Informatics, Australia
+* Sam Heard MD, Ocean Informatics, Australia
+* Stan Huff MD, Intermountain Healthcare, UT, USA
+* David Ingram PhD, Emeritus Professor of Health Informatics, UCL, UK
+* Dipak Kalra MD, PhD, Professor Health Informatics, CHIME, UCL, UK
+* Shinji Kobayashi PhD, Kyoto University EHR research unit, Japan
+* Bostjan Lah, Architect, Better d.o.o., Slovenia
+* Patrick Langford, NeuronSong LLC, Utah, USA
+* David Lloyd, CHIME, UCL (ret), UK
+* Chunlan Ma PhD, MD, Ocean Informatics, Australia
+* Ian McNicoll MD, FreshEHR, UK
+* David Moner, IBIME, Technical University Valencia, VeraTech for Health, Spain
+* Claude Nanjo MA African Studies., MPH, Cognitive Medical Systems Inc., California
+* Pablo Pazos Gutierrez, Tarmac IT, CaboLabs, Uruguay
+* Harold Solbrig, Mayo Clinic, Rochester, USA
+* Erik Sundvall PhD, Linkoping University, Sweden
+* Alessandro Torrisi, Code24, The Netherlands
+* Bert Verhees, ROSA Software, The Netherlands
+* Jelte Zeilstra, Software Engineer, Nedap, Netherlands
+
+=== Supporters
+
+The work reported in this paper has been funded by the following organisations:
+
+* the {openehr_industry_partners}[openEHR Industry Partners^];
+* Ars Semantica, UK;
+* UCL (University College London) - Centre for Health Informatics and Multiprofessional Education (CHIME);
+* Ocean Informatics, Australia.
+
+Special thanks to David Ingram, Emeritus Professor of Health Informatics at UCL, who provided a vision and collegial working environment ever since the days of GEHR (1992).
+
+=== Trademarks
+
+* 'openEHR' is a trademark of the openEHR Foundation
+* 'Java' is a registered trademark of Oracle Corporation
+* 'Microsoft' is a trademark of the Microsoft Corporation
+
+
+
+
+
+ifdef::package_qualifiers[]
+endif::[]
+== Conformance
+
+Conformance of a data or software artifact to an openEHR specification is determined by a formal test of that artifact against the relevant {openehr_its_component}[openEHR Implementation Technology Specification(s) (ITSs)^], such as an IDL interface or an XML-schema. Since ITSs are formal derivations from underlying models, ITS conformance indicates model conformance.
+
+== Tools
+
+Various tools exist for creating and processing archetypes. The {openehr_awb}[ADL Workbench^] is a reference compiler, visualiser and editor. The openEHR ADL/AOM tools can be {modelling_tools}[downloaded from the website^] .
+
+Source projects can be found at the {openehr_git}[openEHR Github project^].
+
+== Changes from Previous Versions
+
+=== Release 1.5 to 2.0 (Document version 2.1.2 - )
+
+The changes in release 2 of the ADL/AOM formalism are designed to make the formalism more computable with respect to terminology, and enable more rigorous validation and flattening operations.
+
+The changes are as follows.
+
+* Introduction of *new internal coding scheme*, consisting of id-codes, at-codes and ac-codes;
+* Replace string archetype identifier with multi-part, *namespaced identifier*;
+* Addition of *explicit value-sets* in terminology section, replacing in-line value sets in the `definition` section;
+* Renaming archetype `ontology` section to `terminology`;
+* Expression of all external *term bindings as URIs* following IHTSDO format;
+* Introduction of *'tuple' constraints* to replace openEHR custom constrainer types for co-varying attributes within Quantity, Ordinal structures;
+* Re-engineering of all primitive constrainer types, i.e. `C_STRING` , `C_DATE` etc.;
+* Removal of the openEHR Archetype Profile specification.
+
+=== Release 1.4 to 1.5 (Document version 2.0 to 2.1.1)
+
+The changes in release 1.5 are made to better facilitate the representation of specialised archetypes. The key semantic capability for specialised archetypes is to be able to support a differential representation, i.e. to express a specialised archetype only in terms of the changed or new elements in its definition, rather than including a copy of unchanged elements. Doing the latter is clearly unsustainable in terms of change management.
+
+The changes are as follows.
+
+* Full *specialisation support*: the addition of an attribute to the `C_ATTRIBUTE` class, allowing the inclusion of a path that enables specialised archetype redefinitions deep within a structure;
+* Addition of *node-level annotations*;
+* Structural simplification of archetype ontology section;
+* The name of the `invariant` section has been changed to `rules`, to better reflect its purpose.
+* A template is now just an archetype.
+
+=== Release 0.6 to 1.4
+
+Changes made from Release 1.3 to 1.4:
+
+* added a new attribute `_adl_version_` : `String` to the `ARCHETYPE` class;
+* changed name of `ARCHETYPE` . `_concept_code_` attribute to `_concept_` .
+
+ifdef::package_qualifiers[]
+:pkg: org.openehr.am.aom2.
+endif::[]
+
+:sectnums!:
+
+include::partial$amendment_record.adoc[]

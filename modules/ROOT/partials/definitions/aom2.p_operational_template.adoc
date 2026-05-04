@@ -9,17 +9,17 @@ h|*Description*
 An operational template is used for generating and validating canonical openEHR data, and also as a source artefact for generating other downstream technical artefacts, including XML schemas, APIs and UI form definitions.
 
 h|*Inherit*
-2+|`xref:AM:aom2:persistence_package.adoc#_p_authored_archetype_class[P_AUTHORED_ARCHETYPE]`
+2+|`xref:{class_p_authored_archetype}[P_AUTHORED_ARCHETYPE]`
 
 h|*Attributes*
 ^h|*Signature*
 ^h|*Meaning*
 
 h|*0..1*
-|*component_terminologies*: `xref:BASE:foundation_types:structure_types.adoc#_hash_class[Hash]<xref:BASE:foundation_types:primitive_types.adoc#_string_class[String],xref:AM:aom2:persistence_package.adoc#_p_archetype_terminology_class[P_ARCHETYPE_TERMINOLOGY]>`
+|*component_terminologies*: `xref:{class_hash}[Hash]<xref:{class_string}[String],xref:{class_p_archetype_terminology}[P_ARCHETYPE_TERMINOLOGY]>`
 a|Compendium of flattened terminologies of archetypes externally referenced from this archetype, keyed by archetype identifier. This will almost always be present in a template.
 
 h|*0..1*
-|*terminology_extracts*: `xref:BASE:foundation_types:structure_types.adoc#_hash_class[Hash]<xref:BASE:foundation_types:primitive_types.adoc#_string_class[String],xref:BASE:foundation_types:structure_types.adoc#_hash_class[Hash]<xref:BASE:foundation_types:primitive_types.adoc#_string_class[String],xref:AM:AOM2:terminology_package.adoc#_archetype_term_class[ARCHETYPE_TERM]>>`
+|*terminology_extracts*: `xref:{class_hash}[Hash]<xref:{class_string}[String],xref:{class_hash}[Hash]<xref:{class_string}[String],xref:{class_archetype_term}[ARCHETYPE_TERM]>>`
 a|Directory of term definitions as a two-level  table. The outer hash keys are term codes,  e.g. "at4", and the inner hash key are term  attribute names, e.g. "text", "description" etc.
 |===

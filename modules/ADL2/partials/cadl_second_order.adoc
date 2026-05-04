@@ -89,7 +89,7 @@ A constraint on the openEHR `DV_ORDINAL` type provides another example of the ut
     --
     ordinal_attr ∈ {
         DV_ORDINAL[id3] ∈ {
-            value ∈ {0}
+            value ∈ \{0}
             symbol ∈ {
                 DV_CODED_TEXT[id4] ∈ {
                     code ∈ {"at1"}          -- +
@@ -97,7 +97,7 @@ A constraint on the openEHR `DV_ORDINAL` type provides another example of the ut
             }
         }
         DV_ORDINAL[id5] ∈ {
-            value ∈ {1}
+            value ∈ \{1}
             symbol ∈ {
                 DV_CODED_TEXT[id6] ∈ {
                     code ∈ {"at2"}          -- ++
@@ -107,7 +107,7 @@ A constraint on the openEHR `DV_ORDINAL` type provides another example of the ut
             }
         }
         DV_ORDINAL[id7] ∈ {
-            value ∈ {2}
+            value ∈ \{2}
             symbol ∈ {
                 DV_CODED_TEXT[id8] ∈ {
                     code ∈ {"at3"}         -- +++
@@ -127,9 +127,9 @@ By the use of tuple constraint, almost the same thing can be achieved much more 
     ordinal_attr ∈ {
         DV_ORDINAL[id3] ∈ {
             [value, symbol] ∈ {
-                [{0}, {[at1]}],           -- +             
-                [{1}, {[at2]}],           -- ++          
-                [{2}, {[at3]}]            -- +++           
+                [\{0}, {[at1]}],           -- +             
+                [\{1}, {[at2]}],           -- ++          
+                [\{2}, {[at3]}]            -- +++           
             }
         }
     }
@@ -163,9 +163,9 @@ This solved by allowing Xpath-style child numbering predicates in paths starting
 value[id4]/magnitude[1]     -- refer to the constraint {|32.0..212.0|}
 value[id4]/magnitude[2]     -- refer to the constraint {|0.0..100.0|}
 
-ordinal_attr[id3]/value[1]  -- refer to the constraint {0}
-ordinal_attr[id3]/value[2]  -- refer to the constraint {1}
-ordinal_attr[id3]/value[3]  -- refer to the constraint {2}
+ordinal_attr[id3]/value[1]  -- refer to the constraint \{0}
+ordinal_attr[id3]/value[2]  -- refer to the constraint \{1}
+ordinal_attr[id3]/value[3]  -- refer to the constraint \{2}
 --------
 
 == Group Constraints
@@ -176,15 +176,15 @@ Within a container attribute, any number of object constraints may be defined. T
 --------
     ITEM_TREE[id1] ∈ {
         items matches {
-            ELEMENT[id2] occurrences ∈ {1} ∈ {...}              -- Investigation type
-            ELEMENT[id3] occurrences ∈ {0..1} ∈ {...}           -- reason
-            group cardinality ∈ {1} occurrences ∈ {0..1} ∈ {   -- Methodology
-                ELEMENT[id6] occurrences ∈ {0..1} ∈ {...}       -- as Text
-                ELEMENT[id7] occurrences ∈ {0..1} ∈ {...}       -- Coded
-                CLUSTER[id8] occurrences ∈ {0..1} ∈ {...}       -- structured
+            ELEMENT[id2] occurrences ∈ \{1} ∈ {...}              -- Investigation type
+            ELEMENT[id3] occurrences ∈ \{0..1} ∈ {...}           -- reason
+            group cardinality ∈ \{1} occurrences ∈ \{0..1} ∈ {   -- Methodology
+                ELEMENT[id6] occurrences ∈ \{0..1} ∈ {...}       -- as Text
+                ELEMENT[id7] occurrences ∈ \{0..1} ∈ {...}       -- Coded
+                CLUSTER[id8] occurrences ∈ \{0..1} ∈ {...}       -- structured
             }
-            ELEMENT[id11] occurrences ∈ {0..1} ∈ {...}          -- (other details)
-            CLUSTER[id12] occurrences ∈ {0..1} ∈ {...}          -- (other details)
+            ELEMENT[id11] occurrences ∈ \{0..1} ∈ {...}          -- (other details)
+            CLUSTER[id12] occurrences ∈ \{0..1} ∈ {...}          -- (other details)
         }
     }
 --------
@@ -217,19 +217,19 @@ Group blocks can be nested, enabling subsets of subsets to be defined, as illust
 [source, cadl]
 --------
     items ∈ {
-        ELEMENT[id2] occurrences ∈ {1} ∈ {...}                -- Investigation type
-        ELEMENT[id3] occurrences ∈ {0..1} ∈ {...}             -- Investigation reason
-        group cardinality ∈ {2} occurrences ∈ {*} ∈ {         -- pick any 2 & repeat
-            ELEMENT[id6] occurrences ∈ {0..1} ∈ {...}
-            ELEMENT[id7] occurrences ∈ {0..1} ∈ {...}
-            CLUSTER[id8] occurrences ∈ {0..1} ∈ {...}
-            group cardinality ∈ {1} occurrences ∈ {0..1} ∈ {  -- at least one
-                ELEMENT[id9] occurrences ∈ {0..1} ∈ {...}
-                CLUSTER[id10] occurrences ∈ {0..1} ∈ {...}
+        ELEMENT[id2] occurrences ∈ \{1} ∈ {...}                -- Investigation type
+        ELEMENT[id3] occurrences ∈ \{0..1} ∈ {...}             -- Investigation reason
+        group cardinality ∈ \{2} occurrences ∈ \{*} ∈ {         -- pick any 2 & repeat
+            ELEMENT[id6] occurrences ∈ \{0..1} ∈ {...}
+            ELEMENT[id7] occurrences ∈ \{0..1} ∈ {...}
+            CLUSTER[id8] occurrences ∈ \{0..1} ∈ {...}
+            group cardinality ∈ \{1} occurrences ∈ \{0..1} ∈ {  -- at least one
+                ELEMENT[id9] occurrences ∈ \{0..1} ∈ {...}
+                CLUSTER[id10] occurrences ∈ \{0..1} ∈ {...}
             }
         }
-        ELEMENT[id11] occurrences ∈ {0..1} ∈ {...}            -- (other details)
-        CLUSTER[id12] occurrences ∈ {0..1} ∈ {...}            -- (other details)
+        ELEMENT[id11] occurrences ∈ \{0..1} ∈ {...}            -- (other details)
+        CLUSTER[id12] occurrences ∈ \{0..1} ∈ {...}            -- (other details)
     }
 --------
 
@@ -237,14 +237,14 @@ For nested groups, the individual object nodes of the sub-group count _individua
 
 [source, cadl]
 --------
-    group cardinality ∈ {3} occurrences ∈ {*} ∈ {         -- pick any 3 from id6-id11 & repeat
-        ELEMENT[id6] occurrences ∈ {0..1} ∈ {...}
-        ELEMENT[id7] occurrences ∈ {0..1} ∈ {...}
-        CLUSTER[id8] occurrences ∈ {0..1} ∈ {...}
-            group cardinality ∈ {1} occurrences ∈ {1..2} ∈ {  -- pick 1-2 from id9 - id11
-                ELEMENT[id9] occurrences ∈ {0..1} ∈ {...}
-                CLUSTER[id10] occurrences ∈ {0..1} ∈ {...}
-                ELEMENT[id11] occurrences ∈ {0..1} ∈ {...}
+    group cardinality ∈ \{3} occurrences ∈ \{*} ∈ {         -- pick any 3 from id6-id11 & repeat
+        ELEMENT[id6] occurrences ∈ \{0..1} ∈ {...}
+        ELEMENT[id7] occurrences ∈ \{0..1} ∈ {...}
+        CLUSTER[id8] occurrences ∈ \{0..1} ∈ {...}
+            group cardinality ∈ \{1} occurrences ∈ \{1..2} ∈ {  -- pick 1-2 from id9 - id11
+                ELEMENT[id9] occurrences ∈ \{0..1} ∈ {...}
+                CLUSTER[id10] occurrences ∈ \{0..1} ∈ {...}
+                ELEMENT[id11] occurrences ∈ \{0..1} ∈ {...}
             }
         }
     }
@@ -266,21 +266,21 @@ It might be expected that the slot constraints needed to define this are as foll
 
 [source, cadl]
 --------
-    SECTION[id2] occurrences ∈ {0..1} ∈ {                           -- Subjective
+    SECTION[id2] occurrences ∈ \{0..1} ∈ {                           -- Subjective
         items cardinality ∈ {0..*; ordered} ∈ {
-            allow_archetype EVALUATION[id6] occurrences ∈ {*} ∈ {   -- Problem
+            allow_archetype EVALUATION[id6] occurrences ∈ \{*} ∈ {   -- Problem
                 include
                     archetype_id/value ∈ {/openEHR-EHR-EVALUATION\.problem\.v*/}
             }
-            allow_archetype EVALUATION[id7] occurrences ∈ {*} ∈ {   -- Diagnosis
+            allow_archetype EVALUATION[id7] occurrences ∈ \{*} ∈ {   -- Diagnosis
                 include
                     archetype_id/value ∈ {/openEHR-EHR-EVALUATION\.problem-diagnosis\.v*/}
             }
-            allow_archetype EVALUATION[id8] occurrences ∈ {1} ∈ {   -- Plan
+            allow_archetype EVALUATION[id8] occurrences ∈ \{1} ∈ {   -- Plan
                 include
                     archetype_id/value ∈ {/openEHR-EHR-EVALUATION\.plan\.v*/}
             }
-            allow_archetype INSTRUCTION[id9] occurrences ∈ {1..*} ∈ {  -- Intervention
+            allow_archetype INSTRUCTION[id9] occurrences ∈ \{1..*} ∈ {  -- Intervention
                 include
                     archetype_id/value ∈ {/openEHR-EHR-INSTRUCTION\.(medication_order|therapy)\.v*/}
             }
@@ -292,24 +292,24 @@ The above says that the `SECTION._items_` attribute is an ordered list, and that
 
 [source, cadl]
 --------
-    SECTION[id2] occurrences ∈ {0..1} ∈ {                             -- Subjective
+    SECTION[id2] occurrences ∈ \{0..1} ∈ {                             -- Subjective
         items cardinality ∈ {0..*; ordered} ∈ {
-            group cardinality ∈ {0..1} occurrences ∈ {0..*} ∈ {                                   
+            group cardinality ∈ \{0..1} occurrences ∈ \{0..*} ∈ {                                   
                                     -- sub-group of any number of problems & diagnoses
-                allow_archetype EVALUATION[id6] occurrences ∈ {1} ∈ {  --Problem
+                allow_archetype EVALUATION[id6] occurrences ∈ \{1} ∈ {  --Problem
                     include
                       archetype_id/value ∈ {/openEHR-EHR-EVALUATION\.problem\.v*/}
                 }
-                allow_archetype EVALUATION[id7] occurrences ∈ {1} ∈ {  -- Diagnosis
+                allow_archetype EVALUATION[id7] occurrences ∈ \{1} ∈ {  -- Diagnosis
                     include
                       archetype_id/value ∈ {/openEHR-EHR-EVALUATION\.diagnosis\.v*/}
                 }
             }
-            allow_archetype EVALUATION[id8] occurrences ∈ {1} ∈ {      -- Plan
+            allow_archetype EVALUATION[id8] occurrences ∈ \{1} ∈ {      -- Plan
                 include
                     archetype_id/value ∈ {/openEHR-EHR-EVALUATION\.plan\.v*/}
             }
-            allow_archetype INSTRUCTION[id9] occurrences ∈ {1..*} ∈ {     -- Intervention
+            allow_archetype INSTRUCTION[id9] occurrences ∈ \{1..*} ∈ {     -- Intervention
                 include
                     archetype_id/value ∈ {/openEHR-EHR-INSTRUCTION\.(medication_order|therapy)\.v*/}
             }
