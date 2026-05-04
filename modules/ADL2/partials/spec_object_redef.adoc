@@ -26,7 +26,7 @@ at-coded ADL2::
         data ∈ {
             ITEM_TREE[at0001] ∈ {
                 items ∈ {
-                    ELEMENT[at0004] occurrences ∈ {0..1} ∈ {   -- Description
+                    ELEMENT[at0004] occurrences ∈ \{0..1} ∈ {   -- Description
                         value ∈ {
                             DV_TEXT[at9000]
                         }
@@ -45,7 +45,7 @@ id-coded ADL2::
         data ∈ {
             ITEM_TREE[id2] ∈ {
                 items ∈ {
-                    ELEMENT[id5] occurrences ∈ {0..1} ∈ {   -- Description
+                    ELEMENT[id5] occurrences ∈ \{0..1} ∈ {   -- Description
                         value ∈ {
                             DV_TEXT[id7]
                         }
@@ -152,7 +152,7 @@ The formal definition of validity for occurrences in both cases is given by the 
 
 === Mandation
 
-Within container attributes, `occurrences` is usually redefined in order to make a given object mandatory rather than optional. In the following example, the occurrences of the `at0003` (`id4`) node is redefined from `{0..1}` i.e. optional, to `{1}` , i.e. mandatory.
+Within container attributes, `occurrences` is usually redefined in order to make a given object mandatory rather than optional. In the following example, the occurrences of the `at0003` (`id4`) node is redefined from `\{0..1}` i.e. optional, to `\{1}` , i.e. mandatory.
 
 Parent (`openEHR-EHR-EVALUATION.problem.v1.0.3`):
 
@@ -166,8 +166,8 @@ at-coded ADL2::
         data ∈ {
             ITEM_TREE[at0001] ∈ {
                 items cardinality ∈ {0..*; ordered} ∈ {
-                    ELEMENT[at0002] occurrences ∈ {1} ∈ {...}       -- Problem
-                    ELEMENT[at0003] occurrences ∈ {0..1} ∈ {...}    -- Date of initial onset
+                    ELEMENT[at0002] occurrences ∈ \{1} ∈ {...}       -- Problem
+                    ELEMENT[at0003] occurrences ∈ \{0..1} ∈ {...}    -- Date of initial onset
                     -- etc
                 }
             }
@@ -183,8 +183,8 @@ id-coded ADL2::
         data ∈ {
             ITEM_TREE[id2] ∈ {
                 items cardinality ∈ {0..*; ordered} ∈ {
-                    ELEMENT[id3] occurrences ∈ {1} ∈ {...}       -- Problem
-                    ELEMENT[id4] occurrences ∈ {0..1} ∈ {...}    -- Date of initial onset
+                    ELEMENT[id3] occurrences ∈ \{1} ∈ {...}       -- Problem
+                    ELEMENT[id4] occurrences ∈ \{0..1} ∈ {...}    -- Date of initial onset
                     -- etc
                 }
             }
@@ -202,7 +202,7 @@ at-coded ADL2::
 [source, cadl]
 --------
     /data[at0001]/items ∈ {
-        ELEMENT[at0003] occurrences ∈ {1}  -- Date of initial onset
+        ELEMENT[at0003] occurrences ∈ \{1}  -- Date of initial onset
     }
 --------
 
@@ -211,7 +211,7 @@ id-coded ADL2::
 [source, cadl]
 --------
     /data[id2]/items ∈ {
-        ELEMENT[id4] occurrences ∈ {1}  -- Date of initial onset
+        ELEMENT[id4] occurrences ∈ \{1}  -- Date of initial onset
     }
 --------
 ====
@@ -263,8 +263,8 @@ at-coded ADL2::
 --------
     ELEMENT[at0002] ∈ {
         value ∈ {
-            DV_INTERVAL<DV_QUANTITY>[at9000] occurrences ∈ {0}
-            DV_INTERVAL<DV_COUNT>[at9003] occurrences ∈ {0}
+            DV_INTERVAL<DV_QUANTITY>[at9000] occurrences ∈ \{0}
+            DV_INTERVAL<DV_COUNT>[at9003] occurrences ∈ \{0}
         }
     }
 --------
@@ -275,14 +275,14 @@ id-coded ADL2::
 --------
     ELEMENT[id3] ∈ {
         value ∈ {
-            DV_INTERVAL<DV_QUANTITY>[id4] occurrences ∈ {0}
-            DV_INTERVAL<DV_COUNT>[id7] occurrences ∈ {0}
+            DV_INTERVAL<DV_QUANTITY>[id4] occurrences ∈ \{0}
+            DV_INTERVAL<DV_COUNT>[id7] occurrences ∈ \{0}
         }
     }
 --------
 ====
 
-Exclusion by setting occurrences to `{0}` is also common in templates, and is used to remove specific child objects of container attributes, as in the following example:
+Exclusion by setting occurrences to `\{0}` is also common in templates, and is used to remove specific child objects of container attributes, as in the following example:
 
 [tabs,sync-group-id=adl-example]
 ====
@@ -291,8 +291,8 @@ at-coded ADL2::
 [source, cadl]
 --------
     /data[at0001]/items ∈ {
-        CLUSTER[at0025] occurrences ∈ {0}     -- remove 'Related problems'
-        ELEMENT[at0030] occurrences ∈ {0}     -- remove 'Age at resolution'
+        CLUSTER[at0025] occurrences ∈ \{0}     -- remove 'Related problems'
+        ELEMENT[at0030] occurrences ∈ \{0}     -- remove 'Age at resolution'
     }
 --------
 
@@ -301,13 +301,13 @@ id-coded ADL2::
 [source, cadl]
 --------
     /data[id2]/items ∈ {
-        CLUSTER[id26] occurrences ∈ {0}     -- remove 'Related problems'
-        ELEMENT[id31] occurrences ∈ {0}     -- remove 'Age at resolution'
+        CLUSTER[id26] occurrences ∈ \{0}     -- remove 'Related problems'
+        ELEMENT[id31] occurrences ∈ \{0}     -- remove 'Age at resolution'
     }
 --------
 ====
 
-If the whole attribute is to be removed, this can be done by redefining existence to `{0}`, as described in <<Existence Redefinition: Mandation and Exclusion>>.
+If the whole attribute is to be removed, this can be done by redefining existence to `\{0}`, as described in <<Existence Redefinition: Mandation and Exclusion>>.
 
 == Single and Multiple Specialisation - When does Cloning Occur?
 
@@ -330,7 +330,7 @@ Should these children be considered exhaustive? One point of view says so, since
 
 This kind of argument comes up time and again, and the need for catch-all categories (archetype nodes) and the possibility of future discoveries cannot be predicted. Even in situations such as a lab result (e.g. cholesterol), where the list of analytes seem to be known and fixed, experience of clinical modellers has shown that there is nevertheless no guarantee of not needing another data point, perhaps for something other than an analyte.
 
-The default situation is that child redefinition nodes do not exhaustively replace the parent unless explicitly stated otherwise. This may be done by excluding the parent node in the normal way, i.e. using `occurrences matches {0}`. *If an exclusion node is included, it must come last* in the set of siblings that specialise the parent node, otherwise a deletion will occur, leaving no node to specialise. The first example would then become:
+The default situation is that child redefinition nodes do not exhaustively replace the parent unless explicitly stated otherwise. This may be done by excluding the parent node in the normal way, i.e. using `occurrences matches \{0}`. *If an exclusion node is included, it must come last* in the set of siblings that specialise the parent node, otherwise a deletion will occur, leaving no node to specialise. The first example would then become:
 
 Parent archetype:
 
@@ -341,13 +341,13 @@ at-coded ADL2::
 [source, cadl]
 --------
     items cardinality ∈ {0..*; unordered} ∈ {
-        CLUSTER[at0003] occurrences ∈ {1} ∈ {...}                          -- Specimen
-        CLUSTER[at0010] occurrences ∈ {0..*} ∈ {...}                      -- level 1
-        ELEMENT[at0078] occurrences ∈ {0..*} ∈ {                          -- panel item
-            value ∈ {*}
+        CLUSTER[at0003] occurrences ∈ \{1} ∈ {...}                          -- Specimen
+        CLUSTER[at0010] occurrences ∈ \{0..*} ∈ {...}                      -- level 1
+        ELEMENT[at0078] occurrences ∈ \{0..*} ∈ {                          -- panel item
+            value ∈ \{*}
         }
-        ELEMENT[at0016] occurrences ∈ {0..1} ∈ {...}                      -- Overall Comment
-        ELEMENT[at0036] occurrences ∈ {0..1} ∈ {...}                      -- Multimedia rep.
+        ELEMENT[at0016] occurrences ∈ \{0..1} ∈ {...}                      -- Overall Comment
+        ELEMENT[at0036] occurrences ∈ \{0..1} ∈ {...}                      -- Multimedia rep.
     }
 --------
 
@@ -356,13 +356,13 @@ id-coded ADL2::
 [source, cadl]
 --------
     items cardinality ∈ {0..*; unordered} ∈ {
-        CLUSTER[id4] occurrences ∈ {1} ∈ {...}                          -- Specimen
-        CLUSTER[id11] occurrences ∈ {0..*} ∈ {...}                      -- level 1
-        ELEMENT[id79] occurrences ∈ {0..*} ∈ {                          -- panel item
-            value ∈ {*}
+        CLUSTER[id4] occurrences ∈ \{1} ∈ {...}                          -- Specimen
+        CLUSTER[id11] occurrences ∈ \{0..*} ∈ {...}                      -- level 1
+        ELEMENT[id79] occurrences ∈ \{0..*} ∈ {                          -- panel item
+            value ∈ \{*}
         }
-        ELEMENT[id17] occurrences ∈ {0..1} ∈ {...}                      -- Overall Comment
-        ELEMENT[id37] occurrences ∈ {0..1} ∈ {...}                      -- Multimedia rep.
+        ELEMENT[id17] occurrences ∈ \{0..1} ∈ {...}                      -- Overall Comment
+        ELEMENT[id37] occurrences ∈ \{0..1} ∈ {...}                      -- Multimedia rep.
         }
     }
 --------
@@ -377,15 +377,15 @@ at-coded ADL2::
 [source, cadl]
 --------
     /data/events[at0001]/data/items ∈ {
-        ELEMENT[at0078.1] occurrences ∈ {0..1} ∈ {...}                    -- TSH
-        ELEMENT[at0078.2] occurrences ∈ {0..1} ∈ {...}                    -- Free Triiodothyronine
-        ELEMENT[at0078.3] occurrences ∈ {0..1} ∈ {...}                    -- Total Triiodothyronine
-        ELEMENT[at0078.4] occurrences ∈ {0..1} ∈ {...}                    -- Free thyroxine (Free T4)
-        ELEMENT[at0078.5] occurrences ∈ {0..1} ∈ {...}                    -- Total Thyroxine (Total T4)
-        ELEMENT[at0078.6] occurrences ∈ {0..1} ∈ {...}                    -- T4 loaded uptake
-        ELEMENT[at0078.7] occurrences ∈ {0..1} ∈ {...}                    -- Free Triiodothyronine index
-        ELEMENT[at0078.8] occurrences ∈ {0..1} ∈ {...}                    -- Free thyroxine index (FTI)
-        ELEMENT[at0078] occurrences ∈ {0}                                  -- MUST COME LAST!
+        ELEMENT[at0078.1] occurrences ∈ \{0..1} ∈ {...}                    -- TSH
+        ELEMENT[at0078.2] occurrences ∈ \{0..1} ∈ {...}                    -- Free Triiodothyronine
+        ELEMENT[at0078.3] occurrences ∈ \{0..1} ∈ {...}                    -- Total Triiodothyronine
+        ELEMENT[at0078.4] occurrences ∈ \{0..1} ∈ {...}                    -- Free thyroxine (Free T4)
+        ELEMENT[at0078.5] occurrences ∈ \{0..1} ∈ {...}                    -- Total Thyroxine (Total T4)
+        ELEMENT[at0078.6] occurrences ∈ \{0..1} ∈ {...}                    -- T4 loaded uptake
+        ELEMENT[at0078.7] occurrences ∈ \{0..1} ∈ {...}                    -- Free Triiodothyronine index
+        ELEMENT[at0078.8] occurrences ∈ \{0..1} ∈ {...}                    -- Free thyroxine index (FTI)
+        ELEMENT[at0078] occurrences ∈ \{0}                                  -- MUST COME LAST!
     }
 --------
 
@@ -394,15 +394,15 @@ id-coded ADL2::
 [source, cadl]
 --------
     /data/events[id2]/data/items ∈ {
-        ELEMENT[id79.1] occurrences ∈ {0..1} ∈ {...}                    -- TSH
-        ELEMENT[id79.2] occurrences ∈ {0..1} ∈ {...}                    -- Free Triiodothyronine
-        ELEMENT[id79.3] occurrences ∈ {0..1} ∈ {...}                    -- Total Triiodothyronine
-        ELEMENT[id79.4] occurrences ∈ {0..1} ∈ {...}                    -- Free thyroxine (Free T4)
-        ELEMENT[id79.5] occurrences ∈ {0..1} ∈ {...}                    -- Total Thyroxine (Total T4)
-        ELEMENT[id79.6] occurrences ∈ {0..1} ∈ {...}                    -- T4 loaded uptake
-        ELEMENT[id79.7] occurrences ∈ {0..1} ∈ {...}                    -- Free Triiodothyronine index
-        ELEMENT[id79.8] occurrences ∈ {0..1} ∈ {...}                    -- Free thyroxine index (FTI)
-        ELEMENT[id79] occurrences ∈ {0}                                  -- MUST COME LAST!
+        ELEMENT[id79.1] occurrences ∈ \{0..1} ∈ {...}                    -- TSH
+        ELEMENT[id79.2] occurrences ∈ \{0..1} ∈ {...}                    -- Free Triiodothyronine
+        ELEMENT[id79.3] occurrences ∈ \{0..1} ∈ {...}                    -- Total Triiodothyronine
+        ELEMENT[id79.4] occurrences ∈ \{0..1} ∈ {...}                    -- Free thyroxine (Free T4)
+        ELEMENT[id79.5] occurrences ∈ \{0..1} ∈ {...}                    -- Total Thyroxine (Total T4)
+        ELEMENT[id79.6] occurrences ∈ \{0..1} ∈ {...}                    -- T4 loaded uptake
+        ELEMENT[id79.7] occurrences ∈ \{0..1} ∈ {...}                    -- Free Triiodothyronine index
+        ELEMENT[id79.8] occurrences ∈ \{0..1} ∈ {...}                    -- Free thyroxine index (FTI)
+        ELEMENT[id79] occurrences ∈ \{0}                                  -- MUST COME LAST!
     }
 --------
 ====
@@ -423,7 +423,7 @@ Parent archetype:
 
 [source, cadl]
 --------
-    value ∈ {*} -- any subtype of DATA_VALUE, from the ref model
+    value ∈ \{*} -- any subtype of DATA_VALUE, from the ref model
 --------
 
 Specialised archetype:
@@ -524,7 +524,7 @@ at-coded ADL2::
         }
         DV_PROPORTION[at9000.2] ∈ {
             numerator ∈ {|2.0..10.0|}
-            type ∈ {1} -- pk_unitary
+            type ∈ \{1} -- pk_unitary
         }
     }
 --------
@@ -540,7 +540,7 @@ id-coded ADL2::
         }
         DV_PROPORTION[id4.2] ∈ {
             numerator ∈ {|2.0..10.0|}
-            type ∈ {1} -- pk_unitary
+            type ∈ \{1} -- pk_unitary
         }
     }
 --------
@@ -780,7 +780,7 @@ id-coded ADL2::
 --------
 ====
 
-There is one subtlety to do with redefinition of occurrences of a use_node target: if it is redefined to have occurrences matches `{0}` (normally only in a template), then the effect of this is the same on any use_node reference definitions, unless they define occurrences locally at the reference point. The chance of this actually occurring appears vanishingly small, since by the time 'exclusion' occurrence redefinition is being done in templates, use_node object definitions are most likely to have been locally overridden anyway.
+There is one subtlety to do with redefinition of occurrences of a use_node target: if it is redefined to have occurrences matches `\{0}` (normally only in a template), then the effect of this is the same on any use_node reference definitions, unless they define occurrences locally at the reference point. The chance of this actually occurring appears vanishingly small, since by the time 'exclusion' occurrence redefinition is being done in templates, use_node object definitions are most likely to have been locally overridden anyway.
 
 Lastly, one further type of redefinition appears technically possible, but seems of no utility, and is therefore not part of ADL:
 
@@ -790,7 +790,7 @@ Lastly, one further type of redefinition appears technically possible, but seems
 
 External reference nodes can be redefined by another external reference node, in the following ways:
 
-* exclusion - using the occurrences matches `{0}` method;
+* exclusion - using the occurrences matches `\{0}` method;
 * semantic refinement of the node identifier in the normal way;
 * redefinition of the reference to another archetype which is a specialisation of the one from the corresponding reference node in the flat parent.
 
@@ -1156,7 +1156,7 @@ at-coded ADL2::
 --------
 definition
     ...
-        ELEMENT[at0006] occurrences ∈ {0..*} ∈ {   -- System
+        ELEMENT[at0006] occurrences ∈ \{0..*} ∈ {   -- System
             name ∈ {
                 DV_CODED_TEXT[at9000] ∈ {
                     defining_code ∈ {[ac1]}
@@ -1190,7 +1190,7 @@ id-coded ADL2::
 --------
 definition
     ...
-        ELEMENT[id7] occurrences ∈ {0..*} ∈ {   -- System
+        ELEMENT[id7] occurrences ∈ \{0..*} ∈ {   -- System
             name ∈ {
                 DV_CODED_TEXT[id14] ∈ {
                     defining_code ∈ {[ac1]}

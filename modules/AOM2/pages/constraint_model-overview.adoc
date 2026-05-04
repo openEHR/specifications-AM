@@ -1,3 +1,5 @@
+include::partial$module_vars.adoc[]
+
 = Constraint Model Package
 
 == Overview
@@ -6,7 +8,7 @@
 
 [.text-center]
 .`am.aom2.constraint_model` Package
-image::{uml_diagrams_uri}/AM-aom2.constraint_model.svg[id=constraint_model, align="center"]
+image::ROOT:uml/AM-aom2.constraint_model.svg[id=constraint_model, align="center"]
 
 The definition part of an archetype is an instance of a `C_COMPLEX_OBJECT` and consists of alternate layers of object and attribute constrainer nodes, each containing the next level of nodes. At the leaves are primitive object constrainer nodes constraining primitive types such as `String` , `Integer` etc. There are also nodes that represent internal references to other nodes, constraint reference nodes that refer to a text constraint in the constraint binding part of the archetype terminology, and archetype constraint nodes, which represent constraints on other archetypes allowed to appear at a given point. The full list of concrete node types is as follows:
 
@@ -21,13 +23,13 @@ The constraints define which configurations of reference model class instances a
 
 [.text-center]
 .`am.aom2.constraint_model.primitive` Package
-image::{uml_diagrams_uri}/AM-aom2.constraint_model.primitive.svg[id=constraint_model_primitive, align="center"]
+image::ROOT:uml/AM-aom2.constraint_model.primitive.svg[id=constraint_model_primitive, align="center"]
 
 <<constraint_model_primitive_implem>> below shows the detailed temporal constraint definitions, used by the `C_TEMPORAL` class and descendants in the `primitive` package above.
 
 [.text-center]
 .`am.aom2.constraint_model.primitive-implem` Package
-image::{uml_diagrams_uri}/AM-aom2.constraint_model.primitive-implem.svg[id=constraint_model_primitive_implem, align="center"]
+image::ROOT:uml/AM-aom2.constraint_model.primitive-implem.svg[id=constraint_model_primitive_implem, align="center"]
 
 The type-name nomenclature `C_XXX` used here is intended to be read as 'constraint on objects of type `XXXX` ', i.e. a `C_COMPLEX_OBJECT` is a 'constraint on a complex object (defined by a complex reference model type)'. These type names are used below in the formal model.
 
@@ -37,4 +39,4 @@ include::partial$constraint_model-second_order.adoc[leveloffset=+1]
 
 include::partial$constraint_model-AOM_type_subs.adoc[leveloffset=+1]
 
-include::partial$constraint_model-class_definitions.adoc[leveloffset=+1]
+include::partial$constraint_model-class_definitions.adoc[]

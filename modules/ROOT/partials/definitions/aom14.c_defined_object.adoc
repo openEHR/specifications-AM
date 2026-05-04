@@ -7,14 +7,14 @@ h|*Description*
 2+a|Abstract parent type of C_OBJECT subtypes that are defined by value, i.e. whose definitions are actually in the archetype rather than being by reference.
 
 h|*Inherit*
-2+|`xref:AM:AOM1.4:archetype_package.adoc#_c_object_class[C_OBJECT]`
+2+|`xref:{class_c_object}[C_OBJECT]`
 
 h|*Attributes*
 ^h|*Signature*
 ^h|*Meaning*
 
 h|*0..1*
-|*assumed_value*: `xref:BASE:foundation_types:overview.adoc#_any_class[Any]`
+|*assumed_value*: `xref:{class_any}[Any]`
 a|Value to be assumed if none sent in data.
 
 h|*Functions*
@@ -24,27 +24,27 @@ h|*Functions*
 h|*1..1 +
 (abstract)*
 |*valid_value* ( +
-a_value: `xref:BASE:foundation_types:overview.adoc#_any_class[Any][1]` +
-): `xref:BASE:foundation_types:primitive_types.adoc#_boolean_class[Boolean]`
+a_value: `xref:{class_any}[Any][1]` +
+): `xref:{class_boolean}[Boolean]`
 a|True if a_value is valid with respect to constraint expressed in concrete instance of this type.
 
 h|*1..1 +
 (abstract)*
-|*prototype_value* (): `xref:BASE:foundation_types:overview.adoc#_any_class[Any]`
+|*prototype_value* (): `xref:{class_any}[Any]`
 a|Generate a prototype value from this constraint object.
 
 h|*1..1*
-|*has_assumed_value* (): `xref:BASE:foundation_types:primitive_types.adoc#_boolean_class[Boolean]`
+|*has_assumed_value* (): `xref:{class_boolean}[Boolean]`
 a|True if there is an assumed value.
 
 h|*0..1 +
 (abstract)*
-|*default_value* (): `xref:BASE:foundation_types:overview.adoc#_any_class[Any]`
+|*default_value* (): `xref:{class_any}[Any]`
 a|Generate a default value from this constraint object.
 
 h|*1..1 +
 (abstract)*
-|*any_allowed* (): `xref:BASE:foundation_types:primitive_types.adoc#_boolean_class[Boolean]` +
+|*any_allowed* (): `xref:{class_boolean}[Boolean]` +
  +
 __Post__: `Result = attributes.is_empty`
 a|True if any value of the reference model type being constrained is allowed. Redefine in descendants.

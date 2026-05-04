@@ -11,59 +11,59 @@ As for all of openEHR, two ISO 8601 exceptions are allowed:
 * the ‘W’ (week) designator can be mixed in - the allowed patterns are: `P[Y&#124;y][M&#124;m][D&#124;d][T[H&#124;h][M&#124;m][S&#124;s]]` and `P[W&#124;w]`;
 * the values used in an interval constraint may be negated, i.e. a leading minus (`'-'`) sign may be used.
 
-2+|Inherits: xref:AM:AOM1.4:archetype_package.adoc#_c_primitive_class[C_PRIMITIVE]
+2+|Inherits: xref:{class_c_primitive}[C_PRIMITIVE]
 
 2+h|*Attributes*
 
-|*assumed_value*: `xref:BASE:foundation_types:time_types.adoc#_iso8601_duration_class[Iso8601_duration]` [0..1]
+|*assumed_value*: `xref:{class_iso8601_duration}[Iso8601_duration]` [0..1]
 a|The value to assume if this item is not included in data, due to being part of an optional structure.
 
-|*years_allowed*: `xref:BASE:foundation_types:primitive_types.adoc#_boolean_class[Boolean]` [0..1]
+|*years_allowed*: `xref:{class_boolean}[Boolean]` [0..1]
 a|
 
-|*months_allowed*: `xref:BASE:foundation_types:primitive_types.adoc#_boolean_class[Boolean]` [0..1]
+|*months_allowed*: `xref:{class_boolean}[Boolean]` [0..1]
 a|True if months are allowed in the constrained Duration.
 
-|*weeks_allowed*: `xref:BASE:foundation_types:primitive_types.adoc#_boolean_class[Boolean]` [0..1]
+|*weeks_allowed*: `xref:{class_boolean}[Boolean]` [0..1]
 a|
 
-|*days_allowed*: `xref:BASE:foundation_types:primitive_types.adoc#_boolean_class[Boolean]` [0..1]
+|*days_allowed*: `xref:{class_boolean}[Boolean]` [0..1]
 a|True if days are allowed in the constrained Duration.
 
-|*hours_allowed*: `xref:BASE:foundation_types:primitive_types.adoc#_boolean_class[Boolean]` [0..1]
+|*hours_allowed*: `xref:{class_boolean}[Boolean]` [0..1]
 a|True if hours are allowed in the constrained Duration.
 
-|*minutes_allowed*: `xref:BASE:foundation_types:primitive_types.adoc#_boolean_class[Boolean]` [0..1]
+|*minutes_allowed*: `xref:{class_boolean}[Boolean]` [0..1]
 a|True if minutes are allowed in the constrained Duration.
 
-|*seconds_allowed*: `xref:BASE:foundation_types:primitive_types.adoc#_boolean_class[Boolean]` [0..1]
+|*seconds_allowed*: `xref:{class_boolean}[Boolean]` [0..1]
 a|
 
-|*fractional_seconds_allowed*: `xref:BASE:foundation_types:primitive_types.adoc#_boolean_class[Boolean]` [0..1]
+|*fractional_seconds_allowed*: `xref:{class_boolean}[Boolean]` [0..1]
 a|True if fractional seconds are allowed in the constrained Duration.
 
-|*range*: `xref:BASE:foundation_types:interval.adoc#_interval_class[Interval]<xref:BASE:foundation_types:time_types.adoc#_iso8601_duration_class[Iso8601_duration]>` [0..1]
+|*range*: `xref:{class_interval}[Interval]<xref:{class_iso8601_duration}[Iso8601_duration]>` [0..1]
 a|Range of Durations specifying constraint.
 
 2+h|*Functions*
 
-|_(abstract)_ *default_value* (): `xref:BASE:foundation_types:overview.adoc#_any_class[Any]` [1..1]
+|_(abstract)_ *default_value* (): `xref:{class_any}[Any]` [1..1]
 a|Generate a default value from this constraint object. +
-_Inherited from xref:AM:AOM1.4:archetype_package.adoc#_c_primitive_class[C_PRIMITIVE]_
+_Inherited from xref:{class_c_primitive}[C_PRIMITIVE]_
 
-|_(abstract)_ *has_assumed_value* (): `xref:BASE:foundation_types:primitive_types.adoc#_boolean_class[Boolean]` [1..1]
+|_(abstract)_ *has_assumed_value* (): `xref:{class_boolean}[Boolean]` [1..1]
 a|True if there is an assumed value. +
-_Inherited from xref:AM:AOM1.4:archetype_package.adoc#_c_primitive_class[C_PRIMITIVE]_
+_Inherited from xref:{class_c_primitive}[C_PRIMITIVE]_
 
 |_(abstract)_ *valid_value* ( +
-a_value: `xref:BASE:foundation_types:overview.adoc#_any_class[Any][1]` +
-): `xref:BASE:foundation_types:primitive_types.adoc#_boolean_class[Boolean]` [1..1]
+a_value: `xref:{class_any}[Any][1]` +
+): `xref:{class_boolean}[Boolean]` [1..1]
 a|True if a_value is valid with respect to constraint expressed in concrete instance of this type. +
-_Inherited from xref:AM:AOM1.4:archetype_package.adoc#_c_primitive_class[C_PRIMITIVE]_
+_Inherited from xref:{class_c_primitive}[C_PRIMITIVE]_
 
 2+h|*Invariants*
 
 2+a|__Assumed_value_valid__: `has_assumed_value implies valid_value(assumed_value)` +
-_Inherited from xref:AM:AOM1.4:archetype_package.adoc#_c_primitive_class[C_PRIMITIVE]_
+_Inherited from xref:{class_c_primitive}[C_PRIMITIVE]_
 
 |===

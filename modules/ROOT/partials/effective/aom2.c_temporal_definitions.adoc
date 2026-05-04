@@ -6,7 +6,7 @@
 
 2+h|*Attributes*
 
-|*valid_date_constraint_patterns*: `xref:BASE:foundation_types:structure_types.adoc#_list_class[List]<xref:BASE:foundation_types:primitive_types.adoc#_string_class[String]>` [1..1]
+|*valid_date_constraint_patterns*: `xref:{class_list}[List]<xref:{class_string}[String]>` [1..1]
 a|List of allowed date constraints. Contains the values:
 
 ```
@@ -18,7 +18,7 @@ a|List of allowed date constraints. Contains the values:
 "YYYY-XX-XX"    -- only prohibited
 ```
 
-|*valid_date_constraint_replacements*: `xref:BASE:foundation_types:structure_types.adoc#_hash_class[Hash]<xref:BASE:foundation_types:primitive_types.adoc#_string_class[String],xref:BASE:foundation_types:structure_types.adoc#_list_class[List]<xref:BASE:foundation_types:primitive_types.adoc#_string_class[String]>>` [1..1]
+|*valid_date_constraint_replacements*: `xref:{class_hash}[Hash]<xref:{class_string}[String],xref:{class_list}[List]<xref:{class_string}[String]>>` [1..1]
 a|List of allowed date constraint replacements e.g. in specialised archetype. Contains the values:
 
 ----
@@ -43,7 +43,7 @@ a|List of allowed date constraint replacements e.g. in specialised archetype. Co
 
 In the above, an empty list value indicates no replacements possible.
 
-|*valid_time_constraint_patterns*: `xref:BASE:foundation_types:structure_types.adoc#_list_class[List]<xref:BASE:foundation_types:primitive_types.adoc#_string_class[String]>` [1..1]
+|*valid_time_constraint_patterns*: `xref:{class_list}[List]<xref:{class_string}[String]>` [1..1]
 a|List of allowed time constraints. Contains the values:
 
 ```
@@ -54,7 +54,7 @@ a|List of allowed time constraints. Contains the values:
 "HH:??:XX"    -- minutes optional, seconds prohibited
 ```
 
-|*valid_time_constraint_replacements*: `xref:BASE:foundation_types:structure_types.adoc#_hash_class[Hash]<xref:BASE:foundation_types:primitive_types.adoc#_string_class[String],xref:BASE:foundation_types:structure_types.adoc#_list_class[List]<xref:BASE:foundation_types:primitive_types.adoc#_string_class[String]>>` [1..1]
+|*valid_time_constraint_replacements*: `xref:{class_hash}[Hash]<xref:{class_string}[String],xref:{class_list}[List]<xref:{class_string}[String]>>` [1..1]
 a|List of allowed time constraint replacements e.g. in specialised archetype. Contains the values:
 
 ----
@@ -75,7 +75,7 @@ a|List of allowed time constraint replacements e.g. in specialised archetype. Co
 
 In the above, an empty list value indicates no replacements possible.
 
-|*valid_date_time_constraint_patterns*: `xref:BASE:foundation_types:structure_types.adoc#_list_class[List]<xref:BASE:foundation_types:primitive_types.adoc#_string_class[String]>` [1..1]
+|*valid_date_time_constraint_patterns*: `xref:{class_list}[List]<xref:{class_string}[String]>` [1..1]
 a|List of allowed date/time constraints. Contains the values:
 
 ```
@@ -87,7 +87,7 @@ a|List of allowed date/time constraints. Contains the values:
 "YYYY-??-??T??:??:??"    -- any date/time ok
 ```
 
-|*valid_date_time_constraint_replacements*: `xref:BASE:foundation_types:structure_types.adoc#_hash_class[Hash]<xref:BASE:foundation_types:primitive_types.adoc#_string_class[String],xref:BASE:foundation_types:structure_types.adoc#_list_class[List]<xref:BASE:foundation_types:primitive_types.adoc#_string_class[String]>>` [1..1]
+|*valid_date_time_constraint_replacements*: `xref:{class_hash}[Hash]<xref:{class_string}[String],xref:{class_list}[List]<xref:{class_string}[String]>>` [1..1]
 a|List of allowed date/time constraint replacements e.g. in specialised archetype. Contains the values:
 
 ----
@@ -115,28 +115,28 @@ a|List of allowed date/time constraint replacements e.g. in specialised archetyp
 2+h|*Functions*
 
 |*valid_duration_constraint_replacement* ( +
-a_dur: `xref:BASE:foundation_types:primitive_types.adoc#_string_class[String][1]`, +
-other_dur: `xref:BASE:foundation_types:primitive_types.adoc#_string_class[String][1]` +
-): `xref:BASE:foundation_types:primitive_types.adoc#_boolean_class[Boolean]` [1..1]
+a_dur: `xref:{class_string}[String][1]`, +
+other_dur: `xref:{class_string}[String][1]` +
+): `xref:{class_boolean}[Boolean]` [1..1]
 a|True if ISO8601 duration string `_other_dur_` contains every character element in `_a_dur_`. For example: 'PYD' (period with year and days only) conforms to 'PYMD', but doesn't conform to 'PY'.
 
 |*valid_iso8601_date_constraint_pattern* ( +
-s: `xref:BASE:foundation_types:primitive_types.adoc#_string_class[String][1]` +
-): `xref:BASE:foundation_types:primitive_types.adoc#_boolean_class[Boolean]` [1..1]
+s: `xref:{class_string}[String][1]` +
+): `xref:{class_boolean}[Boolean]` [1..1]
 a|True if string literal like `"yyyy-MM-dd"` containing `"XX"` or `"??"` in `MM` or `dd` slots in pattern constraint is in `_valid_date_constraint_patterns_`.
 
 |*valid_iso8601_time_constraint_pattern* ( +
-s: `xref:BASE:foundation_types:primitive_types.adoc#_string_class[String][1]` +
-): `xref:BASE:foundation_types:primitive_types.adoc#_boolean_class[Boolean]` [1..1]
+s: `xref:{class_string}[String][1]` +
+): `xref:{class_boolean}[Boolean]` [1..1]
 a|True if string literal like `"hh:mm:ss[.ssss]"` containing `"XX"` or `"??"` in `mm` or `ss` slots in pattern constraint is in `_valid_time_constraint_patterns_`.
 
 |*valid_iso8601_date_time_constraint_pattern* ( +
-s: `xref:BASE:foundation_types:primitive_types.adoc#_string_class[String][1]` +
-): `xref:BASE:foundation_types:primitive_types.adoc#_boolean_class[Boolean]` [1..1]
+s: `xref:{class_string}[String][1]` +
+): `xref:{class_boolean}[Boolean]` [1..1]
 a|True if string literal in form `"yyyy-MM-dd hh:mm:ss[.ssss]"` containing `"XX"` or `"??"` in variable slots in pattern constraint is in `_valid_date_time_constraint_patterns_`.
 
 |*valid_iso8601_duration_constraint_pattern* ( +
-s: `xref:BASE:foundation_types:primitive_types.adoc#_string_class[String][1]` +
-): `xref:BASE:foundation_types:primitive_types.adoc#_boolean_class[Boolean]` [1..1]
+s: `xref:{class_string}[String][1]` +
+): `xref:{class_boolean}[Boolean]` [1..1]
 a|True if string in form `P[Y&#124;y][M&#124;m][W&#124;w][D&#124;d][T[H&#124;h][M&#124;m][S&#124;s]]` (note: allowing 'W' to be mixed in is an openEHR deviation of ISO 8601).
 |===

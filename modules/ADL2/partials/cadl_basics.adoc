@@ -36,14 +36,14 @@ at-coded ADL2::
     PERSON[at0000] ∈ {
         name ∈ {
             PERSON_NAME[at0001] ∈ {
-                forenames cardinality ∈ {1..*} ∈ {/.+/}
+                forenames cardinality ∈ \{1..*} ∈ {/.+/}
                 family_name ∈ {/.+/}
                 title ∈ {"Dr", "Miss", "Mrs", "Mr"}
             }
         }
-        addresses cardinality ∈ {1..*} ∈ {
+        addresses cardinality ∈ \{1..*} ∈ {
             LOCATION_ADDRESS[at0002] ∈ {
-                street_number existence ∈ {0..1} ∈ {/.+/}
+                street_number existence ∈ \{0..1} ∈ {/.+/}
                 street_name ∈ {/.+/}
                 locality ∈ {/.+/}
                 post_code ∈ {/.+/}
@@ -61,14 +61,14 @@ id-coded ADL2::
     PERSON[id1] ∈ {
         name ∈ {
             PERSON_NAME[id2] ∈ {
-                forenames cardinality ∈ {1..*} ∈ {/.+/}
+                forenames cardinality ∈ \{1..*} ∈ {/.+/}
                 family_name ∈ {/.+/}
                 title ∈ {"Dr", "Miss", "Mrs", "Mr"}
             }
         }
-        addresses cardinality ∈ {1..*} ∈ {
+        addresses cardinality ∈ \{1..*} ∈ {
             LOCATION_ADDRESS[id3] ∈ {
-                street_number existence ∈ {0..1} ∈ {/.+/}
+                street_number existence ∈ \{0..1} ∈ {/.+/}
                 street_name ∈ {/.+/}
                 locality ∈ {/.+/}
                 post_code ∈ {/.+/}
@@ -129,7 +129,7 @@ Identifiers in cADL texts correspond to entities - types and attributes - in an 
 
 [.text-center]
 .UML Model of Person
-image::{uml_diagrams_uri}/AM-example-demographics.svg[id=uml_model_of_person, align="center"]
+image::ROOT:uml/AM-example-demographics.svg[id=uml_model_of_person, align="center"]
 
 Constraints expressed in cADL cannot invalidate those from the information model. For example, the `PERSON._family_name_` attribute is mandatory in the model in the above `PERSON` model, so it is not valid to express a constraint allowing the attribute to be optional. In general, a cADL archetype can only further constrain an existing information model. However, it must be remembered that for very generic models consisting of only a few classes and a lot of optionality, this rule is not so much a limitation as a way of adding meaning to information. Thus, for a demographic information model which has only the types `PARTY` and `PERSON`, one can write cADL which defines the concepts of entities such as `COMPANY` , `EMPLOYEE` , `PROFESSIONAL` , and so on, in terms of constraints on the types available in the information model.
 
@@ -218,7 +218,7 @@ at-coded ADL2::
     XXX[at0001] matches {
         xxx_attr1 matches {
             YYY[at0002] matches {
-                yyy_attr1 matches {0..3}
+                yyy_attr1 matches \{0..3}
             }
         }
         xxx_attr2 matches {
@@ -236,7 +236,7 @@ id-coded ADL2::
     XXX[id2] matches {
         xxx_attr1 matches {
             YYY[id3] matches {
-                yyy_attr1 matches {0..3}
+                yyy_attr1 matches \{0..3}
             }
         }
         xxx_attr2 matches {
@@ -253,9 +253,9 @@ Occasionally the `matches` operator needs to be used in the negative, usually at
 
 [source, cadl]
 --------
-    aaa ~matches {5}
-    aaa ~is_in {5}
-    aaa ∉ {5}
+    aaa ~matches \{5}
+    aaa ~is_in \{5}
+    aaa ∉ \{5}
 --------
 
 The choice of whether to use `matches` or `is_in` is a matter of taste and background; those with a mathematical background will probably prefer `is_in` , while those with a data processing background may prefer `matches` .

@@ -252,7 +252,7 @@ The regular expression patterns supported in cADL are as follows.
 | `{m,n}`   |match m to n occurrences of the preceding atomic item.     |E.g. `ab{1,3}` matches the strings `"ab"` and `"abb"` and `"abbb"` ; `[a-z]{1,3}` matches all lower-case alphabetic strings of one to three characters in length;
 | `{m,}`    |match at least m occurrences of the preceding atomic item; |
 | `{,n}`    |match at most n occurrences of the preceding atomic item;  |
-| `{m}`     |match exactly m occurrences of the preceding atomic item;  |
+| `\{m}`     |match exactly m occurrences of the preceding atomic item;  |
 
 3+^h|Special Character Classes
 
@@ -270,7 +270,7 @@ A similar warning as for a list of strings should be noted for the use of regula
 
 Of the primitive types defined in the {openehr_foundation_types}[openEHR Foundation Types^], some inherit (at least notionally) from the abstract type `Ordered`, including `Integer`, `Real`, and the Date/Time types. Constraints on all these types follow a constraint type of `List<Interval<T:Ordered>>`, i.e. a `List` of `Intervals`. Since the `Interval<T>` type in openEHR includes a descendant `Point_interval<T>` that can represent a degenerate interval of the form `{N..N}`, i.e. effectively a single value, this constraint type can represent many patterns of constraint, including:
 
-* single value e.g. `{3}`;
+* single value e.g. `\{3}`;
 * list of values e.g. `{3, 4, 5}`;
 * single interval e.g. `{|0..10|}`;
 * list of intervals e.g. `{|0..10|, |60..90|, |>500|}`;
@@ -296,7 +296,7 @@ The first constraint requires the attribute `_length_` to be 1000, while the sec
 
 [source, cadl]
 --------
-    magnitude matches {0} -- matches 0
+    magnitude matches \{0} -- matches 0
 --------
 
 === Interval of Integer
@@ -535,7 +535,7 @@ at-coded ADL2::
     --
 
     items matches {
-        ELEMENT[at0010] occurrences matches {0..1} matches {
+        ELEMENT[at0010] occurrences matches \{0..1} matches {
             name matches {
                 DV_CODED_TEXT[at0007] matches {
                     defining_code matches {[at0004]}		-- set name to 'Substance'
@@ -547,7 +547,7 @@ at-coded ADL2::
                 }
             }
         }
-        ELEMENT[at0021] occurrences matches {0..1} matches {	-- Certainty
+        ELEMENT[at0021] occurrences matches \{0..1} matches {	-- Certainty
             value matches {
                 DV_CODED_TEXT[at0057] matches {
                     defining_code matches {[ac2; at0022]}
@@ -567,7 +567,7 @@ id-coded ADL2::
     --
 
     items matches {
-        ELEMENT[id11] occurrences matches {0..1} matches {
+        ELEMENT[id11] occurrences matches \{0..1} matches {
             name matches {
                 DV_CODED_TEXT[id8] matches {
                     defining_code matches {[at5]}		-- set name to 'Substance'
@@ -579,7 +579,7 @@ id-coded ADL2::
                 }
             }
         }
-        ELEMENT[id22] occurrences matches {0..1} matches {	-- Certainty
+        ELEMENT[id22] occurrences matches \{0..1} matches {	-- Certainty
             value matches {
                 DV_CODED_TEXT[id58] matches {
                     defining_code matches {[ac2; at23]}
@@ -626,7 +626,7 @@ at-coded ADL2::
 [source, cadl]
 --------
     items matches {
-        ELEMENT[at0010] occurrences matches {0..1} matches {
+        ELEMENT[at0010] occurrences matches \{0..1} matches {
             name matches {
                 DV_CODED_TEXT[at0007] matches {
                     defining_code matches {preferred [at0004]}	-- prefer 'Substance', any code ok
@@ -640,7 +640,7 @@ at-coded ADL2::
                 DV_TEXT[at0055]                               -- or plain text
             }
         }
-        ELEMENT[at0021] occurrences matches {0..1} matches {
+        ELEMENT[at0021] occurrences matches \{0..1} matches {
             value matches {
                 DV_CODED_TEXT[at0057] matches {
                     defining_code matches {extensible [ac2]} -- use ac2 value-set if there is a match
@@ -657,7 +657,7 @@ id-coded ADL2::
 [source, cadl]
 --------
     items matches {
-        ELEMENT[id11] occurrences matches {0..1} matches {
+        ELEMENT[id11] occurrences matches \{0..1} matches {
             name matches {
                 DV_CODED_TEXT[id8] matches {
                     defining_code matches {preferred [at5]}	-- prefer 'Substance', any code ok
@@ -671,7 +671,7 @@ id-coded ADL2::
                 DV_TEXT[id56]                               -- or plain text
             }
         }
-        ELEMENT[id22] occurrences matches {0..1} matches {
+        ELEMENT[id22] occurrences matches \{0..1} matches {
             value matches {
                 DV_CODED_TEXT[id58] matches {
                     defining_code matches {extensible [ac2]} -- use ac2 value-set if there is a match
@@ -767,11 +767,11 @@ at-coded ADL2::
 --------
     ITEM_TREE[at0003] ∈ {
         items ∈ {
-            ELEMENT[at0004] occurrences ∈ {0..1} matches {    -- test enum 1
+            ELEMENT[at0004] occurrences ∈ \{0..1} matches {    -- test enum 1
                 value ∈ {
                     DV_PROPORTION[at9001] ∈ {
                         numerator ∈ {|0.0..1.0|; 0.0}
-                        type ∈ {1}                         -- pk_unitary
+                        type ∈ \{1}                         -- pk_unitary
                     }
                 }
             }
@@ -793,11 +793,11 @@ id-coded ADL2::
 --------
     ITEM_TREE[id4] ∈ {
         items ∈ {
-            ELEMENT[id5] occurrences ∈ {0..1} matches {    -- test enum 1
+            ELEMENT[id5] occurrences ∈ \{0..1} matches {    -- test enum 1
                 value ∈ {
                     DV_PROPORTION[id6] ∈ {
                         numerator ∈ {|0.0..1.0|; 0.0}
-                        type ∈ {1}                         -- pk_unitary
+                        type ∈ \{1}                         -- pk_unitary
                     }
                 }
             }

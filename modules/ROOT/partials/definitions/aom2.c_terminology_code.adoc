@@ -14,7 +14,7 @@ If there is an assumed value for the ac-code case above, the `_assumed_value_` a
 The `_constraint_status_` attribute and `_constraint_required_()` function together define whether the `_constraint_` is considered formal ('required') or not. In the non-required cases, a data-item matched to this constraint may be any coded term.
 
 h|*Inherit*
-2+|`xref:AM:AOM2:constraint_model-class_definitions.adoc#_c_primitive_object_class[C_PRIMITIVE_OBJECT]`
+2+|`xref:{class_c_primitive_object}[C_PRIMITIVE_OBJECT]`
 
 h|*Attributes*
 ^h|*Signature*
@@ -22,23 +22,23 @@ h|*Attributes*
 
 h|*1..1 +
 (redefined)*
-|*constraint*: `xref:BASE:foundation_types:primitive_types.adoc#_string_class[String]`
+|*constraint*: `xref:{class_string}[String]`
 a|Type of individual constraint - a single string that can either be a local at-code, or a local ac-code signifying a locally defined value set. If an ac-code, assumed_value may contain an at-code from the value set of the ac-code.
 
 Use an empty string for no constraint.
 
 h|*0..1 +
 (redefined)*
-|*assumed_value*: `xref:BASE:foundation_types:terminology.adoc#_terminology_code_class[Terminology_code]`
+|*assumed_value*: `xref:{class_terminology_code}[Terminology_code]`
 a|Assumed Terminology code value.
 
 h|*0..1 +
 (redefined)*
-|*default_value*: `xref:BASE:foundation_types:terminology.adoc#_terminology_code_class[Terminology_code]`
+|*default_value*: `xref:{class_terminology_code}[Terminology_code]`
 a|
 
 h|*0..1*
-|*constraint_status*: `xref:AM:AOM2:constraint_model-class_definitions.adoc#_constraint_status_enumeration[CONSTRAINT_STATUS]`
+|*constraint_status*: `xref:{class_constraint_status}[CONSTRAINT_STATUS]`
 a|Constraint status of this terminology constraint. If Void, the meaning is as follows:
 
 * in a top-level  archetype, equivalent to `required`;
@@ -54,42 +54,42 @@ h|*Functions*
 ^h|*Meaning*
 
 h|*1..1*
-|*constraint_required* (): `xref:BASE:foundation_types:primitive_types.adoc#_boolean_class[Boolean]`
+|*constraint_required* (): `xref:{class_boolean}[Boolean]`
 a|True if `_constraint_status_` is defined and equals `required` OR if Void. I.e. in archetypes where `C_TERMINOLOGY_CODE` instances have no `_constraint_status_`, the `required` status is assumed, which applies to all legacy archetypes.
 
 h|*1..1*
-|*effective_constraint_status* (): `xref:BASE:foundation_types:primitive_types.adoc#_integer_class[Integer]`
+|*effective_constraint_status* (): `xref:{class_integer}[Integer]`
 a|Return the effective integer value of the `_constraint_status_` field if it exists. If it is null, return 0, i.e. `required`.
 
 NOTE: the above logic applies to any `C_TERMINOLOGY_NODE` instance in a specialised archetype that redefines another such instance in the flat parent. I.e. no stated `_constraint_status_` means `required`.
 
 h|*0..1*
-|*value_set_expanded* (): `xref:BASE:foundation_types:structure_types.adoc#_list_class[List]<xref:BASE:foundation_types:primitive_types.adoc#_string_class[String]>`
+|*value_set_expanded* (): `xref:{class_list}[List]<xref:{class_string}[String]>`
 a|Effective set of at-code values corresponding to an ac-code for a locally defined value set. Not defined for ac-codes that have no local value set.
 
 h|*0..1*
-|*value_set_substituted* (): `xref:BASE:foundation_types:structure_types.adoc#_list_class[List]<xref:BASE:foundation_types:primitive_types.adoc#_uri_class[Uri]>`
+|*value_set_substituted* (): `xref:{class_list}[List]<xref:{class_uri}[Uri]>`
 a|For locally defined value sets within individual code bindings: return the term URI(s) substituted from bindings for local at-codes in `_value_set_expanded_`.
 
 h|*0..1*
-|*value_set_resolved* (): `xref:BASE:foundation_types:structure_types.adoc#_list_class[List]<xref:BASE:foundation_types:terminology.adoc#_terminology_code_class[Terminology_code]>`
+|*value_set_resolved* (): `xref:{class_list}[List]<xref:{class_terminology_code}[Terminology_code]>`
 a|For locally defined value sets within individual code bindings: final set of external codes to which value set is resolved.
 
 h|*1..1 +
 (effected)*
 |*valid_value* ( +
-a_value: `xref:BASE:foundation_types:terminology.adoc#_terminology_code_class[Terminology_code][1]` +
-): `xref:BASE:foundation_types:primitive_types.adoc#_boolean_class[Boolean]`
+a_value: `xref:{class_terminology_code}[Terminology_code][1]` +
+): `xref:{class_boolean}[Boolean]`
 a|True if a `_value_` is valid with respect to constraint expressed in concrete instance of this type.
 
 h|*1..1 +
 (effected)*
-|*prototype_value* (): `xref:BASE:foundation_types:terminology.adoc#_terminology_code_class[Terminology_code]`
+|*prototype_value* (): `xref:{class_terminology_code}[Terminology_code]`
 a|A generated prototype value from this constraint object.
 
 h|*1..1 +
 (effected)*
-|*any_allowed* (): `xref:BASE:foundation_types:primitive_types.adoc#_boolean_class[Boolean]` +
+|*any_allowed* (): `xref:{class_boolean}[Boolean]` +
  +
 __Post__: `Result := constraint.is_empty`
 a|True if `_constraint_` is empty.
@@ -97,14 +97,14 @@ a|True if `_constraint_` is empty.
 h|*1..1 +
 (effected)*
 |*c_value_conforms_to* ( +
-other: `xref:AM:AOM2:constraint_model-class_definitions.adoc#_c_terminology_code_class[C_TERMINOLOGY_CODE][1]` +
-): `xref:BASE:foundation_types:primitive_types.adoc#_boolean_class[Boolean]`
+other: `xref:{class_c_terminology_code}[C_TERMINOLOGY_CODE][1]` +
+): `xref:{class_boolean}[Boolean]`
 a|True if `_other.any_allowed_` or else every constraint in the `_constraint_` list exists in the `_other.constraint_`, and `_effective_constraint_status()_` is \<= `_other.effective_constraint_status()_`.
 
 h|*1..1 +
 (effected)*
 |*c_value_congruent_to* ( +
-other: `xref:AM:AOM2:constraint_model-class_definitions.adoc#_c_terminology_code_class[C_TERMINOLOGY_CODE][1]` +
-): `xref:BASE:foundation_types:primitive_types.adoc#_boolean_class[Boolean]`
+other: `xref:{class_c_terminology_code}[C_TERMINOLOGY_CODE][1]` +
+): `xref:{class_boolean}[Boolean]`
 a|True if `_constraint_` and `_other.constraint_` are both value-set ids, and expand to identical value sets, or else are identical value codes; and `_effective_constraint_status()_` = `_other.effective_constraint_status()_`.
 |===

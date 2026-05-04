@@ -1,3 +1,5 @@
+include::partial$module_vars.adoc[]
+
 = Terminology Integration
 
 Previous sections have provided the syntax possibilities for expressing terminological constraints, definitions, value sets and bindings in an archetype. This section describes the semantics of constraints on terminological entities, and how these constraints are resolved to concrete sets of terms.
@@ -51,7 +53,7 @@ at-coded ADL2::
 definition
     ...
         items matches {
-            ELEMENT[at0010] occurrences matches {0..1} matches {
+            ELEMENT[at0010] occurrences matches \{0..1} matches {
                 name matches {
                     DV_CODED_TEXT[at9000] matches {
                         defining_code matches {[at0004]}        -- set name to 'Substance'
@@ -116,7 +118,7 @@ id-coded ADL2::
 definition
     ...
         items matches {
-            ELEMENT[id11] occurrences matches {0..1} matches {
+            ELEMENT[id11] occurrences matches \{0..1} matches {
                 name matches {
                     DV_CODED_TEXT[id8] matches {
                         defining_code matches {[at5]}        -- set name to 'Substance'
@@ -414,7 +416,7 @@ at-coded ADL2::
     --
     -- extract of operational template based on openehr-ehr-EVALUATION.term_constraint_variations.v0.0.1
     --
-    ELEMENT[at0010] occurrences matches {0..1} matches {
+    ELEMENT[at0010] occurrences matches \{0..1} matches {
         name matches {
             DV_CODED_TEXT[at9000] matches {
                 defining_code matches {[at0004@snomed_ct]}        -- set name to 'Substance'
@@ -435,7 +437,7 @@ id-coded ADL2::
     --
     -- extract of operational template based on openehr-ehr-EVALUATION.term_constraint_variations.v0.0.1
     --
-    ELEMENT[id11] occurrences matches {0..1} matches {
+    ELEMENT[id11] occurrences matches \{0..1} matches {
         name matches {
             DV_CODED_TEXT[id8] matches {
                 defining_code matches {[at5@snomed_ct]}        -- set name to 'Substance'

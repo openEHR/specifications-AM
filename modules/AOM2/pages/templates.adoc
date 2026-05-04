@@ -1,3 +1,5 @@
+include::partial$module_vars.adoc[]
+
 = Templates
 
 == Overview
@@ -11,8 +13,8 @@ Since a template is a specialised archetype, it cannot change the semantics of a
 However, the mode of use of the AOM and ADL in a template is slightly different from the typical archetype. Firstly, the following features are commonly used in templates but not generally in archetypes:
 
 * slot-filling - achieved by specialisation, as described in the {openehr_am_adl2}#_slot_filling_and_redefinition[ADL2 specification^];
-* specifying `{0..0}` constraints to remove elements not needed from the referenced archetypes;
-* specifying `{1..1}` constraints to mandate elements from the referenced archetypes;
+* specifying `\{0..0}` constraints to remove elements not needed from the referenced archetypes;
+* specifying `\{1..1}` constraints to mandate elements from the referenced archetypes;
 * setting default values;
 * addition of terminology bindings to specific terminology ref-sets.
 
@@ -51,7 +53,7 @@ The actual template structure needed to achieve this is shown below. The archety
 
 [.text-center]
 .Template source structure example
-image::{uml_diagrams_uri}/AM-template_example_1.svg[id=AOM-template_example_1, align="center"]
+image::ROOT:uml/AM-template_example_1.svg[id=AOM-template_example_1, align="center"]
 
 The filler object specifies in its `_archetype_ref_` attribute the artefact being used to fill the slot (shown on the diagram as an ellipsis, for brevity). Here it is not simply the archetype `org.openehr::openEHR-EHR-SECTION.vital_signs_headings.v1`, but a specialised form of this archetype, defined as a local template overlay, whose identifier is `uk.nhs.clinical::openEHR-EHR-SECTION.t_encounter_report-vital_signs_headings-0001.v1`.
 
