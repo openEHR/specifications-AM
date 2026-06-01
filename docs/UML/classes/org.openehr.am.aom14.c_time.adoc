@@ -39,23 +39,27 @@ h|*0..1 +
 (redefined)*
 |*assumed_value*: `link:/releases/BASE/{base_release}/foundation_types.html#_iso8601_time_class[Iso8601_time^]`
 a|The value to assume if this item is not included in data, due to being part of an optional structure.
+
 h|*Functions*
 ^h|*Signature*
 ^h|*Meaning*
 
 h|*1..1*
-|*validity_is_range* (): `Boolean`
+|*validity_is_range* (): `link:/releases/BASE/{base_release}/foundation_types.html#_boolean_class[Boolean^]`
 a|True if validity is in the form of a range; useful for developers to check which kind of constraint has been set.
 
 h|*Invariants*
-2+a|__Minute_validity_optional__: `minute_validity = {VALIDITY_KIND}.optional implies (second_validity = {VALIDITY_KIND}.optional or second_validity = {VALIDITY_KIND}.disallowed)`
+2+a|__Pattern_validity__: `pattern /= Void implies valid_iso8601_time_constraint_pattern (pattern)`
 
 h|
-2+a|__Minute_validity_disallowed__: `minute_validity = {VALIDITY_KIND}.disallowed implies second_validity = {VALIDITY_KIND}.disallowed`
+2+a|__Minute_validity_optional__: `minute_validity = \{VALIDITY_KIND}.optional implies (second_validity = \{VALIDITY_KIND}.optional or second_validity = \{VALIDITY_KIND}.disallowed)`
 
 h|
-2+a|__Second_validity_optional__: `second_validity = {VALIDITY_KIND}.optional implies (millisecond_validity = {VALIDITY_KIND}.optional or millisecond_validity = {VALIDITY_KIND}.disallowed)`
+2+a|__Minute_validity_disallowed__: `minute_validity = \{VALIDITY_KIND}.disallowed implies second_validity = \{VALIDITY_KIND}.disallowed`
 
 h|
-2+a|__Second_validity_disallowed__: `second_validity = {VALIDITY_KIND}.disallowed implies millisecond_validity = {VALIDITY_KIND}.disallowed Validity_is_range: validity_is_range = (range /= Void)`
+2+a|__Second_validity_optional__: `second_validity = \{VALIDITY_KIND}.optional implies (millisecond_validity = \{VALIDITY_KIND}.optional or millisecond_validity = \{VALIDITY_KIND}.disallowed)`
+
+h|
+2+a|__Second_validity_disallowed__: `second_validity = \{VALIDITY_KIND}.disallowed implies millisecond_validity = \{VALIDITY_KIND}.disallowed Validity_is_range: validity_is_range = (range /= Void)`
 |===

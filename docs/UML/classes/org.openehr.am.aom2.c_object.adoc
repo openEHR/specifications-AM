@@ -30,8 +30,8 @@ a|Semantic identifier of this node, used to distinguish sibling nodes. All nodes
 
 For `C_PRIMITIVE_OBJECTs` represented in ADL inline form, this attribute will have the special value `Primitive_node_id`; otherwise it will have the node id read during parsing.
 
-h|*0..**
-|*alternative_ids*: `link:/releases/BASE/{base_release}/foundation_types.html#_string_class[String^]`
+h|*0..1*
+|*alternative_ids*: `link:/releases/BASE/{base_release}/foundation_types.html#_list_class[List^]<link:/releases/BASE/{base_release}/foundation_types.html#_string_class[String^]>`
 a|Additional identifiers of this node. openEHR archetypes can carry original ALD2 id-codes in this attribute and it can also carry human readable codes for future use. Alternative ids must be unique within the archetype.
 
 h|*0..1*
@@ -41,6 +41,7 @@ a|True if this node and by implication all sub-nodes are deprecated for use.
 h|*0..1*
 |*sibling_order*: `<<_sibling_order_class,SIBLING_ORDER>>`
 a|Optional indicator of order of this node with respect to another sibling. Only meaningful in a specialised archetype for a `C_OBJECT` within a `C_ATTRIBUTE` with `_is_multiple_ = True`.
+
 h|*Functions*
 ^h|*Signature*
 ^h|*Meaning*
@@ -59,9 +60,9 @@ h|*1..1 +
 (effected)*
 |*c_conforms_to* ( +
 other: `<<_c_object_class,C_OBJECT>>[1]`, +
-rmcc: `link:/releases/BASE/{base_release}/foundation_types.html#_function_class[FUNCTION^]<link:/releases/BASE/{base_release}/foundation_types.html#_boolean_class[Boolean^], link:/releases/BASE/{base_release}/foundation_types.html#_tuple2_class[TUPLE2^]<link:/releases/BASE/{base_release}/foundation_types.html#_string_class[String^], link:/releases/BASE/{base_release}/foundation_types.html#_string_class[String^]>>[1]` +
+rmcc: `link:/releases/BASE/{base_release}/foundation_types.html#_function_class[FUNCTION^]<link:/releases/BASE/{base_release}/foundation_types.html#_boolean_class[Boolean^],link:/releases/BASE/{base_release}/foundation_types.html#_tuple2_class[TUPLE2^]<link:/releases/BASE/{base_release}/foundation_types.html#_string_class[String^],link:/releases/BASE/{base_release}/foundation_types.html#_string_class[String^]>>[1]` +
 ): `link:/releases/BASE/{base_release}/foundation_types.html#_boolean_class[Boolean^]`
-a|True if constraints represented by this node, ignoring any sub-parts, are narrower or the same as other.
+a|True if constraints represented by this node, ignoring any sub-parts, are narrower or the same as other. 
 Typically used during validation of specialised archetype nodes.
 
 .Parameters +
@@ -73,7 +74,7 @@ h|*1..1 +
 |*c_congruent_to* ( +
 other: `<<_archetype_constraint_class,ARCHETYPE_CONSTRAINT>>[1]` +
 ): `link:/releases/BASE/{base_release}/foundation_types.html#_boolean_class[Boolean^]`
-a|True if constraints represented by this node contain no further redefinitions with respect to the node `_other_`, with the exception of `_node_id_` redefinition in `C_OBJECT` nodes.
+a|True if constraints represented by this node contain no further redefinitions with respect to the node `_other_`, with the exception of `_node_id_` redefinition in `C_OBJECT` nodes. 
 
 Typically used to test if an inherited node locally contains any constraints.
 
