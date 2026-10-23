@@ -5,16 +5,16 @@ This optional section indicates that the archetype is a specialisation of some o
 [source, adl]
 --------
 archetype (adl_version=2.4.0; rm_release=1.0.2)
-    openEHR-EHR-OBSERVATION.cbc.v1.0.0
+    org.openehr::openEHR-EHR-OBSERVATION.cbc.v1.0.0
 specialise 
     openEHR-EHR-OBSERVATION.haematology.v1
 --------
 
-Here the identifier of the new archetype is derived from that of the parent by adding a new section to its domain concept section. See the `ARCHETYPE_ID` definition in the identification package in the {openehr_rm_support}[openEHR Support IM specification^].
+The parent is designated by a reference, normally including the major version only. A reference without a namespace, as above, denotes an archetype in the same namespace as the specialised archetype; a reference to a parent in another namespace includes that namespace. See {openehr_base_artefact_identification}#_between_specialised_archetypes[Artefact Identification^] for the rules.
 
 Note that both the US and British English versions of the word "specialise" are valid in ADL.
 
 The following syntax validity rule applies in the specialisation section:
 
 [.rule]
-SASID: archetype specialisation parent identifier validity. for specialised artefacts, the identifier of the specialisation parent must conform to the ARCHETYPE_ID identifier syntax defined in the {openehr_rm_support}[openEHR Support IM specification^].
+SASID: archetype specialisation parent identifier validity. for specialised artefacts, the identifier of the specialisation parent must conform to the reference (`hrid_ref`) syntax defined in the {openehr_base_artefact_identification}#_referencing[openEHR Artefact Identification specification^].

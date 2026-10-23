@@ -22,6 +22,8 @@ All archetype variants based on `ARCHETYPE` have a human-readable, structured id
 .Archetype HRID Structure
 image::{diagrams_uri}/archetype_hrid_structure.svg[id=archetype_hrid_structure, align="center",width="80%"]
 
+The `_namespace_` is mandatory: every archetype is assigned one when it is created, and an archetype read from a legacy (ADL 1.4) source, which has none, is assigned one on conversion. The `_physical_id_()` function returns the complete identifier, including the namespace and the full version, as a BASE {openehr_foundation_types}#_hrid_class[Hrid^]; this is the form recorded in data ({openehr_base_types}#_archetype_id_class[`ARCHETYPE_ID._value_`^]).
+
 For specialised archetypes, the `_parent_archetype_id_` is also required. This is a string `_reference_` to an archetype, and is normally the 'interface' form of the id, i.e. down to the major version only. In some circumstances, it is useful to include the minor and patch version numbers as well.
 
 An important aspect of identification relates to the rules governing when the HRID namespace changes or is retained, with respect to when 'moves' or 'forks' occur. Its value is always the same as one of the `_original_namespace_` and `_custodian_namespace_` properties inherited from `AUTHORED_RESOURCE._description_` (or both, in the case where they are the same). A full explanation of the identification system and rules is given in the openEHR {openehr_base_artefact_identification}[Artefact Identification specification^].

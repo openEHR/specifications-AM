@@ -12,9 +12,9 @@ h|*Attributes*
 ^h|*Signature*
 ^h|*Meaning*
 
-h|*0..1*
+h|*1..1*
 |*namespace*: `link:/releases/BASE/{base_release}/foundation_types.html#_string_class[String^]`
-a|Reverse domain name namespace identifier.
+a|Reverse domain name namespace identifier, assigned when the artefact is created, and changed only when the artefact is re-identified (see the openEHR Artefact Identification specification).
 
 h|*1..1*
 |*rm_publisher*: `link:/releases/BASE/{base_release}/foundation_types.html#_string_class[String^]`
@@ -58,8 +58,8 @@ h|*1..1*
 a|The 'interface' form of the HRID, i.e. down to the major version.
 
 h|*1..1*
-|*physical_id* (): `link:/releases/BASE/{base_release}/foundation_types.html#_string_class[String^]`
-a|The 'physical' form of the HRID, i.e. with complete version information specified by `_version_id()_`.
+|*physical_id* (): `link:/releases/BASE/{base_release}/foundation_types.html#_hrid_class[Hrid^]`
+a|The 'physical' form of the HRID, i.e. the complete identifier, including the namespace and the complete version information specified by `_version_id()_`.
 
 h|*1..1*
 |*version_id* (): `link:/releases/BASE/{base_release}/foundation_types.html#_string_class[String^]`
@@ -78,6 +78,9 @@ h|*1..1*
 a|Patch version of this archetype, extracted from `_release_version_`. Equivalent to patch version in patch version in `semver.org` sytem.
 
 h|*Invariants*
+2+a|__Inv_namespace_validity__: `not namespace.is_empty`
+
+h|
 2+a|__Inv_rm_publisher_validity__: `not rm_publisher.is_empty`
 
 h|

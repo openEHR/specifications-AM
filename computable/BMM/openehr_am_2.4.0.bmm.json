@@ -3,7 +3,7 @@
     "rm_publisher": "openehr",
     "schema_name": "am",
     "rm_release": "2.4.0",
-    "schema_revision": "2.4.0.2",
+    "schema_revision": "2.4.0.3",
     "schema_lifecycle_state": "stable",
     "schema_description": "openEHR Archetype Model",
     "schema_author": "Thomas Beale <thomas.beale@openehr.org>, code-generator",
@@ -439,7 +439,8 @@
                 "namespace": {
                     "_type": "P_BMM_SINGLE_PROPERTY",
                     "name": "namespace",
-                    "documentation": "Reverse domain name namespace identifier.",
+                    "documentation": "Reverse domain name namespace identifier, assigned when the artefact is created, and changed only when the artefact is re-identified (see the openEHR Artefact Identification specification).",
+                    "is_mandatory": true,
                     "type": "String"
                 },
                 "rm_publisher": {
@@ -503,10 +504,10 @@
                 },
                 "physical_id": {
                     "name": "physical_id",
-                    "documentation": "The 'physical' form of the HRID, i.e. with complete version information specified by `_version_id()_`.",
+                    "documentation": "The 'physical' form of the HRID, i.e. the complete identifier, including the namespace and the complete version information specified by `_version_id()_`.",
                     "result": {
                         "_type": "P_BMM_SIMPLE_TYPE",
-                        "type": "String"
+                        "type": "Hrid"
                     }
                 },
                 "version_id": {
@@ -543,6 +544,7 @@
                 }
             },
             "invariants": {
+                "Inv_namespace_validity": "not namespace.is_empty",
                 "Inv_rm_publisher_validity": "not rm_publisher.is_empty",
                 "Inv_rm_package_validity": "not rm_package.is_empty",
                 "Inv_class_name_validity": "not rm_class.is_empty",
@@ -4241,7 +4243,8 @@
                 "namespace": {
                     "_type": "P_BMM_SINGLE_PROPERTY",
                     "name": "namespace",
-                    "documentation": "Reverse domain name namespace identifier.",
+                    "documentation": "Reverse domain name namespace identifier, assigned when the artefact is created, and changed only when the artefact is re-identified (see the openEHR Artefact Identification specification).",
+                    "is_mandatory": true,
                     "type": "String"
                 },
                 "rm_publisher": {

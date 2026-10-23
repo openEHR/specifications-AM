@@ -28,7 +28,7 @@ The situation with ‘medication_order’ is shown under the document/COMPOSITIO
 
 Namespacing of archetypes has an important practical consequence: differently namespaced archetypes can co-exist within the same Library workspace (see below for definition). This situation can come about due to archetypes being transferred or forked from an original custodian to another.
 
-An Archetype HRID may legally have no namespace. This means it is uncontrolled and not managed by any organisation.
+Every archetype is assigned a namespace when it is created: that of the creating organisation, which may be a custodian, but equally a vendor or a project. Only legacy (ADL 1.4) archetype identifiers have no namespace. The rules are given in the {openehr_base_artefact_identification}[Artefact Identification specification^].
 
 The last part of the archetype identifier is the version. Logical archetype identifiers include the major version i.e. first number of a 3-part version (e.g. 1.5.0), on the basis that a change in major version number is generally understood in IT to be a breaking change to the artefact. Accordingly, different major versions are considered different artefacts from a computational point of view. The full version can also be used to construct an identifier useful for physical resources, e.g. files or version system references.
 
@@ -38,7 +38,7 @@ A practical view is to treat a given Reference Model (or, a small number of stro
 
 Some of this kind of harmonisation is occurring within openEHR, due to cooperation of national-level archetype governance organisations with the openEHR Foundation, acting as the governance body for international archetypes, hosted at the {openehr_CKM}[openEHR Clinical Knowledge Manager]. Even this level of harmonisation is slow and cannot therefore be taken as given for the purpose of the Archetype formalism.
 
-Accordingly, the formalism and tooling is designed on the basis of the simplest realistic assumption: that the hierarchy of Reference Model types along with optionally namespaced Archetypes form a self-standing information ontology, in the same manner as shown in <<information_ontology>>, i.e. an IS-A hierarchy formed of RM types followed by Archetypes. The practical value of this is twofold:
+Accordingly, the formalism and tooling is designed on the basis of the simplest realistic assumption: that the hierarchy of Reference Model types along with namespaced Archetypes form a self-standing information ontology, in the same manner as shown in <<information_ontology>>, i.e. an IS-A hierarchy formed of RM types followed by Archetypes. The practical value of this is twofold:
 
 * real data can be computationally classified under various points in the ontology - i.e. we can computationally determine if certain data are a ‘bp_measurement’, a ‘UK NHS bp_measurement’ or even just an `OBSERVATION` ;
 * we can use the subsumption operator on the IS-A hierarchy to define useful subsets of the overall space, e.g. `{any-descendant of ‘medical_device’}, {any-descendant-or-self of OBSERVATION}` and so on.
@@ -53,7 +53,7 @@ image::{diagrams_uri}/archetypes_is_a_hierarchy.png[id=archetypes_is_a_hierarchy
 
 Within the virtual archetype space described above, we can identify different groups or collections of archetypes, which relate to how tools work, particularly with respect to how identifiers are resolved. For the foreseeable future, all of the following types of collections can be assumed to occur under specific custodian namespaces, i.e. managers and publishers of archetypes.
 
-An Archetype Library corresponds to a coherent collection of archetypes actually available within a single workspace or repository. All archetypes and templates in the Library would typically be based on the same Reference Model, but this need not be so, e.g. in the case of test archetypes. Apart from the latter case, an Archetype Library consists of archetypes that are normally designed to be used together in validating and creating information. These can include non-namespaced (unmanaged) and differently namespaced archetypes, where mixing occurs due to promotion and/or forking. In the latter case, it is up to the Library maintainers to ensure compatibility of all archetypes in the Library.
+An Archetype Library corresponds to a coherent collection of archetypes actually available within a single workspace or repository. All archetypes and templates in the Library would typically be based on the same Reference Model, but this need not be so, e.g. in the case of test archetypes. Apart from the latter case, an Archetype Library consists of archetypes that are normally designed to be used together in validating and creating information. These can include legacy (non-namespaced) and differently namespaced archetypes, where mixing occurs due to promotion and/or forking. In the latter case, it is up to the Library maintainers to ensure compatibility of all archetypes in the Library.
 
 One or more Archeype Libraries exist within an Archetype Repository, which is understood as a physical repository in which archetypes are managed, typically with version control, download capability etc. An Archetype Repository does not connote any semantics, rather it provides a unit of access, committal and versioning for tools to work with.
 
