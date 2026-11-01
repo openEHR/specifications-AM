@@ -3,7 +3,7 @@
     "rm_publisher": "openehr",
     "schema_name": "am",
     "rm_release": "1.4.0",
-    "schema_revision": "1.4.0.2",
+    "schema_revision": "1.4.0.3",
     "schema_lifecycle_state": "stable",
     "schema_description": "openEHR Archetype Model",
     "schema_author": "Thomas Beale <thomas.beale@openehr.org>, code-generator",
@@ -297,7 +297,7 @@
                         }
                     },
                     "post_conditions": {
-                        "post-condition": "Result.is_equal (definition.node_id)"
+                        "post-condition": "Result.is_equal (ontology.term_definition (a_lang, concept).items.item (\"text\"))"
                     },
                     "result": {
                         "_type": "P_BMM_SIMPLE_TYPE",
