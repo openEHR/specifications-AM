@@ -1,0 +1,29 @@
+[cols="2,3", frame=none, grid=rows]
+|===
+2+^h|*EXPR_ARCHETYPE_REF*
+
+2+a|Expression tree leaf item representing a reference to a value found in data at a location specified by a path in the archetype definition.
+
+* A path referring to a value in the archetype (paths with a leading ‘/’ are in the definition section.
+* Paths with no leading ‘/’ are in the outer part of the archetype, e.g. “archetype_id/value” refers to the String value of the archetype_id attribute of the enclosing archetype.
+
+2+|Inherits: xref:{class_expr_value}[EXPR_VALUE], xref:{class_expression}[EXPRESSION], xref:{class_expr_leaf}[EXPR_LEAF], xref:{class_expr_value_ref}[EXPR_VALUE_REF]
+
+2+h|*Attributes*
+
+|*item*: `xref:{class_aom2_archetype_constraint}[ARCHETYPE_CONSTRAINT]` [1..1]
+a|
+
+|*path*: `xref:{class_string}[String]` [1..1]
+a|The path to the archetype node.
+
+2+h|*Functions*
+
+|_(abstract)_ *value* (): `xref:{class_any}[Any]` [1..1]
+a|The computed value of this node as a result of the nodes below it, for operator nodes, or else statically set or otherwise derived values. +
+_Inherited from xref:{class_expr_value}[EXPR_VALUE]_
+
+|_(abstract)_ *type* (): `xref:{class_expr_type_def}[EXPR_TYPE_DEF]` [1..1]
+a|The primitive type of this node, which must be determined by redefinitions in concrete classes. +
+_Inherited from xref:{class_expression}[EXPRESSION]_
+|===

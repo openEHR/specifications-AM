@@ -1,0 +1,130 @@
+[cols="2,3", frame=none, grid=rows]
+|===
+2+^h|*CONSTRAINT_STATUS*
+
+2+a|Status of `_constraint_`, with values allowing for 'soft' constraints, which are effectively different kinds of suggestions.
+
+2+|Inherits: xref:{class_any}[Any], xref:{class_ordered}[Ordered], xref:{class_numeric}[Numeric], xref:{class_ordered_numeric}[Ordered_Numeric], xref:{class_integer}[Integer]
+
+2+h|*Constants*
+
+|*required*: `xref:{class_integer}[Integer]{nbsp}={nbsp}0`
+a|Data item is required to formally satisfy `_constraint_`.
+
+Enumeration value = 0.
+
+|*extensible*: `xref:{class_integer}[Integer]{nbsp}={nbsp}1`
+a|Data item value should satisfy `_constraint_`, i.e. a term in `_constraint_` is to be used if it covers the data item meaning (including more generally); if not, another code may be used, including from another terminology.
+
+Enumeration value = 1.
+
+|*preferred*: `xref:{class_integer}[Integer]{nbsp}={nbsp}2`
+a|Data item value is by preference one of the codes defined by `_constraint_`, but for local reasons may be another code, including from another terminology.
+
+Enumeration value = 2.
+
+|*example*: `xref:{class_integer}[Integer]{nbsp}={nbsp}3`
+a|The `_constraint_` code or value-set is considered purely as an example, and the data item may have any value.
+
+2+h|*Functions*
+
+|*is_equal* ( +
+other: `xref:{class_integer}[Integer][1]` +
+): `xref:{class_boolean}[Boolean]` [1..1]
+a|Value equality: return True if `this` and `_other_` are attached to objects considered to be equal in value. +
+_Inherited from xref:{class_integer}[Integer]_
+
+|*equal* __alias__ "=", "==" ( +
+other: `xref:{class_integer}[Integer][1]` +
+): `xref:{class_boolean}[Boolean]` [1..1]
+a|Reference equality for reference types, value equality for value types. +
+_Inherited from xref:{class_integer}[Integer]_
+
+|*instance_of* ( +
+a_type: `xref:{class_string}[String][1]` +
+): `xref:{class_any}[Any]` [1..1]
+a|Create new instance of a type. +
+_Inherited from xref:{class_any}[Any]_
+
+|*type_of* ( +
+an_object: `xref:{class_any}[Any][1]` +
+): `xref:{class_string}[String]` [1..1]
+a|Type name of an object as a string. May include generic parameters, as in `"Interval<Time>"`. +
+_Inherited from xref:{class_any}[Any]_
+
+|*not_equal* __alias__ "!=", "≠" ( +
+other: `xref:{class_ordered}[Ordered][1]` +
+): `xref:{class_boolean}[Boolean]` [1..1]
+a|True if current object not equal to `_other_`. Returns not `_equal_()`. +
+_Inherited from xref:{class_any}[Any]_
+
+|*less_than* __alias__ "<" ( +
+other: `xref:{class_integer}[Integer][1]` +
+): `xref:{class_boolean}[Boolean]` [1..1]
+a|Returns True if current Integer is less than `_other_`. +
+_Inherited from xref:{class_integer}[Integer]_
+
+|*less_than_or_equal* __alias__ "\<=", "≤" ( +
+other: `xref:{class_ordered}[Ordered][1]` +
+): `xref:{class_boolean}[Boolean]` +
+ +
+__Post_result__: `not (other < self)` [1..1]
+a|True if current object less than or equal to `_other_`. +
+_Inherited from xref:{class_ordered}[Ordered]_
+
+|*greater_than* __alias__ ">" ( +
+other: `xref:{class_ordered}[Ordered][1]` +
+): `xref:{class_boolean}[Boolean]` +
+ +
+__Post_result__: `Result = (other < self)` [1..1]
+a|True if current object greater than `_other_`. +
+_Inherited from xref:{class_ordered}[Ordered]_
+
+|*greater_than_or_equal* __alias__ ">=", "≥" ( +
+other: `xref:{class_ordered}[Ordered][1]` +
+): `xref:{class_boolean}[Boolean]` +
+ +
+__Post_result__: `Result = (other \<= self)` [1..1]
+a|True if current object greater than or equal to `_other_`. +
+_Inherited from xref:{class_ordered}[Ordered]_
+
+|*add* __alias__ "+" ( +
+other: `xref:{class_integer}[Integer][1]` +
+): `xref:{class_integer}[Integer]` [1..1]
+a|Integer addition. +
+_Inherited from xref:{class_integer}[Integer]_
+
+|*subtract* __alias__ "-" ( +
+other: `xref:{class_integer}[Integer][1]` +
+): `xref:{class_integer}[Integer]` [1..1]
+a|Integer subtraction. +
+_Inherited from xref:{class_integer}[Integer]_
+
+|*multiply* __alias__ "*" ( +
+other: `xref:{class_integer}[Integer][1]` +
+): `xref:{class_integer}[Integer]` [1..1]
+a|Integer multiplication. +
+_Inherited from xref:{class_integer}[Integer]_
+
+|*divide* __alias__ "/" ( +
+other: `xref:{class_integer}[Integer][1]` +
+): `xref:{class_double}[Double]` [1..1]
+a|Integer division. +
+_Inherited from xref:{class_integer}[Integer]_
+
+|*exponent* __alias__ "^" ( +
+other: `xref:{class_double}[Double][1]` +
+): `xref:{class_double}[Double]` [1..1]
+a|Integer exponentiation. +
+_Inherited from xref:{class_integer}[Integer]_
+
+|*negative* __alias__ "-" (): `xref:{class_integer}[Integer]` [1..1]
+a|Generate negative of current Integer value. +
+_Inherited from xref:{class_integer}[Integer]_
+
+|*modulo* __alias__ "mod", "\\" ( +
+mod: `xref:{class_integer}[Integer][1]` +
+): `xref:{class_integer}[Integer]` [1..1]
+a|Return self modulo other. +
+_Inherited from xref:{class_integer}[Integer]_
+|===

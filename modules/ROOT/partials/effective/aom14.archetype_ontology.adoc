@@ -1,0 +1,91 @@
+[cols="2,3", frame=none, grid=rows]
+|===
+2+^h|*ARCHETYPE_ONTOLOGY*
+
+2+a|Local ontology of an archetype.
+
+2+h|*Attributes*
+
+|*term_codes*: `xref:{class_list}[List]<xref:{class_string}[String]>` [1..1]
+a|List of all term codes in the ontology. Most of these correspond to “at” codes in an ADL archetype, which are the node_ids on C_OBJECT descendants. There may be an extra one, if a different term is used as the overall archetype concept from that used as the node_id of the outermost C_OBJECT in the definition part.
+
+|*constraint_codes*: `xref:{class_list}[List]<xref:{class_string}[String]>` [1..1]
+a|List of all term codes in the ontology. These correspond to the “ac” codes in an ADL archetype, or equivalently, the CONSTRAINT_REF.reference values in the archetype definition.
+
+|*parent_archetype*: `xref:{class_aom14_archetype}[ARCHETYPE]` [1..1]
+a|Archetype which owns this terminology.
+
+|*terminologies_available*: `xref:{class_list}[List]<xref:{class_string}[String]>` [0..1]
+a|List of terminologies to which term or constraint bindings exist in this terminology.
+
+|*specialisation_depth*: `xref:{class_integer}[Integer]` [1..1]
+a|Specialisation depth of this archetype. Unspecialised archetypes have depth 0, with each additional level of specialisation adding 1 to the specialisation_depth.
+
+|*term_attribute_names*: `xref:{class_list}[List]<xref:{class_string}[String]>` [1..1]
+a|
+
+2+h|*Functions*
+
+|*has_language* ( +
+a_lang: `xref:{class_string}[String][1]` +
+): `xref:{class_boolean}[Boolean]` [1..1]
+a|True if terminology ‘a_terminology’ is present in archetype ontology.
+
+|*has_terminology* ( +
+a_terminology_id: `xref:{class_string}[String][1]` +
+): `xref:{class_boolean}[Boolean]` [1..1]
+a|True if terminology `a_terminology' is present in archetype ontology.
+
+|*has_term_code* ( +
+a_code: `xref:{class_string}[String][1]` +
+): `xref:{class_boolean}[Boolean]` [1..1]
+a|True if term_codes has a_code.
+
+|*has_constraint_code* ( +
+a_code: `xref:{class_string}[String][1]` +
+): `xref:{class_boolean}[Boolean]` [1..1]
+a|True if constraint_codes has a_code.
+
+|*term_definition* ( +
+a_lang: `xref:{class_string}[String][1]`, +
+a_code: `xref:{class_string}[String][1]` +
+): `xref:{class_aom14_archetype_term}[ARCHETYPE_TERM]` +
+ +
+__Pre__: `has_language (a_lang)` +
+__Pre2__: `has_term_code (a_code)` [1..1]
+a|Term definition for a code, in a specified language.
+
+|*constraint_definition* ( +
+a_code: `xref:{class_string}[String][1]`, +
+a_lang: `xref:{class_string}[String][1]` +
+): `xref:{class_aom14_archetype_term}[ARCHETYPE_TERM]` +
+ +
+__Pre__: `has_language (a_lang)` +
+__Pre_2__: `has_constraint_code (a_code)` [1..1]
+a|Constraint definition for a code, in a specified language.
+
+|*term_binding* ( +
+a_terminology: `xref:{class_string}[String][1]`, +
+a_code: `xref:{class_string}[String][1]` +
+): `xref:{class_code_phrase}[CODE_PHRASE]` +
+ +
+__Pre__: `has_term_binding (a_terminology_id, a_code)` [1..1]
+a|Binding of constraint corresponding to a_code in target external terminology a_terminology_id, as a string, which is usually a formal query expression.
+
+|*constraint_binding* ( +
+a_terminology_id: `xref:{class_string}[String][1]`, +
+a_code: `xref:{class_string}[String][1]` +
+): `xref:{class_string}[String]` [1..1]
+a|Binding of constraint corresponding to a_code in target external terminology a_terminology_id, as a string, which is usually a formal query expression.
+
+2+h|*Invariants*
+
+2+a|__Original_language_validity__: `code_set (Code_set_id_languages).has_concept_id (original_language)`
+
+2+a|__concept_code_validity__: `id_codes.has (concept_code)`
+
+2+a|__Term_bindings_validity__: `bindings /= void implies not bindings.is_empty`
+
+2+a|__Parent_archetype_valid__: `parent_archetype.ontology = Current`
+
+|===

@@ -1,0 +1,27 @@
+[cols="2,3", frame=none, grid=rows]
+|===
+2+^h|*ASSERTION*
+
+2+a|Structural model of a typed first order predicate logic assertion, in the form of an expression tree, including optional variable definitions.
+
+2+h|*Attributes*
+
+|*tag*: `xref:{class_string}[String]` [0..1]
+a|Expression tag, used for differentiating multiple assertions.
+
+|*string_expression*: `xref:{class_string}[String]` [0..1]
+a|String form of expression, in case an expression evaluator taking String expressions is used for evaluation.
+
+|*expression*: `xref:{class_aom14_expr_item}[EXPR_ITEM]` [1..1]
+a|Root of expression tree.
+
+|*variables*: `xref:{class_list}[List]<xref:{class_aom14_assertion_variable}[ASSERTION_VARIABLE]>` [0..1]
+a|Definitions of variables used in the assertion expression.
+
+2+h|*Invariants*
+
+2+a|__Tag_valid__: `tag /= Void implies not tag.is_empty`
+
+2+a|__Expression_valid__: `expression /= Void and then expression.type.is_equal(“BOOLEAN”)`
+
+|===

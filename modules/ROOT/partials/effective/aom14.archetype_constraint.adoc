@@ -1,0 +1,32 @@
+[cols="2,3", frame=none, grid=rows]
+|===
+2+^h|*__ARCHETYPE_CONSTRAINT (abstract)__*
+
+2+a|Archetype equivalent to LOCATABLE class in openEHR Common reference model. Defines common constraints for any inheritor of LOCATABLE in any reference model.
+
+2+h|*Functions*
+
+|_(abstract)_ *is_subset_of* ( +
+other: `xref:{class_aom14_archetype_constraint}[ARCHETYPE_CONSTRAINT][1]` +
+): `xref:{class_boolean}[Boolean]` [1..1]
+a|True if constraints represented by this node, ignoring any sub-parts, are narrower or the same as other. 
+Typically used during validation of special-ised archetype nodes.
+
+|_(abstract)_ *is_valid* (): `xref:{class_boolean}[Boolean]` [1..1]
+a|
+
+|*path* (): `xref:{class_string}[String]` [1..1]
+a|Path of this node relative to root of archetype.
+
+|*has_path* ( +
+a_path: `xref:{class_string}[String][1]` +
+): `xref:{class_boolean}[Boolean]` [1..1]
+a|True if the relative path a_path exists at this node.
+
+2+h|*Invariants*
+
+2+a|__Post__: `Result = soc_parent /= Void or parent.soc_parent /= Void`
+
+2+a|__Path_exists__: `path /= Void`
+
+|===

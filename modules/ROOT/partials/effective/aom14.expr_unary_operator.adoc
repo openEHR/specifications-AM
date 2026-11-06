@@ -1,0 +1,25 @@
+[cols="2,3", frame=none, grid=rows]
+|===
+2+^h|*EXPR_UNARY_OPERATOR*
+
+2+a|Unary operator expression node.
+
+2+|Inherits: xref:{class_aom14_expr_item}[EXPR_ITEM], xref:{class_aom14_expr_operator}[EXPR_OPERATOR]
+
+2+h|*Attributes*
+
+|*type*: `xref:{class_string}[String]` [1..1]
+a|Type name of this item in the mathematical sense. For leaf nodes, must be the name of a primitive type, or else a reference model type. The type for any relational or boolean operator will be “Boolean”, while the type for any arithmetic operator, will be “Real” or “Integer”. +
+_Inherited from xref:{class_aom14_expr_item}[EXPR_ITEM]_
+
+|*precedence_overridden*: `xref:{class_boolean}[Boolean]` [0..1]
+a|True if the natural precedence of operators is overridden in the expression represented by this node of the expression tree. If True, parentheses should be introduced around the totality of the syntax expression corresponding to this operator node and its operands. +
+_Inherited from xref:{class_aom14_expr_operator}[EXPR_OPERATOR]_
+
+|*operator*: `xref:{class_aom14_operator_kind}[OPERATOR_KIND]` [1..1]
+a|Code of operator. +
+_Inherited from xref:{class_aom14_expr_operator}[EXPR_OPERATOR]_
+
+|*operand*: `xref:{class_aom14_expr_item}[EXPR_ITEM]` [1..1]
+a|Operand node.
+|===

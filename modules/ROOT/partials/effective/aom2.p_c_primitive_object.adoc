@@ -1,0 +1,49 @@
+[cols="2,3", frame=none, grid=rows]
+|===
+2+^h|*__P_C_PRIMITIVE_OBJECT (abstract)__*
+
+2+a|Parent of types representing constraints on primitive types.
+
+2+|Inherits: xref:{class_aom2_p_archetype_constraint}[P_ARCHETYPE_CONSTRAINT], xref:{class_aom2_p_c_object}[P_C_OBJECT], xref:{class_aom2_p_c_defined_object}[P_C_DEFINED_OBJECT]
+
+2+h|*Attributes*
+
+|*rm_type_name*: `xref:{class_string}[String]` [1..1]
+a|Reference model type that this node corresponds to. +
+_Inherited from xref:{class_aom2_p_c_object}[P_C_OBJECT]_
+
+|*occurrences*: `xref:{class_string}[String]` [0..1]
+a|Occurrences of this object node in the data, under the owning attribute. Upper limit can only be greater than 1 if owning attribute has a cardinality of more than 1. +
+_Inherited from xref:{class_aom2_p_c_object}[P_C_OBJECT]_
+
+|*node_id*: `xref:{class_string}[String]` [1..1]
+a|Semantic id of this node, used to differentiate sibling nodes of the same type. Each node_id must be defined in the archetype ontology as a term code. +
+_Inherited from xref:{class_aom2_p_c_object}[P_C_OBJECT]_
+
+|*is_deprecated*: `xref:{class_boolean}[Boolean]` [0..1]
+a| +
+_Inherited from xref:{class_aom2_p_c_object}[P_C_OBJECT]_
+
+|*is_frozen*: `xref:{class_boolean}[Boolean]` [0..1]
+a| +
+_Inherited from xref:{class_aom2_p_c_defined_object}[P_C_DEFINED_OBJECT]_
+
+|*default_value*: `xref:{class_any}[Any]` [1..1]
+a| +
+_Inherited from xref:{class_aom2_p_c_defined_object}[P_C_DEFINED_OBJECT]_
+
+|*assumed_value*: `xref:{class_any}[Any]` [0..1]
+a|Value to be assumed if none sent in data.
+
+|*is_enumerated_type_constraint*: `xref:{class_boolean}[Boolean]` [0..1]
+a|True if this constraint is actually of an enumerated type that conforms to a primitive type, not a primitive.
+
+|*constraint*: `xref:{class_any}[Any]` [1..1]
+a|Constraint represented by this object; redefine in descendants.
+
+2+h|*Functions*
+
+|*specialisation_depth* (): `xref:{class_integer}[Integer]` [1..1]
+a| +
+_Inherited from xref:{class_aom2_p_c_object}[P_C_OBJECT]_
+|===
