@@ -19,7 +19,7 @@ h|*1..1*
 a|List of all term codes in the ontology. These correspond to the “ac” codes in an ADL archetype, or equivalently, the CONSTRAINT_REF.reference values in the archetype definition.
 
 h|*1..1*
-|*parent_archetype*: `xref:{class_archetype}[ARCHETYPE]`
+|*parent_archetype*: `xref:AOM1.4:archetype_package.adoc#_archetype_class[ARCHETYPE]`
 a|Archetype which owns this terminology.
 
 h|*0..1*
@@ -66,7 +66,7 @@ h|*1..1*
 |*term_definition* ( +
 a_lang: `xref:{class_string}[String][1]`, +
 a_code: `xref:{class_string}[String][1]` +
-): `xref:{class_archetype_term}[ARCHETYPE_TERM]` +
+): `xref:AOM1.4:ontology_package.adoc#_archetype_term_class[ARCHETYPE_TERM]` +
  +
 __Pre__: `has_language (a_lang)` +
 __Pre2__: `has_term_code (a_code)`
@@ -76,7 +76,7 @@ h|*1..1*
 |*constraint_definition* ( +
 a_code: `xref:{class_string}[String][1]`, +
 a_lang: `xref:{class_string}[String][1]` +
-): `xref:{class_archetype_term}[ARCHETYPE_TERM]` +
+): `xref:AOM1.4:ontology_package.adoc#_archetype_term_class[ARCHETYPE_TERM]` +
  +
 __Pre__: `has_language (a_lang)` +
 __Pre_2__: `has_constraint_code (a_code)`
@@ -86,7 +86,7 @@ h|*1..1*
 |*term_binding* ( +
 a_terminology: `xref:{class_string}[String][1]`, +
 a_code: `xref:{class_string}[String][1]` +
-): `link:/classes/CODE_PHRASE[CODE_PHRASE] ` +
+): `xref:{class_code_phrase}[CODE_PHRASE]` +
  +
 __Pre__: `has_term_binding (a_terminology_id, a_code)`
 a|Binding of constraint corresponding to a_code in target external terminology a_terminology_id, as a string, which is usually a formal query expression.

@@ -238,7 +238,7 @@ Here, the cardinality of the value attribute is `1..1` (the default), while the 
 [.principle]
 Two or more object blocks introduced by type names appearing after an attribute which is not a container (i.e. for which there is no cardinality constraint) are taken to be *alternative constraints*, only one of which needs to be matched by the data.
 
-Note that there is a more efficient way to express the above example, using domain type extensions. See <<Customising ADL>>.
+Note that there is a more efficient way to express the above example, using domain type extensions. See xref:customising_adl.adoc[Customising ADL].
 
 === Container Attributes
 
@@ -258,7 +258,7 @@ The cardinality of container attributes may be constrained in cADL with the `_ca
     }
 --------
 
-The keyword `cardinality` implies firstly that the property events must be of a container type, such as `List<T>` , `Set<T>` , `Bag<T>` . The integer range indicates the valid membership of the container; a single `\*` means the range `0..*`, i.e. '0 to many'. The type of the container is not explicitly indicated, since it is usually defined by the information model. However, the semantics of a logical set (unique membership, ordering not significant), a logical list (ordered, non-unique membership) or a bag (unordered, non-unique membership) can be constrained using the additional keywords `ordered` , `unordered` , `unique` and `non-unique` within the cardinality constraint, as per the following examples:
+The keyword `cardinality` implies firstly that the property events must be of a container type, such as `List<T>` , `Set<T>` , `Bag<T>` . The integer range indicates the valid membership of the container; a single `\*` means the range `0..*`, i.e. '0 to many'. The type of the container is not explicitly indicated, since it is usually defined by the information model. However, the semantics of a logical set (unique membership, ordering not significant), a logical list (ordered, non-unique membership) or a bag (unordered, non-unique membership) can be constrained using the additional keywords `ordered`, `unordered` and `unique` within the cardinality constraint, as per the following examples:
 
 [source, cadl]
 --------
@@ -267,10 +267,12 @@ The keyword `cardinality` implies firstly that the property events must be of a 
     events cardinality ∈ {*; unordered} ∈ {                 -- logical bag
 --------
 
+The keyword `unique` means logical uniqueness: no two members of the container may be equal by value. Object identity is not meant, and attributes that distinguish sibling objects anyway, such as their names, are not taken into account. When `unique` is not stated, membership is non-unique.
+
 In theory, none of these constraints can be stronger than the semantics of the corresponding container in the relevant part of the reference model. However, in practice, developers often use lists to facilitate integration, when the actual semantics are intended to be of a set; in such cases, they typically ensure set-like semantics in their own code rather than by using an `Set<T>` type. How such constraints are evaluated in practice may depend somewhat on knowledge of the  software system.
 
 [.principle]
-A *cardinality constraint* may be used after any attribute name (or after its `existence` constraint, if there is one) in order to indicate that the attribute refers to a container type, what number of member items it must have in the data, and optionally, whether it has "list", "set", or "bag" semantics, via the use of the keywords `ordered`, `unordered`, `unique` and `non-unique`.
+A *cardinality constraint* may be used after any attribute name (or after its `existence` constraint, if there is one) in order to indicate that the attribute refers to a container type, what number of member items it must have in the data, and optionally, whether it has "list", "set", or "bag" semantics, via the use of the keywords `ordered`, `unordered` and `unique`.
 
 The numeric part of the cardinality constraint can take the values `\{0}`, `\{0..0}`, `\{0..n}`, `\{m..n}`, `{0..\*}`, or `\{*}`, or a syntactic equivalent. The first two of these constraints are unlikely to be useful, but there is no reason to prevent them. There is no default cardinality, since if none is shown, the relevant attribute is assumed to be single-valued (in the interests of uniformity in archetypes, this holds even for smarter parsers that can access the reference model and determine that the attribute is in fact a container).
 
@@ -393,11 +395,11 @@ members[at0104]/title
 members[at0105]/title
 --------
 
-Logically, all non-unique parent nodes of an identified node must also be identified back to the root node. The primary function of node identifiers is in forming paths, enabling cADL nodes to be unambiguously referred to. The node identifier can also perform a second function, that of giving a design-time meaning to the node, by equating the node identifier to some description. Thus, in the example shown in <<Complex Objects>>, the `ELEMENT` node is identified by the code `[at0010]`, which can be designated elsewhere in an archetype as meaning "diastolic blood pressure".
+Logically, all non-unique parent nodes of an identified node must also be identified back to the root node. The primary function of node identifiers is in forming paths, enabling cADL nodes to be unambiguously referred to. The node identifier can also perform a second function, that of giving a design-time meaning to the node, by equating the node identifier to some description. Thus, in the example shown in <<_complex_objects,Complex Objects>>, the `ELEMENT` node is identified by the code `[at0010]`, which can be designated elsewhere in an archetype as meaning "diastolic blood pressure".
 
 Node ids are required only where it is necessary to create paths, for example in `use_node` statements. However, the underlying reference model might have stronger requirements. The {openehr_rm_releases}[openEHR Reference Model] for example requires that all node types which inherit from the class `LOCATABLE` have both a `_archetype_node_id_` and a runtime `_name_` attribute. Only data types (such as `QUANTITY`, `CODED_TEXT`) and their constituent types are exempt. 
 
-Paths are used in cADL to refer to cADL nodes, and are expressed in the ADL path syntax, described in detail in <<ADL Paths>>. ADL paths have the same alternating object/attribute structure implied in the general hierarchical structure of cADL, obeying the pattern `TYPE/attribute/TYPE/attribute/...`.
+Paths are used in cADL to refer to cADL nodes, and are expressed in the ADL path syntax, described in detail in xref:paths.adoc[ADL Paths]. ADL paths have the same alternating object/attribute structure implied in the general hierarchical structure of cADL, obeying the pattern `TYPE/attribute/TYPE/attribute/...`.
 
 [.principle]
 *Paths* in cADL always refer to object nodes, and can only be constructed through nodes having node ids, or nodes which are the only child object of a single-cardinality attribute.
@@ -682,7 +684,7 @@ A String-valued attribute can be constrained by a list of strings (using the dAD
     species ∈ {"platypus", "kangaroo", "wombat"}
 --------
 
-The first example constrains the runtime value of the `_species_` attribute of some object to take the value "platypus"; the second constrains it be either "platypus" or "kangaroo", and so on. *In almost all cases, this kind of string constraint should be avoided*, since it usually renders the body of the archetype language-dependent. Exceptions are proper names (e.g. "NHS", "Apgar"), product tradenames (but note even these are typically different in different language locales, even if the different names are not literally translations of each other). The preferred way of constraining string attributes in a language independent way is with local `[ac]` codes. See <<_local_constraint_codes>>.
+The first example constrains the runtime value of the `_species_` attribute of some object to take the value "platypus"; the second constrains it be either "platypus" or "kangaroo", and so on. *In almost all cases, this kind of string constraint should be avoided*, since it usually renders the body of the archetype language-dependent. Exceptions are proper names (e.g. "NHS", "Apgar"), product tradenames (but note even these are typically different in different language locales, even if the different names are not literally translations of each other). The preferred way of constraining string attributes in a language independent way is with local `[ac]` codes. See <<adl.adoc#{underscore}local_constraint_codes,Local Constraint Codes>>.
 
 ==== Regular Expression
 
@@ -703,7 +705,7 @@ The first two are identical, indicating that the attribute value must match the 
     units ∈ {^km/h|mi/h^}
 --------
 
-The rules for including special characters within strings are described in <<_file_encoding_and_character_quoting>>.
+The rules for including special characters within strings are described in xref:file_encoding.adoc[File Encoding and Character Quoting].
 
 The regular expression patterns supported in cADL are as follows.
 
@@ -855,7 +857,7 @@ Dates, times, and date/times (i.e. timestamps), can be constrained using pattern
 
 NOTE: there is no way to state that timezone information be _prohibited_.
 
-The syntax of legal patterns is given by Antlr4 lexical rules `DATE_CONSTRAINT_PATTERN`, `TIME_CONSTRAINT_PATTERN` and `DATE_TIME_CONSTRAINT_PATTERN` shown below in the <<_base_lexer,Base Lexer syntax section>>.
+The syntax of legal patterns is given by Antlr4 lexical rules `DATE_CONSTRAINT_PATTERN`, `TIME_CONSTRAINT_PATTERN` and `DATE_TIME_CONSTRAINT_PATTERN` shown below in the <<syntax_spec.adoc#{underscore}base_lexer,Base Lexer syntax section>>.
 
 All expressions generated by these patterns must also satisfy the validity rules:
 
@@ -937,7 +939,7 @@ Within any interval containing two literal date/time values (i.e. not one-sided 
 
 ===== Patterns
 
-Patterns based on ISO 8601 can be used to constrain durations in the same way as for Date/time types. The Antlr4 lexical rule for the pattern is `DURATION_CONSTRAINT_PATTERN`, shown below in the <<_base_lexer,Base Lexer syntax section>>.
+Patterns based on ISO 8601 can be used to constrain durations in the same way as for Date/time types. The Antlr4 lexical rule for the pattern is `DURATION_CONSTRAINT_PATTERN`, shown below in the <<syntax_spec.adoc#{underscore}base_lexer,Base Lexer syntax section>>.
 
 NOTE: allowing the 'W' designator to be used with the other designators corresponds to a deviation from the published {iso_8601}[ISO 8601 standard^] used in openEHR, namely: durations are supposed to take the form of `PnnW` or `PnnYnnMnnDTnnHnnMnnS`, but in openEHR, the 'W' (week) designator can be used with the other designators, since it is very common to state durations of pregnancy as some combination of weeks and days.
 

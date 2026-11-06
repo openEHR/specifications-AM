@@ -14,7 +14,7 @@ If there is an assumed value for the ac-code case above, the `_assumed_value_` a
 The `_constraint_status_` attribute and `_constraint_required_()` function together define whether the `_constraint_` is considered formal ('required') or not. In the non-required cases, a data-item matched to this constraint may be any coded term.
 
 h|*Inherit*
-2+|`xref:{class_c_primitive_object}[C_PRIMITIVE_OBJECT]`
+2+|`xref:AOM2:constraint_model-overview.adoc#_c_primitive_object_class[C_PRIMITIVE_OBJECT]`
 
 h|*Attributes*
 ^h|*Signature*
@@ -38,7 +38,7 @@ h|*0..1 +
 a|
 
 h|*0..1*
-|*constraint_status*: `xref:{class_constraint_status}[CONSTRAINT_STATUS]`
+|*constraint_status*: `xref:AOM2:constraint_model-overview.adoc#_constraint_status_enumeration[CONSTRAINT_STATUS]`
 a|Constraint status of this terminology constraint. If Void, the meaning is as follows:
 
 * in a top-level  archetype, equivalent to `required`;
@@ -97,14 +97,14 @@ a|True if `_constraint_` is empty.
 h|*1..1 +
 (effected)*
 |*c_value_conforms_to* ( +
-other: `xref:{class_c_terminology_code}[C_TERMINOLOGY_CODE][1]` +
+other: `xref:AOM2:constraint_model-overview.adoc#_c_terminology_code_class[C_TERMINOLOGY_CODE][1]` +
 ): `xref:{class_boolean}[Boolean]`
 a|True if `_other.any_allowed_` or else every constraint in the `_constraint_` list exists in the `_other.constraint_`, and `_effective_constraint_status()_` is \<= `_other.effective_constraint_status()_`.
 
 h|*1..1 +
 (effected)*
 |*c_value_congruent_to* ( +
-other: `xref:{class_c_terminology_code}[C_TERMINOLOGY_CODE][1]` +
+other: `xref:AOM2:constraint_model-overview.adoc#_c_terminology_code_class[C_TERMINOLOGY_CODE][1]` +
 ): `xref:{class_boolean}[Boolean]`
 a|True if `_constraint_` and `_other.constraint_` are both value-set ids, and expand to identical value sets, or else are identical value codes; and `_effective_constraint_status()_` = `_other.effective_constraint_status()_`.
 |===

@@ -7,18 +7,18 @@ h|*Description*
 2+a|Abstract parent of all constraint model types. Defines conformance and congruence function signatures.
 
 h|*Inherit*
-2+|`xref:{class_adl_code_definitions}[ADL_CODE_DEFINITIONS]`
+2+|`xref:AOM2:model_overview.adoc#_adl_code_definitions_class[ADL_CODE_DEFINITIONS]`
 
 h|*Attributes*
 ^h|*Signature*
 ^h|*Meaning*
 
 h|*0..1*
-|*parent*: `xref:{class_archetype_constraint}[ARCHETYPE_CONSTRAINT]`
+|*parent*: `xref:AOM2:constraint_model-overview.adoc#_archetype_constraint_class[ARCHETYPE_CONSTRAINT]`
 a|Parent node, except in the case of the top of a tree, i.e. root `C_COMPLEX_OBJECT` of an archetype definition.
 
 h|*0..1*
-|*soc_parent*: `xref:{class_c_second_order}[C_SECOND_ORDER]`
+|*soc_parent*: `xref:AOM2:constraint_model-overview.adoc#_c_second_order_class[C_SECOND_ORDER]`
 a|
 
 h|*Functions*
@@ -43,7 +43,7 @@ a|Path of this node relative to root of archetype.
 h|*1..1 +
 (abstract)*
 |*c_conforms_to* ( +
-other: `xref:{class_archetype_constraint}[ARCHETYPE_CONSTRAINT][1]`, +
+other: `xref:AOM2:constraint_model-overview.adoc#_archetype_constraint_class[ARCHETYPE_CONSTRAINT][1]`, +
 rmcc: `xref:{class_function}[FUNCTION]<xref:{class_boolean}[Boolean],xref:{class_tuple2}[TUPLE2]<xref:{class_string}[String],xref:{class_string}[String]>>[1]` +
 ): `xref:{class_boolean}[Boolean]`
 a|True if constraints represented by this node, ignoring any sub-parts, are narrower or the same as other. 
@@ -56,7 +56,7 @@ Typically used during validation of specialised archetype nodes.
 h|*1..1 +
 (abstract)*
 |*c_congruent_to* ( +
-other: `xref:{class_archetype_constraint}[ARCHETYPE_CONSTRAINT][1]` +
+other: `xref:AOM2:constraint_model-overview.adoc#_archetype_constraint_class[ARCHETYPE_CONSTRAINT][1]` +
 ): `xref:{class_boolean}[Boolean]`
 a|True if constraints represented by this node contain no further redefinitions with respect to the node other, with the exception of `_node_id_` redefinition in `C_OBJECT` nodes. 
 

@@ -7,7 +7,7 @@ h|*Description*
 2+a|Abstract model of constraint on any kind of object node.
 
 h|*Inherit*
-2+|`xref:{class_archetype_constraint}[ARCHETYPE_CONSTRAINT]`
+2+|`xref:AOM2:constraint_model-overview.adoc#_archetype_constraint_class[ARCHETYPE_CONSTRAINT]`
 
 h|*Attributes*
 ^h|*Signature*
@@ -37,7 +37,7 @@ h|*0..1*
 a|True if this node and by implication all sub-nodes are deprecated for use.
 
 h|*0..1*
-|*sibling_order*: `xref:{class_sibling_order}[SIBLING_ORDER]`
+|*sibling_order*: `xref:AOM2:constraint_model-overview.adoc#_sibling_order_class[SIBLING_ORDER]`
 a|Optional indicator of order of this node with respect to another sibling. Only meaningful in a specialised archetype for a `C_OBJECT` within a `C_ATTRIBUTE` with `_is_multiple_ = True`.
 
 h|*Functions*
@@ -57,7 +57,7 @@ If local `occurrences` not set, always assume 0 as the lower bound.
 h|*1..1 +
 (effected)*
 |*c_conforms_to* ( +
-other: `xref:{class_c_object}[C_OBJECT][1]`, +
+other: `xref:AOM2:constraint_model-overview.adoc#_c_object_class[C_OBJECT][1]`, +
 rmcc: `xref:{class_function}[FUNCTION]<xref:{class_boolean}[Boolean],xref:{class_tuple2}[TUPLE2]<xref:{class_string}[String],xref:{class_string}[String]>>[1]` +
 ): `xref:{class_boolean}[Boolean]`
 a|True if constraints represented by this node, ignoring any sub-parts, are narrower or the same as other. 
@@ -70,7 +70,7 @@ Typically used during validation of specialised archetype nodes.
 h|*1..1 +
 (effected)*
 |*c_congruent_to* ( +
-other: `xref:{class_archetype_constraint}[ARCHETYPE_CONSTRAINT][1]` +
+other: `xref:AOM2:constraint_model-overview.adoc#_archetype_constraint_class[ARCHETYPE_CONSTRAINT][1]` +
 ): `xref:{class_boolean}[Boolean]`
 a|True if constraints represented by this node contain no further redefinitions with respect to the node `_other_`, with the exception of `_node_id_` redefinition in `C_OBJECT` nodes. 
 
@@ -78,7 +78,7 @@ Typically used to test if an inherited node locally contains any constraints.
 
 h|*1..1*
 |*occurrences_conforms_to* ( +
-other: `xref:{class_c_object}[C_OBJECT][1]` +
+other: `xref:AOM2:constraint_model-overview.adoc#_c_object_class[C_OBJECT][1]` +
 ): `xref:{class_boolean}[Boolean]`
 a|True if this node `_occurrences_` conforms to `_other.occurrences_`; `other` is assumed to be in a flat archetype.
 
@@ -88,7 +88,7 @@ a|True if this node `_occurrences_` conforms to `_other.occurrences_`; `other` i
 
 h|*1..1*
 |*node_id_conforms_to* ( +
-other: `xref:{class_c_object}[C_OBJECT][1]` +
+other: `xref:AOM2:constraint_model-overview.adoc#_c_object_class[C_OBJECT][1]` +
 ): `xref:{class_boolean}[Boolean]` +
  +
 __Post__: `Result = codes_conformant (node_id, other.node_id)`

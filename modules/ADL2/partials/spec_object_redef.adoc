@@ -136,7 +136,7 @@ When a flat form is created, the level at which any given node was introduced or
 
 == Occurrences Redefinition
 
-The `occurrences` constraint on an object node indicates how many instances within the data may conform to that constraint (see <<Container Attributes>>). Occurrences may be redefined for various reasons, including:
+The `occurrences` constraint on an object node indicates how many instances within the data may conform to that constraint (see <<cadl_overview.adoc#{underscore}container_attributes,Container Attributes>>). Occurrences may be redefined for various reasons, including:
 
 * mandation of specific specialised objects;
 * exclusion of certain objects from the parent;
@@ -146,7 +146,7 @@ A basic distinction should be understood prior to considering these specific cas
 
 A single-occurrence node is one whose effective occurrences has an upper limit of 1, i.e. it can occur either 0..1 or 1 times in data. This is the case for any object node under a single-valued attribute, as well as any object node under a container attribute, that has occurrences set to either 0..1 or 1. The occurrences of such a node can only be redefined in very limited ways, i.e. mandation or exclusion of 0..1.
 
-The situation is different for object nodes with multiple occurrences, i.e. whose effective occurrences upper limit is greater than one. The example provided above in <<Redefinition for Specialisation>> in which node `at0078|panel item|` (`id79|panel item|`) in the parent archetype is specialised into multiple nodes `at0078.1`, `at0078.2` (`id79.1`, `id79.2`) etc, illustrates the standard pattern. When a parent object (the `at0078` (`id79`) node in the parent archetype) has multiple occurrences, it defines a potential _multiplicity_ of data objects that may conform to it. When such a node is redefined into multiple specialised child nodes in a child archetype (each typically having its own occurrences constraint), the latter _specialisation set_ acts as a more precise restatement of the original multiplicity of objects. For this reason, the _collective occurrences_ of the specialised children is used to determine their validity, rather than any individual comparison of the occurrences of one specialised child to that of the parent.
+The situation is different for object nodes with multiple occurrences, i.e. whose effective occurrences upper limit is greater than one. The example provided above in <<redefinition_for_specialisation,Redefinition for Specialisation>> in which node `at0078|panel item|` (`id79|panel item|`) in the parent archetype is specialised into multiple nodes `at0078.1`, `at0078.2` (`id79.1`, `id79.2`) etc, illustrates the standard pattern. When a parent object (the `at0078` (`id79`) node in the parent archetype) has multiple occurrences, it defines a potential _multiplicity_ of data objects that may conform to it. When such a node is redefined into multiple specialised child nodes in a child archetype (each typically having its own occurrences constraint), the latter _specialisation set_ acts as a more precise restatement of the original multiplicity of objects. For this reason, the _collective occurrences_ of the specialised children is used to determine their validity, rather than any individual comparison of the occurrences of one specialised child to that of the parent.
 
 The formal definition of validity for occurrences in both cases is given by the VSONCO rule in the {openehr_am_aom2}#_validity_rules_3[openEHR AOM2 specification^].
 
@@ -311,7 +311,7 @@ If the whole attribute is to be removed, this can be done by redefining existenc
 
 == Single and Multiple Specialisation - When does Cloning Occur?
 
-In the <<Examples,examples shown above>> there are two types of redefinition occurring. The first shows a single node in the parent archetype redefined by a single node, both identified by `at0003` (`id4`). The second shows a single node in the parent redefined by multiple children. In the first example, the result of flattening is _in-place overlaying_, while in the second, it is _cloning with overlaying_. The consequence of the second type of redefinition is that the original parent node survives in its original form in the child archetype, whereas in the first, it is replaced. The reasoning behind this is that redefinition to multiple children is taken to mean that later redefinition to multiple children may occur in deeper child archetypes, and for this to occur, the original parent needs to be left intact. Conversely, the single-parent / single-child redefinition is taken to mean a logical refinement of an existing node, which should therefore be logically replaced.
+In the <<default_values.adoc#{underscore}examples,examples shown above>> there are two types of redefinition occurring. The first shows a single node in the parent archetype redefined by a single node, both identified by `at0003` (`id4`). The second shows a single node in the parent redefined by multiple children. In the first example, the result of flattening is _in-place overlaying_, while in the second, it is _cloning with overlaying_. The consequence of the second type of redefinition is that the original parent node survives in its original form in the child archetype, whereas in the first, it is replaced. The reasoning behind this is that redefinition to multiple children is taken to mean that later redefinition to multiple children may occur in deeper child archetypes, and for this to occur, the original parent needs to be left intact. Conversely, the single-parent / single-child redefinition is taken to mean a logical refinement of an existing node, which should therefore be logically replaced.
 
 The formal rule for whether cloning occurs or not is as follows:
 
@@ -951,7 +951,7 @@ Narrowing the slot is done with a replacement ` allow_archetype` statement conta
 
 == Unconstrained Attributes
 
-The `use_archetype` keyword can be used to specify child object constraints under any attribute in the reference model that is so far unconstrained by the flat parent of an archetype or template. Technically this could occur in any kind of archetype but would normally be in a specialised archetype or template. This is no more than the standard use of an 'external reference' (see <<_external_references>>).
+The `use_archetype` keyword can be used to specify child object constraints under any attribute in the reference model that is so far unconstrained by the flat parent of an archetype or template. Technically this could occur in any kind of archetype but would normally be in a specialised archetype or template. This is no more than the standard use of an 'external reference' (see <<cadl_overview.adoc#{underscore}external_references,External References>>).
 
 Any reference specified will have no slot, and is instead validity-checked against the appropriate part of the underlying reference model.
 
@@ -1026,7 +1026,7 @@ id-coded ADL2::
 
 For terminal objects (i.e. elements of the type `C_PRIMITIVE_OBJECT`) redefinition consists of:
 
-* addition of value constraints for nodes which in the parent are constrained solely to a primitive type (described in <<cADL_Constraints_Primitive_Types>>);
+* addition of value constraints for nodes which in the parent are constrained solely to a primitive type (described in <<cadl_overview.adoc#cADL_Constraints_Primitive_Types,cADL_Constraints_Primitive_Types>>);
 * redefined value ranges or sets using a narrower value range or set;
 * exclusions on the previously defined value ranges or sets which have the effect of narrowing the original range or set.
 
@@ -1092,7 +1092,7 @@ id-coded ADL2::
 
 == Terminology Constraint Redefinition
 
-Redefinition of a terminology constraint follows the golden rule that redefinitions may only narrow constraints, not widen them, to preserve the instance / archetype validity relation up the specialisation lineage. The golden rule holds only for formal constraints, and is modified by the possibility of <<_soft_terminology_constraint,non-binding constraint strengths>>.
+Redefinition of a terminology constraint follows the golden rule that redefinitions may only narrow constraints, not widen them, to preserve the instance / archetype validity relation up the specialisation lineage. The golden rule holds only for formal constraints, and is modified by the possibility of <<cadl_overview.adoc#{underscore}soft_terminology_constraint,non-binding constraint strengths>>.
 
 === Constrain Previously Unconstrained Node
 

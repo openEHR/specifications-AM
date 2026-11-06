@@ -158,7 +158,7 @@ id-coded ADL2::
 --------
 ====
 
-The `cardinality` keyword implies firstly that the property events must be of a container type, such as `List<T>` , `Set<T>` , `Bag<T>` . The integer range indicates the valid membership of the container; a single '\*' means the range '0..*', i.e. '0 to many'. The type of the container is not explicitly indicated, since it is usually defined by the information model. However, the semantics of a logical set (unique membership, ordering not significant), a logical list (ordered, non-unique membership) or a bag (unordered, non-unique membership) can be constrained using the additional keywords `ordered` , `unordered` , `unique` and `non-unique` within the cardinality constraint, as per the following examples:
+The `cardinality` keyword implies firstly that the property events must be of a container type, such as `List<T>` , `Set<T>` , `Bag<T>` . The integer range indicates the valid membership of the container; a single '\*' means the range '0..*', i.e. '0 to many'. The type of the container is not explicitly indicated, since it is usually defined by the information model. However, the semantics of a logical set (unique membership, ordering not significant), a logical list (ordered, non-unique membership) or a bag (unordered, non-unique membership) can be constrained using the additional keywords `ordered`, `unordered` and `unique` within the cardinality constraint, as per the following examples:
 
 [source, cadl]
 --------
@@ -166,6 +166,8 @@ The `cardinality` keyword implies firstly that the property events must be of a 
     events cardinality ∈ {*; unordered; unique} ∈ {         -- logical set
     events cardinality ∈ {*; unordered} ∈ {                 -- logical bag
 --------
+
+The keyword `unique` means logical uniqueness: no two members of the container may be equal by value. Object identity is not meant, and attributes that distinguish sibling objects anyway, such as their names, are not taken into account. When `unique` is not stated, membership is non-unique.
 
 If no numeric or ordering constraint on the cardinality of a container attribute is required, the keyword is used on its own, and simply indicates that the attribute is a container, as in the following example:
 
@@ -179,7 +181,7 @@ Although this is not strictly necessary for the purpose of expressing valid arch
 In theory, no cardinality constraint can be stronger than the semantics of the corresponding container in the relevant part of the reference model. However, in practice, developers often use lists to facilitate data integration, when the actual semantics are intended to be of a set; in such cases, they typically ensure set-like semantics in their own code rather than by using an `Set<T>` type. How such constraints are evaluated in practice may depend somewhat on knowledge of the software system.
 
 [.principle]
-A *cardinality constraint* must be used after any Reference Model container attribute name (or after its existence constraint, if there is one) in order to designate it as a container attribute. Additionally, it may constrain the number of member items it may have in the data, and whether it has "list", "set", or "bag" semantics, via the use of the keywords 'ordered', 'unordered', 'unique' and 'non-unique'.
+A *cardinality constraint* must be used after any Reference Model container attribute name (or after its existence constraint, if there is one) in order to designate it as a container attribute. Additionally, it may constrain the number of member items it may have in the data, and whether it has "list", "set", or "bag" semantics, via the use of the keywords 'ordered', 'unordered' and 'unique'.
 
 The numeric part of the cardinality constraint can take the values `\{0}`, `\{0..0}`, `\{0..n}`, `\{m..n}`, `{0..\*}`, or `\{*}`, or a syntactic equivalent. The first two of these constraints are unlikely to be useful, but there is no reason to prevent them. There is no default cardinality, since if none is shown, the relevant attribute is assumed to be single-valued (in the interests of uniformity in archetypes, this holds even for smarter parsers that can access the reference model and determine that the attribute is in fact a container).
 
@@ -208,7 +210,7 @@ All object nodes require a node identifier, guaranteeing the ability to generate
 [.principle]
 A *Node identifier* is required for every object node in an archetype.
 
-The node identifier can also perform a semantic function, that of giving a design-time meaning to the node, by equating the node identifier to some description. The use of node identifiers in archetypes is the main source of their expressive power. Each node identifier acts as a 'semantic marker' or 'override' on the node. Thus, in the example shown in <<The Underlying Information Model>>, the `ELEMENT` node is identified by the code `[at0009]` (`[id10]`) , which can be designated elsewhere in an archetype as meaning "diastolic blood pressure". In this way rich meaning is given to data constructed from a limited number of object types.
+The node identifier can also perform a semantic function, that of giving a design-time meaning to the node, by equating the node identifier to some description. The use of node identifiers in archetypes is the main source of their expressive power. Each node identifier acts as a 'semantic marker' or 'override' on the node. Thus, in the example shown in <<_the_underlying_information_model,The Underlying Information Model>>, the `ELEMENT` node is identified by the code `[at0009]` (`[id10]`) , which can be designated elsewhere in an archetype as meaning "diastolic blood pressure". In this way rich meaning is given to data constructed from a limited number of object types.
 
 *Not every object node identifier needs to be defined in the archetype terminology*: it is only mandatory for the identifiers of nodes defined under container attributes, and multiple alternative nodes under single-valued attributes. The identifiers of single object nodes defined under single-valued attributes may have terminology definitions, but don't typically need them, since the meaning is obvious from the attribute.
 
@@ -633,7 +635,7 @@ The following paths can be constructed:
 
 The above paths can all be used to reference the relevant nodes within the archetype in which they are defined, or within any specialised child archetype.
 
-Paths used in cADL are expressed in the ADL path syntax, described in detail in <<ADL Paths>>. ADL paths have the same alternating object/attribute structure implied in the general hierarchical structure of cADL, obeying the pattern `TYPE/attribute/TYPE/attribute/` ... .
+Paths used in cADL are expressed in the ADL path syntax, described in detail in xref:paths.adoc[ADL Paths]. ADL paths have the same alternating object/attribute structure implied in the general hierarchical structure of cADL, obeying the pattern `TYPE/attribute/TYPE/attribute/` ... .
 
 The examples above are _physical_ paths because they refer to object nodes using node identifier codes such as 'at0003' ('id4'). Physical paths can be rendered as _logical_ paths by adding the code meanings from the `terminology` section as annotations for node identifiers, if defined. Thus, the following two paths might be equivalent:
 
@@ -795,7 +797,7 @@ id-coded ADL2::
 --------
 ====
 
-Proxy objects provide an internal reuse mechanism. Specialised archetypes may redefine structures on such nodes as if they had been defined inline. This is described in more detail in <<Internal Reference (Proxy Object) Redefinition>>.
+Proxy objects provide an internal reuse mechanism. Specialised archetypes may redefine structures on such nodes as if they had been defined inline. This is described in more detail in <<spec_overview.adoc#{underscore}internal_reference_proxy_object_redefinition,Internal Reference (Proxy Object) Redefinition>>.
 
 [.principle]
 A proxy constraint object allows object constraints defined elsewhere to be re-used within the same archetype or a specialised child.
@@ -1072,11 +1074,11 @@ id-coded ADL2::
 --------
 ====
 
-where the 'vaccine' archetype is a specialisation of the 'medication' archetype. Redefinitions of this kind are described in more detail in <<External Reference Redefinition>>.
+where the 'vaccine' archetype is a specialisation of the 'medication' archetype. Redefinitions of this kind are described in more detail in <<spec_overview.adoc#{underscore}external_reference_redefinition,External Reference Redefinition>>.
 
 External references can of course also be defined under container attributes.
 
-The second use of external references is typically in templates, to specify an archetype or sub-template of a template for an attribute where no slot has been defined. This use is described in <<Unconstrained Attributes>>.
+The second use of external references is typically in templates, to specify an archetype or sub-template of a template for an attribute where no slot has been defined. This use is described in <<spec_overview.adoc#{underscore}unconstrained_attributes,Unconstrained Attributes>>.
 
 === Paths
 
@@ -1164,7 +1166,7 @@ The simplest possible slot has no includes or excludes, and effectively imposes 
 
 A slot is designed to be 'filled', i.e. to have one of the allowed archetypes chosen for use. This is done in a child archetype, almost always a template. A slot can also be 'closed', meaning no further fillers can be added.
 
-The actual specification of slot fillers, and also the 'closing' of slots is done in specialised archetypes, and is described in <<Slot Filling and Redefinition>>, in the chapter on specialisation.
+The actual specification of slot fillers, and also the 'closing' of slots is done in specialised archetypes, and is described in <<spec_overview.adoc#{underscore}slot_filling_and_redefinition,Slot Filling and Redefinition>>, in the chapter on specialisation.
 
 === Formal Semantics of include and exclude Constraints
 
@@ -1382,7 +1384,7 @@ id-coded ADL2::
 --------
 ====
 
-In ADL, slot-filling is considered a kind of specialisation of a slot, which enables slots to be filled by the same mechanism as any other kind of specialisation found in a child archetype. Slot-filling and other forms of slot redefinition are described in more detail in <<Slot Filling and Redefinition>>.
+In ADL, slot-filling is considered a kind of specialisation of a slot, which enables slots to be filled by the same mechanism as any other kind of specialisation found in a child archetype. Slot-filling and other forms of slot redefinition are described in more detail in <<spec_overview.adoc#{underscore}slot_filling_and_redefinition,Slot Filling and Redefinition>>.
 
 == Mixed Structures
 
