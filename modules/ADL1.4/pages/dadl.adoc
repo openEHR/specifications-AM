@@ -1,3 +1,5 @@
+include::partial$module_vars.adoc[]
+
 = dADL - Data ADL
 
 == Overview
@@ -117,7 +119,7 @@ Semi-colons are completely optional in dADL.
 
 == Paths
 
-Because dADL data is hierarchical, and all nodes are uniquely identified, a reliable path can be determined for every node in a dADL text. The syntax of paths in dADL is the standard ADL path syntax, described in detail in <<_adl_paths>>. Paths are directly convertible to XPath expressions for use in XML-encoded data.
+Because dADL data is hierarchical, and all nodes are uniquely identified, a reliable path can be determined for every node in a dADL text. The syntax of paths in dADL is the standard ADL path syntax, described in detail in xref:paths.adoc[ADL Paths]. Paths are directly convertible to XPath expressions for use in XML-encoded data.
 
 A typical ADL path used to refer to a node in a dADL text is as follows.
 
@@ -223,7 +225,7 @@ fruits = <"pear", "cumquat", "peach">
 some_primes = <1, 2, 3, 5>
 --------
 
-See <<Lists of Built-in Types>> for the complete description of list leaf types. This approach is fine for leaf data.  However for containers holding non-primitive values, including more container objects, a different syntax is needed. Consider by way of example that an instance of the container `List<Person>` could in theory be expressed as follows.
+See <<_lists_of_built_in_types,Lists of Built-in Types>> for the complete description of list leaf types. This approach is fine for leaf data.  However for containers holding non-primitive values, including more container objects, a different syntax is needed. Consider by way of example that an instance of the container `List<Person>` could in theory be expressed as follows.
 
 [source, odin]
 --------
@@ -321,7 +323,7 @@ end
 
 Other class specifications corresponding to the same data are possible, but will all be isomorphic to the above.
 
-How key values relate to a particular object structure depends on the object model being used during the dADL parsing process. It is possible to write a parser which makes reasonable inferences from an information model whose instances are represented as dADL text; it is also possible to include explicit typing information in the dADL itself (see <<Adding Type Information>> below).
+How key values relate to a particular object structure depends on the object model being used during the dADL parsing process. It is possible to write a parser which makes reasonable inferences from an information model whose instances are represented as dADL text; it is also possible to include explicit typing information in the dADL itself (see <<_adding_type_information,Adding Type Information>> below).
 
 ==== Paths
 
@@ -478,7 +480,7 @@ as follows:
 'a'
 ----
 
-Characters outside the low ASCII (0-127) range must be UTF-8 encoded, with a small number of backslash-quoted ASCII characters allowed, as described in <<File Encoding and Character Quoting>>.
+Characters outside the low ASCII (0-127) range must be UTF-8 encoded, with a small number of backslash-quoted ASCII characters allowed, as described in xref:file_encoding.adoc[File Encoding and Character Quoting].
 
 ==== String Data
 
@@ -504,7 +506,7 @@ text = <"And now the STORM-BLAST came, and he
         And chased us south along.">
 --------
 
-String data can be used to contain almost any other kind of data, which is intended to be parsed as some other formalism. Characters outside the low ASCII (0-127) range must be UTF-8 encoded, with a small number of backslash-quoted ASCII characters allowed, as described in <<_file_encoding_and_character_quoting>>.
+String data can be used to contain almost any other kind of data, which is intended to be parsed as some other formalism. Characters outside the low ASCII (0-127) range must be UTF-8 encoded, with a small number of backslash-quoted ASCII characters allowed, as described in xref:file_encoding.adoc[File Encoding and Character Quoting].
 
 ==== Integer Data
 Integers are represented simply as numbers, e.g.:
@@ -515,7 +517,7 @@ Integers are represented simply as numbers, e.g.:
 29e6
 ----
 
-Commas or periods for breaking long numbers are not allowed, since they confuse the use of commas used to denote list items (see <<Lists of Built-in Types>> below).
+Commas or periods for breaking long numbers are not allowed, since they confuse the use of commas used to denote list items (see <<_lists_of_built_in_types,Lists of Built-in Types>> below).
 
 ==== Real Data
 Real numbers are assumed whenever a decimal is detected in a number, e.g.:
@@ -654,7 +656,7 @@ ftp://get.this.file.com#section_5
 http://www.mozilla.org/products/firefox/upgrade/?application=thunderbird
 ----
 
-Encoding of special characters in URIs follows the {rfc3986}[IETF RFC 3986^], as described under <<File Encoding and Character Quoting>>.
+Encoding of special characters in URIs follows the {rfc3986}[IETF RFC 3986^], as described under xref:file_encoding.adoc[File Encoding and Character Quoting].
 
 ==== Coded Terms
 Coded terms are ubiquitous in medical and clinical information, and are likely to become so in most other industries, as ontologically-based information systems and the 'semantic web' emerge. The logical structure of a coded term is simple: it consists of an identifier of a terminology, and an identifier of a code within that terminology. The dADL string representation is as follows:
@@ -1232,17 +1234,17 @@ UTF8CHAR (([\xC2-\xDF][\x80-\xBF])|(\xE0[\xA0-\xBF][\x80-\xBF])|([\xE1-\xEF][\x8
 a[ct][0-9.]+
 
 ----------/* V_ISO8601_EXTENDED_DATE_TIME YYYY-MM-DDThh:mm:ss[,sss][Z|+/-nnnn] */ ---
-[0-9]{4}-[0-1][0-9]-[0-3][0-9]T[0-2][0-9]:[0-6][0-9]:[0-6][0-9](,[0-9]+)?(Z|[+-][0-9]{4})? |
-[0-9]{4}-[0-1][0-9]-[0-3][0-9]T[0-2][0-9]:[0-6][0-9](Z|[+-][0-9]{4})? |
-[0-9]{4}-[0-1][0-9]-[0-3][0-9]T[0-2][0-9](Z|[+-][0-9]{4})?
+[0-9]\{4}-[0-1][0-9]-[0-3][0-9]T[0-2][0-9]:[0-6][0-9]:[0-6][0-9](,[0-9]+)?(Z|[+-][0-9]\{4})? |
+[0-9]\{4}-[0-1][0-9]-[0-3][0-9]T[0-2][0-9]:[0-6][0-9](Z|[+-][0-9]\{4})? |
+[0-9]\{4}-[0-1][0-9]-[0-3][0-9]T[0-2][0-9](Z|[+-][0-9]\{4})?
 
 ----------/* V_ISO8601_EXTENDED_TIME hh:mm:ss[,sss][Z|+/-nnnn] */ --------
-[0-2][0-9]:[0-6][0-9]:[0-6][0-9](,[0-9]+)?(Z|[+-][0-9]{4})? |
-[0-2][0-9]:[0-6][0-9](Z|[+-][0-9]{4})?
+[0-2][0-9]:[0-6][0-9]:[0-6][0-9](,[0-9]+)?(Z|[+-][0-9]\{4})? |
+[0-2][0-9]:[0-6][0-9](Z|[+-][0-9]\{4})?
 
 ----------/* V_ISO8601_EXTENDED_DATE YYYY-MM-DD */ ------------------------
-[0-9]{4}-[0-1][0-9]-[0-3][0-9] |
-[0-9]{4}-[0-1][0-9]
+[0-9]\{4}-[0-1][0-9]-[0-3][0-9] |
+[0-9]\{4}-[0-1][0-9]
 
 ----------/* V_ISO8601_DURATION PnYnMnWnDTnnHnnMnnS */ -------------
 -- here we allow a deviation from the standard to allow weeks to be

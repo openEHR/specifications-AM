@@ -1,3 +1,5 @@
+include::partial$module_vars.adoc[]
+
 = Terminology Integration
 
 Previous sections have provided the syntax possibilities for expressing terminological constraints, definitions, value sets and bindings in an archetype. This section describes the semantics of constraints on terminological entities, and how these constraints are resolved to concrete sets of terms.
@@ -37,7 +39,7 @@ Connection with external terminology is managed using in the `term_binding` sect
 
 == Term Constraint Basics
 
-Expressing terminology constraints in cADL was briefly described in <<cADL_Terminology_Constraints>>. Constraints in the `definition` section of an archetype are only a small part of the picture. The targets of the at- and ac- codes are defined in the archetype `terminology` section, potentially with bindings to external terminology. In order to illustrate the approach clearly, the cADL example from earlier is repeated here, minus the node containing the assumed value, and this time with an extract from the terminology section.
+Expressing terminology constraints in cADL was briefly described in <<cadl_overview.adoc#cADL_Terminology_Constraints,Terminology Constraints>>. Constraints in the `definition` section of an archetype are only a small part of the picture. The targets of the at- and ac- codes are defined in the archetype `terminology` section, potentially with bindings to external terminology. In order to illustrate the approach clearly, the cADL example from earlier is repeated here, minus the node containing the assumed value, and this time with an extract from the terminology section.
 
 [tabs,sync-group-id=adl-example]
 ====
@@ -51,7 +53,7 @@ at-coded ADL2::
 definition
     ...
         items matches {
-            ELEMENT[at0010] occurrences matches {0..1} matches {
+            ELEMENT[at0010] occurrences matches \{0..1} matches {
                 name matches {
                     DV_CODED_TEXT[at9000] matches {
                         defining_code matches {[at0004]}        -- set name to 'Substance'
@@ -116,7 +118,7 @@ id-coded ADL2::
 definition
     ...
         items matches {
-            ELEMENT[id11] occurrences matches {0..1} matches {
+            ELEMENT[id11] occurrences matches \{0..1} matches {
                 name matches {
                     DV_CODED_TEXT[id8] matches {
                         defining_code matches {[at5]}        -- set name to 'Substance'
@@ -403,7 +405,7 @@ When it comes to sharing data with external data partners, there may be a requir
 
 The upshot of these considerations is that the choice of which kind of term to use (internal or external) in a given deployment or situation is deferrable to a later stage than archetype authoring. The approach ADL takes is that 'source form' archetypes and templates always use internal coding and optionally binding, and that if external codes are to be directly substituted for the internal codes for some deployment situation for certain fields in an archetype or template, this is specified as an option at the point of operational template generation.
 
-As described in <<cADL_Terminology_Constraints>>, constraints of the form `[acN]` and `[atN]` are replaced by `[acN@ttttt]` and `[atN@ttttt]`. A generated operational template that includes the above archetype, with the choice to use the `snomed_ct` binding's external terms made on some nodes, could include the following content.
+As described in <<cadl_overview.adoc#cADL_Terminology_Constraints,Terminology Constraints>>, constraints of the form `[acN]` and `[atN]` are replaced by `[acN@ttttt]` and `[atN@ttttt]`. A generated operational template that includes the above archetype, with the choice to use the `snomed_ct` binding's external terms made on some nodes, could include the following content.
 
 [tabs,sync-group-id=adl-example]
 ====
@@ -414,7 +416,7 @@ at-coded ADL2::
     --
     -- extract of operational template based on openehr-ehr-EVALUATION.term_constraint_variations.v0.0.1
     --
-    ELEMENT[at0010] occurrences matches {0..1} matches {
+    ELEMENT[at0010] occurrences matches \{0..1} matches {
         name matches {
             DV_CODED_TEXT[at9000] matches {
                 defining_code matches {[at0004@snomed_ct]}        -- set name to 'Substance'
@@ -435,7 +437,7 @@ id-coded ADL2::
     --
     -- extract of operational template based on openehr-ehr-EVALUATION.term_constraint_variations.v0.0.1
     --
-    ELEMENT[id11] occurrences matches {0..1} matches {
+    ELEMENT[id11] occurrences matches \{0..1} matches {
         name matches {
             DV_CODED_TEXT[id8] matches {
                 defining_code matches {[at5@snomed_ct]}        -- set name to 'Substance'

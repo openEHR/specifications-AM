@@ -1,3 +1,5 @@
+include::partial$module_vars.adoc[]
+
 //
 // ============================================ Asciidoc HEADER =============================================
 //
@@ -7,7 +9,11 @@
 //
 
 
-= {spec_title}
+= {spec_title} [.spec-status.spec-status-superseded]#{spec_status}#
+
+The scheme used to uniquely name, version, and govern archetypes and templates across repositories and throughout their lifecycle. Covers human-readable identifiers, machine identifiers, and the rules for managing versions and revisions of clinical knowledge artefacts. The scheme distinguishes between concept identifiers, which are stable across versions, and version-qualified identifiers, which pinpoint a specific release. It is the basis for interoperable archetype referencing across governance domains, enabling safe evolution of clinical knowledge artefacts over time.
+
+
 
 
 //
@@ -17,52 +23,4 @@
 //
 // --------------------------------------------- Preface -----------------------------------------------
 //
-== Acknowledgements
 
-=== Primary Author
-
-* Thomas Beale, Ars Semantica, UK; openEHR International Board.
-
-=== Contributors
-
-This specification has benefited from input from the openEHR and wider health informatics community. The openEHR Foundation would like to recognise the following people and institutions.
-
-* Sebastian Garde PhD, Ocean Informatics
-* Heather Leslie MD, Ocean Informatics
-* Ian McNicoll MD, MSc, Ocean Informatics UK
-* Martin van der Meer, Code24, Netherlands
-* David Moner PhD, Universitat Politècnica de València, Spain
-* Erik Sundvall PhD, Linkoping University, Sweden
-
-=== Trademarks
-
-* 'openEHR' is a registered trademark of The openEHR Foundation
-* 'SNOMED CT' is a registered trademark of IHTSDO
-
-=== Supporters
-
-The work reported in this paper has been funded by the following organisations:
-
-* the {openehr_industry_partners}[openEHR Industry Partners^];
-* Better d.o.o, Slovenia
-* Ocean Informatics, UK
-
-//
-// --------------------------------------------- TOC -----------------------------------------------
-//
-//toc::[left]
-
-//
-// --------------------------------------------- CHAPTERS -----------------------------------------------
-//
-
-== Superseded
-
-This specification has been superseded. Its content - the identification system for openEHR knowledge artefacts, covering human-readable and machine identifiers, versioning, lifecycle management, distributed governance, referencing and artefact authentication - has been relocated to the BASE component as the openEHR {openehr_base_artefact_identification}[Artefact Identification^] specification, which is now the normative source. The identifier types it defines are realised by the `Hrid` primitive in the openEHR {openehr_foundation_types}[Foundation Types^] specification and by `ARCHETYPE_ID` and `TEMPLATE_ID` in the openEHR {openehr_base_types}[Base Types^] specification.
-
-Released versions of this document remain available with the corresponding AM releases.
-
-//
-// --------------------------------------------- Amendment Record -----------------------------------------------
-//
-:sectnums!:

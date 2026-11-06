@@ -4,7 +4,7 @@ A small number of things can be redefined on attributes, including existence and
 
 == Existence Redefinition: Mandation and Exclusion
 
-All attributes mentioned in an archetype have an _existence_ constraint, indicating whether a value is required or not. The constraint is either stated explicitly - typically done for single-valued attributes - or it is the value from the reference model - typical for multiply-valued attributes. In both cases, the existence of an attribute in a parent archetype can be redefined in a specialised archetype using the standard cADL syntax. In the following example, an implicit existence constraint picked up from the reference model of `{0..1}` is redefined in a child archetype to `{1}` , i.e. mandatory.
+All attributes mentioned in an archetype have an _existence_ constraint, indicating whether a value is required or not. The constraint is either stated explicitly - typically done for single-valued attributes - or it is the value from the reference model - typical for multiply-valued attributes. In both cases, the existence of an attribute in a parent archetype can be redefined in a specialised archetype using the standard cADL syntax. In the following example, an implicit existence constraint picked up from the reference model of `\{0..1}` is redefined in a child archetype to `\{1}` , i.e. mandatory.
 
 Parent archetype:
 
@@ -42,7 +42,7 @@ at-coded ADL2::
 [source, cadl]
 --------
     OBSERVATION[at0000.1] ∈ {              -- paediatric blood pressure measurement
-        /protocol existence ∈ {1} ∈ {
+        /protocol existence ∈ \{1} ∈ {
             -- etc
         }
     }
@@ -53,14 +53,14 @@ id-coded ADL2::
 [source, cadl]
 --------
     OBSERVATION[id1.1] ∈ {              -- paediatric blood pressure measurement
-        /protocol existence ∈ {1} ∈ {
+        /protocol existence ∈ \{1} ∈ {
             -- etc
         }
     }
 --------
 ====
 
-Redefinition of existence to `{0}` by this method denotes exclusion, i.e. removal of the entire attribute (including all sub-structure) from the resulting structure. In an archetype, it is likely to indicate poor design, given that the decision to remove optional attributes is much more likely to be local, and therefore more appropriate in templates rather than archetypes; within a template it would be perfectly normal. The following example shows the protocol attribute in the above `OBSERVATION` archetype being excluded in this way:
+Redefinition of existence to `\{0}` by this method denotes exclusion, i.e. removal of the entire attribute (including all sub-structure) from the resulting structure. In an archetype, it is likely to indicate poor design, given that the decision to remove optional attributes is much more likely to be local, and therefore more appropriate in templates rather than archetypes; within a template it would be perfectly normal. The following example shows the protocol attribute in the above `OBSERVATION` archetype being excluded in this way:
 
 [tabs,sync-group-id=adl-example]
 ====
@@ -69,7 +69,7 @@ at-coded ADL2::
 [source, cadl]
 --------
    OBSERVATION[at0000] ∈ {                -- paediatric blood pressure measurement
-        /protocol existence ∈ {0}
+        /protocol existence ∈ \{0}
     }
 --------
 
@@ -78,7 +78,7 @@ id-coded ADL2::
 [source, cadl]
 --------
    OBSERVATION[id1] ∈ {                -- paediatric blood pressure measurement
-        /protocol existence ∈ {0}
+        /protocol existence ∈ \{0}
     }
 --------
 ====
@@ -94,7 +94,7 @@ The following sub-sections describe specialisation semantics specific to contain
 The _cardinality_ constraint defines how many object instances can be in the container within the data (not the archetype). In a specialised archetype, cardinality can be redefined to be a narrower range than in the parent, further limiting the valid ranges of items in the data that may occur within the container. This would normally only make sense if refinements were made to the occurrences of the contained items, i.e.:
 
 * narrowing the occurrences range of an object;
-* excluding an object by setting its occurrences to `{0}`;
+* excluding an object by setting its occurrences to `\{0}`;
 * adding new objects, which themselves will have occurrences constraints;
 * setting some object occurrences to mandatory, and the enclosing cardinality lower limit to some non-zero value.
 
@@ -111,8 +111,8 @@ at-coded ADL2::
 [source, cadl]
 --------
     ITEM_LIST[at0002] ∈ {                                      -- general check list
-        items cardinality ∈ {0..*} ∈ {                      -- any number of items
-            ELEMENT[at0011] occurrences ∈ {0..*} ∈ {...}      -- generic checklist item
+        items cardinality ∈ \{0..*} ∈ {                      -- any number of items
+            ELEMENT[at0011] occurrences ∈ \{0..*} ∈ {...}      -- generic checklist item
         }
     }
 --------
@@ -122,8 +122,8 @@ id-coded ADL2::
 [source, cadl]
 --------
     ITEM_LIST[id3] ∈ {                                      -- general check list
-        items cardinality ∈ {0..*} ∈ {                      -- any number of items
-            ELEMENT[id12] occurrences ∈ {0..*} ∈ {...}      -- generic checklist item
+        items cardinality ∈ \{0..*} ∈ {                      -- any number of items
+            ELEMENT[id12] occurrences ∈ \{0..*} ∈ {...}      -- generic checklist item
         }
     }
 --------
@@ -139,12 +139,12 @@ at-coded ADL2::
 --------
     ITEM_LIST[at0002] ∈ {                                      -- pre-operative check list
         /items cardinality ∈ {3..10} ∈ {                    -- at least 3 mandatory items
-            ELEMENT[at0011.1] occurrences ∈ {1} ∈ {...}       -- item #1
-            ELEMENT[at0011.2] occurrences ∈ {1} ∈ {...}       -- item #2
-            ELEMENT[at0011.3] occurrences ∈ {1} ∈ {...}       -- item #3
-            ELEMENT[at0011.4] occurrences ∈ {0..1} ∈ {...}    -- item #4
+            ELEMENT[at0011.1] occurrences ∈ \{1} ∈ {...}       -- item #1
+            ELEMENT[at0011.2] occurrences ∈ \{1} ∈ {...}       -- item #2
+            ELEMENT[at0011.3] occurrences ∈ \{1} ∈ {...}       -- item #3
+            ELEMENT[at0011.4] occurrences ∈ \{0..1} ∈ {...}    -- item #4
             ...
-            ELEMENT[at0011.10] occurrences ∈ {0..1} ∈ {...}   -- item #10
+            ELEMENT[at0011.10] occurrences ∈ \{0..1} ∈ {...}   -- item #10
         }
     }
 --------
@@ -155,12 +155,12 @@ id-coded ADL2::
 --------
     ITEM_LIST[id3] ∈ {                                      -- pre-operative check list
         /items cardinality ∈ {3..10} ∈ {                    -- at least 3 mandatory items
-            ELEMENT[id12.1] occurrences ∈ {1} ∈ {...}       -- item #1
-            ELEMENT[id12.2] occurrences ∈ {1} ∈ {...}       -- item #2
-            ELEMENT[id12.3] occurrences ∈ {1} ∈ {...}       -- item #3
-            ELEMENT[id12.4] occurrences ∈ {0..1} ∈ {...}    -- item #4
+            ELEMENT[id12.1] occurrences ∈ \{1} ∈ {...}       -- item #1
+            ELEMENT[id12.2] occurrences ∈ \{1} ∈ {...}       -- item #2
+            ELEMENT[id12.3] occurrences ∈ \{1} ∈ {...}       -- item #3
+            ELEMENT[id12.4] occurrences ∈ \{0..1} ∈ {...}    -- item #4
             ...
-            ELEMENT[id12.10] occurrences ∈ {0..1} ∈ {...}   -- item #10
+            ELEMENT[id12.10] occurrences ∈ \{0..1} ∈ {...}   -- item #10
         }
     }
 --------
@@ -177,18 +177,18 @@ at-coded ADL2::
 [source, cadl]
 --------
     items cardinality ∈ {0..*; ordered} ∈ {
-        ELEMENT[at0001] occurrences ∈ {1} ∈ {...}              -- Problem
-        ELEMENT[at0002] occurrences ∈ {0..1} ∈ {...}           -- Date of initial onset
-        ELEMENT[at0003] occurrences ∈ {0..1} ∈ {...}           -- Age at initial onset
-        ELEMENT[at0004] occurrences ∈ {0..1} ∈ {...}           -- Severity
-        ELEMENT[at0008] occurrences ∈ {0..1} ∈ {...}           -- Clinical description
-        ELEMENT[at0009] occurrences ∈ {0..1} ∈ {...}           -- Date clinically received
-        CLUSTER[at0010] occurrences ∈ {0..*} ∈ {...}           -- Location
-        CLUSTER[at0013] occurrences ∈ {0..1} ∈ {...}           -- Aetiology
-        CLUSTER[at0017] occurrences ∈ {0..1} ∈ {...}           -- Occurrences or exacerb'ns
-        CLUSTER[at0025] occurrences ∈ {0..1} ∈ {...}           -- Related problems
-        ELEMENT[at0029] occurrences ∈ {0..1} ∈ {...}           -- Date of resolution
-        ELEMENT[at0030] occurrences ∈ {0..1} ∈ {...}           -- Age at resolution
+        ELEMENT[at0001] occurrences ∈ \{1} ∈ {...}              -- Problem
+        ELEMENT[at0002] occurrences ∈ \{0..1} ∈ {...}           -- Date of initial onset
+        ELEMENT[at0003] occurrences ∈ \{0..1} ∈ {...}           -- Age at initial onset
+        ELEMENT[at0004] occurrences ∈ \{0..1} ∈ {...}           -- Severity
+        ELEMENT[at0008] occurrences ∈ \{0..1} ∈ {...}           -- Clinical description
+        ELEMENT[at0009] occurrences ∈ \{0..1} ∈ {...}           -- Date clinically received
+        CLUSTER[at0010] occurrences ∈ \{0..*} ∈ {...}           -- Location
+        CLUSTER[at0013] occurrences ∈ \{0..1} ∈ {...}           -- Aetiology
+        CLUSTER[at0017] occurrences ∈ \{0..1} ∈ {...}           -- Occurrences or exacerb'ns
+        CLUSTER[at0025] occurrences ∈ \{0..1} ∈ {...}           -- Related problems
+        ELEMENT[at0029] occurrences ∈ \{0..1} ∈ {...}           -- Date of resolution
+        ELEMENT[at0030] occurrences ∈ \{0..1} ∈ {...}           -- Age at resolution
     }
 --------
 
@@ -197,18 +197,18 @@ id-coded ADL2::
 [source, cadl]
 --------
     items cardinality ∈ {0..*; ordered} ∈ {
-        ELEMENT[id2] occurrences ∈ {1} ∈ {...}               -- Problem
-        ELEMENT[id3] occurrences ∈ {0..1} ∈ {...}            -- Date of initial onset
-        ELEMENT[id4] occurrences ∈ {0..1} ∈ {...}            -- Age at initial onset
-        ELEMENT[id5] occurrences ∈ {0..1} ∈ {...}            -- Severity
-        ELEMENT[id9] occurrences ∈ {0..1} ∈ {...}            -- Clinical description
-        ELEMENT[id10] occurrences ∈ {0..1} ∈ {...}           -- Date clinically received
-        CLUSTER[id11] occurrences ∈ {0..*} ∈ {...}           -- Location
-        CLUSTER[id14] occurrences ∈ {0..1} ∈ {...}           -- Aetiology
-        CLUSTER[id18] occurrences ∈ {0..1} ∈ {...}           -- Occurrences or exacerb'ns
-        CLUSTER[id26] occurrences ∈ {0..1} ∈ {...}           -- Related problems
-        ELEMENT[id30] occurrences ∈ {0..1} ∈ {...}           -- Date of resolution
-        ELEMENT[id31] occurrences ∈ {0..1} ∈ {...}           -- Age at resolution
+        ELEMENT[id2] occurrences ∈ \{1} ∈ {...}               -- Problem
+        ELEMENT[id3] occurrences ∈ \{0..1} ∈ {...}            -- Date of initial onset
+        ELEMENT[id4] occurrences ∈ \{0..1} ∈ {...}            -- Age at initial onset
+        ELEMENT[id5] occurrences ∈ \{0..1} ∈ {...}            -- Severity
+        ELEMENT[id9] occurrences ∈ \{0..1} ∈ {...}            -- Clinical description
+        ELEMENT[id10] occurrences ∈ \{0..1} ∈ {...}           -- Date clinically received
+        CLUSTER[id11] occurrences ∈ \{0..*} ∈ {...}           -- Location
+        CLUSTER[id14] occurrences ∈ \{0..1} ∈ {...}           -- Aetiology
+        CLUSTER[id18] occurrences ∈ \{0..1} ∈ {...}           -- Occurrences or exacerb'ns
+        CLUSTER[id26] occurrences ∈ \{0..1} ∈ {...}           -- Related problems
+        ELEMENT[id30] occurrences ∈ \{0..1} ∈ {...}           -- Date of resolution
+        ELEMENT[id31] occurrences ∈ \{0..1} ∈ {...}           -- Age at resolution
     }
 --------
 ====
@@ -224,10 +224,10 @@ at-coded ADL2::
     /data[at0002]/items ∈ {
         before [at0002]
         ELEMENT[at0001.1] ∈ {...}                             -- Diagnosis
-        ELEMENT[at0.32] occurrences ∈ {0..1} ∈ {...}          -- Status
+        ELEMENT[at0.32] occurrences ∈ \{0..1} ∈ {...}          -- Status
         after [at0025]
-        CLUSTER[at0.35] occurrences ∈ {0..1} ∈ {...}          -- Diagnostic criteria
-        CLUSTER[at0.37] occurrences ∈ {0..1} ∈ {...}          -- Clinical Staging
+        CLUSTER[at0.35] occurrences ∈ \{0..1} ∈ {...}          -- Diagnostic criteria
+        CLUSTER[at0.37] occurrences ∈ \{0..1} ∈ {...}          -- Clinical Staging
     }
 --------
 
@@ -238,10 +238,10 @@ id-coded ADL2::
     /data[id3]/items ∈ {
         before [id3]
         ELEMENT[id2.1] ∈ {...}                                -- Diagnosis
-        ELEMENT[id0.32] occurrences ∈ {0..1} ∈ {...}          -- Status
+        ELEMENT[id0.32] occurrences ∈ \{0..1} ∈ {...}          -- Status
         after [id26]
-        CLUSTER[id0.35] occurrences ∈ {0..1} ∈ {...}          -- Diagnostic criteria
-        CLUSTER[id0.37] occurrences ∈ {0..1} ∈ {...}          -- Clinical Staging
+        CLUSTER[id0.35] occurrences ∈ \{0..1} ∈ {...}          -- Diagnostic criteria
+        CLUSTER[id0.37] occurrences ∈ \{0..1} ∈ {...}          -- Clinical Staging
     }
 --------
 ====
@@ -254,14 +254,14 @@ at-coded ADL2::
 +
 [source, cadl]
 --------
-    after [at0025] CLUSTER[at0.35] occurrences ∈ {0..1} ∈ {...}  -- etc
+    after [at0025] CLUSTER[at0.35] occurrences ∈ \{0..1} ∈ {...}  -- etc
 --------
 
 id-coded ADL2::
 +
 [source, cadl]
 --------
-    after [id26] CLUSTER[id0.35] occurrences ∈ {0..1} ∈ {...}  -- etc
+    after [id26] CLUSTER[id0.35] occurrences ∈ \{0..1} ∈ {...}  -- etc
 --------
 ====
 

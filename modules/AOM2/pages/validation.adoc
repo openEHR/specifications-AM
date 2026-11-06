@@ -1,3 +1,5 @@
+include::partial$module_vars.adoc[]
+
 = Validation and Transformation Semantics
 
 This section provides a guide for validation, flattening and diffing, based on the ADL workbench reference compiler. The sequence of processing a given archetype A in the Workbench is as follows:
@@ -119,7 +121,7 @@ Flattening is conceptually a simple operation - the overlaying of a differential
 * nodes in the child can override nodes of different AOM types in the parent in specific circumstances;
 * sibling ordering markers;
 * overlays with cloning: where more than one child specialisation node exists for a single parent complex structure, the parent structure will be cloned before each overlay;
-* deletions (`existence matches {0}`, `occurrences matches {0}`).
+* deletions (`existence matches \{0}`, `occurrences matches \{0}`).
 * proxy reference targets are expanded inline if the child archetype overrides them.    
 
 The algorithm used in the ADL Workbench provide a reasonable template for achieving proper flattening of AOM archetypes and templates.

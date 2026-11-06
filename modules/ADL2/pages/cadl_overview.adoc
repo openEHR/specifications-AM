@@ -1,3 +1,5 @@
+include::partial$module_vars.adoc[]
+
 = cADL - Constraint ADL
 == Overview
 
@@ -14,7 +16,7 @@ at-coded ADL2::
         name matches {                                   -- constraint on PERSON.name
             TEXT[at0001] matches {/.+/}                  -- any non-empty string
         }
-        addresses cardinality matches {1..*} matches {   -- constraint on
+        addresses cardinality matches \{1..*} matches {   -- constraint on
             ADDRESS[at0002] matches {                    -- PERSON.addresses
                 -- etc --
             }
@@ -30,7 +32,7 @@ id-coded ADL2::
         name matches {                                   -- constraint on PERSON.name
             TEXT[id2] matches {/.+/}                     -- any non-empty string
         }
-        addresses cardinality matches {1..*} matches {   -- constraint on
+        addresses cardinality matches \{1..*} matches {   -- constraint on
             ADDRESS[id3] matches {                       -- PERSON.addresses
                 -- etc --
             }
@@ -52,7 +54,7 @@ at-coded ADL2::
         name ∈ {                                  -- constraint on PERSON.name
             TEXT[at0001] ∈ {/..*/}                -- any non-empty string
         }
-        addresses cardinality ∈ {1..*} ∈ {        -- constraint on
+        addresses cardinality ∈ \{1..*} ∈ {        -- constraint on
             ADDRESS[at0002] ∈ {                   -- PERSON.addresses
                 -- etc --
             }
@@ -67,7 +69,7 @@ id-coded ADL2::
         name ∈ {                               -- constraint on PERSON.name
             TEXT[id2] ∈ {/..*/}                -- any non-empty string
         }
-        addresses cardinality ∈ {1..*} ∈ {     -- constraint on
+        addresses cardinality ∈ \{1..*} ∈ {     -- constraint on
             ADDRESS[id3] ∈ {                   -- PERSON.addresses
                 -- etc --
             }

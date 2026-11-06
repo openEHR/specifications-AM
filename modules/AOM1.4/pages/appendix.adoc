@@ -1,0 +1,72 @@
+include::partial$module_vars.adoc[]
+
+= Appendix
+
+
+== Acknowledgements
+
+=== Primary Author
+
+* Thomas Beale, Ars Semantica, UK
+
+=== Supporters
+
+The work reported in this paper has been funded by the following organisations:
+
+* UCL (University College London) - Centre for Health Informatics and Multiprofessional Education (CHIME);
+* Ocean Informatics.
+
+Special thanks to Prof David Ingram, founding Director of CHIME, UCL, who provided a vision and collegial working environment ever since the days of GEHR (1992).
+
+=== Trademarks
+
+* 'openEHR' is a trademark of the openEHR Foundation
+* 'Java' is a registered trademark of Oracle Corporation
+* 'Microsoft' is a trademark of the Microsoft Corporation
+
+
+
+
+
+ifdef::package_qualifiers[]
+endif::[]
+== Conformance
+
+Conformance of a data or software artifact to an openEHR specification is determined by a formal test of that artifact against the relevant {openehr_its_component}[openEHR Implementation Technology Specification(s) (ITSs)^], such as an IDL interface or an XML-schema. Since ITSs are formal derivations from underlying models, ITS conformance indicates model conformance.
+
+== Background
+
+=== What is an Archetype?
+
+Archetypes are constraint-based models of domain entities, or what some might call "structured business rules". Each archetype describes configurations of data instances whose classes are described in a reference model; the instance configurations are considered to be valid exemplars of a particular domain concept. Thus, in medicine, an archetype might be designed to constrain configurations of instances of a simple node/arc information model, that express a "microbiology test result" or a "physical examination". Archetypes can be composed, specialised, and templated for local use. The archetype concept has been described in detail by citenp:[Beale2000], citenp:[Beale2002]. Most of the detailed formal semantics are described in the {openehr_am_adl14}[openEHR Archetype Definition Language^]. The openEHR archetype framework is described in the {openehr_am_overview}[openEHR Archetypes Technical Overview^].
+
+=== Context
+
+The object model described in this document relates to linguistic forms of archetypes as shown in the figure below. The model (upper right in the figure) is the object-oriented semantic equivalent of the ADL the Archetype Definition Language BNF language definition, and, by extension, any formal transformation of it. Instances of the model (lower right on the figure) are themselves archetypes, and correspond one-to-one with archetype documents expressed in ADL or a related language.
+
+[.text-center]
+.Relationship of Archetype Object Model to Archetype Languages
+image::diagrams/syntax_model_relationship.png[id=syntax_model_relationship, align="center", width=80%]
+
+== Tools
+
+Various tools exist for creating and processing archetypes. The {openehr_awb}[ADL Workbench^] is a reference compiler, visualiser and editor. The openEHR tools can be {modelling_tools}[downloaded from the website^] .
+Source projects can be found at the {openehr_git}[openEHR Github project^].
+
+== Changes from Previous Versions
+
+=== Version 0.6 to 2.0
+
+As part of the changes carried out to ADL version 1.3, the archetype object model specified here is revised, also to version 2.0, to indicate that ADL and the AOM can be regarded as 100% synchronised specifications.
+
+* added a new attribute `_adl_version_ : String` to the `ARCHETYPE` class;
+* changed name of `ARCHETYPE._concept_code_` attribute to `_concept_`.
+
+
+ifdef::package_qualifiers[]
+:pkg: org.openehr.am.aom14.
+endif::[]
+
+:sectnums!:
+
+include::partial$amendment_record.adoc[]

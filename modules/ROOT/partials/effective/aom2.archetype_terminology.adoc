@@ -17,19 +17,19 @@ Terminology: xref:TERM:SupportTerminology:terminology.adoc#_languages[openEHR co
 |*concept_code*: `xref:{class_string}[String]` [1..1]
 a|Term code defining the meaning of the artefact as a whole, and always used as the at-code (at-coded archetypes) or id-code (id-coded archetypes) on the root node of the artefact. Must be defined in the `_term_definitions_` property.
 
-|*term_definitions*: `xref:{class_hash}[Hash]<xref:{class_string}[String],xref:{class_hash}[Hash]<xref:{class_string}[String],xref:{class_aom2_archetype_term}[ARCHETYPE_TERM]>>` [1..1]
+|*term_definitions*: `xref:{class_hash}[Hash]<xref:{class_string}[String],xref:{class_hash}[Hash]<xref:{class_string}[String],xref:AOM2:terminology_package.adoc#_archetype_term_class[ARCHETYPE_TERM]>>` [1..1]
 a|Directory of term definitions as a two-level table. The outer hash keys are language codes, e.g. `"en"`, `"de"`, while the inner hash keys are term codes, e.g. `"at0017"`, `"at0004"` (at-coded archetypes) or `"id17"`, `"at4"` (id-coded archetypes).
 
 |*term_bindings*: `xref:{class_hash}[Hash]<xref:{class_string}[String],xref:{class_hash}[Hash]<xref:{class_string}[String],xref:{class_uri}[Uri]>>` [0..1]
 a|Directory of bindings to external terminology codes and value sets, as a two-level table. The outer hash keys are terminology ids, e.g. `"SNOMED_CT"`, and the inner hash keys are constraint codes, e.g. `"at0004"`, `"at4"`, "ac13"` or paths. The indexed `Uri` objects represent references to externally defined resources, either terms, ontology concepts, or terminology subsets / ref-sets.
 
-|*owner_archetype*: `xref:{class_aom2_archetype}[ARCHETYPE]` [1..1]
+|*owner_archetype*: `xref:AOM2:archetype_package.adoc#_archetype_class[ARCHETYPE]` [1..1]
 a|Archetype that owns this terminology.
 
-|*value_sets*: `xref:{class_hash}[Hash]<xref:{class_string}[String],xref:{class_aom2_value_set}[VALUE_SET]>` [0..1]
+|*value_sets*: `xref:{class_hash}[Hash]<xref:{class_string}[String],xref:AOM2:terminology_package.adoc#_value_set_class[VALUE_SET]>` [0..1]
 a|Archetype-local value sets, each keyed by value-set id, i.e. an ac-code.
 
-|*terminology_extracts*: `xref:{class_hash}[Hash]<xref:{class_string}[String],xref:{class_hash}[Hash]<xref:{class_string}[String],xref:{class_aom2_archetype_term}[ARCHETYPE_TERM]>>` [0..1]
+|*terminology_extracts*: `xref:{class_hash}[Hash]<xref:{class_string}[String],xref:{class_hash}[Hash]<xref:{class_string}[String],xref:AOM2:terminology_package.adoc#_archetype_term_class[ARCHETYPE_TERM]>>` [0..1]
 a|Directory of extracts of external terminologies, as a two-level table. The outer hash keys are terminology ids, e.g. `"SNOMED_CT"`, while the inner hash keys are term codes or code-phrases from the relevant terminology, e.g. `"10094842"`.
 
 2+h|*Functions*
@@ -64,7 +64,7 @@ a|True if code `_a_code_` defined in this terminology.
 |*term_definition* ( +
 a_lang: `xref:{class_string}[String][1]`, +
 a_code: `xref:{class_string}[String][1]` +
-): `xref:{class_aom2_archetype_term}[ARCHETYPE_TERM]` +
+): `xref:AOM2:terminology_package.adoc#_archetype_term_class[ARCHETYPE_TERM]` +
  +
 __Pre__: `has_term-definition (a_lang, a_code)` [1..1]
 a|Term definition for a code, in a specified language.
@@ -83,7 +83,7 @@ a|List of terminologies to which term or constraint bindings exist in this termi
 |*terminology_extract_term* ( +
 a_terminology_id: `xref:{class_string}[String][1]`, +
 a_code: `xref:{class_string}[String][1]` +
-): `xref:{class_aom2_archetype_term}[ARCHETYPE_TERM]` +
+): `xref:AOM2:terminology_package.adoc#_archetype_term_class[ARCHETYPE_TERM]` +
  +
 __Pre__: `has_terminology_extract (a_terminology_id) and has_terminology_extract_code (a_code)` [1..1]
 a|Return an `ARCHETYPE_TERM` from specified terminology extract, for specified term code.

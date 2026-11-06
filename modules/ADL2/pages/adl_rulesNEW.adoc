@@ -1,3 +1,5 @@
+include::partial$module_vars.adoc[]
+
 == Rules Section
 
 The `rules` section in an ADL archetype contains _statements_ which relate to the entire archetype, and can be used to express rules that are not possible within the block structure of the `definition` section. Any constraint that references more than one property is in this category, including constraints containing mathematical or logical formulae.
@@ -88,7 +90,7 @@ definition
     data ∈ {
       HISTORY[at0002] ∈ {
         events ∈ {
-          POINT_EVENT[at0003] occurrences ∈ {0..1} ∈ { -- 2 minutes
+          POINT_EVENT[at0003] occurrences ∈ \{0..1} ∈ { -- 2 minutes
             offset ∈ {
               DV_DURATION[at9000] ∈ {
                 value ∈ {PT1M}
@@ -97,22 +99,22 @@ definition
             data ∈ {
               ITEM_LIST[at0001] ∈ {
                 items ∈ {
-                  ELEMENT[at0009] occurrences ∈ {0..1} ∈ {
+                  ELEMENT[at0009] occurrences ∈ \{0..1} ∈ {
                     value ∈ {
                       DV_ORDINAL[at9001] ∈ {
                         [value, symbol] ∈ { -- apgar_respiratory_value
-                          [{0}, {[at0010]}],
-                          [{1}, {[at0011]}],
-                          [{2}, {[at0012]}]
+                          [\{0}, {[at0010]}],
+                          [\{1}, {[at0011]}],
+                          [\{2}, {[at0012]}]
                         }
                       }
                     }
                   }
-                  ELEMENT[at0005] occurrences ∈ {0..1} ∈ {...} -- apgar_heartrate_value
-                  ELEMENT[at0013] occurrences ∈ {0..1} ∈ {...} -- apgar_muscle_tone_value
-                  ELEMENT[at0017] occurrences ∈ {0..1} ∈ {...} -- apgar_reflex_value
-                  ELEMENT[at0021] occurrences ∈ {0..1} ∈ {...} -- apgar_skin_colour_value
-                  ELEMENT[at0025] occurrences ∈ {0..1} ∈ {
+                  ELEMENT[at0005] occurrences ∈ \{0..1} ∈ {...} -- apgar_heartrate_value
+                  ELEMENT[at0013] occurrences ∈ \{0..1} ∈ {...} -- apgar_muscle_tone_value
+                  ELEMENT[at0017] occurrences ∈ \{0..1} ∈ {...} -- apgar_reflex_value
+                  ELEMENT[at0021] occurrences ∈ \{0..1} ∈ {...} -- apgar_skin_colour_value
+                  ELEMENT[at0025] occurrences ∈ \{0..1} ∈ {
                     value ∈ {
                       DV_COUNT[at9002] ∈ {
                         magnitude ∈ {|0..10|} -- apgar_total_value
@@ -123,7 +125,7 @@ definition
               }
             }
           }
-          POINT_EVENT[at0026] occurrences ∈ {0..1} ∈ { -- 2 minutes
+          POINT_EVENT[at0026] occurrences ∈ \{0..1} ∈ { -- 2 minutes
             offset ∈ {
               DV_DURATION[at9003] ∈ {
                 value ∈ {PT2M}
@@ -133,9 +135,9 @@ definition
               use_node ITEM_LIST[at0049] /data[at0002]/events[at0003]/data[at0001]
             }
           }
-          POINT_EVENT[at0027] occurrences matches {0..1} matches {...}  -- 3 minutes
-          POINT_EVENT[at0028] occurrences matches {0..1} matches {...}  -- 5 minutes
-          POINT_EVENT[at0031] occurrences matches {0..1} matches {...}  -- 10 minutes
+          POINT_EVENT[at0027] occurrences matches \{0..1} matches {...}  -- 3 minutes
+          POINT_EVENT[at0028] occurrences matches \{0..1} matches {...}  -- 5 minutes
+          POINT_EVENT[at0031] occurrences matches \{0..1} matches {...}  -- 10 minutes
                 }
             }
         }
@@ -196,7 +198,7 @@ definition
     data ∈ {
       HISTORY[id3] ∈ {
         events ∈ {
-          POINT_EVENT[id4] occurrences ∈ {0..1} ∈ { -- 2 minutes
+          POINT_EVENT[id4] occurrences ∈ \{0..1} ∈ { -- 2 minutes
             offset ∈ {
               DV_DURATION[id42] ∈ {
                 value ∈ {PT1M}
@@ -205,22 +207,22 @@ definition
             data ∈ {
               ITEM_LIST[id2] ∈ {
                 items ∈ {
-                  ELEMENT[id10] occurrences ∈ {0..1} ∈ {
+                  ELEMENT[id10] occurrences ∈ \{0..1} ∈ {
                     value ∈ {
                       DV_ORDINAL[id43] ∈ {
                         [value, symbol] ∈ { -- apgar_respiratory_value
-                          [{0}, {[at11]}],
-                          [{1}, {[at12]}],
-                          [{2}, {[at13]}]
+                          [\{0}, {[at11]}],
+                          [\{1}, {[at12]}],
+                          [\{2}, {[at13]}]
                         }
                       }
                     }
                   }
-                  ELEMENT[id6] occurrences ∈ {0..1} ∈ {...} -- apgar_heartrate_value
-                  ELEMENT[id14] occurrences ∈ {0..1} ∈ {...} -- apgar_muscle_tone_value
-                  ELEMENT[id18] occurrences ∈ {0..1} ∈ {...} -- apgar_reflex_value
-                  ELEMENT[id22] occurrences ∈ {0..1} ∈ {...} -- apgar_skin_colour_value
-                  ELEMENT[id26] occurrences ∈ {0..1} ∈ {
+                  ELEMENT[id6] occurrences ∈ \{0..1} ∈ {...} -- apgar_heartrate_value
+                  ELEMENT[id14] occurrences ∈ \{0..1} ∈ {...} -- apgar_muscle_tone_value
+                  ELEMENT[id18] occurrences ∈ \{0..1} ∈ {...} -- apgar_reflex_value
+                  ELEMENT[id22] occurrences ∈ \{0..1} ∈ {...} -- apgar_skin_colour_value
+                  ELEMENT[id26] occurrences ∈ \{0..1} ∈ {
                     value ∈ {
                       DV_COUNT[id48] ∈ {
                         magnitude ∈ {|0..10|} -- apgar_total_value
@@ -231,7 +233,7 @@ definition
               }
             }
           }
-          POINT_EVENT[id27] occurrences ∈ {0..1} ∈ { -- 2 minutes
+          POINT_EVENT[id27] occurrences ∈ \{0..1} ∈ { -- 2 minutes
             offset ∈ {
               DV_DURATION[id49] ∈ {
                 value ∈ {PT2M}
@@ -241,9 +243,9 @@ definition
               use_node ITEM_LIST[id50] /data[id3]/events[id4]/data[id2]
             }
           }
-          POINT_EVENT[id28] occurrences matches {0..1} matches {...}  -- 3 minutes
-          POINT_EVENT[id29] occurrences matches {0..1} matches {...}  -- 5 minutes
-          POINT_EVENT[id32] occurrences matches {0..1} matches {...}  -- 10 minuten
+          POINT_EVENT[id28] occurrences matches \{0..1} matches {...}  -- 3 minutes
+          POINT_EVENT[id29] occurrences matches \{0..1} matches {...}  -- 5 minutes
+          POINT_EVENT[id32] occurrences matches \{0..1} matches {...}  -- 10 minuten
                 }
             }
         }
@@ -323,7 +325,7 @@ This makes used of both the EL `check` statement and the `defined()` predicate (
 
 The Apgar archetype above provides a good example of multiplicity and how path-binding works. The data generated from this archetype will have at least 2 distinct instances of the `POINT_EVENT` structures, i.e. instances of `POINT_EVENT[at0003]`, `POINT_EVENT[at0027]`, `POINT_EVENT[at0028]`, and `POINT_EVENT[at0031]` (`POINT_EVENT[id4]`, `POINT_EVENT[id28]`, `POINT_EVENT[id29]`, and `POINT_EVENT[id32]`). The paths specified in the `symbol_bindings` section are of the form `.../events/...`, i.e. they do not specify any particular `POINT_EVENT` structure in the archetype. Since all the paths identify nodes inside the structure of one `POINT_EVENT` structure, they are bound in turn at runtime to the set of paths found in each instance of `POINT_EVENT` in the data. If there are 3 such instances in the data, the assertion will be evaluated 3 times, each time using the data points from within the `POINT_EVENT` instance being evaluated.
 
-It should be noted that although in this archetype each `POINT_EVENT` structure has singular `occurrences`, this need not be so, and it could easily be the case that `POINT_EVENT[at0003]` (`POINT_EVENT[id4]`) had `occurrences matches {*}`. The data then could contain two or more instances of the `POINT_EVENT[at0003]` (`POINT_EVENT[id4]`) structure. The rule would then have been executed _for each one of these_ instances, with the same runtime binding rule, i.e. all paths mapped in each iteration to nodes within the _same instance structure_. Indeed, had the paths been of the form `.../events[at0003]/...` (`.../events[id4]/...`), this could have occurred.
+It should be noted that although in this archetype each `POINT_EVENT` structure has singular `occurrences`, this need not be so, and it could easily be the case that `POINT_EVENT[at0003]` (`POINT_EVENT[id4]`) had `occurrences matches \{*}`. The data then could contain two or more instances of the `POINT_EVENT[at0003]` (`POINT_EVENT[id4]`) structure. The rule would then have been executed _for each one of these_ instances, with the same runtime binding rule, i.e. all paths mapped in each iteration to nodes within the _same instance structure_. Indeed, had the paths been of the form `.../events[at0003]/...` (`.../events[id4]/...`), this could have occurred.
 
 An alternative to the above mapping is to bind paths to symbols according to all possible permutations of each path across all the instances of the `POINT_EVENT` structure found in the data. This is clearly not the intention of the rule, and would generate nonsense results.
 

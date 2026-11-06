@@ -1,3 +1,5 @@
+include::partial$module_vars.adoc[]
+
 = Reference Model Adaptation
 
 == Overview
@@ -18,13 +20,13 @@ These adaptations can be formalised in a configuration object that is an instanc
 
 [.text-center]
 .`aom2.profile` Package
-image::{uml_diagrams_uri}/AM-aom2.profile.svg[id=aom_profile, align="center"]
+image::ROOT:uml/AM-aom2.profile.svg[id=aom_profile, align="center"]
 
 === Class Definitions
 
-include::{uml_export_dir}/classes/{pkg}aom_profile.adoc[leveloffset=+1]
-include::{uml_export_dir}/classes/{pkg}aom_type_mapping.adoc[leveloffset=+1]
-include::{uml_export_dir}/classes/{pkg}aom_property_mapping.adoc[leveloffset=+1]
+include::ROOT:partial$classes/aom2.aom_profile.adoc[leveloffset=+1]
+include::ROOT:partial$classes/aom2.aom_type_mapping.adoc[leveloffset=+1]
+include::ROOT:partial$classes/aom2.aom_property_mapping.adoc[leveloffset=+1]
 
 === Configuration File
 
@@ -118,12 +120,12 @@ at-coded ADL2::
 +
 [source, cadl]
 --------
-    ELEMENT[at0004] occurrences matches {0..1} matches {	-- Systolic
+    ELEMENT[at0004] occurrences matches \{0..1} matches {	-- Systolic
         value matches {
             DV_QUANTITY[at9054] matches {
                 property matches {[at9055]}
                 magnitude matches {|0.0..<1000.0|}  --  parses as AOM C_REAL, but is Double in RM
-                precision matches {0}
+                precision matches \{0}
                 units matches {"mm[Hg]"}
             }
         }
@@ -134,12 +136,12 @@ id-coded ADL2::
 +
 [source, cadl]
 --------
-    ELEMENT[id5] occurrences matches {0..1} matches {	-- Systolic
+    ELEMENT[id5] occurrences matches \{0..1} matches {	-- Systolic
         value matches {
             DV_QUANTITY[id1054] matches {
                 property matches {[at1055]}
                 magnitude matches {|0.0..<1000.0|}  --  parses as AOM C_REAL, but is Double in RM
-                precision matches {0}
+                precision matches \{0}
                 units matches {"mm[Hg]"}
             }
         }
@@ -178,7 +180,7 @@ at-coded ADL2::
 +
 [source, cadl]
 --------
-    INTERVAL_EVENT[at1042] occurrences matches {0..1} matches {	-- 24 hour average
+    INTERVAL_EVENT[at1042] occurrences matches \{0..1} matches {	-- 24 hour average
         width matches {
             DV_DURATION[at9064] matches {
                 value matches {PT24H}  --  parses as AOM ISO8601_DURATION, but is String in RM
@@ -191,7 +193,7 @@ id-coded ADL2::
 +
 [source, cadl]
 --------
-    INTERVAL_EVENT[id1043] occurrences matches {0..1} matches {	-- 24 hour average
+    INTERVAL_EVENT[id1043] occurrences matches \{0..1} matches {	-- 24 hour average
         width matches {
             DV_DURATION[id1064] matches {
                 value matches {PT24H}  --  parses as AOM ISO8601_DURATION, but is String in RM

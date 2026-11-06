@@ -12,7 +12,7 @@ a|List of all term codes in the ontology. Most of these correspond to “at” c
 |*constraint_codes*: `xref:{class_list}[List]<xref:{class_string}[String]>` [1..1]
 a|List of all term codes in the ontology. These correspond to the “ac” codes in an ADL archetype, or equivalently, the CONSTRAINT_REF.reference values in the archetype definition.
 
-|*parent_archetype*: `xref:{class_aom14_archetype}[ARCHETYPE]` [1..1]
+|*parent_archetype*: `xref:AOM1.4:archetype_package.adoc#_archetype_class[ARCHETYPE]` [1..1]
 a|Archetype which owns this terminology.
 
 |*terminologies_available*: `xref:{class_list}[List]<xref:{class_string}[String]>` [0..1]
@@ -49,7 +49,7 @@ a|True if constraint_codes has a_code.
 |*term_definition* ( +
 a_lang: `xref:{class_string}[String][1]`, +
 a_code: `xref:{class_string}[String][1]` +
-): `xref:{class_aom14_archetype_term}[ARCHETYPE_TERM]` +
+): `xref:AOM1.4:ontology_package.adoc#_archetype_term_class[ARCHETYPE_TERM]` +
  +
 __Pre__: `has_language (a_lang)` +
 __Pre2__: `has_term_code (a_code)` [1..1]
@@ -58,7 +58,7 @@ a|Term definition for a code, in a specified language.
 |*constraint_definition* ( +
 a_code: `xref:{class_string}[String][1]`, +
 a_lang: `xref:{class_string}[String][1]` +
-): `xref:{class_aom14_archetype_term}[ARCHETYPE_TERM]` +
+): `xref:AOM1.4:ontology_package.adoc#_archetype_term_class[ARCHETYPE_TERM]` +
  +
 __Pre__: `has_language (a_lang)` +
 __Pre_2__: `has_constraint_code (a_code)` [1..1]

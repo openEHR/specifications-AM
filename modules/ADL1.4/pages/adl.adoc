@@ -1,8 +1,10 @@
+include::partial$module_vars.adoc[]
+
 = ADL - Archetype Definition Language
 
 == Introduction
 
-This section describes ADL archetypes as a whole, adding a small amount of detail to the descriptions of dADL and cADL already given. The important topic of the relationship of the cADL-encoded definition section and the dADL-encoded ontology section is discussed in detail. In this section, only standard ADL (i.e. the cADL and dADL constructs and types described so far) is assumed. Archetypes for use in particular domains can also be built with more efficient syntax and domain-specific types, as described in <<Customising ADL>>, and the succeeding sections.
+This section describes ADL archetypes as a whole, adding a small amount of detail to the descriptions of dADL and cADL already given. The important topic of the relationship of the cADL-encoded definition section and the dADL-encoded ontology section is discussed in detail. In this section, only standard ADL (i.e. the cADL and dADL constructs and types described so far) is assumed. Archetypes for use in particular domains can also be built with more efficient syntax and domain-specific types, as described in xref:customising_adl.adoc[Customising ADL], and the succeeding sections.
 
 An ADL archetype follows the structure shown below:
 
@@ -60,7 +62,7 @@ archetype (adl_version=1.4)
     openEHR-EHR-OBSERVATION.haematology.v1
 --------
 
-The multi-axial identifier identifies archetypes in a global space. The syntax of the identifier is described in <<Archetype Identification>> in {openehr_am_arch_sys}[The openEHR Archetype System^].
+The multi-axial identifier identifies archetypes in a global space. The syntax of the identifier is described in <<AOM2:archetype_package.adoc#{underscore}archetype_identification,Archetype Identification>> in {openehr_am_arch_sys}[The openEHR Archetype System^].
 
 === Controlled Indicator
 
@@ -153,7 +155,7 @@ NOTE: some non-conforming ADL tools in the past created archetypes without a `la
 
 === Description Section
 
-The `description` section of an archetype contains descriptive information, or what some people think of as document "meta-data", i.e. items that can be used in repository indexes and for searching. The dADL syntax, described in <<dADL - Data ADL>>, is used for the description, as in the following example.
+The `description` section of an archetype contains descriptive information, or what some people think of as document "meta-data", i.e. items that can be used in repository indexes and for searching. The dADL syntax, described in xref:dadl.adoc[dADL - Data ADL], is used for the description, as in the following example.
 
 [source, adl]
 --------
@@ -218,11 +220,11 @@ description
 
 The `description` section models a specific set of meta-data items, but of course, the meta-data needs over time can never be fully predicted. To enable free extension of the `description` section, the `other_details` is used. Its structure takes the form of a Hash of strings, i.e. `Hash <String, String>`, and can be used to contain other meta-data items not explicitly modelled.
 
-The <<Extended Meta-data Guide>> Appendix describes the known uses of extended meta-data to date.
+The xref:extended_metadata.adoc[Extended Meta-data Guide] Appendix describes the known uses of extended meta-data to date.
 
 == Definition Section
 
-The `definition` section contains the main formal definition of the archetype, and is written in <<cADL - Constraint ADL,the Constraint Definition Language>>). A typical `definition` section is as follows:
+The `definition` section contains the main formal definition of the archetype, and is written in xref:cadl.adoc[the Constraint Definition Language]). A typical `definition` section is as follows:
 
 [source, adl]
 --------
@@ -237,8 +239,8 @@ definition
         }
         data ∈ {            
             HISTORY[at9001] ∈ {                                           -- history
-                events cardinality ∈ {1..*} ∈ { 
-                    EVENT[at9002] occurrences ∈ {0..1} ∈ {               -- baseline
+                events cardinality ∈ \{1..*} ∈ { 
+                    EVENT[at9002] occurrences ∈ \{0..1} ∈ {               -- baseline
                         name ∈ {
                             CODED_TEXT ∈ {
                                 defining_code ∈ {
@@ -248,7 +250,7 @@ definition
                         }
                         data ∈ {
                             ITEM_LIST[at1000] ∈ {                           -- systemic arterial BP
-                                items cardinality ∈ {2..*} ∈ {
+                                items cardinality ∈ \{2..*} ∈ {
                                     ELEMENT[at1100] ∈ {                     -- systolic BP
                                         name ∈ {                            -- any synonym of 'systolic'
                                             CODED_TEXT ∈ {
@@ -281,7 +283,7 @@ definition
                                             }
                                         }
                                     } 
-                                    ELEMENT[at9000] occurrences ∈ {0..*} ∈ {*}    -- unknown new item
+                                    ELEMENT[at9000] occurrences ∈ \{0..*} ∈ \{*}    -- unknown new item
                                 }
                             ...
 --------
@@ -497,7 +499,7 @@ The second kind of binding is one between an archetype path and an external code
 
 === Constraint_bindings Section
 
-The last of the `ontology` sections formally describes bindings to placeholder constraints (see <<Placeholder Constraints>>) from the main archetype body. They are described separately because they are terminology-dependent, and because there may be more than one for a given logical constraint. A typical example follows:
+The last of the `ontology` sections formally describes bindings to placeholder constraints (see <<cadl.adoc#{underscore}placeholder_constraints,Placeholder Constraints>>) from the main archetype body. They are described separately because they are terminology-dependent, and because there may be more than one for a given logical constraint. A typical example follows:
 
 [source, odin]
 ----
@@ -752,7 +754,7 @@ The following shows the ADL lexical specification.
 \[[a-zA-Z0-9][a-zA-Z0-9.-]*\] 
 
 ----------/* V_ARCHETYPE_ID */ ---------------------------------------------
-[a-zA-Z][a-zA-Z0-9_]+(-[a-zA-Z][a-zA-Z0-9_]+){2}\.[a-zA-Z][a-zA-Z0-9_]+(-[azA-Z][a-zA-Z0-9_]+)*\.v[1-9][0-9]*
+[a-zA-Z][a-zA-Z0-9_]+(-[a-zA-Z][a-zA-Z0-9_]+)\{2}\.[a-zA-Z][a-zA-Z0-9_]+(-[azA-Z][a-zA-Z0-9_]+)*\.v[1-9][0-9]*
 
 ----------/* V_IDENTIFIER */ ----------------------------------------------
 [a-zA-Z][a-zA-Z0-9_]* 
