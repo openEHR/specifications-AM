@@ -547,8 +547,8 @@ In dADL, the use of ISO 8601 allows extended form only (i.e. ':' and '-' must be
 
 ----
 yyyy-MM-dd                      -- a date
-hh:mm:ss[,sss][Z|+/-hhmm]       -- a time with optional seconds
-yyyy-MM-ddThh:mm:ss[,sss][Z]    -- a date/time
+hh:mm:ss[(,|.)sss][Z|±hh[:mm]]  -- a time with optional seconds
+yyyy-MM-ddThh:mm:ss[(,|.)sss][Z|±hh[:mm]] -- a date/time
 ----
 
 where:
@@ -560,7 +560,7 @@ dd = day in month
 hh = hour in 24 hour clock
 mm = minutes
 ss,sss = seconds, incuding fractional part
-Z = the timezone in the form of a '+' or '-' followed by 4 digits indicating the hour offset, e.g. +0930, or else the literal 'Z' indicating +0000 (the Greenwich meridian).
+Z = the timezone in the form of a '+' or '-' followed by the hour offset as hh:mm, hhmm or hh, e.g. +09:30, or else the literal 'Z' indicating +0000 (the Greenwich meridian).
 ----
 
 Durations are expressed using a string which starts with 'P', and is followed by a list of periods, each appended by a single letter designator: 'Y' for years, "M' for months, 'W' for weeks, 'D' for days, 'H' for hours, 'M' for minutes, and 'S' for seconds. The literal 'T' separates the YMWD part from the HMS part, ensuring that months and minutes can be distinguished. Examples of date/time data include:
