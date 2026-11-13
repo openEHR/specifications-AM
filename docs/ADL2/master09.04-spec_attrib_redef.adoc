@@ -60,7 +60,7 @@ id-coded ADL2::
 --------
 ====
 
-Redefinition of existence to `{0}` by this method denotes exclusion, i.e. removal of the entire attribute (including all sub-structure) from the resulting structure. In an archetype, it is likely to indicate poor design, given that the decision to remove optional attributes is much more likely to be local, and therefore more appropriate in templates rather than archetypes; within a template it would be perfectly normal. The following example shows the protocol attribute in the above `OBSERVATION` archetype being excluded in this way:
+Redefinition of existence to `{0}` by this method denotes exclusion, i.e. removal of the entire attribute (including all sub-structure) from data created with the archetype. In an archetype, it is likely to indicate poor design, given that the decision to remove optional attributes is much more likely to be local, and therefore more appropriate in templates rather than archetypes; within a template it would be perfectly normal. The following example shows the protocol attribute in the above `OBSERVATION` archetype being excluded in this way:
 
 [tabs,sync-group-id=adl-example]
 ====
@@ -84,6 +84,8 @@ id-coded ADL2::
 ====
 
 Note that in the above, the '/' is used to denote '/protocol' as a differential path. Without the slash, the 'protocol' attribute would be considered to be trying to constrain a hitherto unconstrained attribute called 'protocol', rather than redefine a constraint already present in a parent archetype.
+
+In the flat form of the specialised archetype, the excluded attribute is not removed: it is retained with `existence matches {0}` and without any children, so that archetypes specialising it further are still validated against the exclusion (an existence of `{0}` can only be redefined as `{0}`, see the {openehr_am_aom2}#VSANCE[VSANCE validity rule^]). Excluded attributes, and object nodes with `occurrences matches {0}`, are only removed when an operational template is generated (see the {openehr_am_opt2}[Operational Template specification^]).
 
 === Multiply-valued (Container) Attributes
 
