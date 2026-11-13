@@ -68,7 +68,7 @@ at-coded ADL2::
 +
 [source, cadl]
 --------
-   OBSERVATION[at0000] ∈ {                -- paediatric blood pressure measurement
+   OBSERVATION[at0000.1] ∈ {                -- paediatric blood pressure measurement
         /protocol existence ∈ {0}
     }
 --------
@@ -77,13 +77,13 @@ id-coded ADL2::
 +
 [source, cadl]
 --------
-   OBSERVATION[id1] ∈ {                -- paediatric blood pressure measurement
+   OBSERVATION[id1.1] ∈ {                -- paediatric blood pressure measurement
         /protocol existence ∈ {0}
     }
 --------
 ====
 
-Note that in the above, the '/' is used to denote '/protocol' as a differential path. Without the slash, the 'protocol' attribute would be considered to be trying to constrain a hitherto unconstrained attribute called 'protocol', rather than redefine a constraint already present in a parent archetype.
+Note that in the above, `/protocol` is the shortest possible specialisation path (see <<Specialisation Paths>>) and means the same as writing the attribute name `protocol` directly inside the redefined `OBSERVATION` node. In both forms, whether the attribute constraint redefines an existing one or adds a new one is decided by the flat parent (see the table in <<Redefinition Concepts>>): if the flat parent already has a `protocol` attribute constraint at that location, it is redefined, and its existence and cardinality are kept unless the child states new ones; otherwise the attribute constraint is added.
 
 In the flat form of the specialised archetype, the excluded attribute is not removed: it is retained with `existence matches {0}` and without any children, so that archetypes specialising it further are still validated against the exclusion (an existence of `{0}` can only be redefined as `{0}`, see the {openehr_am_aom2}#VSANCE[VSANCE validity rule^]). Excluded attributes, and object nodes with `occurrences matches {0}`, are only removed when an operational template is generated (see the {openehr_am_opt2}[Operational Template specification^]).
 
