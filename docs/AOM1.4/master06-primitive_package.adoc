@@ -8,7 +8,9 @@ Ultimately any archetype definition will devolve down to leaf node constraints o
 .aom14.archetype.constraint_model.primitive Package
 image::{uml_diagrams_uri}/AM-aom14.archetype.constraint_model.primitive.svg[id=constraint_model.primitive_package, align="center"]
 
-Most of the types provide at least two alternative ways to represent the constraint; for example the `C_DATE` type allows the constraint to be expressed in the form of a pattern (defined in the ADL specification) or an `Interval<Date>`. Note that the interval form of dates is probably only useful for historical date checking (e.g. the date of an antique or a particular batch of vaccine), rather than constraints on future date/times.
+Most of the types provide at least two alternative ways to represent the constraint; for example the `C_DATE` type allows the constraint to be expressed in the form of a pattern (defined in the ADL specification) or an `Interval<Iso8601_date>`. Note that the interval form of dates is probably only useful for historical date checking (e.g. the date of an antique or a particular batch of vaccine), rather than constraints on future date/times.
+
+The date and time constraint types (`C_DATE`, `C_TIME`, `C_DATE_TIME`, `C_DURATION`) constrain the primitive types defined by the BASE Foundation Types (`Iso8601_date`, `Iso8601_time`, `Iso8601_date_time`, `Iso8601_duration`), not the RM data types `DV_DATE`, `DV_TIME`, `DV_DATE_TIME`, `DV_DURATION`; the AOM has no dependency on the RM.
 
 == Class Descriptions
 

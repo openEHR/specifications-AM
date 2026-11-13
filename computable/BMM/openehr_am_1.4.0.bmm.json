@@ -1592,7 +1592,7 @@
         },
         "C_TIME": {
             "name": "C_TIME",
-            "documentation": "ISO 8601-compatible constraint on instances of Time. There is no validity flag for \u2018hour\u2019, since it must always be by definition mandatory in order to have a sensible time at all. Syntax expressions of instances of this class include \u201cHH:??:xx\u201d (time with optional minutes and seconds not allowed).",
+            "documentation": "ISO 8601-compatible constraint on instances of the primitive time type, represented in openEHR by the Foundation Types class `Iso8601_time`. There is no validity flag for \u2018hour\u2019, since it must always be by definition mandatory in order to have a sensible time at all. Syntax expressions of instances of this class include \u201cHH:??:xx\u201d (time with optional minutes and seconds not allowed).",
             "ancestors": [
                 "C_PRIMITIVE"
             ],
@@ -1624,7 +1624,7 @@
                 "range": {
                     "_type": "P_BMM_GENERIC_PROPERTY",
                     "name": "range",
-                    "documentation": "Interval of Times specifying constraint.",
+                    "documentation": "Interval of times specifying constraint.",
                     "type_def": {
                         "root_type": "Interval",
                         "generic_parameters": [
@@ -1659,7 +1659,7 @@
         },
         "C_DATE": {
             "name": "C_DATE",
-            "documentation": "ISO 8601-compatible constraint on instances of Date in the form either of a set of validity values, or an actual date range. There is no validity flag for \u2018year\u2019, since it must always be by definition mandatory in order to have a sensible date at all. Syntax expressions of instances of this class include \u201cYYYY-??-??\u201d (date with optional month and day).",
+            "documentation": "ISO 8601-compatible constraint on instances of the primitive date type, represented in openEHR by the Foundation Types class `Iso8601_date`, in the form either of a set of validity values, or an actual date range. There is no validity flag for \u2018year\u2019, since it must always be by definition mandatory in order to have a sensible date at all. Syntax expressions of instances of this class include \u201cYYYY-??-??\u201d (date with optional month and day).",
             "ancestors": [
                 "C_PRIMITIVE"
             ],
@@ -1679,7 +1679,7 @@
                 "range": {
                     "_type": "P_BMM_GENERIC_PROPERTY",
                     "name": "range",
-                    "documentation": "Interval of Dates specifying constraint.",
+                    "documentation": "Interval of dates specifying constraint.",
                     "type_def": {
                         "root_type": "Interval",
                         "generic_parameters": [
@@ -1703,7 +1703,7 @@
         },
         "C_DATE_TIME": {
             "name": "C_DATE_TIME",
-            "documentation": "ISO 8601-compatible constraint on instances of Date_Time. There is no validity flag for \u2018year\u2019, since it must always be by definition mandatory in order to have a sensible date\/time at all. Syntax expressions of instances of this class include \u201cYYYY-MM-DDT??:??:??\u201d (date\/time with optional time) and \u201cYYYY-MMDDTHH:MM:xx\u201d (date\/time, seconds not allowed).",
+            "documentation": "ISO 8601-compatible constraint on instances of the primitive date\/time type, represented in openEHR by the Foundation Types class `Iso8601_date_time`. There is no validity flag for \u2018year\u2019, since it must always be by definition mandatory in order to have a sensible date\/time at all. Syntax expressions of instances of this class include \u201cYYYY-MM-DDT??:??:??\u201d (date\/time with optional time) and \u201cYYYY-MMDDTHH:MM:xx\u201d (date\/time, seconds not allowed).",
             "ancestors": [
                 "C_PRIMITIVE"
             ],
@@ -1795,7 +1795,7 @@
         },
         "C_DURATION": {
             "name": "C_DURATION",
-            "documentation": "ISO 8601-compatible constraint on instances of Duration. In ISO 8601 terms, constraints might are of the form \u201cPWD\u201d (weeks and\/or days), \u201cPDTHMS\u201d (days, hours, minutes, seconds) and so on.\n\nBoth range and the constraint pattern can be set at the same time, corresponding to the ADL constraint `\"PWD\/|P0W..P50W|\"`.\n\nAs for all of openEHR, two ISO 8601 exceptions are allowed: \n\n* the \u2018W\u2019 (week) designator can be mixed in - the allowed patterns are: `P[Y|y][M|m][D|d][T[H|h][M|m][S|s]]` and `P[W|w]`;\n* the values used in an interval constraint may be negated, i.e. a leading minus (`'-'`) sign may be used.\n",
+            "documentation": "ISO 8601-compatible constraint on instances of the primitive duration type, represented in openEHR by the Foundation Types class `Iso8601_duration` (not the RM data type `DV_DURATION`). In ISO 8601 terms, constraints are of the form \u201cPWD\u201d (weeks and\/or days), \u201cPDTHMS\u201d (days, hours, minutes, seconds) and so on.\n\nBoth range and the constraint pattern can be set at the same time, corresponding to the ADL constraint `\"PWD\/|P0W..P50W|\"`.\n\nAs for all of openEHR, two ISO 8601 exceptions are allowed: \n\n* the \u2018W\u2019 (week) designator can be mixed in - the allowed patterns are: `P[Y|y][M|m][D|d][T[H|h][M|m][S|s]]` and `P[W|w]`;\n* the values used in an interval constraint may be negated, i.e. a leading minus (`'-'`) sign may be used.\n",
             "ancestors": [
                 "C_PRIMITIVE"
             ],
@@ -1848,7 +1848,7 @@
                 "range": {
                     "_type": "P_BMM_GENERIC_PROPERTY",
                     "name": "range",
-                    "documentation": "Range of Durations specifying constraint.",
+                    "documentation": "Interval of durations specifying constraint.",
                     "type_def": {
                         "root_type": "Interval",
                         "generic_parameters": [
