@@ -17,6 +17,7 @@ The standard items are defined as follows:
 
 |revision                   |{openehr_base_artefact_identification}#_version_numbering[extended version string]           |Full version identifier to compensate for only major version numbering in ADL 1.4 identifiers.
 |build_uid                  |Guid string                                                           |Changed every save. See AOM2 spec, {openehr_am_aom2}#_machine_identifiers[Machine Identifiers section]
+|rm_release                 |3-part version string `N.M.P`, e.g. `1.1.0`                          |Release of the reference model on which the archetype is based. Corresponds to `ARCHETYPE._rm_release_` in ADL 2, see AOM2 spec, {openehr_am_aom2}#_reference_model_release[Reference Model Release section]. Some tools also accept `rm_release=N.M.P` in the ADL 1.4 archetype header; such a value is equivalent, but `other_details` is the standard place.
 |original_namespace         |reverse domain name	                                               |See AOM2 spec, {openehr_am_aom2}#_governance_meta_data[Governance Meta-data section].
 |original_publisher         |org name with optional trailing `<>` section containing a domain name or email address|See AOM2 spec, {openehr_am_aom2}#_governance_meta_data[Governance Meta-data section]
 |custodian_organisation	    |org name with optional trailing `<>` section containing a domain name or email address|See AOM2 spec, {openehr_am_aom2}#_governance_meta_data[Governance Meta-data section]
@@ -37,6 +38,7 @@ other_details = <
     ["custodian_organisation"] = <"openEHR Foundation <http://www.openEHR.org>">
     ["custodian_namespace"] = <"org.openehr">
     ["build_uid"] = <"3076af96-e1dd-4f9b-abf2-23913fcf52b1">
+    ["rm_release"] = <"1.1.0">
     ["revision"] = <"0.0.1-alpha">
     ["references"] = <"
         O'Brien E, Asmar R, Beilin L, et al. European Society of Hypertension recommendations for conventional, ambulatory and home blood pressure measurement. Journal of Hypertension. 2003; 21(5):821-848. Available from: http://www.ncbi.nlm.nih.gov/pubmed/12714851
