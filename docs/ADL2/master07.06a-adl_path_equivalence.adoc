@@ -1,0 +1,20 @@
+== Path Equivalence Section
+
+This optional section declares that the artefact has exactly the same paths as one or more other artefacts, identified by their complete identifiers. Its main use is to link an ADL 2 archetype to the ADL 1.4 archetype it was converted from, so that queries written against either identifier can match data committed under either. It may follow the `specialise` section in an archetype, a template or an operational template, but not in a template overlay, which has no identity of its own under which data is committed. An example is as follows:
+
+[source, adl]
+--------
+archetype (adl_version=2.4.0; rm_release=1.1.0)
+    org.openehr::openEHR-EHR-OBSERVATION.blood_pressure.v1.2.3
+path_equivalent_to
+    openEHR-EHR-OBSERVATION.blood_pressure.v1
+--------
+
+Each identifier is a complete identifier, as recorded in data: either a legacy ADL 1.4 identifier, which has no namespace and a major version only, or a namespaced ADL 2 identifier with its full version. Unlike a reference in the `specialise` section, an identifier here without a namespace is not taken to be in the namespace of the current artefact: it denotes the legacy ADL 1.4 artefact of that identifier. A reduced-precision reference to an ADL 2 artefact is not allowed, since minor releases may add paths. More than one identifier may be given, separated by commas, for example both a legacy identifier and the identifier of an earlier namespaced release.
+
+The section asserts that the flat forms have the same physical paths, with the same RM type at each path, and nothing more: terminology, languages, descriptions, occurrences and leaf constraints may differ. Its value is the `AUTHORED_ARCHETYPE._path_equivalent_ids_` attribute; its semantics and validity rules are defined in the {openehr_am_aom2}#_path_equivalence[AOM2 specification^]. An artefact whose node identifiers differ from those of the other artefact, such as an id-coded conversion of an ADL 1.4 archetype, cannot have a valid path equivalence with it, and a converter that renumbers node identifiers must not generate this section.
+
+The following syntax validity rule applies in the path equivalence section:
+
+[.rule]
+SAPEI: path equivalence identifier validity. Each identifier in the `path_equivalent_to` section must conform to the `ARCHETYPE_REF` syntax, and must be either a legacy ADL 1.4 identifier or a namespaced ADL 2 identifier with a full three-part version.

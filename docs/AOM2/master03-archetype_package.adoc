@@ -38,6 +38,18 @@ The `AUTHORED_ARCHETYPE._build_uid_` attribute is mandatory, and is intended to 
 
 For every change made to an archetype inside a controlled repository (for example, addition or update of meta-data fields), this field should be updated with a new UUID value, generated in the normal way.
 
+=== Path Equivalence
+
+An archetype converted from ADL 1.4 to ADL 2 has a different identifier from its original: data committed against the original records the legacy identifier (e.g. `openEHR-EHR-OBSERVATION.blood_pressure.v1`), while data committed against the conversion records its complete, namespaced identifier (e.g. `org.openehr::openEHR-EHR-OBSERVATION.blood_pressure.v1.2.3`). When the two artefacts have exactly the same paths, data created from either can be queried with the same paths, but only if the system knows that the identifiers are interchangeable for that purpose. The same applies when an artefact is re-identified on moving to another namespace (see the openEHR {openehr_base_artefact_identification}[Artefact Identification specification^]).
+
+The optional attribute `AUTHORED_ARCHETYPE._path_equivalent_ids_` records this. Each member is the complete identifier of another artefact - a legacy ADL 1.4 identifier, or a namespaced ADL 2 identifier with its full version - whose flat form has the same physical paths as the flat form of the current artefact, with the same RM type at each path. It is declared in ADL by the `path_equivalent_to` section. Because it is defined on `AUTHORED_ARCHETYPE`, it is available on archetypes, templates and operational templates, but not on template overlays, which have no identity under which data is committed.
+
+The declaration asserts path equality and nothing more. Formally, for each artefact `R` identified in `_path_equivalent_ids_`, the flat forms of the current artefact and of `R` have equal `_physical_paths_()` sets, not counting nodes whose `_occurrences_` or `_existence_` is `{0}`, and the node reached by each path has the same RM type in both. It does not assert equality of terminology bindings, value sets, term definitions, languages, translations, descriptions, annotations, occurrences, cardinality, existence or leaf value constraints, any of which may differ between a converted artefact and its original.
+
+The relation is symmetric and transitive in principle, but in practice can be declared only in one direction, since an ADL 1.4 artefact has no such section. A repository or system therefore builds equivalence classes of identifiers as the transitive closure of the declared equivalences, treating each declaration as undirected. In an operational template, the equivalences declared by each constituent archetype and template are retained in `OPERATIONAL_TEMPLATE._component_path_equivalences_` (see the openEHR {openehr_am_opt2}[OPT2 specification^]), so that a query engine can obtain them from deployed operational templates alone.
+
+A path equivalence can only be true when the node identifiers of the original are preserved, as in at-coded ADL 2. A tool that changes any node identifier when converting an artefact, such as by renumbering at-codes to id-codes, must not declare a path equivalence between the result and its source; it may instead record the source identifier in `AUTHORED_RESOURCE._description_._conversion_details_`.
+
 == Top-level Meta-data
 
 The following items correspond to syntax elements that may appear in parentheses in the first line of an ADL archetype.
@@ -250,6 +262,18 @@ The following validity rules apply to instances of `ARCHETYPE` and subtypes othe
 
 [.rule]
 *VARD*: description specified. A `description` section containing the main meta-data of the archetype must exist.
+
+[.rule]
+*VAPEV*: path equivalence identifier validity. Each identifier in `_path_equivalent_ids_` must be a complete identifier, i.e. either a legacy ADL 1.4 identifier (no namespace, major version only) or a namespaced ADL 2 identifier with its full version, and must not be the identifier of the current artefact.
+
+[.rule]
+*VAPEU*: path equivalence identifiers unique. The identifiers in `_path_equivalent_ids_` must be unique.
+
+[.rule]
+*VAPER*: path equivalence RM type validity. Each identifier in `_path_equivalent_ids_` must have the same `_rm_publisher_`, `_rm_package_` and `_rm_class_` as the identifier of the current artefact.
+
+[.rule]
+*VAPEC*: path equivalence conformance. Where an artefact identified in `_path_equivalent_ids_` is available, its flat form and the flat form of the current artefact must have equal `_physical_paths_()` sets, not counting nodes whose `_occurrences_` or `_existence_` is `{0}`, and the node reached by each path must have the same RM type in both. Where it is not available, a tool must report the equivalence as asserted but not verified.
 
 The following rules apply to specialised archetypes, for which `ARCHETYPE._is_specialised_` returns `True`.
 
