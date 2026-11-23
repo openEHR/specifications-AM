@@ -10,6 +10,8 @@ Since an OPT is considered a 'top-level' standalone artefact, there is no specia
 --------
 adl_operational_template: 'operational_template' '(' qualifiers? ')'
         ARCHETYPE_HRID
+    ('path_equivalent_to'
+        ARCHETYPE_REF (',' ARCHETYPE_REF)*)?
     'language'
         odin_text
     'description'
@@ -24,6 +26,8 @@ adl_operational_template: 'operational_template' '(' qualifiers? ')'
         odin_text)?
     'component_terminologies'
         odin_text
+    ('component_path_equivalences'
+        odin_text)?
     ;
 --------
 
@@ -48,3 +52,15 @@ OPT Flattening involves the following additional steps:
 
 During the OPT flattening process, the flat form of the `terminology` section of each flattened constituent archetype or template (other than the root template) is gathered under the `component_terminologies` section.
 
+== Path Equivalences
+
+During the OPT flattening process, the path equivalences declared by the root template, if any, are copied unchanged to the `path_equivalent_to` section of the OPT, i.e. to `OPERATIONAL_TEMPLATE._path_equivalent_ids_`; they are complete identifiers, so need no further resolution. For each constituent archetype or template (other than the root template) that declares path equivalences, an entry is added to `OPERATIONAL_TEMPLATE._component_path_equivalences_`, keyed by the archetype identifier, as in `_component_terminologies_`, and holding that artefact's `_path_equivalent_ids_`. This retains the equivalences of the component archetypes, which are the ones AQL archetype predicates usually name, so that a query engine can obtain them from deployed OPTs alone. The semantics of path equivalence are defined in the {openehr_am_aom2}#_path_equivalence[AOM2 specification^].
+
+An example of the `component_path_equivalences` section is as follows:
+
+[source, odin]
+--------
+component_path_equivalences = <
+    ["org.openehr::openEHR-EHR-OBSERVATION.blood_pressure.v1.2.3"] = <"openEHR-EHR-OBSERVATION.blood_pressure.v1", ...>
+>
+--------

@@ -14,6 +14,8 @@ adl_artefact: artefact_type meta_data?
         ARCHETYPE_HRID
     ('specialize' 
         ARCHETYPE_REF)?
+    ('path_equivalent_to'
+        ARCHETYPE_REF (',' ARCHETYPE_REF)*)?
     'language'
         odin_text
     'description'
@@ -47,6 +49,8 @@ adl_template: 'template' meta_data?
         ARCHETYPE_HRID
     'specialize' 
         ARCHETYPE_REF
+    ('path_equivalent_to'
+        ARCHETYPE_REF (',' ARCHETYPE_REF)*)?
     'language'
         odin_text
     'description'
@@ -89,6 +93,8 @@ The structure of an operational template is as follows.
 --------
 adl_operational_template: 'operational_template' meta_data?
         ARCHETYPE_HRID
+    ('path_equivalent_to'
+        ARCHETYPE_REF (',' ARCHETYPE_REF)*)?
     'language'
         odin_text
     'description'
@@ -105,6 +111,8 @@ adl_operational_template: 'operational_template' meta_data?
         odin_text)?
     'component_terminologies'
         odin_text
+    ('component_path_equivalences'
+        odin_text)?
     ;
 --------
 

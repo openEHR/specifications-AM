@@ -6,6 +6,7 @@ ADL has a small number of keywords which are reserved for use in archetype decla
 
 * `archetype`, `template`, `template_overlay`, `operational_template`,
 * `specialise` / `specialize`,
+* `path_equivalent_to`,
 * `language` ,
 * `description` , `definition` , `rules` , `terminology`
 * `annotations`
@@ -36,7 +37,7 @@ A fourth artefact type is also possible.
 
 In the `definition` section of an ADL archetype, a specific set of codes is used as node identifiers. Identifier codes always appear in brackets (`[]` ), and begin with the 'at' prefix for at-coded archetypes or 'id' prefix for id-coded archetypes. Specialisations of locally coded concepts have the same root, followed by 'dot' extensions, e.g. `[at0009.2]` (`[id10.2]`). From a terminology point of view, these codes have no implied semantics - the 'dot' structuring is used as an optimisation on node identification.
 
-In ADL 1.4 at-codes were used as node identifiers. For id-coded ADL2 archetypes, these are converted to id-codes by ADL 1.4 to ADL 2 converters.
+In ADL 1.4 at-codes were used as node identifiers. For id-coded ADL2 archetypes, these are converted to id-codes by ADL 1.4 to ADL 2 converters. Since such a conversion changes every path, its result cannot declare a <<Path Equivalence Section,path equivalence>> with its ADL 1.4 original; an at-coded conversion that preserves the original node identifiers can.
 
 === Local Term Codes
 

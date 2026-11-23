@@ -33,6 +33,7 @@ The following validation can be performed on an archetype mostly without referen
 * check original language in main part of archetype is available in `terminology` section (VOLT);
 * check `adl_version` and `rm_release` version id formats (VARAV, VARRV);
 * check that languages defined in translations section are in the archetype terminology (VOTM);
+* check that path equivalence identifiers are complete, unique, not the artefact's own and of the same RM class (VAPEV, VAPEU, VAPER);
 
 ==== Definition Structure Validation
 
@@ -109,7 +110,8 @@ For passing nodes, check:
 These validations are carried out after successful generation of the flat form of the current archetype.
 
 * ensure `C_COMPLEX_OBJECT_PROXY` paths actually exist in current flat form (VUNP);
-* ensure object node `occurrences` valid with respect to enclosing `cardinality` (VACMCO).
+* ensure object node `occurrences` valid with respect to enclosing `cardinality` (VACMCO);
+* ensure each available artefact named in `_path_equivalent_ids_` has the same physical paths and RM types as the current flat form, and report any that is not available as unverified (VAPEC).
 
 == Flattening
 

@@ -3,7 +3,7 @@
     "rm_publisher": "openehr",
     "schema_name": "am",
     "rm_release": "2.4.0",
-    "schema_revision": "2.4.0.2",
+    "schema_revision": "2.4.0.3",
     "schema_lifecycle_state": "stable",
     "schema_description": "openEHR Archetype Model",
     "schema_author": "Thomas Beale <thomas.beale@openehr.org>, code-generator",
@@ -334,6 +334,19 @@
                             "String"
                         ]
                     }
+                },
+                "path_equivalent_ids": {
+                    "_type": "P_BMM_CONTAINER_PROPERTY",
+                    "name": "path_equivalent_ids",
+                    "documentation": "Complete identifiers of other artefacts whose flat form has the same physical paths as this artefact, with the same RM type at each path; typically the legacy ADL 1.4 original of an ADL 2 conversion. Each is either a legacy ADL 1.4 identifier (no namespace, major version only) or a namespaced ADL 2 identifier with its full version. Equality of terminology, languages, descriptions, occurrences and leaf constraints is not claimed. Declared in ADL by the path_equivalent_to section.",
+                    "type_def": {
+                        "container_type": "List",
+                        "type": "String"
+                    },
+                    "cardinality": {
+                        "lower": 1,
+                        "upper_unbounded": true
+                    }
                 }
             },
             "invariants": {
@@ -395,6 +408,24 @@
                         "generic_parameters": [
                             "String",
                             "ARCHETYPE_TERMINOLOGY"
+                        ]
+                    }
+                },
+                "component_path_equivalences": {
+                    "_type": "P_BMM_GENERIC_PROPERTY",
+                    "name": "component_path_equivalences",
+                    "documentation": "For each archetype or template used in this operational template that declares path equivalences, keyed by its archetype identifier, the value of its path_equivalent_ids. Retained so that a query engine can obtain the equivalences from a deployed operational template alone.",
+                    "type_def": {
+                        "root_type": "Hash",
+                        "generic_parameters": [
+                            "String",
+                            {
+                                "_type": "P_BMM_GENERIC_TYPE",
+                                "root_type": "List",
+                                "generic_parameters": [
+                                    "String"
+                                ]
+                            }
                         ]
                     }
                 }
