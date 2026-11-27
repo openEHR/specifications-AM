@@ -757,7 +757,7 @@ The following functions implement those of the same names from `C_SECOND_ORDER`,
 
 [source,eiffel]
 --------
-c_conforms_to (other: C_ATTRIBUTE_TUPLE; rmcc: FUNCTION<<a_type, other_type: String>, Boolean>): BOOLEAN
+c_conforms_to (other: C_ATTRIBUTE_TUPLE; rmcc: FUNCTION<<a_type, other_type: String>, Boolean>): Boolean
         -- True if this node is a subset of, or the same as `other'
     do
         Result :=
@@ -768,7 +768,7 @@ c_conforms_to (other: C_ATTRIBUTE_TUPLE; rmcc: FUNCTION<<a_type, other_type: Str
                     there_exists ot: other.tuples | t.c_congruent_to (ot)
     end
 
-c_congruent_to (other: C_ATTRIBUTE_TUPLE): BOOLEAN
+c_congruent_to (other: C_ATTRIBUTE_TUPLE): Boolean
         -- True if Current adds no further constraints with respect to `other'
     do
         Result := for_all t: tuples |
@@ -780,7 +780,7 @@ The following functions implement those of the same names from `C_SECOND_ORDER`,
 
 [source,eiffel]
 --------
-c_conforms_to (other: C_PRIMITIVE_TUPLE; rmcc: FUNCTION<<a_type, other_type: String>, Boolean>): BOOLEAN
+c_conforms_to (other: C_PRIMITIVE_TUPLE; rmcc: FUNCTION<<a_type, other_type: String>, Boolean>): Boolean
         -- True if this node is a subset of, or the same as `other'
     do
         if count = other.count then
@@ -791,7 +791,7 @@ c_conforms_to (other: C_PRIMITIVE_TUPLE; rmcc: FUNCTION<<a_type, other_type: Str
         end
     end
 
-c_congruent_to (other: C_PRIMITIVE_TUPLE): BOOLEAN
+c_congruent_to (other: C_PRIMITIVE_TUPLE): Boolean
         -- True if Current and `other' are semantically the same
     do
         if count = other.count then
